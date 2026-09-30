@@ -56,7 +56,15 @@ clauses:
 
 constants: {}
 
-exponents: {}
+exponents:
+  eq-hausdorff:
+  - detail: '2d/(2d-1): notation: the paper''s L^{2d/(2d-1)} is Lean''s L ^ ((2 * d : ℝ) / (2 * d - 1)); the ascription sits on the numerator, so the spellings differ only by it'
+    kind: notation
+  lem-geometry:
+  - detail: '-d: definition: the paper''s |v-y|^{-d} in U_D is the division by ‖v - y‖ ^ d in the body of CERW.potential, which the statement names'
+    kind: definition
+  - detail: 'd-1: notation: the paper''s S^{d-1} names the unit sphere by its dimension, not a power; Lean integrates against volume.toSphere on Metric.sphere 0 1'
+    kind: notation
 
 hazards:
   thm-shape:

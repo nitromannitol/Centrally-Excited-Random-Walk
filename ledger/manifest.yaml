@@ -19,4 +19,93 @@ library: CERW
 source_pin:
   file: paper/cerw-flat.tex
   sha256: 53d8c0a7bbb51cd4749ba1ba55c55cece9dc9b8a9b6a5d5ee42ae4ff89ce943a
-nodes: []
+nodes:
+
+  - id: ext-lattice-kernel
+    version: 1
+    kind: definition
+    source: cerw-flat.tex:345-359 (eq:kernel-asymptotics, local-times.tex:5-19; Lawler–Limic Thm 4.3.1, Cor 4.3.3, Thm 4.4.4)
+    file: CERW/External/LatticePotentialKernel.lean
+    export: CERW.External.LatticePotentialKernel
+    state: FROZEN
+    frozen_sha256: 0e20a9f8598835d5f9953e61bb63affd652066350e769c764ffdd51776c85dda
+    provider: CERW.External.LatticePotentialKernel
+    approved: "2026-09-30"
+
+  - id: thm-shape
+    version: 2
+    kind: theorem
+    source: cerw-flat.tex:135-160 (label thm:shape)
+    file: CERW/Frozen/BallShape.lean
+    export: CERW.Frozen.ball_shape
+    state: SEALED
+    frozen_sha256: e3cff69c7bbfd75bbb9c008af4519d827dbfac5ad7da0f98bba616cd7368718d
+    provider: CERW.Frozen.ball_shape
+    approved: "2026-09-30"
+
+  - id: thm-fluctuations
+    version: 2
+    kind: theorem
+    source: cerw-flat.tex:186-213 (label thm:fluctuations)
+    file: CERW/Frozen/FluctuationBounds.lean
+    export: CERW.Frozen.fluctuation_bounds
+    state: SEALED
+    frozen_sha256: c76a39dbf87bab1d44a3c99b0efa8bbb354f370f82f7a827082b6a447462aa2d
+    provider: CERW.Frozen.fluctuation_bounds
+    approved: "2026-09-30"
+
+  - id: eq-hausdorff
+    version: 2
+    kind: theorem
+    source: cerw-flat.tex:217-223 (label eq:hausdorff, with the planar remark at cerw-flat.tex 224-225)
+    file: CERW/Frozen/HausdorffBound.lean
+    export: CERW.Frozen.hausdorff_bound
+    state: SEALED
+    frozen_sha256: 5c06b6e91dd7ffa34cb6ecb35fe1cc39017bc3d3cb781dd70744a28d91610887
+    provider: CERW.Frozen.hausdorff_bound
+    approved: "2026-09-30"
+
+  - id: lem-local
+    version: 2
+    kind: theorem
+    source: cerw-flat.tex:397-414 (label lem:local, local-times.tex:57-74)
+    file: CERW/Frozen/LocalTimePotential.lean
+    export: CERW.Frozen.local_time_potential
+    state: SEALED
+    frozen_sha256: 381f9ba4a2c1f8b454c492063c9ad2acec78c90158558099e9d553f8c2b9d959
+    provider: CERW.Frozen.local_time_potential
+    approved: "2026-09-30"
+
+  - id: lem-geometry
+    version: 2
+    kind: theorem
+    source: cerw-flat.tex:497-514 (label lem:geometry, local-times.tex:157-174)
+    file: CERW/Frozen/PotentialGeometry.lean
+    export: CERW.Frozen.potential_geometry
+    state: SEALED
+    frozen_sha256: 3cd2d5007812191cc3c35903ff940e6d73ef50b4aae6f289a850cac172951121
+    provider: CERW.Frozen.potential_geometry
+    approved: "2026-09-30"
+
+  - id: lem-radial
+    version: 2
+    kind: theorem
+    source: cerw-flat.tex:581-601 (label lem:radial, coarse-radius.tex:38-58)
+    file: CERW/Frozen/RadialTest.lean
+    export: CERW.Frozen.radial_test
+    state: SEALED
+    frozen_sha256: b07ab5edb5a29e1f336689eb07fffd5eb9c76b696ece162fd1d24ae8bac6bb09
+    provider: CERW.Frozen.radial_test
+    approved: "2026-09-30"
+
+  - id: prop-coarse
+    version: 2
+    kind: theorem
+    source: cerw-flat.tex:547-561 (label prop:coarse, coarse-radius.tex:4-18)
+    file: CERW/Frozen/CoarseBounds.lean
+    export: CERW.Frozen.coarse_bounds
+    state: SEALED
+    frozen_sha256: 8e67c96197fa7fbe677658163d990249d8ad518a596fb987b624679c6a197d9f
+    provider: CERW.Frozen.coarse_bounds
+    approved: "2026-09-30"
+
