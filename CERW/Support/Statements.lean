@@ -20,6 +20,7 @@ open LatticeProb (Site euclidNorm)
 
 namespace CERW.Support.Statements
 
+/-- The cited result carried as a hypothesis (draft). -/
 def MartingaleCLT : Prop :=
   ∀ {Ω : Type u} [m0 : MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (ℱ : Filtration ℕ m0) (S : ℕ → Ω → ℝ), Martingale S ℱ μ → (∀ n, MemLp (S n) 2 μ) →
@@ -33,6 +34,7 @@ def MartingaleCLT : Prop :=
       (fun _ => (v : ℝ)) →
     TendstoInDistribution (fun n ω => S n ω / s n) atTop id (fun _ => μ) (gaussianReal 0 v)
 
+/-- The cited result carried as a hypothesis (draft). -/
 def StoutLIL : Prop :=
   ∀ {Ω : Type u} [m0 : MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (ℱ : Filtration ℕ m0) (S : ℕ → Ω → ℝ), Martingale S ℱ μ → (∀ n, MemLp (S n) 2 μ) →
@@ -161,7 +163,7 @@ def fluctuation_rates : Prop :=
           else
             |CERW.innerRadius Y n - r n| ≤ C * Real.log n ∧
               CERW.maxRadius Y n - r n ≤ C * Real.log n ^ ((d : ℝ) + 1)) ∧
-        volume ((r n)⁻¹ • CERW.cellSet Y n ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)
+        volume (((r n)⁻¹ • CERW.cellSet Y n) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)
             ≤ ENNReal.ofReal
               (C * if d = 2 then Real.sqrt (Real.log n / r n) else Real.log n / r n) ∧
         ∀ x : Site d,
@@ -199,7 +201,7 @@ def inner_radius : Prop :=
         ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
           (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, 2 ≤ n →
           μ {ω | ¬ (|CERW.innerRadius (X · ω) n - r n| ≤ C * r n * q n ∧
-                    volume ((r n)⁻¹ • CERW.cellSet (X · ω) n ∆
+                    volume (((r n)⁻¹ • CERW.cellSet (X · ω) n) ∆
                         Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)
                       ≤ ENNReal.ofReal (C * q n) ∧
                     ∀ y : EuclideanSpace ℝ (Fin d),
@@ -367,7 +369,8 @@ def norm_potential_geometry : Prop :=
           (∀ y z, |CERW.normPotential d ε Ψ D y - CERW.normPotential d ε Ψ D z|
               ≤ C * ε * R ^ ((1 : ℝ) / (2 * d)) * ‖y - z‖ ^ ((1 : ℝ) / 2)) ∧
           (∀ s : ℝ, 0 < s →
-            let A : ℝ := (d * ωd)⁻¹ * ∫ θ, CERW.normPotential d ε Ψ D (s • (θ : EuclideanSpace ℝ (Fin d)))
+            let A : ℝ := (d * ωd)⁻¹ * ∫ θ,
+                CERW.normPotential d ε Ψ D (s • (θ : EuclideanSpace ℝ (Fin d)))
                 ∂(volume : Measure (EuclideanSpace ℝ (Fin d))).toSphere
             let B : ℝ := 2 * ε / ωd * ∫ v in D ∩ {v | s < ‖v‖}, Ψ v / ‖v‖ ^ d
             A = B ∧ 2 * d * ε * CERW.normMin Ψ * CERW.tail d D s ≤ B ∧
