@@ -1,0 +1,9 @@
+% s-clamp: martingales with almost surely bounded increments. Input of s-vector and the other Freedman applications.
+\paragraph{Statement.} If $M$ is a martingale for $(\mathcal F_i)$ under a finite measure and
+$|M_{i+1}-M_i|\leq b$ a.s.\ for every $i$, then there is a martingale $M'$ with $M'_0=M_0$,
+$|M'_{i+1}-M'_i|\leq b$ everywhere, and $M'_i=M_i$ for all $i$, almost surely.
+\paragraph{Proof.} Let $M'_i=M_0+\sum_{j<i}\mathrm{clamp}_{[-b,b]}(M_{j+1}-M_j)$. The clamped increment equals the
+increment a.s., so for every $i$, $M'_i=M_i$ a.s.; a countable intersection gives all $i$ at once. $M'$ is
+adapted (each clamped increment is $\mathcal F_{j+1}$-measurable) and integrable (it is a.s.\ equal to
+$M_i$, or bounded by $|M_0|+ib$). It is a martingale because its conditional increments equal those of $M$
+a.e.

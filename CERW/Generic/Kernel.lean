@@ -5,3 +5,5 @@ import CERW.Generic.Kernel.RadialPower
 import CERW.Generic.Kernel.NewtonField
 import CERW.Generic.Kernel.LogRadial
 import CERW.Generic.Kernel.Modulus
+import CERW.Generic.Kernel.ScalarTaylor
+import CERW.Generic.Kernel.DirectionError

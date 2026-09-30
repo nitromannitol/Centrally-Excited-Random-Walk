@@ -1,0 +1,7 @@
+% s-ball-symmetry: the potential of a centred ball is radial. Input of s-ballpotential (eq:ballpotential).
+\paragraph{Statement.} (i) $U_{B(0,b)}(Ay)=U_{B(0,b)}(y)$ for every linear isometry $A$. (ii) If $|y|=|z|$ then
+$U_{B(0,b)}(y)=U_{B(0,b)}(z)$.
+\paragraph{Proof.} (i) $A$ preserves Lebesgue measure and maps $B(0,b)$ onto itself. Substitute $v=Av'$:
+$u_{Av'}=Au_{v'}$, $Av'-Ay=A(v'-y)$, $|A(v'-y)|=|v'-y|$ and $\langle Au,Aw\rangle=\langle u,w\rangle$, so the
+integrand at $v=Av'$ is the integrand for $y$ at $v'$. (ii) If $y\neq z$, the reflection in $(y-z)^\perp$
+maps $y$ to $z$ when $|y|=|z|$ (\texttt{reflection\_sub}); apply (i).

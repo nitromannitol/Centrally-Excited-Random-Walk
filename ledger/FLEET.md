@@ -56,14 +56,24 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 10 | contact cell | Sonnet subagent | sonnet | task prompt | 1 + 3 helpers | 44k (agent total) | accepted | 0 | 117 | `CERW/Support/Contact/ContactCell.lean` |
 | 10 | kernel modulus | Sonnet subagent | sonnet | task prompt | 1 + 6 helpers | 79k (agent total) | accepted | 0 | 248 | `CERW/Generic/Kernel/Modulus.lean` |
 | 11 | one-step bound of the potential kernel | ds1 | v4.1-flash | 5747 | 2 | ↑51k ↓18k | accepted | 0 | 87 | `CERW/Support/LocalTime/GradientBound.lean` |
-| 11 | second-order scalar Taylor bounds | ds2 | v4.1-flash | 5598 | 2 | — | in flight | — | — | `wip/ScalarTaylor.lean` |
-| 11 | dyadic Freedman bound | ds3 | v4.1-flash | 6800 | 1 | — | in flight | — | — | `wip/Dyadic.lean` |
-| 11 | direction error | ds4 | v4.1-flash | 7558 | 1 | — | in flight | — | — | `wip/DirectionError.lean` |
+| 11 | second-order scalar Taylor bounds | ds2 | v4.1-flash | 5598 | 2 | ↑92k ↓44k | accepted | 0 | 156 | `CERW/Generic/Kernel/ScalarTaylor.lean` |
+| 11 | dyadic Freedman bound | ds3 | v4.1-flash | 6800 | 1 | ↑136k ↓55k | accepted | 0 | 189 | `CERW/Generic/Martingale/Dyadic.lean` |
+| 11 | direction error | ds4 | v4.1-flash | 7558 | 1 | ↑193k ↓67k | accepted | 0 | 233 | `CERW/Generic/Kernel/DirectionError.lean` |
+| 11 | Hölder continuity of the potential | Sonnet subagent | sonnet | task prompt | 1 + 3 helpers | 47k (agent total) | accepted | 0 | 131 | `CERW/Support/Geometry/Holder.lean` |
+| 11 | polar coordinates | Sonnet subagent | sonnet | task prompt | 2 + 1 helper | 59k (agent total) | accepted | 1: the director dropped an unused hypothesis from one statement | 118 | `CERW/Generic/Newton/Polar.lean` |
+| 12 | cell modulus of the potential | ds1 | v4.1-flash | 8064 | 1 | ↑197k ↓99k | accepted | 1: the director made its helpers private after a name collision with the parallel Hölder file | 403 | `CERW/Support/Geometry/CellModulus.lean` |
+| 12 | flux through a sphere | ds2 | v4.1-flash | 7710 | 3 | — | in flight | — | — | `wip/Flux.lean` |
+| 12 | central difference of the potential kernel | ds3 | v4.1-flash | 7404 | 2 | — | in flight | — | — | `wip/GradientAsymp.lean` |
+| 12 | clamped martingale | ds4 | v4.1-flash | 6038 | 1 | — | in flight | — | — | `wip/Clamp.lean` |
+| 13 | rotational symmetry of a ball potential | ds1 | v4.1-flash | 5170 | 2 | — | in flight | — | — | `wip/BallSymmetry.lean` |
+| 13 | Gauss's law for a point source | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/Gauss.lean` |
 
 ## Observations
 
-* **Waves 1–11.** Every returned DeepSeek packet was accepted: 40/40, with one definition repair in wave 1 and
-  one dispatch repair in wave 9. Every Sonnet leaf was accepted: 6/6.
+* **Waves 1–12.** Every returned DeepSeek packet was accepted: 44/44. There were three repairs: a definition
+  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 8/8.
+* **Parallel helpers collide.** Two parallel files in one namespace each added a public helper with the same
+  name. Since wave 13, the common rules require every helper a worker adds to be `private`.
 * **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was
   4–20 minutes.
 * **What a brief carried.** Every brief was 3.8–6.3 KB, stated the proof route step by step, and

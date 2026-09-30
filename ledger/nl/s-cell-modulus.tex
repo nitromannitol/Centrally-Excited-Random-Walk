@@ -1,0 +1,10 @@
+% s-cell-modulus: eq:cellmodulus.
+\paragraph{Statement.} For $d\geq2$ there is $C_d$ such that $|U_D(y)-U_D(z)|\leq C_d\eps\log(R+2)$ whenever
+$\eps\geq0$, $R\geq1$, $D\subseteq B(0,R)$ is measurable, $|y|\leq2R$ and $|y-z|\leq\sqrt d$.
+\paragraph{Proof.} As in s-holder, $|U_D(y)-U_D(z)|\leq(2\eps/\omega_d)\int_D|K(v-y)-K(v-z)|$. Near: on
+$|v-z|<2\sqrt d$ the integrand is at most $|v-y|^{1-d}+|v-z|^{1-d}$. The integral of the second over
+$B(z,2\sqrt d)$ is $2\sqrt d\,\sigma_d$. The integral of the first is at most its integral over
+$B(y,3\sqrt d)$, which is $3\sqrt d\,\sigma_d$. Far: on $|v-z|\geq2\sqrt d\geq2|y-z|$, s-newton-field gives
+$|K(v-y)-K(v-z)|\leq A_d\sqrt d|v-z|^{-d}$. Since $|v-z|<(3+\sqrt d)R$ on $D$,
+$\int_{2\sqrt d\leq|v-z|<(3+\sqrt d)R}|v-z|^{-d}=\sigma_d\log((3+\sqrt d)R/(2\sqrt d))$ (s-log-radial, after
+translating by $z$). Finally $\log(R+2)\geq1$ absorbs the constants.

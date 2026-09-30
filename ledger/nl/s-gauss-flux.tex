@@ -1,0 +1,9 @@
+% s-gauss-flux: Gauss's law for a point source (distributional form). Input of s-kernel-average.
+\paragraph{Statement.} For $d\geq2$, $\varphi\in C^1_c(\R^d)$ and $c\in\R^d$:
+$\int D\varphi(v)[K(v-c)]\dd v=-\sigma_d\varphi(c)$, where $\sigma_d=d\,\omega_d$.
+\paragraph{Proof.} Translate $v=c+w$. The integrand is bounded by $\|D\varphi\|_\infty|w|^{1-d}$ on a bounded set, so
+it is integrable. In polar coordinates (s-polar), $K(r\theta)=r^{1-d}\theta$, so
+$r^{d-1}D\varphi(c+r\theta)[K(r\theta)]=\frac{\dd}{\dd r}\varphi(c+r\theta)$. Exchange the order of the sphere and
+radial integrals (Fubini on $\sigma\otimes\dd r$; the integrand is bounded and has bounded support in $r$). For each
+$\theta$, $\int_0^\infty\frac{\dd}{\dd r}\varphi(c+r\theta)\dd r=-\varphi(c)$ because $\varphi(c+r\theta)=0$ for large $r$.
+Integrating the constant $-\varphi(c)$ over the sphere gives $-\sigma(S)\varphi(c)=-d\,\omega_d\varphi(c)$.

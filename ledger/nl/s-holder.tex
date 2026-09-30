@@ -1,0 +1,8 @@
+% s-holder: eq:holder. Part of lem-geometry.
+\paragraph{Statement.} For $d\geq2$ there is $C_d$ with $|U_D(y)-U_D(z)|\leq C_d\eps|D|^{1/(2d)}|y-z|^{1/2}$ for
+all $\eps\geq0$, measurable $D$ of finite volume, and $y,z$.
+\paragraph{Proof.} Both integrands are integrable on $D$ (s-potential-bound), and $u_v\cdot(v-y)/|v-y|^d=u_v\cdot K(v-y)$.
+So $|U_D(y)-U_D(z)|\leq(2\eps/\omega_d)\int_D|K(v-y)-K(v-z)|\dd v$. By Hölder's inequality with the exponents
+$p=2d$ and $q=2d/(2d-1)$, applied to $\ind_D$ and $g=|K(\cdot-y)-K(\cdot-z)|$, this is at most
+$|D|^{1/(2d)}(\int g^q)^{1/q}$. By s-kernel-modulus, $\int g^q\leq C|y-z|^{q/2}$, so
+$(\int g^q)^{1/q}\leq C^{1/q}|y-z|^{1/2}$.

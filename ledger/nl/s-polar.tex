@@ -1,0 +1,9 @@
+% s-polar: polar coordinates in R^d. Input of s-gauss-flux (the Newton plan for eq:kernel-average).
+\paragraph{Statement.} For $d\geq1$ and integrable $f$ on $\R^d$: $\theta\mapsto f(r\theta)$ is
+$\sigma$-integrable for a.e.\ $r>0$; $r\mapsto r^{d-1}\int_Sf(r\theta)\dd\sigma(\theta)$ is integrable on
+$(0,\infty)$; and $\int f=\int_0^\infty r^{d-1}\int_Sf(r\theta)\dd\sigma(\theta)\dd r$, where
+$\sigma=\mathrm{volume.toSphere}$.
+\paragraph{Proof.} The singleton $\{0\}$ is null. The map $x\mapsto(x/|x|,|x|)$ from $\R^d\setminus\{0\}$ to
+$S^{d-1}\times(0,\infty)$ is measure preserving onto $\sigma\otimes r^{d-1}\dd r$
+(\texttt{measurePreserving\_homeomorphUnitSphereProd}). Apply Fubini to the product measure and write the
+radial measure as Lebesgue measure with density $r^{d-1}$.

@@ -1,0 +1,12 @@
+% s-gradient: the first estimate of eq:gradient, from eq:kernel-asymptotics (as a hypothesis on b).
+\paragraph{Statement.} (d=2) If $|b(x)-(\frac2\pi\log|x|+\kappa)|\leq C_b|x|^{-2}$ for $|x|\geq R_b$, then
+$|Db(x)-\frac2\pi x/|x|^2|\leq C|x|^{-2}$ for all large $|x|$. ($d\geq3$) If $|G(x)-c_d|x|^{2-d}|\leq C_G|x|^{-d}$ for
+$|x|\geq R_G$, where $c_d=2/((d-2)\omega_d)$, then $|D(-G)(x)-\frac2{\omega_d}x/|x|^d|\leq C|x|^{-d}$ for all large $|x|$.
+\paragraph{Proof.} Componentwise, $D_ib(x)=\frac12[b(x+e_i)-b(x-e_i)]$. For $|x|\geq R_b+1$ the asymptotic errors
+at $x\pm e_i$ are at most $C_b(|x|-1)^{-d}\leq2^dC_b|x|^{-d}$ once $|x|\geq2$. Write
+$|x\pm e_i|^2=|x|^2(1+t_\pm)$ with $t_\pm=(1\pm2x_i)/|x|^2$, so $|t_\pm|\leq3/|x|\leq\frac12$ for $|x|\geq6$, and
+$t_+-t_-=4x_i/|x|^2$. For $d=2$, $\log|x\pm e_i|=\log|x|+\frac12\log(1+t_\pm)$, so by s-scalar-taylor
+$\frac12[\log|x+e_i|-\log|x-e_i|]=\frac14(t_+-t_-)+O(t^2)=x_i/|x|^2+O(|x|^{-2})$. For $d\geq3$,
+$|x\pm e_i|^{2-d}=|x|^{2-d}(1+t_\pm)^\alpha$ with $\alpha=(2-d)/2$, so the half difference is
+$|x|^{2-d}[\alpha(t_+-t_-)/2+O(t^2)]=(2-d)x_i|x|^{-d}+O(|x|^{-d})$. Multiplying by $-c_d$ gives
+$\frac2{\omega_d}x_i|x|^{-d}$. The Euclidean norm of the error vector is at most the sum of its $d$ coordinates.

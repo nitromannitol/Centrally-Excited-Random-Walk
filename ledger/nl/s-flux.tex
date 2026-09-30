@@ -1,0 +1,10 @@
+% s-flux: the flux of the Newtonian field through a sphere. Input of s-gauss-flux and s-kernel-average.
+\paragraph{Statement.} Let $\Phi_c(r)=r^{d-1}\int_S\theta\cdot K(r\theta-c)\dd\sigma(\theta)$. (i) For unit $u,\theta$:
+$u\cdot K(ru-s\theta)=\theta\cdot K(r\theta-su)$. (ii) For $d\geq2$, $\Phi_c$ is continuous on $\{r>0,\ r\neq|c|\}$.
+(iii) $\Phi_c(r)\to\sigma_d$ as $r\to\infty$.
+\paragraph{Proof.} (i) $u\cdot(ru-s\theta)=r-s\,u\cdot\theta=\theta\cdot(r\theta-su)$, and
+$|ru-s\theta|^2=r^2-2rs\,u\cdot\theta+s^2=|r\theta-su|^2$. (ii) Near $r_0\neq|c|$, $|r\theta-c|\geq||r|-|c||\geq\delta>0$
+uniformly in $\theta$. The integrand is continuous in $r$ and bounded by $\delta^{1-d}$ on the finite measure
+$\sigma$, so dominated convergence applies. (iii) For $r\geq2|c|+1$,
+$r^{d-1}\theta\cdot K(r\theta-c)=r^{d-1}(r-\theta\cdot c)/|r\theta-c|^d\to1$ for each $\theta$, and it is bounded by
+$2^{d+1}$. By dominated convergence the limit is $\sigma(S)=d\,\omega_d$.
