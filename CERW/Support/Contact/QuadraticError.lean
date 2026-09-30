@@ -266,6 +266,111 @@ private theorem exists_clamped_quadratic (hd : 2 ≤ d) {ε : ℝ} (hε : 0 ≤ 
     filter_upwards [hMae] with ω hω hball
     rw [hω n, hQ'eq ω hball]
 
+/-- Deterministic rearrangement: the Freedman threshold at bracket increment `t (2 K N + 1)²` is
+bounded by `2 c (2 K + 1)` times the rate `N √(t L) + N L`. -/
+private theorem quadratic_det_bound {K N L c t : ℝ} (hc1 : 1 ≤ c) (hK : 0 < K)
+    (hN1 : 1 ≤ N) (hL : 0 < L) (ht1 : 1 ≤ t) :
+    c * (Real.sqrt (max (t * (2 * K * N + 1) ^ 2) 1 * L) + 2 * (2 * K * N + 1) * L) ≤
+      (2 * c * (2 * K + 1)) * (N * Real.sqrt (t * L) + N * L) := by
+  have hsq1 : (1 : ℝ) ≤ (2 * K * N + 1) ^ 2 := by
+    have h1 : (1 : ℝ) ≤ 2 * K * N + 1 := by nlinarith
+    nlinarith
+  have hge1 : (1 : ℝ) ≤ t * (2 * K * N + 1) ^ 2 := by nlinarith
+  rw [max_eq_left hge1]
+  have hsqrt : Real.sqrt (t * (2 * K * N + 1) ^ 2 * L) =
+      (2 * K * N + 1) * Real.sqrt (t * L) := by
+    rw [show t * (2 * K * N + 1) ^ 2 * L = (2 * K * N + 1) ^ 2 * (t * L) by ring,
+      Real.sqrt_mul (sq_nonneg _), Real.sqrt_sq (by positivity)]
+  rw [hsqrt]
+  have hbound1 : 2 * K * N + 1 ≤ (2 * K + 1) * N := by nlinarith [hN1]
+  have hnn : 0 ≤ Real.sqrt (t * L) + 2 * L := by
+    refine add_nonneg (Real.sqrt_nonneg _) ?_
+    positivity
+  have hstep : (2 * K * N + 1) * (Real.sqrt (t * L) + 2 * L) ≤
+      2 * (2 * K + 1) * (N * Real.sqrt (t * L) + N * L) := by
+    calc (2 * K * N + 1) * (Real.sqrt (t * L) + 2 * L)
+        ≤ ((2 * K + 1) * N) * (Real.sqrt (t * L) + 2 * L) :=
+          mul_le_mul_of_nonneg_right hbound1 hnn
+      _ = (2 * K + 1) * (N * Real.sqrt (t * L) + 2 * (N * L)) := by ring
+      _ ≤ (2 * K + 1) * (2 * (N * Real.sqrt (t * L) + N * L)) := by
+          refine mul_le_mul_of_nonneg_left ?_ (by positivity)
+          nlinarith [Real.sqrt_nonneg (t * L),
+            mul_nonneg (by linarith : 0 ≤ N) hL.le]
+      _ = 2 * (2 * K + 1) * (N * Real.sqrt (t * L) + N * L) := by ring
+  calc c * ((2 * K * N + 1) * Real.sqrt (t * L) + 2 * (2 * K * N + 1) * L)
+      = c * ((2 * K * N + 1) * (Real.sqrt (t * L) + 2 * L)) := by ring
+    _ ≤ c * (2 * (2 * K + 1) * (N * Real.sqrt (t * L) + N * L)) :=
+        mul_le_mul_of_nonneg_left hstep (by linarith)
+    _ = 2 * c * (2 * K + 1) * (N * Real.sqrt (t * L) + N * L) := by ring
+
+/-- The tail estimate for the dyadic Freedman bound at bracket `W = n (2 K N + 1)²`: the
+probability prefactor times `2 e^{-(p + 3)L}` is at most `(Cdet + Cp) n^{-p}`, with
+`Cp = 16 ((2 K + 1)² + 2)`. -/
+private theorem quadratic_prob_bound {K p N Cdet : ℝ} (hK : 0 < K) (hp : 0 < p) {n : ℕ}
+    (hn1 : 1 ≤ n) (hN1 : 1 ≤ N) (hNle : N ≤ (n : ℝ)) (hCdetpos : 0 < Cdet) :
+    (((Nat.clog 2 ⌈(n : ℝ) * (2 * K * N + 1) ^ 2⌉₊ : ℕ) : ℝ) + 1) *
+        (2 * Real.exp (-((p + 3) * Real.log ((n : ℝ) + 2)))) ≤
+      (Cdet + 16 * ((2 * K + 1) ^ 2 + 2)) * (n : ℝ) ^ (-p) := by
+  have hn1R : (1 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn1
+  have hKN : 0 < K * N := mul_pos hK (by linarith)
+  set L : ℝ := Real.log ((n : ℝ) + 2) with hL
+  set W : ℝ := (n : ℝ) * (2 * K * N + 1) ^ 2 with hW
+  have hW0 : 0 ≤ W := by rw [hW]; positivity
+  have hn3 : (1 : ℝ) ≤ (n : ℝ) ^ 3 := one_le_pow₀ hn1R
+  have hn13 : (1 : ℝ) ≤ ((n : ℝ) + 1) ^ 3 := one_le_pow₀ (by linarith)
+  have hWle : W ≤ (2 * K + 1) ^ 2 * (n : ℝ) ^ 3 := by
+    rw [hW]
+    have hbnd : 2 * K * N + 1 ≤ (2 * K + 1) * (n : ℝ) := by
+      have h1 : 2 * K * N + 1 ≤ (2 * K + 1) * N := by nlinarith [hN1]
+      have h2 : (2 * K + 1) * N ≤ (2 * K + 1) * (n : ℝ) :=
+        mul_le_mul_of_nonneg_left hNle (by linarith)
+      linarith
+    have hsq : (2 * K * N + 1) ^ 2 ≤ ((2 * K + 1) * (n : ℝ)) ^ 2 :=
+      pow_le_pow_left₀ (by linarith) hbnd 2
+    calc (n : ℝ) * (2 * K * N + 1) ^ 2
+        ≤ (n : ℝ) * ((2 * K + 1) * (n : ℝ)) ^ 2 :=
+          mul_le_mul_of_nonneg_left hsq (by positivity)
+      _ = (2 * K + 1) ^ 2 * (n : ℝ) ^ 3 := by ring
+  have hceil : (⌈W⌉₊ : ℝ) ≤ ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 := by
+    have h1 : (⌈W⌉₊ : ℝ) < W + 1 := Nat.ceil_lt_add_one (by linarith)
+    have h2 : W + 1 ≤ ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 := by
+      have h3 : (n : ℝ) ^ 3 ≤ ((n : ℝ) + 1) ^ 3 :=
+        pow_le_pow_left₀ (by positivity) (by linarith) 3
+      calc W + 1 ≤ (2 * K + 1) ^ 2 * (n : ℝ) ^ 3 + 1 := by linarith [hWle]
+        _ ≤ (2 * K + 1) ^ 2 * ((n : ℝ) + 1) ^ 3 + ((n : ℝ) + 1) ^ 3 :=
+            add_le_add (mul_le_mul_of_nonneg_left h3 (by positivity)) hn13
+        _ = ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 := by ring
+    linarith
+  have hclog : ((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) ≤ (⌈W⌉₊ : ℝ) := by
+    exact_mod_cast Nat.clog_le_of_le_pow (Nat.lt_two_pow_self).le
+  have hclog1 : ((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) + 1 ≤
+      ((2 * K + 1) ^ 2 + 2) * ((n : ℝ) + 1) ^ 3 := by
+    have h4 : ((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) ≤
+        ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 := le_trans hclog hceil
+    calc ((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) + 1
+        ≤ ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 + 1 := by linarith
+      _ ≤ ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 + ((n : ℝ) + 1) ^ 3 :=
+            add_le_add le_rfl hn13
+      _ = ((2 * K + 1) ^ 2 + 2) * ((n : ℝ) + 1) ^ 3 := by ring
+  have hexp : 2 * Real.exp (-((p + 3) * L)) ≤ 2 * (n : ℝ) ^ (-(p + 3)) := by
+    rw [hL]
+    exact CERW.Generic.Martingale.two_mul_exp_neg_mul_log_le (K := p + 3) (by linarith)
+      (n := n) hn1
+  have hpow := CERW.Generic.Martingale.pow_mul_rpow_neg_le hn1 3 p
+  calc (((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) + 1) * (2 * Real.exp (-((p + 3) * L)))
+      ≤ (((2 * K + 1) ^ 2 + 2) * ((n : ℝ) + 1) ^ 3) *
+          (2 * (n : ℝ) ^ (-(p + 3))) := by
+        refine mul_le_mul hclog1 hexp ?_ (by positivity)
+        positivity
+    _ = 2 * ((2 * K + 1) ^ 2 + 2) *
+          (((n : ℝ) + 1) ^ 3 * (n : ℝ) ^ (-(p + 3))) := by ring
+    _ ≤ 2 * ((2 * K + 1) ^ 2 + 2) * (2 ^ 3 * (n : ℝ) ^ (-p)) := by
+        refine mul_le_mul_of_nonneg_left hpow (by positivity)
+    _ = 16 * ((2 * K + 1) ^ 2 + 2) * (n : ℝ) ^ (-p) := by ring
+    _ ≤ (Cdet + 16 * ((2 * K + 1) ^ 2 + 2)) * (n : ℝ) ^ (-p) := by
+        refine mul_le_mul_of_nonneg_right ?_ (Real.rpow_nonneg (by positivity) _)
+        linarith [hCdetpos]
+
 /-- `eq:quadraticerror`: for `K > 0` and `p > 0` there is `C` with, for every `n ≥ 2`,
 `μ(|X_j| ≤ KN for all j ≤ n, and C (N √(nL) + NL) < |𝒬_n|) ≤ C n^{-p}`. -/
 theorem exists_quadratic_error (hd : 2 ≤ d) {ε : ℝ} (hε : 0 ≤ ε) (hεd : ε < 1 / (d : ℝ))
@@ -363,38 +468,10 @@ theorem exists_quadratic_error (hd : 2 ≤ d) {ε : ℝ} (hε : 0 ≤ ε) (hεd 
       rw [zero_add]
       simp only [hV]
       ring
-    have hge1 : (1 : ℝ) ≤ (n : ℝ) * (2 * K * N + 1) ^ 2 := by
-      have hsq1 : (1 : ℝ) ≤ (2 * K * N + 1) ^ 2 := by
-        have h1 : (1 : ℝ) ≤ 2 * K * N + 1 := by nlinarith
-        nlinarith
-      nlinarith
-    rw [hVval, max_eq_left hge1]
-    have hsqrt : Real.sqrt ((n : ℝ) * (2 * K * N + 1) ^ 2 * L) =
-        (2 * K * N + 1) * Real.sqrt ((n : ℝ) * L) := by
-      rw [show (n : ℝ) * (2 * K * N + 1) ^ 2 * L =
-          (2 * K * N + 1) ^ 2 * ((n : ℝ) * L) by ring,
-        Real.sqrt_mul (sq_nonneg _), Real.sqrt_sq (by positivity)]
-    rw [hsqrt, hb, hCdet]
-    have hbound1 : 2 * K * N + 1 ≤ (2 * K + 1) * N := by nlinarith [hN1]
-    have hnn : 0 ≤ Real.sqrt ((n : ℝ) * L) + 2 * L := by
-      refine add_nonneg (Real.sqrt_nonneg _) ?_
-      positivity
-    have hstep : (2 * K * N + 1) * (Real.sqrt ((n : ℝ) * L) + 2 * L) ≤
-        2 * (2 * K + 1) * (N * Real.sqrt ((n : ℝ) * L) + N * L) := by
-      calc (2 * K * N + 1) * (Real.sqrt ((n : ℝ) * L) + 2 * L)
-          ≤ ((2 * K + 1) * N) * (Real.sqrt ((n : ℝ) * L) + 2 * L) :=
-            mul_le_mul_of_nonneg_right hbound1 hnn
-        _ = (2 * K + 1) * (N * Real.sqrt ((n : ℝ) * L) + 2 * (N * L)) := by ring
-        _ ≤ (2 * K + 1) * (2 * (N * Real.sqrt ((n : ℝ) * L) + N * L)) := by
-            refine mul_le_mul_of_nonneg_left ?_ (by positivity)
-            nlinarith [Real.sqrt_nonneg ((n : ℝ) * L),
-              mul_nonneg (by linarith : 0 ≤ N) hLpos.le]
-        _ = 2 * (2 * K + 1) * (N * Real.sqrt ((n : ℝ) * L) + N * L) := by ring
-    calc c * ((2 * K * N + 1) * Real.sqrt ((n : ℝ) * L) + 2 * (2 * K * N + 1) * L)
-        = c * ((2 * K * N + 1) * (Real.sqrt ((n : ℝ) * L) + 2 * L)) := by ring
-      _ ≤ c * (2 * (2 * K + 1) * (N * Real.sqrt ((n : ℝ) * L) + N * L)) :=
-          mul_le_mul_of_nonneg_left hstep (by linarith)
-      _ = 2 * c * (2 * K + 1) * (N * Real.sqrt ((n : ℝ) * L) + N * L) := by ring
+    have hbval : b = 2 * (2 * K * N + 1) := by rw [hb]
+    have hCdetval : Cdet = 2 * c * (2 * K + 1) := by rw [hCdet]
+    rw [hVval, hbval, hCdetval]
+    exact quadratic_det_bound hc1 hK hN1 hLpos hn1R
   have hTsub : {ω | (∀ j ≤ n, euclidNorm (X j ω) ≤ K * N) ∧
         (Cdet + Cp) * (N * Real.sqrt ((n : ℝ) * L) + N * L) <
           |dynkin ε (fun z : Site d => euclidNorm z ^ 2) X n ω|} ≤ᵐ[μ]
@@ -422,61 +499,11 @@ theorem exists_quadratic_error (hd : 2 ≤ d) {ε : ℝ} (hε : 0 ≤ ε) (hεd 
     linarith
   have hprob : (((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) + 1) *
         (2 * Real.exp (-((p + 3) * L))) ≤ (Cdet + Cp) * (n : ℝ) ^ (-p) := by
-    have hn3 : (1 : ℝ) ≤ (n : ℝ) ^ 3 := one_le_pow₀ hn1R
-    have hn13 : (1 : ℝ) ≤ ((n : ℝ) + 1) ^ 3 := one_le_pow₀ (by linarith)
-    have hWle : W ≤ (2 * K + 1) ^ 2 * (n : ℝ) ^ 3 := by
-      rw [hW]
-      have hbnd : 2 * K * N + 1 ≤ (2 * K + 1) * (n : ℝ) := by
-        have h1 : 2 * K * N + 1 ≤ (2 * K + 1) * N := by nlinarith [hN1]
-        have h2 : (2 * K + 1) * N ≤ (2 * K + 1) * (n : ℝ) :=
-          mul_le_mul_of_nonneg_left hNle (by linarith)
-        linarith
-      have hsq : (2 * K * N + 1) ^ 2 ≤ ((2 * K + 1) * (n : ℝ)) ^ 2 :=
-        pow_le_pow_left₀ (by linarith) hbnd 2
-      calc (n : ℝ) * (2 * K * N + 1) ^ 2
-          ≤ (n : ℝ) * ((2 * K + 1) * (n : ℝ)) ^ 2 :=
-            mul_le_mul_of_nonneg_left hsq (by positivity)
-        _ = (2 * K + 1) ^ 2 * (n : ℝ) ^ 3 := by ring
-    have hceil : (⌈W⌉₊ : ℝ) ≤ ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 := by
-      have h1 : (⌈W⌉₊ : ℝ) < W + 1 := Nat.ceil_lt_add_one (by linarith)
-      have h2 : W + 1 ≤ ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 := by
-        have h3 : (n : ℝ) ^ 3 ≤ ((n : ℝ) + 1) ^ 3 :=
-          pow_le_pow_left₀ (by positivity) (by linarith) 3
-        calc W + 1 ≤ (2 * K + 1) ^ 2 * (n : ℝ) ^ 3 + 1 := by linarith [hWle]
-          _ ≤ (2 * K + 1) ^ 2 * ((n : ℝ) + 1) ^ 3 + ((n : ℝ) + 1) ^ 3 :=
-              add_le_add (mul_le_mul_of_nonneg_left h3 (by positivity)) hn13
-          _ = ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 := by ring
-      linarith
-    have hclog : ((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) ≤ (⌈W⌉₊ : ℝ) := by
-      exact_mod_cast Nat.clog_le_of_le_pow (Nat.lt_two_pow_self).le
-    have hclog1 : ((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) + 1 ≤
-        ((2 * K + 1) ^ 2 + 2) * ((n : ℝ) + 1) ^ 3 := by
-      have h4 : ((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) ≤
-          ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 := le_trans hclog hceil
-      calc ((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) + 1
-          ≤ ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 + 1 := by linarith
-        _ ≤ ((2 * K + 1) ^ 2 + 1) * ((n : ℝ) + 1) ^ 3 + ((n : ℝ) + 1) ^ 3 :=
-              add_le_add le_rfl hn13
-        _ = ((2 * K + 1) ^ 2 + 2) * ((n : ℝ) + 1) ^ 3 := by ring
-    have hexp : 2 * Real.exp (-((p + 3) * L)) ≤ 2 * (n : ℝ) ^ (-(p + 3)) := by
-      rw [hL]
-      exact CERW.Generic.Martingale.two_mul_exp_neg_mul_log_le (K := p + 3) (by linarith)
-        (n := n) hn1
-    have hpow := CERW.Generic.Martingale.pow_mul_rpow_neg_le hn1 3 p
-    calc (((Nat.clog 2 ⌈W⌉₊ : ℕ) : ℝ) + 1) * (2 * Real.exp (-((p + 3) * L)))
-        ≤ (((2 * K + 1) ^ 2 + 2) * ((n : ℝ) + 1) ^ 3) *
-            (2 * (n : ℝ) ^ (-(p + 3))) := by
-          refine mul_le_mul hclog1 hexp ?_ (by positivity)
-          positivity
-      _ = 2 * ((2 * K + 1) ^ 2 + 2) *
-            (((n : ℝ) + 1) ^ 3 * (n : ℝ) ^ (-(p + 3))) := by ring
-      _ ≤ 2 * ((2 * K + 1) ^ 2 + 2) * (2 ^ 3 * (n : ℝ) ^ (-p)) := by
-          refine mul_le_mul_of_nonneg_left hpow (by positivity)
-      _ = 16 * ((2 * K + 1) ^ 2 + 2) * (n : ℝ) ^ (-p) := by ring
-      _ ≤ (Cdet + Cp) * (n : ℝ) ^ (-p) := by
-          refine mul_le_mul_of_nonneg_right ?_ (Real.rpow_nonneg (by positivity) _)
-          rw [hCp]
-          linarith [hCdetpos]
+    have hWval : W = (n : ℝ) * (2 * K * N + 1) ^ 2 := by rw [hW]
+    have hLval : L = Real.log ((n : ℝ) + 2) := by rw [hL]
+    have hCpval : Cp = 16 * ((2 * K + 1) ^ 2 + 2) := by rw [hCp]
+    rw [hWval, hLval, hCpval]
+    exact quadratic_prob_bound hK hp hn1 hN1 hNle hCdetpos
   calc μ {ω | (∀ j ≤ n, euclidNorm (X j ω) ≤ K * N) ∧
         (Cdet + Cp) * (N * Real.sqrt ((n : ℝ) * L) + N * L) <
           |dynkin ε (fun z : Site d => euclidNorm z ^ 2) X n ω|}
