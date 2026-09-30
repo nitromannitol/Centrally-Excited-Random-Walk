@@ -10,3 +10,4 @@ import CERW.Support.Main.GoodMono
 import CERW.Support.Main.HausdorffGood
 import CERW.Support.Main.EventProb
 import CERW.Support.Main.InnerClauses
+import CERW.Support.Main.MassEventHigh

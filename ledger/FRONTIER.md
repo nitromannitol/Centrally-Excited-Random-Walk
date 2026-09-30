@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 02:44.
+generation time. Regenerated 2026-09-30 02:46.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -135,7 +135,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-contact-setup | ds2 | `Support/Contact/ContactSetup.lean` | s-contact-cell | eq:bm, eq:contactcell, the contact modulus | LANDED |
 | s-outer-envelope | ds3 | `Support/Coarse/OuterEnvelope.lean` | s-tailend, s-outer, s-envelope-shell | H_n ≤ b + C W L from the envelope | LANDED |
 | s-inner-clauses | ds4 | `Support/Main/InnerClauses.lean` | s-volume-profile, s-good-event | inner, volume and profile clauses and the hole | LANDED |
-| s-mass-event-high | ds2 | `Support/Main/MassEventHigh.lean` | s-var-high, s-contact-setup | mass step on the event, d ≥ 3 | IN-FLIGHT (ds2, 02:39) |
+| s-mass-event-high | ds2 | `Support/Main/MassEventHigh.lean` | s-var-high, s-contact-setup | mass step on the event, d ≥ 3 | LANDED |
 | s-mass-event-planar | ds4 | `Support/Main/MassEventPlanar.lean` | s-var-planar, s-contact-setup | mass step on the event, d = 2 | IN-FLIGHT (director/sonnet) |
 | s-outer-inclusion | ds4 | `Support/Main/OuterInclusion.lean` | — | V_n ⊆ {\|x\| < (a + C Q^{1/d} L) N} from H_n ≤ b + C W L | IN-FLIGHT (ds4, 02:42) |
 | s-assembly | sonnet | `Support/Main/GoodCore.lean` | s-contact-setup, s-mass-event-high, s-mass-event-planar, s-inradius, s-inner-clauses, s-outer-envelope, s-outer-inclusion, s-good-event | fluctEvent ⇒ fluctGood and a hole, for large n | IN-FLIGHT (director/sonnet) |
@@ -152,7 +152,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **thm-shape** | director | `Frozen/BallShape.lean` | s-fluct-assembly | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | s-hausdorff-assembly | eq:hausdorff | DRAFT |
 
-**Counts:** DRAFT 7, IN-FLIGHT 7, LANDED 100, SUPERSEDED 7.
+**Counts:** DRAFT 7, IN-FLIGHT 6, LANDED 101, SUPERSEDED 7.
 
 ## Pre-freeze gate
 
