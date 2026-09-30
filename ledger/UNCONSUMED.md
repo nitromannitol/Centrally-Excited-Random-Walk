@@ -3,7 +3,8 @@
 This file lists the public theorems under `CERW` that are not in the dependency closure of the
 anchor proofs. The closure follows theorem statements and proofs. Its roots are the Support proofs
 of the seven anchors, the one-sided Hausdorff variant, and the kernel bridges `kernelFacts_two` and
-`kernelFacts_ge_three`. Equation lemmas are excluded. There are 25 such theorems.
+`kernelFacts_ge_three`. Equation lemmas are excluded. There are 21 such theorems, all kept by
+design.
 
 * **Definition guards (8), kept by design.** Each pins a definition against a junk value.
   * `CERW.Support.Guards.departureRange_zero`
@@ -22,8 +23,9 @@ of the seven anchors, the one-sided Hausdorff variant, and the kernel bridges `k
     `CERW.Support.Law`;
   * `freshCount_le`, `maxLocalTime_le` and `maxRadius_le_of_steps` in `CERW.Support.Occupation`;
   * `CERW.mem_cell_iff`.
-* **Superseded route (4), candidates for removal before the freeze.**
+* **Removed (4).** Four lemmas from a superseded route were removed by the author's ruling. The
+  removal left no new unconsumed theorem.
   * `CERW.Generic.Lattice.sum_finset_rpow_one_sub_le`
   * `CERW.Generic.Newton.integrable_sphere_of_integrable`
-  * `CERW.Generic.Young.log_sub_log_mem_Icc`
-  * `CERW.Generic.Young.rpow_neg_sub_mem_Icc`
+  * `CERW.Generic.Young.log_sub_log_mem_Icc` and `CERW.Generic.Young.rpow_neg_sub_mem_Icc`,
+    together with their file `Generic/Young/RadialProfile.lean`

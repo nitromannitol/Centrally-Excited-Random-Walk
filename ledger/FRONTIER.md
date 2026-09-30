@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 03:30.
+generation time. Regenerated 2026-09-30 03:37.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -80,7 +80,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-ballpotential | sonnet | `Support/Geometry/Newton.lean` | s-newton, s-ball-symmetry | eq:ballpotential | LANDED |
 | **lem-geometry** | director | `Frozen/PotentialGeometry.lean` | s-potential-bound, s-holder, s-newton, s-ballpotential | lem:geometry | DRAFT (proof of the draft statement landed: `Support/Geometry/Assembly.lean`) |
 | **Section 3 (lem:radial, prop:coarse)** | | | | | |
-| s-radial-profile | ds1 | `Generic/Young/RadialProfile.lean` | — | increments of log r and r^{−k}: two-sided mean-value bounds | LANDED |
+| s-radial-profile | ds1 | `Generic/Young/RadialProfile.lean` | — | increments of log r and r^{−k}: two-sided mean-value bounds | SUPERSEDED (removed by the author's ruling; `eq:levelsets` is proved in `Support/Coarse/LevelSets.lean`) |
 | s-levelsets | ds2 | `Support/Coarse/LevelSets.lean` | — | eq:levelsets | LANDED |
 | s-radial-drift | ds1 | `Support/Coarse/RadialDrift.lean` | — | eq:radial-drift | LANDED |
 | s-radial-bracket | ds3 | `Support/Coarse/RadialBracket.lean` | s-cell-weight, s-Fmass | Σ_{\|x\|>r−2} ℓ_n(x)\|x\|^{2−2d} ≤ C r^{1−d} M_n F(r−b) | LANDED |
@@ -156,7 +156,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **thm-shape** | director | `Frozen/BallShape.lean` | s-kernel-anchors | thm:shape | DRAFT (proof of the draft statement landed: `Support/Main/KernelAnchors.lean`) |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | s-kernel-anchors | eq:hausdorff | DRAFT (proof of the draft statement landed: `Support/Main/KernelAnchors.lean`) |
 
-**Counts:** DRAFT 7, LANDED 111, SUPERSEDED 7.
+**Counts:** DRAFT 7, LANDED 110, SUPERSEDED 8.
 
 ## Pre-freeze gate
 

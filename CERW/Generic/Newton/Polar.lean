@@ -6,9 +6,8 @@ import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
 
 Lebesgue measure on `ℝ^d \ {0}` is the product of the sphere measure `σ = volume.toSphere` (of
 total mass `σ_d = d ω_d`) with the radial measure `r^{d-1} dr` on `(0, ∞)`. For integrable `f`,
-`∫ f = ∫_0^∞ r^{d-1} ∫_{S^{d-1}} f(rθ) dσ(θ) dr`. The inner integral is defined for almost
-every `r`, and the radial function is integrable. This is the Fubini step of the Newton plan behind
-`eq:kernel-average`.
+`∫ f = ∫_0^∞ r^{d-1} ∫_{S^{d-1}} f(rθ) dσ(θ) dr`. This is the Fubini step of the Newton plan
+behind `eq:kernel-average`.
 -/
 
 namespace CERW.Generic.Newton
@@ -85,34 +84,5 @@ theorem integral_eq_integral_Ioi_sphere (hd : 1 ≤ d) {f : EuclideanSpace ℝ (
         · rw [NNReal.smul_def, Real.coe_toNNReal _ (pow_nonneg hx.out.le _)]
           rfl
         · exact (measurable_subtype_coe.pow_const _).real_toNNReal
-
-/-- For integrable `f`, the function `θ ↦ f(rθ)` is integrable on the sphere for almost every
-`r > 0`, and the radial function `r ↦ r^{d-1} ∫_S f(rθ) dσ(θ)` is integrable on `(0, ∞)`. -/
-theorem integrable_sphere_of_integrable {f : EuclideanSpace ℝ (Fin d) → ℝ}
-    (hf : Integrable f) :
-    (∀ᵐ r ∂(volume.restrict (Set.Ioi (0 : ℝ))), Integrable
-      (fun θ : Metric.sphere (0 : EuclideanSpace ℝ (Fin d)) 1 =>
-        f (r • (θ : EuclideanSpace ℝ (Fin d))))
-      (volume : Measure (EuclideanSpace ℝ (Fin d))).toSphere) ∧
-    IntegrableOn (fun r : ℝ => r ^ (d - 1) *
-      ∫ θ, f (r • (θ : EuclideanSpace ℝ (Fin d)))
-        ∂(volume : Measure (EuclideanSpace ℝ (Fin d))).toSphere) (Set.Ioi 0) := by
-  have hg := integrable_prod_polar hf
-  constructor
-  · have h1 := hg.prod_left_ae
-    rw [Measure.volumeIoiPow, ae_withDensity_iff (by fun_prop)] at h1
-    rw [ae_restrict_iff_subtype measurableSet_Ioi]
-    refine h1.mono fun r hr => hr ?_
-    simpa using pow_pos r.2.out (d - 1)
-  · have h1 : Integrable (fun r : Ioi (0 : ℝ) =>
-        ∫ θ : Metric.sphere (0 : EuclideanSpace ℝ (Fin d)) 1,
-          f (r.1 • (θ : EuclideanSpace ℝ (Fin d)))
-          ∂(volume : Measure (EuclideanSpace ℝ (Fin d))).toSphere)
-        (Measure.volumeIoiPow (d - 1)) := hg.swap.integral_prod_left
-    rw [Measure.volumeIoiPow, integrable_withDensity_iff_integrable_smul'
-      (by fun_prop) (by simp)] at h1
-    refine (integrableOn_iff_comap_subtypeVal measurableSet_Ioi).2 (h1.congr ?_)
-    refine Filter.Eventually.of_forall fun r => ?_
-    simp [ENNReal.toReal_ofReal, pow_nonneg r.2.out.le]
 
 end CERW.Generic.Newton

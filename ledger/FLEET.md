@@ -42,7 +42,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 7 | Freedman on a small-bracket event | Sonnet subagent | sonnet | task prompt | 1 + helpers | not recorded | accepted | 0 | 295 | `CERW/Generic/Martingale/FreedmanEvent.lean` |
 | 7 | integrability of the Newtonian field | Sonnet subagent | sonnet | task prompt | 3 + helpers | not recorded | accepted | 0 | 127 | `CERW/Generic/Kernel/Integrable.lean` |
 | 7 | radial packing inequality | Sonnet subagent | sonnet | task prompt | 1 + helpers | not recorded | accepted | 0 | 102 | `CERW/Generic/Kernel/RadialPacking.lean` |
-| 8 | radial profile increments | ds1 | v4.1-flash | 4241 | 2 | ↑55k ↓14k | accepted | 0 | 69 | `CERW/Generic/Young/RadialProfile.lean` |
+| 8 | radial profile increments | ds1 | v4.1-flash | 4241 | 2 | ↑55k ↓14k | accepted | 0 | 69 | `CERW/Generic/Young/RadialProfile.lean` (later removed as unconsumed, by the author's ruling) |
 | 8 | Poisson equation of the potential kernel | ds2 | v4.1-flash | 4863 | 3 | ↑87k ↓36k | accepted | 0 | 107 | `CERW/Support/LocalTime/KernelPoisson.lean` |
 | 8 | outer contradiction | ds3 | v4.1-flash | 4927 | 1 | ↑296k ↓174k | accepted | 0 | 507 | `CERW/Support/Crossing/OuterContradiction.lean` |
 | 8 | cell integral | ds4 | v4.1-flash | 4688 | 2 | ↑87k ↓9.5k | accepted | 0 | 43 | `CERW/Support/Occupation/CellIntegral.lean` |
