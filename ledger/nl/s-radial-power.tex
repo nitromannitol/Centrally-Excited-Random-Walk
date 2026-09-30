@@ -1,0 +1,12 @@
+% s-radial-power: radial power integrals. Sub-step of s-kernel-modulus and s-direction-error.
+\paragraph{Statement.} Let $d\geq1$, $\rho>0$ and $\sigma_d=d\omega_d$. (i) If $s<d$, then
+$|v|^{-s}$ is integrable on $B(0,\rho)$ and $\int_{B(0,\rho)}|v|^{-s}\dd v=\sigma_d\rho^{d-s}/(d-s)$.
+(ii) If $s>d$, then $|v|^{-s}$ is integrable on $\R^d\setminus B(0,\rho)$ and
+$\int_{|v|\geq\rho}|v|^{-s}\dd v=\sigma_d\rho^{d-s}/(s-d)$.
+\paragraph{Proof.} Polar coordinates: $\int_{\R^d}g(|v|)\dd v=d\,\omega_d\int_0^\infty t^{d-1}g(t)\dd t$
+(\texttt{integral\_fun\_norm\_addHaar}; integrability by \texttt{integrableOn\_fun\_norm\_addHaar} and
+\texttt{integrable\_fun\_norm\_addHaar}). (i) With $g=\ind_{[0,\rho)}t^{-s}$ the radial integrand is
+$t^{d-1-s}$ on $(0,\rho)$, with $d-1-s>-1$, so the radial integral is $\rho^{d-s}/(d-s)$
+(\texttt{integral\_rpow}). (ii) With $g=\ind_{[\rho,\infty)}t^{-s}$ the radial integrand is
+$t^{d-1-s}$ on $(\rho,\infty)$ up to a null set, with $d-1-s<-1$, so the radial integral is
+$-\rho^{d-s}/(d-s)=\rho^{d-s}/(s-d)$ (\texttt{integral\_Ioi\_rpow\_of\_lt}).

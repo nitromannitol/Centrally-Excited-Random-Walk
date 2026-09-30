@@ -1,0 +1,11 @@
+% s-kernel-poisson: (P-I)b = 1_{0}. Sub-step of s-kernel-props.
+\paragraph{Statement.} (i) For $d\ge1$, $P^M(0,x)\to0$. (ii) If $d\ge1$ and
+$b(x)=\lim_M[G_M(0)-G_M(x)]$ for all $x$, with $G_M=\sum_{j<M}P^j(0,\cdot)$, then
+$Pb(x)-b(x)=\mathbf 1\{x=0\}$. (iii) For $d\ge3$, $P(-G)(x)+G(x)=\mathbf1\{x=0\}$.
+\paragraph{Proof.} (i) \texttt{srwHeat\_sup\_bound}: $P^M(0,x)\le C M^{-d/2}\to0$. (ii) $P$ is the
+finite average \texttt{walkOp} $u\,x=\sum_i(u(x+e_i)+u(x-e_i))/(2d)$, so it commutes with limits
+along $M$ (\texttt{Tendsto.add}, \texttt{tendsto\_finset\_sum}, \texttt{Tendsto.div\_const}); it fixes
+constants when $d\ge1$; and $P(P^j(0,\cdot))=P^{j+1}(0,\cdot)$ (definition of \texttt{srwHeat}). Hence
+$P(G_M(0)-G_M)(x)-(G_M(0)-G_M(x))=G_M(x)-G_{M+1}(x)+\mathbf1\{x=0\}=\mathbf1\{x=0\}-P^M(0,x)$
+(\texttt{srwGreen\_succ}, \texttt{srwHeat} at $0$). Let $M\to\infty$ with (i).
+(iii) \texttt{walkOp\_srwGreenInf} and linearity of \texttt{walkOp} under negation.

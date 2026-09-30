@@ -1,0 +1,11 @@
+% s-cell-integral: the integral of the cell local time is n. Sub-step of s-mass (eq:coarse-masserror).
+\paragraph{Statement.} (i) $\int_{D_n}\widetilde\ell_n=n$. (ii) $\int_S\widetilde\ell_n=n$ for measurable
+$S\supseteq D_n$.
+\paragraph{Proof.} (i) $D_n=\bigsqcup_{x\in A_n}C_x$ (disjoint, \texttt{cell\_disjoint}, measurable,
+\texttt{measurableSet\_cell}). On $C_x$, $\widetilde\ell_n=\ell_n(x)$
+(\texttt{cellLocalTime\_of\_mem\_cell}). By additivity over the finite disjoint union
+(\texttt{integral\_biUnion\_finset}) and $|C_x|=1$ (\texttt{volume\_cell}), the integral is
+$\sum_{x\in A_n}\ell_n(x)=n$ (\texttt{sum\_localTime\_eq}). (ii) $\widetilde\ell_n=0$ off $D_n$
+(\texttt{cellLocalTime\_eq\_zero\_of\_not\_mem}), so the integral over $S$ equals that over $D_n$
+(\texttt{setIntegral\_eq\_of\_subset\_of\_forall\_diff\_eq\_zero} or \texttt{setIntegral\_congr} on
+$S=D_n\sqcup(S\setminus D_n)$).

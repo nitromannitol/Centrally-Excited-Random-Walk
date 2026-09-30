@@ -27,17 +27,33 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 4 | cell volume | ds3 | v4.1-flash | 4137 | 2 | ↑74k ↓20k | accepted | 0 | 52 | `CERW/Support/Occupation/CellVolume.lean` |
 | 4 | step mean | ds4 | v4.1-flash | 4333 | 3 | ↑75k ↓24k | accepted | 0 | 86 | `CERW/Support/Law/StepMean.lean` |
 | 5 | cell-set volume | ds3 | v4.1-flash | ~3.9k (brief overwritten by the next ds3 packet) | 2 | ↑33k ↓10k | accepted | 0 | 30 | `CERW/Support/Occupation/CellSetVolume.lean` |
-| 5 | cell norm | ds1 | v4.1-flash | 4250 | 3 | — | in flight | — | — | `wip/CellNorm.lean` |
+| 5 | cell norm | ds1 | v4.1-flash | 4250 | 3 | not recorded | accepted | 0 | 67 | `CERW/Support/Occupation/CellNorm.lean` |
 | 5 | tail bounds | ds2 | v4.1-flash | 5128 | 3 | ↑93k ↓40k | accepted | 0 | 117 | `CERW/Support/Geometry/TailBounds.lean` |
 | 5 | Hausdorff exponents | ds3 | v4.1-flash | 4132 | 3 | ↑53k ↓31k | accepted | 0 | 93 | `CERW/Support/Main/HausdorffArith.lean` |
 | 5 | scale limits | ds4 | v4.1-flash | 4352 | 3 | ↑83k ↓67k | accepted | 0 | 169 | `CERW/Support/Main/ScaleLimits.lean` |
-| 6 | contact kernel | ds1 | v4.1-flash | — | 2 | — | in flight | — | — | `wip/ContactKernel.lean` |
-| 6 | last entrance | ds2 | v4.1-flash | — | 2 | — | in flight | — | — | `wip/LastEntrance.lean` |
-| 6 | crossing kinematics | ds3 | v4.1-flash | — | 3 | — | in flight | — | — | `wip/CrossingKinematics.lean` |
-| 6 | planar contact sum | ds4 | v4.1-flash | — | 3 | — | in flight | — | — | `wip/PlanarContactSum.lean` |
+| 6 | contact kernel | ds1 | v4.1-flash | 4010 | 2 | not recorded | accepted | 0 | 72 | `CERW/Support/Contact/Kernel.lean` |
+| 6 | last entrance | ds2 | v4.1-flash | 3928 | 2 | not recorded | accepted | 0 | 47 | `CERW/Support/Crossing/LastEntrance.lean` |
+| 6 | crossing kinematics | ds3 | v4.1-flash | 3982 | 3 | not recorded | accepted | 0 | 49 | `CERW/Support/Crossing/Kinematics.lean` |
+| 6 | planar contact sum | ds4 | v4.1-flash | 4120 | 3 | not recorded | accepted | 0 | 79 | `CERW/Support/Contact/PlanarSum.lean` |
+| 7 | Freedman threshold arithmetic | ds1 | v4.1-flash | 4089 | 3 | not recorded | accepted | 0 | 82 | `CERW/Generic/Martingale/Arith.lean` |
+| 7 | centred ball sums | ds2 | v4.1-flash | 4420 | 3 | not recorded | accepted | 0 | 94 | `CERW/Generic/Lattice/Centered.lean` |
+| 7 | crossing contradiction | ds3 | v4.1-flash | 4505 | 1 | not recorded | accepted | 0 | 158 | `CERW/Support/Crossing/Contradiction.lean` |
+| 7 | cell weight | ds4 | v4.1-flash | 4866 | 3 | not recorded | accepted | 0 (the director rewrapped a 101-character statement line of its own leaf before dispatch) | 107 | `CERW/Support/Occupation/CellWeight.lean` |
+| 7 | Freedman on a small-bracket event | Sonnet subagent | sonnet | task prompt | 1 + helpers | not recorded | accepted | 0 | 295 | `CERW/Generic/Martingale/FreedmanEvent.lean` |
+| 7 | integrability of the Newtonian field | Sonnet subagent | sonnet | task prompt | 3 + helpers | not recorded | accepted | 0 | 127 | `CERW/Generic/Kernel/Integrable.lean` |
+| 7 | radial packing inequality | Sonnet subagent | sonnet | task prompt | 1 + helpers | not recorded | accepted | 0 | 102 | `CERW/Generic/Kernel/RadialPacking.lean` |
+| 8 | radial profile increments | ds1 | v4.1-flash | 4241 | 2 | ↑55k ↓14k | accepted | 0 | 69 | `CERW/Generic/Young/RadialProfile.lean` |
+| 8 | Poisson equation of the potential kernel | ds2 | v4.1-flash | 4863 | 3 | ↑87k ↓36k | accepted | 0 | 107 | `CERW/Support/LocalTime/KernelPoisson.lean` |
+| 8 | outer contradiction | ds3 | v4.1-flash | 4927 | 1 | — | in flight | — | — | `wip/OuterContradiction.lean` |
+| 8 | cell integral | ds4 | v4.1-flash | 4688 | 2 | ↑87k ↓9.5k | accepted | 0 | 43 | `CERW/Support/Occupation/CellIntegral.lean` |
+| 9 | radial power integrals | ds1 | v4.1-flash | 5927 | 2 | — | in flight | — | — | `wip/RadialPower.lean` |
+| 9 | Newtonian field difference | ds2 | v4.1-flash | 4919 | 3 | — | in flight | — | — | `wip/NewtonField.lean` |
+| 9 | directions across a cell | ds4 | v4.1-flash | 4767 | 2 | — | in flight | — | — | `wip/CellDirection.lean` |
 
 ## Observations
 
+* **Waves 1–8.** Every returned DeepSeek packet was accepted: 31/31, with one repair (the wave-1 definition fix).
+  Every Sonnet leaf was accepted: 4/4.
 * **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was
   4–20 minutes.
 * **What a brief carried.** Every brief was 3.8–6.3 KB, stated the proof route step by step, and

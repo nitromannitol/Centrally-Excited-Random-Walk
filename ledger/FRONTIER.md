@@ -1,157 +1,119 @@
 # Frontier — the work breakdown
 
-The single source of the carve-up, regenerated at every milestone. Every node of the dependency DAG
-appears here in frontier order, and packets are dispatched only from rows marked `READY`.
+The single source of the carve-up. It is **generated**, not hand-edited: the node table and
+dependencies are fixed by the director, and each status is derived from the checkout at
+generation time. Regenerated 2026-09-29 23:20.
 
-**Owners.**
-* `director`: statements, routes and the non-routine assemblies.
-* `sonnet`: a fresh Sonnet subagent.
-* `ds1`–`ds4`: the DeepSeek panes.
+* `LANDED`: every target file is in the trunk and sorry-free.
+* `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
+* `READY`: all dependencies landed (for anchors, sealed).
+* `BLOCKED(…)`: the dependencies still unmet.
+* Anchor statuses come from `ledger/manifest.yaml`; `DRAFT` means not yet registered, since the
+  freeze awaits the author's approval.
 
-**Status values.**
-* `LANDED`: in the trunk, sorry-free, clean axioms.
-* `IN-FLIGHT`: dispatched.
-* `READY`: its dependencies are landed.
-* `BLOCKED`: waiting on the dependencies listed.
-* `DRAFT`: a frozen anchor elaborated but not yet approved.
+**Owners.** `director`: statements, routes and assemblies. `sonnet`: a fresh Sonnet subagent.
+`ds1`–`ds4`: the DeepSeek panes.
 
-A packet is one bounded result in one owned file, with at most three lemmas. No two packets in flight
-share a file, a definition or an API.
+**Packets.** One packet is one bounded result in one owned file, with at most three lemmas. From
+wave 4 on, each packet's NL twin `ledger/nl/<id>.tex` is written before dispatch. Four twins were
+written only after landing: s-freedman-event, s-potential-integrable, s-radial-packing and
+s-law-cond. Twins for the wave 1–3 packets are not yet written.
 
-**NL twins.** Each step node's NL twin is `ledger/nl/<id>.tex`, written before dispatch. For landed
-infrastructure the twin is the route in its brief, recorded in `ledger/FLEET.md`.
+**Leaves.** Available from LatticeProb @ b617769 and Mathlib @ 81a5d257; see PLAN §3.1.
 
-Updated 2026-09-30 22:50.
-
-## Leaves (library and Mathlib)
-
-| id | provides | status |
-|---|---|---|
-| lp-freedman | `LatticeProb.freedman_upper`, `LatticeProb.freedman` | available |
-| lp-green | `srwGreenInf`, `summable_srwHeat`, `walkOp_srwGreenInf`, `srwHeat_pos`, `exists_srwGreenInf_gradient`, `exists_srwGreen_gradient` | available |
-| lp-sums | `summable_one_add_euclidNorm_rpow`, `card_ballFinset_le`, `sum_box_radial_le`, `shellCard_le` | available |
-| ml-traj | `Kernel.traj`, `trajMeasure`, `map_frestrictLe_trajMeasure_compProd_eq_map_trajMeasure` | available |
-| ml-polar | `Measure.toSphere`, `measurePreserving_homeomorphUnitSphereProd`, `integral_fun_norm_addHaar`, `toSphereBallBound_mul_measure_unitBall_le_toSphere_ball` | available |
-| ml-ibp | `integral_mul_fderiv_eq_neg_fderiv_mul_of_integrable` (verified at the pin) | available |
-| ml-bc | `ae_eventually_notMem`, `measure_setOf_frequently_eq_zero` | available |
-| ml-ineq | `Real.young_inequality_of_nonneg`, Hölder for integrals, `EuclideanSpace.volume_ball*` | available |
-
-## External
-
-| id | owner | file | status |
-|---|---|---|---|
-| ext-lattice-kernel | director | `CERW/External/LatticePotentialKernel.lean` | DRAFT (elaborated in `scratch/Anchors.lean`; audits running) |
-
-## Model and probability toolkit
-
-| id | owner | file | deps | statement | status |
+| id | owner | files (under `CERW/`) | deps | statement | status |
 |---|---|---|---|---|---|
-| s-kernel-moments | ds4 | `CERW/Support/Law/Moments.lean` | vocabulary | q_x ≥ 0 for ε<1/d, Σq_x = 1, mean −εu_x; the same for SRW and `stepProb` | LANDED |
-| s-law-exists | director | `CERW/Support/Law/Existence.lean` | s-kernel-moments, ml-traj | a CERW process exists for d ≥ 1, 0 ≤ ε < 1/d | LANDED |
-| s-occupation | ds4 | `CERW/Support/Occupation/Facts.lean` | vocabulary | n ≤ M_n R_n, k_{0,n} = R_n, ℓ_{s,t} ≤ ℓ_t, \|X_j\| ≤ j, A_n ⊆ ball(H_n) | LANDED |
-| s-cell-membership | ds1 | `CERW/Support/Occupation/Cells.lean` | s-occupation | v ∈ D_n ↔ cellCenter v ∈ A_n; x ∈ D_n ↔ x ∈ A_n; ℓ̃_n = 0 off D_n | LANDED |
-| s-cell-norm | ds1 | `CERW/Support/Occupation/CellNorm.lean` | s-occupation | \|v − x\| ≤ √d/2 on C_x; D_n ⊆ B(0, H_n + √d) | LANDED |
-| s-cell-volume | ds3 | `CERW/Support/Occupation/CellVolume.lean` | vocabulary | C_x measurable, \|C_x\| = 1 | LANDED |
-| s-cellset-volume | ds3 | `CERW/Support/Occupation/CellSetVolume.lean` | s-cell-volume | D_n measurable, \|D_n\| = R_n | LANDED |
-| s-step-mean | ds4 | `CERW/Support/Law/StepMean.lean` | s-kernel-moments | Σ_e p(e) f(y+e) = Pf(y) − ε·1{fresh} u·Df(y) | LANDED |
-| s-law-cond | director | `CERW/Support/Law/CondStep.lean` | s-kernel-moments | E[f(X_{n+1}) \| ℱ_n] = Σ_e stepProb·f(X_n+e) a.s., from the cylinder law | READY (director) |
-| s-dynkin | director | `CERW/Support/Law/Dynkin.lean` | s-law-cond, s-step-mean | Dynkin martingale for f(X): increments and bracket bounds | BLOCKED(s-law-cond, s-step-mean) |
-| s-freedman-event | sonnet | `CERW/Generic/Martingale/FreedmanEvent.lean` | lp-freedman | P(\|Z_n\| ≥ t, ⟨Z⟩_n ≤ v) ≤ 2exp(−t²/(2(v+Bt))) via stopping | READY (statement to be written) |
-| s-dyadic | director | `CERW/Generic/Martingale/Dyadic.lean` | s-freedman-event | union over ≤ n^K martingales and dyadic brackets: \|Z\| ≤ C(√(⟨Z⟩L)+BL) w.p. ≥ 1−Cn^{−p} | BLOCKED(s-freedman-event) |
+| ext-lattice-kernel | director | `External/LatticePotentialKernel.lean` | — | eq:kernel-asymptotics (cited input) | DRAFT |
+| **Model and probability toolkit** | | | | | |
+| s-kernel-moments | ds4 | `Support/Law/Moments.lean` | — | q_x ≥ 0, Σ q_x = 1, mean −εu_x; same for SRW and stepProb | LANDED |
+| s-law-exists | director | `Support/Law/Existence.lean` | s-kernel-moments | a CERW process exists (Ionescu–Tulcea) | LANDED |
+| s-law-cond | director | `Support/Law/CondStep.lean` | s-law-exists | E[f(X_{n+1}) \| ℱ_n] = Σ_e p_n(e) f(X_n+e) a.s.; natural filtration | LANDED |
+| s-step-mean | ds4 | `Support/Law/StepMean.lean` | s-kernel-moments | Σ_e p(e) f(y+e) = Pf(y) − ε·1{fresh} u·Df(y) | LANDED |
+| s-dynkin | director | `Support/Law/Dynkin.lean` | s-law-cond, s-step-mean | Dynkin martingale of f(X): martingale, increments, conditional variances | READY |
+| s-freedman-event | sonnet | `Generic/Martingale/FreedmanEvent.lean` | — | P(\|M_n\| ≥ t, V_n ≤ v) ≤ 2exp(−t²/(2(v+bt/3))) for predictable V dominating the bracket | LANDED |
+| s-freedman-arith | ds1 | `Generic/Martingale/Arith.lean` | — | threshold t = c(√(vL)+BL) gives exponent ≥ KL; union-count arithmetic | LANDED |
+| s-dyadic | director | `Generic/Martingale/Dyadic.lean` | s-freedman-event, s-freedman-arith | union over ≤ n^K martingales and dyadic brackets: \|Z\| ≤ C(√(VL)+BL) w.p. ≥ 1−Cn^{−p} | READY |
+| s-occupation | ds4 | `Support/Occupation/Facts.lean` | — | n ≤ M_nR_n, k_{0,n} = R_n, ℓ_{s,t} ≤ ℓ_t, \|X_j\| ≤ j, A_n ⊆ ball(H_n) | LANDED |
+| s-cell-membership | ds1 | `Support/Occupation/Cells.lean` | s-occupation | v ∈ D_n ↔ cellCenter v ∈ A_n; ℓ̃_n = 0 off D_n | LANDED |
+| s-cell-norm | ds1 | `Support/Occupation/CellNorm.lean` | s-occupation | \|v − x\| ≤ √d/2 on C_x; D_n ⊆ B(0, H_n + √d) | LANDED |
+| s-cell-volume | ds3 | `Support/Occupation/CellVolume.lean`, `Support/Occupation/CellSetVolume.lean` | — | \|C_x\| = 1; \|D_n\| = R_n | LANDED |
+| s-cell-weight | ds4 | `Support/Occupation/CellWeight.lean` | s-cell-norm, s-cell-volume | ∫_{C_x}\|v\|^{1−d} ≍ \|x\|^{1−d} for \|x\| ≥ √d | LANDED |
+| s-cell-integral | ds4 | `Support/Occupation/CellIntegral.lean` | s-cell-membership, s-cell-volume | ∫_S ℓ̃_n = n for measurable S ⊇ D_n | LANDED |
+| **Section 2 (lem:local, lem:geometry)** | | | | | |
+| s-weight-sums | ds1/ds3 | `Generic/Lattice/WeightSums.lean`, `Generic/Lattice/SummableSums.lean` | — | Σ(1+\|z\|)^{−d} ≤ C log R; Σ(1+\|z\|)^{2−2d} ≤ C (d≥3); J moments; Lipschitz convolution | LANDED |
+| s-centered-sums | ds2 | `Generic/Lattice/Centered.lean` | s-weight-sums, s-packing-lattice | the ball sums centred at y over any finite set | LANDED |
+| s-packing-lattice | ds2 | `Generic/Lattice/Packing.lean` | — | Σ_{x∈E}(1+\|x−y\|)^{1−d} ≤ C_d\|E\|^{1/d} | LANDED |
+| s-kernel-poisson | ds2 | `Support/LocalTime/KernelPoisson.lean` | — | (P−I)b = δ₀ (planar partial-sum limit; b = −G for d ≥ 3); P^M(0,x) → 0 | LANDED |
+| s-kernel-props | director | `Support/LocalTime/KernelB.lean` | ext-lattice-kernel, s-kernel-poisson | b defined from the External; b(0)=0; b<0 (d≥3); growth O(L)/O(1) | BLOCKED(ext-lattice-kernel) |
+| s-gradient | director | `Support/LocalTime/Gradient.lean` | s-kernel-props | Db = (2/ω_d)x/\|x\|^d + O(\|x\|^{−d}); \|b(x+e)−b(x)\| ≤ C(1+\|x\|)^{1−d} | BLOCKED(s-kernel-props) |
+| s-dynkin-local | director | `Support/LocalTime/Dynkin.lean` | s-dynkin, s-kernel-props, s-gradient | eq:dynkin, eq:bracket | BLOCKED(s-dynkin, s-kernel-props, s-gradient) |
+| s-interval-mart | director | `Support/LocalTime/IntervalMartingale.lean` | s-dyadic, s-dynkin-local, s-centered-sums | eq:interval-mart | BLOCKED(s-dyadic, s-dynkin-local) |
+| s-local-young | director | `Support/LocalTime/IntervalBound.lean` | s-dynkin-local, s-interval-mart, s-packing-lattice | eq:M, eq:interval (Young part landed in Generic/Young/Absorb) | BLOCKED(s-dynkin-local, s-interval-mart) |
+| s-radial-power | ds1 | `Generic/Kernel/RadialPower.lean` | — | ∫_{B(0,ρ)}\|v\|^{−s} = σ_dρ^{d−s}/(d−s) (s<d); ∫_{\|v\|≥ρ}\|v\|^{−s} = σ_dρ^{d−s}/(s−d) (s>d) | IN-FLIGHT (ds1, 23:18) |
+| s-newton-field | ds2 | `Generic/Kernel/NewtonField.lean` | — | K(v)=v/\|v\|^d: \|K(v)\| = \|v\|^{1−d}; \|K(a)−K(b)\| ≤ C_d\|a−b\|/\|b\|^d when 2\|a−b\| ≤ \|b\| | IN-FLIGHT (ds2, 23:18) |
+| s-cell-direction | ds4 | `Support/Occupation/CellDirection.lean` | s-cell-norm | \|u_a−u_b\| ≤ 2\|a−b\|/\|a\|; \|u_x−u_v\| ≤ 2(1+√d)/(1+\|v\|) on C_x | IN-FLIGHT (ds4, 23:18) |
+| s-direction-error | sonnet | `Generic/Kernel/DirectionError.lean` | s-radial-power | ∫_{B(0,R)} dv/((1+\|v\|)\|v−y\|^{d−1}) ≤ C log(R+2) | BLOCKED(s-radial-power) |
+| s-potential-integrable | sonnet | `Generic/Kernel/Integrable.lean` | — | ∫_{B(y,ρ)}\|v−y\|^{1−d} = σ_dρ; ∫_D\|v−y\|^{1−d} ≤ σ_d(\|D\|/ω_d)^{1/d} | LANDED |
+| s-kernel-replace | director | `Support/LocalTime/Replacement.lean` | s-gradient, s-centered-sums, s-potential-integrable, s-cell-direction | lattice source sum vs U_{D_n}: error ≤ CL | BLOCKED(s-gradient, s-cell-direction) |
+| s-cell-shift | director | `Support/LocalTime/CellShift.lean` | s-kernel-replace | moving y in its cell costs O(L) | BLOCKED(s-kernel-replace) |
+| s-retained | director | `Support/LocalTime/Retained.lean` | s-dyadic, s-dynkin-local, s-kernel-replace, s-cell-shift | eq:localmart, eq:pointwise, eq:cellmodulus | BLOCKED(s-dyadic, s-dynkin-local, s-kernel-replace, s-cell-shift) |
+| **lem-local** | director | `Frozen/LocalTimePotential.lean` | s-local-young, s-kernel-replace, s-direction-error, s-cell-shift, s-interval-mart | lem:local | DRAFT |
+| s-Fmass | ds2 | `Support/Geometry/TailBasic.lean`, `Support/Geometry/TailBounds.lean` | — | F ≥ 0, antitone on (0,∞); F ≤ \|D\|/(σ_ds^{d−1}); F = 0 beyond D; increments | LANDED |
+| s-gauss-flux | director + sonnet | `Generic/Newton/Flux.lean` | — | r^{d−1}∫_S θ·K(rθ−c)dσ = σ_d·1{\|c\|<r} (r ≠ \|c\|) | READY |
+| s-kernel-average | sonnet | `Generic/Newton/ShellAverage.lean` | s-gauss-flux | eq:kernel-average | BLOCKED(s-gauss-flux) |
+| s-potential-bound | sonnet | `Support/Geometry/Bound.lean` | s-potential-integrable | eq:potential-bound | READY |
+| s-kernel-modulus | sonnet | `Generic/Kernel/Modulus.lean` | s-radial-power, s-newton-field | eq:kernel-modulus | BLOCKED(s-radial-power, s-newton-field) |
+| s-holder | sonnet | `Support/Geometry/Holder.lean` | s-kernel-modulus | eq:holder | BLOCKED(s-kernel-modulus) |
+| s-newton | director | `Support/Geometry/Spherical.lean` | s-kernel-average, s-potential-integrable | eq:newton | BLOCKED(s-kernel-average) |
+| s-ballpotential | director | `Support/Geometry/Ball.lean` | s-kernel-average | eq:ballpotential | BLOCKED(s-kernel-average) |
+| **lem-geometry** | director | `Frozen/PotentialGeometry.lean` | s-potential-bound, s-holder, s-newton, s-ballpotential | lem:geometry | DRAFT |
+| **Section 3 (lem:radial, prop:coarse)** | | | | | |
+| s-radial-profile | ds1 | `Generic/Young/RadialProfile.lean` | — | increments of log r and r^{−k}: two-sided mean-value bounds | LANDED |
+| s-levelsets | director | `Support/Coarse/LevelSets.lean` | s-kernel-props, s-radial-profile | eq:levelsets | BLOCKED(s-kernel-props) |
+| s-radial-drift | director | `Support/Coarse/RadialDrift.lean` | s-levelsets, s-gradient | eq:radial-drift | BLOCKED(s-levelsets, s-gradient) |
+| s-radial-mart | director | `Support/Coarse/RadialMartingale.lean` | s-dyadic, s-dynkin, s-radial-drift, s-Fmass, s-cell-weight | eq:radialbracket, eq:radialmart | BLOCKED(s-dyadic, s-dynkin, s-radial-drift) |
+| s-radial-source | director | `Support/Coarse/RadialAssembly.lean` | s-dynkin, s-radial-drift, s-Fmass, s-cell-weight | eq:radial-source, eq:shell-count | BLOCKED(s-dynkin, s-radial-drift) |
+| **lem-radial** | director | `Frozen/RadialTest.lean` | s-radial-source, s-radial-mart | lem:radial | DRAFT |
+| s-halving | ds2/ds3 | `Generic/Halving/Levels.lean`, `Generic/Halving/Cost.lean` | — | halving on the grid and its cost | LANDED |
+| s-shell | director | `Support/Coarse/Shell.lean` | lem-geometry, lem-local | eq:shell via eq:cap-average | BLOCKED(lem-geometry, lem-local) |
+| s-vector | director | `Support/Coarse/Vector.lean` | s-dyadic, s-dynkin | eq:vector | BLOCKED(s-dyadic, s-dynkin) |
+| s-last-entrance | ds2 | `Support/Crossing/LastEntrance.lean` | s-kernel-moments | last entrance; v·e ≤ 1 for unit steps | LANDED |
+| s-crossing-kinematics | ds3 | `Support/Crossing/Kinematics.lean` | s-occupation | Σ ℓ_{s,t} = t−s; t−s ≤ m·M_{s,t}; v·u_x > b/r | LANDED |
+| s-crossing-contradiction | ds3 | `Support/Crossing/Contradiction.lean` | — | C(s^γL^{2γ}+sL⁴) < s² eventually for s ≥ cN | LANDED |
+| s-crossing | director | `Support/Coarse/Crossing.lean` | s-vector, lem-local, s-last-entrance, s-crossing-kinematics | eq:crossing (Young part landed) | BLOCKED(s-vector, lem-local) |
+| s-sstar | director | `Support/Coarse/Mass.lean` | lem-local, s-occupation | eq:sstar-lower | BLOCKED(lem-local) |
+| s-coarse-tail | director | `Support/Coarse/Tail.lean` | lem-radial, s-shell, s-halving, s-sstar, s-Fmass | eq:coarse-tail | BLOCKED(lem-radial, s-shell, s-sstar) |
+| s-HvsR | director | `Support/Coarse/OuterRadius.lean` | s-coarse-tail, s-crossing, s-crossing-contradiction, s-cell-weight | eq:HvsR | BLOCKED(s-coarse-tail, s-crossing) |
+| s-radial-packing | sonnet | `Generic/Kernel/RadialPacking.lean` | — | ∫_D\|v\| ≥ (d/(d+1))ω_d^{−1/d}\|D\|^{1+1/d} | LANDED |
+| s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | BLOCKED(lem-geometry, lem-local, s-HvsR) |
+| **prop-coarse** | director | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT |
+| **Sections 4–5 and the main theorems** | | | | | |
+| s-contact-kernel | ds1 | `Support/Contact/Kernel.lean` | — | u_v·(v−y)\|v−y\|^{−d} ≥ 2^{1−d}\|v\|^{1−d} for \|y\| ≤ \|v\| | LANDED |
+| s-planar-contact-sum | ds4 | `Support/Contact/PlanarSum.lean` | s-packing-lattice, s-occupation | Σ_{\|w\|≤R}(b−\|z+w\|)_+(1+\|w\|)^{−2} ≤ C(R+1) | LANDED |
+| s-global | director | `Support/Contact/Setup.lean` | prop-coarse, lem-local, s-cell-norm | eq:global | BLOCKED(prop-coarse, lem-local) |
+| s-contact-cell | director | `Support/Contact/ContactCell.lean` | s-cell-membership | eq:bm, eq:contactcell | READY |
+| s-contact-bound | director | `Support/Contact/ContactBound.lean` | s-contact-cell, lem-geometry, s-retained, s-contact-kernel | eq:contactbound, eq:packing | BLOCKED(s-contact-cell, lem-geometry, s-retained) |
+| s-var-high | director | `Support/Contact/VarianceHigh.lean` | s-contact-bound, s-weight-sums | eq:kernelmoments … eq:masshigh (resolvent, absorption landed) | BLOCKED(s-contact-bound) |
+| s-var-planar | director | `Support/Contact/VariancePlanar.lean` | s-contact-bound, s-global, s-planar-contact-sum | eq:massplanar, eq:envelopeplanar | BLOCKED(s-contact-bound, s-global) |
+| s-shellW | director | `Support/Contact/ShellW.lean` | s-var-high, s-var-planar | eq:shellW | BLOCKED(s-var-high, s-var-planar) |
+| s-quadratic | director | `Support/Contact/Quadratic.lean` | s-dynkin, s-dyadic, prop-coarse | eq:quadratic, eq:quadraticerror | BLOCKED(s-dynkin, s-dyadic, prop-coarse) |
+| s-inradius | director | `Support/Contact/Radius.lean` | s-quadratic, s-var-high, s-var-planar | eq:inradius (inversion landed) | BLOCKED(s-quadratic, s-var-high, s-var-planar) |
+| s-volume-profile | director | `Support/Contact/Profile.lean` | s-inradius, s-global, lem-geometry | eq:volume, inner eq:sandwich, eq:profile-rate | BLOCKED(s-inradius, s-global, lem-geometry) |
+| s-outer-contradiction | ds3 | `Support/Crossing/OuterContradiction.lean` | — | C((C₁NL)^γL^γ + C₁NLλL) < (AWL−1)² eventually | IN-FLIGHT (ds3, 23:09) |
+| s-tailend | director | `Support/Outer/TailEnd.lean` | lem-radial, s-shellW, s-halving, s-inradius, s-Fmass | eq:tailend | BLOCKED(lem-radial, s-shellW, s-inradius) |
+| s-outer | director | `Support/Outer/Crossing.lean` | s-tailend, s-crossing, s-inradius, s-outer-contradiction | eq:outer-contradiction | BLOCKED(s-tailend, s-crossing, s-inradius, s-outer-contradiction) |
+| s-scale-limits | ds4 | `Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | LANDED |
+| s-hausdorff-arith | ds3 | `Support/Main/HausdorffArith.lean` | — | Hausdorff and planar exponent identities | LANDED |
+| s-assembly | director | `Support/Main/Event.lean` | s-volume-profile, s-outer | the event at each n; Borel–Cantelli | BLOCKED(s-volume-profile, s-outer) |
+| **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-assembly | thm:fluctuations | DRAFT |
+| **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-scale-limits | thm:shape | DRAFT |
+| **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
 
-## Section 2 (lem:local, lem:geometry)
+**Counts:** BLOCKED 36, DRAFT 7, IN-FLIGHT 4, LANDED 28, READY 5.
 
-| id | owner | file | deps | statement | status |
-|---|---|---|---|---|---|
-| s-weight-sums | ds1, ds3 | `CERW/Generic/Lattice/{WeightSums,SummableSums}.lean` | lp-sums | Σ(1+\|z\|)^{−d} ≤ C log R; Σ(1+\|z\|)^{2−2d} ≤ C (d≥3); J moments | LANDED |
-| s-packing-lattice | ds2 | `CERW/Generic/Lattice/Packing.lean` | lp-sums | Σ_{x∈E}(1+\|x−y\|)^{1−d} ≤ C_d\|E\|^{1/d} | LANDED |
-| s-kernel-props | director | `CERW/Support/LocalTime/KernelB.lean` | ext-lattice-kernel, lp-green | b := −G (d≥3) or the planar limit; (P−I)b = δ₀; b(0)=0; b<0 (d≥3); growth O(L)/O(1) | BLOCKED(freeze of ext-lattice-kernel) |
-| s-gradient | director + ds | `CERW/Support/LocalTime/Gradient.lean` | s-kernel-props | Db(x) = (2/ω_d)x/\|x\|^d + O(\|x\|^{−d}); \|b(x+e)−b(x)\| ≤ C(1+\|x\|)^{1−d} | BLOCKED(s-kernel-props) |
-| s-dynkin-local | director | `CERW/Support/LocalTime/Dynkin.lean` | s-dynkin, s-kernel-props, s-gradient | eq:dynkin and eq:bracket | BLOCKED |
-| s-interval-mart | director | `CERW/Support/LocalTime/IntervalMartingale.lean` | s-dyadic, s-dynkin-local, s-weight-sums | eq:interval-mart | BLOCKED |
-| s-local-young | ds (algebra part LANDED) | `CERW/Support/LocalTime/IntervalBound.lean` | s-dynkin-local, s-interval-mart, s-packing-lattice, `Young.Absorb` | eq:M, eq:interval | BLOCKED |
-| s-direction-error | sonnet | `CERW/Generic/Kernel/DirectionError.lean` | ml-polar, ml-ineq | ∫_{B(0,R)} dv/((1+\|v\|)\|v−y\|^{d−1}) ≤ C log(R+2) | READY (statement to be written) |
-| s-potential-integrable | sonnet | `CERW/Generic/Kernel/Integrable.lean` | ml-polar, `Kernel.Bathtub` | ∫_{B(y,ρ)} \|v−y\|^{1−d} = σ_dρ; sup_y ∫_D \|v−y\|^{1−d} ≤ σ_d(\|D\|/ω_d)^{1/d} | READY (statement to be written) |
-| s-kernel-replace | director | `CERW/Support/LocalTime/Replacement.lean` | s-gradient, s-weight-sums, s-potential-integrable | the lattice source sum vs U_{D_n}: error ≤ CL | BLOCKED |
-| s-cell-shift | director | `CERW/Support/LocalTime/CellShift.lean` | s-kernel-replace | moving y in its cell costs O(L) | BLOCKED |
-| **lem-local** | director | `CERW/Frozen/LocalTimePotential.lean` | the rows above | lem:local | DRAFT |
-| s-localmart | director | `CERW/Support/LocalTime/Retained.lean` | s-dyadic, s-dynkin-local | eq:localmart | BLOCKED |
-| s-pointwise | director | same | s-dynkin-local, s-kernel-replace | eq:pointwise | BLOCKED |
-| s-cellmodulus | director | same | s-kernel-replace, s-cell-shift | eq:cellmodulus | BLOCKED |
-| s-Fmass | ds2 | `CERW/Support/Geometry/{TailBasic,TailBounds}.lean` | vocabulary | F ≥ 0, integrable weight, F antitone on (0,∞) (LANDED); F ≤ \|D\|/(σ_ds^{d−1}); F = 0 beyond D; increments | LANDED (TailBasic, TailBounds) |
-| s-gauss-flux | director (design) + sonnet | `CERW/Generic/Newton/Flux.lean` | ml-polar, ml-ibp | r^{d−1}∫_S θ·K(rθ−c)dσ = σ_d·1{\|c\|<r} | READY (statement to be written) |
-| s-kernel-average | sonnet | `CERW/Generic/Newton/ShellAverage.lean` | s-gauss-flux | eq:kernel-average | BLOCKED |
-| s-potential-bound | sonnet | `CERW/Support/Geometry/Bound.lean` | `Kernel.Bathtub` (LANDED), s-potential-integrable | eq:potential-bound | BLOCKED(s-potential-integrable) |
-| s-kernel-modulus | sonnet | `CERW/Generic/Kernel/Modulus.lean` | ml-polar | eq:kernel-modulus | READY (statement to be written) |
-| s-holder | sonnet | `CERW/Support/Geometry/Holder.lean` | s-kernel-modulus | eq:holder | BLOCKED |
-| s-newton | director | `CERW/Support/Geometry/Spherical.lean` | s-kernel-average, s-potential-integrable | eq:newton | BLOCKED |
-| s-ballpotential | director | `CERW/Support/Geometry/Ball.lean` | s-kernel-average | eq:ballpotential | BLOCKED |
-| **lem-geometry** | director | `CERW/Frozen/PotentialGeometry.lean` | the rows above | lem:geometry | DRAFT |
+## Pre-freeze gate
 
-## Section 3 (lem:radial, prop:coarse)
-
-| id | owner | file | deps | statement | status |
-|---|---|---|---|---|---|
-| s-levelsets | director | `CERW/Support/Coarse/LevelSets.lean` | s-kernel-props | eq:levelsets | BLOCKED |
-| s-radial-drift | director + ds | `CERW/Support/Coarse/RadialDrift.lean` | s-levelsets, s-gradient | eq:radial-drift | BLOCKED |
-| s-radial-mart | director | `CERW/Support/Coarse/RadialMartingale.lean` | s-dyadic, s-dynkin, s-radial-drift, s-Fmass | eq:radialbracket, eq:radialmart | BLOCKED |
-| s-radial-source | director | `CERW/Support/Coarse/RadialAssembly.lean` | s-dynkin, s-radial-drift, s-Fmass | eq:radial-source, eq:shell-count | BLOCKED |
-| **lem-radial** | director | `CERW/Frozen/RadialTest.lean` | s-radial-source, s-radial-mart | lem:radial | DRAFT |
-| s-halving | ds3, ds2 | `CERW/Generic/Halving/{Levels,Cost}.lean` | — | halving on the grid and its cost | LANDED |
-| s-shell | director | `CERW/Support/Coarse/Shell.lean` | lem-geometry, lem-local, ml-polar | eq:shell via eq:cap-average | BLOCKED |
-| s-vector | director | `CERW/Support/Coarse/Vector.lean` | s-dyadic, s-dynkin | eq:vector | BLOCKED |
-| s-crossing | director (Young part LANDED) | `CERW/Support/Coarse/Crossing.lean` | s-vector, lem-local | eq:crossing | BLOCKED |
-| s-sstar | director | `CERW/Support/Coarse/Mass.lean` | lem-local, s-occupation | eq:sstar-lower | BLOCKED |
-| s-coarse-tail | director | `CERW/Support/Coarse/Tail.lean` | lem-radial, s-shell, s-halving, s-sstar, s-Fmass | eq:coarse-tail | BLOCKED |
-| s-last-entrance | ds2 | `wip/LastEntrance.lean` → `CERW/Support/Crossing/LastEntrance.lean` | s-kernel-moments | last entrance of a sequence rising ≤ 1 per step; v·e ≤ 1 for unit steps | IN-FLIGHT (ds2, 22:48) |
-| s-crossing-kinematics | ds3 | `wip/CrossingKinematics.lean` → `CERW/Support/Crossing/Kinematics.lean` | s-occupation | Σ ℓ_{s,t} = t−s; t−s ≤ m·M_{s,t}; v·u_x > b/r | IN-FLIGHT (ds3, 22:48) |
-| s-HvsR | director | `CERW/Support/Coarse/OuterRadius.lean` | s-coarse-tail, s-crossing, s-Fmass | eq:HvsR | BLOCKED |
-| s-radial-packing | sonnet | `CERW/Generic/Kernel/RadialPacking.lean` | `Kernel.Bathtub` (LANDED), ml-polar | ∫_D\|v\| ≥ (d/(d+1))ω_d^{−1/d}\|D\|^{1+1/d} | READY (statement to be written) |
-| s-mass | director | `CERW/Support/Coarse/Mass.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cellset-volume | eq:massidentity, eq:coarse-masserror | BLOCKED |
-| **prop-coarse** | director | `CERW/Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT |
-
-## Sections 4–5 and the main theorems
-
-| id | owner | file | deps | statement | status |
-|---|---|---|---|---|---|
-| s-global | director | `CERW/Support/Contact/Setup.lean` | prop-coarse, lem-local, s-cell-norm | eq:global | BLOCKED |
-| s-contact-cell | director | `CERW/Support/Contact/ContactCell.lean` | s-cell-membership | eq:bm, eq:contactcell | BLOCKED(s-cell-membership) |
-| s-contact-kernel | ds1 | `wip/ContactKernel.lean` → `CERW/Support/Contact/Kernel.lean` | vocabulary | \|v−y\|² ≤ 2(\|v\|²−v·y); u_v·(v−y)\|v−y\|^{−d} ≥ 2^{1−d}\|v\|^{1−d} for \|y\| ≤ \|v\| | IN-FLIGHT (ds1, 22:48) |
-| s-planar-contact-sum | ds4 | `wip/PlanarContactSum.lean` → `CERW/Support/Contact/PlanarSum.lean` | s-packing-lattice, s-occupation | Σ_{\|w\|≤R}(b−\|z+w\|)_+(1+\|w\|)^{−2} ≤ C(R+1) for \|z\| ≥ b | IN-FLIGHT (ds4, 22:49) |
-| s-contact-bound | director | `CERW/Support/Contact/ContactBound.lean` | s-contact-cell, lem-geometry, s-pointwise, s-localmart, s-cellmodulus | eq:contactbound, eq:packing | BLOCKED |
-| s-var-high | director (resolvent + absorption LANDED) | `CERW/Support/Contact/VarianceHigh.lean` | s-contact-bound, s-weight-sums, `Lattice.Resolvent`, `Young.Contact` | eq:kernelmoments … eq:masshigh | BLOCKED |
-| s-var-planar | director | `CERW/Support/Contact/VariancePlanar.lean` | s-contact-bound, s-global, s-weight-sums | eq:massplanar, eq:envelopeplanar | BLOCKED |
-| s-shellW | director | `CERW/Support/Contact/Radius.lean` | s-var-high, s-var-planar | eq:shellW | BLOCKED |
-| s-quadratic | director | `CERW/Support/Contact/Quadratic.lean` | s-dynkin, s-dyadic, prop-coarse | eq:quadratic, eq:quadraticerror | BLOCKED |
-| s-inradius | director (inversion LANDED) | `CERW/Support/Contact/Radius.lean` | s-quadratic, s-var-high, s-var-planar, `Young.Radius` | eq:inradius | BLOCKED |
-| s-volume-profile | director | `CERW/Support/Contact/Profile.lean` | s-inradius, s-global, lem-geometry | eq:volume, inner eq:sandwich, eq:profile-rate | BLOCKED |
-| s-tailend | director | `CERW/Support/Outer/TailEnd.lean` | lem-radial, s-shellW, s-halving, s-inradius, s-Fmass | eq:tailend | BLOCKED |
-| s-outer | director | `CERW/Support/Outer/Crossing.lean` | s-tailend, s-crossing, s-inradius | eq:outer-contradiction | BLOCKED |
-| s-assembly | director | `CERW/Support/Main/Event.lean` | s-volume-profile, s-outer, ml-bc | the event at each n; Borel–Cantelli | BLOCKED |
-| **thm-fluctuations** | director | `CERW/Frozen/FluctuationBounds.lean` | s-assembly | thm:fluctuations | DRAFT |
-| s-scale-limits | ds4 | `CERW/Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | LANDED |
-| s-hausdorff-arith | ds3 | `CERW/Support/Main/HausdorffArith.lean` | — | Q^{1/2}L = n^{−1/12}L^{5/4}; Q^{1/d}L = n^{−1/((d+1)(2d−1))}L^{2d/(2d−1)}; NQ = n^{1/6}√L | LANDED |
-| **thm-shape** | director | `CERW/Frozen/BallShape.lean` | thm-fluctuations, s-scale-limits, ml-bc | thm:shape | DRAFT |
-| **eq-hausdorff** | director | `CERW/Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
-
-## Pre-freeze gate (per anchor; nothing is frozen without the author's approval)
-
-Evidence files: `ledger/nl/<id>.tex`, `ledger/readings.yaml` (clauses, hazards),
-`ledger/audits/prefreeze-refute-first-audit.md`, and `ledger/audits/prefreeze-reading-{A,B,C}.md`.
-The consumption prototypes are the `example` blocks in the transient `scratch/Anchors.lean`
-(sha256 `0ca9ad7c…` at audit time).
-
-| anchor | nl twin | REVIEWED | consumption | binder audit | non-vacuity | refute-first | readings ×3 |
-|---|---|---|---|---|---|---|---|
-| ext-lattice-kernel | done | done | via the anchors | n/a (definition) | truth check done (Lawler–Limic and numerics) | PASS | PASS ×3 |
-| thm-shape | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
-| thm-fluctuations | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
-| eq-hausdorff | done | done | via thm-fluctuations | EXCESS 0 | `Guards.exists_cerw_realization` | PASS with 1 CONCERN (planar remark one-sided); author ruling requested | PASS ×3 |
-| lem-local | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
-| lem-geometry | done | done | done | EXCESS 0 | a ball D (trivial) | PASS | PASS ×3 |
-| lem-radial | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
-| prop-coarse | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
-
-**Gate status.** Every artifact is present. The freeze is **awaiting the author's approval** of the
-exact declarations in `ledger/approval/PHASE-B.md`. The approval covers the one open question, the
-planar remark in `eq-hausdorff`.
+Complete for all 7 anchors and the External. The evidence is in `ledger/nl/`,
+`ledger/readings.yaml`, `ledger/audits/` and `ledger/approval/PHASE-B.md`. The freeze is **held
+pending the author's delivered approval**. The single open item is the planar remark in
+`eq-hausdorff`: (A) one-sided, as drafted, or (B) two-sided, which is recommended.

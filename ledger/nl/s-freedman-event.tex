@@ -1,0 +1,10 @@
+% s-freedman-event: Freedman's inequality on the event of a small bracket (eq:freedman).
+\paragraph{Statement.} Let $M$ be a martingale with $M_0=0$ and $|M_{i+1}-M_i|\leq b$ for $i<n$, where
+$b>0$. Let $V$ be predictable, nondecreasing, $V_0=0$, with
+$\E[(M_{k+1}-M_k)^2\mid\mathcal F_k]\leq V_{k+1}-V_k$ a.s. Then for $v,t\geq0$,
+$\Pr(|M_n|\geq t,\ V_n\leq v)\leq2\exp(-t^2/(2(v+bt/3)))$.
+\paragraph{Proof.} Stop predictably: $\widetilde M_n=\sum_{k<n}\ind\{V_{k+1}\leq v\}(M_{k+1}-M_k)$. It is a
+martingale (the indicator is $\mathcal F_k$-measurable), its increments are at most $b$, and its
+conditional quadratic variation is at most $v$ (the bracket increments are summed only while
+$V_{k+1}\leq v$, and $V$ is nondecreasing). On $\{V_n\leq v\}$, $\widetilde M_n=M_n$. Apply the
+library's two-sided Freedman bound to $\widetilde M$.

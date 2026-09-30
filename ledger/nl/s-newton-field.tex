@@ -1,0 +1,11 @@
+% s-newton-field: the Newtonian field K(v) = v/|v|^d. Sub-step of s-kernel-modulus.
+\paragraph{Statement.} Let $K(v)=v/|v|^d$ with $K(0)=0$. (i) $u\cdot K(a)=u\cdot a/|a|^d$.
+(ii) For $d\geq2$, $|K(v)|=|v|^{1-d}$ (both sides vanish at $v=0$). (iii) If $2|a-b|\leq|b|$, then
+$|K(a)-K(b)|\leq(2^d+2d\,3^{d-1})|a-b|/|b|^d$.
+\paragraph{Proof.} (i) and (ii) are the definition. For (iii), if $b=0$ then $a=0$ and both sides
+vanish. Otherwise $|a|\geq|b|-|a-b|\geq|b|/2$ and $|a|\leq\frac32|b|$. Write
+$K(a)-K(b)=(a-b)|a|^{-d}+b\,(|a|^{-d}-|b|^{-d})$. The first term has norm at most
+$2^d|a-b|/|b|^d$. For the second,
+$\bigl||b|^d-|a|^d\bigr|\leq d\max(|a|,|b|)^{d-1}\bigl||b|-|a|\bigr|\leq d(\tfrac32|b|)^{d-1}|a-b|$
+(\texttt{abs\_pow\_sub\_pow\_le}), so its norm is at most
+$|b|\cdot d(\tfrac32)^{d-1}|b|^{d-1}|a-b|\cdot2^d|b|^{-2d}=2d\,3^{d-1}|a-b|/|b|^d$.

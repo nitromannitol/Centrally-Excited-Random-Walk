@@ -1,0 +1,10 @@
+% s-law-cond: the one-step conditional law of the walk. Input of s-dynkin.
+\paragraph{Statement.} Let $\mathcal F_n=\sigma(X_0,\dots,X_n)$. For bounded $f$,
+$\E[f(X_{n+1})\mid\mathcal F_n]=\sum_{e}p_n(e)f(X_n+e)$ a.s., where $p_n(e)$ is the step
+probability given the path, $q_{X_n}(e)$ at the first departure from $X_n\neq0$ and $1/(2d)$ otherwise.
+\paragraph{Proof.} The cylinder factorization of the law shows that the joint law of
+$(X_0,\dots,X_n)$ and $X_{n+1}$ is the law of the past path composed with the step kernel. Measures
+on a countable space that agree on singletons are equal. The conditional expectation of a bounded
+function of the next position is therefore its integral against the kernel
+(\texttt{condExp\_ae\_eq\_integral\_condDistrib} with
+\texttt{condDistrib\_ae\_eq\_of\_measure\_eq\_compProd}).

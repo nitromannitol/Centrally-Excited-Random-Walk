@@ -1,0 +1,8 @@
+% s-cell-direction: directions across a cell. Sub-step of s-kernel-replace (before eq:direction-error).
+\paragraph{Statement.} (i) For $a\neq0$ and any $b$, $|u_a-u_b|\leq2|a-b|/|a|$, where $u_v=v/|v|$
+and $u_0=0$. (ii) For $d\geq1$ and $v\in C_x$, $|u_x-u_v|\leq2(1+\sqrt d)/(1+|v|)$.
+\paragraph{Proof.} (i) If $b=0$ the left side is $1\leq2$. Otherwise
+$u_a-u_b=(a-b)/|a|+b\,(1/|a|-1/|b|)$. The second term has norm
+$\bigl||b|-|a|\bigr|/|a|\leq|a-b|/|a|$. (ii) If $|v|\leq1$: the left side is at most $2$, and
+$2(1+\sqrt d)/(1+|v|)\geq1+\sqrt d\geq2$. If $|v|>1$: by (i) with $a=v$ and $|v-x|\leq\sqrt d/2$ on $C_x$,
+the left side is at most $\sqrt d/|v|\leq2\sqrt d/(1+|v|)$, since $1+|v|<2|v|$.

@@ -1,0 +1,12 @@
+% s-outer-contradiction: the outer crossing bound fails eventually. Sub-step of s-outer (eq:outer-contradiction).
+\paragraph{Statement.} For $d\ge2$ and $A,C,C_1>0$, eventually in $n$:
+$C((C_1NL)^\gamma L^\gamma+C_1NL\lambda_nL)<(AWL-1)^2$, with $W=NQ^{1/d}$ and $\gamma=2d/(2d-1)$.
+\paragraph{Proof.} For $n\ge1$, $N,L>0$ and $Q=(L/N)^\theta$ with $\theta=\frac12$ ($d=2$) or
+$\frac d{2d-1}$, so $WL=N^{1-\theta/d}L^{1+\theta/d}\to\infty$ (\texttt{tendsto\_log\_rpow\_div\_rpow},
+inverted). It therefore suffices that each term on the left is eventually at most
+$\frac{A^2}8(WL)^2$, since $(AWL-1)^2\ge\frac{A^2}4(WL)^2$ once $AWL\ge2$. Divide the terms by
+$(WL)^2$. For $d=2$: $N^{4/3}L^{8/3}/(N^{3/2}L^{5/2})=L^{1/6}N^{-1/6}$ and
+$NL^4/(N^{3/2}L^{5/2})=L^{3/2}N^{-1/2}$. For $d\ge3$: $N^{2d/(2d-1)}L^{4d/(2d-1)}/(N^{(4d-4)/(2d-1)}L^{4d/(2d-1)})=N^{-(2d-4)/(2d-1)}$
+and $NL^3/(N^{(4d-4)/(2d-1)}L^{4d/(2d-1)})=L^{(2d-3)/(2d-1)}N^{-(2d-3)/(2d-1)}$. All tend to $0$:
+write $N=n^{1/(d+1)}$ and apply \texttt{tendsto\_log\_rpow\_div\_rpow}. For $d\ge3$ the first ratio
+is a pure negative power of $n$.
