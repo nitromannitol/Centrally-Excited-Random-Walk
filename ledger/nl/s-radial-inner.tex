@@ -1,0 +1,5 @@
+% s-radial-inner -- u_v.(v-y) via 2(|v|^2 - v.y) = |v-y|^2 + |v|^2 - |y|^2 (eq:contact-sign; Step 1 of sec:outer; lem:near-far).
+\paragraph{Proof.} $u_v=v/|v|$ (\texttt{unitDir}, $\|v\|^{-1}\bullet v$), so $u_v\cdot(v-y)=(|v|^2-v\cdot y)/|v|$, and
+$|v-y|^2=|v|^2-2v\cdot y+|y|^2$ (\texttt{norm\_sub\_sq\_real}, \texttt{real\_inner\_self\_eq\_norm\_sq}). Hence the identity.
+The two inequalities follow from the sign of $|v|^2-|y|^2$ and $2|v|>0$ (\texttt{div\_le\_div\_of\_nonneg\_right},
+\texttt{sq\_le\_sq'}, \texttt{abs\_le\_abs} or \texttt{pow\_le\_pow\_left} with norms nonnegative).
