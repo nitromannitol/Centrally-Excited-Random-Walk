@@ -3,3 +3,4 @@ import CERW.Support.Norm.MoreauCap
 import CERW.Support.Norm.Geometry
 import CERW.Support.Norm.Crossing
 import CERW.Support.Norm.BallLayer
+import CERW.Support.Norm.Radial

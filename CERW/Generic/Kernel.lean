@@ -7,3 +7,4 @@ import CERW.Generic.Kernel.LogRadial
 import CERW.Generic.Kernel.Modulus
 import CERW.Generic.Kernel.ScalarTaylor
 import CERW.Generic.Kernel.DirectionError
+import CERW.Generic.Kernel.RadialInner
