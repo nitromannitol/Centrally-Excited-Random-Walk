@@ -1,0 +1,9 @@
+% s-crossing: eq:crossing-before-young and eq:crossing (deterministic implication).
+\paragraph{Statement.} For $\kappa,\eps>0$ and $C_v,C_I\geq0$ there is $C$ such that: if $s<t$, $|v|=1$, $b>0$, $b/r\geq\kappa$, every
+$j\in[s,t)$ has $v\cdot X_j>b$ and $|X_j|<r$, $v\cdot(X_t-X_s)\geq h\geq0$, $|Z_t-Z_s|\leq C_v\sqrt{(t-s)L}$ and
+$M_{s,t}\leq C_I\eps k^{1/d}+C_I\lambda$, then $h^2\leq C((mL)^\gamma+mL\lambda)$, with $k$ the number of first departures in $[s,t)$,
+$m$ the number of distinct sites, and $\gamma=2d/(2d-1)$.
+\paragraph{Proof.} $v\cdot(Z_t-Z_s)=v\cdot(X_t-X_s)+\eps\sum_{j\in[s,t)}I_jv\cdot u_{X_j}$, and $v\cdot u_{X_j}>b/r\geq\kappa$ (s-crossing-kinematics),
+so $h+\eps\kappa k\leq v\cdot(Z_t-Z_s)\leq|Z_t-Z_s|$. With $t-s\leq mM_{s,t}$ (s-crossing-kinematics):
+$(h+\eps\kappa k)^2\leq C_v^2mL(C_I\eps k^{1/d}+C_I\lambda)$. The Young step (\texttt{sq\_le\_of\_crossing}) with $A=\eps\kappa$,
+$B=C_v^2C_I\eps$ and $\Lambda=C_v^2C_I\lambda$ gives the claim.

@@ -1,0 +1,9 @@
+% s-kernel-replace: the three replacements in the proof of eq:approx (lt:445-458).
+\paragraph{Statement.} (a) Under eq:gradient and the one-step bound, $\sum_{x\in E}|Db(x-y)-\frac2{\omega_d}K(x-y)|\leq C\log(R'+2)$ for $E$ within $R'$ of $y$.
+(b) For lattice $y$ and $|w_x|\leq1$: $\sum_{x\in E}|w_x\cdot K(x-y)-\int_{C_x}w_x\cdot K(v-y)\dd v|\leq C\log(R'+2)$. (c) If the cells of $E$ lie in $B(0,R')$
+and $|y|\leq2R'$: $\sum_{x\in E}|\int_{C_x}(u_x-u_v)\cdot K(v-y)\dd v|\leq C\log(R'+2)$.
+\paragraph{Proof.} (a) Beyond $R$ the error is $\leq C_a|x-y|^{-d}\leq2^dC_a(1+|x-y|)^{-d}$. Inside $R$, $|Db|\leq\sqrt dC_g$ and $|K|\leq1$ at lattice points,
+so the error is $\leq C_0(1+R)^d(1+|x-y|)^{-d}$. Sum with s-centered-sums. (b) If $|x-y|\geq2\sqrt d$, s-newton-field gives
+$|K(x-y)-K(v-y)|\leq A_d\frac{\sqrt d}2|x-y|^{-d}$ on $C_x$ (unit volume). Otherwise, there are boundedly many such $x$, $|K(x-y)|\leq1$, and
+$\int_{C_x}|v-y|^{1-d}\leq\int_{B(y,3\sqrt d)}|v-y|^{1-d}=3\sqrt d\sigma_d$. (c) By s-cell-direction the integrand is at most
+$2(1+\sqrt d)(1+|v|)^{-1}|v-y|^{1-d}$. The cells are disjoint and lie in $B(0,R')$; apply s-direction-error.

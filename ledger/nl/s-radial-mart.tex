@@ -1,0 +1,10 @@
+% s-radial-mart: eq:radialbracket and eq:radialmart.
+\paragraph{Statement.} If $b\leq h(r)$ on $|x|\leq r-1$ for all $r\geq r_0$ (with $r_0>b_d>2+\sqrt d/2$ and $r_0\geq\sqrt d+2$) and
+$|b(x+e)-b(x)|\leq C_g(1+|x|)^{1-d}$, then for every $p$ there is $C$ with: for $n\geq2$, with probability at least $1-Cn^{-p}$, for all
+integers $r_0\leq r\leq n$, $|W^{(r)}_n|\leq C[\sqrt{M_nr^{1-d}F(r-b_d)L}+r^{1-d}L]$.
+\paragraph{Proof.} Fix $r$. The one-step oscillation of $\varphi_r$ at $x$ vanishes if $|x|\leq r-2$ (s-radial-drift (ii)). Otherwise it is at most
+$C_g(1+|x|)^{1-d}\leq C_g(r-1)^{1-d}$ (s-radial-drift (i)). By s-dynkin, the increments are a.s.\ at most $2C_g(r-1)^{1-d}$. The conditional
+variances are at most $C_g^2\ind\{|X_j|>r-2\}(1+|X_j|)^{2-2d}$, which defines a predictable bracket $V$. Apply s-dyadic to the clamped
+$r^{d-1}W^{(r)}$ with bracket $r^{2d-2}V$: its increments are at most $2^dC_g$, and $r^{2d-2}V_n\leq C_g^2n\cdot2^{2d}$. Then
+$r^{2d-2}V_n\leq C_g^22^{2d-2}\sum_{x\in A_n,|x|>r-2}\ell_n(x)|x|^{2-2d}\cdot r^{2d-2}$, which by s-radial-bracket is at most
+$Cr^{d-1}M_nF(r-b_d)$. Dividing by $r^{d-1}$ gives the display. Take the union over the at most $n$ integers $r$, with $K=p+2$.

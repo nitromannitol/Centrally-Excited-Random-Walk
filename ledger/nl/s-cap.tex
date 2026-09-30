@@ -1,0 +1,7 @@
+% s-cap: the measure of a spherical cap (sharp order eps^(d-1)). Input of s-cap-average (eq:cap-average).
+\paragraph{Statement.} For $d\geq1$, $0<\eps\leq1$ and $\theta_0$ on the unit sphere: $\sigma(\{\theta:|\theta-\theta_0|<\eps\})\geq\frac d4\bigl(\frac\eps{4\sqrt d}\bigr)^{d-1}$.
+\paragraph{Proof.} $\sigma(A)=d\cdot|\{r\theta:\theta\in A,0<r<1\}|$ (\texttt{toSphere\_apply'}). A reflection $R$ with $Re_0=\theta_0$ is a linear
+isometry (\texttt{reflection\_sub}). It preserves volume, norms and distances. Let
+$B=\{v:\frac12<v_0<\frac34,\ |v_i|<a\ (i\neq0)\}$ with $a=\eps/(4\sqrt d)$, a box of volume $\frac14(2a)^{d-1}$. For $v\in B$, write $w=v-v_0e_0$,
+so $|w|<\sqrt{d-1}\,a<\eps/4$ and $\frac12<|v|<1$. Then $|v/|v|-e_0|=|v-|v|e_0|/|v|\leq2|w|/|v|<4|w|<\eps$. So $R(B)$ lies in the cone over the cap,
+and $\sigma(\text{cap})\geq d\,|R(B)|=d\,|B|\geq\frac d4(\eps/(4\sqrt d))^{d-1}$.
