@@ -1,6 +1,5 @@
 % s-assembly: fluctEvent implies fluctGood and a hole, for large n (deterministic).
 \paragraph{Statement.} For $\varepsilon>0$, $C_0,C_1>0$, $b_d\geq1$, $r_0$ there are $C>0$, $n_0$ such that for $n\geq n_0$, $\mathrm{fluctEvent}$ implies $\mathrm{Good}(C)$ and some $x\notin A_n$ with $|x|<aN+CNQ$.
-\paragraph{Proof.} (fl:849--1140.) \texttt{exists\_contact\_setup} with $R=(C_0+\sqrt d)N$: inradius $b>0$, $y_0$, $z$, $\Delta\leq C\varepsilon\log(R+2)$. Pointwise and local-martingale clauses, with
-\texttt{sum\_range\_eq\_sum\_localTime}, give the sharp decomposition at sites $|y|\leq3n$. \texttt{exists\_mass\_planar} ($d=2$) or \texttt{exists\_mass\_high} ($d\geq3$):
-$m\leq CN^dQ$ and $\ell_n\leq C(b-|\cdot|)_++CW$. \texttt{exists\_inradius}: $|b/N-a|\leq CQ$, so $aN/2\leq b\leq2aN$. \texttt{exists\_inner\_clauses}: four clauses and the hole.
-\texttt{exists\_outer\_of\_envelope}: $H_n\leq b+CWL\leq(a+CQ^{1/d}L)N$ strictly for large $n$, which gives the outer inclusion since $V_n\subseteq\{|x|\leq H_n\}$.
+\paragraph{Proof.} (fl:849--1140.) Case $d=2$ or $d\geq3$: \texttt{exists\_mass\_of\_event\_planar} or \texttt{exists\_mass\_of\_event\_high} gives $C_m$ with $m\leq C_mN^dQ$ and
+$\ell_n\leq C_m(b-|\cdot|)_++C_mNQ^{1/d}$. \texttt{exists\_inner\_of\_mass} gives $C_i$: the inradius estimate, four clauses of $\mathrm{Good}(C_i)$ and the hole.
+\texttt{exists\_outer\_of\_mass} with $\max(C_m,C_i)$ gives $C_o$ and the outer inclusion. Take $C=\max(C_i,C_o)$ and weaken each clause.
