@@ -71,4 +71,18 @@ theorem limitRadius_spec {d : ℕ} (hd : 1 ≤ d) {ε : ℝ} (hε : 0 < ε) :
   rw [hpow]
   field_simp
 
+/-- The hypothesis family of the paper's probabilistic results is inhabited: in every dimension
+`d ≥ 2` there are a parameter `0 < ε < 1/d` and a probability space carrying centrally excited
+random walk with that parameter. -/
+theorem exists_cerw_realization {d : ℕ} (hd : 2 ≤ d) :
+    ∃ ε : ℝ, 0 < ε ∧ ε < 1 / (d : ℝ) ∧
+      ∃ (Ω : Type) (_ : MeasurableSpace Ω) (μ : Measure Ω) (_ : IsProbabilityMeasure μ)
+        (X : ℕ → Ω → Site d), IsCERW μ ε X := by
+  have hdR : (0 : ℝ) < d := by exact_mod_cast (by omega : 0 < d)
+  refine ⟨1 / (2 * d), by positivity, ?_, ?_⟩
+  · rw [div_lt_div_iff₀ (by positivity) hdR]
+    linarith
+  · exact Support.Law.exists_isCERW (by omega) (by positivity)
+      (by rw [div_lt_div_iff₀ (by positivity) hdR]; linarith)
+
 end CERW.Support.Guards

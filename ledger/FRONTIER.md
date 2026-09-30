@@ -21,7 +21,7 @@ share a file, a definition or an API.
 **NL twins.** Each step node's NL twin is `ledger/nl/<id>.tex`, written before dispatch. For landed
 infrastructure the twin is the route in its brief, recorded in `ledger/FLEET.md`.
 
-Updated 2026-09-30.
+Updated 2026-09-30 22:42.
 
 ## Leaves (library and Mathlib)
 
@@ -49,11 +49,11 @@ Updated 2026-09-30.
 | s-kernel-moments | ds4 | `CERW/Support/Law/Moments.lean` | vocabulary | q_x ≥ 0 for ε<1/d, Σq_x = 1, mean −εu_x; the same for SRW and `stepProb` | LANDED |
 | s-law-exists | director | `CERW/Support/Law/Existence.lean` | s-kernel-moments, ml-traj | a CERW process exists for d ≥ 1, 0 ≤ ε < 1/d | LANDED |
 | s-occupation | ds4 | `CERW/Support/Occupation/Facts.lean` | vocabulary | n ≤ M_n R_n, k_{0,n} = R_n, ℓ_{s,t} ≤ ℓ_t, \|X_j\| ≤ j, A_n ⊆ ball(H_n) | LANDED |
-| s-cell-membership | ds1 | `wip/CellMembership.lean` → `CERW/Support/Occupation/Cells.lean` | s-occupation | v ∈ D_n ↔ cellCenter v ∈ A_n; x ∈ D_n ↔ x ∈ A_n; ℓ̃_n = 0 off D_n | READY → dispatch |
-| s-cell-norm | ds* (next free) | `wip/CellNorm.lean` → `CERW/Support/Occupation/CellNorm.lean` | s-occupation | \|v − x\| ≤ √d/2 on C_x; D_n ⊆ B(0, H_n + √d) | READY (queued) |
-| s-cell-volume | ds3 | `wip/CellVolume.lean` → `CERW/Support/Occupation/CellVolume.lean` | vocabulary | C_x measurable, \|C_x\| = 1 | READY → dispatch |
-| s-cellset-volume | ds3 (after s-cell-volume) | `wip/CellSetVolume.lean` | s-cell-volume | D_n measurable, \|D_n\| = R_n | BLOCKED(s-cell-volume) |
-| s-step-mean | ds4 | `wip/StepMean.lean` → `CERW/Support/Law/StepMean.lean` | s-kernel-moments | Σ_e p(e) f(y+e) = Pf(y) − ε·1{fresh} u·Df(y) | READY → dispatch |
+| s-cell-membership | ds1 | `CERW/Support/Occupation/Cells.lean` | s-occupation | v ∈ D_n ↔ cellCenter v ∈ A_n; x ∈ D_n ↔ x ∈ A_n; ℓ̃_n = 0 off D_n | LANDED |
+| s-cell-norm | ds1 | `wip/CellNorm.lean` → `CERW/Support/Occupation/CellNorm.lean` | s-occupation | \|v − x\| ≤ √d/2 on C_x; D_n ⊆ B(0, H_n + √d) | IN-FLIGHT (ds1, 22:34) |
+| s-cell-volume | ds3 | `CERW/Support/Occupation/CellVolume.lean` | vocabulary | C_x measurable, \|C_x\| = 1 | LANDED |
+| s-cellset-volume | ds3 | `CERW/Support/Occupation/CellSetVolume.lean` | s-cell-volume | D_n measurable, \|D_n\| = R_n | LANDED |
+| s-step-mean | ds4 | `CERW/Support/Law/StepMean.lean` | s-kernel-moments | Σ_e p(e) f(y+e) = Pf(y) − ε·1{fresh} u·Df(y) | LANDED |
 | s-law-cond | director | `CERW/Support/Law/CondStep.lean` | s-kernel-moments | E[f(X_{n+1}) \| ℱ_n] = Σ_e stepProb·f(X_n+e) a.s., from the cylinder law | READY (director) |
 | s-dynkin | director | `CERW/Support/Law/Dynkin.lean` | s-law-cond, s-step-mean | Dynkin martingale for f(X): increments and bracket bounds | BLOCKED(s-law-cond, s-step-mean) |
 | s-freedman-event | sonnet | `CERW/Generic/Martingale/FreedmanEvent.lean` | lp-freedman | P(\|Z_n\| ≥ t, ⟨Z⟩_n ≤ v) ≤ 2exp(−t²/(2(v+Bt))) via stopping | READY (statement to be written) |
@@ -78,7 +78,7 @@ Updated 2026-09-30.
 | s-localmart | director | `CERW/Support/LocalTime/Retained.lean` | s-dyadic, s-dynkin-local | eq:localmart | BLOCKED |
 | s-pointwise | director | same | s-dynkin-local, s-kernel-replace | eq:pointwise | BLOCKED |
 | s-cellmodulus | director | same | s-kernel-replace, s-cell-shift | eq:cellmodulus | BLOCKED |
-| s-Fmass | ds2 | `wip/TailBasic.lean` → `CERW/Support/Geometry/TailBasic.lean`, then `TailBounds.lean` | vocabulary | F ≥ 0, integrable weight, F antitone on (0,∞); F ≤ \|D\|/(σ_ds^{d−1}); F = 0 beyond D; increments | TailBasic READY → dispatch; TailBounds BLOCKED(TailBasic) |
+| s-Fmass | ds2 | `CERW/Support/Geometry/TailBasic.lean` (LANDED); `wip/TailBounds.lean` → `CERW/Support/Geometry/TailBounds.lean` | vocabulary | F ≥ 0, integrable weight, F antitone on (0,∞) (LANDED); F ≤ \|D\|/(σ_ds^{d−1}); F = 0 beyond D; increments | TailBounds IN-FLIGHT (ds2, 22:41) |
 | s-gauss-flux | director (design) + sonnet | `CERW/Generic/Newton/Flux.lean` | ml-polar, ml-ibp | r^{d−1}∫_S θ·K(rθ−c)dσ = σ_d·1{\|c\|<r} | READY (statement to be written) |
 | s-kernel-average | sonnet | `CERW/Generic/Newton/ShellAverage.lean` | s-gauss-flux | eq:kernel-average | BLOCKED |
 | s-potential-bound | sonnet | `CERW/Support/Geometry/Bound.lean` | `Kernel.Bathtub` (LANDED), s-potential-integrable | eq:potential-bound | BLOCKED(s-potential-integrable) |
@@ -125,18 +125,29 @@ Updated 2026-09-30.
 | s-outer | director | `CERW/Support/Outer/Crossing.lean` | s-tailend, s-crossing, s-inradius | eq:outer-contradiction | BLOCKED |
 | s-assembly | director | `CERW/Support/Main/Event.lean` | s-volume-profile, s-outer, ml-bc | the event at each n; Borel–Cantelli | BLOCKED |
 | **thm-fluctuations** | director | `CERW/Frozen/FluctuationBounds.lean` | s-assembly | thm:fluctuations | DRAFT |
-| **thm-shape** | director | `CERW/Frozen/BallShape.lean` | thm-fluctuations, ml-bc | thm:shape | DRAFT |
-| **eq-hausdorff** | director | `CERW/Frozen/HausdorffBound.lean` | thm-fluctuations | eq:hausdorff | DRAFT |
+| s-scale-limits | ds4 | `wip/ScaleLimits.lean` → `CERW/Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | IN-FLIGHT (ds4, 22:41) |
+| s-hausdorff-arith | ds3 | `wip/HausdorffArith.lean` → `CERW/Support/Main/HausdorffArith.lean` | — | Q^{1/2}L = n^{−1/12}L^{5/4}; Q^{1/d}L = n^{−1/((d+1)(2d−1))}L^{2d/(2d−1)}; NQ = n^{1/6}√L | IN-FLIGHT (ds3, 22:41) |
+| **thm-shape** | director | `CERW/Frozen/BallShape.lean` | thm-fluctuations, s-scale-limits, ml-bc | thm:shape | DRAFT |
+| **eq-hausdorff** | director | `CERW/Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
 
 ## Pre-freeze gate (per anchor; nothing is frozen without the author's approval)
 
-| anchor | nl/<id>.tex | REVIEWED reading | consumption prototype | binder audit | non-vacuity | refute-first audit | 3 DeepSeek readings |
+Evidence files: `ledger/nl/<id>.tex`, `ledger/readings.yaml` (clauses, hazards),
+`ledger/audits/prefreeze-opus-audit.md`, and `ledger/audits/prefreeze-deepseek-reading-{A,B,C}.md`.
+The consumption prototypes are the `example` blocks in the transient `scratch/Anchors.lean`
+(sha256 `0ca9ad7c…` at audit time).
+
+| anchor | nl twin | REVIEWED | consumption | binder audit | non-vacuity | refute-first (Opus) | DeepSeek ×3 |
 |---|---|---|---|---|---|---|---|
-| ext-lattice-kernel | to write | to write | used by the anchors' prototypes | Opus audit running | truth check in audit (Lawler–Limic) | running | running |
-| thm-shape | to write | to write | done (from thm-fluctuations) | running | `exists_isCERW` | running | running |
-| thm-fluctuations | to write | to write | done (the `Good` clause extracted) | running | `exists_isCERW` | running | running |
-| eq-hausdorff | to write | to write | to do | running | `exists_isCERW` | running | running |
-| lem-local | to write | to write | done (instantiated) | running | `exists_isCERW` | running | running |
-| lem-geometry | to write | to write | done (instantiated) | running | a ball D | running | running |
-| lem-radial | to write | to write | done (instantiated) | running | `exists_isCERW` | running | running |
-| prop-coarse | to write | to write | done (instantiated) | running | `exists_isCERW` | running | running |
+| ext-lattice-kernel | done | done | via the anchors | n/a (definition) | truth check done (Lawler–Limic and numerics) | PASS | PASS ×3 |
+| thm-shape | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
+| thm-fluctuations | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
+| eq-hausdorff | done | done | via thm-fluctuations | EXCESS 0 | `Guards.exists_cerw_realization` | PASS with 1 CONCERN (planar remark one-sided); author ruling requested | PASS ×3 |
+| lem-local | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
+| lem-geometry | done | done | done | EXCESS 0 | a ball D (trivial) | PASS | PASS ×3 |
+| lem-radial | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
+| prop-coarse | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
+
+**Gate status.** Every artifact is present. The freeze is **awaiting the author's approval** of the
+exact declarations in `ledger/approval/PHASE-B.md`. The approval covers the one open question, the
+planar remark in `eq-hausdorff`.

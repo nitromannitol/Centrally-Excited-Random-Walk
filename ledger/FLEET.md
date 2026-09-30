@@ -22,14 +22,19 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 3 | radius inversion | ds2 | v4.1-flash | 3825 | 2 | not recorded | accepted | 0 | 68 | `CERW/Generic/Young/Radius.lean` |
 | 3 | resolvent bound | ds3 | v4.1-flash | 4342 | 1 | not recorded | accepted | 0 | 134 | `CERW/Generic/Lattice/Resolvent.lean` |
 | 3 | occupation facts | ds4 | v4.1-flash | 6294 | 16 | not recorded | accepted | 0 | 164 | `CERW/Support/Occupation/Facts.lean` |
-| 4 | cell membership | ds1 | v4.1-flash | 3889 | 3 | — | in flight | — | — | `wip/CellMembership.lean` |
-| 4 | tail basics | ds2 | v4.1-flash | 4374 | 3 | — | in flight | — | — | `wip/TailBasic.lean` |
-| 4 | cell volume | ds3 | v4.1-flash | 4137 | 2 | — | in flight | — | — | `wip/CellVolume.lean` |
-| 4 | step mean | ds4 | v4.1-flash | 4333 | 3 | — | in flight | — | — | `wip/StepMean.lean` |
+| 4 | cell membership | ds1 | v4.1-flash | 3889 | 3 | ↑39k ↓6.0k | accepted | 0 | 41 | `CERW/Support/Occupation/Cells.lean` |
+| 4 | tail basics | ds2 | v4.1-flash | 4374 | 3 | ↑90k ↓32k | accepted | 0 | 84 | `CERW/Support/Geometry/TailBasic.lean` |
+| 4 | cell volume | ds3 | v4.1-flash | 4137 | 2 | ↑74k ↓20k | accepted | 0 | 52 | `CERW/Support/Occupation/CellVolume.lean` |
+| 4 | step mean | ds4 | v4.1-flash | 4333 | 3 | ↑75k ↓24k | accepted | 0 | 86 | `CERW/Support/Law/StepMean.lean` |
+| 5 | cell-set volume | ds3 | v4.1-flash | ~3.9k (brief overwritten by the next ds3 packet) | 2 | ↑33k ↓10k | accepted | 0 | 30 | `CERW/Support/Occupation/CellSetVolume.lean` |
+| 5 | cell norm | ds1 | v4.1-flash | 4250 | 3 | — | in flight | — | — | `wip/CellNorm.lean` |
+| 5 | tail bounds | ds2 | v4.1-flash | 5128 | 3 | — | in flight | — | — | `wip/TailBounds.lean` |
+| 5 | Hausdorff exponents | ds3 | v4.1-flash | 4132 | 3 | — | in flight | — | — | `wip/HausdorffArith.lean` |
+| 5 | scale limits | ds4 | v4.1-flash | 4352 | 3 | — | in flight | — | — | `wip/ScaleLimits.lean` |
 
 ## Observations
 
-* **Waves 1–3.** 12/12 packets were accepted, 11 with no repair. Wall-clock time per packet was
+* **Waves 1–4.** 17/17 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was
   4–20 minutes.
 * **What a brief carried.** Every brief was 3.8–6.3 KB, stated the proof route step by step, and
   cited only names grep-verified at the pin.

@@ -1,0 +1,52 @@
+% prop-coarse -- anchor CERW.Frozen.coarse_bounds. Source: coarse-radius.tex:4-18 (flat 547-561); proof 116-301.
+\paragraph{Paper (verbatim).} ``For every $p>0$, there are constants $c,C>0$, depending only on
+$d,\eps,p$, such that for every integer $n\geq2$, with probability at least $1-Cn^{-p}$,
+$cN^d\leq R_n\leq CN^d$, $cN\leq M_n\leq CN$, $cN\leq H_n\leq CN$.''
+\paragraph{Proof.} Intersect the events of \texttt{lem-local}, \texttt{lem-radial} and \texttt{s-vector}
+(the vector martingale bound $|Z_t-Z_s|\le C\sqrt{(t-s)L}$). The complement has measure at most
+$Cn^{-p}$. The rest is deterministic on the intersection, and bounded $n$ is handled at the end.
+\emph{Step 1 (lower bound on $s_*=R_n^{1/d}$; \texttt{s-sstar}).} $n\le M_nR_n$
+(\texttt{Occupation.le\_maxLocalTime\_mul\_card}) and eq:M give
+$n\le C_d\eps s_*^{d+1}+C\lambda_ns_*^d$, hence $s_*\ge cN$ for large $n$. Then
+$\lambda_n=o(s_*)$, $M_n\le Cs_*$, and $\delta=Ce_n(M_n)\le C\sqrt{s_*}L$: these are
+eq:preconditions.
+\emph{Step 2 (shell bound; \texttt{s-shell}).} On the approximation region $U_{D_n}+\delta\ge0$. Let
+$h$ be the maximum of $U_{D_n}+\delta$ on a sphere of radius $t\in[s_*/2,B_0s_*+3]$. By
+\texttt{lem-geometry} (H\"older with $R=s_*^d$), the function is $\ge h/2$ on a cap of chord radius
+$ch^2/s_*\le t/2$. By \texttt{toSphereBallBound\_mul\_measure\_unitBall\_le\_toSphere\_ball}, the cap
+has normalized area $\ge c_d(h^2/(s_*t))^{d-1}$. By \texttt{lem-geometry} (spherical mean),
+$2d\eps F(t)+\delta\ge ch^{2d-1}/(s_*^{d-1}t^{d-1})$. At a shell site $x$ with $t=|x|$,
+$\ell_n(x)\le U(x)+\delta\le h$, so $M_{\rm sh}(r)\le CB_0^\beta s_*^{1-\alpha}[F(r-b_d)+\delta]^\alpha$,
+with $C$ independent of $B_0$.
+\emph{Step 3 (halving; \texttt{s-coarse-tail}).} On the grid $r=\lceil s_*\rceil+2b_dj$, and whenever
+$F(r-b_d)\le A$ with $A\ge\Lambda=Cs_*^{2-d}L$, the error of \texttt{lem-radial} is at most $A/4$.
+So either $F(r+b_d)\le A/2$, or the drop across the cell is at least $cA/K(A)$ with
+$K(A)=CB_0^\beta s_*^{1-\alpha}(A+\delta)^\alpha+1$ (Step 2). Start from $F(\lceil s_*\rceil-b_d)\le Cs_*$
+(\texttt{s-Fmass}, $F(s)\le|D|/(\sigma_ds^{d-1})$). \texttt{Generic.Halving.halving\_iterate}, with the
+level count and cost from \texttt{Generic.Halving.exists\_halvings\_le} and
+\texttt{sum\_rpow\_halvings\_le}, bounds the radial distance to reach $\Lambda$ by
+$CB_0^\beta s_*^{1-\alpha}A_0^\alpha+C_{B_0}s_*^{1-\alpha/2}L^{1+\alpha}+CL$. Choose $B_0\ge8$ with
+$CB_0^\beta s_*\le B_0s_*/4$, which is possible since $\beta<1$. For large $n$ the halvings finish
+before $(B_0-2)s_*$: $F((B_0-2)s_*)\le Cs_*^{2-d}L$.
+\emph{Step 4 (outer radius; \texttt{s-HvsR}).} Suppose $H_n\ge(B_0+1)s_*$. Take the first time
+$\tau$ at that radius, $v=X_\tau/|X_\tau|$, $b=(B_0-1)s_*$, and the last entrance
+$s=1+\max\{j<\tau:v\cdot X_j\le b\}$. The departures $s\le j<\tau$ have $v\cdot X_j>b$ and
+$|X_j|<(B_0+1)s_*$, and the projected displacement is at least $s_*$. Their $m$ distinct cells lie
+in $D_n$ outside $b-\sqrt d/2$, so by \texttt{s-Fmass} and Step 3 $m\le C_{B_0}s_*L$.
+\texttt{s-crossing} (from \texttt{s-vector}, eq:interval of \texttt{lem-local}, and
+\texttt{Generic.Young.sq\_le\_of\_crossing} with $\kappa=(B_0-1)/(B_0+1)$) gives
+$s_*^2\le C(s_*^\gamma L^{2\gamma}+s_*L^4)$ with $\gamma<2$, which is false for large $n$. Hence
+$H_n\le CR_n^{1/d}$.
+\emph{Step 5 (mass; \texttt{s-mass}).} Let $S=H_n+\sqrt d$. Then $D_n\subseteq B(0,S)$
+(\texttt{Occupation.cellSet\_subset\_ball}). Integrating \texttt{lem-geometry} (spherical mean)
+radially gives $\int_{B(0,S)}U_{D_n}=2\eps\int_{D_n}|v|$. Also $\int_{B(0,S)}\widetilde\ell_n=n$, since
+cells are disjoint unit cubes (\texttt{s-cellset-volume}) and $\sum_x\ell_n(x)=n$. Hence
+$|n-2\eps\int_{D_n}|v||\le\omega_dS^d\delta=o(s_*^{d+1})$. By \texttt{s-radial-packing} (reverse
+bathtub) and $|D_n|=R_n$, $\int_{D_n}|v|\ge\frac d{d+1}\omega_d^{-1/d}R_n^{1+1/d}$, so $R_n\le CN^d$.
+\emph{Step 6.} $M_n\le CN$ by eq:M, and $H_n\le CN$ by Step 4. $R_n\ge cN^d$ (Step 1),
+$R_n\le C_d(H_n+1)^d$ (\texttt{Occupation.departureRange\_subset\_ballFinset},
+\texttt{card\_ballFinset\_le}) and $n\le M_nR_n$ give the lower bounds. For the finitely many $n$
+below the large-$n$ threshold, enlarge $C$ so that $Cn^{-p}\ge1$.
+\paragraph{Transcription notes.} One $c$ and one $C$ serve all six inequalities and the
+probability; both are chosen after $\eps,p$ and before the realization. $H_n$ is
+\texttt{maxRadius}, $M_n$ is \texttt{maxLocalTime}, and $R_n$ is \texttt{(departureRange X n).card}.

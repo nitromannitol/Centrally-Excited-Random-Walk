@@ -1,0 +1,10 @@
+% s-scale-limits: the paper's scales tend to zero. Used by thm-shape (Q -> 0, Q^{1/d}L -> 0) and by every "for large n" step (L/N -> 0).
+\paragraph{Statement.} (i) For real $a$ and $c>0$, $\log(n+2)^a/n^c\to0$. (ii) $Q_n\to0$.
+(iii) $Q_n^{1/d}L_n\to0$.
+\paragraph{Proof.} (i) By \texttt{isLittleO\_log\_rpow\_rpow\_atTop}, $(\log x)^a=o(x^{c})$ as
+$x\to\infty$. Compose with $x=n+2$ (\texttt{tendsto\_natCast\_atTop\_atTop} plus a shift), so
+$\log(n+2)^a/(n+2)^c\to0$; and $(n+2)^c/n^c\to1$, hence is eventually at most $3^c$. Alternatively
+bound $(n+2)^c\le3^cn^c$ for $n\ge1$. (ii) For $n\ge1$, $(L/N)^\theta=L^\theta/n^{\theta/(d+1)}$
+(\texttt{Real.div\_rpow}, \texttt{Real.rpow\_mul}) with $\theta=\frac12$ or $\frac d{2d-1}>0$;
+apply (i) with $a=\theta$, $c=\theta/(d+1)$ and \texttt{Tendsto.congr'} on the eventual equality.
+(iii) $Q^{1/d}L=L^{1+\theta/d}/n^{\theta/(d(d+1))}$ for $n\ge1$; apply (i).

@@ -1,0 +1,11 @@
+% s-hausdorff-arith: exponent arithmetic for eq:hausdorff and the planar remark.
+\paragraph{Statement.} For $n,L>0$: (i) $((L/n^{1/3})^{1/2})^{1/2}L=n^{-1/12}L^{5/4}$;
+(ii) for $d\ge1$, $((L/n^{1/(d+1)})^{d/(2d-1)})^{1/d}L=n^{-1/((d+1)(2d-1))}L^{2d/(2d-1)}$;
+(iii) $n^{1/3}(L/n^{1/3})^{1/2}=n^{1/6}\sqrt L$.
+\paragraph{Proof.} Positive bases: \texttt{Real.div\_rpow} splits the quotient,
+\texttt{Real.rpow\_mul} combines iterated powers ($\frac12\cdot\frac12=\frac14$;
+$\frac d{2d-1}\cdot\frac1d=\frac1{2d-1}$, using $d\ge1$ so $2d-1>0$), and
+\texttt{Real.rpow\_add} and \texttt{Real.rpow\_neg} collect exponents. In (i),
+$L^{1/4}\cdot L=L^{5/4}$ and $(n^{1/3})^{-1/4}=n^{-1/12}$. In (ii),
+$L^{1/(2d-1)}L=L^{2d/(2d-1)}$ and $(n^{1/(d+1)})^{-1/(2d-1)}=n^{-1/((d+1)(2d-1))}$. In (iii),
+$n^{1/3}n^{-1/6}=n^{1/6}$ and $L^{1/2}=\sqrt L$ (\texttt{Real.sqrt\_eq\_rpow}).

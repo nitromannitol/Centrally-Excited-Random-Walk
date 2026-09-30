@@ -1,5 +1,77 @@
-clauses: {}
+# REVIEWED readings for the frozen surface (pre-freeze checklist, BEST_PRACTICES.md §4).
+# Items: (1) constants bound before what they cannot depend on; (2) almost-sure clauses under
+# ∀ᵐ and the measure is the paper's law; (3) chosen objects existentially bound; (4) junk values;
+# (5) exponents and constants as written; (6) cited results as External hypotheses; (7) implicit
+# hypotheses; (8) first consumer elaborates; (9) library model.
+
+clauses:
+  ext-lattice-kernel: >-
+    (5) d=2: the potential kernel is the limit of the partial sums Σ_{j<M}[P^j(0,0) − P^j(0,x)]
+    (srwGreen 2 M 0 − srwGreen 2 M x), and |b(x) − (2/π)log|x| − κ| ≤ C|x|^{-2} for |x| ≥ R.
+    d≥3: |G(x) − 2/((d−2)ω_d)|x|^{2−d}| ≤ C|x|^{-d}, which is the paper's display with b = −G.
+    (4) The planar limit uses Tendsto of partial sums, because absolute summability fails for odd x.
+    log is taken at |x| ≥ R ≥ 1. (6) This is the only External; Lawler–Limic Thm 4.3.1 and 4.4.4,
+    with the definition (4.15). Truth check in ledger/nl/ext-lattice-kernel.tex.
+  thm-shape: >-
+    (1) No existential constants; a, N are the paper's formulas via let. (2) A single ∀ᵐ ω ∂μ
+    precedes "for every η" and "for every x", as the paper's "the following statements hold
+    almost surely". μ is any probability measure under which X is centrally excited random walk
+    (IsCERW, R-1). (4) sup_x → 0 is written ∀η>0 ∀ᶠn ∀x (R-5). Division by N n is used only
+    eventually, where N n > 0. (5) Balls are open (<); 2dε(a − |x|/N)_+ is max (…) 0; the fixed-x
+    limit is 2dεa. (6) Carries ext-lattice-kernel through thm-fluctuations. (7) d ≥ 2 and 0 < ε < 1/d
+    as in the paper. (8) The prototype derives the statement's shape from thm-fluctuations.
+  thm-fluctuations: >-
+    (1) ∀ε, ∀p, ∃ C n₀, then the realization: C and n₀ depend only on d, ε, p. The eventual constant
+    comes after ε. (2) The second conjunct is ∀ᵐ ω, ∀ᶠ n. The first bounds the outer measure of the
+    bad event by C n^{-p} (R-4). (4) Volumes are in ℝ≥0∞; the sup is ∀x; N⁻¹ with n ≥ n₀ ≥ 1; Q ≥ 0.
+    (5) Q = (L/N)^{1/2} (d=2), (L/N)^{d/(2d−1)} (d≥3); radii a − CQ and a + CQ^{1/d}L; profile
+    CQ^{1/d}; one C for the event and the probability, as in the paper. (6) Carries
+    ext-lattice-kernel. (8) The prototype extracts the profile clause of Good.
+  eq-hausdorff: >-
+    (1) ∀ε, ∀p, ∃ C n₀ before the realization. (4) hausdorffEDist is in ℝ≥0∞ (R-5); N⁻¹ with
+    n ≥ n₀ ≥ 1. (5) d=2: n^{-1/12}L^{5/4}; d≥3: n^{-1/((d+1)(2d−1))}L^{2d/(2d−1)}; planar inner
+    deficit C n^{1/6}√L. (R-7) The statement is a probability bound with its own constant.
+    (6) Carries ext-lattice-kernel.
+  lem-local: >-
+    (1) ∃ C_d before ε (the paper's C_d depends only on d, R-15), then ∀ε ∀p ∃C, then the
+    realization and ∀ n ≥ 2. (4) M_n, M_{s,t} are Finset.sup of ℕ (the empty value 0 is correct);
+    sqrt of nonnegative arguments; the potential is integrable on the bounded cell set. (5) λ_n and
+    e_n as displayed; the range 0 ≤ s < t ≤ n over naturals; |y| ≤ 2n. (6) Carries
+    ext-lattice-kernel. (8) The prototype instantiates at ε, p = 1, n = 2.
+  lem-geometry: >-
+    (1) ∃ C_d before ε and D (R-15). (4) R = (volume D).toReal is honest because D is bounded; the
+    Bochner integrals in U_D and F are integrable for bounded measurable D; the sphere integral is of
+    a continuous function. (5) The σ_d normalization equals the total mass of volume.toSphere
+    (d·ω_d); ‖U_D‖_∞ is written ∀y. The ball clause uses the open ball with the same ε. (6) No
+    External. (7) D measurable and bounded, as the paper says.
+  lem-radial: >-
+    (1) ∃ r₀ (depending on d only) before ε; C after ε, p. (4) r ± b_d are real, and r − b_d > 0
+    because r ≥ r₀ > 2b_d; shellMax is a finite Finset.sup. (5) b_d = ⌈√d/2⌉ + 6; the error terms
+    are √(M_n r^{1−d} F(r − b_d) L) and r^{1−d} L; integers r₀ ≤ r ≤ n. (6) Carries
+    ext-lattice-kernel.
+  prop-coarse: >-
+    (1) ∀ε ∀p ∃ c C, then the realization. (5) One c and one C for all six inequalities and for
+    the probability, as the paper states; H_n = max_{j≤n}|X_j| (maxRadius). (6) Carries
+    ext-lattice-kernel.
+
 constants: {}
+
 exponents: {}
-hazards: {}
+
+hazards:
+  thm-shape:
+    toReal: "ω_d = volume of the unit ball: finite and positive (unitBallVolume_pos)"
+  thm-fluctuations:
+    toReal: "ω_d = volume of the unit ball: finite and positive (unitBallVolume_pos)"
+    inv: "N⁻¹ with N = n^{1/(d+1)} > 0 for n ≥ n₀ ≥ 1, and eventually in the second conjunct"
+  eq-hausdorff:
+    toReal: "ω_d = volume of the unit ball: finite and positive (unitBallVolume_pos)"
+    inv: "N⁻¹ with N = n^{1/(d+1)} > 0 for n ≥ n₀ ≥ 1"
+  lem-geometry:
+    toReal: "ω_d is finite and positive; R = (volume D).toReal is finite because D is bounded"
+    inv: "(d·ω_d)⁻¹ with d ≥ 2 and ω_d > 0"
+    bochner: "U_D is continuous (the Hölder clause), so its sphere integral is of an integrable function"
+  ext-lattice-kernel:
+    toReal: "ω_d = volume of the unit ball: finite and positive"
+
 noise: []
