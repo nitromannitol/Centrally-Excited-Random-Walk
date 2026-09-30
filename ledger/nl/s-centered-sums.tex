@@ -1,0 +1,11 @@
+% s-centered-sums: lattice weight sums centred at y over a finite set. Sub-step of s-weight-sums, s-kernel-replace and the contact variance.
+\paragraph{Statement.} For finite $E\subseteq\Z^d$ and $y$: (i) if $|x-y|\le R$ on $E$ and $R\ge1$,
+then $\sum_E(1+|x-y|)^{-d}\le C\log(R+2)$; (ii) if $|x-y|\le R$ on $E$ and $R\ge0$, then
+$\sum_E(1+|x-y|)^{1-d}\le C(R+1)$; (iii) for $d\ge3$, $\sum_E(1+|x-y|)^{2-2d}\le C$.
+\paragraph{Proof.} The map $x\mapsto x-y$ is injective, and it sends $E$ into the lattice ball of
+radius $R$ (\texttt{mem\_ballFinset\_iff}). So the sum over $E$ equals the sum over the image
+(\texttt{Finset.sum\_image}), which is at most the sum over \texttt{ballFinset d R}
+(\texttt{Finset.sum\_le\_sum\_of\_subset\_of\_nonneg}). Apply
+\texttt{sum\_ballFinset\_rpow\_neg\_le\_log}, \texttt{sum\_ballFinset\_rpow\_one\_sub\_le}, and
+\texttt{sum\_ballFinset\_rpow\_two\_sub\_two\_mul\_le} with $R$ = the maximum of $|x-y|$ over $E$
+(or any bound).

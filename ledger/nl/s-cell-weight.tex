@@ -1,0 +1,12 @@
+% s-cell-weight: the weight of a far cell. Sub-step of s-radial-mart, s-radial-source, s-HvsR and s-outer.
+\paragraph{Statement.} If $|x|\ge\sqrt d$: (i) $v\in C_x$ implies $|x|/2\le|v|\le2|x|$; (ii) for
+$d\ge1$, $2^{1-d}|x|^{1-d}\le|v|^{1-d}\le2^{d-1}|x|^{1-d}$ on $C_x$; (iii) the same bounds hold for
+$\int_{C_x}|v|^{1-d}\,dv$.
+\paragraph{Proof.} (i) $|v-x|\le\sqrt d/2\le|x|/2$ (\texttt{norm\_sub\_toSpace\_le\_of\_mem\_cell}),
+so $|x|/2\le|v|\le\frac32|x|$ by the triangle inequality and $|x|=\|\mathrm{toSpace}\,x\|$. (ii)
+$|x|>0$ and the exponent $1-d\le0$ reverses the inequalities of (i)
+(\texttt{Real.rpow\_le\_rpow\_of\_nonpos}); $(|x|/2)^{1-d}=2^{d-1}|x|^{1-d}$ and
+$(2|x|)^{1-d}=2^{1-d}|x|^{1-d}$ (\texttt{Real.div\_rpow}, \texttt{Real.mul\_rpow}). (iii) Integrate
+(ii) over the cell, which has volume $1$ (\texttt{volume\_cell}): \texttt{setIntegral\_mono\_on},
+\texttt{setIntegral\_const}, with integrability from boundedness
+(\texttt{Measure.integrableOn\_of\_bounded}).

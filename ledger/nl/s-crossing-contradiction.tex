@@ -1,0 +1,10 @@
+% s-crossing-contradiction: the crossing bound fails eventually. Sub-step of s-HvsR (eq:coarse-contradiction).
+\paragraph{Statement.} For $\gamma<2$ and $C,c>0$ there is $n_1$ such that for $n\ge n_1$ and every
+$s\ge cn^{1/(d+1)}$: $C(s^\gamma L^{2\gamma}+sL^4)<s^2$, where $L=\log(n+2)$.
+\paragraph{Proof.} For $n\ge1$, $s>0$. Dividing by $s^2$, it suffices that
+$Cs^{\gamma-2}L^{2\gamma}<\frac12$ and $Cs^{-1}L^4<\frac12$. Since $\gamma-2<0$ and $s\ge cN$,
+$s^{\gamma-2}\le(cN)^{\gamma-2}=c^{\gamma-2}n^{(\gamma-2)/(d+1)}$ and $s^{-1}\le(cN)^{-1}$. By
+\texttt{Support.Main.tendsto\_log\_rpow\_div\_rpow} (with exponents $a=2\gamma$,
+$c'=(2-\gamma)/(d+1)$ and $a=4$, $c'=1/(d+1)$), $L^{2\gamma}n^{-(2-\gamma)/(d+1)}\to0$ and
+$L^4n^{-1/(d+1)}\to0$. So both are eventually below $c^{2-\gamma}/(2C)$ and $c/(2C)$
+respectively (\texttt{Filter.Tendsto.eventually\_lt\_const}, \texttt{Filter.eventually\_atTop}).

@@ -1,0 +1,11 @@
+% s-freedman-arith: arithmetic of Freedman's bound. Sub-step of s-dyadic.
+\paragraph{Statement.} (i) For $K\ge0$ there is $c\ge1$ with
+$KL\le t^2/(2(v+Bt))$, $t=c(\sqrt{vL}+BL)$, for all $v\ge0$, $B,L>0$. (ii) For $n\ge1$ and
+$K\ge0$, $2e^{-K\log(n+2)}\le2n^{-K}$. (iii) For $n\ge1$, $(n+1)^mn^{-(p+m)}\le2^mn^{-p}$.
+\paragraph{Proof.} (i) Put $c=\max(1,2K)$, $a=\sqrt{vL}$ and $\beta=BL$, so $v=a^2/L$ and
+$B=\beta/L$. Then $2(v+Bt)=\frac2L(a^2+c\beta(a+\beta))\le\frac{2c}L(a+\beta)^2$ (using $c\ge1$) and
+$t^2=c^2(a+\beta)^2$. Hence $t^2/(2(v+Bt))\ge cL/2\ge KL$. (If $a+\beta=0$ then $\beta=0$,
+impossible since $B,L>0$.) (ii) $e^{-K\log(n+2)}=(n+2)^{-K}\le n^{-K}$, since $n\le n+2$ and the
+exponent is $\le0$ (\texttt{Real.rpow\_def\_of\_pos}, \texttt{Real.rpow\_le\_rpow\_of\_nonpos}).
+(iii) $n+1\le2n$, so $(n+1)^m\le2^mn^m$ and $n^mn^{-(p+m)}=n^{-p}$ (\texttt{Real.rpow\_natCast},
+\texttt{Real.rpow\_add}).
