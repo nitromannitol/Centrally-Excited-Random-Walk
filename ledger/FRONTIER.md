@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 16:19.
+generation time. Regenerated 2026-09-30 16:42.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -195,7 +195,7 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | lem-cap | `CERW.Frozen.moreau_cap` | lem:cap | SEALED |
 | lem-contact | `CERW.Frozen.contact_potential` | lem:contact | SEALED |
 | lem-outer-crossing | `CERW.Frozen.outer_crossing` | lem:outer-crossing | SEALED |
-| prop-inner | `CERW.Frozen.inner_radius` | prop:inner | DRAFT_SORRY |
+| prop-inner | `CERW.Frozen.inner_radius` | prop:inner | SEALED |
 | prop-stronger-outer | `CERW.Frozen.outer_radius` | prop:stronger-outer | DRAFT_SORRY |
 | lem-near-far | `CERW.Frozen.near_far` | lem:near-far | SEALED |
 | thm-moment-fluctuations | `CERW.Frozen.moment_fluctuations` | thm:moment-fluctuations | DRAFT_SORRY |
@@ -206,4 +206,4 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | lem-separated-brackets | `CERW.Frozen.separated_brackets` | lem:separated-brackets | DRAFT_SORRY |
 | prop-log-lower | `CERW.Frozen.log_lower_bounds` | prop:log-lower | SEALED |
 
-**Revised surface:** 17 of 30 statements proved.
+**Revised surface:** 18 of 30 statements proved.

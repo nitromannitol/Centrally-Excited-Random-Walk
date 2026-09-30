@@ -346,7 +346,7 @@ nodes:
     source: limit-shapes.tex:1078-1094 (label prop:inner)
     file: CERW/Frozen/InnerRadius.lean
     export: CERW.Frozen.inner_radius
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 2d9401fb69c6e5346005b003eeff3a0e41b744489a8ffb0baef89864cb60a244
     provider: CERW.Frozen.inner_radius
     approved: "2026-09-30"

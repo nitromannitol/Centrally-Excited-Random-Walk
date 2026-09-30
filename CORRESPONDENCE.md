@@ -75,7 +75,7 @@ live in `CERW/Model/`.
 | `lem-cap` | `CERW.Frozen.moreau_cap` | `limit-shapes.tex:809-814`, `lem:cap` | SEALED |
 | `lem-contact` | `CERW.Frozen.contact_potential` | `limit-shapes.tex:891-896`, `lem:contact` | SEALED |
 | `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `limit-shapes.tex:988-993`, `lem:outer-crossing` | SEALED |
-| `prop-inner` | `CERW.Frozen.inner_radius` | `limit-shapes.tex:1078-1094`, `prop:inner` | DRAFT_SORRY |
+| `prop-inner` | `CERW.Frozen.inner_radius` | `limit-shapes.tex:1078-1094`, `prop:inner` | SEALED |
 | `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `limit-shapes.tex:1174-1179`, `prop:stronger-outer` | DRAFT_SORRY |
 | `lem-near-far` | `CERW.Frozen.near_far` | `limit-shapes.tex:1205-1210`, `lem:near-far` | SEALED |
 | `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `limit-shapes.tex:1355-1376`, `thm:moment-fluctuations` | DRAFT_SORRY |
