@@ -6,7 +6,11 @@ changes in Mathlib or the toolchain.
 
 Each file becomes one packet. The packet makes the file compile at `-DmaxHeartbeats=100000`
 without changing any public declaration. The measurement compiles every file under `CERW/`
-except the aggregators: 154 of 168 pass, and the 14 below do not.
+except the aggregators. The first measurement found 154 of 168 passing, and the 14 below did not.
+
+**Final measurement: all 168 files compile at `-DmaxHeartbeats=100000`.** Every packet kept every
+public declaration and its docstring byte-identical and changed only proof bodies and private
+helpers. After each landing, `check_axioms` passed on all eight frozen nodes.
 
 | file | status |
 |---|---|
