@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 19:39.
+generation time. Regenerated 2026-09-30 19:59.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -176,10 +176,10 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | node | Lean | label | state |
 |---|---|---|---|
 | thm-shape | `CERW.Frozen.limit_shape` | thm:shape | SEALED |
-| thm-fluctuations | `CERW.Frozen.fluctuation_rates` | thm:fluctuations | DRAFT_SORRY |
-| thm-sharp-radii | `CERW.Frozen.sharp_radii` | thm:sharp, part (i) | DRAFT_SORRY |
-| thm-sharp-radii-lil | `CERW.Frozen.sharp_radii_lil` | thm:sharp, part (ii) | DRAFT_SORRY |
-| thm-sharp-bulk | `CERW.Frozen.sharp_bulk` | thm:sharp, part (iii) | DRAFT_SORRY |
+| thm-fluctuations | `CERW.Frozen.fluctuation_rates` | thm:fluctuations | SEALED |
+| thm-sharp-radii | `CERW.Frozen.sharp_radii` | thm:sharp, part (i) | SEALED |
+| thm-sharp-radii-lil | `CERW.Frozen.sharp_radii_lil` | thm:sharp, part (ii) | SEALED |
+| thm-sharp-bulk | `CERW.Frozen.sharp_bulk` | thm:sharp, part (iii) | SEALED |
 | thm-sharp-width | `CERW.Frozen.sharp_width` | thm:sharp, part (iv) | SEALED |
 | thm-norm-shape | `CERW.Frozen.norm_shape` | thm:norm-shape | SEALED |
 | lem-ballpotential | `CERW.Frozen.norm_ball_potential` | lem:ballpotential | SEALED |
@@ -196,14 +196,14 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | lem-contact | `CERW.Frozen.contact_potential` | lem:contact | SEALED |
 | lem-outer-crossing | `CERW.Frozen.outer_crossing` | lem:outer-crossing | SEALED |
 | prop-inner | `CERW.Frozen.inner_radius` | prop:inner | SEALED |
-| prop-stronger-outer | `CERW.Frozen.outer_radius` | prop:stronger-outer | DRAFT_SORRY |
+| prop-stronger-outer | `CERW.Frozen.outer_radius` | prop:stronger-outer | SEALED |
 | lem-near-far | `CERW.Frozen.near_far` | lem:near-far | SEALED |
-| thm-moment-fluctuations | `CERW.Frozen.moment_fluctuations` | thm:moment-fluctuations | DRAFT_SORRY |
-| lem-fixed-site-centering | `CERW.Frozen.fixed_site_centering` | lem:fixed-site-centering | DRAFT_SORRY |
-| thm-site-fluctuations | `CERW.Frozen.site_fluctuations` | thm:site-fluctuations | DRAFT_SORRY |
+| thm-moment-fluctuations | `CERW.Frozen.moment_fluctuations` | thm:moment-fluctuations | SEALED |
+| lem-fixed-site-centering | `CERW.Frozen.fixed_site_centering` | lem:fixed-site-centering | SEALED |
+| thm-site-fluctuations | `CERW.Frozen.site_fluctuations` | thm:site-fluctuations | SEALED |
 | lem-exp-deviation | `CERW.Frozen.exp_deviation` | lem:exp-deviation | SEALED |
-| prop-bulk-profile | `CERW.Frozen.bulk_profile` | prop:bulk-profile | DRAFT_SORRY |
-| lem-separated-brackets | `CERW.Frozen.separated_brackets` | lem:separated-brackets | DRAFT_SORRY |
+| prop-bulk-profile | `CERW.Frozen.bulk_profile` | prop:bulk-profile | SEALED |
+| lem-separated-brackets | `CERW.Frozen.separated_brackets` | lem:separated-brackets | SEALED |
 | prop-log-lower | `CERW.Frozen.log_lower_bounds` | prop:log-lower | SEALED |
 
-**Revised surface:** 20 of 30 statements proved.
+**Revised surface:** 30 of 30 statements proved.

@@ -1,5 +1,20 @@
 import CERW.External.StoutLIL
 import CERW.Model
+import CERW.Support.Inner.InnerRadius
+import CERW.Support.Limit.MomentLil
+import CERW.Support.Lower.ExpDeviation
+import CERW.Support.Main.LimitShape
+import CERW.Support.Norm.BallLayer
+import CERW.Support.Norm.CellGradient
+import CERW.Support.Norm.Coarse
+import CERW.Support.Norm.ContactPotential
+import CERW.Support.Norm.Crossing
+import CERW.Support.Norm.Geometry
+import CERW.Support.Norm.LocalTime
+import CERW.Support.Norm.OuterCrossing
+import CERW.Support.Norm.Radial
+import CERW.Support.Outer.NearFar
+import CERW.Support.Outer.OuterRadius
 
 /-!
 # thm:sharp, part (ii)
@@ -72,4 +87,5 @@ theorem CERW.Frozen.sharp_radii_lil {d : ℕ} (hd : d = 2)
             ≤ CERW.maxRadius (X · ω) n - r n)
 -- FROZEN-STATEMENT-END
 := by
-  sorry
+  revert hLIL hd d
+  exact (CERW.Support.Lower.sharp_radii_lil_holds_of @CERW.Support.Main.limit_shape (CERW.Support.Outer.fluctuation_rates_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) (CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing) @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) (CERW.Support.Outer.outer_radius_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) (CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing) @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) CERW.Support.Outer.near_far_holds CERW.Support.Norm.outer_crossing_holds) CERW.Support.Outer.near_far_holds))

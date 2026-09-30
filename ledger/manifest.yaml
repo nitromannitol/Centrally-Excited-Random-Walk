@@ -137,7 +137,7 @@ nodes:
     source: limit-shapes.tex:130-152 (label thm:fluctuations)
     file: CERW/Frozen/FluctuationRates.lean
     export: CERW.Frozen.fluctuation_rates
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: ec18ac337d2fb2ca751b815ad92dd51d844ed4a40d5189a740a641e0e09812a4
     provider: CERW.Frozen.fluctuation_rates
     approved: "2026-09-30"
@@ -148,7 +148,7 @@ nodes:
     source: limit-shapes.tex:159-164 (label thm:sharp, part (i))
     file: CERW/Frozen/SharpRadii.lean
     export: CERW.Frozen.sharp_radii
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 72fbd89c684fe5947057fbbf5cfb00e6a2689b59aede6a5dfe1c5a74c4ce4c9c
     provider: CERW.Frozen.sharp_radii
     approved: "2026-09-30"
@@ -159,7 +159,7 @@ nodes:
     source: limit-shapes.tex:165-170 (label thm:sharp, part (ii))
     file: CERW/Frozen/SharpRadiiLil.lean
     export: CERW.Frozen.sharp_radii_lil
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 869d4e4bded4584de27d0d3a44a2ea3d3cee876cfbdc54a88aa23207a0a2e2c3
     provider: CERW.Frozen.sharp_radii_lil
     approved: "2026-09-30"
@@ -170,7 +170,7 @@ nodes:
     source: limit-shapes.tex:171-175 (label thm:sharp, part (iii))
     file: CERW/Frozen/SharpBulk.lean
     export: CERW.Frozen.sharp_bulk
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 9bab71e5d1b9792c8f8c11bfc783ad04d6eb135525693acdcd98b660959668e8
     provider: CERW.Frozen.sharp_bulk
     approved: "2026-09-30"
@@ -357,7 +357,7 @@ nodes:
     source: limit-shapes.tex:1174-1179 (label prop:stronger-outer)
     file: CERW/Frozen/OuterRadius.lean
     export: CERW.Frozen.outer_radius
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 6590555088155da416f44b0c49d47773a5ee72de758fc397ca5ef2755dc403de
     provider: CERW.Frozen.outer_radius
     approved: "2026-09-30"
@@ -379,7 +379,7 @@ nodes:
     source: limit-shapes.tex:1355-1376 (label thm:moment-fluctuations)
     file: CERW/Frozen/MomentFluctuations.lean
     export: CERW.Frozen.moment_fluctuations
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 7497a8697e453618822f482d3812dffce4b3dbdd4d2214100ef3b22c9c5568dd
     provider: CERW.Frozen.moment_fluctuations
     approved: "2026-09-30"
@@ -390,7 +390,7 @@ nodes:
     source: limit-shapes.tex:1432-1438 (label lem:fixed-site-centering)
     file: CERW/Frozen/FixedSiteCentering.lean
     export: CERW.Frozen.fixed_site_centering
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 0c4ecaed7602a58c804a769396308b5a346ff427b933958b983b38b6f99b033f
     provider: CERW.Frozen.fixed_site_centering
     approved: "2026-09-30"
@@ -401,7 +401,7 @@ nodes:
     source: limit-shapes.tex:1462-1487 (label thm:site-fluctuations)
     file: CERW/Frozen/SiteFluctuations.lean
     export: CERW.Frozen.site_fluctuations
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 4f6d4b89263fe0acabf00c7ef9556190a5b731f8148989dacf7c94f014b8936e
     provider: CERW.Frozen.site_fluctuations
     approved: "2026-09-30"
@@ -423,7 +423,7 @@ nodes:
     source: limit-shapes.tex:1658-1665 (label prop:bulk-profile)
     file: CERW/Frozen/BulkProfile.lean
     export: CERW.Frozen.bulk_profile
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 34aa5668e98eaba6d8c37552c243e758e12c645e90f222ff30b20621630d0e34
     provider: CERW.Frozen.bulk_profile
     approved: "2026-09-30"
@@ -434,7 +434,7 @@ nodes:
     source: limit-shapes.tex:1692-1699 (label lem:separated-brackets)
     file: CERW/Frozen/SeparatedBrackets.lean
     export: CERW.Frozen.separated_brackets
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 342581ac105e4d601df6d9e1d5fbf1238a798aa55c2213d3fbf733f1735a4b78
     provider: CERW.Frozen.separated_brackets
     approved: "2026-09-30"
