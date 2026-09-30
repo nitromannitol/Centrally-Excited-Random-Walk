@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 01:55.
+generation time. Regenerated 2026-09-30 02:03.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -110,7 +110,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-radius-arith | ds4 | `Support/Coarse/RadiusArith.lean` | s-scale-limits | c s^{d+1} ≤ n + C s^{d+1/2}L ⇒ s ≤ C′N | LANDED |
 | s-card-tail | ds2 | `Support/Coarse/CardTail.lean` | s-cell-norm, s-Fmass | eq:coarse-cellcount (general) | LANDED |
 | s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | BLOCKED(lem-geometry, lem-local) |
-| **prop-coarse** | director | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT |
+| **prop-coarse** | sonnet | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT |
 | **Sections 4–5 and the main theorems** | | | | | |
 | s-contact-kernel | ds1 | `Support/Contact/Kernel.lean` | — | u_v·(v−y)\|v−y\|^{−d} ≥ 2^{1−d}\|v\|^{1−d} for \|y\| ≤ \|v\| | LANDED |
 | s-planar-contact-sum | ds4 | `Support/Contact/PlanarSum.lean` | s-packing-lattice, s-occupation | Σ_{\|w\|≤R}(b−\|z+w\|)_+(1+\|w\|)^{−2} ≤ C(R+1) | LANDED |
@@ -128,20 +128,22 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-contact-mass | ds2 | `Support/Contact/ContactMass.lean` | s-contact-lower | \|D∖B(0,b)\| ≤ C S^{d−1}(\|ρ\| + \|M\| + Δ) (eq:contactbound) | LANDED |
 | s-envelope-shell | ds4 | `Support/Contact/EnvelopeShell.lean` | — | eq:shellW from the envelope; the error scale of eq:global | LANDED |
 | s-envelope-high | ds1 | `Support/Contact/EnvelopeHigh.lean` | s-weight-sums | eq:resolvent, eq:envelopehigh, eq:holebracket (d ≥ 3) | LANDED |
-| s-tailend | sonnet | `Support/Coarse/TailEnd.lean` | lem-radial, s-halving, s-scale-limits | eq:tailend (deterministic) | IN-FLIGHT (director/sonnet) |
+| s-tailend | sonnet | `Support/Coarse/TailEnd.lean` | lem-radial, s-halving, s-scale-limits | eq:tailend (deterministic) | LANDED |
 | s-outer | ds3 | `Support/Crossing/OuterBound.lean` | s-tailend, s-crossing, s-inradius, s-outer-contradiction | eq:outer-contradiction | IN-FLIGHT (ds3, 01:39) |
 | s-scale-limits | ds4 | `Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | LANDED |
 | s-hausdorff-arith | ds3 | `Support/Main/HausdorffArith.lean` | — | Hausdorff and planar exponent identities | LANDED |
 | s-assembly | director | `Support/Main/Event.lean` | s-volume-profile, s-outer, s-good-event | fluctGood on the event at each n | BLOCKED(s-outer) |
+| s-shape-assembly | ds2 | `Support/Main/ShapeAssembly.lean` | s-shape-inclusion, s-shape-count | thm:shape from a.s. eventually fluctGood | IN-FLIGHT (ds2, 02:00) |
+| s-hausdorff-good | ds4 | `Support/Main/HausdorffGood.lean` | s-good-event, s-hausdorff-arith | eq:hausdorff and the planar inner inclusion on fluctGood | IN-FLIGHT (ds4, 02:00) |
 | s-good-event | director | `Support/Main/GoodEvent.lean` | — | fluctGood d ε C Y n ≡ Good C Y n | LANDED |
 | s-borel-cantelli | ds1 | `Support/Main/BorelCantelli.lean` | — | Σ C n^{−p} < ∞ ⇒ a.s. eventually | LANDED |
 | s-shape-inclusion | ds2 | `Support/Main/ShapeInclusion.lean` | s-good-event, s-scale-limits | thm:shape inclusions and profile from fluctGood | LANDED |
 | s-shape-count | ds4 | `Support/Main/ShapeCount.lean` | s-good-event, s-scale-limits | thm:shape counts and fixed sites from fluctGood | LANDED |
 | **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-assembly, s-borel-cantelli | thm:fluctuations | DRAFT |
-| **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-shape-inclusion, s-shape-count | thm:shape | DRAFT |
-| **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
+| **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-shape-assembly | thm:shape | DRAFT |
+| **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-good, s-inradius | eq:hausdorff | DRAFT |
 
-**Counts:** BLOCKED 9, DRAFT 7, IN-FLIGHT 2, LANDED 90, READY 2.
+**Counts:** BLOCKED 9, DRAFT 7, IN-FLIGHT 3, LANDED 91, READY 2.
 
 ## Pre-freeze gate
 

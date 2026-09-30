@@ -1,0 +1,9 @@
+% s-hausdorff-good: eq:hausdorff and the planar inner inclusion on the event (deterministic).
+\paragraph{Statement.} For $\varepsilon>0$, $C\geq0$ there are $C'>0$, $n_0$ such that for every path $Y$ and $n\geq n_0$ with $\mathrm{Good}(C,Y,n)$:
+$d_H(N^{-1}V_n,\bar B(0,a))\leq C'Q^{1/d}L$ (written as $C'n^{-1/12}L^{5/4}$ for $d=2$ and $C'n^{-1/((d+1)(2d-1))}L^{2d/(2d-1)}$ for $d\geq3$), and for $d=2$,
+$\{|x|<aN-C'n^{1/6}\sqrt L\}\subseteq A_n$.
+\paragraph{Proof.} $a>0$. Choose $n_0$ with $CQ+2\sqrt d/N<a$, $Q\leq1$, $L\geq1$, $N\geq1$ for $n\geq n_0$ (\texttt{tendsto\_rate\_zero}).
+Excess: each $x\in V_n$ has $|x|<(a+CQ^{1/d}L)N$, so $N^{-1}x$ is within $CQ^{1/d}L$ of $\bar B(0,a)$ (radial projection).
+Cover: for $|y|\leq a$ let $y'=ty$ with $|y'|=\min(|y|,a-CQ-\sqrt d/N)$ and $x=\mathrm{cellCenter}(Ny')$. Then $|x-Ny'|\leq\sqrt d/2$, so $|x|<(a-CQ)N$, $x\in A_n\subseteq V_n$,
+and $|y-N^{-1}x|\leq CQ+\sqrt d/N+\sqrt d/(2N)$. Hence $d_H\leq CQ^{1/d}L+CQ+2\sqrt d/N\leq(2C+2\sqrt d+1)Q^{1/d}L$, since $Q\leq Q^{1/d}\leq Q^{1/d}L$ and $1/N\leq Q^{1/d}$.
+Rewrite $Q^{1/d}L$ by \texttt{planar\_excess\_rate} / \texttt{excess\_rate}. Planar inclusion: $NQ=n^{1/6}\sqrt L$ (\texttt{planar\_inner\_rate}) and $C'\geq C$.

@@ -1,0 +1,6 @@
+% s-shape-assembly: thm:shape from the almost-sure fluctuation event.
+\paragraph{Statement.} If $\varepsilon>0$, $C\geq0$, and for $\mu$-a.e.\ $\omega$ the event $\mathrm{Good}(C,X(\omega),n)$ holds for all large $n$, then
+$\mu$-a.s.\ every conclusion of thm:shape holds: the inclusions for each $0<\eta<a$, the uniform profile convergence, $|V_n|/N^d\to\omega_da^d$,
+$\ell_n(x)/N\to2d\varepsilon a$ at each fixed site, and every site is visited infinitely often.
+\paragraph{Proof.} Filter the almost-sure event. On it, \texttt{sandwich\_and\_profile\_of\_good} gives the first two conclusions (the hypothesis $\eta<a$
+is not needed) and \texttt{count\_and\_pointwise\_of\_good} gives the last three.

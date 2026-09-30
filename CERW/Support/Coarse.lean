@@ -16,3 +16,4 @@ import CERW.Support.Coarse.MassError
 import CERW.Support.Coarse.Shell
 import CERW.Support.Coarse.OuterRadius
 import CERW.Support.Coarse.Tail
+import CERW.Support.Coarse.TailEnd

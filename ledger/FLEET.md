@@ -120,13 +120,16 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 26 | Borel–Cantelli from a power tail | ds1 | v4.1-flash | 5154 | 1 | ↑56k ↓20k | accepted | 0 | 60 | `CERW/Support/Main/BorelCantelli.lean` |
 | 26 | shape inclusions and profile from the event | ds2 | v4.1-flash | 5797 | 1 | ↑105k ↓34k | accepted | 1: the director removed three unused hypotheses (the worker had bound them to anonymous `have`s) | 82 | `CERW/Support/Main/ShapeInclusion.lean` |
 | 26 | shape count and pointwise bound from the event | ds4 | v4.1-flash | 6337 | 1 | ↑145k ↓65k | accepted | 0 | 180 | `CERW/Support/Main/ShapeCount.lean` |
-| 27 | tail end (eq:tailend) | Sonnet subagent | sonnet | task prompt | 1 | — | in flight (redispatched after the director fixed a missing import in the leaf) | — | — | `wip/TailEnd.lean` |
+| 27 | tail end (eq:tailend) | Sonnet subagent | sonnet | task prompt | 1 + 9 helpers | 142k (agent total) | accepted | 2: the first dispatch was stopped because the director's leaf did not compile (missing import); after return the director replaced re-proved cell facts with library lemmas | 497 | `CERW/Support/Coarse/TailEnd.lean` |
+| 27 | shape theorem from the almost-sure event | ds2 | v4.1-flash | 4473 | 1 | — | in flight | — | — | `wip/ShapeAssembly.lean` |
+| 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | — | in flight | — | — | `wip/HausdorffGood.lean` |
+| 28 | prop:coarse assembly from the kernel facts | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/CoarseAssembly.lean` |
 | 23 | quadratic martingale concentration | ds3 | v4.1-flash | 7217 | 1 | ↑693k ↓121k | accepted | 0 | 489 | `CERW/Support/Contact/QuadraticError.lean` |
 
 ## Observations
 
 * **Waves 1–26.** Every returned DeepSeek packet was accepted: 90/90, two after a statement repair. There were three repairs: a definition
-  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 20/20.
+  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 21/21.
 * **Parallel helpers collide.** Two parallel files in one namespace each added a public helper with the same
   name. Since wave 13, the common rules require every helper a worker adds to be `private`.
 * **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was
