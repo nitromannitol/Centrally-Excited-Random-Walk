@@ -133,6 +133,305 @@ private lemma sqrt_rpow_inv (d : ℕ) (hd : 1 ≤ d) {m : ℝ} (hm : 0 ≤ m) :
   congr 1
   field_simp
 
+/-- At a departure site, the envelope together with the two decomposition bounds gives
+`ℓ_n(y) ≤ c₀ (b - |y|)_+ + A₁ + C₁ √(B_y L)`. -/
+private lemma dep_le (d : ℕ) (hd2 : 2 ≤ d) {ε C₁ b L : ℝ} (hε : 0 < ε)
+    {X : ℕ → Site d} {n : ℕ} {M : Site d → ℝ} {c0 ca A1 mvol : ℝ}
+    (hb : 0 < b) (hball : Metric.ball 0 b ⊆ cellSet X n)
+    (hXn : ∀ j < n, euclidNorm (X j) ≤ n)
+    (hc0 : c0 = 2 * (d : ℝ) * ε)
+    (hca : ca = c0 * unitBallVolume d ^ (-(1 : ℝ) / (d : ℝ)))
+    (hmvol : mvol = (volume (cellSet X n \ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) b)).toReal)
+    (hA1 : A1 = ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + 2 * C₁ * L)
+    (hpt : ∀ y : Site d, euclidNorm y ≤ n →
+        |(localTime X n y : ℝ) - potential d ε (cellSet X n) (toSpace y) + M y| ≤ C₁ * L)
+    (hM : ∀ y : Site d, euclidNorm y ≤ n →
+        |M y| ≤ C₁ * (Real.sqrt ((∑ x ∈ departureRange X n,
+          (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) + L)) :
+    ∀ y ∈ departureRange X n,
+      (localTime X n y : ℝ) ≤ c0 * max (b - euclidNorm y) 0 + A1 +
+        C₁ * Real.sqrt ((∑ x ∈ departureRange X n,
+          (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) := by
+  intro y hy
+  have hyn : euclidNorm y ≤ n := by
+    obtain ⟨j, hj, hjy⟩ := Finset.mem_image.mp hy
+    rw [← hjy]
+    exact hXn j (Finset.mem_range.mp hj)
+  have hρ : |(localTime X n y : ℝ) - potential d ε (cellSet X n) (toSpace y) + M y| ≤
+      C₁ * L := hpt y hyn
+  have hMy : |M y| ≤ C₁ * (Real.sqrt ((∑ x ∈ departureRange X n,
+        (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) + L) :=
+    hM y hyn
+  have henv := localTime_le_envelope (d := d) hd2 (le_of_lt hε) X n hb hball y
+    (ρ := (localTime X n y : ℝ) - potential d ε (cellSet X n) (toSpace y) + M y) (M := M y)
+    (by ring)
+  have hMsplit : |M y| ≤ C₁ * Real.sqrt ((∑ x ∈ departureRange X n,
+        (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) +
+        C₁ * L := by
+    rw [mul_add] at hMy
+    exact hMy
+  calc (localTime X n y : ℝ)
+      ≤ 2 * (d : ℝ) * ε * max (b - euclidNorm y) 0 +
+          2 * (d : ℝ) * ε * unitBallVolume d ^ (-(1 : ℝ) / (d : ℝ)) *
+            mvol ^ ((1 : ℝ) / (d : ℝ)) +
+          |(localTime X n y : ℝ) - potential d ε (cellSet X n) (toSpace y) + M y| + |M y| := by
+        simpa only [hmvol] using henv
+    _ ≤ c0 * max (b - euclidNorm y) 0 + A1 +
+          C₁ * Real.sqrt ((∑ x ∈ departureRange X n,
+            (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) := by
+        have h1 : 2 * (d : ℝ) * ε * max (b - euclidNorm y) 0 +
+              2 * (d : ℝ) * ε * unitBallVolume d ^ (-(1 : ℝ) / (d : ℝ)) *
+                mvol ^ ((1 : ℝ) / (d : ℝ)) =
+            c0 * max (b - euclidNorm y) 0 + ca * mvol ^ ((1 : ℝ) / (d : ℝ)) := by
+          rw [hca, hc0]
+        rw [h1, hA1]
+        linarith only [hρ, hMsplit]
+
+/-- The contact inequality rewritten with `S = (K - 1) N`, in the form used downstream. -/
+private lemma contact_bound (d : ℕ) (hd2 : 2 ≤ d) {ε b N Δ K Kc : ℝ} (hε : 0 < ε)
+    {X : ℕ → Site d} {n : ℕ} {M : Site d → ℝ} {z : Site d}
+    {y₀ : EuclideanSpace ℝ (Fin d)} {mvol : ℝ}
+    (hK : 2 ≤ K) (hNpos : 0 < N) (hb : 0 < b)
+    (hball : Metric.ball 0 b ⊆ cellSet X n)
+    (hDS : cellSet X n ⊆ Metric.ball 0 ((K - 1) * N))
+    (hy0 : ‖y₀‖ = b) (hz0 : localTime X n z = 0)
+    (hmod : |potential d ε (cellSet X n) y₀ - potential d ε (cellSet X n) (toSpace z)| ≤ Δ)
+    (hmvol : mvol = (volume (cellSet X n \ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) b)).toReal)
+    (hKc : Kc = unitBallVolume d / (2 * ε) * (2 : ℝ) ^ ((d : ℝ) - 1) *
+      (K - 1) ^ ((d : ℝ) - 1)) :
+    mvol ≤ Kc * N ^ ((d : ℝ) - 1) *
+      (|(localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z| + |M z| +
+        Δ) := by
+  have hSpos : 0 < (K - 1) * N := by
+    have hK1 : 0 < K - 1 := by linarith only [hK]
+    exact mul_pos hK1 hNpos
+  have hDS' : cellSet X n ⊆ Metric.closedBall 0 ((K - 1) * N) :=
+    fun v hv => Metric.ball_subset_closedBall (hDS hv)
+  have hSsplit : ((K - 1) * N) ^ ((d : ℝ) - 1) =
+      (K - 1) ^ ((d : ℝ) - 1) * N ^ ((d : ℝ) - 1) := by
+    rw [Real.mul_rpow (by linarith only [hK] : (0 : ℝ) ≤ K - 1) hNpos.le]
+  have hcontact := volume_sdiff_le_contact (d := d) hd2 hε X n (b := b) (S := (K - 1) * N)
+    (Δ := Δ) (ρ := (localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z)
+    (M := M z) (le_of_lt hb) hSpos hball hDS' hy0 hz0 (by ring) hmod
+  rw [← hmvol, hSsplit] at hcontact
+  calc mvol ≤ unitBallVolume d / (2 * ε) * (2 : ℝ) ^ ((d : ℝ) - 1) *
+        ((K - 1) ^ ((d : ℝ) - 1) * N ^ ((d : ℝ) - 1)) *
+        (|(localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z| + |M z| +
+          Δ) := hcontact
+    _ = Kc * N ^ ((d : ℝ) - 1) *
+        (|(localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z| + |M z| +
+          Δ) := by
+          rw [hKc]; ring
+
+/-- A square-root estimate turning `B_z ≤ Ce (ca m^{1/d} + D₁ L)` into the explicit bound
+`√(B_z L) ≤ √(Ce ca) m^{1/(2d)} √L + √(Ce D₁) L`. -/
+private lemma sqrt_bound (d : ℕ) (hd1 : 1 ≤ d) {Ce ca D1 Bz mvol L : ℝ}
+    (hmvol_nonneg : 0 ≤ mvol) (hLpos : 0 < L)
+    (hcanonneg : 0 ≤ ca) (hD1nonneg : 0 ≤ D1) (hCepos : 0 < Ce)
+    (hBz_le : Bz ≤ Ce * (ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L)) :
+    Real.sqrt (Bz * L) ≤
+      Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
+        Real.sqrt (Ce * D1) * L := by
+  have h1 : Real.sqrt (Bz * L) ≤
+      Real.sqrt (Ce * (ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L) * L) := by
+    apply Real.sqrt_le_sqrt
+    exact mul_le_mul_of_nonneg_right hBz_le hLpos.le
+  have h2 : Ce * (ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L) * L =
+      Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L + Ce * D1 * L * L := by ring
+  have h3 : Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L + Ce * D1 * L * L) ≤
+      Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L) +
+        Real.sqrt (Ce * D1 * L * L) :=
+    sqrt_add_le _ _ (mul_nonneg (mul_nonneg (mul_nonneg hCepos.le hcanonneg)
+      (Real.rpow_nonneg hmvol_nonneg _)) hLpos.le)
+      (mul_nonneg (mul_nonneg (mul_nonneg hCepos.le hD1nonneg) hLpos.le) hLpos.le)
+  have h4 : Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L) =
+      Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L := by
+    rw [show Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L =
+      (Ce * ca) * (mvol ^ ((1 : ℝ) / (d : ℝ)) * L) by ring]
+    rw [Real.sqrt_mul (mul_nonneg hCepos.le hcanonneg)
+      (mvol ^ ((1 : ℝ) / (d : ℝ)) * L)]
+    rw [Real.sqrt_mul (Real.rpow_nonneg hmvol_nonneg _) L]
+    rw [sqrt_rpow_inv d hd1 hmvol_nonneg]
+    ring
+  have h5 : Real.sqrt (Ce * D1 * L * L) = Real.sqrt (Ce * D1) * L := by
+    rw [show Ce * D1 * L * L = (Ce * D1) * (L * L) by ring]
+    rw [Real.sqrt_mul (mul_nonneg hCepos.le hD1nonneg) (L * L)]
+    rw [Real.sqrt_mul_self hLpos.le]
+  calc Real.sqrt (Bz * L) ≤
+        Real.sqrt (Ce * (ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L) * L) := h1
+    _ = Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L + Ce * D1 * L * L) := by
+          rw [h2]
+    _ ≤ Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L) +
+          Real.sqrt (Ce * D1 * L * L) := h3
+    _ = Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
+          Real.sqrt (Ce * D1) * L := by rw [h4, h5]
+
+/-- The Young-inequality step absorbing the bracket: from
+`m ≤ Kc N^{d-1} (C₁ √(B_z L) + (2C₁ + C₀) L)` produce
+`m ≤ c N^{d-1} (m^{1/(2d)} √L + L)` with `c = Kc · cabs`. -/
+private lemma mass_young (d : ℕ) {C₀ C₁ Ce ca D1 Kc cabs c Bz mvol N L : ℝ}
+    (hmvol_nonneg : 0 ≤ mvol) (hLpos : 0 < L) (hC₀ : 0 ≤ C₀) (hC₁ : 0 ≤ C₁)
+    (hKcN_nonneg : 0 ≤ Kc * N ^ ((d : ℝ) - 1))
+    (hcabs : cabs = C₁ * Real.sqrt (Ce * ca) + (2 * C₁ + C₀) + C₁ * Real.sqrt (Ce * D1) + 1)
+    (hc : c = Kc * cabs)
+    (hsqrt_bound : Real.sqrt (Bz * L) ≤
+      Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
+        Real.sqrt (Ce * D1) * L)
+    (hm1 : mvol ≤ Kc * N ^ ((d : ℝ) - 1) *
+      (C₁ * Real.sqrt (Bz * L) + (2 * C₁ + C₀) * L)) :
+    mvol ≤ c * N ^ ((d : ℝ) - 1) *
+      (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L) := by
+  have hmn_nonneg : 0 ≤ mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L :=
+    mul_nonneg (Real.rpow_nonneg hmvol_nonneg _) (Real.sqrt_nonneg L)
+  have hA_le : C₁ * Real.sqrt (Ce * ca) ≤ cabs := by
+    have h1 : 0 ≤ C₁ * Real.sqrt (Ce * D1) := mul_nonneg hC₁ (Real.sqrt_nonneg _)
+    have h2 : 0 ≤ 2 * C₁ + C₀ := by linarith only [hC₁, hC₀]
+    rw [hcabs]
+    linarith only [h1, h2]
+  have hB_le : C₁ * Real.sqrt (Ce * D1) + (2 * C₁ + C₀) ≤ cabs := by
+    have h1 : 0 ≤ C₁ * Real.sqrt (Ce * ca) := mul_nonneg hC₁ (Real.sqrt_nonneg _)
+    rw [hcabs]
+    linarith only [h1]
+  have hbracket2 : C₁ * Real.sqrt (Bz * L) + (2 * C₁ + C₀) * L ≤
+      cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L) := by
+    have hC1sqrt : C₁ * Real.sqrt (Bz * L) ≤
+        C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
+          C₁ * Real.sqrt (Ce * D1) * L := by
+      have h := mul_le_mul_of_nonneg_left hsqrt_bound hC₁
+      calc C₁ * Real.sqrt (Bz * L) ≤
+            C₁ * (Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
+              Real.sqrt (Ce * D1) * L) := h
+        _ = C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
+              C₁ * Real.sqrt (Ce * D1) * L := by ring
+    have hA : C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L ≤
+        cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L) := by
+      calc C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L =
+            (C₁ * Real.sqrt (Ce * ca)) *
+              (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L) := by ring
+        _ ≤ cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L) :=
+              mul_le_mul_of_nonneg_right hA_le hmn_nonneg
+    have hB : (C₁ * Real.sqrt (Ce * D1) + (2 * C₁ + C₀)) * L ≤ cabs * L :=
+      mul_le_mul_of_nonneg_right hB_le hLpos.le
+    have hcombine : C₁ * Real.sqrt (Bz * L) + (2 * C₁ + C₀) * L ≤
+        C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
+          (C₁ * Real.sqrt (Ce * D1) + (2 * C₁ + C₀)) * L := by
+      linarith only [hC1sqrt]
+    rw [show cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L) =
+      cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L) + cabs * L by ring]
+    linarith only [hcombine, hA, hB]
+  calc mvol ≤ Kc * N ^ ((d : ℝ) - 1) *
+        (C₁ * Real.sqrt (Bz * L) + (2 * C₁ + C₀) * L) := hm1
+    _ ≤ Kc * N ^ ((d : ℝ) - 1) *
+          (cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L)) :=
+          mul_le_mul_of_nonneg_left hbracket2 hKcN_nonneg
+    _ = c * N ^ ((d : ℝ) - 1) *
+          (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L) := by
+          rw [hc]; ring
+
+/-- The Young-inequality output `m ≤ 2 C (N^d Q)` with `Q = (L/N)^{d/(2d-1)}`. -/
+private lemma young_key (d : ℕ) (hd1 : 1 ≤ d) {Cy N L Q mvol : ℝ}
+    (hLpos : 0 < L) (hLN : L ≤ N) (hCypos : 0 < Cy)
+    (hQdef : Q = (L / N) ^ ((d : ℝ) / (2 * d - 1)))
+    (hkey : mvol ≤ Cy * (N ^ ((2 * (d : ℝ) * ((d : ℝ) - 1)) / (2 * (d : ℝ) - 1)) *
+          L ^ ((d : ℝ) / (2 * (d : ℝ) - 1)) + N ^ ((d : ℝ) - 1) * L)) :
+    mvol ≤ 2 * Cy * (N ^ d * Q) := by
+  have hid : N ^ ((2 * (d : ℝ) * ((d : ℝ) - 1)) / (2 * (d : ℝ) - 1)) *
+      L ^ ((d : ℝ) / (2 * (d : ℝ) - 1)) = N ^ d * Q := by
+    rw [hQdef]
+    exact rpow_exp_identity d hd1 hLpos hLN
+  have hid2 : N ^ ((d : ℝ) - 1) * L ≤ N ^ d * Q := by
+    rw [hQdef]
+    exact rpow_sub_one_mul_le d hd1 hLpos hLN
+  calc mvol ≤ Cy * (N ^ ((2 * (d : ℝ) * ((d : ℝ) - 1)) / (2 * (d : ℝ) - 1)) *
+        L ^ ((d : ℝ) / (2 * (d : ℝ) - 1)) + N ^ ((d : ℝ) - 1) * L) := hkey
+    _ = Cy * (N ^ d * Q + N ^ ((d : ℝ) - 1) * L) := by rw [hid]
+    _ ≤ Cy * (N ^ d * Q + N ^ d * Q) := by gcongr
+    _ = 2 * Cy * (N ^ d * Q) := by ring
+
+/-- The root of the Young bound: `m^{1/d} ≤ (2C)^{1/d} N Q^{1/d}`. -/
+private lemma root_bound (d : ℕ) (hd1 : 1 ≤ d) {N Q mvol Cy : ℝ}
+    (hmvol_nonneg : 0 ≤ mvol) (hNpos : 0 < N) (hQnonneg : 0 ≤ Q) (hCypos : 0 < Cy)
+    (key2 : mvol ≤ 2 * Cy * (N ^ d * Q)) :
+    mvol ^ ((1 : ℝ) / (d : ℝ)) ≤
+      (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * N * Q ^ ((1 : ℝ) / (d : ℝ)) := by
+  have hNQ : 0 ≤ N ^ d * Q := mul_nonneg (pow_nonneg hNpos.le d) hQnonneg
+  have h := Real.rpow_le_rpow hmvol_nonneg key2
+    (by positivity : (0 : ℝ) ≤ (1 : ℝ) / (d : ℝ))
+  rw [Real.mul_rpow (by positivity : (0 : ℝ) ≤ 2 * Cy) hNQ] at h
+  rw [rpow_div_eq d hd1 hNpos.le hQnonneg] at h
+  rw [← mul_assoc] at h
+  exact h
+
+/-- The bound `A₁ + C₁² L + c₀ L ≤ (ca (2C)^{1/d} + D₁) (N Q^{1/d})`. -/
+private lemma env_bound (d : ℕ) {C₁ ca D1 Cy N Q A1 c0 L mvol : ℝ}
+    (hcanonneg : 0 ≤ ca) (hD1nonneg : 0 ≤ D1)
+    (hEz : A1 + C₁ ^ 2 * L + c0 * L = ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L)
+    (hmroot : mvol ^ ((1 : ℝ) / (d : ℝ)) ≤
+      (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * N * Q ^ ((1 : ℝ) / (d : ℝ)))
+    (hLle : L ≤ N * Q ^ ((1 : ℝ) / (d : ℝ))) :
+    A1 + C₁ ^ 2 * L + c0 * L ≤
+      (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1) * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by
+  have h1 : ca * mvol ^ ((1 : ℝ) / (d : ℝ)) ≤
+      ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by
+    calc ca * mvol ^ ((1 : ℝ) / (d : ℝ)) ≤
+          ca * ((2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * N * Q ^ ((1 : ℝ) / (d : ℝ))) :=
+            mul_le_mul_of_nonneg_left hmroot hcanonneg
+      _ = ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by ring
+  have h2 : D1 * L ≤ D1 * (N * Q ^ ((1 : ℝ) / (d : ℝ))) :=
+    mul_le_mul_of_nonneg_left hLle hD1nonneg
+  rw [hEz]
+  calc ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L
+      ≤ ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * (N * Q ^ ((1 : ℝ) / (d : ℝ))) +
+          D1 * (N * Q ^ ((1 : ℝ) / (d : ℝ))) :=
+        add_le_add h1 h2
+    _ = (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1) *
+          (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by ring
+
+/-- The local-time envelope with the constant `Cfin`. -/
+private lemma envelope_bound (d : ℕ) {X : ℕ → Site d} {n : ℕ}
+    {b Ce c0 C₁ Cfin ca D1 Cy N Q A1 L : ℝ}
+    (hCepos : 0 < Ce)
+    (hCfin : Cfin = max (2 * Cy)
+      (max (Ce * c0) (Ce * (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1))))
+    (hEbound : A1 + C₁ ^ 2 * L + c0 * L ≤
+      (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1) * (N * Q ^ ((1 : ℝ) / (d : ℝ))))
+    (hNpos : 0 < N) (hQnonneg : 0 ≤ Q)
+    (henv_all : ∀ y : Site d, (localTime X n y : ℝ) ≤
+      Ce * (c0 * max (b - euclidNorm y) 0 + A1 + C₁ ^ 2 * L + c0 * L)) :
+    ∀ y : Site d, (localTime X n y : ℝ) ≤
+      Cfin * max (b - euclidNorm y) 0 + Cfin * N * Q ^ ((1 : ℝ) / (d : ℝ)) := by
+  intro y
+  have hy := henv_all y
+  have hs_nonneg : 0 ≤ max (b - euclidNorm y) 0 := le_max_right _ _
+  have hCe_c0_le : Ce * c0 ≤ Cfin := by
+    rw [hCfin]
+    exact le_trans (le_max_left _ _) (le_max_right (2 * Cy) _)
+  have hCe_E_le : Ce * (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1) ≤ Cfin := by
+    rw [hCfin]
+    exact le_trans (le_max_right _ _) (le_max_right (2 * Cy) _)
+  have h1 : Ce * (c0 * max (b - euclidNorm y) 0 + (A1 + C₁ ^ 2 * L + c0 * L)) ≤
+      Cfin * max (b - euclidNorm y) 0 + Cfin * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by
+    have ha : Ce * c0 * max (b - euclidNorm y) 0 ≤ Cfin * max (b - euclidNorm y) 0 :=
+      mul_le_mul_of_nonneg_right hCe_c0_le hs_nonneg
+    have hb : Ce * (A1 + C₁ ^ 2 * L + c0 * L) ≤ Cfin * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by
+      have h2 := mul_le_mul_of_nonneg_left hEbound hCepos.le
+      have h3 : Ce * ((ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1) *
+            (N * Q ^ ((1 : ℝ) / (d : ℝ)))) =
+          (Ce * (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1)) *
+            (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by ring
+      rw [h3] at h2
+      exact le_trans h2 (mul_le_mul_of_nonneg_right hCe_E_le
+        (mul_nonneg hNpos.le (Real.rpow_nonneg hQnonneg _)))
+    calc Ce * (c0 * max (b - euclidNorm y) 0 + (A1 + C₁ ^ 2 * L + c0 * L)) =
+          Ce * c0 * max (b - euclidNorm y) 0 + Ce * (A1 + C₁ ^ 2 * L + c0 * L) := by ring
+      _ ≤ Cfin * max (b - euclidNorm y) 0 + Cfin * (N * Q ^ ((1 : ℝ) / (d : ℝ))) :=
+            add_le_add ha hb
+  calc (localTime X n y : ℝ) ≤
+        Ce * (c0 * max (b - euclidNorm y) 0 + A1 + C₁ ^ 2 * L + c0 * L) := hy
+    _ = Ce * (c0 * max (b - euclidNorm y) 0 + (A1 + C₁ ^ 2 * L + c0 * L)) := by ring
+    _ ≤ Cfin * max (b - euclidNorm y) 0 + Cfin * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := h1
+    _ = Cfin * max (b - euclidNorm y) 0 + Cfin * N * Q ^ ((1 : ℝ) / (d : ℝ)) := by ring
+
 /-- `eq:masshigh` and the envelope: for `d ≥ 3`, the decomposition at sites of norm at most `n`
 and the contact site give `m ≤ C N^d Q` and `ℓ_n ≤ C (b - |·|)_+ + C N Q^{1/d}`, where
 `Q = (L/N)^{d/(2d-1)}`. -/
@@ -204,65 +503,13 @@ theorem exists_mass_high (hd : 3 ≤ d) {ε K C₀ C₁ : ℝ} (hε : 0 < ε) (h
   have hpt_dep : ∀ y ∈ departureRange X n,
       (localTime X n y : ℝ) ≤ c0 * max (b - euclidNorm y) 0 + A1 +
         C₁ * Real.sqrt ((∑ x ∈ departureRange X n,
-          (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) := by
-    intro y hy
-    have hyn : euclidNorm y ≤ n := by
-      obtain ⟨j, hj, hjy⟩ := Finset.mem_image.mp hy
-      rw [← hjy]
-      exact hXn j (Finset.mem_range.mp hj)
-    have hρ : |(localTime X n y : ℝ) - potential d ε (cellSet X n) (toSpace y) + M y| ≤
-        C₁ * L := hpt y hyn
-    have hMy : |M y| ≤ C₁ * (Real.sqrt ((∑ x ∈ departureRange X n,
-          (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) + L) :=
-      hM y hyn
-    have henv := localTime_le_envelope (d := d) hd2 (le_of_lt hε) X n hb hball y
-      (ρ := (localTime X n y : ℝ) - potential d ε (cellSet X n) (toSpace y) + M y) (M := M y)
-      (by ring)
-    have hMsplit : |M y| ≤ C₁ * Real.sqrt ((∑ x ∈ departureRange X n,
-          (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) + C₁ * L := by
-      nlinarith [hMy]
-    calc (localTime X n y : ℝ)
-        ≤ 2 * (d : ℝ) * ε * max (b - euclidNorm y) 0 +
-            2 * (d : ℝ) * ε * unitBallVolume d ^ (-(1 : ℝ) / (d : ℝ)) *
-              mvol ^ ((1 : ℝ) / (d : ℝ)) +
-            |(localTime X n y : ℝ) - potential d ε (cellSet X n) (toSpace y) + M y| + |M y| := by
-          simpa only [hmvol] using henv
-      _ ≤ c0 * max (b - euclidNorm y) 0 + A1 +
-            C₁ * Real.sqrt ((∑ x ∈ departureRange X n,
-              (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) := by
-          have h1 : 2 * (d : ℝ) * ε * max (b - euclidNorm y) 0 +
-                2 * (d : ℝ) * ε * unitBallVolume d ^ (-(1 : ℝ) / (d : ℝ)) *
-                  mvol ^ ((1 : ℝ) / (d : ℝ)) =
-              c0 * max (b - euclidNorm y) 0 + ca * mvol ^ ((1 : ℝ) / (d : ℝ)) := by
-            dsimp only [c0, ca]
-          rw [h1]
-          dsimp only [A1]
-          nlinarith [hρ, hMsplit]
+          (localTime X n x : ℝ) * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * L) :=
+    dep_le (d := d) (ca := ca) hd2 hε hb hball hXn rfl rfl hmvol rfl hpt hM
   have henv_all := (hCe X n c0 b A1 C₁ hn hc0nonneg hA1nonneg hC₁ hXn hpt_dep).1
   have hbracket_all := (hCe X n c0 b A1 C₁ hn hc0nonneg hA1nonneg hC₁ hXn hpt_dep).2
-  have hSpos : 0 < (K - 1) * N := by
-    have hK1 : 0 < K - 1 := by linarith
-    exact mul_pos hK1 hNpos
-  have hDS' : cellSet X n ⊆ Metric.closedBall 0 ((K - 1) * N) :=
-    fun v hv => Metric.ball_subset_closedBall (hDS hv)
-  have hSsplit : ((K - 1) * N) ^ ((d : ℝ) - 1) =
-      (K - 1) ^ ((d : ℝ) - 1) * N ^ ((d : ℝ) - 1) := by
-    rw [Real.mul_rpow (by linarith : (0 : ℝ) ≤ K - 1) hNpos.le]
-  have hcontact := volume_sdiff_le_contact (d := d) hd2 hε X n (b := b) (S := (K - 1) * N)
-    (Δ := Δ) (ρ := (localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z)
-    (M := M z) (le_of_lt hb) hSpos hball hDS' hy0 hz0 (by ring) hmod
   have hcontact' : mvol ≤ Kc * N ^ ((d : ℝ) - 1) *
-      (|(localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z| + |M z| + Δ) := by
-    have h := hcontact
-    rw [hSsplit] at h
-    calc mvol ≤ unitBallVolume d / (2 * ε) * (2 : ℝ) ^ ((d : ℝ) - 1) *
-          ((K - 1) ^ ((d : ℝ) - 1) * N ^ ((d : ℝ) - 1)) *
-          (|(localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z| + |M z| +
-            Δ) := h
-      _ = Kc * N ^ ((d : ℝ) - 1) *
-          (|(localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z| + |M z| +
-            Δ) := by
-            dsimp only [Kc]; ring
+      (|(localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z| + |M z| + Δ) :=
+    contact_bound (d := d) hd2 hε hK hNpos hb hball hDS hy0 hz0 hmod hmvol rfl
   have hρz : |(localTime X n z : ℝ) - potential d ε (cellSet X n) (toSpace z) + M z| ≤
       C₁ * L := hpt z hzn
   have hMz : |M z| ≤ C₁ * (Real.sqrt ((∑ x ∈ departureRange X n,
@@ -286,7 +533,7 @@ theorem exists_mass_high (hd : 3 ≤ d) {ε K C₀ C₁ : ℝ} (hε : 0 < ε) (h
     have hMsplit : |M z| ≤ C₁ * Real.sqrt (Bz * L) + C₁ * L := by
       rw [mul_add] at hMz
       exact hMz
-    linarith [hρz, hΔL, hMsplit]
+    linarith only [hρz, hΔL, hMsplit]
   have hKcN_nonneg : 0 ≤ Kc * N ^ ((d : ℝ) - 1) :=
     mul_nonneg hKcpos.le (Real.rpow_nonneg hNpos.le _)
   have hm1 : mvol ≤ Kc * N ^ ((d : ℝ) - 1) *
@@ -296,167 +543,26 @@ theorem exists_mass_high (hd : 3 ≤ d) {ε K C₀ C₁ : ℝ} (hε : 0 < ε) (h
             Δ) := hcontact'
       _ ≤ Kc * N ^ ((d : ℝ) - 1) * (C₁ * Real.sqrt (Bz * L) + (2 * C₁ + C₀) * L) :=
             mul_le_mul_of_nonneg_left hsum_le hKcN_nonneg
-  have hsqrt_bound : Real.sqrt (Bz * L) ≤
-      Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
-        Real.sqrt (Ce * D1) * L := by
-    have harg_nonneg : 0 ≤ Ce * (ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L) * L := by
-      have h1 : 0 ≤ ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L := by
-        exact add_nonneg (mul_nonneg hcanonneg (Real.rpow_nonneg hmvol_nonneg _))
-          (mul_nonneg hD1nonneg hLpos.le)
-      positivity
-    have h1 : Real.sqrt (Bz * L) ≤
-        Real.sqrt (Ce * (ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L) * L) := by
-      apply Real.sqrt_le_sqrt
-      exact mul_le_mul_of_nonneg_right hBz_le hLpos.le
-    have h2 : Ce * (ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L) * L =
-        Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L + Ce * D1 * L * L := by ring
-    have h3 : Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L + Ce * D1 * L * L) ≤
-        Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L) +
-          Real.sqrt (Ce * D1 * L * L) :=
-      sqrt_add_le _ _ (by positivity) (by positivity)
-    have h4 : Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L) =
-        Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L := by
-      rw [show Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L =
-        (Ce * ca) * (mvol ^ ((1 : ℝ) / (d : ℝ)) * L) by ring]
-      rw [Real.sqrt_mul (by positivity) (mvol ^ ((1 : ℝ) / (d : ℝ)) * L)]
-      rw [Real.sqrt_mul (Real.rpow_nonneg hmvol_nonneg _) L]
-      rw [sqrt_rpow_inv d hd1 hmvol_nonneg]
-      ring
-    have h5 : Real.sqrt (Ce * D1 * L * L) = Real.sqrt (Ce * D1) * L := by
-      rw [show Ce * D1 * L * L = (Ce * D1) * (L * L) by ring]
-      rw [Real.sqrt_mul (by positivity) (L * L)]
-      rw [Real.sqrt_mul_self hLpos.le]
-    calc Real.sqrt (Bz * L) ≤
-          Real.sqrt (Ce * (ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L) * L) := h1
-      _ = Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L + Ce * D1 * L * L) := by
-            rw [h2]
-      _ ≤ Real.sqrt (Ce * ca * mvol ^ ((1 : ℝ) / (d : ℝ)) * L) +
-            Real.sqrt (Ce * D1 * L * L) := h3
-      _ = Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
-            Real.sqrt (Ce * D1) * L := by rw [h4, h5]
-  have hm_young : mvol ≤ c * N ^ ((d : ℝ) - 1) *
-      (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L) := by
-    have hmn_nonneg : 0 ≤ mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L :=
-      mul_nonneg (Real.rpow_nonneg hmvol_nonneg _) (Real.sqrt_nonneg L)
-    have hA_le : C₁ * Real.sqrt (Ce * ca) ≤ cabs := by
-      have h1 : 0 ≤ C₁ * Real.sqrt (Ce * D1) := by positivity
-      have h2 : 0 ≤ 2 * C₁ + C₀ := by linarith
-      dsimp only [cabs]; linarith
-    have hB_le : C₁ * Real.sqrt (Ce * D1) + (2 * C₁ + C₀) ≤ cabs := by
-      have h1 : 0 ≤ C₁ * Real.sqrt (Ce * ca) := by positivity
-      dsimp only [cabs]; linarith
-    have hbracket2 : C₁ * Real.sqrt (Bz * L) + (2 * C₁ + C₀) * L ≤
-        cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L) := by
-      have hC1sqrt : C₁ * Real.sqrt (Bz * L) ≤
-          C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
-            C₁ * Real.sqrt (Ce * D1) * L := by
-        have h := mul_le_mul_of_nonneg_left hsqrt_bound hC₁
-        calc C₁ * Real.sqrt (Bz * L) ≤
-              C₁ * (Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
-                Real.sqrt (Ce * D1) * L) := h
-          _ = C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
-                C₁ * Real.sqrt (Ce * D1) * L := by ring
-      have hA : C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L ≤
-          cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L) := by
-        calc C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L =
-              (C₁ * Real.sqrt (Ce * ca)) *
-                (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L) := by ring
-          _ ≤ cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L) :=
-                mul_le_mul_of_nonneg_right hA_le hmn_nonneg
-      have hB : (C₁ * Real.sqrt (Ce * D1) + (2 * C₁ + C₀)) * L ≤ cabs * L :=
-        mul_le_mul_of_nonneg_right hB_le hLpos.le
-      have hcombine : C₁ * Real.sqrt (Bz * L) + (2 * C₁ + C₀) * L ≤
-          C₁ * Real.sqrt (Ce * ca) * mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L +
-            (C₁ * Real.sqrt (Ce * D1) + (2 * C₁ + C₀)) * L := by
-        linarith [hC1sqrt]
-      rw [show cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L) =
-        cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L) + cabs * L by ring]
-      linarith [hcombine, hA, hB]
-    calc mvol ≤ Kc * N ^ ((d : ℝ) - 1) * (C₁ * Real.sqrt (Bz * L) + (2 * C₁ + C₀) * L) := hm1
-      _ ≤ Kc * N ^ ((d : ℝ) - 1) *
-            (cabs * (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L)) :=
-            mul_le_mul_of_nonneg_left hbracket2 hKcN_nonneg
-      _ = c * N ^ ((d : ℝ) - 1) *
-            (mvol ^ ((1 : ℝ) / (2 * (d : ℝ))) * Real.sqrt L + L) := by
-            dsimp only [c]; ring
+  have hsqrt_bound := sqrt_bound (d := d) hd1 hmvol_nonneg hLpos hcanonneg hD1nonneg hCepos hBz_le
+  have hm_young := mass_young (d := d) hmvol_nonneg hLpos hC₀ hC₁ hKcN_nonneg rfl rfl
+    hsqrt_bound hm1
   have hkey := hCy mvol N L hmvol_nonneg hNpos.le hLpos.le hm_young
   have hQnonneg : 0 ≤ Q := by
     rw [hQdef]
     exact Real.rpow_nonneg (div_nonneg hLpos.le hNpos.le) _
-  have key2 : mvol ≤ 2 * Cy * (N ^ d * Q) := by
-    have hid : N ^ ((2 * (d : ℝ) * ((d : ℝ) - 1)) / (2 * (d : ℝ) - 1)) *
-        L ^ ((d : ℝ) / (2 * (d : ℝ) - 1)) = N ^ d * Q := by
-      rw [hQdef]
-      exact rpow_exp_identity d hd1 hLpos hLN
-    have hid2 : N ^ ((d : ℝ) - 1) * L ≤ N ^ d * Q := rpow_sub_one_mul_le d hd1 hLpos hLN
-    calc mvol ≤ Cy * (N ^ ((2 * (d : ℝ) * ((d : ℝ) - 1)) / (2 * (d : ℝ) - 1)) *
-          L ^ ((d : ℝ) / (2 * (d : ℝ) - 1)) + N ^ ((d : ℝ) - 1) * L) := hkey
-      _ = Cy * (N ^ d * Q + N ^ ((d : ℝ) - 1) * L) := by rw [hid]
-      _ ≤ Cy * (N ^ d * Q + N ^ d * Q) := by gcongr
-      _ = 2 * Cy * (N ^ d * Q) := by ring
+  have key2 := young_key (d := d) hd1 hLpos hLN hCypos hQdef hkey
   have hmass : mvol ≤ Cfin * N ^ d * Q := by
     have h2Cy_le : 2 * Cy ≤ Cfin := le_max_left _ _
     have hNQ_nonneg : 0 ≤ N ^ d * Q := by positivity
     calc mvol ≤ 2 * Cy * (N ^ d * Q) := key2
       _ ≤ Cfin * (N ^ d * Q) := mul_le_mul_of_nonneg_right h2Cy_le hNQ_nonneg
       _ = Cfin * N ^ d * Q := by ring
-  have hmroot : mvol ^ ((1 : ℝ) / (d : ℝ)) ≤
-      (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * N * Q ^ ((1 : ℝ) / (d : ℝ)) := by
-    have hNQ : 0 ≤ N ^ d * Q := by positivity
-    have h := Real.rpow_le_rpow hmvol_nonneg key2 (by positivity : (0 : ℝ) ≤ (1 : ℝ) / (d : ℝ))
-    rw [Real.mul_rpow (by positivity : (0 : ℝ) ≤ 2 * Cy) hNQ] at h
-    rw [rpow_div_eq d hd1 hNpos.le hQnonneg] at h
-    rw [← mul_assoc] at h
-    exact h
+  have hmroot := root_bound (d := d) hd1 hmvol_nonneg hNpos hQnonneg hCypos key2
   have hLle : L ≤ N * Q ^ ((1 : ℝ) / (d : ℝ)) := by
     rw [hQdef]
     exact le_mul_rpow_div d hd1 hLpos hLN
-  have hEbound : A1 + C₁ ^ 2 * L + c0 * L ≤
-      (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1) * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by
-    have h1 : ca * mvol ^ ((1 : ℝ) / (d : ℝ)) ≤
-        ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by
-      calc ca * mvol ^ ((1 : ℝ) / (d : ℝ)) ≤
-            ca * ((2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * N * Q ^ ((1 : ℝ) / (d : ℝ))) :=
-              mul_le_mul_of_nonneg_left hmroot hcanonneg
-        _ = ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by ring
-    have h2 : D1 * L ≤ D1 * (N * Q ^ ((1 : ℝ) / (d : ℝ))) :=
-      mul_le_mul_of_nonneg_left hLle hD1nonneg
-    rw [show A1 + C₁ ^ 2 * L + c0 * L = ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L by
-      dsimp only [A1, D1]; ring]
-    calc ca * mvol ^ ((1 : ℝ) / (d : ℝ)) + D1 * L
-        ≤ ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) * (N * Q ^ ((1 : ℝ) / (d : ℝ))) +
-            D1 * (N * Q ^ ((1 : ℝ) / (d : ℝ))) :=
-          add_le_add h1 h2
-      _ = (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1) * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by ring
-  have henv_y : ∀ y : Site d, (localTime X n y : ℝ) ≤
-      Cfin * max (b - euclidNorm y) 0 + Cfin * N * Q ^ ((1 : ℝ) / (d : ℝ)) := by
-    intro y
-    have hy := henv_all y
-    have hs_nonneg : 0 ≤ max (b - euclidNorm y) 0 := le_max_right _ _
-    have hCe_c0_le : Ce * c0 ≤ Cfin := le_trans (le_max_left _ _) (le_max_right (2 * Cy) _)
-    have hCe_E_le : Ce * (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1) ≤ Cfin :=
-      le_trans (le_max_right _ _) (le_max_right (2 * Cy) _)
-    have h1 : Ce * (c0 * max (b - euclidNorm y) 0 + (A1 + C₁ ^ 2 * L + c0 * L)) ≤
-        Cfin * max (b - euclidNorm y) 0 + Cfin * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by
-      have ha : Ce * c0 * max (b - euclidNorm y) 0 ≤ Cfin * max (b - euclidNorm y) 0 :=
-        mul_le_mul_of_nonneg_right hCe_c0_le hs_nonneg
-      have hb : Ce * (A1 + C₁ ^ 2 * L + c0 * L) ≤ Cfin * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by
-        have h2 := mul_le_mul_of_nonneg_left hEbound hCepos.le
-        have h3 : Ce * ((ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1) *
-              (N * Q ^ ((1 : ℝ) / (d : ℝ)))) =
-            (Ce * (ca * (2 * Cy) ^ ((1 : ℝ) / (d : ℝ)) + D1)) *
-              (N * Q ^ ((1 : ℝ) / (d : ℝ))) := by ring
-        rw [h3] at h2
-        exact le_trans h2 (mul_le_mul_of_nonneg_right hCe_E_le (by positivity))
-      calc Ce * (c0 * max (b - euclidNorm y) 0 + (A1 + C₁ ^ 2 * L + c0 * L)) =
-            Ce * c0 * max (b - euclidNorm y) 0 + Ce * (A1 + C₁ ^ 2 * L + c0 * L) := by ring
-        _ ≤ Cfin * max (b - euclidNorm y) 0 + Cfin * (N * Q ^ ((1 : ℝ) / (d : ℝ))) :=
-              add_le_add ha hb
-    calc (localTime X n y : ℝ) ≤
-          Ce * (c0 * max (b - euclidNorm y) 0 + A1 + C₁ ^ 2 * L + c0 * L) := hy
-      _ = Ce * (c0 * max (b - euclidNorm y) 0 + (A1 + C₁ ^ 2 * L + c0 * L)) := by ring
-      _ ≤ Cfin * max (b - euclidNorm y) 0 + Cfin * (N * Q ^ ((1 : ℝ) / (d : ℝ))) := h1
-      _ = Cfin * max (b - euclidNorm y) 0 + Cfin * N * Q ^ ((1 : ℝ) / (d : ℝ)) := by ring
+  have hEbound := env_bound (d := d) hcanonneg hD1nonneg hEz hmroot hLle
+  have henv_y := envelope_bound (d := d) hCepos rfl hEbound hNpos hQnonneg henv_all
   exact ⟨hmass, henv_y⟩
 
 end CERW.Support.Contact
