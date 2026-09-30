@@ -134,7 +134,8 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 32 | outer inclusion on the event, given the mass | ds4 | v4.1-flash | 6071 | 1 | ↑127k ↓56k | accepted | 1: the worker reported an unused hypothesis, which the director removed | 212 | `CERW/Support/Main/OuterOfMass.lean` |
 | 33 | eq:hausdorff one-sided (variant A) from the core | ds4 | v4.1-flash | 4813 | 1 | ↑19k ↓8.0k | accepted | 0 | 66 | `CERW/Support/Main/HausdorffOneSided.lean` |
 | 34 | heartbeat margin: `MassPlanar` | ds1 | v4.1-flash | 5331 | — | ↑47k ↓8.3k | accepted | 0 | 611 | `CERW/Support/Contact/MassPlanar.lean` |
-| 35 | heartbeat margin: `Absorb` | ds1 | v4.1-flash | — | — | — | in flight | — | — | `wip/Absorb.lean` |
+| 35 | heartbeat margin: `Absorb` | ds1 | v4.1-flash | 5243 | — | ↑51k ↓18k | accepted | 0 | 122 | `CERW/Generic/Young/Absorb.lean` |
+| 36 | heartbeat margin: `OuterRadius` | ds1 | v4.1-flash | — | — | — | in flight | — | — | `wip/OuterRadius.lean` |
 | 34 | heartbeat margin: `EnvelopeHigh` | ds2 | v4.1-flash | 5286 | — | — | in flight | — | — | `wip/EnvelopeHigh.lean` |
 | 34 | heartbeat margin: `MassHigh` | ds3 | v4.1-flash | 5244 | — | ↑200k ↓69k | accepted | 0 | 568 | `CERW/Support/Contact/MassHigh.lean` |
 | 35 | heartbeat margin: `OuterBound` | ds3 | v4.1-flash | — | — | — | in flight | — | — | `wip/OuterBound.lean` |
@@ -150,7 +151,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 
 ## Observations
 
-* **Waves 1–26.** Every returned DeepSeek packet was accepted: 109/109, two after a statement repair. One packet (wave 32) was withdrawn and
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 110/110, two after a statement repair. One packet (wave 32) was withdrawn and
   finished by the director. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 23/23.
 * **Large contexts defeat `nlinarith`.** In wave 32 the worker's single-theorem proof of the inner clauses timed out at the

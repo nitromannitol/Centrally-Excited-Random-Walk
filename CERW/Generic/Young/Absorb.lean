@@ -20,6 +20,13 @@ theorem le_two_mul_add_sq_of_le_add_mul_sqrt {M a b : ℝ} (hM : 0 ≤ M) (ha : 
   have ha_two : 0 ≤ 2 * a := by linarith
   nlinarith [sq_nonneg (Real.sqrt M - b), Real.sq_sqrt hM, Real.sqrt_nonneg M, hb_sqrt, ha_two]
 
+/-- If `0 ≤ u` and `0 ≤ c * v`, then `c * u + v ≤ (c + 1) * (u + v)`. -/
+private lemma add_le_mul_add_one_mul {c u v : ℝ} (hu : 0 ≤ u) (hcv : 0 ≤ c * v) :
+    c * u + v ≤ (c + 1) * (u + v) := by
+  have h : (c + 1) * (u + v) = c * u + v + (c * v + u) := by ring
+  rw [h]
+  linarith
+
 /-- The Young step of `eq:crossing`: for `d ≥ 1`, `A > 0` and `B ≥ 0` there is `C` such that
 `(h + A k)² ≤ m L (B k^{1/d} + Λ)` with all quantities nonnegative forces
 `h² ≤ C ((m L)^{2d/(2d-1)} + m L Λ)`. -/
@@ -100,7 +107,8 @@ theorem sq_le_of_crossing {d : ℕ} (hd : 1 ≤ d) {A B : ℝ} (hA : 0 < A) (hB 
           _ = m * L * B * k ^ ((1 : ℝ) / d) + m * L * Λ := hexpand
           _ ≤ A ^ 2 * k ^ 2 / 2 + ((B / α) ^ q / q) * (m * L) ^ q + m * L * Λ := by
                 linarith
-      nlinarith [hstep]
+      have hA2k2 : 0 ≤ A ^ 2 * k ^ 2 := by positivity
+      linarith only [hstep, hA2k2]
     have hc0 : 0 ≤ (B / α) ^ q / q :=
       div_nonneg (Real.rpow_nonneg (div_nonneg hB hαpos.le) q) hqpos.le
     have hmlq : 0 ≤ (m * L) ^ q := Real.rpow_nonneg (mul_nonneg hm hL) q
@@ -108,7 +116,7 @@ theorem sq_le_of_crossing {d : ℕ} (hd : 1 ≤ d) {A B : ℝ} (hA : 0 < A) (hB 
     have h4 : 0 ≤ ((B / α) ^ q / q) * (m * L * Λ) := mul_nonneg hc0 hmlL
     have hfinal : ((B / α) ^ q / q) * (m * L) ^ q + m * L * Λ
         ≤ ((B / α) ^ q / q + 1) * ((m * L) ^ q + m * L * Λ) := by
-      nlinarith [hmlq, h4]
+      exact add_le_mul_add_one_mul hmlq h4
     exact le_trans hmain hfinal
 
 end CERW.Generic.Young
