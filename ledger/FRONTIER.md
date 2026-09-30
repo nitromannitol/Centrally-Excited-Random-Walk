@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 02:12.
+generation time. Regenerated 2026-09-30 02:16.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -122,7 +122,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-var-planar | ds1 | `Support/Contact/MassPlanar.lean` | s-contact-bound, s-global, s-planar-contact-sum | eq:massplanar, eq:envelopeplanar | IN-FLIGHT (ds1, 02:07) |
 | s-shellW | director | `Support/Contact/ShellW.lean` | s-var-high, s-var-planar | eq:shellW | BLOCKED(s-var-high, s-var-planar) |
 | s-quadratic | ds1 | `Support/Contact/Quadratic.lean` | s-dynkin, s-step-mean, s-fresh-sum | eq:quadratic, eq:quadraticerror | LANDED |
-| s-inradius | director | `Support/Contact/Radius.lean` | s-quadratic, s-var-high, s-var-planar | eq:inradius (inversion landed) | BLOCKED(s-var-high, s-var-planar) |
+| s-inradius | ds2 | `Support/Contact/Inradius.lean` | s-quadratic | eq:inradius (deterministic, from the mass bound) | IN-FLIGHT (ds2, 02:15) |
 | s-volume-profile | director | `Support/Contact/Profile.lean` | s-inradius, s-global, lem-geometry | eq:volume, inner eq:sandwich, eq:profile-rate | LANDED |
 | s-outer-contradiction | ds3 | `Support/Crossing/OuterContradiction.lean` | — | C((C₁NL)^γL^γ + C₁NLλL) < (AWL−1)² eventually | LANDED |
 | s-contact-mass | ds2 | `Support/Contact/ContactMass.lean` | s-contact-lower | \|D∖B(0,b)\| ≤ C S^{d−1}(\|ρ\| + \|M\| + Δ) (eq:contactbound) | LANDED |
@@ -133,7 +133,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-scale-limits | ds4 | `Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | LANDED |
 | s-hausdorff-arith | ds3 | `Support/Main/HausdorffArith.lean` | — | Hausdorff and planar exponent identities | LANDED |
 | s-assembly | director | `Support/Main/Event.lean` | s-volume-profile, s-outer, s-good-event | fluctGood on the event at each n | READY |
-| s-shape-assembly | ds2 | `Support/Main/ShapeAssembly.lean` | s-shape-inclusion, s-shape-count | thm:shape from a.s. eventually fluctGood | IN-FLIGHT (ds2, 02:00) |
+| s-shape-assembly | ds2 | `Support/Main/ShapeAssembly.lean` | s-shape-inclusion, s-shape-count | thm:shape from a.s. eventually fluctGood | LANDED |
 | s-hausdorff-good | ds4 | `Support/Main/HausdorffGood.lean` | s-good-event, s-hausdorff-arith | eq:hausdorff and the planar inner inclusion on fluctGood | IN-FLIGHT (ds4, 02:00) |
 | s-good-event | director | `Support/Main/GoodEvent.lean` | — | fluctGood d ε C Y n ≡ Good C Y n | LANDED |
 | s-borel-cantelli | ds1 | `Support/Main/BorelCantelli.lean` | — | Σ C n^{−p} < ∞ ⇒ a.s. eventually | LANDED |
@@ -143,7 +143,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-shape-assembly | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-good, s-inradius | eq:hausdorff | DRAFT |
 
-**Counts:** BLOCKED 6, DRAFT 7, IN-FLIGHT 4, LANDED 92, READY 3.
+**Counts:** BLOCKED 5, DRAFT 7, IN-FLIGHT 4, LANDED 93, READY 3.
 
 ## Pre-freeze gate
 

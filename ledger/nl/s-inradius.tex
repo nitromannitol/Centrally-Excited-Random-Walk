@@ -1,5 +1,9 @@
-% s-inradius: eq:inradius (arithmetic core).
-\paragraph{Statement.} With $a=((d+1)/(2d\eps\omega_d))^{1/(d+1)}$: from $|X_n|^2=n-2\eps S+\mathcal Q_n$, $0\leq|X_n|^2\leq C_1N^2$, $|S-\int_D|v||\leq C_1N^d$,
-$\int_D|v|=\frac{d\omega_d}{d+1}b^{d+1}+I_E$, $0\leq I_E\leq C_1nQ$, $|\mathcal Q_n|\leq C_1nQ$, $N^{1-d}\leq Q$ and $N^{-1}\leq Q$, it follows that $|b/N-a|\leq CQ$.
-\paragraph{Proof.} $1-c(b/N)^{d+1}=(|X_n|^2-\mathcal Q_n+2\eps(S-\int_D|v|))/n+2\eps I_E/n$, with $c=2d\eps\omega_d/(d+1)$ and $n=N^{d+1}$. Each term is $O(Q)$. Radius inversion
-(\texttt{abs\_sub\_le\_of\_abs\_one\_sub\_mul\_pow} with $ca^{d+1}=1$) gives $|b/N-a|\leq a\cdot O(Q)$.
+% s-inradius: eq:inradius (deterministic).
+\paragraph{Statement.} For $\varepsilon>0$, $K>0$, $C_1\geq0$ there are $C>0$, $n_0$ such that for $n\geq n_0$ and a path with $X_0=0$, $b\geq0$,
+$B(0,b)\subseteq D_n\subseteq\bar B(0,KN)$, $|X_n|\leq KN$, $|A_n|\leq KN^d$, $m\leq C_1N^dQ$ and $|\mathcal Q_n|\leq C_1(N\sqrt{nL}+NL)$:
+$|b/N-a|\leq CQ$ with $a=((d+1)/(2d\varepsilon\omega_d))^{1/(d+1)}$.
+\paragraph{Proof.} (fl:1013--1058.) Apply \texttt{exists\_abs\_div\_sub\_le} with $C_1'$ large, $S=\sum_{A_n}|x|$, $I=\int_{D_n}|v|$, $I_E=\int_{E}|v|$,
+$\mathcal Q_n=$ the quadratic Dynkin martingale and $X_{\rm sq}=|X_n|^2$. Its hypotheses: \texttt{sq\_euclidNorm\_eq} (the identity);
+$0\leq X_{\rm sq}\leq K^2N^2$; \texttt{abs\_sum\_euclidNorm\_sub\_integral\_le} and $|A_n|\leq KN^d$ ($|S-I|\leq C N^d$);
+\texttt{integral\_norm\_eq\_ball\_add} with $S=KN$ ($I_E\leq KNm\leq KC_1nQ$, as $N^{d+1}=n$); $|\mathcal Q_n|\leq C nQ$ and $N^{1-d}\leq Q$, $N^{-1}\leq Q$ for large $n$
+(for $d=2$, $N\sqrt{nL}=nQ$ exactly; for $d\geq3$, $N\sqrt{nL}/(nQ)\to0$; $NL/(nQ)\to0$).
