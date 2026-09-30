@@ -1,0 +1,7 @@
+% s-interval-dynkin: eq:dynkin over an interval, and |A_t \ A_s| = k_{s,t}.
+\paragraph{Statement.} (i) $|A_t\setminus A_s|=k_{s,t}$ for $s\leq t$. (ii) On a path from the origin, with $(P-I)b=\ind_{\{0\}}$:
+$\ell_{s,t}(y)=b(X_t-y)-b(X_s-y)+\eps\sum_{x\in A_t\setminus A_s}u_x\cdot Db(x-y)-(\mathcal M^y_t-\mathcal M^y_s)$.
+\paragraph{Proof.} (i) Induction on $t\geq s$: $A_{t+1}=A_t\cup\{X_t\}$, and $X_t$ is new exactly when it is a first departure at time $t$
+(\texttt{departureRange\_succ}). (ii) Subtract s-dynkin-local at $s$ from the same identity at $t$. Use
+$\ell_t=\ell_s+\ell_{s,t}$ (\texttt{localTime\_add\_intervalLocalTime}) and $\sum_{A_t}-\sum_{A_s}=\sum_{A_t\setminus A_s}$ for $A_s\subseteq A_t$
+(\texttt{Finset.sum\_sdiff}).

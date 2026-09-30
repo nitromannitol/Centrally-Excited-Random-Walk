@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 00:59.
+generation time. Regenerated 2026-09-30 01:11.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -101,10 +101,14 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-crossing-contradiction | ds3 | `Support/Crossing/Contradiction.lean` | — | C(s^γL^{2γ}+sL⁴) < s² eventually for s ≥ cN | LANDED |
 | s-crossing | ds3 | `Support/Coarse/Crossing.lean` | s-vector, s-crossing-kinematics | eq:crossing (Young part landed) | LANDED |
 | s-sstar-arith | ds4 | `Support/Coarse/SstarArith.lean` | s-scale-limits | C s^{d+1} + C L² s^d < n for 0 ≤ s < cN, n large | LANDED |
-| s-sstar | director | `Support/Coarse/Mass.lean` | lem-local, s-occupation, s-sstar-arith | eq:sstar-lower | BLOCKED(lem-local) |
-| s-coarse-tail | director | `Support/Coarse/Tail.lean` | lem-radial, s-shell, s-halving, s-sstar, s-Fmass | eq:coarse-tail | BLOCKED(lem-radial, s-shell, s-sstar) |
+| s-sstar | ds1 | `Support/Coarse/Sstar.lean` | s-sstar-arith | eq:sstar-lower | LANDED |
+| s-coarse-tail | director | `Support/Coarse/Tail.lean` | lem-radial, s-shell, s-halving, s-sstar, s-Fmass | eq:coarse-tail | BLOCKED(lem-radial, s-shell) |
 | s-HvsR | director | `Support/Coarse/OuterRadius.lean` | s-coarse-tail, s-crossing, s-crossing-contradiction, s-cell-weight | eq:HvsR | BLOCKED(s-coarse-tail) |
 | s-radial-packing | sonnet | `Generic/Kernel/RadialPacking.lean` | — | ∫_D\|v\| ≥ (d/(d+1))ω_d^{−1/d}\|D\|^{1+1/d} | LANDED |
+| s-mass-identity | sonnet | `Support/Geometry/MassIdentity.lean` | s-newton, s-polar | eq:massidentity | IN-FLIGHT (director/sonnet) |
+| s-mass-error | ds3 | `Support/Coarse/MassError.lean` | s-cell-integral, s-holder | eq:coarse-masserror (before the identity) | IN-FLIGHT (ds3, 01:08) |
+| s-radius-arith | ds4 | `Support/Coarse/RadiusArith.lean` | s-scale-limits | c s^{d+1} ≤ n + C s^{d+1/2}L ⇒ s ≤ C′N | IN-FLIGHT (ds4, 01:08) |
+| s-card-tail | ds2 | `Support/Coarse/CardTail.lean` | s-cell-norm, s-Fmass | eq:coarse-cellcount (general) | IN-FLIGHT (ds2, 01:04) |
 | s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | BLOCKED(lem-geometry, lem-local, s-HvsR) |
 | **prop-coarse** | director | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT |
 | **Sections 4–5 and the main theorems** | | | | | |
@@ -117,8 +121,8 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-var-high | director | `Support/Contact/VarianceHigh.lean` | s-contact-bound, s-weight-sums | eq:kernelmoments … eq:masshigh (resolvent, absorption landed) | BLOCKED(s-contact-bound) |
 | s-var-planar | director | `Support/Contact/VariancePlanar.lean` | s-contact-bound, s-global, s-planar-contact-sum | eq:massplanar, eq:envelopeplanar | BLOCKED(s-contact-bound, s-global) |
 | s-shellW | director | `Support/Contact/ShellW.lean` | s-var-high, s-var-planar | eq:shellW | BLOCKED(s-var-high, s-var-planar) |
-| s-quadratic | ds1 | `Support/Contact/Quadratic.lean` | s-dynkin, s-step-mean, s-fresh-sum | eq:quadratic, eq:quadraticerror | IN-FLIGHT (ds1, 00:58) |
-| s-inradius | director | `Support/Contact/Radius.lean` | s-quadratic, s-var-high, s-var-planar | eq:inradius (inversion landed) | BLOCKED(s-quadratic, s-var-high, s-var-planar) |
+| s-quadratic | ds1 | `Support/Contact/Quadratic.lean` | s-dynkin, s-step-mean, s-fresh-sum | eq:quadratic, eq:quadraticerror | LANDED |
+| s-inradius | director | `Support/Contact/Radius.lean` | s-quadratic, s-var-high, s-var-planar | eq:inradius (inversion landed) | BLOCKED(s-var-high, s-var-planar) |
 | s-volume-profile | director | `Support/Contact/Profile.lean` | s-inradius, s-global, lem-geometry | eq:volume, inner eq:sandwich, eq:profile-rate | BLOCKED(s-inradius, s-global, lem-geometry) |
 | s-outer-contradiction | ds3 | `Support/Crossing/OuterContradiction.lean` | — | C((C₁NL)^γL^γ + C₁NLλL) < (AWL−1)² eventually | LANDED |
 | s-tailend | director | `Support/Outer/TailEnd.lean` | lem-radial, s-shellW, s-halving, s-inradius, s-Fmass | eq:tailend | BLOCKED(lem-radial, s-shellW, s-inradius) |
@@ -130,7 +134,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-scale-limits | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
 
-**Counts:** BLOCKED 16, DRAFT 7, IN-FLIGHT 1, LANDED 73, READY 2.
+**Counts:** BLOCKED 15, DRAFT 7, IN-FLIGHT 4, LANDED 75, READY 2.
 
 ## Pre-freeze gate
 

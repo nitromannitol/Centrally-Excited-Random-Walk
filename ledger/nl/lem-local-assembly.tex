@@ -1,0 +1,13 @@
+% lem-local-assembly: the proof of lem:local from the kernel facts (proof of the draft statement, in Support).
+\paragraph{Route.} Constants: $C_g,C_b$ from the kernel facts; $C_P$ from s-source-packing; $C_d:=2C_P+1$ (fixed before $\eps$). Given $\eps,p$: $C_I$ from
+s-interval-mart (with $p$), $C_S$ from s-source-sum, and $C_M$ from s-cell-modulus. Small $n$ ($n<n_0$) is absorbed by taking $C\geq n_0^p$. Good event: the
+interval-martingale bound, $X_0=0$, unit steps, and hence $|X_j|\leq j$.
+(eq:interval) For $s<t\leq n$, pick $y$ visited in $[s,t)$ with $\ell_{s,t}(y)=M_{s,t}$ (so $|y|\leq n$). By s-interval-dynkin:
+$M_{s,t}\leq|b(X_t-y)|+|b(X_s-y)|+\eps|\Sigma_{A_t\setminus A_s}|+|\mathcal M^y_t-\mathcal M^y_s|\leq2C_b\log(2n+2)+\eps C_Pk_{s,t}^{1/d}+C_Ie_n(M_{s,t})$,
+using s-interval-dynkin (i) for $|A_t\setminus A_s|=k_{s,t}$. Write $e_n(M)=B\sqrt M+L$ with $B=L$ ($d=2$) or $\sqrt L$ ($d\geq3$). Then
+\texttt{le\_two\_mul\_add\_sq\_of\_le\_add\_mul\_sqrt} gives $M_{s,t}\leq2\eps C_Pk^{1/d}+2(C'L)+C_I^2B^2\leq C_d\eps k^{1/d}+C\lambda_n$, since $L\leq\lambda_n$
+and $B^2\leq\lambda_n$. (eq:M) Take $s=0$, $t=n$: $M_{0,n}=M_n$ and $k_{0,n}=|A_n|$.
+(eq:approx) For real $y$ with $|y|\leq2n$, let $z$ be the site of $y$'s cell, so $|z|\leq2n+\sqrt d/2\leq3n$ for $n\geq n_0$. Then
+$\widetilde\ell_n(y)=\ell_n(z)=b(X_n-z)-b(-z)+\eps\Sigma_{A_n}-\mathcal M^z_n$ (s-dynkin-local), with $|\eps\Sigma_{A_n}-U(z)|\leq C_S\eps\log(4n+2)$
+(s-source-sum, $R'=4n$) and $|\mathcal M^z_n|\leq C_Ie_n(M_n)$. Finally $|U(z)-U(y)|\leq C_M\eps\log(n+\sqrt d+2)$ (s-cell-modulus with $R=n+\sqrt d$).
+Every $L$-term is $\leq e_n(M_n)$.

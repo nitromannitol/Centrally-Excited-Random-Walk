@@ -1,0 +1,6 @@
+% s-mass-identity: eq:massidentity.
+\paragraph{Statement.} For measurable $D\subseteq B(0,S)$: $\int_{B(0,S)}U_D=2\eps\int_D|v|\dd v$.
+\paragraph{Proof.} $U_D$ is bounded and continuous, so it is integrable on the ball. In polar coordinates (s-polar),
+$\int_{B(0,S)}U_D=\int_0^Sr^{d-1}\int_SU_D(r\theta)\dd\sigma\dd r=\int_0^Sr^{d-1}\sigma_d2d\eps F(r)\dd r$ (s-newton (ii); the value at $r=0$ is immaterial).
+By Tonelli, $\int_0^Sr^{d-1}F(r)\dd r=\sigma_d^{-1}\int_D|v|^{1-d}\int_0^{|v|}r^{d-1}\dd r\dd v=(d\sigma_d)^{-1}\int_D|v|$, since $|v|<S$ on $D$. So the total is
+$2d\eps\sigma_d(d\sigma_d)^{-1}\int_D|v|=2\eps\int_D|v|$.

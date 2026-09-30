@@ -90,14 +90,23 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 18 | direction replacement | ds3 | v4.1-flash | 6465 | 1 | ↑116k ↓26k | accepted | 0 (the director rewrapped a long line of its own docstring) | 101 | `CERW/Support/LocalTime/ReplaceDirection.lean` |
 | 19 | from the kernel asymptotics to the kernel facts | ds1 | v4.1-flash | 7207 | 2 | ↑407k ↓49k | accepted | 0 | 208 | `CERW/Support/LocalTime/KernelBridge.lean` |
 | 19 | contact lower bound | ds3 | v4.1-flash | 6031 | 1 | ↑71k ↓39k | accepted | 0 (the director rewrapped its own docstring during dispatch) | 121 | `CERW/Support/Contact/ContactLower.lean` |
-| 19 | cap average (eq:cap-average) | ds2 | v4.1-flash | 6266 | 1 | — | in flight | — | — | `wip/CapAverage.lean` |
-| 19 | source sum versus potential | ds4 | v4.1-flash | 7361 | 1 | — | in flight | — | — | `wip/SourceSum.lean` |
-| 20 | the squared displacement (eq:quadratic) | ds1 | v4.1-flash | 5997 | 3 | — | in flight | — | — | `wip/Quadratic.lean` |
-| 20 | first moment of the cell set | ds3 | v4.1-flash | 4972 | 1 | — | in flight | — | — | `wip/NormReplace.lean` |
+| 19 | cap average (eq:cap-average) | ds2 | v4.1-flash | 6266 | 1 | ↑241k ↓78k | accepted | 0 | 158 | `CERW/Generic/Newton/CapAverage.lean` |
+| 19 | source sum versus potential | ds4 | v4.1-flash | 7361 | 1 | ↑353k ↓53k | accepted | 0 | 279 | `CERW/Support/LocalTime/SourceSum.lean` |
+| 20 | the squared displacement (eq:quadratic) | ds1 | v4.1-flash | 5997 | 3 | ↑159k ↓39k | accepted | 0 | 165 | `CERW/Support/Contact/Quadratic.lean` |
+| 20 | first moment of the cell set | ds3 | v4.1-flash | 4972 | 1 | ↑100k ↓29k | accepted | 0 | 78 | `CERW/Support/Contact/NormReplace.lean` |
+| 21 | interval Dynkin decomposition | ds3 | v4.1-flash | 5867 | 2 | ↑80k ↓24k | accepted | 0 | 66 | `CERW/Support/LocalTime/IntervalDynkin.lean` |
+| 21 | source sum over k sites | ds4 | v4.1-flash | 4906 | 1 | ↑92k ↓23k | accepted | 0 | 114 | `CERW/Support/LocalTime/SourcePacking.lean` |
+| 21 | first mass scale and preconditions | ds1 | v4.1-flash | 5096 | 1 | ↑44k ↓32k | accepted | 0 | 130 | `CERW/Support/Coarse/Sstar.lean` |
+| 21 | cell count by the tail | ds2 | v4.1-flash | 5334 | 1 | ↑110k ↓72k (first pass) | statement defect found by the worker; resumed after the fix | 1 statement repair: `S = ∅` with `R' < -√d/2` made the statement false; the director added `ρ ≤ R'` | — | `wip/CardTail.lean` |
+| 21 | lem:local assembly | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/LocalAssembly.lean` |
+| 22 | mass identity (eq:massidentity) | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/MassIdentity.lean` |
+| 22 | radius arithmetic | ds4 | v4.1-flash | 4653 | 1 | — | in flight | — | — | `wip/RadiusArith.lean` |
+| 22 | mass error | ds3 | v4.1-flash | 5682 | 1 | — | in flight | — | — | `wip/MassError.lean` |
+| 22 | first moment over ball and excess | ds1 | v4.1-flash | 4778 | 1 | — | in flight | — | — | `wip/BallExcess.lean` |
 
 ## Observations
 
-* **Waves 1–19.** Every returned DeepSeek packet was accepted: 65/65. There were three repairs: a definition
+* **Waves 1–21.** Every returned DeepSeek packet was accepted: 72/72, one after a statement repair. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 15/15.
 * **Parallel helpers collide.** Two parallel files in one namespace each added a public helper with the same
   name. Since wave 13, the common rules require every helper a worker adds to be `private`.
@@ -116,3 +125,6 @@ thinking high, via `pi --no-extensions`, unless noted.
   In wave 9, ds2 never saw its goal and started searching other panes. ds1 finished its proof before the
   rules paragraph arrived. From wave 9b on, a brief is dispatched as a one-line message that points the
   worker at the brief file.
+* **Junk cases in director statements.** In wave 21, ds2 proved in Lean that a director statement
+  was false: a hypothesis quantified over an empty set left a radius unconstrained, so it could be
+  negative. From then on, before dispatch every statement is checked for its vacuous-hypothesis cases.
