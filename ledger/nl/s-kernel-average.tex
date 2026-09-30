@@ -1,0 +1,4 @@
+% s-kernel-average: eq:kernel-average (backfilled twin).
+\paragraph{Statement.} For $v\neq0$, $s>0$, $|v|\neq s$: $\int_{S^{d-1}}u_v\cdot N(v-s\theta)\,d\sigma(\theta)=d\omega_d|v|^{1-d}$ if $s<|v|$ and $0$ if $s>|v|$, where
+$N(w)=|w|^{-d}w$ is the Newtonian field and $\sigma$ is the surface measure (\texttt{integral\_sphere\_inner\_newtonField}).
+\paragraph{Proof.} Gauss flux for $N$ through the sphere of radius $s$ (\texttt{Generic/Newton/GaussFlux}) together with the swap identity; no rotation invariance is used.

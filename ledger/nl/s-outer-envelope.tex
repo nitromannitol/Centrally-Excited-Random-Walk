@@ -1,0 +1,7 @@
+% s-outer-envelope: the outer bound H_n <= b + C W L from the envelope (deterministic).
+\paragraph{Statement.} For $\varepsilon>0$, $C_1>0$, $C_2\geq0$, $0<c_1\leq c_2$, $b_d\geq1$, $r_0$ there are $C>0$, $n_0$ such that for $n\geq n_0$: the path, vector,
+interval and radial clauses (constant $C_1$), $M_n\leq C_1N$, $c_1N\leq b\leq c_2N$, $|D_n\setminus B(0,b)|\leq C_2N^dQ$ and $\ell_n\leq C_2(b-|\cdot|)_++C_2W$
+imply $H_n\leq b+CWL$.
+\paragraph{Proof.} (fl:1076--1140.) $F(b)=\mathrm{tail}(D_n\setminus B(0,b))(b)\leq|D_n\setminus B(0,b)|/(d\omega_db^{d-1})\leq C_2c_1^{1-d}(d\omega_d)^{-1}NQ$ (\texttt{tail\_le}).
+\texttt{shellMax\_le\_of\_envelope}: $M_{\rm sh}(r)\leq C_2W\leq(C_2+1)W$ for $r\geq b+3$. \texttt{exists\_tailend} (with $C_{\rm rad}=C_1$, $C_{\rm sh}=C_2+1$):
+$F(b+K_0WL)\leq C_tN^{2-d}L$. \texttt{exists\_maxRadius\_le\_outer} with $K_1=K_0+1$: $H_n\leq b+3K_1WL$. Take $n_0$ the maximum of the two thresholds and $C=3K_1$.

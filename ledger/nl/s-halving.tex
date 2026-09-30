@@ -1,0 +1,3 @@
+% s-halving: dyadic halving on a grid and its cost (backfilled twin).
+\paragraph{Statement.} If $F$ is nonincreasing and nonnegative on the grid $r_1+2bj$ and at every grid point with $F(r-b)\leq A$ either $F(r+b)\leq A/2$ or $F$ drops by $\geq A/K(A)$, then $F$ halves within $\lceil K\rceil+1$ steps; iterating over the levels $A_02^{-k}$ reaches any floor $\Lambda$ after $O(\log(A_0/\Lambda))$ levels, with total cost $\sum_k(\lceil K(A_02^{-k})\rceil+1)$ bounded by a geometric series when $K(A)=(A+\delta)^\alpha$.
+\paragraph{Proof.} Telescoping the drops within a level; induction over levels; $\sum_k(A_02^{-k})^\alpha\leq A_0^\alpha/(1-2^{-\alpha})$.

@@ -1,0 +1,7 @@
+% s-inner-clauses: four clauses of Good and the hole, from the inradius (deterministic).
+\paragraph{Statement.} For $\varepsilon>0$, $C_2\geq0$, $K\geq a+1$ there are $C>0$, $n_0$ such that for $n\geq n_0$: if $b>0$, $|b/N-a|\leq C_2Q$,
+$B(0,b)\subseteq D_n\subseteq B(0,(K-1)N)$, $m\leq C_2N^dQ$, $|\widetilde\ell_n-U|\leq\delta_0\leq C_2NQ^{1/d}$ on $B(0,KN)$, $\ell_n(z)=0$ and $|z|\leq b+\sqrt d/2$, then
+the inner inclusion with $C$, $A_n\subseteq V_n$, the volume clause and the profile clause of $\mathrm{Good}(C)$ hold, $z\notin A_n$ and $|z|<aN+CNQ$.
+\paragraph{Proof.} (fl:1054--1071.) $n_0$: $Q\leq1$, $N>0$, $NQ\geq1$. Volume: \texttt{exists\_volume\_symmDiff\_add\_le} and \texttt{volume\_cellSet}. Profile:
+\texttt{exists\_abs\_localTime\_div\_sub\_le} with $|b-aN|\leq C_2NQ$. Inner inclusion: $b\geq(a-C_2Q)N$ and \texttt{mem\_departureRange\_of\_lt}. Hole: $\ell_n(z)=0$
+means $z$ is not a departure site; $|z|\leq aN+C_2NQ+\sqrt d/2<aN+CNQ$ for $C=\max(\cdots)+C_2+\sqrt d+1$. $C$ is the maximum of the constants.

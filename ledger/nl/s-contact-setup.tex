@@ -1,0 +1,8 @@
+% s-contact-setup: eq:bm, eq:contactcell and the contact modulus.
+\paragraph{Statement.} There is $C\geq0$ such that for $\varepsilon\geq0$, a path with $X_0=0$, $n\geq1$, $R\geq1$ and $D_n\subseteq B(0,R)$, the inradius
+$b=\inf\{|y|:y\notin D_n\}$ satisfies $b>0$, $B(0,b)\subseteq D_n$, and there are $y_0$ with $|y_0|=b$ and a site $z$ with $\ell_n(z)=0$,
+$b\leq|z|\leq b+\sqrt d/2$ and $|U(y_0)-U(z)|\leq C\varepsilon\log(R+2)$.
+\paragraph{Proof.} $0=X_0\in A_n$, so the cell of $0$, which contains $B(0,1/2)$, lies in $D_n$; every $y\notin D_n$ has $|y|\geq1/2$, and $D_n^c\neq\emptyset$
+since $D_n\subseteq B(0,R)$. Hence $b\geq1/2$. \texttt{exists\_contact\_cell} gives the rest except the modulus; $|z|\leq|y_0|+|z-y_0|$.
+Since $b\leq R$ (a point of $D_n^c$ near norm $b$ has norm $\geq R$ or $b\leq R$ directly from $B(0,b)\subseteq D_n\subseteq B(0,R)$), $|y_0|\leq2R$ and
+$|y_0-z|\leq\sqrt d/2\leq\sqrt d$, so \texttt{exists\_potential\_cell\_modulus} applies with $D_n\subseteq B(0,R)$.
