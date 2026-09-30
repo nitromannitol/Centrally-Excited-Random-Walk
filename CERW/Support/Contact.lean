@@ -14,3 +14,5 @@ import CERW.Support.Contact.PlanarBracket
 import CERW.Support.Contact.ContactMass
 import CERW.Support.Contact.EnvelopeShell
 import CERW.Support.Contact.EnvelopeHigh
+import CERW.Support.Contact.MassHigh
+import CERW.Support.Contact.Inradius

@@ -7,3 +7,4 @@ import CERW.Support.Main.ShapeCount
 import CERW.Support.Main.ShapeAssembly
 import CERW.Support.Main.Event
 import CERW.Support.Main.GoodMono
+import CERW.Support.Main.HausdorffGood

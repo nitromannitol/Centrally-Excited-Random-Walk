@@ -122,16 +122,16 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 26 | shape count and pointwise bound from the event | ds4 | v4.1-flash | 6337 | 1 | ↑145k ↓65k | accepted | 0 | 180 | `CERW/Support/Main/ShapeCount.lean` |
 | 27 | tail end (eq:tailend) | Sonnet subagent | sonnet | task prompt | 1 + 9 helpers | 142k (agent total) | accepted | 2: the first dispatch was stopped because the director's leaf did not compile (missing import); after return the director replaced re-proved cell facts with library lemmas | 497 | `CERW/Support/Coarse/TailEnd.lean` |
 | 27 | shape theorem from the almost-sure event | ds2 | v4.1-flash | 4473 | 1 | ↑22k ↓4.7k | accepted | 0 | 55 | `CERW/Support/Main/ShapeAssembly.lean` |
-| 28 | inradius (eq:inradius) | ds2 | v4.1-flash | 6104 | 1 | — | in flight | — | — | `wip/Inradius.lean` |
-| 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | — | in flight | — | — | `wip/HausdorffGood.lean` |
+| 28 | inradius (eq:inradius) | ds2 | v4.1-flash | 6104 | 1 | ↑238k ↓125k | accepted | 0 | 397 | `CERW/Support/Contact/Inradius.lean` |
+| 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | ↑395k ↓211k | accepted | 0 | 503 | `CERW/Support/Main/HausdorffGood.lean` |
 | 27 | planar contact variance (eq:massplanar, eq:envelopeplanar) | ds1 | v4.1-flash | 6297 | 1 | — | in flight | — | — | `wip/MassPlanar.lean` |
-| 27 | high-dimensional contact variance (eq:masshigh) | ds3 | v4.1-flash | 6359 | 1 | — | in flight | 1: the director sent a follow-up after dispatch because the brief suggested a Mathlib name that does not exist | — | `wip/MassHigh.lean` |
+| 27 | high-dimensional contact variance (eq:masshigh) | ds3 | v4.1-flash | 6359 | 1 | ↑186k ↓125k | accepted | 1: the director sent a follow-up after dispatch because the brief suggested a Mathlib name that does not exist | 462 | `CERW/Support/Contact/MassHigh.lean` |
 | 28 | prop:coarse assembly from the kernel facts | Sonnet subagent | sonnet | task prompt | 1 + 11 helpers | 222k (agent total) | accepted | 0 | 509 | `CERW/Support/Coarse/Assembly.lean` |
 | 23 | quadratic martingale concentration | ds3 | v4.1-flash | 7217 | 1 | ↑693k ↓121k | accepted | 0 | 489 | `CERW/Support/Contact/QuadraticError.lean` |
 
 ## Observations
 
-* **Waves 1–26.** Every returned DeepSeek packet was accepted: 92/92, two after a statement repair. There were three repairs: a definition
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 95/95, two after a statement repair. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 22/22.
 * **Parallel helpers collide.** Two parallel files in one namespace each added a public helper with the same
   name. Since wave 13, the common rules require every helper a worker adds to be `private`.
