@@ -5,3 +5,4 @@ import CERW.Generic.Lattice.Resolvent
 import CERW.Generic.Lattice.Centered
 import CERW.Generic.Lattice.PlanarLogSum
 import CERW.Generic.Lattice.MomentSqSum
+import CERW.Generic.Lattice.MomentSum
