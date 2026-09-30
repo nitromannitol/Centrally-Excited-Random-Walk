@@ -1,0 +1,8 @@
+% s-HvsR: eq:coarse-entrance ... eq:HvsR (deterministic).
+\paragraph{Statement.} For $B_0\geq3$ and constants $C_v,C_I,C_t,c$, for large $n$: on a path from the origin with unit steps satisfying eq:vector and eq:interval on
+$[0,n]$ (with $\lambda\leq L^2$), with $s=R_n^{1/d}\geq cN$ and $F((B_0-2)s)\leq C_ts^{2-d}L$, we have $H_n\leq(B_0+1)s$.
+\paragraph{Proof.} Suppose not. Let $\tau\leq n$ be the first time $|X_\tau|>(B_0+1)s$ (so $\tau\geq1$), $v=X_\tau/|X_\tau|$ and $b=(B_0-1)s$. Apply s-last-entrance to
+$f(j)=v\cdot X_j$, which increases by at most $1$ per step and has $f(0)=0\leq b$: there is $s'\in(0,\tau]$ with $f(s')\leq b+1$ and $f>b$ on $[s',\tau)$. Since
+$f(\tau)>b+1$, $s'<\tau$. On $[s',\tau)$: $v\cdot X_j>b$ and $|X_j|<(B_0+1)s=:r$, with $b/r\geq\frac12$, and the gain is $h=f(\tau)-f(s')\geq2s-1\geq s$. By s-card-tail and
+monotonicity of $F$, the $m$ distinct sites satisfy $m\leq\sigma_d(r+\sqrt d/2)^{d-1}F((B_0-2)s)\leq CsL$. s-crossing gives
+$s^2\leq h^2\leq C((mL)^\gamma+mL^3)\leq C(s^\gamma L^{2\gamma}+sL^4)$, contradicting s-crossing-contradiction for large $n$.

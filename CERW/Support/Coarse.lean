@@ -13,3 +13,5 @@ import CERW.Support.Coarse.Sstar
 import CERW.Support.Coarse.RadiusArith
 import CERW.Support.Coarse.CardTail
 import CERW.Support.Coarse.MassError
+import CERW.Support.Coarse.Shell
+import CERW.Support.Coarse.OuterRadius

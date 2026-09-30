@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 01:20.
+generation time. Regenerated 2026-09-30 01:30.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -91,7 +91,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **lem-radial** | director | `Frozen/RadialTest.lean` | s-radial-source, s-radial-mart, s-tail-lower, s-shell-count, s-kernel-props | lem:radial | DRAFT (proof of the draft statement landed: `Support/Coarse/RadialAssembly.lean`) |
 | s-halving | ds2/ds3 | `Generic/Halving/Levels.lean`, `Generic/Halving/Cost.lean` | — | halving on the grid and its cost | LANDED |
 | s-cap | ds2 | `Generic/Newton/Cap.lean` | — | σ(cap of angular radius ε ≤ 1) ≥ (d/4)(ε/(4√d))^{d−1} | LANDED |
-| s-shell | director | `Support/Coarse/Shell.lean` | lem-geometry, lem-local | eq:shell via eq:cap-average | BLOCKED(lem-geometry, lem-local) |
+| s-shell | director | `Support/Coarse/Shell.lean` | lem-geometry, lem-local | eq:shell via eq:cap-average | LANDED |
 | **Model and probability toolkit** | | | | | |
 | s-clamp | ds4 | `Generic/Martingale/Clamp.lean` | — | a martingale with a.s. bounded increments equals a.s. one with surely bounded increments | LANDED |
 | **Section 3 (lem:radial, prop:coarse)** | | | | | |
@@ -102,14 +102,14 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-crossing | ds3 | `Support/Coarse/Crossing.lean` | s-vector, s-crossing-kinematics | eq:crossing (Young part landed) | LANDED |
 | s-sstar-arith | ds4 | `Support/Coarse/SstarArith.lean` | s-scale-limits | C s^{d+1} + C L² s^d < n for 0 ≤ s < cN, n large | LANDED |
 | s-sstar | ds1 | `Support/Coarse/Sstar.lean` | s-sstar-arith | eq:sstar-lower | LANDED |
-| s-coarse-tail | director | `Support/Coarse/Tail.lean` | lem-radial, s-shell, s-halving, s-sstar, s-Fmass | eq:coarse-tail | BLOCKED(lem-radial, s-shell) |
-| s-HvsR | director | `Support/Coarse/OuterRadius.lean` | s-coarse-tail, s-crossing, s-crossing-contradiction, s-cell-weight | eq:HvsR | BLOCKED(s-coarse-tail) |
+| s-coarse-tail | director | `Support/Coarse/Tail.lean` | lem-radial, s-shell, s-halving, s-sstar, s-Fmass | eq:coarse-tail | BLOCKED(lem-radial) |
+| s-HvsR | director | `Support/Coarse/OuterRadius.lean` | s-coarse-tail, s-crossing, s-crossing-contradiction, s-cell-weight | eq:HvsR | LANDED |
 | s-radial-packing | sonnet | `Generic/Kernel/RadialPacking.lean` | — | ∫_D\|v\| ≥ (d/(d+1))ω_d^{−1/d}\|D\|^{1+1/d} | LANDED |
 | s-mass-identity | sonnet | `Support/Geometry/MassIdentity.lean` | s-newton, s-polar | eq:massidentity | LANDED |
 | s-mass-error | ds3 | `Support/Coarse/MassError.lean` | s-cell-integral, s-holder | eq:coarse-masserror (before the identity) | LANDED |
 | s-radius-arith | ds4 | `Support/Coarse/RadiusArith.lean` | s-scale-limits | c s^{d+1} ≤ n + C s^{d+1/2}L ⇒ s ≤ C′N | LANDED |
 | s-card-tail | ds2 | `Support/Coarse/CardTail.lean` | s-cell-norm, s-Fmass | eq:coarse-cellcount (general) | LANDED |
-| s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | BLOCKED(lem-geometry, lem-local, s-HvsR) |
+| s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | BLOCKED(lem-geometry, lem-local) |
 | **prop-coarse** | director | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT |
 | **Sections 4–5 and the main theorems** | | | | | |
 | s-contact-kernel | ds1 | `Support/Contact/Kernel.lean` | — | u_v·(v−y)\|v−y\|^{−d} ≥ 2^{1−d}\|v\|^{1−d} for \|y\| ≤ \|v\| | LANDED |
@@ -134,7 +134,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-scale-limits | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
 
-**Counts:** BLOCKED 15, DRAFT 7, LANDED 79, READY 2.
+**Counts:** BLOCKED 13, DRAFT 7, LANDED 81, READY 2.
 
 ## Pre-freeze gate
 

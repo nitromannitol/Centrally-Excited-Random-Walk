@@ -1,0 +1,11 @@
+% s-coarse-tail: eq:floor, eq:halving-error, eq:halving-K, eq:halving-cost, eq:coarse-tail (deterministic).
+\paragraph{Statement.} Given $C_{\rm rad},C_1,C_{\rm sh},c$, $b_d\geq1$ and $r_0$, there are $B_0\geq3$ and $C_t$ such that, for large $n$: if $s=|A_n|^{1/d}\geq cN$, $M_n\leq C_1s$,
+$0\leq\delta\leq C_1\sqrt sL$, eq:radial holds for integers $r_0\leq r\leq n$, and eq:shell holds for integers $r\in[s,B_0s]$ (with constant $C_{\rm sh}$), then
+$F((B_0-2)s)\leq C_ts^{2-d}L$.
+\paragraph{Proof.} (The paper, cr:152--181.) $F(s)\leq|D_n|/(\sigma_ds^{d-1})=s/\sigma_d$ (s-Fmass) and $s\leq n^{1/d}$. For $r\geq s$ the radial error is at most
+$C\sqrt{s^{2-d}F(r-b_d)L}+Cs^{1-d}L$, which is at most $A/4$ when $F(r-b_d)\leq A$ and $A\geq\Lambda:=C's^{2-d}L$. Then, unless $F(r+b_d)\leq A/2$,
+$F(r-b_d)-F(r+b_d)\geq A/(4C_{\rm rad}K(A))$ with $K(A)=C_{\rm sh}B_0^\beta s^{1-\alpha}(A+\delta)^\alpha+1$. So \texttt{halving\_iterate} applies on the grid
+$r_1+2b_dj$ from $r_1=\lceil s\rceil+b_d$, with $A_0=s/\sigma_d$. The number $M$ of levels satisfies $M\leq\log_2(A_0/\Lambda)+1=O(L)$ (\texttt{exists\_halvings\_le}), and
+$\sum_kK(A_0/2^k)\leq C_{\rm sh}B_0^\beta s^{1-\alpha}(CA_0^\alpha+M\delta^\alpha)+M$ (\texttt{sum\_rpow\_halvings\_le}). This is $\leq C''B_0^\beta s+o(s)$, and the constant $C''$
+is independent of $B_0$. Choose $B_0$ with $4b_dC''B_0^\beta\leq B_0-4$ (possible since $\beta<1$). Then for large $n$ the grid reaches $\Lambda$ before radius
+$(B_0-2)s-b_d$, and $F$ is nonincreasing.
