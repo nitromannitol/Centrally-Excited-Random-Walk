@@ -253,6 +253,11 @@ private theorem rpow_half_half {N L : ℝ} (hN : 0 < N) (hL : 0 ≤ L) :
   rw [Real.rpow_neg hNn]
   field_simp
 
+/-- If `a ≤ c x L`, `d ≤ c x`, `0 ≤ c x` and `1 ≤ L`, then `a + d ≤ 2 c x L`. -/
+private theorem add_le_two_mul_of_le_mul {a d c x L : ℝ} (ha : a ≤ c * x * L)
+    (hd : d ≤ c * x) (hcx : 0 ≤ c * x) (hL : 1 ≤ L) : a + d ≤ 2 * c * x * L := by
+  nlinarith
+
 /-- `eq:massplanar` and `eq:envelopeplanar`: in the plane, the global approximation and the sharp
 decomposition at the unvisited contact site give `m ≤ C N² Q` and
 `ℓ_n ≤ 4ε (b - |·|)_+ + C W`,
@@ -340,7 +345,7 @@ theorem exists_mass_planar {ε K C₀ C₁ : ℝ} (hε : 0 < ε) (hK : 2 ≤ K) 
         rw [Real.sqrt_eq_rpow] at hΔ
         exact hΔ
       have h3 : 0 ≤ C₀ * N ^ ((1 : ℝ) / 2) := mul_nonneg hC₀ (Real.rpow_nonneg hNnn _)
-      nlinarith [h1, h2, hLnn, h3]
+      exact add_le_two_mul_of_le_mul h1 h2 h3 hL
     have hcoef : 0 ≤ unitBallVolume 2 / (2 * ε) * 2 * (K - 1) * N := by
       have h1 : 0 ≤ unitBallVolume 2 / (2 * ε) :=
         div_nonneg (le_of_lt hωpos) (by linarith [hε])
@@ -348,7 +353,7 @@ theorem exists_mass_planar {ε K C₀ C₁ : ℝ} (hε : 0 < ε) (hK : 2 ≤ K) 
         mul_nonneg (mul_nonneg h1 (by norm_num)) (le_of_lt hKm1pos)
       exact mul_nonneg h2 (le_of_lt hNpos)
     have hmid : |potential 2 ε (cellSet X n) (toSpace z)| + 0 + Δ ≤
-        2 * C₀ * N ^ ((1 : ℝ) / 2) * L := by linarith [hsum]
+        2 * C₀ * N ^ ((1 : ℝ) / 2) * L := by simpa using hsum
     have hstep : m ≤ unitBallVolume 2 / (2 * ε) * 2 * (K - 1) * N *
         (2 * C₀ * N ^ ((1 : ℝ) / 2) * L) := by
       calc m ≤ unitBallVolume 2 / (2 * ε) * 2 * (K - 1) * N *
