@@ -241,6 +241,55 @@ private lemma rpow_euclidNorm_sub_unit (x : Site d) (i : Fin d) (hρ : 0 < eucli
         rw [hnatρ, ← Real.rpow_mul hρ.le (((2 : ℕ) : ℝ)) (β / 2),
           show (((2 : ℕ) : ℝ)) * (β / 2) = β by ring]
 
+/-- If `|t| ≤ a` and `0 ≤ a`, then `t ^ 2 ≤ a ^ 2`. -/
+private lemma sq_le_sq_of_abs_le {t a : ℝ} (ha : 0 ≤ a) (h : |t| ≤ a) :
+    t ^ 2 ≤ a ^ 2 :=
+  sq_le_sq.mpr (by rwa [abs_of_nonneg ha])
+
+/-- If `|t| ≤ 3 / ρ` and `0 < ρ`, then `t ^ 2 ≤ 9 / ρ ^ 2`. -/
+private lemma sq_le_nine_div_sq_of_abs_le_three_div {t ρ : ℝ} (hρ : 0 < ρ)
+    (h : |t| ≤ 3 / ρ) : t ^ 2 ≤ 9 / ρ ^ 2 := by
+  have h' := sq_le_sq_of_abs_le (show (0 : ℝ) ≤ 3 / ρ by positivity) h
+  rw [div_pow] at h'
+  norm_num at h'
+  exact h'
+
+/-- If `|t| ≤ 3 / ρ` and `6 ≤ ρ`, then `|t| ≤ 1 / 2`. -/
+private lemma abs_le_half_of_abs_le_three_div {t ρ : ℝ} (hρ : 6 ≤ ρ)
+    (h : |t| ≤ 3 / ρ) : |t| ≤ 1 / 2 := by
+  have hpos : 0 < ρ := by linarith only [hρ]
+  have h3 : 3 / ρ ≤ 1 / 2 := by
+    rw [div_le_div_iff₀ hpos (by norm_num : (0 : ℝ) < 2)]
+    linarith only [hρ]
+  linarith only [h, h3]
+
+/-- If `|t| ≤ 1 / 2`, then `0 < 1 + t`. -/
+private lemma one_add_pos_of_abs_le_half {t : ℝ} (h : |t| ≤ 1 / 2) : 0 < 1 + t := by
+  have h' := (abs_le.mp h).1
+  linarith only [h']
+
+/-- `|x| - 1 ≤ |x + e_i|` when `|x| ≥ 1`. -/
+private lemma euclidNorm_sub_one_le_add_unit (x : Site d) (i : Fin d)
+    (hρ : 1 ≤ euclidNorm x) : euclidNorm x - 1 ≤ euclidNorm (x + unit i) := by
+  have hk : |((x i : ℤ) : ℝ)| ≤ euclidNorm x := abs_coord_le_euclidNorm x i
+  have hx : -euclidNorm x ≤ ((x i : ℤ) : ℝ) := (abs_le.mp hk).1
+  have hsq : (euclidNorm x - 1) ^ 2 ≤ euclidNorm (x + unit i) ^ 2 := by
+    rw [euclidNorm_add_unit_sq]
+    nlinarith only [hx]
+  have hle := sq_le_sq.mp hsq
+  rwa [abs_of_nonneg (by linarith only [hρ]), abs_of_nonneg (euclidNorm_nonneg _)] at hle
+
+/-- `|x| - 1 ≤ |x - e_i|` when `|x| ≥ 1`. -/
+private lemma euclidNorm_sub_one_le_sub_unit (x : Site d) (i : Fin d)
+    (hρ : 1 ≤ euclidNorm x) : euclidNorm x - 1 ≤ euclidNorm (x - unit i) := by
+  have hk : |((x i : ℤ) : ℝ)| ≤ euclidNorm x := abs_coord_le_euclidNorm x i
+  have hx : ((x i : ℤ) : ℝ) ≤ euclidNorm x := (abs_le.mp hk).2
+  have hsq : (euclidNorm x - 1) ^ 2 ≤ euclidNorm (x - unit i) ^ 2 := by
+    rw [euclidNorm_sub_unit_sq]
+    nlinarith only [hx]
+  have hle := sq_le_sq.mp hsq
+  rwa [abs_of_nonneg (by linarith only [hρ]), abs_of_nonneg (euclidNorm_nonneg _)] at hle
+
 /-- Planar coordinate bound for the central difference error. -/
 private lemma coord_bound_two {b : Site 2 → ℝ} {κ Cb Rb : ℝ}
     (hb : ∀ x, Rb ≤ euclidNorm x →
@@ -261,8 +310,9 @@ private lemma coord_bound_two {b : Site 2 → ℝ} {κ Cb Rb : ℝ}
     - (2 / Real.pi * Real.log (euclidNorm (x - unit i)) + κ) with hemdef
   set wp : ℝ := Real.log (1 + tp) - tp with hwpdef
   set wm : ℝ := Real.log (1 + tm) - tm with hwmdef
-  have hρpos : 0 < ρ := by rw [hρdef]; linarith
-  have hρ1 : 1 ≤ ρ := by linarith
+  have hρpos : 0 < ρ := by rw [hρdef]; linarith only [hρ6]
+  have hρ1 : 1 ≤ ρ := by rw [hρdef]; linarith only [hρ6]
+  have hρ6' : 6 ≤ ρ := by rw [hρdef]; exact hρ6
   have hk : |k| ≤ ρ := by rw [hkdef, hρdef]; exact abs_coord_le_euclidNorm x i
   have htp3 : |tp| ≤ 3 / ρ := by
     rw [htpdef]; exact abs_one_add_two_mul_div_sq_le_three hρ1 hk
@@ -271,56 +321,26 @@ private lemma coord_bound_two {b : Site 2 → ℝ} {κ Cb Rb : ℝ}
     have h : |(1 - 2 * k) / ρ ^ 2| = |(1 + 2 * (-k)) / ρ ^ 2| := by ring_nf
     rw [h]
     exact abs_one_add_two_mul_div_sq_le_three hρ1 (by rw [abs_neg]; exact hk)
-  have htp2 : tp ^ 2 ≤ 9 / ρ ^ 2 := by
-    have hb := abs_le.mp htp3
-    have h1 : 0 ≤ 3 / ρ - tp := by linarith
-    have h2 : 0 ≤ 3 / ρ + tp := by linarith
-    have hprod : 0 ≤ (3 / ρ - tp) * (3 / ρ + tp) := mul_nonneg h1 h2
-    have hexp : (3 / ρ - tp) * (3 / ρ + tp) = 9 / ρ ^ 2 - tp ^ 2 := by ring
-    rw [hexp] at hprod
-    linarith
-  have htm2 : tm ^ 2 ≤ 9 / ρ ^ 2 := by
-    have hb := abs_le.mp htm3
-    have h1 : 0 ≤ 3 / ρ - tm := by linarith
-    have h2 : 0 ≤ 3 / ρ + tm := by linarith
-    have hprod : 0 ≤ (3 / ρ - tm) * (3 / ρ + tm) := mul_nonneg h1 h2
-    have hexp : (3 / ρ - tm) * (3 / ρ + tm) = 9 / ρ ^ 2 - tm ^ 2 := by ring
-    rw [hexp] at hprod
-    linarith
-  have htp_half : |tp| ≤ 1 / 2 := by
-    have h3 : 3 / ρ ≤ 1 / 2 := by
-      rw [div_le_div_iff₀ (by linarith) (by norm_num)]; linarith
-    linarith
-  have htm_half : |tm| ≤ 1 / 2 := by
-    have h3 : 3 / ρ ≤ 1 / 2 := by
-      rw [div_le_div_iff₀ (by linarith) (by norm_num)]; linarith
-    linarith
-  have h1tp : 0 < 1 + tp := by linarith [abs_le.mp htp_half]
-  have h1tm : 0 < 1 + tm := by linarith [abs_le.mp htm_half]
+  have htp2 : tp ^ 2 ≤ 9 / ρ ^ 2 := sq_le_nine_div_sq_of_abs_le_three_div hρpos htp3
+  have htm2 : tm ^ 2 ≤ 9 / ρ ^ 2 := sq_le_nine_div_sq_of_abs_le_three_div hρpos htm3
+  have htp_half : |tp| ≤ 1 / 2 := abs_le_half_of_abs_le_three_div hρ6' htp3
+  have htm_half : |tm| ≤ 1 / 2 := abs_le_half_of_abs_le_three_div hρ6' htm3
+  have h1tp : 0 < 1 + tp := one_add_pos_of_abs_le_half htp_half
+  have h1tm : 0 < 1 + tm := one_add_pos_of_abs_le_half htm_half
   have hρp_sq : euclidNorm (x + unit i) ^ 2 = ρ ^ 2 * (1 + tp) := by
     rw [euclidNorm_add_unit_sq, hρdef, ← hkdef, htpdef]; field_simp; ring
   have hρm_sq : euclidNorm (x - unit i) ^ 2 = ρ ^ 2 * (1 + tm) := by
     rw [euclidNorm_sub_unit_sq, hρdef, ← hkdef, htmdef]; field_simp; ring
   have hρp_ge : ρ - 1 ≤ ρp := by
-    have hx : -ρ ≤ k := (abs_le.mp hk).1
-    have hsq : (ρ - 1) ^ 2 ≤ ρp ^ 2 := by
-      rw [hρpdef, euclidNorm_add_unit_sq, hρdef, ← hkdef]; nlinarith
     rw [hρpdef]
-    have hle := sq_le_sq.mp hsq
-    rwa [abs_of_nonneg (by linarith : (0 : ℝ) ≤ ρ - 1),
-      abs_of_nonneg (euclidNorm_nonneg _)] at hle
+    exact euclidNorm_sub_one_le_add_unit x i (by rw [← hρdef]; exact hρ1)
   have hρm_ge : ρ - 1 ≤ ρm := by
-    have hx : k ≤ ρ := (abs_le.mp hk).2
-    have hsq : (ρ - 1) ^ 2 ≤ ρm ^ 2 := by
-      rw [hρmdef, euclidNorm_sub_unit_sq, hρdef, ← hkdef]; nlinarith
     rw [hρmdef]
-    have hle := sq_le_sq.mp hsq
-    rwa [abs_of_nonneg (by linarith : (0 : ℝ) ≤ ρ - 1),
-      abs_of_nonneg (euclidNorm_nonneg _)] at hle
-  have hρp_half : ρ / 2 ≤ ρp := by rw [hρpdef]; linarith
-  have hρm_half : ρ / 2 ≤ ρm := by rw [hρmdef]; linarith
-  have hRb_p : Rb ≤ ρp := by rw [hρpdef]; linarith
-  have hRb_m : Rb ≤ ρm := by rw [hρmdef]; linarith
+    exact euclidNorm_sub_one_le_sub_unit x i (by rw [← hρdef]; exact hρ1)
+  have hρp_half : ρ / 2 ≤ ρp := by linarith only [hρp_ge, hρdef, hρ6]
+  have hρm_half : ρ / 2 ≤ ρm := by linarith only [hρm_ge, hρdef, hρ6]
+  have hRb_p : Rb ≤ ρp := by linarith only [hR, hρdef, hρp_ge]
+  have hRb_m : Rb ≤ ρm := by linarith only [hR, hρdef, hρm_ge]
   have hlogp : Real.log ρp = Real.log ρ + (1 / 2) * Real.log (1 + tp) := by
     rw [hρpdef]
     have ht : 0 < 1 + (1 + 2 * ((x i : ℤ) : ℝ)) / euclidNorm x ^ 2 := by
@@ -374,8 +394,8 @@ private lemma coord_bound_two {b : Site 2 → ℝ} {κ Cb Rb : ℝ}
     ring
   have hmain : |(2 / Real.pi) * ((1 / 4) * (wp - wm)) + (ep - em) / 2|
       ≤ (18 / Real.pi + 4 * max Cb 0) * ρ ^ (-2 : ℝ) := by
-    have hwp' : |wp| ≤ 2 * (9 / ρ ^ 2) := by linarith
-    have hwm' : |wm| ≤ 2 * (9 / ρ ^ 2) := by linarith
+    have hwp' : |wp| ≤ 2 * (9 / ρ ^ 2) := by linarith only [hwp, htp2]
+    have hwm' : |wm| ≤ 2 * (9 / ρ ^ 2) := by linarith only [hwm, htm2]
     have hsum : |wp - wm| ≤ 2 * (9 / ρ ^ 2) + 2 * (9 / ρ ^ 2) := by
       calc |wp - wm| ≤ |wp| + |wm| := abs_sub _ _
         _ ≤ 2 * (9 / ρ ^ 2) + 2 * (9 / ρ ^ 2) := add_le_add hwp' hwm'
@@ -438,8 +458,9 @@ private lemma coord_bound_ge_three {G : Site d → ℝ} {CG RG : ℝ} (hd : 3 �
   set em : ℝ := G (x - unit i) - c * ρm ^ β with hemdef
   set up : ℝ := (1 + tp) ^ α - 1 - α * tp with hupdef
   set um : ℝ := (1 + tm) ^ α - 1 - α * tm with humdef
-  have hρpos : 0 < ρ := by rw [hρdef]; linarith
-  have hρ1 : 1 ≤ ρ := by linarith
+  have hρpos : 0 < ρ := by rw [hρdef]; linarith only [hρ6]
+  have hρ1 : 1 ≤ ρ := by rw [hρdef]; linarith only [hρ6]
+  have hρ6' : 6 ≤ ρ := by rw [hρdef]; exact hρ6
   have hk : |k| ≤ ρ := by rw [hkdef, hρdef]; exact abs_coord_le_euclidNorm x i
   have htp3 : |tp| ≤ 3 / ρ := by
     rw [htpdef]; exact abs_one_add_two_mul_div_sq_le_three hρ1 hk
@@ -448,52 +469,22 @@ private lemma coord_bound_ge_three {G : Site d → ℝ} {CG RG : ℝ} (hd : 3 �
     have h : |(1 - 2 * k) / ρ ^ 2| = |(1 + 2 * (-k)) / ρ ^ 2| := by ring_nf
     rw [h]
     exact abs_one_add_two_mul_div_sq_le_three hρ1 (by rw [abs_neg]; exact hk)
-  have htp2 : tp ^ 2 ≤ 9 / ρ ^ 2 := by
-    have hb := abs_le.mp htp3
-    have h1 : 0 ≤ 3 / ρ - tp := by linarith
-    have h2 : 0 ≤ 3 / ρ + tp := by linarith
-    have hprod : 0 ≤ (3 / ρ - tp) * (3 / ρ + tp) := mul_nonneg h1 h2
-    have hexp : (3 / ρ - tp) * (3 / ρ + tp) = 9 / ρ ^ 2 - tp ^ 2 := by ring
-    rw [hexp] at hprod
-    linarith
-  have htm2 : tm ^ 2 ≤ 9 / ρ ^ 2 := by
-    have hb := abs_le.mp htm3
-    have h1 : 0 ≤ 3 / ρ - tm := by linarith
-    have h2 : 0 ≤ 3 / ρ + tm := by linarith
-    have hprod : 0 ≤ (3 / ρ - tm) * (3 / ρ + tm) := mul_nonneg h1 h2
-    have hexp : (3 / ρ - tm) * (3 / ρ + tm) = 9 / ρ ^ 2 - tm ^ 2 := by ring
-    rw [hexp] at hprod
-    linarith
-  have htp_half : |tp| ≤ 1 / 2 := by
-    have h3 : 3 / ρ ≤ 1 / 2 := by
-      rw [div_le_div_iff₀ (by linarith) (by norm_num)]; linarith
-    linarith
-  have htm_half : |tm| ≤ 1 / 2 := by
-    have h3 : 3 / ρ ≤ 1 / 2 := by
-      rw [div_le_div_iff₀ (by linarith) (by norm_num)]; linarith
-    linarith
-  have h1tp : 0 < 1 + tp := by linarith [abs_le.mp htp_half]
-  have h1tm : 0 < 1 + tm := by linarith [abs_le.mp htm_half]
+  have htp2 : tp ^ 2 ≤ 9 / ρ ^ 2 := sq_le_nine_div_sq_of_abs_le_three_div hρpos htp3
+  have htm2 : tm ^ 2 ≤ 9 / ρ ^ 2 := sq_le_nine_div_sq_of_abs_le_three_div hρpos htm3
+  have htp_half : |tp| ≤ 1 / 2 := abs_le_half_of_abs_le_three_div hρ6' htp3
+  have htm_half : |tm| ≤ 1 / 2 := abs_le_half_of_abs_le_three_div hρ6' htm3
+  have h1tp : 0 < 1 + tp := one_add_pos_of_abs_le_half htp_half
+  have h1tm : 0 < 1 + tm := one_add_pos_of_abs_le_half htm_half
   have hρp_ge : ρ - 1 ≤ ρp := by
-    have hx : -ρ ≤ k := (abs_le.mp hk).1
-    have hsq : (ρ - 1) ^ 2 ≤ ρp ^ 2 := by
-      rw [hρpdef, euclidNorm_add_unit_sq, hρdef, ← hkdef]; nlinarith
     rw [hρpdef]
-    have hle := sq_le_sq.mp hsq
-    rwa [abs_of_nonneg (by linarith : (0 : ℝ) ≤ ρ - 1),
-      abs_of_nonneg (euclidNorm_nonneg _)] at hle
+    exact euclidNorm_sub_one_le_add_unit x i (by rw [← hρdef]; exact hρ1)
   have hρm_ge : ρ - 1 ≤ ρm := by
-    have hx : k ≤ ρ := (abs_le.mp hk).2
-    have hsq : (ρ - 1) ^ 2 ≤ ρm ^ 2 := by
-      rw [hρmdef, euclidNorm_sub_unit_sq, hρdef, ← hkdef]; nlinarith
     rw [hρmdef]
-    have hle := sq_le_sq.mp hsq
-    rwa [abs_of_nonneg (by linarith : (0 : ℝ) ≤ ρ - 1),
-      abs_of_nonneg (euclidNorm_nonneg _)] at hle
-  have hρp_half : ρ / 2 ≤ ρp := by rw [hρpdef]; linarith
-  have hρm_half : ρ / 2 ≤ ρm := by rw [hρmdef]; linarith
-  have hRb_p : RG ≤ ρp := by rw [hρpdef]; linarith
-  have hRb_m : RG ≤ ρm := by rw [hρmdef]; linarith
+    exact euclidNorm_sub_one_le_sub_unit x i (by rw [← hρdef]; exact hρ1)
+  have hρp_half : ρ / 2 ≤ ρp := by linarith only [hρp_ge, hρdef, hρ6]
+  have hρm_half : ρ / 2 ≤ ρm := by linarith only [hρm_ge, hρdef, hρ6]
+  have hRb_p : RG ≤ ρp := by linarith only [hR, hρdef, hρp_ge]
+  have hRb_m : RG ≤ ρm := by linarith only [hR, hρdef, hρm_ge]
   have hρp_pow : ρp ^ β = ρ ^ β * (1 + tp) ^ α := by
     rw [hβdef, hαdef, hρpdef]
     have ht : 0 < 1 + (1 + 2 * ((x i : ℤ) : ℝ)) / euclidNorm x ^ 2 := by

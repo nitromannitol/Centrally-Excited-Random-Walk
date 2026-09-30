@@ -66,14 +66,16 @@ private lemma volume_box_eq {n : ℕ} {a : ℝ} (ha : 0 ≤ a) :
   rw [h0, hn, ← ENNReal.ofReal_pow (by linarith : (0:ℝ) ≤ 2 * a),
     ← ENNReal.ofReal_mul (by norm_num : (0:ℝ) ≤ 1 / 4)]
 
-/-- A spherical cap of angular radius `ε ∈ (0, 1]` has measure at least
-`(d/4) (ε/(4√d))^{d-1}`. -/
-theorem le_toSphere_ball (hd : 1 ≤ d) {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1)
-    (θ₀ : Metric.sphere (0 : EuclideanSpace ℝ (Fin d)) 1) :
-    (d : ℝ) / 4 * (ε / (4 * Real.sqrt d)) ^ (d - 1) ≤
-      ((volume : Measure (EuclideanSpace ℝ (Fin d))).toSphere (Metric.ball θ₀ ε)).toReal := by
-  obtain ⟨n, rfl⟩ := Nat.exists_eq_add_of_le' hd
-  set a : ℝ := ε / (4 * Real.sqrt (n + 1)) with ha
+/-- A reflection carries the box `B` into the cone over the spherical cap of radius `ε`. -/
+private lemma reflection_image_box_subset_cone {n : ℕ} {ε a : ℝ} (hε : 0 < ε)
+    (hε1 : ε ≤ 1) (ha : a = ε / (4 * Real.sqrt (n + 1)))
+    (θ₀ : Metric.sphere (0 : EuclideanSpace ℝ (Fin (n + 1))) 1) :
+    Submodule.reflection
+        (ℝ ∙ (EuclideanSpace.single (0 : Fin (n + 1)) (1 : ℝ) -
+          (θ₀ : EuclideanSpace ℝ (Fin (n + 1)))))ᗮ ''
+      {v : EuclideanSpace ℝ (Fin (n + 1)) |
+        1 / 2 < v 0 ∧ v 0 < 3 / 4 ∧ ∀ i, i ≠ 0 → |v i| < a}
+    ⊆ Set.Ioo (0 : ℝ) 1 • ((↑) '' Metric.ball θ₀ ε) := by
   set e0 : EuclideanSpace ℝ (Fin (n + 1)) := EuclideanSpace.single 0 1 with he0
   set R : EuclideanSpace ℝ (Fin (n + 1)) ≃ₗᵢ[ℝ] EuclideanSpace ℝ (Fin (n + 1)) :=
     Submodule.reflection (ℝ ∙ (e0 - (θ₀ : EuclideanSpace ℝ (Fin (n + 1)))))ᗮ with hR
@@ -192,6 +194,27 @@ theorem le_toSphere_ball (hd : 1 ≤ d) {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤
           Real.norm_of_nonneg (le_of_lt (inv_pos.mpr hv_norm_pos)), inv_mul_cancel₀ hv_norm_ne]
       · rw [Metric.mem_ball, Subtype.dist_eq]; exact hdist
     · rw [← LinearIsometryEquiv.map_smul, smul_smul, mul_inv_cancel₀ hv_norm_ne, one_smul]
+  exact hsub
+
+/-- A spherical cap of angular radius `ε ∈ (0, 1]` has measure at least
+`(d/4) (ε/(4√d))^{d-1}`. -/
+theorem le_toSphere_ball (hd : 1 ≤ d) {ε : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1)
+    (θ₀ : Metric.sphere (0 : EuclideanSpace ℝ (Fin d)) 1) :
+    (d : ℝ) / 4 * (ε / (4 * Real.sqrt d)) ^ (d - 1) ≤
+      ((volume : Measure (EuclideanSpace ℝ (Fin d))).toSphere (Metric.ball θ₀ ε)).toReal := by
+  obtain ⟨n, rfl⟩ := Nat.exists_eq_add_of_le' hd
+  set a : ℝ := ε / (4 * Real.sqrt (n + 1)) with ha
+  set e0 : EuclideanSpace ℝ (Fin (n + 1)) := EuclideanSpace.single 0 1 with he0
+  set R : EuclideanSpace ℝ (Fin (n + 1)) ≃ₗᵢ[ℝ] EuclideanSpace ℝ (Fin (n + 1)) :=
+    Submodule.reflection (ℝ ∙ (e0 - (θ₀ : EuclideanSpace ℝ (Fin (n + 1)))))ᗮ with hR
+  set B : Set (EuclideanSpace ℝ (Fin (n + 1))) :=
+    {v | 1 / 2 < v 0 ∧ v 0 < 3 / 4 ∧ ∀ i, i ≠ 0 → |v i| < a} with hB
+  set cone : Set (EuclideanSpace ℝ (Fin (n + 1))) :=
+    Set.Ioo (0 : ℝ) 1 • ((↑) '' Metric.ball θ₀ ε) with hcone
+  have ha_nonneg : 0 ≤ a := by rw [ha]; positivity
+  have hsub : R '' B ⊆ cone := by
+    rw [hR, he0, hB, hcone]
+    exact reflection_image_box_subset_cone (n := n) (ε := ε) (a := a) hε hε1 ha θ₀
   have hB_meas : MeasurableSet B := by
     rw [hB]; measurability
   have hvolB : volume B = ENNReal.ofReal (1 / 4 * (2 * a) ^ n) := by
