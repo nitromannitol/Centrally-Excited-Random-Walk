@@ -8,8 +8,11 @@ import LatticeProb.Walk.SRW
 The cited estimate `eq:kernel-asymptotics` of the paper (`paper/cerw-flat.tex:345-359`). The bytes
 between the markers are the frozen contract recorded in `ledger/manifest.yaml`.
 
-Cited from Lawler--Limic, Theorem 4.3.1, Corollary 4.3.3 and Theorem 4.4.4, and carried as an
-explicit hypothesis, never as an axiom.
+Cited from Lawler--Limic, and carried as an explicit hypothesis, never as an axiom. Only two of
+their results are assumed: Theorem 4.3.1 for `d ≥ 3`, and Theorem 4.4.4 for `d = 2` together with
+the definition of the potential kernel as the limit of the partial sums
+`Σ_{j<M} [P^j(0,0) - P^j(0,x)]`. The gradient estimate `eq:gradient`, their Corollary 4.3.3, is not
+assumed; `CERW/Support/LocalTime/KernelBridge.lean` derives it from these two clauses.
 -/
 
 universe u
