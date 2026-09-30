@@ -20,3 +20,4 @@ import CERW.Support.Main.HausdorffOneSided
 import CERW.Support.Main.InnerOfMass
 import CERW.Support.Main.GoodCore
 import CERW.Support.Main.KernelAnchors
+import CERW.Support.Main.LimitShape
