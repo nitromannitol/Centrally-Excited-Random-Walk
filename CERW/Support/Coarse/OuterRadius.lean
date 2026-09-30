@@ -234,6 +234,17 @@ private lemma crossing_terms_le {γ C₀ C₁ σ L m : ℝ} (hγ : 0 < γ) (hC�
         mul_le_mul_of_nonneg_left hsum hC₀.le
     _ = C₀ * (C₁ ^ γ + C₁ + 1) * (σ ^ γ * L ^ (2 * γ) + σ * L ^ (4 : ℝ)) := by ring
 
+/-- The numeric contradiction at the heart of `exists_maxRadius_le`: a cardinality bound
+`m ≤ C₁ σ L`, a crossing lower bound `σ² ≤ C₀ ((mL)^γ + mL L²)`, and the
+large-`n` bound `C₀ (C₁^γ + C₁ + 1) (σ^γ L^{2γ} + σ L⁴) < σ²` cannot all hold. -/
+private lemma crossing_contradiction {γ C₀ C₁ σ L m : ℝ} (hγ : 0 < γ) (hC₀ : 0 < C₀)
+    (hC₁ : 0 ≤ C₁) (hσ : 0 < σ) (hL : 0 ≤ L) (hm0 : 0 ≤ m) (hcard : m ≤ C₁ * σ * L)
+    (hcross : σ ^ 2 ≤ C₀ * ((m * L) ^ γ + m * L * L ^ 2))
+    (hlt : C₀ * (C₁ ^ γ + C₁ + 1) * (σ ^ γ * L ^ (2 * γ) + σ * L ^ (4 : ℝ)) < σ ^ 2) :
+    False := by
+  have hterms := crossing_terms_le hγ hC₀ hC₁ hσ hL hm0 hcard
+  linarith
+
 /-- `eq:HvsR`: on a path from the origin with unit steps, if `eq:vector` and `eq:interval` hold on
 `[0, n]`, `s = R_n^{1/d} ≥ cN`, and the coarse tail `F((B₀ - 2) s) ≤ C_t s^{2-d} L` holds, then
 `H_n ≤ (B₀ + 1) s` for all large `n`. -/
@@ -292,13 +303,13 @@ theorem exists_maxRadius_le (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv CI Ct B
   have hrpos : 0 < (B₀ + 1) * σ := by nlinarith
   have hκ : (1 / 2 : ℝ) ≤ (B₀ - 1) * σ / ((B₀ + 1) * σ) := by
     rw [le_div_iff₀ hrpos]
-    nlinarith
+    nlinarith only [hB₀, hσpos.le]
   have hcross := hC₀ X ω s' t v ((B₀ - 1) * σ) ((B₀ + 1) * σ) σ L (L ^ 2) hst hv hbpos hκ
-    hσpos.le hL (sq_nonneg L) hsite (by nlinarith) (hvec s' t hst htn) (hint s' t hst htn)
+    hσpos.le hL (sq_nonneg L) hsite (by nlinarith only [hgain, hσ1]) (hvec s' t hst htn)
+    (hint s' t hst htn)
   have hcard := card_crossing_le hd1 X ω n s' t v hB₀ hσ1 hσd htn hv hsite htail
-  have hterms := crossing_terms_le (gamma_pos hd1) hC₀pos hC₁ hσpos hL (Nat.cast_nonneg _)
-    (show _ ≤ C₁ * σ * L from hcard)
   have hlt := hn₁ n (le_trans (le_max_left _ _) hn) σ hscale
-  linarith [hcross, hterms, hlt]
+  exact crossing_contradiction (gamma_pos hd1) hC₀pos hC₁ hσpos hL (Nat.cast_nonneg _)
+    hcard hcross hlt
 
 end CERW.Support.Coarse

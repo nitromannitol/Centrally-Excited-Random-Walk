@@ -17,9 +17,9 @@ except the aggregators: 154 of 168 pass, and the 14 below do not.
 | `CERW/Generic/Newton/Cap.lean` | in flight |
 | `CERW/Generic/Young/Absorb.lean` | done |
 | `CERW/Support/Coarse/OuterBound.lean` | in flight |
-| `CERW/Support/Coarse/OuterRadius.lean` | in flight |
+| `CERW/Support/Coarse/OuterRadius.lean` | done |
 | `CERW/Support/Coarse/Shell.lean` | in flight |
-| `CERW/Support/Coarse/Tail.lean` | queued |
+| `CERW/Support/Coarse/Tail.lean` | in flight |
 | `CERW/Support/Contact/QuadraticError.lean` | queued |
 | `CERW/Support/LocalTime/GradientAsymp.lean` | queued |
 | `CERW/Support/LocalTime/LocalAssembly.lean` | queued |
