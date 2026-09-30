@@ -1,0 +1,10 @@
+% s-norm-sphere -- CERW/Generic/Norm/Sphere.lean. Lambda_Psi, c_Psi of sec:norm-setup.
+\paragraph{Statements.} A norm $\Psi$ on $\R^d$ is continuous; for $d\ge1$,
+$\Psi(x)\le\Lambda_\Psi|x|$ and $c_\Psi|x|\le\Psi(x)$ with $c_\Psi>0$, where $\Lambda_\Psi=\sup\Psi(S)$
+and $c_\Psi=\inf\Psi(S)$ over the Euclidean unit sphere $S$.
+\paragraph{Proof.} Continuity: $|\Psi(x)-\Psi(y)|\le\Psi(x-y)\le\sum_i|x_i-y_i|\Psi(e_i)
+\le(\sum_i\Psi(e_i))|x-y|$ (\texttt{abs\_sub\_le}, \texttt{le\_sum\_coord}; $|z_i|\le|z|$). The sphere is
+compact (\texttt{isCompact\_sphere}) and nonempty for $d\ge1$ (it contains $e_1$), so $\Psi(S)$ is
+bounded and attains its infimum (\texttt{IsCompact.bddAbove\_image},
+\texttt{IsCompact.exists\_isMinOn}); the minimum is positive since $\Psi(u)=0$ forces $u=0\notin S$.
+For $x\ne0$ apply these to $x/|x|$ and homogeneity; $x=0$ is trivial.

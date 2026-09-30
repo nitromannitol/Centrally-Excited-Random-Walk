@@ -1,0 +1,10 @@
+% s-drift-kernel-sums -- CERW/Support/Drift/KernelSums.lean. Moments of eq:kernel for a drift field.
+\paragraph{Statements.} If $\varepsilon\ge0$ and $\varepsilon|w_i|\le1/d$ for all $i$, then $q_w\ge0$;
+$\sum_{e}q_w(e)=1$ over the $2d$ unit steps ($d\ge1$); $\sum_eq_w(e)\,e=-\varepsilon w$.
+\paragraph{Proof.} Mirror \texttt{firstStep\_nonneg}, \texttt{sum\_firstStep} and
+\texttt{sum\_firstStep\_smul} of \texttt{CERW/Support/Law/Moments.lean}. Nonnegativity: each summand
+is an indicator times $1/(2d)\mp(\varepsilon/2)w_i\ge1/(2d)-(\varepsilon/2)|w_i|\ge0$. Sums: rewrite
+with \texttt{sum\_unitSteps}; the value at $e_i$ plus the value at $-e_i$ is $1/d$, summed over $d$
+coordinates; for the mean, $(1/(2d)-\tfrac\varepsilon2w_i)e_i-(1/(2d)+\tfrac\varepsilon2w_i)e_i
+=-\varepsilon w_ie_i$ and $\sum_iw_ie_i=w$ (\texttt{toSpace\_eq\_sum\_unit}, and
+\texttt{EuclideanSpace} basis expansion).

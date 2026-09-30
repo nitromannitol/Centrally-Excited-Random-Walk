@@ -154,6 +154,10 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 28 | prop:coarse assembly from the kernel facts | Sonnet subagent | sonnet | task prompt | 1 + 11 helpers | 222k (agent total) | accepted | 0 | 509 | `CERW/Support/Coarse/Assembly.lean` |
 | 28 | probability of the event (union bound) | Sonnet subagent | sonnet | task prompt | 1 + 7 helpers | 102k (agent total) | accepted | 0 | 201 | `CERW/Support/Main/EventProb.lean` |
 | 23 | quadratic martingale concentration | ds3 | v4.1-flash | 7217 | 1 | ↑693k ↓121k | accepted | 0 | 489 | `CERW/Support/Contact/QuadraticError.lean` |
+| 30 | norm basics | ds1 | v4.1-flash | 4568 | 3 | ↑77k ↓15k | accepted | 0 | 68 | `CERW/Generic/Norm/Basic.lean` |
+| 30 | subgradients of a norm | ds2 | v4.1-flash | 4651 | 3 | ↑55k ↓14k | accepted | 0 | 80 | `CERW/Generic/Norm/Subgradient.lean` |
+| 30 | drift kernel values | ds3 | v4.1-flash | 4639 | 3 | ↑35k ↓3.8k | accepted | 0 | 59 | `CERW/Support/Drift/KernelValues.lean` |
+| 30 | drift kernel moments | ds4 | v4.1-flash | 4986 | 3 | ↑71k ↓21k | accepted | 0 | 131 | `CERW/Support/Drift/KernelSums.lean` |
 
 ## Observations
 

@@ -1,0 +1,12 @@
+% s-norm-gradient -- CERW/Generic/Norm/Gradient.lean. Rademacher for a norm; the gradient is a subgradient.
+\paragraph{Statements.} (i) $|\Psi(x)-\Psi(y)|\le(\sum_i\Psi(e_i))|x-y|$; (ii) $\Psi$ is differentiable
+a.e.; (iii) where $\Psi$ is differentiable, $\nabla\Psi(v)$ is a subgradient at $v$.
+\paragraph{Proof.} (i) \texttt{abs\_sub\_le} and \texttt{le\_sum\_coord}, with $|z_i|\le|z|$.
+(ii) By (i) $\Psi$ is \texttt{LipschitzWith} (constant $\sum_i\Psi(e_i)$ as an \texttt{NNReal}), and
+\texttt{LipschitzWith.ae\_differentiableAt} is Rademacher's theorem in finite dimension.
+(iii) $\Psi$ is convex: $\Psi(tx+(1-t)y)\le t\Psi(x)+(1-t)\Psi(y)$ by subadditivity and homogeneity.
+For fixed $y$, $\phi(t)=\Psi(v+t(y-v))$ is convex on $\R$, differentiable at $0$ with
+$\phi'(0)=\nabla\Psi(v)\cdot(y-v)$ (chain rule; \texttt{gradient} and \texttt{fderiv} are related by
+\texttt{toDual}, \texttt{HasGradientAt}). A convex function lies above its tangent line:
+$\phi(1)\ge\phi(0)+\phi'(0)$ (for $t\in(0,1]$, $\phi(t)\le(1-t)\phi(0)+t\phi(1)$, so
+$(\phi(t)-\phi(0))/t\le\phi(1)-\phi(0)$; let $t\to0^+$).

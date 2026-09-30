@@ -1,0 +1,9 @@
+% s-norm-subgradient -- CERW/Generic/Norm/Subgradient.lean. eq:convexity and |xi_i| <= Psi(e_i) (sec:norm-setup).
+\paragraph{Statements.} Let $\Psi$ be a norm and $\xi$ a subgradient at $x$:
+$\Psi(y)\ge\Psi(x)+\xi\cdot(y-x)$ for all $y$. Then (i) $\xi\cdot x=\Psi(x)$ and $\xi\cdot y\le\Psi(y)$
+for all $y$; (ii) $|\xi_i|\le\Psi(e_i)$; (iii) $0$ is a subgradient at $0$.
+\paragraph{Proof.} (i) Take $y=tx$: $\Psi(tx)=|t|\Psi(x)\ge\Psi(x)+(t-1)\xi\cdot x$. With $t=0$:
+$\xi\cdot x\ge\Psi(x)$; with $t=2$: $\xi\cdot x\le\Psi(x)$. Then
+$\Psi(y)\ge\Psi(x)+\xi\cdot y-\xi\cdot x=\xi\cdot y$. (ii) By (i) at $y=\pm e_i$ and evenness,
+$\pm\xi_i=\xi\cdot(\pm e_i)\le\Psi(e_i)$; $\xi\cdot e_i=\xi_i$ is
+\texttt{EuclideanSpace.inner\_single\_right}. (iii) $\Psi(0)+0\cdot(y-0)=0\le\Psi(y)$.

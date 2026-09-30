@@ -1,0 +1,7 @@
+% s-drift-stepprob -- CERW/Support/Drift/StepProb.lean. The one-step law of the drift walk.
+\paragraph{Statements and proof.} Mirror \texttt{stepProb\_congr} (\texttt{Support/Law/Existence.lean}),
+\texttt{stepProb\_eq\_zero} and \texttt{stepProb\_nonneg} (\texttt{Support/Law/Moments.lean}) for
+\texttt{driftStepProb}: unfold, split on the first-departure condition, and use
+\texttt{driftFirstStep\_eq\_zero}, \texttt{srwStep\_eq\_zero}, \texttt{driftFirstStep\_nonneg},
+\texttt{srwStep\_nonneg}. For congruence, the image of \texttt{range n} under $x$ and $y$ agree
+(\texttt{Finset.image\_congr}).

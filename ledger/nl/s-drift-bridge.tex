@@ -1,0 +1,8 @@
+% s-drift-bridge -- CERW/Support/Drift/Bridge.lean. The Euclidean walk is the drift walk with xi = u.
+\paragraph{Statements and proof.} (i) \texttt{stepProb} equals \texttt{driftStepProb} with
+$\xi(z)=u_z$: both split on the same condition; on the first-departure branch
+$u_{x_n}$ has coordinates $\|x_n\|^{-1}x_{n,i}=x_{n,i}/|x_n|$ (\texttt{unitDir}, \texttt{norm\_toSpace},
+\texttt{toSpace\_apply}, \texttt{PiLp.smul\_apply}), so \texttt{firstStep} and \texttt{driftFirstStep}
+agree term by term. (ii) The two structures have the same fields after rewriting the step
+probabilities by (i). (iii) As \texttt{sum\_stepProb}: split, then \texttt{sum\_driftFirstStep} or
+\texttt{sum\_srwStep}.

@@ -1,0 +1,8 @@
+% s-drift-kernel-values -- CERW/Support/Drift/KernelValues.lean. eq:kernel for a drift field.
+\paragraph{Statements.} $q_w(e_i)=1/(2d)-(\varepsilon/2)w_i$, $q_w(-e_i)=1/(2d)+(\varepsilon/2)w_i$, and
+$q_w(e)=0$ for $e$ not a unit step, where $q_w=$\texttt{driftFirstStep d ε w}.
+\paragraph{Proof.} Exactly as \texttt{firstStep\_unit}, \texttt{firstStep\_neg\_unit} and
+\texttt{firstStep\_eq\_zero} in \texttt{CERW/Support/Law/Moments.lean}, with $w_i$ in place of
+$x_i/|x|$: \texttt{Finset.sum\_eq\_single i}, and \texttt{unit\_injective},
+\texttt{unit\_ne\_neg\_unit'} for the vanishing terms; off the unit steps every indicator is false
+by \texttt{mem\_unitSteps}.

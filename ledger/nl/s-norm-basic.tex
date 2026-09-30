@@ -1,0 +1,9 @@
+% s-norm-basic -- CERW/Generic/Norm/Basic.lean. Generic facts about a norm (sec:norm-setup).
+\paragraph{Statements.} Let $\Psi$ satisfy \texttt{IsNorm}: $\Psi(x+y)\le\Psi(x)+\Psi(y)$,
+$\Psi(tx)=|t|\Psi(x)$, and $\Psi(x)=0\Rightarrow x=0$. Then (i) $\Psi(0)=0$, $\Psi\ge0$ and
+$\Psi(-x)=\Psi(x)$; (ii) $|\Psi(x)-\Psi(y)|\le\Psi(x-y)$; (iii) $\Psi(x)\le\sum_i|x_i|\Psi(e_i)$.
+\paragraph{Proof.} (i) $\Psi(0)=\Psi(0\cdot0)=|0|\Psi(0)=0$; $\Psi(-x)=\Psi((-1)x)=\Psi(x)$;
+$0=\Psi(x+(-x))\le2\Psi(x)$. (ii) $\Psi(x)\le\Psi(x-y)+\Psi(y)$ and symmetrically, with evenness.
+(iii) Write $x=\sum_ix_ie_i$ (\texttt{EuclideanSpace.basisFun} or
+\texttt{EuclideanSpace.single}), apply subadditivity over a \texttt{Finset} sum by induction
+(\texttt{Finset.sum\_induction} or \texttt{Finset.induction}), and homogeneity to each term.

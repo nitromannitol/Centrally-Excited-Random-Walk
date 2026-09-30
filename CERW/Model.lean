@@ -3,3 +3,12 @@ import CERW.Model.Kernel
 import CERW.Model.Law
 import CERW.Model.Occupation
 import CERW.Model.Potential
+import CERW.Model.Norm
+import CERW.Model.DriftKernel
+import CERW.Model.DriftLaw
+import CERW.Model.NormPotential
+import CERW.Model.Laplacian
+import CERW.Model.Moreau
+import CERW.Model.Radii
+import CERW.Model.Martingales
+import CERW.Model.Bracket
