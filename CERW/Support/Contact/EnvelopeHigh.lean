@@ -169,6 +169,131 @@ private lemma sum_Cp_mul (s : Finset (Site d)) (f g : Site d → ℝ) (a c Cp : 
       exact Finset.sum_congr rfl (fun x hx => by ring)]
   rw [sum_mul_add_mul]
 
+/-- Bounds the bracket sum at an interior site from a pointwise envelope. -/
+private lemma bracket_sum_le (S : Finset (Site d)) (k s ℓ : Site d → ℝ) (z : Site d)
+    (c₀ A₁ A₂ Cp Ck Cj Cfin L : ℝ)
+    (hpoint : ∀ y, ℓ y ≤ Cp * (c₀ * s y + A₁ + A₂ ^ 2 * L + c₀ * L))
+    (hk_nonneg : ∀ w, 0 ≤ k w)
+    (hSumS : ∑ x ∈ S, s x * k (x - z) ≤ 2 * Cj * L)
+    (hSumK : ∑ x ∈ S, k (x - z) ≤ Ck)
+    (hE : 0 ≤ A₁ + A₂ ^ 2 * L + c₀ * L)
+    (hc0 : 0 ≤ c₀) (hA₁ : 0 ≤ A₁) (hL0 : 0 ≤ L)
+    (hCjpos : 0 < Cj) (hCp : 0 < Cp)
+    (hcoefle : Cp * (Ck + 2 * Cj) ≤ Cfin) :
+    ∑ x ∈ S, ℓ x * k (x - z) ≤ Cfin * (A₁ + A₂ ^ 2 * L + c₀ * L) := by
+  have hmain : ∑ x ∈ S, ℓ x * k (x - z)
+      ≤ Cp * (c₀ * (∑ x ∈ S, s x * k (x - z)) +
+          (A₁ + A₂ ^ 2 * L + c₀ * L) * (∑ x ∈ S, k (x - z))) := by
+    have h1 : ∑ x ∈ S, ℓ x * k (x - z)
+        ≤ ∑ x ∈ S, Cp * (c₀ * s x + (A₁ + A₂ ^ 2 * L + c₀ * L)) * k (x - z) := by
+      refine Finset.sum_le_sum fun x hx => ?_
+      have hxle := hpoint x
+      have hkx : 0 ≤ k (x - z) := hk_nonneg _
+      calc ℓ x * k (x - z)
+          ≤ (Cp * (c₀ * s x + A₁ + A₂ ^ 2 * L + c₀ * L)) * k (x - z) :=
+            mul_le_mul_of_nonneg_right hxle hkx
+        _ = Cp * (c₀ * s x + (A₁ + A₂ ^ 2 * L + c₀ * L)) * k (x - z) := by ring
+    calc ∑ x ∈ S, ℓ x * k (x - z)
+        ≤ ∑ x ∈ S, Cp * (c₀ * s x + (A₁ + A₂ ^ 2 * L + c₀ * L)) * k (x - z) := h1
+      _ = Cp * (c₀ * (∑ x ∈ S, s x * k (x - z)) +
+            (A₁ + A₂ ^ 2 * L + c₀ * L) * (∑ x ∈ S, k (x - z))) :=
+          sum_Cp_mul _ _ _ c₀ (A₁ + A₂ ^ 2 * L + c₀ * L) Cp
+  have hfinal : ∑ x ∈ S, ℓ x * k (x - z) ≤ Cfin * (A₁ + A₂ ^ 2 * L + c₀ * L) := by
+    have hs1 : c₀ * (∑ x ∈ S, s x * k (x - z)) ≤ c₀ * (2 * Cj * L) :=
+      mul_le_mul_of_nonneg_left hSumS hc0
+    have hs2 : (A₁ + A₂ ^ 2 * L + c₀ * L) * (∑ x ∈ S, k (x - z))
+        ≤ (A₁ + A₂ ^ 2 * L + c₀ * L) * Ck :=
+      mul_le_mul_of_nonneg_left hSumK hE
+    have hstep1 : Cp * (c₀ * (∑ x ∈ S, s x * k (x - z)) +
+          (A₁ + A₂ ^ 2 * L + c₀ * L) * (∑ x ∈ S, k (x - z)))
+        ≤ Cp * (c₀ * (2 * Cj * L) + (A₁ + A₂ ^ 2 * L + c₀ * L) * Ck) :=
+      mul_le_mul_of_nonneg_left (add_le_add hs1 hs2) hCp.le
+    have hstep2 : Cp * (c₀ * (2 * Cj * L) + (A₁ + A₂ ^ 2 * L + c₀ * L) * Ck)
+        = Cp * (Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L)) := by ring
+    have hstep3 : Cp * (Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L))
+        ≤ Cp * (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := by
+      have h2 : 0 ≤ A₂ ^ 2 * L := mul_nonneg (sq_nonneg A₂) hL0
+      have hinner : Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L)
+          ≤ (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := by
+        have h1 : 0 ≤ 2 * Cj * A₁ := by positivity
+        have h2 : 0 ≤ 2 * Cj * (A₂ ^ 2 * L) := by positivity
+        calc Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L)
+            = (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L)
+              - (2 * Cj * A₁ + 2 * Cj * (A₂ ^ 2 * L)) := by ring
+          _ ≤ (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := by linarith
+      calc Cp * (Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L))
+          ≤ Cp * ((Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L)) :=
+            mul_le_mul_of_nonneg_left hinner hCp.le
+        _ = Cp * (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := by ring
+    calc ∑ x ∈ S, ℓ x * k (x - z)
+        ≤ Cp * (c₀ * (2 * Cj * L) + (A₁ + A₂ ^ 2 * L + c₀ * L) * Ck) :=
+          le_trans hmain hstep1
+      _ = Cp * (Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L)) := hstep2
+      _ ≤ Cp * (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := hstep3
+      _ ≤ Cfin * (A₁ + A₂ ^ 2 * L + c₀ * L) :=
+          mul_le_mul_of_nonneg_right hcoefle hE
+  exact hfinal
+
+/-- The pointwise envelope bound follows from the convolution inequality. -/
+private lemma pointwise_bound (ℓ s : Site d → ℝ)
+    (c₀ A₁ A₂ Cp L J c lam Ck Cj : ℝ)
+    (hconv : ∀ y, ℓ y ≤ 2 * c₀ * s y + 2 * c + 4 * lam * c₀ * J)
+    (hJle : J ≤ 2 * Cj * L)
+    (hcdef : c = A₁ + A₂ ^ 2 * L / (4 * lam))
+    (hlam_eq : lam = 1 / (2 * (Ck + 1)))
+    (hCp_eq : Cp = 2 + (Ck + 1) + 2 * (2 * Cj) / (Ck + 1))
+    (hL0 : 0 ≤ L) (hc0 : 0 ≤ c₀) (hA₁ : 0 ≤ A₁)
+    (hs0 : ∀ y, 0 ≤ s y) (hlam : 0 < lam) (hCkpos : 0 < Ck) (hCjpos : 0 < Cj) :
+    ∀ y, ℓ y ≤ Cp * (c₀ * s y + A₁ + A₂ ^ 2 * L + c₀ * L) := by
+  intro y
+  have hJterm : 4 * lam * c₀ * J ≤ (4 * Cj / (Ck + 1)) * (c₀ * L) := by
+    have hcoef : 4 * lam * (2 * Cj) = 4 * Cj / (Ck + 1) := by
+      rw [hlam_eq]
+      field_simp
+    calc 4 * lam * c₀ * J ≤ 4 * lam * c₀ * (2 * Cj * L) := by
+          have h4 : 0 ≤ 4 * lam * c₀ := by positivity
+          have hmul := mul_le_mul_of_nonneg_left hJle h4
+          nlinarith
+      _ = (4 * Cj / (Ck + 1)) * (c₀ * L) := by
+          rw [← hcoef]
+          ring
+  have hcterm : 2 * c = 2 * A₁ + (Ck + 1) * A₂ ^ 2 * L := by
+    rw [hcdef, hlam_eq]
+    field_simp
+    ring
+  have hmid : ℓ y ≤ 2 * (c₀ * s y) + 2 * A₁ + (Ck + 1) * (A₂ ^ 2 * L) +
+      (4 * Cj / (Ck + 1)) * (c₀ * L) := by
+    nlinarith only [hconv y, hcterm, hJterm]
+  have hCp2 : 2 ≤ Cp := by
+    rw [hCp_eq]
+    have h1 : (0 : ℝ) ≤ Ck + 1 := by linarith only [hCkpos]
+    have h2 : (0 : ℝ) ≤ 2 * (2 * Cj) / (Ck + 1) := by positivity
+    linarith only [h1, h2]
+  have hCpCk : Ck + 1 ≤ Cp := by
+    rw [hCp_eq]
+    have h1 : (0 : ℝ) ≤ Ck + 1 := by linarith only [hCkpos]
+    have h2 : (0 : ℝ) ≤ 2 * (2 * Cj) / (Ck + 1) := by positivity
+    linarith only [h1, h2]
+  have hCpCj : 4 * Cj / (Ck + 1) ≤ Cp := by
+    rw [hCp_eq]
+    have h1 : (0 : ℝ) ≤ Ck + 1 := by linarith only [hCkpos]
+    have : 4 * Cj / (Ck + 1) = 2 * (2 * Cj) / (Ck + 1) := by ring
+    rw [this]
+    linarith only [h1]
+  have h0 : 0 ≤ c₀ * s y := mul_nonneg hc0 (hs0 y)
+  have h2 : 0 ≤ A₂ ^ 2 * L := mul_nonneg (sq_nonneg A₂) hL0
+  have h3 : 0 ≤ c₀ * L := mul_nonneg hc0 hL0
+  have e1 : 2 * (c₀ * s y) ≤ Cp * (c₀ * s y) := mul_le_mul_of_nonneg_right hCp2 h0
+  have e2 : 2 * A₁ ≤ Cp * A₁ := mul_le_mul_of_nonneg_right hCp2 hA₁
+  have e3 : (Ck + 1) * (A₂ ^ 2 * L) ≤ Cp * (A₂ ^ 2 * L) :=
+    mul_le_mul_of_nonneg_right hCpCk h2
+  have e4 : (4 * Cj / (Ck + 1)) * (c₀ * L) ≤ Cp * (c₀ * L) :=
+    mul_le_mul_of_nonneg_right hCpCj h3
+  have hexp : Cp * (c₀ * s y + A₁ + A₂ ^ 2 * L + c₀ * L)
+      = Cp * (c₀ * s y) + Cp * A₁ + Cp * (A₂ ^ 2 * L) + Cp * (c₀ * L) := by ring
+  rw [hexp]
+  linarith only [e1, e2, e3, e4, hmid]
+
 /-- `eq:envelopehigh` and `eq:holebracket` for `d ≥ 3`, from the pointwise envelope at departure
 sites. -/
 theorem exists_envelope_high (hd : 3 ≤ d) :
@@ -234,6 +359,7 @@ theorem exists_envelope_high (hd : 3 ≤ d) :
   have hsdef : ∀ y, s y = max (b - euclidNorm y) 0 := fun y => rfl
   have hJdef : J = ∑ w ∈ S, euclidNorm w * k w := rfl
   have hcdef : c = A₁ + A₂ ^ 2 * L / (4 * lam) := rfl
+  clear_value lam Cp Cfin L S k ℓ s J c
   have hL1 : 1 ≤ L := by
     have hy : (0 : ℝ) < (n : ℝ) + 2 := by
       have hn' : (1 : ℝ) ≤ n := by exact_mod_cast hn
@@ -246,7 +372,7 @@ theorem exists_envelope_high (hd : 3 ≤ d) :
   have hℓb : BddAbove (Set.range ℓ) := by
     refine ⟨(n : ℝ), ?_⟩
     rintro _ ⟨y, rfl⟩
-    exact localTime_cast_le X n y
+    simpa only [hℓdef y] using localTime_cast_le X n y
   have hs0 : ∀ y, 0 ≤ s y := by
     intro y
     rw [hsdef y]
@@ -311,7 +437,7 @@ theorem exists_envelope_high (hd : 3 ≤ d) :
       have hpt' : ℓ y ≤ c₀ * s y + A₁ + A₂ * Real.sqrt (B * L) := by
         have h := hpt y hy
         rw [← hB, ← hLdef, ← hsdef y] at h
-        exact h
+        simpa only [hℓdef y] using h
       have hB0 : 0 ≤ B := by
         rw [hB]
         exact Finset.sum_nonneg fun x hx => mul_nonneg (by positivity)
@@ -338,7 +464,7 @@ theorem exists_envelope_high (hd : 3 ≤ d) :
       have h1 : 0 ≤ c₀ * s y := mul_nonneg hc0 (hs0 y)
       have h3 : 0 ≤ lam * ∑ w ∈ S, k w * ℓ (y - w) := by
         refine mul_nonneg hlam.le ?_
-        exact Finset.sum_nonneg fun w hw => mul_nonneg (hk_nonneg w) (by positivity)
+        exact Finset.sum_nonneg fun w hw => mul_nonneg (hk_nonneg w) (by rw [hℓdef]; positivity)
       linarith
   have hsK : ∀ y, ∑ x ∈ S, k x * s (y - x) ≤ (∑ x ∈ S, k x) * s y + J := by
     intro y
@@ -346,47 +472,9 @@ theorem exists_envelope_high (hd : 3 ≤ d) :
     simpa only [hJdef] using h
   have hconv : ∀ y, ℓ y ≤ 2 * c₀ * s y + 2 * c + 4 * lam * c₀ * J :=
     le_of_le_add_conv S k hk_nonneg hlam.le hc0 hc_nonneg hJnonneg hsmall s ℓ hs0 hsK hℓb hℓ
-  have hpoint : ∀ y, ℓ y ≤ Cp * (c₀ * s y + A₁ + A₂ ^ 2 * L + c₀ * L) := by
-    intro y
-    have hJterm : 4 * lam * c₀ * J ≤ (4 * Cj / (Ck + 1)) * (c₀ * L) := by
-      have hcoef : 4 * lam * (2 * Cj) = 4 * Cj / (Ck + 1) := by
-        rw [hlam_eq]
-        field_simp
-      calc 4 * lam * c₀ * J ≤ 4 * lam * c₀ * (2 * Cj * L) := by
-            have h4 : 0 ≤ 4 * lam * c₀ := by positivity
-            have hmul := mul_le_mul_of_nonneg_left hJle h4
-            nlinarith
-        _ = (4 * Cj / (Ck + 1)) * (c₀ * L) := by
-            rw [← hcoef]
-            ring
-    have hcterm : 2 * c = 2 * A₁ + (Ck + 1) * A₂ ^ 2 * L := by
-      rw [hcdef, hlam_eq]
-      field_simp
-      ring
-    have hmid : ℓ y ≤ 2 * (c₀ * s y) + 2 * A₁ + (Ck + 1) * (A₂ ^ 2 * L) +
-        (4 * Cj / (Ck + 1)) * (c₀ * L) := by
-      nlinarith [hconv y, hcterm, hJterm]
-    have hcoefA : 0 ≤ 2 * (2 * Cj) / (Ck + 1) := by positivity
-    have hCp2 : 2 ≤ Cp := by rw [hCp_eq]; linarith
-    have hCpCk : Ck + 1 ≤ Cp := by rw [hCp_eq]; linarith
-    have hCpCj : 4 * Cj / (Ck + 1) ≤ Cp := by
-      rw [hCp_eq]
-      have : 4 * Cj / (Ck + 1) = 2 * (2 * Cj) / (Ck + 1) := by ring
-      rw [this]
-      linarith
-    have h0 : 0 ≤ c₀ * s y := mul_nonneg hc0 (hs0 y)
-    have h2 : 0 ≤ A₂ ^ 2 * L := mul_nonneg (sq_nonneg A₂) hL0
-    have h3 : 0 ≤ c₀ * L := mul_nonneg hc0 hL0
-    have e1 : 2 * (c₀ * s y) ≤ Cp * (c₀ * s y) := mul_le_mul_of_nonneg_right hCp2 h0
-    have e2 : 2 * A₁ ≤ Cp * A₁ := mul_le_mul_of_nonneg_right hCp2 hA₁
-    have e3 : (Ck + 1) * (A₂ ^ 2 * L) ≤ Cp * (A₂ ^ 2 * L) :=
-      mul_le_mul_of_nonneg_right hCpCk h2
-    have e4 : (4 * Cj / (Ck + 1)) * (c₀ * L) ≤ Cp * (c₀ * L) :=
-      mul_le_mul_of_nonneg_right hCpCj h3
-    have hexp : Cp * (c₀ * s y + A₁ + A₂ ^ 2 * L + c₀ * L)
-        = Cp * (c₀ * s y) + Cp * A₁ + Cp * (A₂ ^ 2 * L) + Cp * (c₀ * L) := by ring
-    rw [hexp]
-    linarith
+  have hpoint : ∀ y, ℓ y ≤ Cp * (c₀ * s y + A₁ + A₂ ^ 2 * L + c₀ * L) :=
+    pointwise_bound ℓ s c₀ A₁ A₂ Cp L J c lam Ck Cj hconv hJle hcdef hlam_eq hCp_eq
+      hL0 hc0 hA₁ hs0 hlam hCkpos hCjpos
   refine ⟨?_, ?_⟩
   · intro y
     have hbracket : 0 ≤ c₀ * s y + A₁ + A₂ ^ 2 * L + c₀ * L := by
@@ -438,7 +526,8 @@ theorem exists_envelope_high (hd : 3 ≤ d) :
         _ = J := hJdef.symm
         _ ≤ 2 * Cj * L := hJle
     have hSumS : ∑ x ∈ departureRange X n, s x * k (x - z) ≤ 2 * Cj * L := by
-      have hle : ∀ x ∈ departureRange X n, s x * k (x - z) ≤ euclidNorm (x - z) * k (x - z) := by
+      have hle : ∀ x ∈ departureRange X n,
+          s x * k (x - z) ≤ euclidNorm (x - z) * k (x - z) := by
         intro x hx
         have hsle : s x ≤ euclidNorm (x - z) := by
           rw [hsdef x]
@@ -457,71 +546,18 @@ theorem exists_envelope_high (hd : 3 ≤ d) :
       have h2 : 0 ≤ A₂ ^ 2 * L := mul_nonneg (sq_nonneg A₂) hL0
       have h3 : 0 ≤ c₀ * L := mul_nonneg hc0 hL0
       linarith
-    have hmain : ∑ x ∈ departureRange X n, ℓ x * k (x - z)
-        ≤ Cp * (c₀ * (∑ x ∈ departureRange X n, s x * k (x - z)) +
-            (A₁ + A₂ ^ 2 * L + c₀ * L) * (∑ x ∈ departureRange X n, k (x - z))) := by
-      have h1 : ∑ x ∈ departureRange X n, ℓ x * k (x - z)
-          ≤ ∑ x ∈ departureRange X n, Cp * (c₀ * s x + (A₁ + A₂ ^ 2 * L + c₀ * L)) *
-              k (x - z) := by
-        refine Finset.sum_le_sum fun x hx => ?_
-        have hxle := hpoint x
-        have hkx : 0 ≤ k (x - z) := hk_nonneg _
-        calc ℓ x * k (x - z)
-            ≤ (Cp * (c₀ * s x + A₁ + A₂ ^ 2 * L + c₀ * L)) * k (x - z) :=
-              mul_le_mul_of_nonneg_right hxle hkx
-          _ = Cp * (c₀ * s x + (A₁ + A₂ ^ 2 * L + c₀ * L)) * k (x - z) := by ring
-      calc ∑ x ∈ departureRange X n, ℓ x * k (x - z)
-          ≤ ∑ x ∈ departureRange X n, Cp * (c₀ * s x + (A₁ + A₂ ^ 2 * L + c₀ * L)) *
-              k (x - z) := h1
-        _ = Cp * (c₀ * (∑ x ∈ departureRange X n, s x * k (x - z)) +
-              (A₁ + A₂ ^ 2 * L + c₀ * L) * (∑ x ∈ departureRange X n, k (x - z))) :=
-            sum_Cp_mul _ _ _ c₀ (A₁ + A₂ ^ 2 * L + c₀ * L) Cp
-    have hfinal : ∑ x ∈ departureRange X n, ℓ x * k (x - z)
-        ≤ Cfin * (A₁ + A₂ ^ 2 * L + c₀ * L) := by
-      have hs1 : c₀ * (∑ x ∈ departureRange X n, s x * k (x - z)) ≤ c₀ * (2 * Cj * L) :=
-        mul_le_mul_of_nonneg_left hSumS hc0
-      have hs2 : (A₁ + A₂ ^ 2 * L + c₀ * L) * (∑ x ∈ departureRange X n, k (x - z))
-          ≤ (A₁ + A₂ ^ 2 * L + c₀ * L) * Ck :=
-        mul_le_mul_of_nonneg_left hSumK hE
-      have hstep1 : Cp * (c₀ * (∑ x ∈ departureRange X n, s x * k (x - z)) +
-            (A₁ + A₂ ^ 2 * L + c₀ * L) * (∑ x ∈ departureRange X n, k (x - z)))
-          ≤ Cp * (c₀ * (2 * Cj * L) + (A₁ + A₂ ^ 2 * L + c₀ * L) * Ck) :=
-        mul_le_mul_of_nonneg_left (add_le_add hs1 hs2) hCppos.le
-      have hstep2 : Cp * (c₀ * (2 * Cj * L) + (A₁ + A₂ ^ 2 * L + c₀ * L) * Ck)
-          = Cp * (Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L)) := by ring
-      have hstep3 : Cp * (Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L))
-          ≤ Cp * (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := by
-        have hnn2 : 0 ≤ Ck + 2 * Cj := by linarith [hCkpos.le, hCjpos.le]
-        have h2 : 0 ≤ A₂ ^ 2 * L := mul_nonneg (sq_nonneg A₂) hL0
-        have hinner : Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L)
-            ≤ (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := by
-          have h1 : 0 ≤ 2 * Cj * A₁ := by positivity
-          have h2 : 0 ≤ 2 * Cj * (A₂ ^ 2 * L) := by positivity
-          calc Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L)
-              = (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L)
-                - (2 * Cj * A₁ + 2 * Cj * (A₂ ^ 2 * L)) := by ring
-            _ ≤ (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := by linarith
-        calc Cp * (Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L))
-            ≤ Cp * ((Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L)) :=
-              mul_le_mul_of_nonneg_left hinner hCppos.le
-          _ = Cp * (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := by ring
-      have hcoefle : Cp * (Ck + 2 * Cj) ≤ Cfin := by
-        rw [hCfin_eq]
-        have hone : Ck + 2 * Cj ≤ Ck + 2 * Cj + 1 := by linarith
-        exact mul_le_mul_of_nonneg_left hone hCppos.le
-      calc ∑ x ∈ departureRange X n, ℓ x * k (x - z)
-          ≤ Cp * (c₀ * (2 * Cj * L) + (A₁ + A₂ ^ 2 * L + c₀ * L) * Ck) :=
-            le_trans hmain hstep1
-        _ = Cp * (Ck * A₁ + Ck * (A₂ ^ 2 * L) + (Ck + 2 * Cj) * (c₀ * L)) := hstep2
-        _ ≤ Cp * (Ck + 2 * Cj) * (A₁ + A₂ ^ 2 * L + c₀ * L) := hstep3
-        _ ≤ Cfin * (A₁ + A₂ ^ 2 * L + c₀ * L) :=
-            mul_le_mul_of_nonneg_right hcoefle hE
+    have hcoefle : Cp * (Ck + 2 * Cj) ≤ Cfin := by
+      rw [hCfin_eq]
+      have hone : Ck + 2 * Cj ≤ Ck + 2 * Cj + 1 := by linarith
+      exact mul_le_mul_of_nonneg_left hone hCppos.le
+    have hcore := bracket_sum_le (departureRange X n) k s ℓ z c₀ A₁ A₂ Cp Ck Cj Cfin L
+      hpoint hk_nonneg hSumS hSumK hE hc0 hA₁ hL0 hCjpos hCppos hcoefle
     calc ∑ x ∈ departureRange X n,
             (localTime X n x : ℝ) * (1 + euclidNorm (x - z)) ^ (2 - 2 * (d : ℝ))
         = ∑ x ∈ departureRange X n, ℓ x * k (x - z) := by
             refine Finset.sum_congr rfl fun x hx => ?_
             rw [hℓdef, hkdef]
-      _ ≤ Cfin * (A₁ + A₂ ^ 2 * L + c₀ * L) := hfinal
+      _ ≤ Cfin * (A₁ + A₂ ^ 2 * L + c₀ * L) := hcore
       _ = Cfin * (A₁ + A₂ ^ 2 * Real.log (n + 2) + c₀ * Real.log (n + 2)) := by
             rw [hLdef]
 
