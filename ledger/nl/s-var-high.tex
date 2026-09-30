@@ -1,9 +1,10 @@
-% s-var-high: eq:resolvent, eq:envelopehigh, eq:holebracket (deterministic, d >= 3).
-\paragraph{Statement.} For $d\geq3$ there is $C$: if $|X_j|\leq n$ for $j<n$ and at every departure site $\ell_n(y)\leq c_0s_b(y)+A_1+A_2\sqrt{B_yL}$, with
-$B_y=\sum_x\ell_n(x)k(x-y)$ and $k(w)=(1+|w|)^{2-2d}$, then $\ell_n\leq C(c_0s_b+A_1+A_2^2L+c_0L)$ everywhere, and $B_z\leq C(A_1+A_2^2L+c_0L)$ for $b\leq|z|\leq n$.
-\paragraph{Proof.} Let $S$ be the lattice ball of radius $2n$. For a departure site $y$, $B_y=\sum_{w\in S}k(w)\ell_n(y-w)$ ($k$ is even). Choose $\lambda=1/(2k_0)$ with
-$k_0\geq\sum_Sk$ uniformly (s-weight-sums, summable). Young gives $A_2\sqrt{B_yL}\leq\lambda B_y+A_2^2L/(4\lambda)$. So
-$\ell_n\leq c_0s_b+(A_1+A_2^2L/(4\lambda))+\lambda\sum_Sk(w)\ell_n(\cdot-w)$ everywhere (trivially off $A_n$). Since $s_b$ is $1$-Lipschitz,
-$\sum_Sk(w)s_b(y-w)\leq k_0s_b(y)+J$ (\texttt{sum\_mul\_le\_of\_lipschitz}), with $J=\sum_S|w|k(w)\leq CL$ (d=3) or $C$ ($d\geq4$). Then
-\texttt{le\_of\_le\_add\_conv} gives the envelope. For $b\leq|z|\leq n$: $s_b(x)\leq(|z|-|x|)_+\leq|x-z|$, and summing the envelope against $k(\cdot-z)$ over $A_n$
-gives $B_z\leq C(J+k_0(A_1+A_2^2L+c_0L))$.
+% s-var-high: eq:masshigh and the envelope with rate W (deterministic, d >= 3).
+\paragraph{Statement.} For $d\geq3$, $\varepsilon>0$, $K\geq2$, $C_0,C_1\geq0$ there is $C>0$ such that: if $n\geq1$, $|X_j|\leq n$ for $j<n$, $L=\log(n+2)\leq N$, $b>0$,
+$B(0,b)\subseteq D_n\subseteq B(0,(K-1)N)$, $|y_0|=b$, $\ell_n(z)=0$, $b\leq|z|\leq n$, $|U(y_0)-U(z)|\leq\Delta\leq C_0L$, and for all sites $|y|\leq n$:
+$|\ell_n(y)-U(y)+M(y)|\leq C_1L$ and $|M(y)|\leq C_1(\sqrt{B_yL}+L)$ with $B_y=\sum_{x\in A_n}\ell_n(x)(1+|x-y|)^{2-2d}$, then
+$m\leq CN^dQ$ and $\ell_n(y)\leq C(b-|y|)_++CNQ^{1/d}$ for all sites, where $Q=(L/N)^{d/(2d-1)}$.
+\paragraph{Proof.} (fl:912--969.) (1) \texttt{localTime\_le\_envelope} with $\rho=\ell_n-U+M$ at each $y\in A_n$: $\ell_n(y)\leq c_0s_b(y)+A_1+C_1\sqrt{B_yL}$,
+$c_0=2d\varepsilon$, $A_1=c_0\omega_d^{-1/d}m^{1/d}+2C_1L$. (2) \texttt{exists\_envelope\_high} ($A_2=C_1$): $\ell_n\leq C(c_0s_b+A_1+C_1^2L+c_0L)$ everywhere and
+$B_z\leq C(A_1+C_1^2L+c_0L)\leq C(m^{1/d}+L)$. (3) \texttt{volume\_sdiff\_le\_contact} at $z$ with $S=(K-1)N$: $m\leq CN^{d-1}(C_1L+C_1\sqrt{B_zL}+C_1L+C_0L)
+\leq CN^{d-1}(m^{1/(2d)}\sqrt L+L)$. \texttt{le\_of\_le\_mul\_rpow\_mul\_sqrt\_add}: $m\leq C(N^{2d(d-1)/(2d-1)}L^{d/(2d-1)}+N^{d-1}L)$; the first term is $N^dQ$ and
+$N^{d-1}L\leq N^dQ$ iff $L\leq N$. (4) $m^{1/d}\leq CNQ^{1/d}$ and $L\leq NQ^{1/d}=N(L/N)^{1/(2d-1)}$ since $L\leq N$.

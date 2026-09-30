@@ -1,0 +1,11 @@
+% s-var-planar: eq:massplanar and eq:envelopeplanar (deterministic, d = 2).
+\paragraph{Statement.} For $\varepsilon>0$, $K\geq2$, $C_0,C_1\geq0$ there is $C>0$ such that: if $L\geq1$, $L^6\leq N$, $b>0$, $B(0,b)\subseteq D_n\subseteq B(0,(K-1)N)$,
+$|\widetilde\ell_n-U|\leq\delta_0\leq C_0\sqrt NL$ on $B(0,KN)$, $|y_0|=b$, $\ell_n(z)=0$, $b\leq|z|<KN$, $|U(y_0)-U(z)|\leq\Delta\leq C_0\sqrt N$, and
+$0=U(z)+\rho-M$ with $|\rho|+|M|\leq C_1(\sqrt{B_zL}+L)$, where $B_z=\sum_{x\in A_n}\ell_n(x)(1+|x-z|)^{-2}$, then
+$m=|D_n\setminus B(0,b)|\leq CN^2(L/N)^{1/2}$ and $\ell_n(y)\leq4\varepsilon(b-|y|)_++CN((L/N)^{1/2})^{1/2}$ for every site $y$.
+\paragraph{Proof.} (fl:971--1006.) $S=(K-1)N$; $N\geq1$ since $L\geq1$. Lattice sites satisfy $\widetilde\ell_n(x)=\ell_n(x)$ (\texttt{cellLocalTime\_of\_mem\_cell}, \texttt{toSpace\_mem\_cell}).
+(1) \texttt{volume\_sdiff\_le\_contact} with $\rho'=-U(z)$, $M'=0$, $|\rho'|\leq\delta_0$: $m\leq CN(\delta_0+\Delta)\leq CN^{3/2}L$.
+(2) \texttt{localTime\_le\_envelope} with $\rho_x=\ell_n(x)-U(x)$, $M_x=0$ at every $x\in A_n$ ($|x|<(K-1)N$): $\ell_n(x)\leq4\varepsilon(b-|x|)_++A$, $A=4\varepsilon\pi^{-1/2}m^{1/2}+\delta_0\leq C(N^{3/4}L^{1/2}+\sqrt NL)$.
+(3) \texttt{exists\_planar\_bracket\_le} with $R=2KN$: $B_z\leq C(N+A\log(2KN+2))\leq CN$, using $\log(2KN+2)\leq C_KN^{1/8}$ and $L^6\leq N$.
+(4) \texttt{volume\_sdiff\_le\_contact} with the sharp $\rho,M$: $m\leq CN(\sqrt{NL}+L+\sqrt N)\leq CN^{3/2}\sqrt L=CN^2(L/N)^{1/2}$.
+(5) As in (2), with $m^{1/2}\leq CN^{3/4}L^{1/4}$ and $\sqrt NL\leq N^{3/4}L^{1/4}$ (as $L^3\leq N$), at departure sites; elsewhere $\ell_n=0$.
