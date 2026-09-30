@@ -144,7 +144,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 34 | heartbeat margin: `MassHigh` | ds3 | v4.1-flash | 5244 | — | ↑200k ↓69k | accepted | 0 | 568 | `CERW/Support/Contact/MassHigh.lean` |
 | 35 | heartbeat margin: `OuterBound` | ds3 | v4.1-flash | 5205 | — | ↑121k ↓48k | accepted | 0 | 459 | `CERW/Support/Coarse/OuterBound.lean` |
 | 37 | heartbeat margin: `GradientAsymp` | ds3 | v4.1-flash | 5280 | — | ↑129k ↓42k | accepted | 0 | 702 | `CERW/Support/LocalTime/GradientAsymp.lean` |
-| 38 | heartbeat margin: `MassEventPlanar` | ds3 | v4.1-flash | — | — | — | in flight | — | — | `wip/MassEventPlanar.lean` |
+| 38 | heartbeat margin: `MassEventPlanar` | ds3 | v4.1-flash | 5245 | — | ↑110k ↓41k | accepted | 0 | 354 | `CERW/Support/Main/MassEventPlanar.lean` |
 | 34 | heartbeat margin: `InradiusArith` | ds4 | v4.1-flash | 5348 | — | ↑22k ↓4.1k | accepted | 0 | 184 | `CERW/Support/Contact/InradiusArith.lean` |
 | 35 | heartbeat margin: `Cap` | ds4 | v4.1-flash | 5076 | — | ↑104k ↓37k | accepted | 0 | 265 | `CERW/Generic/Newton/Cap.lean` |
 | 29 | inner clauses of the event | ds4 | v4.1-flash | 6013 | 1 | ↑195k ↓62k | accepted | 0 | 225 | `CERW/Support/Main/InnerClauses.lean` |
@@ -157,7 +157,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 
 ## Observations
 
-* **Waves 1–26.** Every returned DeepSeek packet was accepted: 119/119, two after a statement repair. One packet (wave 32) was withdrawn and
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 120/120, two after a statement repair. One packet (wave 32) was withdrawn and
   finished by the director. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 23/23.
 * **Large contexts defeat `nlinarith`.** In wave 32 the worker's single-theorem proof of the inner clauses timed out at the

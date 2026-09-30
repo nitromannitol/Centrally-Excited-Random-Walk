@@ -157,12 +157,14 @@ theorem exists_mass_of_event_planar (hd : d = 2) {ε : ℝ} (hε : 0 < ε) {b : 
     have hn1R : (1 : ℝ) ≤ n := by exact_mod_cast hn1
     have hLpos : 0 < L := by
       rw [hL]
-      exact Real.log_pos (by linarith)
+      exact Real.log_pos (by linarith only [hn1R])
     have hL1 : 1 ≤ L := by
       rw [hL]
       have h1log3 : (1 : ℝ) < Real.log 3 :=
         (Real.lt_log_iff_exp_lt (by norm_num : (0 : ℝ) < 3)).mpr Real.exp_one_lt_three
-      exact le_of_lt (lt_of_lt_of_le h1log3 (Real.log_le_log (by norm_num) (by linarith)))
+      have hlog3 : Real.log 3 ≤ Real.log (n + 2) :=
+        Real.log_le_log (by norm_num) (by linarith only [hn1R])
+      exact le_of_lt (lt_of_lt_of_le h1log3 hlog3)
     have hN1 : 1 ≤ N := by
       rw [hN3]
       exact le_trans (by norm_num : (1 : ℝ) ≤ Real.sqrt 2) hsqrt2
@@ -173,16 +175,16 @@ theorem exists_mass_of_event_planar (hd : d = 2) {ε : ℝ} (hε : 0 < ε) {b : 
     have hlog' : Cc * ε * Real.log ((C₀ + 1) * N + 2) ≤ Real.sqrt N := by
       rw [hN3]; exact hlog
     have hR1 : 1 ≤ (C₀ + 1) * N := by
-      have hC1 : (1 : ℝ) ≤ C₀ + 1 := by linarith
+      have hC1 : (1 : ℝ) ≤ C₀ + 1 := by linarith only [hC₀]
       calc (1 : ℝ) = 1 * 1 := by ring
-        _ ≤ (C₀ + 1) * N := mul_le_mul hC1 hN1 zero_le_one (by linarith)
+        _ ≤ (C₀ + 1) * N := mul_le_mul hC1 hN1 zero_le_one (by linarith only [hC₀])
     have hDsub_R : cellSet (fun j => X j ω) n ⊆ Metric.ball 0 ((C₀ + 1) * N) := by
       refine (CERW.Support.Occupation.cellSet_subset_ball (by norm_num : 1 ≤ 2)
         (fun j => X j ω) n).trans ?_
       apply Metric.ball_subset_ball
       have hH' : maxRadius (fun j => X j ω) n ≤ C₀ * N := by rw [hN]; exact hH
       rw [hs2]
-      nlinarith [hH', hsqrt2']
+      nlinarith only [hH', hsqrt2']
     obtain ⟨hbinrpos, hball, y₀, hy₀, z, hz0, hbz, hzupper, hmod0⟩ :=
       hcontact ε hε.le (fun j => X j ω) n ((C₀ + 1) * N) hn1 h0 hR1 hDsub_R
     have hbinr_le_R : binr ≤ (C₀ + 1) * N := by
@@ -199,35 +201,35 @@ theorem exists_mass_of_event_planar (hd : d = 2) {ε : ℝ} (hε : 0 < ε) {b : 
       · intro hycell
         have hmem := hDsub_R hycell
         rw [Metric.mem_ball, dist_zero_right, hy₁norm] at hmem
-        linarith
+        linarith only [hmem]
     have hz_le_K : euclidNorm z ≤ (C₀ + 3) * N := by
       have hzupper' := hzupper
       rw [hs2] at hzupper'
       have h1 : euclidNorm z ≤ (C₀ + 1) * N + Real.sqrt 2 / 2 :=
-        by linarith [hzupper', hbinr_le_R]
+        by linarith only [hzupper', hbinr_le_R]
       have h2 : Real.sqrt 2 / 2 ≤ N := by
         have hle : Real.sqrt 2 / 2 ≤ Real.sqrt 2 := by
           rw [div_le_iff₀ (by norm_num : (0 : ℝ) < 2)]
-          linarith [Real.sqrt_nonneg (2 : ℝ)]
-        linarith [hle, hsqrt2']
+          linarith only [Real.sqrt_nonneg (2 : ℝ)]
+        linarith only [hle, hsqrt2']
       have h3 : (C₀ + 1) * N + N = (C₀ + 2) * N := by ring
       have h4 : (C₀ + 2) * N ≤ (C₀ + 3) * N := by
-        have : (C₀ + 2 : ℝ) ≤ C₀ + 3 := by linarith
+        have : (C₀ + 2 : ℝ) ≤ C₀ + 3 := by linarith only
         exact mul_le_mul_of_nonneg_right this hNnonneg
-      linarith [h1, h2, h3, h4]
-    have hz3 : euclidNorm z ≤ 3 * (n : ℝ) := by linarith [hz_le_K, hCN']
+      linarith only [h1, h2, h3, h4]
+    have hz3 : euclidNorm z ≤ 3 * (n : ℝ) := by linarith only [hz_le_K, hCN']
     have hzn : euclidNorm z < (C₀ + 3) * N := by
       have hzupper' := hzupper
       rw [hs2] at hzupper'
       have h1 : euclidNorm z ≤ (C₀ + 1) * N + Real.sqrt 2 / 2 :=
-        by linarith [hzupper', hbinr_le_R]
+        by linarith only [hzupper', hbinr_le_R]
       have h2 : Real.sqrt 2 / 2 < 2 * N := by
         have hle : Real.sqrt 2 / 2 ≤ Real.sqrt 2 := by
           rw [div_le_iff₀ (by norm_num : (0 : ℝ) < 2)]
-          linarith [Real.sqrt_nonneg (2 : ℝ)]
-        linarith [hle, hsqrt2', hNpos]
+          linarith only [Real.sqrt_nonneg (2 : ℝ)]
+        linarith only [hle, hsqrt2', hNpos]
       have h3 : (C₀ + 1) * N + 2 * N = (C₀ + 3) * N := by ring
-      linarith [h1, h2, h3]
+      linarith only [h1, h2, h3]
     set δ₀ : ℝ := C₁ * (Real.sqrt (maxLocalTime (fun j => X j ω) n) * L + L) with hδ₀
     have hδ : δ₀ ≤ max (C₁ * (Real.sqrt C₀ + 1)) 1 * Real.sqrt N * L := by
       rw [hδ₀]
@@ -250,8 +252,8 @@ theorem exists_mass_of_event_planar (hd : d = 2) {ε : ℝ} (hε : 0 < ε) {b : 
       intro y hy
       rw [hδ₀]
       have hy2n : ‖y‖ ≤ 2 * (n : ℝ) := by
-        have : ‖y‖ < 2 * (n : ℝ) := lt_of_lt_of_le hy (by linarith [hCN'])
-        linarith
+        have : ‖y‖ < 2 * (n : ℝ) := lt_of_lt_of_le hy (by linarith only [hCN'])
+        linarith only [this]
       exact hglob y hy2n
     set Mz : ℝ := dynkin ε (fun w => b (w - z)) X n ω with hMz
     set ρ : ℝ := (localTime (fun j => X j ω) n z : ℝ)
@@ -287,7 +289,7 @@ theorem exists_mass_of_event_planar (hd : d = 2) {ε : ℝ} (hε : 0 < ε) {b : 
         _ = C₁ * (Real.sqrt (Bz * L) + 2 * L) := by ring
         _ ≤ C₁ * (2 * (Real.sqrt (Bz * L) + L)) := by
               apply mul_le_mul_of_nonneg_left _ hC₁.le
-              linarith
+              linarith only [hsqrtnn]
         _ = (2 * C₁) * (Real.sqrt (Bz * L) + L) := by ring
     set Δ : ℝ := |potential 2 ε (cellSet (fun j => X j ω) n) y₀
         - potential 2 ε (cellSet (fun j => X j ω) n) (toSpace z)| with hΔdef
@@ -308,7 +310,7 @@ theorem exists_mass_of_event_planar (hd : d = 2) {ε : ℝ} (hε : 0 < ε) {b : 
             mul_le_mul_of_nonneg_right hcoef1 (Real.sqrt_nonneg N)
     have hDsub_K : cellSet (fun j => X j ω) n ⊆ Metric.ball 0 ((C₀ + 3 - 1) * N) := by
       refine hDsub_R.trans (Metric.ball_subset_ball ?_)
-      exact mul_le_mul_of_nonneg_right (by linarith : C₀ + 1 ≤ C₀ + 3 - 1) hNpos.le
+      exact mul_le_mul_of_nonneg_right (by linarith only : C₀ + 1 ≤ C₀ + 3 - 1) hNpos.le
     obtain ⟨hmass1, hmass2⟩ := hmassplanar (fun j => X j ω) n binr N L δ₀ Δ ρ Mz z y₀
       hL1 hL6' hbinrpos hball hDsub_K hδ happrox hy₀ hz0 hbz hzn hmod hΔ hptz hρM
     constructor
@@ -344,7 +346,7 @@ theorem exists_mass_of_event_planar (hd : d = 2) {ε : ℝ} (hε : 0 < ε) {b : 
             rw [hXq]
             exact h
         _ ≤ max (4 * ε) Cm * max (binr - euclidNorm y) 0 + max (4 * ε) Cm * N * Xq :=
-            by linarith [h1, h2]
+            by linarith only [h1, h2]
         _ = max (4 * ε) Cm * max (binr - euclidNorm y) 0
               + max (4 * ε) Cm * N * ((L / N) ^ ((1 : ℝ) / 2)) ^ ((1 : ℝ) / 2) := by
             rw [hXq]
