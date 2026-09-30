@@ -1,0 +1,6 @@
+% s-fluct-assembly: thm:fluctuations and thm:shape from the kernel facts and the deterministic core.
+\paragraph{Statement.} The draft conclusions of thm:fluctuations and thm:shape, for a kernel with the kernel facts, given the core
+(the statement of \texttt{exists\_good\_of\_event}) as a hypothesis.
+\paragraph{Proof.} Probability part at $p$: \texttt{exists\_event\_prob} gives $r_0$, then $C_0,C_1$; the core with $b_d=\lceil\sqrt d/2\rceil+6\geq1$ gives $C,n_0$.
+Take $C^*=\max(C,C_1)$ and $n^*=\max(n_0,2)$: for $n\geq n^*$, $\{\neg\mathrm{Good}(C^*)\}\subseteq\{\neg\mathrm{Good}(C)\}\subseteq\{\neg\mathrm{fluctEvent}\}$ (\texttt{fluctGood\_mono}),
+of measure $\leq C_1n^{-p}\leq C^*n^{-p}$. Almost-sure part: $p=2$ and \texttt{ae\_eventually\_of\_le\_rpow}. thm:shape: the almost-sure part and \texttt{ball\_shape\_of\_ae\_good}.

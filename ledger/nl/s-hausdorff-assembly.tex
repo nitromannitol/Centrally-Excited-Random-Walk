@@ -1,0 +1,5 @@
+% s-hausdorff-assembly: eq:hausdorff (two-sided) from the kernel facts and the deterministic core.
+\paragraph{Statement.} The draft conclusion of \texttt{hausdorff\_bound\_two\_sided}, for a kernel with the kernel facts, given the core as a hypothesis.
+\paragraph{Proof.} At $p$: \texttt{exists\_event\_prob} gives $r_0,C_0,C_1$; the core gives $C,n_0$; \texttt{hausdorff\_of\_good} with $C$ gives $C',n_1$.
+$C^*=\max(C,C',C_1)$, $n^*=\max(n_0,n_1,2)$. On $\mathrm{fluctEvent}$ at $n\geq n^*$: the Hausdorff bound with $C'\leq C^*$; for $d=2$ the inner inclusion with $C'\leq C^*$
+(the set shrinks), and the hole $|x|<aN+CNQ=aN+Cn^{1/6}\sqrt L$ by \texttt{planar\_inner\_rate}. The bad set lies in $\{\neg\mathrm{fluctEvent}\}$.

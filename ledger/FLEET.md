@@ -127,9 +127,12 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 29 | outer bound from the envelope | ds3 | v4.1-flash | 6123 | 1 | ↑169k ↓68k | accepted | 1: the director sent a follow-up after dispatch replacing a deprecated Mathlib name in the brief | 193 | `CERW/Support/Coarse/OuterEnvelope.lean` |
 | 30 | mass step on the event (d ≥ 3) | ds2 | v4.1-flash | 6214 | 1 | ↑239k ↓67k | accepted | 0 | 224 | `CERW/Support/Main/MassEventHigh.lean` |
 | 30 | outer inclusion from the radius bound | ds4 | v4.1-flash | 4941 | 1 | — | in flight | — | — | `wip/OuterInclusion.lean` |
+| 30 | thm:fluctuations and thm:shape from the core | ds3 | v4.1-flash | 5765 | 2 | — | in flight | — | — | `wip/FluctAssembly.lean` |
+| 31 | eq:hausdorff (two-sided) from the core | ds2 | v4.1-flash | 5405 | 1 | — | in flight | — | — | `wip/HausdorffAssembly.lean` |
+| 31 | mass step on the event (d = 2) | ds1 | v4.1-flash | 6029 | 1 | — | in flight | — | — | `wip/MassEventPlanar.lean` |
 | 29 | inner clauses of the event | ds4 | v4.1-flash | 6013 | 1 | ↑195k ↓62k | accepted | 0 | 225 | `CERW/Support/Main/InnerClauses.lean` |
 | 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | ↑395k ↓211k | accepted | 0 | 503 | `CERW/Support/Main/HausdorffGood.lean` |
-| 27 | planar contact variance (eq:massplanar, eq:envelopeplanar) | ds1 | v4.1-flash | 6297 | 1 | — | in flight | — | — | `wip/MassPlanar.lean` |
+| 27 | planar contact variance (eq:massplanar, eq:envelopeplanar) | ds1 | v4.1-flash | 6297 | 1 | ↑325k ↓171k | accepted | 0 | 606 | `CERW/Support/Contact/MassPlanar.lean` |
 | 27 | high-dimensional contact variance (eq:masshigh) | ds3 | v4.1-flash | 6359 | 1 | ↑186k ↓125k | accepted | 1: the director sent a follow-up after dispatch because the brief suggested a Mathlib name that does not exist | 462 | `CERW/Support/Contact/MassHigh.lean` |
 | 28 | prop:coarse assembly from the kernel facts | Sonnet subagent | sonnet | task prompt | 1 + 11 helpers | 222k (agent total) | accepted | 0 | 509 | `CERW/Support/Coarse/Assembly.lean` |
 | 28 | probability of the event (union bound) | Sonnet subagent | sonnet | task prompt | 1 + 7 helpers | 102k (agent total) | accepted | 0 | 201 | `CERW/Support/Main/EventProb.lean` |
@@ -137,7 +140,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 
 ## Observations
 
-* **Waves 1–26.** Every returned DeepSeek packet was accepted: 99/99, two after a statement repair. There were three repairs: a definition
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 100/100, two after a statement repair. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 23/23.
 * **Brief names are machine-checked.** In waves 27 and 29 a brief named a Mathlib lemma that does not
   exist or is deprecated, and a correction had to follow the dispatch. `brief_helper.py` now greps every

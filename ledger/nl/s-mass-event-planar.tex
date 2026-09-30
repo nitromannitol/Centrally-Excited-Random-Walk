@@ -1,0 +1,7 @@
+% s-mass-event-planar: the mass step on the event for d = 2.
+\paragraph{Statement.} For $d=2$, $\varepsilon,C_0,C_1>0$ there are $C>0$, $n_0$ such that for $n\geq n_0$, on $\mathrm{fluctEvent}$, with $b$ the inradius of $D_n$:
+$|D_n\setminus B(0,b)|\leq CN^2Q$ and $\ell_n\leq C(b-|\cdot|)_++CNQ^{1/2}$, $Q=(L/N)^{1/2}$.
+\paragraph{Proof.} (fl:971--1006.) As for $d\geq3$: $D_n\subseteq B(0,(C_0+1)N)$; \texttt{exists\_contact\_setup} gives $b,y_0,z$, $\Delta\leq C\varepsilon\log(R+2)\leq C\sqrt N$.
+The global clause and \texttt{error\_scale\_le} give $\delta_0=C_1(\sqrt{C_0}+1)\sqrt NL$ on $B(0,KN)$, $K=C_0+3$, once $KN\leq2n$. At $z$: $\rho=\ell_n-U+M$, $M$ the Dynkin
+martingale, $|\rho|+|M|\leq2C_1(\sqrt{B_zL}+L)$ with \texttt{sum\_range\_eq\_sum\_localTime} and $2-2\cdot2=-2$. \texttt{exists\_mass\_planar} applies once $L^6\leq N$ and $|z|<KN$;
+its envelope constant $4\varepsilon$ is absorbed into $C$.
