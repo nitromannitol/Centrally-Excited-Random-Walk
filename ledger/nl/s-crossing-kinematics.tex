@@ -1,0 +1,7 @@
+% s-crossing-kinematics: duration and projected drift on a crossing interval. Sub-step of s-crossing (before eq:crossing-before-young).
+\paragraph{Statement.} (i) $\sum_{x\in X([s,t))}\ell_{s,t}(x)=t-s$. (ii)
+$t-s\le|X([s,t))|\cdot M_{s,t}$. (iii) If $v\cdot x>b>0$ and $|x|<r$ then $v\cdot u_x>b/r$.
+\paragraph{Proof.} (i) Partition the times of $[s,t)$ by the site visited
+(\texttt{Finset.card\_eq\_sum\_card\_image}). (ii) Each summand of (i) is at most $M_{s,t}$
+(\texttt{intervalLocalTime\_le\_intervalMax}). (iii) $x\ne0$ since $v\cdot x>0$; then
+$v\cdot u_x=(v\cdot x)/|x|>b/|x|>b/r$.

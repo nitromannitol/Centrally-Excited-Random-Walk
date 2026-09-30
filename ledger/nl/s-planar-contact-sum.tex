@@ -1,0 +1,8 @@
+% s-planar-contact-sum: the bound B_z <= CN of the planar contact variance (s-var-planar, fluctuations.tex:140-152).
+\paragraph{Statement.} (i) If $b\le|z|$ then $(b-|x|)_+\le|x-z|$. (ii) In the plane,
+$\sum_{|w|\le R}|w|(1+|w|)^{-2}\le C(R+1)$. (iii) If $b\le|z|$ and $R\ge0$,
+$\sum_{|w|\le R}(b-|z+w|)_+(1+|w|)^{-2}\le C(R+1)$.
+\paragraph{Proof.} (i) $b-|x|\le|z|-|x|\le|z-x|=|x-z|$ (\texttt{euclidNorm\_add\_le},
+\texttt{euclidNorm\_neg}), and $0\le|x-z|$. (ii) $|w|(1+|w|)^{-2}\le(1+|w|)^{-1}=(1+|w|)^{1-d}$ at
+$d=2$; apply \texttt{Generic.Lattice.sum\_ballFinset\_rpow\_one\_sub\_le}. (iii) By (i) with
+$x=z+w$, the weight is at most $|w|$; apply (ii).

@@ -1,0 +1,8 @@
+% s-contact-kernel: positivity of the kernel beyond the contact radius. Sub-step of s-contact-bound (eq:contactbound, lower bound).
+\paragraph{Statement.} (i) If $|y|\le|v|$ then $|v-y|^2\le2(|v|^2-v\cdot y)$. (ii) If $d\ge2$,
+$|y|\le|v|$ and $v\ne y$, then $2^{1-d}|v|^{1-d}\le u_v\cdot(v-y)\,|v-y|^{-d}$.
+\paragraph{Proof.} (i) $|v-y|^2=|v|^2-2v\cdot y+|y|^2\le2|v|^2-2v\cdot y$. (ii) $v\ne0$, since
+otherwise $|y|\le0$ forces $y=0=v$. With $s=|v|>0$: $u_v\cdot(v-y)=(s^2-v\cdot y)/s\ge|v-y|^2/(2s)$
+by (i). Dividing by $|v-y|^d>0$ gives at least $|v-y|^{2-d}/(2s)$. Since $0<|v-y|\le|v|+|y|\le2s$
+and $2-d\le0$, $|v-y|^{2-d}\ge(2s)^{2-d}$ (\texttt{Real.rpow\_le\_rpow\_of\_nonpos}). So the kernel
+is at least $(2s)^{2-d}/(2s)=2^{1-d}s^{1-d}$.

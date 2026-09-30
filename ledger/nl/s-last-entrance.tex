@@ -1,0 +1,8 @@
+% s-last-entrance: the last entrance into a half-space. Sub-step of s-HvsR (eq:coarse-entrance) and s-outer.
+\paragraph{Statement.} (i) If $f(0)\le b$, $f(j+1)\le f(j)+1$ for all $j$, and $\tau>0$, there is
+$s$ with $0<s\le\tau$, $f(s)\le b+1$, and $f(j)>b$ for $s\le j<\tau$. (ii) If $|v|=1$ and $e$ is a
+unit step, $v\cdot e\le1$.
+\paragraph{Proof.} (i) The set $\{j<\tau: f(j)\le b\}$ contains $0$; let $j_0$ be its maximum
+(\texttt{Nat.findGreatest}) and $s=j_0+1$. Then $s\le\tau$, $f(s)\le f(j_0)+1\le b+1$, and every
+$j$ with $s\le j<\tau$ exceeds the maximum, so $f(j)>b$. (ii) Cauchy--Schwarz:
+$v\cdot e\le|v||e|=1$, since $|e|=1$ for a unit step.
