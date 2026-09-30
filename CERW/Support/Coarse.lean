@@ -18,3 +18,4 @@ import CERW.Support.Coarse.OuterRadius
 import CERW.Support.Coarse.Tail
 import CERW.Support.Coarse.TailEnd
 import CERW.Support.Coarse.OuterBound
+import CERW.Support.Coarse.Assembly

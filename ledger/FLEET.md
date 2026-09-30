@@ -126,13 +126,13 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | — | in flight | — | — | `wip/HausdorffGood.lean` |
 | 27 | planar contact variance (eq:massplanar, eq:envelopeplanar) | ds1 | v4.1-flash | 6297 | 1 | — | in flight | — | — | `wip/MassPlanar.lean` |
 | 27 | high-dimensional contact variance (eq:masshigh) | ds3 | v4.1-flash | 6359 | 1 | — | in flight | 1: the director sent a follow-up after dispatch because the brief suggested a Mathlib name that does not exist | — | `wip/MassHigh.lean` |
-| 28 | prop:coarse assembly from the kernel facts | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/CoarseAssembly.lean` |
+| 28 | prop:coarse assembly from the kernel facts | Sonnet subagent | sonnet | task prompt | 1 + 11 helpers | 222k (agent total) | accepted | 0 | 509 | `CERW/Support/Coarse/Assembly.lean` |
 | 23 | quadratic martingale concentration | ds3 | v4.1-flash | 7217 | 1 | ↑693k ↓121k | accepted | 0 | 489 | `CERW/Support/Contact/QuadraticError.lean` |
 
 ## Observations
 
 * **Waves 1–26.** Every returned DeepSeek packet was accepted: 92/92, two after a statement repair. There were three repairs: a definition
-  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 21/21.
+  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 22/22.
 * **Parallel helpers collide.** Two parallel files in one namespace each added a public helper with the same
   name. Since wave 13, the common rules require every helper a worker adds to be `private`.
 * **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was

@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 02:16.
+generation time. Regenerated 2026-09-30 02:17.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -110,7 +110,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-radius-arith | ds4 | `Support/Coarse/RadiusArith.lean` | s-scale-limits | c s^{d+1} ≤ n + C s^{d+1/2}L ⇒ s ≤ C′N | LANDED |
 | s-card-tail | ds2 | `Support/Coarse/CardTail.lean` | s-cell-norm, s-Fmass | eq:coarse-cellcount (general) | LANDED |
 | s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | BLOCKED(lem-geometry, lem-local) |
-| **prop-coarse** | sonnet | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT |
+| **prop-coarse** | sonnet | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT (proof of the draft statement landed: `Support/Coarse/Assembly.lean`) |
 | **Sections 4–5 and the main theorems** | | | | | |
 | s-contact-kernel | ds1 | `Support/Contact/Kernel.lean` | — | u_v·(v−y)\|v−y\|^{−d} ≥ 2^{1−d}\|v\|^{1−d} for \|y\| ≤ \|v\| | LANDED |
 | s-planar-contact-sum | ds4 | `Support/Contact/PlanarSum.lean` | s-packing-lattice, s-occupation | Σ_{\|w\|≤R}(b−\|z+w\|)_+(1+\|w\|)^{−2} ≤ C(R+1) | LANDED |
