@@ -1,0 +1,8 @@
+% s-fresh-sum: sums over first visits. Input of s-dynkin-local (eq:dynkin).
+\paragraph{Statement.} For a path $x$ and $n\geq0$: (i) $\sum_{j<n}\ind\{x_j\notin\{x_0,\dots,x_{j-1}\}\}g(x_j)=\sum_{z\in A_n}g(z)$;
+(ii) the same with the extra condition $x_j\neq0$ equals $\sum_{z\in A_n,z\neq0}g(z)$;
+(iii) $\sum_{j<n}\ind\{x_j=y\}=\ell_n(y)$.
+\paragraph{Proof.} Induction on $n$ (\texttt{sum\_range\_succ}). $A_{n+1}=A_n\cup\{x_n\}$, and $x_n$ is new exactly
+when $x_n\notin A_n$, in which case $\sum_{A_{n+1}}=\sum_{A_n}+g(x_n)$ (\texttt{Finset.sum\_insert}); otherwise
+$A_{n+1}=A_n$. (ii) follows from (i) applied to $z\mapsto\ind\{z\neq0\}g(z)$. (iii) The local time is the
+cardinality of the filtered range; \texttt{Finset.sum\_boole} or \texttt{card\_filter}.

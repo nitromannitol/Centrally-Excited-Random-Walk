@@ -6,3 +6,4 @@ import CERW.Support.Occupation.CellSetVolume
 import CERW.Support.Occupation.CellWeight
 import CERW.Support.Occupation.CellIntegral
 import CERW.Support.Occupation.CellDirection
+import CERW.Support.Occupation.FreshSum

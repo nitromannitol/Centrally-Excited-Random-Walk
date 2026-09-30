@@ -1,0 +1,12 @@
+% s-vector: eq:vector-def and eq:vector.
+\paragraph{Statement.} For $d\geq1$, $0\leq\eps<1/d$ and $p>0$ there is $C$ such that for every $n\geq1$, with
+probability at least $1-Cn^{-p}$, $|Z_t-Z_s|\leq C\sqrt{(t-s)L}$ for all $0\leq s<t\leq n$.
+\paragraph{Proof.} By s-coordinate-drift, the $k$-th coordinate of $Z_t-X_{0}$ is the Dynkin martingale
+$\mathcal M^{(k)}_t$ of $x\mapsto x_k$ (s-dynkin). Its increments are a.s.\ at most $2$, since the one-step
+oscillation of a coordinate is at most $1$. Its conditional variances are at most
+$\sum_ep_t(e)e_k^2\leq1$. Clamp it to surely bounded increments (s-clamp) and take the bracket $V_t=t$. Apply
+s-dyadic with $W=n$, $b=2$ and $K=p+3$ to each of the at most $d(n+1)^2$ triples $(k,s,t)$. Off the union,
+$|\mathcal M_t-\mathcal M_s|\leq c(\sqrt{(t-s)L}+2L)$. The clamped martingale also satisfies $|\mathcal M_t-\mathcal M_s|\leq2(t-s)$,
+and $\min(2(t-s),c(\sqrt{(t-s)L}+2L))\leq(2+3c)\sqrt{(t-s)L}$ (split on $t-s\leq L$). Summing coordinates
+gives $|Z_t-Z_s|\leq d(2+3c)\sqrt{(t-s)L}$. The union bound is at most
+$d(n+1)^2(n+1)\cdot2e^{-KL}\leq16d\,n^{-p}$ (s-freedman-arith).

@@ -1,0 +1,6 @@
+% s-sstar-arith: the arithmetic of eq:sstar-lower. Input of s-sstar.
+\paragraph{Statement.} For $d\geq1$ and $C>0$ there is $c>0$ such that for all large $n$ and all $0\leq s<cN$,
+$Cs^{d+1}+CL^2s^d<n$, where $N=n^{1/(d+1)}$ and $L=\log(n+2)$.
+\paragraph{Proof.} Choose $c$ with $Cc^{d+1}\leq\frac14$. For $0\leq s<cN$: $Cs^{d+1}\leq Cc^{d+1}N^{d+1}\leq n/4$,
+and $CL^2s^d\leq Cc^dL^2N^d=Cc^dL^2n^{d/(d+1)}$. Since $L^2/n^{1/(d+1)}\to0$ (s-scale-limits), the second
+term is below $n/2$ for large $n$. So the sum is at most $3n/4<n$ for $n\geq1$.

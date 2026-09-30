@@ -1,0 +1,11 @@
+% s-gauss-flux-theorem: flux_c(r) = sigma_d 1{|c| < r}. Input of s-kernel-average.
+\paragraph{Statement.} (i) For $\psi\in C^1$ supported in $[a,b]\subset(0,\infty)$:
+$\int_0^\infty\psi'(r)\Phi_c(r)\dd r=-\sigma_d\psi(|c|)$. (ii) For $r>0$, $r\neq|c|$: $\Phi_c(r)=\sigma_d\ind\{|c|<r\}$.
+\paragraph{Proof.} (i) $\varphi(v)=\psi(|v|)$ is $C^1$ with compact support. It vanishes near $0$, and
+$D\varphi(v)=\psi'(|v|)\langle u_v,\cdot\rangle$ for $v\neq0$. Apply s-gauss-flux, then polar coordinates (s-polar):
+$\int\psi'(|v|)u_v\cdot K(v-c)\dd v=\int_0^\infty\psi'(r)r^{d-1}\int_S\theta\cdot K(r\theta-c)\dd\sigma\dd r$.
+(ii) Fix $0<r_1<r_2$, both $\neq|c|$. Let $\eta_h$ be a normalized smooth bump of width $h$ and
+$\psi_h(r)=\int_{-\infty}^r(\eta_h(t-r_1)-\eta_h(t-r_2))\dd t$. It is smooth with support in
+$[r_1-h,r_2+h]\subset(0,\infty)$. By (i), $\int(\eta_h(t-r_1)-\eta_h(t-r_2))\Phi_c(t)\dd t=-\sigma_d\psi_h(|c|)$. As $h\to0$
+the left side tends to $\Phi_c(r_1)-\Phi_c(r_2)$ (continuity, s-flux). The right side tends to
+$-\sigma_d(\ind\{r_1<|c|\}-\ind\{r_2<|c|\})$. Let $r_2\to\infty$ using $\Phi_c\to\sigma_d$ (s-flux).

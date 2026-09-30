@@ -1,0 +1,7 @@
+% s-bracket: eq:bracket (increments and conditional variances of the local-time martingale).
+\paragraph{Statement.} If $|b(x+e)-b(x)|\leq C_g(1+|x|)^{1-d}$ for unit $e$, the Dynkin martingale $\mathcal M^y$ of
+$b(X_j-y)$ satisfies, a.s., $|\mathcal M^y_{t+1}-\mathcal M^y_t|\leq2C_g(1+|X_t-y|)^{1-d}$, and
+$\E[(\mathcal M^y_{t+1}-\mathcal M^y_t)^2\mid\mathcal F_t]\leq C_g^2(1+|X_t-y|)^{2-2d}$. Moreover
+$\sum_{j<n}g(x_j)=\sum_{z\in A_n}\ell_n(z)g(z)$.
+\paragraph{Proof.} Apply s-dynkin (iii) and (iv) with $f=b(\cdot-y)$ and $x=X_t-y$. The one-step oscillation is at most
+$B=C_g(1+|X_t-y|)^{1-d}$, and $\sum_ep_t(e)B^2=B^2$. The last identity groups the times by the visited site.

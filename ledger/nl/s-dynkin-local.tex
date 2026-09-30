@@ -1,0 +1,10 @@
+% s-dynkin-local: eq:dynkin (pathwise identity). The bracket bound eq:bracket follows from s-dynkin and s-gradient-bound.
+\paragraph{Statement.} (i) $P[b(\cdot-y)](x)=Pb(x-y)$ and $D[b(\cdot-y)](x)=Db(x-y)$. (ii) If $(P-I)b=\ind_{\{0\}}$ and
+$X_0=0$, then $\ell_n(y)=b(X_n-y)-b(-y)+\eps\sum_{x\in A_n}u_x\cdot Db(x-y)-\mathcal M^y_n$, where $\mathcal M^y$ is the
+Dynkin martingale of $f=b(\cdot-y)$.
+\paragraph{Proof.} (i) $(x\pm e_i)-y=(x-y)\pm e_i$. (ii) By s-step-mean, the compensator increment at time $j$ is
+$Pf(X_j)-f(X_j)-\eps I_ju_{X_j}\cdot Df(X_j)=\ind\{X_j=y\}-\eps I_ju_{X_j}\cdot Db(X_j-y)$. Summing over $j<n$:
+the indicators give $\ell_n(y)$ (s-fresh-sum (iii)). The drift terms are over first departures from nonzero
+sites, so they sum over $A_n\setminus\{0\}$ (s-fresh-sum (ii)), which equals the sum over $A_n$ because
+$u_0=0$. Insert this into the Dynkin identity $\mathcal M^y_n=f(X_n)-f(X_0)-\sum_{j<n}(\cdots)$ with
+$f(X_0)=b(-y)$.

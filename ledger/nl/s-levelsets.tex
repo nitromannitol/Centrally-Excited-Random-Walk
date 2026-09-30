@@ -1,0 +1,10 @@
+% s-levelsets: eq:levelsets, with the kernel asymptotics as hypotheses.
+\paragraph{Statement.} Under eq:kernel-asymptotics (as hypotheses on $b$, with $b=-G$, $G>0$, for $d\geq3$), for all
+large $r$: $b\leq h_d(r)$ on $|x|\leq r-1$ and $b\geq h_d(r)$ on $|x|\geq r+1$.
+\paragraph{Proof.} ($d=2$) Outer: for $|x|\geq r+1\geq R_b$, $b(x)\geq\frac2\pi\log|x|+\kappa-C_b|x|^{-2}$ and
+$\log|x|-\log r\geq\log(1+1/r)\geq1/(2r)$, which beats $\frac\pi2C_b(r+1)^{-2}$ for large $r$. Inner, $R'\leq|x|\leq r-1$
+with $R'=\max(R_b,\sqrt{\pi C_b/(2\log2)})$: if $|x|\geq r/2$ then $\log r-\log|x|\geq1/r\geq\frac\pi2C_b\cdot4r^{-2}$ for large
+$r$; if $|x|<r/2$ then $\frac2\pi\log(r/|x|)\geq\frac2\pi\log2\geq C_b|x|^{-2}$. Inner, $|x|<R'$: finitely many sites, $b$ is
+bounded there, and $h_2(r)\to\infty$. ($d\geq3$) The same with $c_dr^{2-d}$: for $1\leq s<t$,
+$s^{2-d}-t^{2-d}\geq(d-2)(t-s)t^{1-d}$ (mean value). This beats $C_G\max(s,t)^{-d}$ once the relevant radius is large. The
+finitely many inner sites have $G\geq\min G>0$, while $c_dr^{2-d}\to0$.
