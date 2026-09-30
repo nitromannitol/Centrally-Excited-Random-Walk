@@ -15,3 +15,4 @@ import CERW.Support.Coarse.CardTail
 import CERW.Support.Coarse.MassError
 import CERW.Support.Coarse.Shell
 import CERW.Support.Coarse.OuterRadius
+import CERW.Support.Coarse.Tail

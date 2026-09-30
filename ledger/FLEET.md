@@ -105,7 +105,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 22 | first moment over ball and excess | ds1 | v4.1-flash | 4778 | 1 | ↑64k ↓20k | accepted | 0 | 64 | `CERW/Support/Contact/BallExcess.lean` |
 | 22 | shell bound (eq:shell) | Sonnet subagent | sonnet | task prompt | 1 + 5 helpers | 96k (agent total) | accepted | 0 | 334 | `CERW/Support/Coarse/Shell.lean` |
 | 22 | outer radius (eq:HvsR) | Sonnet subagent | sonnet | task prompt | 1 + 11 helpers | 81k (agent total) | accepted | 0 | 304 | `CERW/Support/Coarse/OuterRadius.lean` |
-| 23 | coarse tail (eq:coarse-tail) | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/CoarseTail.lean` |
+| 23 | coarse tail (eq:coarse-tail) | Sonnet subagent | sonnet | task prompt | 1 + 13 helpers | 169k (agent total) | accepted | 0 | 651 | `CERW/Support/Coarse/Tail.lean` |
 | 23 | pointwise decomposition (eq:pointwise) | ds1 | v4.1-flash | 5994 | 1 | ↑171k ↓68k | accepted | 0 | 244 | `CERW/Support/LocalTime/Pointwise.lean` |
 | 23 | local martingales (eq:localmart) | ds2 | v4.1-flash | 5870 | 1 | ↑187k ↓73k | accepted | 1: the director rewrapped two long proof lines | 353 | `CERW/Support/LocalTime/LocalMart.lean` |
 | 23 | inradius arithmetic (eq:inradius) | ds4 | v4.1-flash | 5595 | 1 | ↑92k ↓55k | accepted | 0 (the director added the missing hypothesis `0 ≤ Xsq` before dispatch) | 181 | `CERW/Support/Contact/InradiusArith.lean` |
@@ -113,16 +113,20 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 24 | local-time profile (eq:profile-rate) | ds2 | v4.1-flash | 6266 | 1 | ↑230k ↓77k | accepted | 1: the director removed an unneeded hypothesis (the worker had padded a constant to use it) | 253 | `CERW/Support/Contact/Profile.lean` |
 | 24 | volume and symmetric difference | ds4 | v4.1-flash | 5229 | 1 | ↑213k ↓71k | accepted | 0 | 253 | `CERW/Support/Contact/Volume.lean` |
 | 24 | planar hole bracket | ds3 | v4.1-flash | 5099 | 1 | ↑45k ↓24k | accepted | 0 | 98 | `CERW/Support/Contact/PlanarBracket.lean` |
-| 25 | high-dimensional envelope (eq:envelopehigh) | ds1 | v4.1-flash | 7664 | 1 | — | in flight | — | — | `wip/EnvelopeHigh.lean` |
-| 25 | contact inequality | ds2 | v4.1-flash | 4557 | 1 | — | in flight | — | — | `wip/ContactMass.lean` |
+| 25 | high-dimensional envelope (eq:envelopehigh) | ds1 | v4.1-flash | 7664 | 1 | not recorded | accepted | 0 | 528 | `CERW/Support/Contact/EnvelopeHigh.lean` |
+| 25 | contact inequality | ds2 | v4.1-flash | 4557 | 1 | not recorded | accepted | 0 | 82 | `CERW/Support/Contact/ContactMass.lean` |
 | 25 | outer fluctuation bound | ds3 | v4.1-flash | 6016 | 1 | — | in flight | — | — | `wip/OuterBound.lean` |
-| 25 | shell envelope and global error | ds4 | v4.1-flash | 4417 | 2 | — | in flight | — | — | `wip/EnvelopeShell.lean` |
+| 25 | shell envelope and global error | ds4 | v4.1-flash | 4417 | 2 | not recorded | accepted | 0 | 75 | `CERW/Support/Contact/EnvelopeShell.lean` |
+| 26 | Borel–Cantelli from a power tail | ds1 | v4.1-flash | 5154 | 1 | ↑56k ↓20k | accepted | 0 | 60 | `CERW/Support/Main/BorelCantelli.lean` |
+| 26 | shape inclusions and profile from the event | ds2 | v4.1-flash | 5797 | 1 | ↑105k ↓34k | accepted | 1: the director removed three unused hypotheses (the worker had bound them to anonymous `have`s) | 82 | `CERW/Support/Main/ShapeInclusion.lean` |
+| 26 | shape count and pointwise bound from the event | ds4 | v4.1-flash | 6337 | 1 | ↑145k ↓65k | accepted | 0 | 180 | `CERW/Support/Main/ShapeCount.lean` |
+| 27 | tail end (eq:tailend) | Sonnet subagent | sonnet | task prompt | 1 | — | in flight (redispatched after the director fixed a missing import in the leaf) | — | — | `wip/TailEnd.lean` |
 | 23 | quadratic martingale concentration | ds3 | v4.1-flash | 7217 | 1 | ↑693k ↓121k | accepted | 0 | 489 | `CERW/Support/Contact/QuadraticError.lean` |
 
 ## Observations
 
-* **Waves 1–24.** Every returned DeepSeek packet was accepted: 84/84, one after a statement repair. There were three repairs: a definition
-  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 19/19.
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 90/90, two after a statement repair. There were three repairs: a definition
+  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 20/20.
 * **Parallel helpers collide.** Two parallel files in one namespace each added a public helper with the same
   name. Since wave 13, the common rules require every helper a worker adds to be `private`.
 * **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was

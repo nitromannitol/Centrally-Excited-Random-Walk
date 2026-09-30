@@ -1,0 +1,8 @@
+% s-tailend: eq:tailend (deterministic).
+\paragraph{Statement.} There are $K_0,C_t$ such that for large $n$: if $c_1N\leq b\leq c_2N$, $M_n\leq C_1N$, $F(b)\leq C_1NQ$, $M_{\rm sh}(r)\leq C_{\rm sh}W$ for $r\geq b+3$, and
+eq:radial holds at every integer $r_0\leq r\leq n$, then $F(b+K_0WL)\leq C_tN^{2-d}L$, where $W=NQ^{1/d}$.
+\paragraph{Proof.} (fl:1087--1103.) Let $\Lambda=C_tN^{2-d}L$ with $C_t$ large. For $r\geq b\geq c_1N$ and $F(r-b_d)\leq A$, the radial error is at most
+$C\sqrt{N^{2-d}AL}+CN^{1-d}L\leq A/4$ when $A\geq\Lambda$. If also $F(r+b_d)>A/2$, then $F(r-b_d)-F(r+b_d)\geq A/(4C_{\rm rad}(C_{\rm sh}W+1))$. By
+\texttt{halving\_iterate} with $K(A)\equiv4C_{\rm rad}(C_{\rm sh}W+1)$, starting just above $b+b_d+3$ with $A_0=C_1NQ$ (and $F$ nonincreasing): after at most
+$M=O(L)$ levels (\texttt{exists\_halvings\_le}; $A_0/\Lambda\leq Cn$) and $O(WL)$ grid steps, $F\leq\Lambda$. The radii stay in $[b,b+K_0WL]\subseteq[r_0,n]$
+for large $n$, since $W\to\infty$ and $WL=o(N)$.

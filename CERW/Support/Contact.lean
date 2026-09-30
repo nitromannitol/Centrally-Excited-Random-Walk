@@ -11,3 +11,6 @@ import CERW.Support.Contact.QuadraticError
 import CERW.Support.Contact.Profile
 import CERW.Support.Contact.Volume
 import CERW.Support.Contact.PlanarBracket
+import CERW.Support.Contact.ContactMass
+import CERW.Support.Contact.EnvelopeShell
+import CERW.Support.Contact.EnvelopeHigh

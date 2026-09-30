@@ -1,0 +1,4 @@
+% s-borel-cantelli: the almost-sure conjunct of thm:fluctuations from the probability bound.
+\paragraph{Statement.} If $\mu\{\neg P_n\}\leq Cn^{-p}$ for $n\geq n_0$ with $p>1$, then for $\mu$-a.e.\ $\omega$, $P_n(\omega)$ holds for all large $n$.
+\paragraph{Proof.} Let $s_n=\{\neg P_n\}$ for $n\geq n_0$ and $s_n=\emptyset$ otherwise. Then $\sum_n\mu(s_n)\leq\sum_n\max(C,0)n^{-p}<\infty$ since $p>1$. By
+Borel--Cantelli (\texttt{ae\_eventually\_notMem}), a.e.\ $\omega$ lies in only finitely many $s_n$; for $n\geq n_0$ this is $P_n(\omega)$.
