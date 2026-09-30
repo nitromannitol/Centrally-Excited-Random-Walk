@@ -1,0 +1,9 @@
+[project]
+name = "leanform-tools"
+version = "0.1.0"
+description = "Deterministic gates for the lean-form formalization protocol"
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6.0"]
+
+[tool.setuptools.packages.find]
+include = ["leanform_tools*"]
