@@ -29,3 +29,7 @@ design.
   * `CERW.Generic.Newton.integrable_sphere_of_integrable`
   * `CERW.Generic.Young.log_sub_log_mem_Icc` and `CERW.Generic.Young.rpow_neg_sub_mem_Icc`,
     together with their file `Generic/Young/RadialProfile.lean`
+* **Import dropped.** `CERW/Generic/Lattice/Centered.lean` no longer imports
+  `CERW.Generic.Lattice.Packing`. Its only user there was the removed
+  `sum_finset_rpow_one_sub_le`. `Packing` remains in the library, where
+  `Support/Contact/PlanarSum.lean` uses it.
