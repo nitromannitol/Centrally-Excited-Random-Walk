@@ -1,0 +1,7 @@
+% s-kernel-props: from eq:kernel-asymptotics (the cited clauses) to the kernel facts used downstream.
+\paragraph{Statement.} ($d=2$) If $b(x)=\lim_M[G_M(0)-G_M(x)]$ and $|b(x)-(\frac2\pi\log|x|+\kappa)|\leq C_b|x|^{-2}$ for $|x|\geq R_b\geq1$, then $b$
+satisfies the Poisson equation, the level sets of $h_2(r)=\frac2\pi\log r+\kappa$, the gradient asymptotics, the one-step bound, and
+$|b(x)|\leq C\log(|x|+2)$. ($d\geq3$) The same for $b=-G$ and $h_d(r)=-c_dr^{2-d}$ under $|G(x)-c_d|x|^{2-d}|\leq C_G|x|^{-d}$.
+\paragraph{Proof.} Poisson: s-kernel-poisson. Level sets: s-levelsets; for $d\geq3$ it needs $G>0$, since $G(x)\geq P^{|x|_1}(0,x)>0$ with
+$G=\sum_jP^j$ summable. Gradient asymptotics: s-gradient. One-step bound: s-gradient-bound. Growth: the asymptotics bound $|b|$ by
+$C\log|x|$ beyond $R_b$ (resp.\ by a constant), and $b$ is bounded on the finitely many sites inside, while $\log(|x|+2)\geq\log2>0$.

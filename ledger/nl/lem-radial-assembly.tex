@@ -1,0 +1,10 @@
+% lem-radial-assembly: the proof of lem:radial from the kernel facts (proof of the draft statement, in Support).
+\paragraph{Route.} Take $r_1,R,C_a,C_g$ from the kernel facts, and $r_0\in\N$ with $r_0>\max(2b_d,r_1+1,R,C_a\omega_d,\sqrt d+2)$. Fix $\eps,p$, and let $C_m$
+come from s-radial-mart (the inner level sets for $r\geq r_0$ and the one-step bound). Outside the radial-martingale bad event and
+the null event $X_0\neq0$, for every integer $r_0\leq r\leq n$:
+s-radial-source gives $\eps\omega_d^{-1}\Sigma_{>r+3}\leq(1+\eps\sqrt d)C_g(r-1)^{1-d}N_{\rm sh}+|W_n|$.
+s-tail-lower gives $\sigma_dF(r+b_d)\leq2^{d-1}\Sigma_{>r+3}$.
+The shell visits satisfy $N_{\rm sh}=\sum_{x\in A_n,r-2<|x|\leq r+3}\ell_n(x)\leq M_{\rm sh}(r)\#\{x\in A_n:||x|-r|\leq3\}$.
+By s-shell-count, that number is at most $\sigma_d(r+b_d)^{d-1}[F(r-b_d)-F(r+b_d)]$.
+By s-radial-mart, $|W_n|\leq C_m[\sqrt{M_nr^{1-d}F(r-b_d)L}+r^{1-d}L]$.
+Since $(r+b_d)/(r-1)\leq3$, $(r-1)^{1-d}(r+b_d)^{d-1}\leq3^{d-1}$. Collect the constants.

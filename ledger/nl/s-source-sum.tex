@@ -1,0 +1,6 @@
+% s-source-sum: the source sum of eq:dynkin versus the potential (the deterministic core of eq:approx).
+\paragraph{Statement.} Under the gradient facts, there is $C$ with $|\eps\sum_{x\in A_n}u_x\cdot Db(x-y)-U_{D_n}(y)|\leq C\eps\log(R'+2)$ for lattice
+$y$ with $|y|\leq2R'$, $R'\geq1$, and every $x\in A_n$ satisfying $|x-y|\leq R'$ and $C_x\subseteq B(0,R')$.
+\paragraph{Proof.} Insert $\frac2{\omega_d}K(x-y)$, then $\int_{C_x}K(v-y)$, then $u_v$ for $u_x$. The three errors are s-kernel-replace (a), (b)
+with $w_x=u_x$, and (c). What remains is $\frac{2\eps}{\omega_d}\sum_x\int_{C_x}u_v\cdot K(v-y)\dd v=\frac{2\eps}{\omega_d}\int_{D_n}u_v\cdot K(v-y)\dd v=U_{D_n}(y)$
+(disjoint cells, \texttt{inner\_newtonField}).

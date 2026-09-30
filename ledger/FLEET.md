@@ -82,16 +82,23 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 17 | tail beyond a radius by the source sum | ds1 | v4.1-flash | 5742 | 1 | ↑96k ↓41k | accepted | 0 | 118 | `CERW/Support/Coarse/TailLower.lean` |
 | 17 | source inequality of the radial test | ds4 | v4.1-flash | 7820 | 1 | ↑264k ↓94k | accepted | 0 (the director rewrapped a long line of its own docstring) | 395 | `CERW/Support/Coarse/RadialSource.lean` |
 | 17 | crossings through a small set | ds3 | v4.1-flash | 7197 | 1 | ↑164k ↓55k | accepted | 0 | 196 | `CERW/Support/Coarse/Crossing.lean` |
-| 17 | spherical cap measure | ds2 | v4.1-flash | 6871 | 1 | — | in flight | — | — | `wip/Cap.lean` |
-| 17 | radial martingales (eq:radialmart) | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/RadialMart.lean` |
-| 18 | gradient replacement | ds1 | v4.1-flash | 6885 | 1 | — | in flight | — | — | `wip/ReplaceGradient.lean` |
-| 18 | cell replacement | ds4 | v4.1-flash | 8459 | 1 | — | in flight | — | — | `wip/ReplaceCell.lean` |
-| 18 | direction replacement | ds3 | v4.1-flash | 6465 | 1 | — | in flight | — | — | `wip/ReplaceDirection.lean` |
+| 17 | spherical cap measure | ds2 | v4.1-flash | 6871 | 1 | ↑264k ↓118k | accepted | 0 | 242 | `CERW/Generic/Newton/Cap.lean` |
+| 17 | radial martingales (eq:radialmart) | Sonnet subagent | sonnet | task prompt | 1 + 24 helpers | 138k (agent total) | accepted | 0 | 537 | `CERW/Support/Coarse/RadialMart.lean` |
+| 18 | radial test assembly (lem:radial from the kernel facts) | Sonnet subagent | sonnet | task prompt | 1 + 5 helpers | 70k (agent total) | accepted | 0 | 272 | `CERW/Support/Coarse/RadialAssembly.lean` |
+| 18 | gradient replacement | ds1 | v4.1-flash | 6885 | 1 | ↑200k ↓76k | accepted | 0 | 290 | `CERW/Support/LocalTime/ReplaceGradient.lean` |
+| 18 | cell replacement | ds4 | v4.1-flash | 8459 | 1 | ↑217k ↓91k | accepted | 0 | 418 | `CERW/Support/LocalTime/ReplaceCell.lean` |
+| 18 | direction replacement | ds3 | v4.1-flash | 6465 | 1 | ↑116k ↓26k | accepted | 0 (the director rewrapped a long line of its own docstring) | 101 | `CERW/Support/LocalTime/ReplaceDirection.lean` |
+| 19 | from the kernel asymptotics to the kernel facts | ds1 | v4.1-flash | 7207 | 2 | ↑407k ↓49k | accepted | 0 | 208 | `CERW/Support/LocalTime/KernelBridge.lean` |
+| 19 | contact lower bound | ds3 | v4.1-flash | 6031 | 1 | ↑71k ↓39k | accepted | 0 (the director rewrapped its own docstring during dispatch) | 121 | `CERW/Support/Contact/ContactLower.lean` |
+| 19 | cap average (eq:cap-average) | ds2 | v4.1-flash | 6266 | 1 | — | in flight | — | — | `wip/CapAverage.lean` |
+| 19 | source sum versus potential | ds4 | v4.1-flash | 7361 | 1 | — | in flight | — | — | `wip/SourceSum.lean` |
+| 20 | the squared displacement (eq:quadratic) | ds1 | v4.1-flash | 5997 | 3 | — | in flight | — | — | `wip/Quadratic.lean` |
+| 20 | first moment of the cell set | ds3 | v4.1-flash | 4972 | 1 | — | in flight | — | — | `wip/NormReplace.lean` |
 
 ## Observations
 
-* **Waves 1–17.** Every returned DeepSeek packet was accepted: 59/59. There were three repairs: a definition
-  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 13/13.
+* **Waves 1–19.** Every returned DeepSeek packet was accepted: 65/65. There were three repairs: a definition
+  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 15/15.
 * **Parallel helpers collide.** Two parallel files in one namespace each added a public helper with the same
   name. Since wave 13, the common rules require every helper a worker adds to be `private`.
 * **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was

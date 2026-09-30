@@ -1,0 +1,6 @@
+% s-cap-average: eq:cap-average (abstract form).
+\paragraph{Statement.} There is $c_d>0$ with: if $g\geq0$ on the sphere of radius $t>0$, $|g(y)-g(z)|\leq A|y-z|^{1/2}$ with $A>0$, and
+$h\leq g(t\theta_0)$ with $0\leq h\leq A\sqrt t$, then $\int_Sg(t\theta)\dd\sigma(\theta)\geq c_dh^{2d-1}/(A^{2d-2}t^{d-1})$.
+\paragraph{Proof.} Let $\rho=(h/2A)^2$ and $\eps=\rho/t\leq\frac14$. For $|\theta-\theta_0|<\eps$, $|t\theta-t\theta_0|<\rho$, so $g(t\theta)\geq h-A\sqrt\rho=h/2$. The
+integrand is continuous, hence integrable on the finite measure $\sigma$, and nonnegative. So the integral is at least
+$\frac h2\sigma(\mathrm{cap})\geq\frac h2\cdot\frac d4(\eps/(4\sqrt d))^{d-1}$ (s-cap), which is $c_dh^{2d-1}/(A^{2d-2}t^{d-1})$.
