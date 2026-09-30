@@ -16,3 +16,4 @@ import CERW.Support.Contact.EnvelopeShell
 import CERW.Support.Contact.EnvelopeHigh
 import CERW.Support.Contact.MassHigh
 import CERW.Support.Contact.Inradius
+import CERW.Support.Contact.ContactSetup

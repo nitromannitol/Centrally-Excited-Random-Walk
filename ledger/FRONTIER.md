@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 02:29.
+generation time. Regenerated 2026-09-30 02:36.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -54,7 +54,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-dynkin-local | ds1 | `Support/LocalTime/DynkinLocal.lean` | s-dynkin, s-fresh-sum, s-step-mean | eq:dynkin, eq:bracket | LANDED |
 | s-bracket | ds4 | `Support/LocalTime/Bracket.lean` | s-dynkin, s-gradient-bound | increments ≤ 2C_g(1+\|X_t−y\|)^{1−d}; conditional variance ≤ C_g²(1+\|X_t−y\|)^{2−2d} | LANDED |
 | s-interval-mart | sonnet | `Support/LocalTime/IntervalMart.lean` | s-dyadic, s-dynkin-local, s-bracket, s-centered-sums, s-mart-shift, s-clamp | eq:interval-mart | LANDED |
-| s-local-young | director | `Support/LocalTime/IntervalBound.lean` | s-dynkin-local, s-interval-mart, s-packing-lattice | eq:M, eq:interval (Young part landed in Generic/Young/Absorb) | READY |
+| s-local-young | director | `Support/LocalTime/IntervalBound.lean` | s-dynkin-local, s-interval-mart, s-packing-lattice | eq:M, eq:interval (Young part landed in Generic/Young/Absorb) | SUPERSEDED (route landed in eq:M and eq:interval inside `Support/LocalTime/LocalAssembly.lean`) |
 | s-radial-power | ds1 | `Generic/Kernel/RadialPower.lean` | — | ∫_{B(0,ρ)}\|v\|^{−s} = σ_dρ^{d−s}/(d−s) (s<d); ∫_{\|v\|≥ρ}\|v\|^{−s} = σ_dρ^{d−s}/(s−d) (s>d) | LANDED |
 | s-newton-field | ds2 | `Generic/Kernel/NewtonField.lean` | — | K(v)=v/\|v\|^d: \|K(v)\| = \|v\|^{1−d}; \|K(a)−K(b)\| ≤ C_d\|a−b\|/\|b\|^d when 2\|a−b\| ≤ \|b\| | LANDED |
 | s-cell-direction | ds4 | `Support/Occupation/CellDirection.lean` | s-cell-norm | \|u_a−u_b\| ≤ 2\|a−b\|/\|a\|; \|u_x−u_v\| ≤ 2(1+√d)/(1+\|v\|) on C_x | LANDED |
@@ -63,8 +63,8 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-potential-integrable | sonnet | `Generic/Kernel/Integrable.lean` | — | ∫_{B(y,ρ)}\|v−y\|^{1−d} = σ_dρ; ∫_D\|v−y\|^{1−d} ≤ σ_d(\|D\|/ω_d)^{1/d} | LANDED |
 | s-kernel-replace | ds1/ds3/ds4 | `Support/LocalTime/ReplaceGradient.lean`, `Support/LocalTime/ReplaceCell.lean`, `Support/LocalTime/ReplaceDirection.lean` | s-gradient, s-centered-sums, s-potential-integrable, s-cell-direction | lattice source sum vs U_{D_n}: error ≤ CL | LANDED |
 | s-cell-modulus | ds1 | `Support/Geometry/CellModulus.lean` | s-potential-bound, s-newton-field, s-log-radial | \|U_D(y) − U_D(z)\| ≤ Cε log(R+2) for \|y−z\| ≤ √d (eq:cellmodulus) | LANDED |
-| s-cell-shift | director | `Support/LocalTime/CellShift.lean` | s-kernel-replace, s-cell-modulus | moving y in its cell costs O(L) | READY |
-| s-retained | director | `Support/LocalTime/Retained.lean` | s-dyadic, s-dynkin-local, s-kernel-replace, s-cell-shift | eq:localmart, eq:pointwise, eq:cellmodulus | BLOCKED(s-cell-shift) |
+| s-cell-shift | director | `Support/LocalTime/CellShift.lean` | s-kernel-replace, s-cell-modulus | moving y in its cell costs O(L) | SUPERSEDED (route landed in the cell replacement in `Support/LocalTime/ReplaceCell.lean`) |
+| s-retained | director | `Support/LocalTime/Retained.lean` | s-dyadic, s-dynkin-local, s-kernel-replace, s-cell-shift | eq:localmart, eq:pointwise, eq:cellmodulus | SUPERSEDED (route landed in `Support/LocalTime/LocalMart.lean`, `Support/LocalTime/Pointwise.lean`, `Support/Geometry/CellModulus.lean`) |
 | **lem-local** | director | `Frozen/LocalTimePotential.lean` | s-local-young, s-kernel-replace, s-direction-error, s-cell-shift, s-interval-mart | lem:local | DRAFT (proof of the draft statement landed: `Support/LocalTime/LocalAssembly.lean`) |
 | s-Fmass | ds2 | `Support/Geometry/TailBasic.lean`, `Support/Geometry/TailBounds.lean` | — | F ≥ 0, antitone on (0,∞); F ≤ \|D\|/(σ_ds^{d−1}); F = 0 beyond D; increments | LANDED |
 | s-polar | sonnet | `Generic/Newton/Polar.lean` | — | ∫ f = ∫_0^∞ r^{d−1}∫_S f(rθ)dσ dr for integrable f | LANDED |
@@ -109,18 +109,18 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-mass-error | ds3 | `Support/Coarse/MassError.lean` | s-cell-integral, s-holder | eq:coarse-masserror (before the identity) | LANDED |
 | s-radius-arith | ds4 | `Support/Coarse/RadiusArith.lean` | s-scale-limits | c s^{d+1} ≤ n + C s^{d+1/2}L ⇒ s ≤ C′N | LANDED |
 | s-card-tail | ds2 | `Support/Coarse/CardTail.lean` | s-cell-norm, s-Fmass | eq:coarse-cellcount (general) | LANDED |
-| s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | BLOCKED(lem-geometry, lem-local) |
+| s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | SUPERSEDED (route landed in `Support/Geometry/MassIdentity.lean` and `Support/Coarse/MassError.lean`) |
 | **prop-coarse** | sonnet | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT (proof of the draft statement landed: `Support/Coarse/Assembly.lean`) |
 | **Sections 4–5 and the main theorems** | | | | | |
 | s-contact-kernel | ds1 | `Support/Contact/Kernel.lean` | — | u_v·(v−y)\|v−y\|^{−d} ≥ 2^{1−d}\|v\|^{1−d} for \|y\| ≤ \|v\| | LANDED |
 | s-planar-contact-sum | ds4 | `Support/Contact/PlanarSum.lean` | s-packing-lattice, s-occupation | Σ_{\|w\|≤R}(b−\|z+w\|)_+(1+\|w\|)^{−2} ≤ C(R+1) | LANDED |
-| s-global | director | `Support/Contact/Setup.lean` | prop-coarse, lem-local, s-cell-norm | eq:global | BLOCKED(prop-coarse, lem-local) |
+| s-global | director | `Support/Contact/Setup.lean` | prop-coarse, lem-local, s-cell-norm | eq:global | SUPERSEDED (route landed in the global clause of `fluctEvent` and `error_scale_le` in `Support/Contact/EnvelopeShell.lean`) |
 | s-contact-cell | sonnet | `Support/Contact/ContactCell.lean` | s-cell-membership | eq:bm, eq:contactcell | LANDED |
 | s-contact-lower | ds3 | `Support/Contact/ContactLower.lean` | s-contact-kernel, s-ballpotential | U_D(y₀) ≥ (2ε/ω)2^{1−d}S^{1−d}\|D∖B(0,b)\| (lower eq:contactbound) | LANDED |
-| s-contact-bound | director | `Support/Contact/ContactBound.lean` | s-contact-cell, lem-geometry, s-retained, s-contact-kernel | eq:contactbound, eq:packing | BLOCKED(lem-geometry, s-retained) |
+| s-contact-bound | director | `Support/Contact/ContactBound.lean` | s-contact-cell, lem-geometry, s-retained, s-contact-kernel | eq:contactbound, eq:packing | SUPERSEDED (route landed in `Support/Contact/ContactLower.lean` and `Support/Contact/ContactMass.lean`) |
 | s-var-high | ds3 | `Support/Contact/MassHigh.lean` | s-contact-bound, s-weight-sums | eq:kernelmoments … eq:masshigh (resolvent, absorption landed) | LANDED |
 | s-var-planar | ds1 | `Support/Contact/MassPlanar.lean` | s-contact-bound, s-global, s-planar-contact-sum | eq:massplanar, eq:envelopeplanar | IN-FLIGHT (ds1, 02:07) |
-| s-shellW | director | `Support/Contact/ShellW.lean` | s-var-high, s-var-planar | eq:shellW | BLOCKED(s-var-planar) |
+| s-shellW | director | `Support/Contact/ShellW.lean` | s-var-high, s-var-planar | eq:shellW | SUPERSEDED (route landed in `shellMax_le_of_envelope` in `Support/Contact/EnvelopeShell.lean`) |
 | s-quadratic | ds1 | `Support/Contact/Quadratic.lean` | s-dynkin, s-step-mean, s-fresh-sum | eq:quadratic, eq:quadraticerror | LANDED |
 | s-inradius | ds2 | `Support/Contact/Inradius.lean` | s-quadratic | eq:inradius (deterministic, from the mass bound) | LANDED |
 | s-volume-profile | director | `Support/Contact/Profile.lean` | s-inradius, s-global, lem-geometry | eq:volume, inner eq:sandwich, eq:profile-rate | LANDED |
@@ -132,7 +132,12 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-outer | ds3 | `Support/Coarse/OuterBound.lean` | s-tailend, s-crossing, s-inradius, s-outer-contradiction | eq:outer-contradiction | LANDED |
 | s-scale-limits | ds4 | `Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | LANDED |
 | s-hausdorff-arith | ds3 | `Support/Main/HausdorffArith.lean` | — | Hausdorff and planar exponent identities | LANDED |
-| s-assembly | sonnet | `Support/Main/GoodCore.lean` | s-volume-profile, s-outer, s-good-event | fluctGood on the event at each n | IN-FLIGHT (director/sonnet) |
+| s-contact-setup | ds2 | `Support/Contact/ContactSetup.lean` | s-contact-cell | eq:bm, eq:contactcell, the contact modulus | LANDED |
+| s-outer-envelope | ds3 | `Support/Coarse/OuterEnvelope.lean` | s-tailend, s-outer, s-envelope-shell | H_n ≤ b + C W L from the envelope | IN-FLIGHT (ds3, 02:32) |
+| s-inner-clauses | ds4 | `Support/Main/InnerClauses.lean` | s-volume-profile, s-good-event | inner, volume and profile clauses and the hole | IN-FLIGHT (ds4, 02:31) |
+| s-assembly | sonnet | `Support/Main/GoodCore.lean` | s-contact-setup, s-var-planar, s-var-high, s-inradius, s-inner-clauses, s-outer-envelope, s-good-event | fluctEvent ⇒ fluctGood and a hole, for large n | IN-FLIGHT (director/sonnet) |
+| s-fluct-assembly | director | `Support/Main/FluctAssembly.lean` | s-event-prob, s-assembly, s-borel-cantelli, s-shape-assembly | thm:fluctuations and thm:shape from the kernel facts | IN-FLIGHT (director/sonnet) |
+| s-hausdorff-assembly | director | `Support/Main/HausdorffAssembly.lean` | s-event-prob, s-assembly, s-hausdorff-good | eq:hausdorff (two-sided) from the kernel facts | IN-FLIGHT (director/sonnet) |
 | s-shape-assembly | ds2 | `Support/Main/ShapeAssembly.lean` | s-shape-inclusion, s-shape-count | thm:shape from a.s. eventually fluctGood | LANDED |
 | s-hausdorff-good | ds4 | `Support/Main/HausdorffGood.lean` | s-good-event, s-hausdorff-arith | eq:hausdorff and the planar inner inclusion on fluctGood | LANDED |
 | s-event-prob | sonnet | `Support/Main/EventProb.lean` | prop-coarse, lem-local, lem-radial | P(¬fluctEvent) ≤ C n^{−p} | LANDED |
@@ -140,11 +145,11 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-borel-cantelli | ds1 | `Support/Main/BorelCantelli.lean` | — | Σ C n^{−p} < ∞ ⇒ a.s. eventually | LANDED |
 | s-shape-inclusion | ds2 | `Support/Main/ShapeInclusion.lean` | s-good-event, s-scale-limits | thm:shape inclusions and profile from fluctGood | LANDED |
 | s-shape-count | ds4 | `Support/Main/ShapeCount.lean` | s-good-event, s-scale-limits | thm:shape counts and fixed sites from fluctGood | LANDED |
-| **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-assembly, s-borel-cantelli | thm:fluctuations | DRAFT |
-| **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-shape-assembly | thm:shape | DRAFT |
-| **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-good, s-inradius | eq:hausdorff | DRAFT |
+| **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-fluct-assembly | thm:fluctuations | DRAFT |
+| **thm-shape** | director | `Frozen/BallShape.lean` | s-fluct-assembly | thm:shape | DRAFT |
+| **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | s-hausdorff-assembly | eq:hausdorff | DRAFT |
 
-**Counts:** BLOCKED 5, DRAFT 7, IN-FLIGHT 2, LANDED 97, READY 2.
+**Counts:** DRAFT 7, IN-FLIGHT 6, LANDED 98, SUPERSEDED 7.
 
 ## Pre-freeze gate
 
