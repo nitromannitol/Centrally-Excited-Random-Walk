@@ -104,18 +104,6 @@ private lemma integral_Ioo_pow_mul_tail (hd : 2 ≤ d) {D : Set (EuclideanSpace 
   rw [setIntegral_congr_fun hD fun v hv => integral_Ioo_exchange hd v
     (mem_ball_zero_iff.mp (hDS hv)).le, integral_div, inv_mul_eq_div]
 
-/-- A function on `ℝ^d` satisfying a Hölder bound of exponent `1/2` is continuous. -/
-private lemma continuous_of_holder_half {A : ℝ} (hA : 0 ≤ A)
-    {f : EuclideanSpace ℝ (Fin d) → ℝ}
-    (h : ∀ y z, |f y - f z| ≤ A * ‖y - z‖ ^ ((1 : ℝ) / 2)) : Continuous f := by
-  have hholder : HolderWith A.toNNReal (1 / 2 : NNReal) f := by
-    intro y z
-    rw [edist_dist, edist_dist, ENNReal.ofReal_rpow_of_nonneg dist_nonneg (by norm_num)]
-    change ENNReal.ofReal _ ≤ ENNReal.ofReal A * _
-    rw [← ENNReal.ofReal_mul hA]
-    exact ENNReal.ofReal_le_ofReal (by simpa [Real.dist_eq, dist_eq_norm] using h y z)
-  exact hholder.continuous (by norm_num)
-
 /-- The potential of a measurable set of finite volume is integrable on every ball. -/
 private lemma integrableOn_ball_potential (hd : 2 ≤ d) (ε : ℝ)
     {D : Set (EuclideanSpace ℝ (Fin d))} (hD : MeasurableSet D) (hDfin : volume D ≠ ⊤) (S : ℝ) :

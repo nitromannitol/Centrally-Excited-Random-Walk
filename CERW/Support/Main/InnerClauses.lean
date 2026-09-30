@@ -27,22 +27,6 @@ open scoped symmDiff Pointwise
 
 variable {d : ℕ}
 
-/-- The rate `Q = (log(n + 2) / n^{1/(d+1)})^α`. -/
-private noncomputable def rate (d n : ℕ) : ℝ :=
-  if d = 2 then (Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1))) ^ ((1 : ℝ) / 2)
-  else (Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1))) ^ ((d : ℝ) / (2 * d - 1))
-
-/-- The rate `rate d n` is nonnegative. -/
-private lemma rate_nonneg (d n : ℕ) : 0 ≤ rate d n := by
-  have hbase : 0 ≤ Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1)) := by
-    apply div_nonneg
-    · exact Real.log_nonneg (by exact_mod_cast (show 1 ≤ n + 2 by omega))
-    · positivity
-  rw [rate]
-  by_cases h : d = 2
-  · rw [if_pos h]; exact Real.rpow_nonneg hbase _
-  · rw [if_neg h]; exact Real.rpow_nonneg hbase _
-
 /-- For `N > 0` and `L ≥ 0`, `N (L / N)^α = N^(1-α) L^α`. -/
 private lemma mul_div_rpow_eq {N L α : ℝ} (hN : 0 < N) (hL : 0 ≤ L) :
     N * (L / N) ^ α = N ^ (1 - α) * L ^ α := by

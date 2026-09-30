@@ -108,4 +108,56 @@ theorem step_dichotomy {Crad Cr S Ssh Fm Fp Fm' Fp' A err : ℝ} (hCrad : 0 < Cr
     rw [div_le_iff₀ hpos]
     nlinarith
 
+/-- The radial error is at most `A/4` from a level `A ≥ Ct w L` with `Fm ≤ A`. -/
+theorem radial_error_le {Crad Cr C₁ s L Mx ρ Fm A w Ct : ℝ} (hCrad : 0 < Crad)
+    (hCrad' : Crad ≤ Cr) (hCr : 1 ≤ Cr) (hC₁ : 0 < C₁) (hCt : Ct = 64 * Cr ^ 2 * (1 + C₁))
+    (hL : 0 ≤ L) (hMx : Mx ≤ C₁ * s) (hρ0 : 0 ≤ ρ) (hρs : s * ρ ≤ w) (hρw : ρ ≤ w)
+    (hFm0 : 0 ≤ Fm) (hFm : Fm ≤ A) (hA : Ct * (w * L) ≤ A) :
+    Crad * (Real.sqrt (Mx * ρ * Fm * L) + ρ * L) ≤ A / 4 := by
+  have hw0 : 0 ≤ w := le_trans hρ0 hρw
+  have hA0 : 0 ≤ A := le_trans hFm0 hFm
+  have hCr0 : 0 < Cr := by linarith
+  have hwL : 0 ≤ w * L := mul_nonneg hw0 hL
+  have h1 : Mx * ρ * Fm * L ≤ C₁ * (w * L) * A := by
+    have e1 : Mx * ρ ≤ C₁ * w := by
+      calc Mx * ρ ≤ (C₁ * s) * ρ := mul_le_mul_of_nonneg_right hMx hρ0
+        _ = C₁ * (s * ρ) := by ring
+        _ ≤ C₁ * w := mul_le_mul_of_nonneg_left hρs hC₁.le
+    calc Mx * ρ * Fm * L = (Mx * ρ) * (Fm * L) := by ring
+      _ ≤ (C₁ * w) * (A * L) :=
+          mul_le_mul e1 (mul_le_mul_of_nonneg_right hFm hL) (mul_nonneg hFm0 hL)
+            (mul_nonneg hC₁.le hw0)
+      _ = C₁ * (w * L) * A := by ring
+  have h2 : Real.sqrt (Mx * ρ * Fm * L) ≤ A / (8 * Cr) := by
+    rw [Real.sqrt_le_left (by positivity), div_pow, le_div_iff₀ (by positivity)]
+    have h3 : 64 * Cr ^ 2 * C₁ * (w * L) ≤ A := by
+      have : 64 * Cr ^ 2 * C₁ * (w * L) ≤ Ct * (w * L) := by
+        rw [hCt]
+        have : 0 ≤ 64 * Cr ^ 2 * (w * L) := by positivity
+        nlinarith
+      linarith
+    calc Mx * ρ * Fm * L * (8 * Cr) ^ 2 ≤ C₁ * (w * L) * A * (8 * Cr) ^ 2 :=
+          mul_le_mul_of_nonneg_right h1 (by positivity)
+      _ = A * (64 * Cr ^ 2 * C₁ * (w * L)) := by ring
+      _ ≤ A * A := mul_le_mul_of_nonneg_left h3 hA0
+      _ = A ^ 2 := by ring
+  have h4 : Cr * (ρ * L) ≤ A / 8 := by
+    have h5 : 64 * Cr * (w * L) ≤ Ct * (w * L) := by
+      rw [hCt]
+      have : 0 ≤ Cr * (w * L) := by positivity
+      nlinarith [mul_nonneg (sub_nonneg.mpr hCr) this]
+    have h6 : ρ * L ≤ w * L := mul_le_mul_of_nonneg_right hρw hL
+    have h7 : Cr * (ρ * L) ≤ Cr * (w * L) := mul_le_mul_of_nonneg_left h6 hCr0.le
+    linarith
+  have h8 : Cr * Real.sqrt (Mx * ρ * Fm * L) ≤ A / 8 := by
+    calc Cr * Real.sqrt (Mx * ρ * Fm * L) ≤ Cr * (A / (8 * Cr)) :=
+          mul_le_mul_of_nonneg_left h2 hCr0.le
+      _ = A / 8 := by field_simp
+  have hX : 0 ≤ Real.sqrt (Mx * ρ * Fm * L) + ρ * L :=
+    add_nonneg (Real.sqrt_nonneg _) (mul_nonneg hρ0 hL)
+  calc Crad * (Real.sqrt (Mx * ρ * Fm * L) + ρ * L)
+      ≤ Cr * (Real.sqrt (Mx * ρ * Fm * L) + ρ * L) := mul_le_mul_of_nonneg_right hCrad' hX
+    _ = Cr * Real.sqrt (Mx * ρ * Fm * L) + Cr * (ρ * L) := by ring
+    _ ≤ A / 4 := by linarith
+
 end CERW.Support.Coarse

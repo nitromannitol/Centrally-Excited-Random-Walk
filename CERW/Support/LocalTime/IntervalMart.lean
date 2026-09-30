@@ -25,11 +25,6 @@ open CERW.Support.Occupation
 
 variable {d : ℕ}
 
-/-- The bracket starts at `0`. -/
-private lemma bracket_zero {Ω : Type*} (Cg : ℝ) (y : Site d) (X : ℕ → Ω → Site d) (ω : Ω) :
-    bracket Cg y X 0 ω = 0 := by
-  simp [bracket]
-
 /-- The interval maximum is at least one on a nonempty interval. -/
 private lemma one_le_intervalMax (x : ℕ → Site d) {s t : ℕ} (hst : s < t) :
     1 ≤ intervalMax x s t := by

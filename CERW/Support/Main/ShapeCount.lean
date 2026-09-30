@@ -31,20 +31,6 @@ private lemma tendsto_inv_scale_pow_zero {d : ℕ} (hd : d ≠ 0) :
   have hpow := hN.pow d
   simpa only [div_pow, one_pow, zero_pow hd] using hpow
 
-/-- The fluctuation rate `Q = (L / N)^{1/2}` in the plane and `(L / N)^{d/(2d-1)}` otherwise. -/
-private noncomputable def rate (d n : ℕ) : ℝ :=
-  if d = 2 then (Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1))) ^ ((1 : ℝ) / 2)
-  else (Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1))) ^ ((d : ℝ) / (2 * d - 1))
-
-/-- The rate `Q` is nonnegative. -/
-private lemma rate_nonneg (d n : ℕ) : 0 ≤ rate d n := by
-  have hlog : 0 ≤ Real.log (n + 2) :=
-    Real.log_nonneg (by exact_mod_cast (show 1 ≤ n + 2 by omega))
-  have hN : 0 ≤ (n : ℝ) ^ ((1 : ℝ) / (d + 1)) := Real.rpow_nonneg (Nat.cast_nonneg n) _
-  have hbase : 0 ≤ Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1)) := div_nonneg hlog hN
-  rw [rate]
-  split_ifs <;> exact Real.rpow_nonneg hbase _
-
 /-- The counting, fixed-site and recurrence clauses of `thm:shape` for a path on which the
 fluctuation event holds eventually. -/
 theorem count_and_pointwise_of_good (hd : 2 ≤ d) {ε C : ℝ} (hε : 0 < ε) (hC : 0 ≤ C)

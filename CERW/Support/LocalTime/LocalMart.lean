@@ -19,11 +19,6 @@ open MeasureTheory ProbabilityTheory LatticeProb Finset CERW CERW.Support.Law
 
 variable {d : ℕ}
 
-/-- The bracket starts at `0`. -/
-private lemma bracket_zero {Ω : Type*} (Cg : ℝ) (y : Site d) (X : ℕ → Ω → Site d) (ω : Ω) :
-    bracket Cg y X 0 ω = 0 := by
-  simp [bracket]
-
 /-- The deterministic step: the Freedman threshold `c (√(max (C_g² B) 1 · L) + (2C_g+1) L)` is at
 most `C (√(B L) + L)`. -/
 private lemma threshold_arith {Cg c : ℝ} (hCg : 0 ≤ Cg) (hc : 1 ≤ c) :

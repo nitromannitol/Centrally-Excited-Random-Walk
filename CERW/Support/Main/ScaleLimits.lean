@@ -166,4 +166,18 @@ theorem tendsto_rate_rpow_mul_log_zero {d : ℕ} (hd : 2 ≤ d) :
     filter_upwards [eventually_ge_atTop (1 : ℕ)] with n hn
     rw [rpow_div_rpow_mul_log_eq ((d : ℝ) / (2 * d - 1)) d n hn]
 
+/-- The fluctuation rate `Q = (L / N)^{1/2}` in the plane and `(L / N)^{d/(2d-1)}` otherwise. -/
+noncomputable def rate (d n : ℕ) : ℝ :=
+  if d = 2 then (Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1))) ^ ((1 : ℝ) / 2)
+  else (Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1))) ^ ((d : ℝ) / (2 * d - 1))
+
+/-- The rate `Q` is nonnegative. -/
+theorem rate_nonneg (d n : ℕ) : 0 ≤ rate d n := by
+  have hlog : 0 ≤ Real.log (n + 2) :=
+    Real.log_nonneg (by exact_mod_cast (show 1 ≤ n + 2 by omega))
+  have hN : 0 ≤ (n : ℝ) ^ ((1 : ℝ) / (d + 1)) := Real.rpow_nonneg (Nat.cast_nonneg n) _
+  have hbase : 0 ≤ Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1)) := div_nonneg hlog hN
+  rw [rate]
+  split_ifs <;> exact Real.rpow_nonneg hbase _
+
 end CERW.Support.Main

@@ -128,4 +128,16 @@ theorem exists_potential_holder (hd : 2 ≤ d) :
           (volume D).toReal ^ ((1 : ℝ) / (2 * d)) * ‖y - z‖ ^ ((1 : ℝ) / 2) := by
         ring
 
+/-- A function on `ℝ^d` satisfying a Hölder bound of exponent `1/2` is continuous. -/
+theorem continuous_of_holder_half {A : ℝ} (hA : 0 ≤ A)
+    {f : EuclideanSpace ℝ (Fin d) → ℝ}
+    (h : ∀ y z, |f y - f z| ≤ A * ‖y - z‖ ^ ((1 : ℝ) / 2)) : Continuous f := by
+  have hholder : HolderWith A.toNNReal (1 / 2 : NNReal) f := by
+    intro y z
+    rw [edist_dist, edist_dist, ENNReal.ofReal_rpow_of_nonneg dist_nonneg (by norm_num)]
+    change ENNReal.ofReal _ ≤ ENNReal.ofReal A * _
+    rw [← ENNReal.ofReal_mul hA]
+    exact ENNReal.ofReal_le_ofReal (by simpa [Real.dist_eq, dist_eq_norm] using h y z)
+  exact hholder.continuous (by norm_num)
+
 end CERW.Support.Geometry

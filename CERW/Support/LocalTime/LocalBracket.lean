@@ -122,4 +122,9 @@ theorem exists_clamped_translate (hd : 1 ≤ d) {Ω : Type*} [MeasurableSpace Ω
   rw [bracket_succ_sub]
   exact hω
 
+/-- The bracket starts at `0`. -/
+theorem bracket_zero {Ω : Type*} (Cg : ℝ) (y : Site d) (X : ℕ → Ω → Site d) (ω : Ω) :
+    bracket Cg y X 0 ω = 0 := by
+  simp [bracket]
+
 end CERW.Support.LocalTime

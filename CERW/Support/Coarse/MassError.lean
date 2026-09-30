@@ -37,19 +37,6 @@ private theorem measurable_cellLocalTime (X : ℕ → Site d) (n : ℕ) :
     Measurable (cellLocalTime X n) :=
   (measurable_localTime X n).comp measurable_cellCenter
 
-/-- A function on `ℝ^d` satisfying a Hölder bound of exponent `1/2` is continuous. -/
-private theorem continuous_of_holder_half {A : ℝ} (hA : 0 ≤ A)
-    {f : EuclideanSpace ℝ (Fin d) → ℝ}
-    (h : ∀ y z, |f y - f z| ≤ A * ‖y - z‖ ^ ((1 : ℝ) / 2)) : Continuous f := by
-  have hholder : HolderWith (NNReal.mk A hA) (1 / 2 : ℝ≥0) f := by
-    intro y z
-    rw [edist_dist, edist_dist]
-    rw [← ENNReal.ofReal_eq_coe_nnreal hA]
-    rw [ENNReal.ofReal_rpow_of_nonneg dist_nonneg (by norm_num)]
-    rw [← ENNReal.ofReal_mul hA]
-    exact ENNReal.ofReal_le_ofReal (by simpa [Real.dist_eq, dist_eq_norm] using h y z)
-  exact hholder.continuous (by norm_num)
-
 /-- `|n - ∫_{B(0,S)} U_{D_n}| ≤ ω_d S^d δ` when `D_n ⊆ B(0, S)` and `|ℓ̃_n - U_{D_n}| ≤ δ`
 there. -/
 theorem abs_sub_integral_potential_le (hd : 2 ≤ d) {ε : ℝ} (hε : 0 ≤ ε) (X : ℕ → Site d)

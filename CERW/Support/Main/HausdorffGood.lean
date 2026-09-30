@@ -22,18 +22,6 @@ open scoped Topology
 
 variable {d : ℕ}
 
-/-- The rate `Q` is nonnegative. -/
-private lemma rate_nonneg (d n : ℕ) :
-    0 ≤ (if d = 2 then (Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1))) ^ ((1 : ℝ) / 2)
-      else (Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1))) ^ ((d : ℝ) / (2 * d - 1))) := by
-  have hbase : 0 ≤ Real.log (n + 2) / (n : ℝ) ^ ((1 : ℝ) / (d + 1)) := by
-    apply div_nonneg
-    · exact Real.log_nonneg (by exact_mod_cast (show 1 ≤ n + 2 by omega))
-    · positivity
-  by_cases h : d = 2
-  · rw [if_pos h]; exact Real.rpow_nonneg hbase _
-  · rw [if_neg h]; exact Real.rpow_nonneg hbase _
-
 /-- In the plane, `N⁻¹ ≤ Q^{1/2}` as soon as `N = n^{1/3} ≥ 1` and `log(n+2) ≥ 1`. -/
 private lemma rate_inv_le_planar {n : ℕ} (hn : 1 ≤ n) (hL : 1 ≤ Real.log (n + 2)) :
     (((n : ℝ) ^ ((1 : ℝ) / 3))⁻¹)
