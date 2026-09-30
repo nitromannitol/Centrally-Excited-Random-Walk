@@ -132,6 +132,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 31 | mass step on the event (d = 2) | ds1 | v4.1-flash | 6029 | 1 | — | in flight | — | — | `wip/MassEventPlanar.lean` |
 | 32 | inner clauses on the event, given the mass | ds3 | v4.1-flash | 6559 | 1 | — | in flight | — | — | `wip/InnerOfMass.lean` |
 | 32 | outer inclusion on the event, given the mass | ds4 | v4.1-flash | 6071 | 1 | ↑127k ↓56k | accepted | 1: the worker reported an unused hypothesis, which the director removed | 212 | `CERW/Support/Main/OuterOfMass.lean` |
+| 33 | eq:hausdorff one-sided (variant A) from the core | ds4 | v4.1-flash | 4813 | 1 | — | in flight | — | — | `wip/HausdorffOneSided.lean` |
 | 29 | inner clauses of the event | ds4 | v4.1-flash | 6013 | 1 | ↑195k ↓62k | accepted | 0 | 225 | `CERW/Support/Main/InnerClauses.lean` |
 | 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | ↑395k ↓211k | accepted | 0 | 503 | `CERW/Support/Main/HausdorffGood.lean` |
 | 27 | planar contact variance (eq:massplanar, eq:envelopeplanar) | ds1 | v4.1-flash | 6297 | 1 | ↑325k ↓171k | accepted | 0 | 606 | `CERW/Support/Contact/MassPlanar.lean` |

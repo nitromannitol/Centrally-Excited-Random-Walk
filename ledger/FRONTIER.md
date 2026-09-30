@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 03:02.
+generation time. Regenerated 2026-09-30 03:03.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -150,11 +150,13 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-borel-cantelli | ds1 | `Support/Main/BorelCantelli.lean` | — | Σ C n^{−p} < ∞ ⇒ a.s. eventually | LANDED |
 | s-shape-inclusion | ds2 | `Support/Main/ShapeInclusion.lean` | s-good-event, s-scale-limits | thm:shape inclusions and profile from fluctGood | LANDED |
 | s-shape-count | ds4 | `Support/Main/ShapeCount.lean` | s-good-event, s-scale-limits | thm:shape counts and fixed sites from fluctGood | LANDED |
-| **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-fluct-assembly | thm:fluctuations | DRAFT |
-| **thm-shape** | director | `Frozen/BallShape.lean` | s-fluct-assembly | thm:shape | DRAFT |
-| **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | s-hausdorff-assembly | eq:hausdorff | DRAFT |
+| s-hausdorff-one-sided | ds4 | `Support/Main/HausdorffOneSided.lean` | s-hausdorff-assembly | eq:hausdorff one-sided (variant A) from the core | IN-FLIGHT (ds4, 03:03) |
+| s-kernel-anchors | director | `Support/Main/KernelAnchors.lean` | s-assembly, s-fluct-assembly, s-hausdorff-assembly, s-hausdorff-one-sided | the core supplied to the final assemblies | IN-FLIGHT (director/sonnet) |
+| **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-kernel-anchors | thm:fluctuations | DRAFT |
+| **thm-shape** | director | `Frozen/BallShape.lean` | s-kernel-anchors | thm:shape | DRAFT |
+| **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | s-kernel-anchors | eq:hausdorff | DRAFT |
 
-**Counts:** DRAFT 7, IN-FLIGHT 3, LANDED 106, SUPERSEDED 7.
+**Counts:** DRAFT 7, IN-FLIGHT 5, LANDED 106, SUPERSEDED 7.
 
 ## Pre-freeze gate
 
