@@ -136,7 +136,8 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 34 | heartbeat margin: `MassPlanar` | ds1 | v4.1-flash | 5331 | — | — | in flight | — | — | `wip/MassPlanar.lean` |
 | 34 | heartbeat margin: `EnvelopeHigh` | ds2 | v4.1-flash | 5286 | — | — | in flight | — | — | `wip/EnvelopeHigh.lean` |
 | 34 | heartbeat margin: `MassHigh` | ds3 | v4.1-flash | 5244 | — | — | in flight | — | — | `wip/MassHigh.lean` |
-| 34 | heartbeat margin: `InradiusArith` | ds4 | v4.1-flash | 5348 | — | — | in flight | — | — | `wip/InradiusArith.lean` |
+| 34 | heartbeat margin: `InradiusArith` | ds4 | v4.1-flash | 5348 | — | ↑22k ↓4.1k | accepted | 0 | 184 | `CERW/Support/Contact/InradiusArith.lean` |
+| 35 | heartbeat margin: `Cap` | ds4 | v4.1-flash | 5076 | — | — | in flight | — | — | `wip/Cap.lean` |
 | 29 | inner clauses of the event | ds4 | v4.1-flash | 6013 | 1 | ↑195k ↓62k | accepted | 0 | 225 | `CERW/Support/Main/InnerClauses.lean` |
 | 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | ↑395k ↓211k | accepted | 0 | 503 | `CERW/Support/Main/HausdorffGood.lean` |
 | 27 | planar contact variance (eq:massplanar, eq:envelopeplanar) | ds1 | v4.1-flash | 6297 | 1 | ↑325k ↓171k | accepted | 0 | 606 | `CERW/Support/Contact/MassPlanar.lean` |
@@ -147,7 +148,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 
 ## Observations
 
-* **Waves 1–26.** Every returned DeepSeek packet was accepted: 106/106, two after a statement repair. One packet (wave 32) was withdrawn and
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 107/107, two after a statement repair. One packet (wave 32) was withdrawn and
   finished by the director. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 23/23.
 * **Large contexts defeat `nlinarith`.** In wave 32 the worker's single-theorem proof of the inner clauses timed out at the

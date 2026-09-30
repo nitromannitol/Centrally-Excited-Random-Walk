@@ -13,8 +13,8 @@ except the aggregators: 154 of 168 pass, and the 14 below do not.
 | `CERW/Support/Contact/MassPlanar.lean` | in flight |
 | `CERW/Support/Contact/EnvelopeHigh.lean` | in flight |
 | `CERW/Support/Contact/MassHigh.lean` | in flight |
-| `CERW/Support/Contact/InradiusArith.lean` | in flight |
-| `CERW/Generic/Newton/Cap.lean` | queued |
+| `CERW/Support/Contact/InradiusArith.lean` | done |
+| `CERW/Generic/Newton/Cap.lean` | in flight |
 | `CERW/Generic/Young/Absorb.lean` | queued |
 | `CERW/Support/Coarse/OuterBound.lean` | queued |
 | `CERW/Support/Coarse/OuterRadius.lean` | queued |

@@ -175,7 +175,10 @@ theorem exists_abs_div_sub_le (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {C₁ : �
         (div_nonneg hb (le_of_lt hNpos)) hapos (by omega : 1 ≤ d + 1) hca hEbound
     have hfinal : a * ((2 * C₁ + 4 * ε * C₁) * Q)
         ≤ (a * (2 * C₁ + 4 * ε * C₁) + 1) * Q := by
-      nlinarith [hQ]
-    linarith
+      have h : a * ((2 * C₁ + 4 * ε * C₁) * Q)
+          = a * (2 * C₁ + 4 * ε * C₁) * Q := by ring
+      rw [h, add_mul, one_mul]
+      exact le_add_of_nonneg_right hQ
+    exact le_trans hbound hfinal
 
 end CERW.Support.Contact
