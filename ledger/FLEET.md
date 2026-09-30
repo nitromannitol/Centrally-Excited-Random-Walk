@@ -129,10 +129,10 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 30 | outer inclusion from the radius bound | ds4 | v4.1-flash | 4941 | 1 | ↑50k ↓35k | accepted | 0 | 115 | `CERW/Support/Main/OuterInclusion.lean` |
 | 30 | thm:fluctuations and thm:shape from the core | ds3 | v4.1-flash | 5765 | 2 | ↑35k ↓18k | accepted | 0 | 143 | `CERW/Support/Main/FluctAssembly.lean` |
 | 31 | eq:hausdorff (two-sided) from the core | ds2 | v4.1-flash | 5405 | 1 | ↑183k ↓78k | accepted | 0 | 156 | `CERW/Support/Main/HausdorffAssembly.lean` |
-| 31 | mass step on the event (d = 2) | ds1 | v4.1-flash | 6029 | 1 | — | in flight | — | — | `wip/MassEventPlanar.lean` |
+| 31 | mass step on the event (d = 2) | ds1 | v4.1-flash | 6029 | 1 | ↑285k ↓131k | accepted | 0 | 352 | `CERW/Support/Main/MassEventPlanar.lean` |
 | 32 | inner clauses on the event, given the mass | ds3 | v4.1-flash | 6559 | 1 | — | in flight | — | — | `wip/InnerOfMass.lean` |
 | 32 | outer inclusion on the event, given the mass | ds4 | v4.1-flash | 6071 | 1 | ↑127k ↓56k | accepted | 1: the worker reported an unused hypothesis, which the director removed | 212 | `CERW/Support/Main/OuterOfMass.lean` |
-| 33 | eq:hausdorff one-sided (variant A) from the core | ds4 | v4.1-flash | 4813 | 1 | — | in flight | — | — | `wip/HausdorffOneSided.lean` |
+| 33 | eq:hausdorff one-sided (variant A) from the core | ds4 | v4.1-flash | 4813 | 1 | ↑19k ↓8.0k | accepted | 0 | 66 | `CERW/Support/Main/HausdorffOneSided.lean` |
 | 29 | inner clauses of the event | ds4 | v4.1-flash | 6013 | 1 | ↑195k ↓62k | accepted | 0 | 225 | `CERW/Support/Main/InnerClauses.lean` |
 | 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | ↑395k ↓211k | accepted | 0 | 503 | `CERW/Support/Main/HausdorffGood.lean` |
 | 27 | planar contact variance (eq:massplanar, eq:envelopeplanar) | ds1 | v4.1-flash | 6297 | 1 | ↑325k ↓171k | accepted | 0 | 606 | `CERW/Support/Contact/MassPlanar.lean` |
@@ -143,7 +143,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 
 ## Observations
 
-* **Waves 1–26.** Every returned DeepSeek packet was accepted: 104/104, two after a statement repair. There were three repairs: a definition
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 106/106, two after a statement repair. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 23/23.
 * **Brief names are machine-checked.** In waves 27 and 29 a brief named a Mathlib lemma that does not
   exist or is deprecated, and a correction had to follow the dispatch. `brief_helper.py` now greps every

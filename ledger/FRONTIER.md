@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 03:03.
+generation time. Regenerated 2026-09-30 03:06.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -136,7 +136,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-outer-envelope | ds3 | `Support/Coarse/OuterEnvelope.lean` | s-tailend, s-outer, s-envelope-shell | H_n ≤ b + C W L from the envelope | LANDED |
 | s-inner-clauses | ds4 | `Support/Main/InnerClauses.lean` | s-volume-profile, s-good-event | inner, volume and profile clauses and the hole | LANDED |
 | s-mass-event-high | ds2 | `Support/Main/MassEventHigh.lean` | s-var-high, s-contact-setup | mass step on the event, d ≥ 3 | LANDED |
-| s-mass-event-planar | ds1 | `Support/Main/MassEventPlanar.lean` | s-var-planar, s-contact-setup | mass step on the event, d = 2 | IN-FLIGHT (ds1, 02:50) |
+| s-mass-event-planar | ds1 | `Support/Main/MassEventPlanar.lean` | s-var-planar, s-contact-setup | mass step on the event, d = 2 | LANDED |
 | s-outer-inclusion | ds4 | `Support/Main/OuterInclusion.lean` | — | V_n ⊆ {\|x\| < (a + C Q^{1/d} L) N} from H_n ≤ b + C W L | LANDED |
 | s-inner-of-mass | ds3 | `Support/Main/InnerOfMass.lean` | s-contact-setup, s-inradius, s-inner-clauses | inradius, inner clauses and hole on the event, given the mass | IN-FLIGHT (ds3, 02:56) |
 | s-outer-of-mass | ds4 | `Support/Main/OuterOfMass.lean` | s-outer-envelope, s-outer-inclusion | outer inclusion on the event, given mass, envelope, inradius | LANDED |
@@ -150,13 +150,13 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-borel-cantelli | ds1 | `Support/Main/BorelCantelli.lean` | — | Σ C n^{−p} < ∞ ⇒ a.s. eventually | LANDED |
 | s-shape-inclusion | ds2 | `Support/Main/ShapeInclusion.lean` | s-good-event, s-scale-limits | thm:shape inclusions and profile from fluctGood | LANDED |
 | s-shape-count | ds4 | `Support/Main/ShapeCount.lean` | s-good-event, s-scale-limits | thm:shape counts and fixed sites from fluctGood | LANDED |
-| s-hausdorff-one-sided | ds4 | `Support/Main/HausdorffOneSided.lean` | s-hausdorff-assembly | eq:hausdorff one-sided (variant A) from the core | IN-FLIGHT (ds4, 03:03) |
+| s-hausdorff-one-sided | ds4 | `Support/Main/HausdorffOneSided.lean` | s-hausdorff-assembly | eq:hausdorff one-sided (variant A) from the core | LANDED |
 | s-kernel-anchors | director | `Support/Main/KernelAnchors.lean` | s-assembly, s-fluct-assembly, s-hausdorff-assembly, s-hausdorff-one-sided | the core supplied to the final assemblies | IN-FLIGHT (director/sonnet) |
 | **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-kernel-anchors | thm:fluctuations | DRAFT |
 | **thm-shape** | director | `Frozen/BallShape.lean` | s-kernel-anchors | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | s-kernel-anchors | eq:hausdorff | DRAFT |
 
-**Counts:** DRAFT 7, IN-FLIGHT 5, LANDED 106, SUPERSEDED 7.
+**Counts:** DRAFT 7, IN-FLIGHT 3, LANDED 108, SUPERSEDED 7.
 
 ## Pre-freeze gate
 
