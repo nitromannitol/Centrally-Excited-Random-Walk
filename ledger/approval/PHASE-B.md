@@ -14,9 +14,9 @@ text shown here.
 
 * NL twins: `ledger/nl/<id>.tex`.
 * REVIEWED readings and hazard declarations: `ledger/readings.yaml`.
-* Refute-first audit (fresh instance): `ledger/audits/prefreeze-opus-audit.md`. All PASS, EXCESS 0
+* Refute-first audit (fresh instance): `ledger/audits/prefreeze-refute-first-audit.md`. All PASS, EXCESS 0
   everywhere, no DEFECT, one CONCERN (below).
-* Three DeepSeek readings, all "no discrepancy": `ledger/audits/prefreeze-deepseek-reading-{A,B,C}.md`.
+* Three independent readings, all "no discrepancy": `ledger/audits/prefreeze-reading-{A,B,C}.md`.
 * Consumption prototypes: the `example` blocks of the audited file, which elaborate.
 * Non-vacuity: `CERW.Support.Guards.exists_cerw_realization`, compiled with clean axioms.
 

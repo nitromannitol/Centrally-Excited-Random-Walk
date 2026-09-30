@@ -133,11 +133,11 @@ Updated 2026-09-30 22:42.
 ## Pre-freeze gate (per anchor; nothing is frozen without the author's approval)
 
 Evidence files: `ledger/nl/<id>.tex`, `ledger/readings.yaml` (clauses, hazards),
-`ledger/audits/prefreeze-opus-audit.md`, and `ledger/audits/prefreeze-deepseek-reading-{A,B,C}.md`.
+`ledger/audits/prefreeze-refute-first-audit.md`, and `ledger/audits/prefreeze-reading-{A,B,C}.md`.
 The consumption prototypes are the `example` blocks in the transient `scratch/Anchors.lean`
 (sha256 `0ca9ad7c…` at audit time).
 
-| anchor | nl twin | REVIEWED | consumption | binder audit | non-vacuity | refute-first (Opus) | DeepSeek ×3 |
+| anchor | nl twin | REVIEWED | consumption | binder audit | non-vacuity | refute-first | readings ×3 |
 |---|---|---|---|---|---|---|---|
 | ext-lattice-kernel | done | done | via the anchors | n/a (definition) | truth check done (Lawler–Limic and numerics) | PASS | PASS ×3 |
 | thm-shape | done | done | done | EXCESS 0 | `Guards.exists_cerw_realization` | PASS | PASS ×3 |
