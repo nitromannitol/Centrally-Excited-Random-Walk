@@ -133,6 +133,10 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 32 | inner clauses on the event, given the mass | ds3 | v4.1-flash | 6559 | 1 | ↑282k ↓230k | withdrawn: the director stopped the worker and wrote the proof | — | 236 | `CERW/Support/Main/InnerOfMass.lean` |
 | 32 | outer inclusion on the event, given the mass | ds4 | v4.1-flash | 6071 | 1 | ↑127k ↓56k | accepted | 1: the worker reported an unused hypothesis, which the director removed | 212 | `CERW/Support/Main/OuterOfMass.lean` |
 | 33 | eq:hausdorff one-sided (variant A) from the core | ds4 | v4.1-flash | 4813 | 1 | ↑19k ↓8.0k | accepted | 0 | 66 | `CERW/Support/Main/HausdorffOneSided.lean` |
+| 34 | heartbeat margin: `MassPlanar` | ds1 | v4.1-flash | 5331 | — | — | in flight | — | — | `wip/MassPlanar.lean` |
+| 34 | heartbeat margin: `EnvelopeHigh` | ds2 | v4.1-flash | 5286 | — | — | in flight | — | — | `wip/EnvelopeHigh.lean` |
+| 34 | heartbeat margin: `MassHigh` | ds3 | v4.1-flash | 5244 | — | — | in flight | — | — | `wip/MassHigh.lean` |
+| 34 | heartbeat margin: `InradiusArith` | ds4 | v4.1-flash | 5348 | — | — | in flight | — | — | `wip/InradiusArith.lean` |
 | 29 | inner clauses of the event | ds4 | v4.1-flash | 6013 | 1 | ↑195k ↓62k | accepted | 0 | 225 | `CERW/Support/Main/InnerClauses.lean` |
 | 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | ↑395k ↓211k | accepted | 0 | 503 | `CERW/Support/Main/HausdorffGood.lean` |
 | 27 | planar contact variance (eq:massplanar, eq:envelopeplanar) | ds1 | v4.1-flash | 6297 | 1 | ↑325k ↓171k | accepted | 0 | 606 | `CERW/Support/Contact/MassPlanar.lean` |
