@@ -27,7 +27,7 @@ nodes:
     source: cerw-flat.tex:497-514 (label lem:geometry, local-times.tex:157-174)
     file: CERW/Frozen/PotentialGeometry.lean
     export: CERW.Frozen.potential_geometry
-    state: SEALED
+    state: PROVED
     frozen_sha256: 3cd2d5007812191cc3c35903ff940e6d73ef50b4aae6f289a850cac172951121
     provider: CERW.Frozen.potential_geometry
     approved: "2026-09-30"
@@ -38,7 +38,7 @@ nodes:
     source: cerw-flat.tex:135-160 (label thm:shape)
     file: CERW/Frozen/BallShape.lean
     export: CERW.Frozen.ball_shape
-    state: SEALED
+    state: PROVED
     frozen_sha256: 5a9e41bb7519fdcb1ddecb9600a988040068a3df84e036614489a518817cf7a3
     provider: CERW.Frozen.ball_shape
     approved: "2026-09-30"
@@ -49,7 +49,7 @@ nodes:
     source: cerw-flat.tex:186-213 (label thm:fluctuations)
     file: CERW/Frozen/FluctuationBounds.lean
     export: CERW.Frozen.fluctuation_bounds
-    state: SEALED
+    state: PROVED
     frozen_sha256: 41d7dc1aa3fda8e59fa02000c8ae88829d8b37c7b78baf95395bb34175e45c5d
     provider: CERW.Frozen.fluctuation_bounds
     approved: "2026-09-30"
@@ -60,7 +60,7 @@ nodes:
     source: cerw-flat.tex:217-223 (label eq:hausdorff, with the planar remark at cerw-flat.tex 224-225)
     file: CERW/Frozen/HausdorffBound.lean
     export: CERW.Frozen.hausdorff_bound
-    state: SEALED
+    state: PROVED
     frozen_sha256: 950626aae9fc93dbd322c18522bf8ad56272423803baf6fa1a937d33da46072b
     provider: CERW.Frozen.hausdorff_bound
     approved: "2026-09-30"
@@ -71,7 +71,7 @@ nodes:
     source: cerw-flat.tex:397-414 (label lem:local, local-times.tex:57-74)
     file: CERW/Frozen/LocalTimePotential.lean
     export: CERW.Frozen.local_time_potential
-    state: SEALED
+    state: PROVED
     frozen_sha256: c804956e1998b52392ff46288059b8d424f072a46a753112c24652bf078e6b55
     provider: CERW.Frozen.local_time_potential
     approved: "2026-09-30"
@@ -82,7 +82,7 @@ nodes:
     source: cerw-flat.tex:581-601 (label lem:radial, coarse-radius.tex:38-58)
     file: CERW/Frozen/RadialTest.lean
     export: CERW.Frozen.radial_test
-    state: SEALED
+    state: PROVED
     frozen_sha256: f663fbeb70e9333ce0aad48009dfbfb9262f2f6c0425a9338611128d781799f8
     provider: CERW.Frozen.radial_test
     approved: "2026-09-30"
@@ -93,7 +93,7 @@ nodes:
     source: cerw-flat.tex:547-561 (label prop:coarse, coarse-radius.tex:4-18)
     file: CERW/Frozen/CoarseBounds.lean
     export: CERW.Frozen.coarse_bounds
-    state: SEALED
+    state: PROVED
     frozen_sha256: 695b02b4055219568e89d469368885395be5c06e2a42645ce0c0d7afa33bbc15
     provider: CERW.Frozen.coarse_bounds
     approved: "2026-09-30"

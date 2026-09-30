@@ -4,7 +4,7 @@ Formalizes statements pinned in `paper/cerw-flat.tex` as the Lean library `CERW`
 
 ## What is claimed
 
-Every node's state in `ledger/manifest.yaml` is `SEALED`: all 7 are proved with no added axiom and no `sorry`.
+Every node's state in `ledger/manifest.yaml` is `SEALED` or `PROVED` (0 SEALED, 7 PROVED, 7 total): all are proved with no added axiom and no `sorry`.
 
 ## Environment
 
@@ -34,13 +34,13 @@ python3 -m leanform_tools.certificate . --check
 
 | # | node | Lean name(s) | state | axiom closure |
 |---|---|---|---|---|
-| 1 | `lem-geometry` | `CERW.Frozen.potential_geometry` | `SEALED` | classical only |
-| 2 | `thm-shape` | `CERW.Frozen.ball_shape` | `SEALED` | classical only |
-| 3 | `thm-fluctuations` | `CERW.Frozen.fluctuation_bounds` | `SEALED` | classical only |
-| 4 | `eq-hausdorff` | `CERW.Frozen.hausdorff_bound` | `SEALED` | classical only |
-| 5 | `lem-local` | `CERW.Frozen.local_time_potential` | `SEALED` | classical only |
-| 6 | `lem-radial` | `CERW.Frozen.radial_test` | `SEALED` | classical only |
-| 7 | `prop-coarse` | `CERW.Frozen.coarse_bounds` | `SEALED` | classical only |
+| 1 | `lem-geometry` | `CERW.Frozen.potential_geometry` | `PROVED` | classical only |
+| 2 | `thm-shape` | `CERW.Frozen.ball_shape` | `PROVED` | classical only |
+| 3 | `thm-fluctuations` | `CERW.Frozen.fluctuation_bounds` | `PROVED` | classical only |
+| 4 | `eq-hausdorff` | `CERW.Frozen.hausdorff_bound` | `PROVED` | classical only |
+| 5 | `lem-local` | `CERW.Frozen.local_time_potential` | `PROVED` | classical only |
+| 6 | `lem-radial` | `CERW.Frozen.radial_test` | `PROVED` | classical only |
+| 7 | `prop-coarse` | `CERW.Frozen.coarse_bounds` | `PROVED` | classical only |
 
 ## Frozen statements
 

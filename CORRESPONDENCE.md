@@ -43,13 +43,13 @@ live in `CERW/Model/`.
 
 | id | Lean | paper | state |
 |---|---|---|---|
-| `lem-geometry` | `CERW.Frozen.potential_geometry` | `cerw-flat.tex:497-514`, `lem:geometry` | SEALED |
-| `thm-shape` | `CERW.Frozen.ball_shape` | `cerw-flat.tex:135-160`, `thm:shape` | SEALED |
-| `thm-fluctuations` | `CERW.Frozen.fluctuation_bounds` | `cerw-flat.tex:186-213`, `thm:fluctuations` | SEALED |
-| `eq-hausdorff` | `CERW.Frozen.hausdorff_bound` | `cerw-flat.tex:217-223`, `eq:hausdorff` | SEALED |
-| `lem-local` | `CERW.Frozen.local_time_potential` | `cerw-flat.tex:397-414`, `lem:local` | SEALED |
-| `lem-radial` | `CERW.Frozen.radial_test` | `cerw-flat.tex:581-601`, `lem:radial` | SEALED |
-| `prop-coarse` | `CERW.Frozen.coarse_bounds` | `cerw-flat.tex:547-561`, `prop:coarse` | SEALED |
+| `lem-geometry` | `CERW.Frozen.potential_geometry` | `cerw-flat.tex:497-514`, `lem:geometry` | PROVED |
+| `thm-shape` | `CERW.Frozen.ball_shape` | `cerw-flat.tex:135-160`, `thm:shape` | PROVED |
+| `thm-fluctuations` | `CERW.Frozen.fluctuation_bounds` | `cerw-flat.tex:186-213`, `thm:fluctuations` | PROVED |
+| `eq-hausdorff` | `CERW.Frozen.hausdorff_bound` | `cerw-flat.tex:217-223`, `eq:hausdorff` | PROVED |
+| `lem-local` | `CERW.Frozen.local_time_potential` | `cerw-flat.tex:397-414`, `lem:local` | PROVED |
+| `lem-radial` | `CERW.Frozen.radial_test` | `cerw-flat.tex:581-601`, `lem:radial` | PROVED |
+| `prop-coarse` | `CERW.Frozen.coarse_bounds` | `cerw-flat.tex:547-561`, `prop:coarse` | PROVED |
 
 <!-- FROZEN-SURFACE-END -->
 

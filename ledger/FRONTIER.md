@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 12:14.
+generation time. Regenerated 2026-09-30 12:19.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -65,7 +65,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-cell-modulus | ds1 | `Support/Geometry/CellModulus.lean` | s-potential-bound, s-newton-field, s-log-radial | \|U_D(y) − U_D(z)\| ≤ Cε log(R+2) for \|y−z\| ≤ √d (eq:cellmodulus) | LANDED |
 | s-cell-shift | director | `Support/LocalTime/CellShift.lean` | s-kernel-replace, s-cell-modulus | moving y in its cell costs O(L) | SUPERSEDED (route landed in the cell replacement in `Support/LocalTime/ReplaceCell.lean`) |
 | s-retained | director | `Support/LocalTime/Retained.lean` | s-dyadic, s-dynkin-local, s-kernel-replace, s-cell-shift | eq:localmart, eq:pointwise, eq:cellmodulus | SUPERSEDED (route landed in `Support/LocalTime/LocalMart.lean`, `Support/LocalTime/Pointwise.lean`, `Support/Geometry/CellModulus.lean`) |
-| **lem-local** | director | `Frozen/LocalTimePotential.lean` | s-local-young, s-kernel-replace, s-direction-error, s-cell-shift, s-interval-mart | lem:local | SEALED (proof of the draft statement landed: `Support/LocalTime/LocalAssembly.lean`) |
+| **lem-local** | director | `Frozen/LocalTimePotential.lean` | s-local-young, s-kernel-replace, s-direction-error, s-cell-shift, s-interval-mart | lem:local | PROVED (proof of the draft statement landed: `Support/LocalTime/LocalAssembly.lean`) |
 | s-Fmass | ds2 | `Support/Geometry/TailBasic.lean`, `Support/Geometry/TailBounds.lean` | — | F ≥ 0, antitone on (0,∞); F ≤ \|D\|/(σ_ds^{d−1}); F = 0 beyond D; increments | LANDED |
 | s-polar | sonnet | `Generic/Newton/Polar.lean` | — | ∫ f = ∫_0^∞ r^{d−1}∫_S f(rθ)dσ dr for integrable f | LANDED |
 | s-gauss-flux | sonnet | `Generic/Newton/Gauss.lean` | s-polar | ∫ Dφ(v)[K(v−c)] dv = −σ_d φ(c) for φ ∈ C¹_c | LANDED |
@@ -78,7 +78,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-holder | sonnet | `Support/Geometry/Holder.lean` | s-kernel-modulus, s-potential-bound | eq:holder | LANDED |
 | s-newton | sonnet | `Support/Geometry/Newton.lean` | s-gauss-flux-theorem, s-flux, s-polar, s-ball-symmetry, s-potential-integrable | eq:newton | LANDED |
 | s-ballpotential | sonnet | `Support/Geometry/Newton.lean` | s-newton, s-ball-symmetry | eq:ballpotential | LANDED |
-| **lem-geometry** | director | `Frozen/PotentialGeometry.lean` | s-potential-bound, s-holder, s-newton, s-ballpotential | lem:geometry | SEALED (proof of the draft statement landed: `Support/Geometry/Assembly.lean`) |
+| **lem-geometry** | director | `Frozen/PotentialGeometry.lean` | s-potential-bound, s-holder, s-newton, s-ballpotential | lem:geometry | PROVED (proof of the draft statement landed: `Support/Geometry/Assembly.lean`) |
 | **Section 3 (lem:radial, prop:coarse)** | | | | | |
 | s-radial-profile | ds1 | `Generic/Young/RadialProfile.lean` | — | increments of log r and r^{−k}: two-sided mean-value bounds | SUPERSEDED (removed by the author's ruling; `eq:levelsets` is proved in `Support/Coarse/LevelSets.lean`) |
 | s-levelsets | ds2 | `Support/Coarse/LevelSets.lean` | — | eq:levelsets | LANDED |
@@ -88,7 +88,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-radial-mart | sonnet | `Support/Coarse/RadialMart.lean` | s-dyadic, s-dynkin, s-radial-drift, s-Fmass, s-cell-weight | eq:radialbracket, eq:radialmart | LANDED |
 | s-tail-lower | ds1 | `Support/Coarse/TailLower.lean` | s-cell-weight, s-cell-membership, s-Fmass | σ_d F(r+b) ≤ 2^{d−1} Σ_{x∈A_n,\|x\|>r+3}\|x\|^{1−d} | LANDED |
 | s-radial-source | ds4 | `Support/Coarse/RadialSource.lean` | s-dynkin, s-radial-drift, s-fresh-sum | eq:radial-source, eq:shell-count | LANDED |
-| **lem-radial** | director | `Frozen/RadialTest.lean` | s-radial-source, s-radial-mart, s-tail-lower, s-shell-count, s-kernel-props | lem:radial | SEALED (proof of the draft statement landed: `Support/Coarse/RadialAssembly.lean`) |
+| **lem-radial** | director | `Frozen/RadialTest.lean` | s-radial-source, s-radial-mart, s-tail-lower, s-shell-count, s-kernel-props | lem:radial | PROVED (proof of the draft statement landed: `Support/Coarse/RadialAssembly.lean`) |
 | s-halving | ds2/ds3 | `Generic/Halving/Levels.lean`, `Generic/Halving/Cost.lean` | — | halving on the grid and its cost | LANDED |
 | s-cap | ds2 | `Generic/Newton/Cap.lean` | — | σ(cap of angular radius ε ≤ 1) ≥ (d/4)(ε/(4√d))^{d−1} | LANDED |
 | s-shell | director | `Support/Coarse/Shell.lean` | lem-geometry, lem-local | eq:shell via eq:cap-average | LANDED |
@@ -110,7 +110,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-radius-arith | ds4 | `Support/Coarse/RadiusArith.lean` | s-scale-limits | c s^{d+1} ≤ n + C s^{d+1/2}L ⇒ s ≤ C′N | LANDED |
 | s-card-tail | ds2 | `Support/Coarse/CardTail.lean` | s-cell-norm, s-Fmass | eq:coarse-cellcount (general) | LANDED |
 | s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | SUPERSEDED (route landed in `Support/Geometry/MassIdentity.lean` and `Support/Coarse/MassError.lean`) |
-| **prop-coarse** | sonnet | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | SEALED (proof of the draft statement landed: `Support/Coarse/Assembly.lean`) |
+| **prop-coarse** | sonnet | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | PROVED (proof of the draft statement landed: `Support/Coarse/Assembly.lean`) |
 | **Sections 4–5 and the main theorems** | | | | | |
 | s-contact-kernel | ds1 | `Support/Contact/Kernel.lean` | — | u_v·(v−y)\|v−y\|^{−d} ≥ 2^{1−d}\|v\|^{1−d} for \|y\| ≤ \|v\| | LANDED |
 | s-planar-contact-sum | ds4 | `Support/Contact/PlanarSum.lean` | s-packing-lattice, s-occupation | Σ_{\|w\|≤R}(b−\|z+w\|)_+(1+\|w\|)^{−2} ≤ C(R+1) | LANDED |
@@ -152,11 +152,11 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-shape-count | ds4 | `Support/Main/ShapeCount.lean` | s-good-event, s-scale-limits | thm:shape counts and fixed sites from fluctGood | LANDED |
 | s-hausdorff-one-sided | ds4 | `Support/Main/HausdorffOneSided.lean` | s-hausdorff-assembly | eq:hausdorff one-sided (variant A) from the core | LANDED |
 | s-kernel-anchors | director | `Support/Main/KernelAnchors.lean` | s-assembly, s-fluct-assembly, s-hausdorff-assembly, s-hausdorff-one-sided | the core supplied to the final assemblies | LANDED |
-| **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-kernel-anchors | thm:fluctuations | SEALED (proof of the draft statement landed: `Support/Main/KernelAnchors.lean`) |
-| **thm-shape** | director | `Frozen/BallShape.lean` | s-kernel-anchors | thm:shape | SEALED (proof of the draft statement landed: `Support/Main/KernelAnchors.lean`) |
-| **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | s-kernel-anchors | eq:hausdorff | SEALED (proof of the draft statement landed: `Support/Main/KernelAnchors.lean`) |
+| **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-kernel-anchors | thm:fluctuations | PROVED (proof of the draft statement landed: `Support/Main/KernelAnchors.lean`) |
+| **thm-shape** | director | `Frozen/BallShape.lean` | s-kernel-anchors | thm:shape | PROVED (proof of the draft statement landed: `Support/Main/KernelAnchors.lean`) |
+| **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | s-kernel-anchors | eq:hausdorff | PROVED (proof of the draft statement landed: `Support/Main/KernelAnchors.lean`) |
 
-**Counts:** LANDED 110, SEALED 7, SUPERSEDED 8.
+**Counts:** LANDED 110, PROVED 7, SUPERSEDED 8.
 
 ## Freeze record
 
