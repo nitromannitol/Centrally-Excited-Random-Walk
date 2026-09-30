@@ -158,6 +158,10 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 30 | subgradients of a norm | ds2 | v4.1-flash | 4651 | 3 | ↑55k ↓14k | accepted | 0 | 80 | `CERW/Generic/Norm/Subgradient.lean` |
 | 30 | drift kernel values | ds3 | v4.1-flash | 4639 | 3 | ↑35k ↓3.8k | accepted | 0 | 59 | `CERW/Support/Drift/KernelValues.lean` |
 | 30 | drift kernel moments | ds4 | v4.1-flash | 4986 | 3 | ↑71k ↓21k | accepted | 0 | 131 | `CERW/Support/Drift/KernelSums.lean` |
+| 31 | a norm on the unit sphere | ds1 | v4.1-flash | 4893 | 3 | ↑87k ↓45k | accepted after repair | 1: the director removed an unused dimension hypothesis the worker reported | 119 | `CERW/Generic/Norm/Sphere.lean` |
+| 31 | Rademacher for a norm; the gradient is a subgradient | ds2 | v4.1-flash | 5148 | 3 | ↑133k ↓52k | accepted | 0 | 91 | `CERW/Generic/Norm/Gradient.lean` |
+| 31 | drift one-step law | ds3 | v4.1-flash | 4735 | 3 | ↑51k ↓3.2k | accepted | 0 | 42 | `CERW/Support/Drift/StepProb.lean` |
+| 31 | the Euclidean walk as a drift walk | ds4 | v4.1-flash | 4692 | 3 | ↑46k ↓8.7k | accepted | 0 | 62 | `CERW/Support/Drift/Bridge.lean` |
 
 ## Observations
 
