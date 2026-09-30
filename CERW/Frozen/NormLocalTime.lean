@@ -1,4 +1,6 @@
 import CERW.Model
+import CERW.Support.Norm.CellGradient
+import CERW.Support.Norm.LocalTime
 
 /-!
 # lem:local
@@ -80,4 +82,5 @@ theorem CERW.Frozen.norm_local_time_potential {d : ℕ} (hd : 2 ≤ d) :
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  sorry
+  revert hd d
+  exact CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds

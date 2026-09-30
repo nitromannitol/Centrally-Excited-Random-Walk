@@ -214,7 +214,7 @@ nodes:
     source: limit-shapes.tex:384-400 (label lem:local)
     file: CERW/Frozen/NormLocalTime.lean
     export: CERW.Frozen.norm_local_time_potential
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 9c472ab635b0014c78ca5373c2288ed7181ee112a164c30ac614ec8c8752a3a7
     provider: CERW.Frozen.norm_local_time_potential
     approved: "2026-09-30"
@@ -258,7 +258,7 @@ nodes:
     source: limit-shapes.tex:546-553 (label prop:coarse)
     file: CERW/Frozen/NormCoarseBounds.lean
     export: CERW.Frozen.norm_coarse_bounds
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 89c6dc199bee5ccc0681ec40288efb12f6e90289785f4bcdbf8cc5f46a0b9c98
     provider: CERW.Frozen.norm_coarse_bounds
     approved: "2026-09-30"
@@ -324,7 +324,7 @@ nodes:
     source: limit-shapes.tex:891-896 (label lem:contact)
     file: CERW/Frozen/ContactPotential.lean
     export: CERW.Frozen.contact_potential
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: eb80fa4defc32bc2461e9cc0a270bca9e97e50b384ce75221dc9d0bac134acf2
     provider: CERW.Frozen.contact_potential
     approved: "2026-09-30"

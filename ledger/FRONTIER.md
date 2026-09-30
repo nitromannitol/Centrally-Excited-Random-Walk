@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 15:09.
+generation time. Regenerated 2026-09-30 16:19.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -183,17 +183,17 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | thm-sharp-width | `CERW.Frozen.sharp_width` | thm:sharp, part (iv) | SEALED |
 | thm-norm-shape | `CERW.Frozen.norm_shape` | thm:norm-shape | DRAFT_SORRY |
 | lem-ballpotential | `CERW.Frozen.norm_ball_potential` | lem:ballpotential | SEALED |
-| lem-local | `CERW.Frozen.norm_local_time_potential` | lem:local | DRAFT_SORRY |
+| lem-local | `CERW.Frozen.norm_local_time_potential` | lem:local | SEALED |
 | lem-freedman | `CERW.Frozen.freedman_bound` | lem:freedman | SEALED |
 | lem-cell | `CERW.Frozen.cell_gradient` | lem:cell | SEALED |
 | lem-geometry | `CERW.Frozen.norm_potential_geometry` | lem:geometry | SEALED |
-| prop-coarse | `CERW.Frozen.norm_coarse_bounds` | prop:coarse | DRAFT_SORRY |
+| prop-coarse | `CERW.Frozen.norm_coarse_bounds` | prop:coarse | SEALED |
 | lem-radial | `CERW.Frozen.norm_radial_test` | lem:radial | SEALED |
 | lem-crossing | `CERW.Frozen.drift_crossing` | lem:crossing | SEALED |
 | prop-norm-shape | `CERW.Frozen.norm_shape_rates` | prop:norm-shape | DRAFT_SORRY |
 | lem-layer | `CERW.Frozen.layer_potential` | lem:layer | SEALED |
 | lem-cap | `CERW.Frozen.moreau_cap` | lem:cap | SEALED |
-| lem-contact | `CERW.Frozen.contact_potential` | lem:contact | DRAFT_SORRY |
+| lem-contact | `CERW.Frozen.contact_potential` | lem:contact | SEALED |
 | lem-outer-crossing | `CERW.Frozen.outer_crossing` | lem:outer-crossing | SEALED |
 | prop-inner | `CERW.Frozen.inner_radius` | prop:inner | DRAFT_SORRY |
 | prop-stronger-outer | `CERW.Frozen.outer_radius` | prop:stronger-outer | DRAFT_SORRY |
@@ -206,4 +206,4 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | lem-separated-brackets | `CERW.Frozen.separated_brackets` | lem:separated-brackets | DRAFT_SORRY |
 | prop-log-lower | `CERW.Frozen.log_lower_bounds` | prop:log-lower | SEALED |
 
-**Revised surface:** 14 of 30 statements proved.
+**Revised surface:** 17 of 30 statements proved.
