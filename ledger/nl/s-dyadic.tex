@@ -1,0 +1,12 @@
+% s-dyadic: Freedman's inequality at a logarithmic threshold, uniformly in the bracket.
+\paragraph{Statement.} For $K\geq0$ there is $c\geq1$ with the following property. Let $M$ be a martingale
+with increments at most $b>0$ on $[s,s+k)$, and let $V$ be predictable and nondecreasing, $V_0=0$,
+dominating the conditional variances, with $V_{s+k}-V_s\leq W$ for some $W\geq1$. Let $L>0$. Then
+$\Pr\bigl(|M_{s+k}-M_s|>c(\sqrt{\max(V_{s+k}-V_s,1)L}+bL)\bigr)\leq(\lceil\log_2W\rceil+1)\cdot2e^{-KL}$.
+\paragraph{Proof.} Take $c_A$ from s-freedman-arith and $c=\sqrt2\,c_A$. Let $V'=V_{s+k}-V_s$ and let $j$
+be the least integer $\geq0$ with $\max(V',1)\leq2^j$; then $j\leq m=\lceil\log_2W\rceil$. If $j=0$, then
+$V'\leq1$ and the bad event lies in $\{|M_{s+k}-M_s|\geq c_A(\sqrt L+bL),\ V'\leq1\}$. If $j\geq1$, then
+$2^{j-1}<V'\leq2^j$ and $c(\sqrt{V'L}+bL)\geq c_A(\sqrt{2^jL}+bL)$. So the bad event lies in
+$\bigcup_{j\leq m}\{|M_{s+k}-M_s|\geq c_A(\sqrt{2^jL}+bL),\ V'\leq2^j\}$. By s-mart-shift each set has
+probability at most $2\exp(-t_j^2/(2(2^j+bt_j/3)))\leq2e^{-KL}$ (the exponent with $bt$ in place of $bt/3$ is
+smaller, and it is at least $KL$ by s-freedman-arith).

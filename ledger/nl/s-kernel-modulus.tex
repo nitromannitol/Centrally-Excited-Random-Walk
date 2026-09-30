@@ -1,0 +1,10 @@
+% s-kernel-modulus: eq:kernel-modulus (q-th power form). Input of s-holder (eq:holder).
+\paragraph{Statement.} Let $d\geq2$, $q=2d/(2d-1)$ and $K(v)=v/|v|^d$. There is $C_d$ such that for all
+$y,z$, $|K(\cdot-y)-K(\cdot-z)|^q$ is integrable and $\int|K(v-y)-K(v-z)|^q\dd v\leq C_d|y-z|^{q/2}$
+(so $\|K(\cdot-y)-K(\cdot-z)\|_{L^q}\leq C_d^{1/q}|y-z|^{1/2}$).
+\paragraph{Proof.} Let $r=|y-z|$; if $r=0$ the integrand vanishes. Substitute $v=u+z$ (translation
+invariance) and put $w=y-z$. Near: on $|u|<2r$, $|K(u-w)-K(u)|^q\leq2^{q-1}(|u-w|^{-q(d-1)}+|u|^{-q(d-1)})$,
+where $s=q(d-1)<d$. By s-radial-power, $\int_{|u|<2r}|u|^{-s}=\sigma_d(2r)^{d-s}/(d-s)$, and
+$\int_{|u|<2r}|u-w|^{-s}\leq\int_{|u'|<3r}|u'|^{-s}$. Far: on $|u|\geq2r$, $2|w|\leq|u|$, so by s-newton-field
+$|K(u-w)-K(u)|\leq A_dr|u|^{-d}$. Then $\int_{|u|\geq2r}A_d^qr^q|u|^{-dq}=A_d^qr^q\sigma_d(2r)^{d-dq}/(dq-d)$,
+with $dq>d$. Both exponents are $d-q(d-1)=q+d-dq=q/2$.

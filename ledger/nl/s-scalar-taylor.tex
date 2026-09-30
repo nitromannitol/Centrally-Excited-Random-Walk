@@ -1,0 +1,9 @@
+% s-scalar-taylor: second-order bounds for log(1+t) and (1+t)^alpha. Input of s-gradient.
+\paragraph{Statement.} For $|t|\leq\frac12$: (i) $|\log(1+t)-t|\leq2t^2$;
+(ii) $|(1+t)^\alpha-1-\alpha t|\leq|\alpha||\alpha-1|2^{|\alpha-2|}t^2$.
+\paragraph{Proof.} (i) The alternating series bound gives $|\log(1+t)-t|\leq t^2/(1-|t|)\leq2t^2$
+(\texttt{Real.abs\_log\_sub\_add\_sum\_range\_le} with $x=-t$, $n=1$). (ii) Let
+$g(s)=(1+s)^\alpha-1-\alpha s$, so $g(0)=0$ and $g'(s)=\alpha((1+s)^{\alpha-1}-1)$. For $|u|\leq\frac12$,
+$(1+u)^{\alpha-2}\leq2^{|\alpha-2|}$, since $1+u\in[\frac12,\frac32]$. The mean value inequality applied to
+$(1+s)^{\alpha-1}$ gives $|g'(s)|\leq|\alpha||\alpha-1|2^{|\alpha-2|}|s|\leq K|t|$ for $|s|\leq|t|$. Applied
+again to $g$ on $[-|t|,|t|]$, it gives $|g(t)|\leq K|t|\cdot|t|$.

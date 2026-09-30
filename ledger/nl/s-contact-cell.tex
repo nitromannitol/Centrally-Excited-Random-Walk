@@ -1,0 +1,10 @@
+% s-contact-cell: eq:bm and eq:contactcell.
+\paragraph{Statement.} Let $D=D_n$ and $b=\inf\{|y|:y\notin D\}$. Then $B(0,b)\subseteq D$, and there are
+$y_0$ with $|y_0|=b$ and $z\in\Z^d$ with $\ell_n(z)=0$, $|z-y_0|\leq\sqrt d/2$ and $|z|\geq b$.
+\paragraph{Proof.} $D$ is bounded, so $D^c\neq\emptyset$ and $b$ is a well-defined infimum. If $|y|<b$ then
+$y\in D$. The closure of $D^c$ meets the closed ball $\bar B(0,b+1)$ in a nonempty compact set, and the norm
+attains its infimum $b$ there, at some $y_0\in\overline{D^c}$. The finitely many closed cells
+$\bar C_z\ni y_0$ (those with $|z_i-y_{0,i}|\leq\frac12$ for every $i$) contain the half-open cells
+$C_z$, whose union is a neighbourhood of $y_0$. If every such $z$ were visited, this neighbourhood would
+lie in $D$, contradicting $y_0\in\overline{D^c}$. So some such $z$ has $\ell_n(z)=0$, and
+$|z-y_0|\leq\sqrt d/2$. Finally $z\in C_z\subseteq D^c$ as a point of $\R^d$, so $|z|\geq b$.

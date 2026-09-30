@@ -49,16 +49,21 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 9 | radial power integrals | ds1 | v4.1-flash | 5927 | 2 | ↑249k ↓94k | accepted | 0 (the pasted brief arrived split; the worker proved the leaf before the rules paragraph arrived) | 152 | `CERW/Generic/Kernel/RadialPower.lean` |
 | 9 | Newtonian field difference | ds2 | v4.1-flash | 4919 | 3 | ↑158k ↓67k (after respawn) | accepted | 1 dispatch repair: the pasted brief arrived split, the pane was respawned and pointed at the brief file | 165 | `CERW/Generic/Kernel/NewtonField.lean` |
 | 9 | directions across a cell | ds4 | v4.1-flash | 4767 | 2 | ↑211k ↓37k | accepted | 0 | 99 | `CERW/Support/Occupation/CellDirection.lean` |
-| 9 | logarithmic radial integrals | ds4 | v4.1-flash | 6458 | 2 | — | in flight | — | — | `wip/LogRadial.lean` |
-| 10 | potential sup bound | ds1 | v4.1-flash | 5967 | 3 | — | in flight | — | — | `wip/PotentialBound.lean` |
-| 10 | coordinate drift | ds2 | v4.1-flash | 5310 | 3 | — | in flight | — | — | `wip/CoordinateDrift.lean` |
-| 10 | shifted martingale and interval Freedman | ds3 | v4.1-flash | 6509 | 2 | — | in flight | — | — | `wip/MartingaleShift.lean` |
+| 9 | logarithmic radial integrals | ds4 | v4.1-flash | 6458 | 2 | ↑168k ↓101k | accepted | 0 | 199 | `CERW/Generic/Kernel/LogRadial.lean` |
+| 10 | potential sup bound | ds1 | v4.1-flash | 5967 | 3 | ↑81k ↓31k | accepted | 0 | 112 | `CERW/Support/Geometry/Bound.lean` |
+| 10 | coordinate drift | ds2 | v4.1-flash | 5310 | 3 | ↑93k ↓21k | accepted | 0 | 62 | `CERW/Support/Law/CoordinateDrift.lean` |
+| 10 | shifted martingale and interval Freedman | ds3 | v4.1-flash | 6509 | 2 | ↑115k ↓36k | accepted | 0 | 142 | `CERW/Generic/Martingale/Shift.lean` |
+| 10 | contact cell | Sonnet subagent | sonnet | task prompt | 1 + 3 helpers | 44k (agent total) | accepted | 0 | 117 | `CERW/Support/Contact/ContactCell.lean` |
+| 10 | kernel modulus | Sonnet subagent | sonnet | task prompt | 1 + 6 helpers | 79k (agent total) | accepted | 0 | 248 | `CERW/Generic/Kernel/Modulus.lean` |
+| 11 | one-step bound of the potential kernel | ds1 | v4.1-flash | 5747 | 2 | ↑51k ↓18k | accepted | 0 | 87 | `CERW/Support/LocalTime/GradientBound.lean` |
+| 11 | second-order scalar Taylor bounds | ds2 | v4.1-flash | 5598 | 2 | — | in flight | — | — | `wip/ScalarTaylor.lean` |
+| 11 | dyadic Freedman bound | ds3 | v4.1-flash | 6800 | 1 | — | in flight | — | — | `wip/Dyadic.lean` |
+| 11 | direction error | ds4 | v4.1-flash | 7558 | 1 | — | in flight | — | — | `wip/DirectionError.lean` |
 
 ## Observations
 
-* **Waves 1–9.** Every returned DeepSeek packet was accepted: 35/35, with one definition repair in wave 1 and
-  one dispatch repair in wave 9.
-  Every Sonnet leaf was accepted: 4/4.
+* **Waves 1–11.** Every returned DeepSeek packet was accepted: 40/40, with one definition repair in wave 1 and
+  one dispatch repair in wave 9. Every Sonnet leaf was accepted: 6/6.
 * **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was
   4–20 minutes.
 * **What a brief carried.** Every brief was 3.8–6.3 KB, stated the proof route step by step, and

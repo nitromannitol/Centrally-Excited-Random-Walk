@@ -3,3 +3,5 @@ import CERW.Generic.Kernel.Integrable
 import CERW.Generic.Kernel.RadialPacking
 import CERW.Generic.Kernel.RadialPower
 import CERW.Generic.Kernel.NewtonField
+import CERW.Generic.Kernel.LogRadial
+import CERW.Generic.Kernel.Modulus

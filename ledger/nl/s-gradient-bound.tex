@@ -1,0 +1,9 @@
+% s-gradient-bound: the second estimate of eq:gradient.
+\paragraph{Statement.} (i) For $d\geq3$ there is $C$ with $|G(x+e)-G(x)|\leq C(1+|x|)^{1-d}$ for all
+$x\in\Z^d$ and unit steps $e$. (ii) For $d\geq2$ there is $C$ such that, whenever $b(x)=\lim_M[G_M(0)-G_M(x)]$
+for every $x$, $|b(x+e)-b(x)|\leq C(1+|x|)^{1-d}$.
+\paragraph{Proof.} The library bounds $|G(y)-G(z)|$ and $|G_M(y)-G_M(z)|$ for neighbours $z$ of $y$ by
+$C(1+|y|_1)^{1-d}$, uniformly in $M$. Here $x+e$ is a neighbour of $x$, and $(1+|x|_1)^{1-d}\leq(1+|x|)^{1-d}$
+because $|x|\leq|x|_1$ and $1-d\leq0$. For (ii),
+$b(x+e)-b(x)=\lim_M[G_M(x)-G_M(x+e)]$, and a limit of numbers of absolute value at most $K$ has absolute
+value at most $K$.

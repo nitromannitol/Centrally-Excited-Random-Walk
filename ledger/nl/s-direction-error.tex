@@ -1,0 +1,10 @@
+% s-direction-error: eq:direction-error. Input of s-kernel-replace.
+\paragraph{Statement.} For $d\geq2$ there is $C_d$ such that for $R\geq1$ and $|y|\leq2R$, the function
+$(1+|v|)^{-1}|v-y|^{1-d}$ is integrable on $B(0,R)$ with integral at most $C_d\log(R+2)$.
+\paragraph{Proof.} The integrand is at most $|v-y|^{1-d}$, which is integrable on the bounded ball. Split
+$B(0,R)$ along $B(y,1)$. On $B(y,1)$ the integral is at most $\int_{B(y,1)}|v-y|^{1-d}=\sigma_d$. Off
+$B(y,1)$, Young's inequality with exponents $d$ and $d/(d-1)$ gives
+$(1+|v|)^{-1}|v-y|^{1-d}\leq\frac1d(1+|v|)^{-d}+\frac{d-1}d|v-y|^{-d}$. Then
+$\int_{B(0,R)}(1+|v|)^{-d}\leq\sigma_d\log(1+R)$ (s-log-radial), and since $B(0,R)\subseteq B(y,3R)$,
+$\int_{B(0,R)\setminus B(y,1)}|v-y|^{-d}\leq\int_{1\leq|w|<3R}|w|^{-d}=\sigma_d\log(3R)$ (translate, s-log-radial).
+With $\log(R+2)\geq\log3\geq1$, the total is at most $4\sigma_d\log(R+2)$.
