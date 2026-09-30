@@ -138,7 +138,8 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 36 | heartbeat margin: `OuterRadius` | ds1 | v4.1-flash | 5261 | — | ↑55k ↓21k | accepted | 0 | 315 | `CERW/Support/Coarse/OuterRadius.lean` |
 | 37 | heartbeat margin: `Tail` | ds1 | v4.1-flash | — | — | — | in flight | — | — | `wip/Tail.lean` |
 | 34 | heartbeat margin: `EnvelopeHigh` | ds2 | v4.1-flash | 5286 | — | ↑166k ↓52k | accepted | 0 | 564 | `CERW/Support/Contact/EnvelopeHigh.lean` |
-| 36 | heartbeat margin: `Shell` | ds2 | v4.1-flash | — | — | — | in flight | — | — | `wip/Shell.lean` |
+| 36 | heartbeat margin: `Shell` | ds2 | v4.1-flash | 5087 | — | ↑87k ↓26k | accepted | 0 | 343 | `CERW/Support/Coarse/Shell.lean` |
+| 37 | heartbeat margin: `QuadraticError` | ds2 | v4.1-flash | — | — | — | in flight | — | — | `wip/QuadraticError.lean` |
 | 34 | heartbeat margin: `MassHigh` | ds3 | v4.1-flash | 5244 | — | ↑200k ↓69k | accepted | 0 | 568 | `CERW/Support/Contact/MassHigh.lean` |
 | 35 | heartbeat margin: `OuterBound` | ds3 | v4.1-flash | — | — | — | in flight | — | — | `wip/OuterBound.lean` |
 | 34 | heartbeat margin: `InradiusArith` | ds4 | v4.1-flash | 5348 | — | ↑22k ↓4.1k | accepted | 0 | 184 | `CERW/Support/Contact/InradiusArith.lean` |
@@ -153,7 +154,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 
 ## Observations
 
-* **Waves 1–26.** Every returned DeepSeek packet was accepted: 112/112, two after a statement repair. One packet (wave 32) was withdrawn and
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 113/113, two after a statement repair. One packet (wave 32) was withdrawn and
   finished by the director. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 23/23.
 * **Large contexts defeat `nlinarith`.** In wave 32 the worker's single-theorem proof of the inner clauses timed out at the

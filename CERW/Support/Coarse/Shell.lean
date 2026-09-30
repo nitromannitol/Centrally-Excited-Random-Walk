@@ -186,6 +186,11 @@ private lemma integral_sphere_add_const {U : EuclideanSpace ℝ (Fin d) → ℝ}
     rfl
   rw [integral_add hint (integrable_const δ), integral_const, hσ, smul_eq_mul]
 
+/-- If `a ≥ 0`, `δ ≥ 0` and `p ≤ 2 B`, then `a p + a δ ≤ 2 a (B + δ)`. -/
+private lemma mul_add_le_two_mul_add {a p B δ : ℝ} (ha : 0 ≤ a) (hδ : 0 ≤ δ)
+    (hp : p ≤ 2 * B) : a * p + a * δ ≤ 2 * a * (B + δ) := by
+  nlinarith
+
 /-- `eq:shell`: under the local approximation `|ℓ̃_n - U_{D_n}| ≤ δ` on `|y| ≤ B₀ s + 4` with
 `0 ≤ δ ≤ s`, `s = |A_n|^{1/d} ≥ 6`, `2 ≤ B₀` and `s ≤ r ≤ B₀ s`, every site `x` with
 `||x| - r| ≤ 3` has `ℓ_n(x) ≤ C B₀^β s^{1-α} [F(r - b) + δ]^α` for `b ≥ 3`. -/
@@ -214,7 +219,8 @@ theorem exists_shell_bound (hd : 2 ≤ d) :
     linarith
   have hε1 : ε ≤ 1 := by
     have hd1' : (1 : ℝ) ≤ d := by exact_mod_cast hd1
-    nlinarith
+    have hdiv : (1 : ℝ) / d ≤ 1 := (div_le_one hd0).mpr hd1'
+    linarith only [hεd, hdiv]
   have hspos : 0 < s := by linarith
   have hDm : MeasurableSet (cellSet X n) := CERW.Support.Occupation.measurableSet_cellSet X n
   have hDb : Bornology.IsBounded (cellSet X n) :=
@@ -259,7 +265,7 @@ theorem exists_shell_bound (hd : 2 ≤ d) :
   have hxn : ‖toSpace x‖ = t := norm_toSpace x
   have ht3 := abs_le.mp hx
   have htpos : 0 < t := by linarith
-  have hBs : 12 ≤ B₀ * s := by nlinarith
+  have hBs : 12 ≤ B₀ * s := by nlinarith only [hB₀, hs6]
   have htup : t ≤ 2 * B₀ * s := by linarith
   have hnorm : ∀ θ : Metric.sphere (0 : EuclideanSpace ℝ (Fin d)) 1,
       ‖t • (θ : EuclideanSpace ℝ (Fin d))‖ = t := fun θ => by
@@ -290,8 +296,13 @@ theorem exists_shell_bound (hd : 2 ≤ d) :
   have hh0 : 0 ≤ h := (Nat.cast_nonneg _).trans hℓ
   have hhs : h ≤ (Cd + 1) * s := by
     have h1 := (abs_le.mp (hsup (toSpace x))).2
-    have h2 : Cd * ε * s ≤ Cd * s := by nlinarith [mul_pos hCd0 hspos]
-    linarith
+    have h2 : Cd * ε * s ≤ Cd * s := by
+      have hCdε : Cd * ε ≤ Cd * 1 := mul_le_mul_of_nonneg_left hε1 hCd0.le
+      have := mul_le_mul_of_nonneg_right hCdε hspos.le
+      simpa only [mul_one] using this
+    have h3 : Cd * ε * s + δ ≤ Cd * s + s := add_le_add h2 hδs
+    rw [hh, hU]
+    linarith only [h1, h3]
   have hholg : ∀ A', A ≤ A' → ∀ y z,
       |(U y + δ) - (U z + δ)| ≤ A' * ‖y - z‖ ^ ((1 : ℝ) / 2) := fun A' hA' y z => by
     rw [add_sub_add_right_eq_sub]
@@ -311,14 +322,12 @@ theorem exists_shell_bound (hd : 2 ≤ d) :
   have hFmono : tail d (cellSet X n) t ≤ tail d (cellSet X n) (r - b) :=
     tail_le_of_le hd1 hDm hDfin (by linarith)
   have hM : M ≤ 2 * (d * unitBallVolume d) * (tail d (cellSet X n) (r - b) + δ) := by
-    have hσ : 0 < (d : ℝ) * unitBallVolume d := by positivity
     have h1 : 2 * d * ε * tail d (cellSet X n) t ≤ 2 * tail d (cellSet X n) (r - b) := by
-      have := mul_le_of_le_one_left hFnn hdε
-      linarith
-    have h2 := mul_le_mul_of_nonneg_left h1 hσ.le
-    have h3 := mul_nonneg hσ.le hδ0
+      have hεtail : (d * ε) * tail d (cellSet X n) t ≤ tail d (cellSet X n) t :=
+        mul_le_of_le_one_left hFnn hdε
+      linarith only [hεtail, hFmono]
     rw [hMdef, integral_sphere_add_const hUcont t δ, hI]
-    nlinarith
+    exact mul_add_le_two_mul_add (mul_nonneg hd0.le hω.le) hδ0 h1
   have hcap' : ∀ A', A ≤ A' → h ≤ A' * Real.sqrt t →
       c * h ^ (2 * d - 1) / (A' ^ (2 * d - 2) * t ^ (d - 1)) ≤ M := fun A' hA' hle =>
     hcap (fun y => U y + δ) A' t h θ₀ (hApos.trans_le hA') htpos hh0 hle hgnn
