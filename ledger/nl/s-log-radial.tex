@@ -1,0 +1,8 @@
+% s-log-radial: logarithmic radial integrals. Sub-step of s-direction-error (eq:direction-error).
+\paragraph{Statement.} Let $d\geq1$ and $\sigma_d=d\omega_d$. (i) For $R>0$, $(1+|v|)^{-d}$ is integrable on
+$B(0,R)$ and $\int_{B(0,R)}(1+|v|)^{-d}\dd v\leq\sigma_d\log(1+R)$. (ii) For $0<\rho\leq R$,
+$|v|^{-d}$ is integrable on $\{\rho\leq|v|<R\}$ and its integral there is $\sigma_d\log(R/\rho)$.
+\paragraph{Proof.} Polar coordinates, as in s-radial-power. (i) The radial integrand is
+$t^{d-1}(1+t)^{-d}\leq(1+t)^{-1}$ on $(0,R)$, since $t^{d-1}\leq(1+t)^{d-1}$. Also
+$\int_0^R(1+t)^{-1}\dd t=\int_1^{1+R}x^{-1}\dd x=\log(1+R)$. (ii) The radial integrand is
+$t^{d-1}t^{-d}=t^{-1}$ on $[\rho,R)$, and $\int_\rho^Rt^{-1}\dd t=\log(R/\rho)$.

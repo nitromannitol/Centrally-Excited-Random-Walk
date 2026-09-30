@@ -1,0 +1,14 @@
+% s-dynkin: the Dynkin martingale of the walk. Input of eq:dynkin, eq:radialmart, eq:vector, eq:quadratic.
+\paragraph{Statement.} Let $\mathcal F_t=\sigma(X_0,\dots,X_t)$ and, for any $f:\Z^d\to\R$,
+$m_t=\sum_ep_t(e)f(X_t+e)$ and $\mathcal M_t=f(X_t)-f(X_0)-\sum_{j<t}(m_j-f(X_j))$. (i) Almost surely every step
+is a unit step and $|X_t|\leq t$ for all $t$. (ii) $\mathcal M$ is a martingale. (iii) Almost surely, for all
+$t$ and $B$: if $|f(X_t+e)-f(X_t)|\leq B$ for every unit $e$, then $|\mathcal M_{t+1}-\mathcal M_t|\leq2B$.
+(iv) $\E[(\mathcal M_{t+1}-\mathcal M_t)^2\mid\mathcal F_t]\leq\sum_ep_t(e)(f(X_t+e)-f(X_t))^2$ a.s.
+\paragraph{Proof.} The conditional law of $X_{t+1}$ given $\mathcal F_t$ is $\sum_ep_t(e)\delta_{X_t+e}$
+(s-law-cond, in the form for functions of the past path and the next position). (i) The kernel
+charges only $X_t+e$ with $e$ a unit step; induct. (ii) By (i), every function of $(X_0,\dots,X_{t+1})$ is
+a.s. bounded, hence integrable. $\mathcal M_t$ is a function of the past path, and
+$\mathcal M_{t+1}-\mathcal M_t=f(X_{t+1})-m_t$ has conditional mean $0$. (iii) With $X_{t+1}=X_t+e_0$ and
+$\sum_ep_t(e)=1$, the increment is
+$[f(X_t+e_0)-f(X_t)]-\sum_ep_t(e)[f(X_t+e)-f(X_t)]$. (iv) The conditional mean of $(f(X_{t+1})-m_t)^2$ is
+$\sum_ep_t(e)(f(X_t+e)-m_t)^2=\sum_ep_t(e)(f(X_t+e)-f(X_t))^2-(m_t-f(X_t))^2$.

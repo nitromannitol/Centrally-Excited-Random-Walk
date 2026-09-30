@@ -1,0 +1,8 @@
+% s-potential-bound: eq:potential-bound, the sup bound of the potential. Part of lem-geometry.
+\paragraph{Statement.} (i) $|u_v\cdot(v-y)|/|v-y|^d\leq|v-y|^{1-d}$ (both sides vanish at $v=y$ when
+$d\geq2$). (ii) For $d\geq1$ and measurable $D$ of finite volume the integrand of $U_D(y)$ is integrable
+on $D$. (iii) For $\eps\geq0$: $|U_D(y)|\leq2d\eps\,\omega_d^{-1/d}|D|^{1/d}$.
+\paragraph{Proof.} (i) Cauchy--Schwarz with $|u_v|\leq1$: $|u_v\cdot w|\leq|w|$, and $|w|/|w|^d=|w|^{1-d}$ for
+$w\neq0$. (ii) The integrand is measurable and dominated by $|v-y|^{1-d}$, which is integrable on $D$
+(s-potential-integrable). (iii) $|U_D(y)|\leq(2\eps/\omega_d)\int_D|v-y|^{1-d}\dd v
+\leq(2\eps/\omega_d)\,d\,\omega_d(|D|/\omega_d)^{1/d}=2d\eps\,\omega_d^{-1/d}|D|^{1/d}$.

@@ -1,0 +1,11 @@
+% s-mart-shift: martingales seen from a later time. Input of s-interval-mart and s-vector.
+\paragraph{Statement.} (i) If $M$ is a martingale for $(\mathcal F_j)$, then $k\mapsto M_{s+k}-M_s$ is a
+martingale for $(\mathcal F_{s+k})_k$. (ii) Under the hypotheses of s-freedman-event, except that $M_0$ need
+not vanish, and with increments at most $b$ on $[s,s+k)$:
+$\Pr(|M_{s+k}-M_s|\geq t,\ V_{s+k}-V_s\leq v)\leq2\exp(-t^2/(2(v+bt/3)))$.
+\paragraph{Proof.} (i) Adaptedness and integrability are inherited. For $i\leq j$,
+$\E[M_{s+j}-M_s\mid\mathcal F_{s+i}]=M_{s+i}-M_s$, since $M_s$ is $\mathcal F_{s+i}$-measurable.
+(ii) Apply s-freedman-event to $M'_k=M_{s+k}-M_s$ and $V'_k=V_{s+k}-V_s$. $M'_0=V'_0=0$ and $V'$ is
+nondecreasing. $V'_{k+1}$ is $\mathcal F_{s+k}$-measurable: $V_{s+k+1}$ by predictability, and $V_s$ because
+it is $\mathcal F_{s-1}$-measurable, or constant when $s=0$. The increments of $M'$ and $V'$ are those of
+$M$ and $V$ at time $s+k$, which gives the variance domination and the increment bound.

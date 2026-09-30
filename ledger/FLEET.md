@@ -44,15 +44,20 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 7 | radial packing inequality | Sonnet subagent | sonnet | task prompt | 1 + helpers | not recorded | accepted | 0 | 102 | `CERW/Generic/Kernel/RadialPacking.lean` |
 | 8 | radial profile increments | ds1 | v4.1-flash | 4241 | 2 | ↑55k ↓14k | accepted | 0 | 69 | `CERW/Generic/Young/RadialProfile.lean` |
 | 8 | Poisson equation of the potential kernel | ds2 | v4.1-flash | 4863 | 3 | ↑87k ↓36k | accepted | 0 | 107 | `CERW/Support/LocalTime/KernelPoisson.lean` |
-| 8 | outer contradiction | ds3 | v4.1-flash | 4927 | 1 | — | in flight | — | — | `wip/OuterContradiction.lean` |
+| 8 | outer contradiction | ds3 | v4.1-flash | 4927 | 1 | ↑296k ↓174k | accepted | 0 | 507 | `CERW/Support/Crossing/OuterContradiction.lean` |
 | 8 | cell integral | ds4 | v4.1-flash | 4688 | 2 | ↑87k ↓9.5k | accepted | 0 | 43 | `CERW/Support/Occupation/CellIntegral.lean` |
-| 9 | radial power integrals | ds1 | v4.1-flash | 5927 | 2 | — | in flight | — | — | `wip/RadialPower.lean` |
-| 9 | Newtonian field difference | ds2 | v4.1-flash | 4919 | 3 | — | in flight | — | — | `wip/NewtonField.lean` |
-| 9 | directions across a cell | ds4 | v4.1-flash | 4767 | 2 | — | in flight | — | — | `wip/CellDirection.lean` |
+| 9 | radial power integrals | ds1 | v4.1-flash | 5927 | 2 | ↑249k ↓94k | accepted | 0 (the pasted brief arrived split; the worker proved the leaf before the rules paragraph arrived) | 152 | `CERW/Generic/Kernel/RadialPower.lean` |
+| 9 | Newtonian field difference | ds2 | v4.1-flash | 4919 | 3 | ↑158k ↓67k (after respawn) | accepted | 1 dispatch repair: the pasted brief arrived split, the pane was respawned and pointed at the brief file | 165 | `CERW/Generic/Kernel/NewtonField.lean` |
+| 9 | directions across a cell | ds4 | v4.1-flash | 4767 | 2 | ↑211k ↓37k | accepted | 0 | 99 | `CERW/Support/Occupation/CellDirection.lean` |
+| 9 | logarithmic radial integrals | ds4 | v4.1-flash | 6458 | 2 | — | in flight | — | — | `wip/LogRadial.lean` |
+| 10 | potential sup bound | ds1 | v4.1-flash | 5967 | 3 | — | in flight | — | — | `wip/PotentialBound.lean` |
+| 10 | coordinate drift | ds2 | v4.1-flash | 5310 | 3 | — | in flight | — | — | `wip/CoordinateDrift.lean` |
+| 10 | shifted martingale and interval Freedman | ds3 | v4.1-flash | 6509 | 2 | — | in flight | — | — | `wip/MartingaleShift.lean` |
 
 ## Observations
 
-* **Waves 1–8.** Every returned DeepSeek packet was accepted: 31/31, with one repair (the wave-1 definition fix).
+* **Waves 1–9.** Every returned DeepSeek packet was accepted: 35/35, with one definition repair in wave 1 and
+  one dispatch repair in wave 9.
   Every Sonnet leaf was accepted: 4/4.
 * **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was
   4–20 minutes.
@@ -65,3 +70,7 @@ thinking high, via `pi --no-extensions`, unless noted.
   directive. Wave 1's 18-lemma packet did succeed, but only after a definition repair.
 * **Workers catch definition defects.** The ds4 catch shows that a worker proving the obvious API of
   a definition is an effective junk-value probe. Keep dispatching API packets early, before a freeze.
+* **Dispatch channel.** Pasting a brief with `tmux paste-buffer` can split it into several user messages.
+  In wave 9, ds2 never saw its goal and started searching other panes. ds1 finished its proof before the
+  rules paragraph arrived. From wave 9b on, a brief is dispatched as a one-line message that points the
+  worker at the brief file.

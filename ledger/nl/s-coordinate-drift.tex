@@ -1,0 +1,8 @@
+% s-coordinate-drift: the drift of a coordinate. Input of s-vector (eq:vector-def).
+\paragraph{Statement.} Let $f(x)=x_k$. (i) $Pf=f$ for $d\geq1$. (ii) $Df(y)=e_k$. (iii) The mean of $f$
+after the next step of a path $x$ at time $t$ is $x_{t,k}-\eps(u_{x_t})_k$ if $x_t\neq0$ is visited for the
+first time at $t$, and $x_{t,k}$ otherwise.
+\paragraph{Proof.} (i) $\frac1{2d}\sum_i[(y+e_i)_k+(y-e_i)_k]=\frac1{2d}\cdot2d\,y_k$. (ii) The $i$-th component
+is $\frac12[(y+e_i)_k-(y-e_i)_k]=\delta_{ik}$. (iii) By s-step-mean the mean is
+$Pf(x_t)-\eps\,\ind\{\text{first departure}\}\,u_{x_t}\cdot Df(x_t)$; insert (i), (ii) and
+$u\cdot e_k=u_k$.
