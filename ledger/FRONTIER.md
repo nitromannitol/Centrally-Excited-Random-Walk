@@ -21,7 +21,7 @@ share a file, a definition or an API.
 **NL twins.** Each step node's NL twin is `ledger/nl/<id>.tex`, written before dispatch. For landed
 infrastructure the twin is the route in its brief, recorded in `ledger/FLEET.md`.
 
-Updated 2026-09-30 22:42.
+Updated 2026-09-30 22:50.
 
 ## Leaves (library and Mathlib)
 
@@ -50,7 +50,7 @@ Updated 2026-09-30 22:42.
 | s-law-exists | director | `CERW/Support/Law/Existence.lean` | s-kernel-moments, ml-traj | a CERW process exists for d ≥ 1, 0 ≤ ε < 1/d | LANDED |
 | s-occupation | ds4 | `CERW/Support/Occupation/Facts.lean` | vocabulary | n ≤ M_n R_n, k_{0,n} = R_n, ℓ_{s,t} ≤ ℓ_t, \|X_j\| ≤ j, A_n ⊆ ball(H_n) | LANDED |
 | s-cell-membership | ds1 | `CERW/Support/Occupation/Cells.lean` | s-occupation | v ∈ D_n ↔ cellCenter v ∈ A_n; x ∈ D_n ↔ x ∈ A_n; ℓ̃_n = 0 off D_n | LANDED |
-| s-cell-norm | ds1 | `wip/CellNorm.lean` → `CERW/Support/Occupation/CellNorm.lean` | s-occupation | \|v − x\| ≤ √d/2 on C_x; D_n ⊆ B(0, H_n + √d) | IN-FLIGHT (ds1, 22:34) |
+| s-cell-norm | ds1 | `CERW/Support/Occupation/CellNorm.lean` | s-occupation | \|v − x\| ≤ √d/2 on C_x; D_n ⊆ B(0, H_n + √d) | LANDED |
 | s-cell-volume | ds3 | `CERW/Support/Occupation/CellVolume.lean` | vocabulary | C_x measurable, \|C_x\| = 1 | LANDED |
 | s-cellset-volume | ds3 | `CERW/Support/Occupation/CellSetVolume.lean` | s-cell-volume | D_n measurable, \|D_n\| = R_n | LANDED |
 | s-step-mean | ds4 | `CERW/Support/Law/StepMean.lean` | s-kernel-moments | Σ_e p(e) f(y+e) = Pf(y) − ε·1{fresh} u·Df(y) | LANDED |
@@ -78,7 +78,7 @@ Updated 2026-09-30 22:42.
 | s-localmart | director | `CERW/Support/LocalTime/Retained.lean` | s-dyadic, s-dynkin-local | eq:localmart | BLOCKED |
 | s-pointwise | director | same | s-dynkin-local, s-kernel-replace | eq:pointwise | BLOCKED |
 | s-cellmodulus | director | same | s-kernel-replace, s-cell-shift | eq:cellmodulus | BLOCKED |
-| s-Fmass | ds2 | `CERW/Support/Geometry/TailBasic.lean` (LANDED); `wip/TailBounds.lean` → `CERW/Support/Geometry/TailBounds.lean` | vocabulary | F ≥ 0, integrable weight, F antitone on (0,∞) (LANDED); F ≤ \|D\|/(σ_ds^{d−1}); F = 0 beyond D; increments | TailBounds IN-FLIGHT (ds2, 22:41) |
+| s-Fmass | ds2 | `CERW/Support/Geometry/{TailBasic,TailBounds}.lean` | vocabulary | F ≥ 0, integrable weight, F antitone on (0,∞) (LANDED); F ≤ \|D\|/(σ_ds^{d−1}); F = 0 beyond D; increments | LANDED (TailBasic, TailBounds) |
 | s-gauss-flux | director (design) + sonnet | `CERW/Generic/Newton/Flux.lean` | ml-polar, ml-ibp | r^{d−1}∫_S θ·K(rθ−c)dσ = σ_d·1{\|c\|<r} | READY (statement to be written) |
 | s-kernel-average | sonnet | `CERW/Generic/Newton/ShellAverage.lean` | s-gauss-flux | eq:kernel-average | BLOCKED |
 | s-potential-bound | sonnet | `CERW/Support/Geometry/Bound.lean` | `Kernel.Bathtub` (LANDED), s-potential-integrable | eq:potential-bound | BLOCKED(s-potential-integrable) |
@@ -103,6 +103,8 @@ Updated 2026-09-30 22:42.
 | s-crossing | director (Young part LANDED) | `CERW/Support/Coarse/Crossing.lean` | s-vector, lem-local | eq:crossing | BLOCKED |
 | s-sstar | director | `CERW/Support/Coarse/Mass.lean` | lem-local, s-occupation | eq:sstar-lower | BLOCKED |
 | s-coarse-tail | director | `CERW/Support/Coarse/Tail.lean` | lem-radial, s-shell, s-halving, s-sstar, s-Fmass | eq:coarse-tail | BLOCKED |
+| s-last-entrance | ds2 | `wip/LastEntrance.lean` → `CERW/Support/Crossing/LastEntrance.lean` | s-kernel-moments | last entrance of a sequence rising ≤ 1 per step; v·e ≤ 1 for unit steps | IN-FLIGHT (ds2, 22:48) |
+| s-crossing-kinematics | ds3 | `wip/CrossingKinematics.lean` → `CERW/Support/Crossing/Kinematics.lean` | s-occupation | Σ ℓ_{s,t} = t−s; t−s ≤ m·M_{s,t}; v·u_x > b/r | IN-FLIGHT (ds3, 22:48) |
 | s-HvsR | director | `CERW/Support/Coarse/OuterRadius.lean` | s-coarse-tail, s-crossing, s-Fmass | eq:HvsR | BLOCKED |
 | s-radial-packing | sonnet | `CERW/Generic/Kernel/RadialPacking.lean` | `Kernel.Bathtub` (LANDED), ml-polar | ∫_D\|v\| ≥ (d/(d+1))ω_d^{−1/d}\|D\|^{1+1/d} | READY (statement to be written) |
 | s-mass | director | `CERW/Support/Coarse/Mass.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cellset-volume | eq:massidentity, eq:coarse-masserror | BLOCKED |
@@ -114,6 +116,8 @@ Updated 2026-09-30 22:42.
 |---|---|---|---|---|---|
 | s-global | director | `CERW/Support/Contact/Setup.lean` | prop-coarse, lem-local, s-cell-norm | eq:global | BLOCKED |
 | s-contact-cell | director | `CERW/Support/Contact/ContactCell.lean` | s-cell-membership | eq:bm, eq:contactcell | BLOCKED(s-cell-membership) |
+| s-contact-kernel | ds1 | `wip/ContactKernel.lean` → `CERW/Support/Contact/Kernel.lean` | vocabulary | \|v−y\|² ≤ 2(\|v\|²−v·y); u_v·(v−y)\|v−y\|^{−d} ≥ 2^{1−d}\|v\|^{1−d} for \|y\| ≤ \|v\| | IN-FLIGHT (ds1, 22:48) |
+| s-planar-contact-sum | ds4 | `wip/PlanarContactSum.lean` → `CERW/Support/Contact/PlanarSum.lean` | s-packing-lattice, s-occupation | Σ_{\|w\|≤R}(b−\|z+w\|)_+(1+\|w\|)^{−2} ≤ C(R+1) for \|z\| ≥ b | IN-FLIGHT (ds4, 22:49) |
 | s-contact-bound | director | `CERW/Support/Contact/ContactBound.lean` | s-contact-cell, lem-geometry, s-pointwise, s-localmart, s-cellmodulus | eq:contactbound, eq:packing | BLOCKED |
 | s-var-high | director (resolvent + absorption LANDED) | `CERW/Support/Contact/VarianceHigh.lean` | s-contact-bound, s-weight-sums, `Lattice.Resolvent`, `Young.Contact` | eq:kernelmoments … eq:masshigh | BLOCKED |
 | s-var-planar | director | `CERW/Support/Contact/VariancePlanar.lean` | s-contact-bound, s-global, s-weight-sums | eq:massplanar, eq:envelopeplanar | BLOCKED |
@@ -125,8 +129,8 @@ Updated 2026-09-30 22:42.
 | s-outer | director | `CERW/Support/Outer/Crossing.lean` | s-tailend, s-crossing, s-inradius | eq:outer-contradiction | BLOCKED |
 | s-assembly | director | `CERW/Support/Main/Event.lean` | s-volume-profile, s-outer, ml-bc | the event at each n; Borel–Cantelli | BLOCKED |
 | **thm-fluctuations** | director | `CERW/Frozen/FluctuationBounds.lean` | s-assembly | thm:fluctuations | DRAFT |
-| s-scale-limits | ds4 | `wip/ScaleLimits.lean` → `CERW/Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | IN-FLIGHT (ds4, 22:41) |
-| s-hausdorff-arith | ds3 | `wip/HausdorffArith.lean` → `CERW/Support/Main/HausdorffArith.lean` | — | Q^{1/2}L = n^{−1/12}L^{5/4}; Q^{1/d}L = n^{−1/((d+1)(2d−1))}L^{2d/(2d−1)}; NQ = n^{1/6}√L | IN-FLIGHT (ds3, 22:41) |
+| s-scale-limits | ds4 | `CERW/Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | LANDED |
+| s-hausdorff-arith | ds3 | `CERW/Support/Main/HausdorffArith.lean` | — | Q^{1/2}L = n^{−1/12}L^{5/4}; Q^{1/d}L = n^{−1/((d+1)(2d−1))}L^{2d/(2d−1)}; NQ = n^{1/6}√L | LANDED |
 | **thm-shape** | director | `CERW/Frozen/BallShape.lean` | thm-fluctuations, s-scale-limits, ml-bc | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `CERW/Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
 

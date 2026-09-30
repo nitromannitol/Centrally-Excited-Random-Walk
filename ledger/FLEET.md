@@ -28,13 +28,17 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 4 | step mean | ds4 | v4.1-flash | 4333 | 3 | ↑75k ↓24k | accepted | 0 | 86 | `CERW/Support/Law/StepMean.lean` |
 | 5 | cell-set volume | ds3 | v4.1-flash | ~3.9k (brief overwritten by the next ds3 packet) | 2 | ↑33k ↓10k | accepted | 0 | 30 | `CERW/Support/Occupation/CellSetVolume.lean` |
 | 5 | cell norm | ds1 | v4.1-flash | 4250 | 3 | — | in flight | — | — | `wip/CellNorm.lean` |
-| 5 | tail bounds | ds2 | v4.1-flash | 5128 | 3 | — | in flight | — | — | `wip/TailBounds.lean` |
-| 5 | Hausdorff exponents | ds3 | v4.1-flash | 4132 | 3 | — | in flight | — | — | `wip/HausdorffArith.lean` |
-| 5 | scale limits | ds4 | v4.1-flash | 4352 | 3 | — | in flight | — | — | `wip/ScaleLimits.lean` |
+| 5 | tail bounds | ds2 | v4.1-flash | 5128 | 3 | ↑93k ↓40k | accepted | 0 | 117 | `CERW/Support/Geometry/TailBounds.lean` |
+| 5 | Hausdorff exponents | ds3 | v4.1-flash | 4132 | 3 | ↑53k ↓31k | accepted | 0 | 93 | `CERW/Support/Main/HausdorffArith.lean` |
+| 5 | scale limits | ds4 | v4.1-flash | 4352 | 3 | ↑83k ↓67k | accepted | 0 | 169 | `CERW/Support/Main/ScaleLimits.lean` |
+| 6 | contact kernel | ds1 | v4.1-flash | — | 2 | — | in flight | — | — | `wip/ContactKernel.lean` |
+| 6 | last entrance | ds2 | v4.1-flash | — | 2 | — | in flight | — | — | `wip/LastEntrance.lean` |
+| 6 | crossing kinematics | ds3 | v4.1-flash | — | 3 | — | in flight | — | — | `wip/CrossingKinematics.lean` |
+| 6 | planar contact sum | ds4 | v4.1-flash | — | 3 | — | in flight | — | — | `wip/PlanarContactSum.lean` |
 
 ## Observations
 
-* **Waves 1–4.** 17/17 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was
+* **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was
   4–20 minutes.
 * **What a brief carried.** Every brief was 3.8–6.3 KB, stated the proof route step by step, and
   cited only names grep-verified at the pin.
