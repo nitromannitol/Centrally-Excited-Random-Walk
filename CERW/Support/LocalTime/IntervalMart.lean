@@ -2,6 +2,8 @@ import CERW.Support.LocalTime.Bracket
 import CERW.Generic.Martingale.Dyadic
 import CERW.Generic.Martingale.Clamp
 import CERW.Generic.Lattice.Centered
+import CERW.Support.Law.ScaleArith
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # The interval martingales of the local times
@@ -18,28 +20,9 @@ inequality at dyadic brackets and a union bound over the `O(n^{d+2})` interval�
 namespace CERW.Support.LocalTime
 
 open MeasureTheory ProbabilityTheory LatticeProb Finset CERW CERW.Support.Law
+open CERW.Support.Occupation
 
 variable {d : ℕ}
-
-/-- The one-step bound forces `C_g ≥ 0`. -/
-private lemma cg_nonneg (hd : 1 ≤ d) {b : Site d → ℝ} {Cg : ℝ}
-    (hgrad : ∀ x e, e ∈ unitSteps d → |b (x + e) - b x| ≤ Cg * (1 + euclidNorm x) ^ (1 - (d : ℝ))) :
-    0 ≤ Cg := by
-  have h := hgrad 0 (unit ⟨0, by omega⟩) (mem_unitSteps.mpr ⟨⟨0, by omega⟩, Or.inl rfl⟩)
-  have h' : |b (unit ⟨0, by omega⟩) - b 0| ≤ Cg := by simpa using h
-  exact (abs_nonneg _).trans h'
-
-/-- The Euclidean norm of a difference of lattice sites is at most the sum of the norms. -/
-private lemma euclidNorm_sub_le (x y : Site d) :
-    euclidNorm (x - y) ≤ euclidNorm x + euclidNorm y := by
-  have h : toSpace (x - y) = toSpace x - toSpace y := by
-    apply PiLp.ext
-    intro i
-    simp [toSpace_apply, Pi.sub_apply, Int.cast_sub]
-  calc euclidNorm (x - y) = ‖toSpace (x - y)‖ := (norm_toSpace (x - y)).symm
-    _ = ‖toSpace x - toSpace y‖ := by rw [h]
-    _ ≤ ‖toSpace x‖ + ‖toSpace y‖ := norm_sub_le _ _
-    _ = euclidNorm x + euclidNorm y := by rw [norm_toSpace, norm_toSpace]
 
 /-- The predictable bracket `C_g² Σ_{j<t} (1 + |X_j - y|)^{2-2d}` of the translated Dynkin
 martingale `𝓜^y`. -/
@@ -328,22 +311,6 @@ private lemma exists_event_bound (hd : 2 ≤ d) {ε : ℝ} (hε : 0 ≤ ε) (hε
 private lemma errorBound_nonneg (m : ℝ) {L : ℝ} (hL : 0 ≤ L) : 0 ≤ errorBound d m L := by
   unfold errorBound
   split_ifs <;> positivity
-
-/-- The base-two logarithm of `⌈W⌉₊`, plus one, is at most `(C_g² + 3)(n + 1)` when
-`W = max (C_g² n) 1`. -/
-private lemma clog_ceil_add_one_le (Cg : ℝ) (n : ℕ) :
-    ((Nat.clog 2 ⌈max (Cg ^ 2 * n) 1⌉₊ : ℕ) : ℝ) + 1 ≤ (Cg ^ 2 + 3) * ((n : ℝ) + 1) := by
-  have hclog : Nat.clog 2 ⌈max (Cg ^ 2 * n) 1⌉₊ ≤ ⌈max (Cg ^ 2 * n) 1⌉₊ :=
-    Nat.clog_le_of_le_pow (Nat.lt_two_pow_self).le
-  have h1 : ((Nat.clog 2 ⌈max (Cg ^ 2 * n) 1⌉₊ : ℕ) : ℝ) ≤ (⌈max (Cg ^ 2 * n) 1⌉₊ : ℝ) := by
-    exact_mod_cast hclog
-  have h2 := Nat.ceil_lt_add_one (zero_le_one.trans (le_max_right (Cg ^ 2 * (n : ℝ)) 1))
-  have h3 : max (Cg ^ 2 * (n : ℝ)) 1 ≤ Cg ^ 2 * n + 1 := max_le (by linarith) (by
-    have := mul_nonneg (sq_nonneg Cg) (Nat.cast_nonneg (α := ℝ) n)
-    linarith)
-  have h4 : (0 : ℝ) ≤ Cg ^ 2 := sq_nonneg _
-  have h5 : (0 : ℝ) ≤ n := Nat.cast_nonneg n
-  nlinarith
 
 /-- The arithmetic of the union bound: `(n + 1)² (7 (n + 1))^D · G (n + 1) · 2 e^{-(p + D + 3) L}`
 is at most `7^D G 2^{D+4} n^{-p}`. -/

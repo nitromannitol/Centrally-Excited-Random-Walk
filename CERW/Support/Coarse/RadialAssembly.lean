@@ -3,6 +3,7 @@ import CERW.Support.Coarse.RadialSource
 import CERW.Support.Coarse.TailLower
 import CERW.Support.Coarse.ShellCount
 import CERW.Support.LocalTime.KernelFacts
+import CERW.Support.Law.ScaleArith
 
 /-!
 # The radial test lemma
@@ -200,14 +201,6 @@ private lemma radial_step {d : ℕ} (hd : 2 ≤ d) {b : Site d → ℝ} {h R Ca 
     _ ≤ C * (M * (T₂ - T₁)) + C * S :=
         add_le_add (mul_le_mul_of_nonneg_right hCA hMΔ) (mul_le_mul_of_nonneg_right hCB hS0)
     _ = C * M * (T₂ - T₁) + C * S := by ring
-
-/-- A measure bound for a set covered by an event of small measure and a null event. -/
-private lemma measure_le_of_subset_union {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
-    {A N B : Set Ω} {a c : ENNReal} (hsub : B ⊆ A ∪ N) (hA : μ A ≤ a) (hN : μ N = 0)
-    (hac : a ≤ c) : μ B ≤ c := by
-  refine (measure_mono hsub).trans ((measure_union_le A N).trans ?_)
-  rw [hN, add_zero]
-  exact hA.trans hac
 
 /-- `lem:radial`, for any kernel `b` with the kernel facts. -/
 theorem radial_test_of_kernelFacts {d : ℕ} (hd : 2 ≤ d) {b : Site d → ℝ} {h : ℝ → ℝ}

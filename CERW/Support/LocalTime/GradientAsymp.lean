@@ -1,6 +1,7 @@
 import CERW.Support.Law.StepMean
 import CERW.Generic.Kernel.ScalarTaylor
 import CERW.Model.Potential
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # The central difference of the potential kernel
@@ -14,6 +15,7 @@ and `(1 + t)^α` give the leading term. The asymptotic error at `x ± e_i` is `O
 namespace CERW.Support.LocalTime
 
 open LatticeProb CERW CERW.Support.Law CERW.Generic.Kernel
+open CERW.Support.Occupation
 
 variable {d : ℕ}
 
@@ -21,58 +23,6 @@ variable {d : ℕ}
 private lemma euclidNorm_sq (x : Site d) :
     euclidNorm x ^ 2 = ∑ i : Fin d, (((x i : ℤ) : ℝ)) ^ 2 := by
   rw [euclidNorm, Real.sq_sqrt (Finset.sum_nonneg fun i _ => sq_nonneg _)]
-
-/-- Shifting the `i`-th coordinate adds `2xᵢ + 1` to the square of the Euclidean norm. -/
-private lemma euclidNorm_add_unit_sq (x : Site d) (i : Fin d) :
-    euclidNorm (x + unit i) ^ 2 = euclidNorm x ^ 2 + 2 * ((x i : ℤ) : ℝ) + 1 := by
-  have hsum : ∑ j : Fin d,
-      (2 * ((x j : ℤ) : ℝ) * ((unit i j : ℤ) : ℝ) + ((unit i j : ℤ) : ℝ) ^ 2) =
-      2 * ((x i : ℤ) : ℝ) + 1 := by
-    rw [Finset.sum_eq_single i]
-    · simp [unit]
-    · intro j _ hj
-      simp [unit, Pi.single_eq_of_ne hj]
-    · intro hi
-      exact absurd (Finset.mem_univ i) hi
-  calc euclidNorm (x + unit i) ^ 2
-      = ∑ j : Fin d, (((x j : ℤ) : ℝ) + ((unit i j : ℤ) : ℝ)) ^ 2 := by
-        rw [euclidNorm_sq]
-        refine Finset.sum_congr rfl fun j _ => ?_
-        simp only [Pi.add_apply, Int.cast_add]
-    _ = ∑ j : Fin d,
-          ((((x j : ℤ) : ℝ) ^ 2 + (2 * ((x j : ℤ) : ℝ) * ((unit i j : ℤ) : ℝ) +
-            ((unit i j : ℤ) : ℝ) ^ 2))) := by
-        refine Finset.sum_congr rfl fun j _ => ?_
-        ring
-    _ = euclidNorm x ^ 2 + 2 * ((x i : ℤ) : ℝ) + 1 := by
-        rw [Finset.sum_add_distrib, euclidNorm_sq, hsum]
-        ring
-
-/-- Shifting the `i`-th coordinate subtracts `2xᵢ` and adds `1` to the square. -/
-private lemma euclidNorm_sub_unit_sq (x : Site d) (i : Fin d) :
-    euclidNorm (x - unit i) ^ 2 = euclidNorm x ^ 2 - 2 * ((x i : ℤ) : ℝ) + 1 := by
-  have hsum : ∑ j : Fin d,
-      (2 * ((x j : ℤ) : ℝ) * ((unit i j : ℤ) : ℝ) - ((unit i j : ℤ) : ℝ) ^ 2) =
-      2 * ((x i : ℤ) : ℝ) - 1 := by
-    rw [Finset.sum_eq_single i]
-    · simp [unit]
-    · intro j _ hj
-      simp [unit, Pi.single_eq_of_ne hj]
-    · intro hi
-      exact absurd (Finset.mem_univ i) hi
-  calc euclidNorm (x - unit i) ^ 2
-      = ∑ j : Fin d, (((x j : ℤ) : ℝ) - ((unit i j : ℤ) : ℝ)) ^ 2 := by
-        rw [euclidNorm_sq]
-        refine Finset.sum_congr rfl fun j _ => ?_
-        simp only [Pi.sub_apply, Int.cast_sub]
-    _ = ∑ j : Fin d,
-          ((((x j : ℤ) : ℝ) ^ 2 - (2 * ((x j : ℤ) : ℝ) * ((unit i j : ℤ) : ℝ) -
-            ((unit i j : ℤ) : ℝ) ^ 2))) := by
-        refine Finset.sum_congr rfl fun j _ => ?_
-        ring
-    _ = euclidNorm x ^ 2 - 2 * ((x i : ℤ) : ℝ) + 1 := by
-        rw [Finset.sum_sub_distrib, euclidNorm_sq, hsum]
-        ring
 
 /-- A coordinate is bounded by the Euclidean norm. -/
 private lemma abs_coord_le_euclidNorm (x : Site d) (i : Fin d) :
@@ -86,18 +36,6 @@ private lemma abs_coord_le_euclidNorm (x : Site d) (i : Fin d) :
   constructor
   · nlinarith [sq_nonneg (((x i : ℤ) : ℝ) + euclidNorm x)]
   · nlinarith [sq_nonneg (((x i : ℤ) : ℝ) - euclidNorm x)]
-
-/-- The Euclidean norm is at most the sum of the absolute values of the coordinates. -/
-private lemma norm_le_sum_abs (w : EuclideanSpace ℝ (Fin d)) :
-    ‖w‖ ≤ ∑ i : Fin d, |w i| := by
-  rw [EuclideanSpace.norm_eq]
-  have hsq : ∑ i : Fin d, ‖w i‖ ^ 2 ≤ (∑ i : Fin d, |w i|) ^ 2 := by
-    simpa only [Real.norm_eq_abs, sq_abs] using
-      Finset.sum_sq_le_sq_sum_of_nonneg (s := Finset.univ) (f := fun i => |w i|)
-        (fun i _ => abs_nonneg _)
-  calc Real.sqrt (∑ i : Fin d, ‖w i‖ ^ 2)
-      ≤ Real.sqrt ((∑ i : Fin d, |w i|) ^ 2) := Real.sqrt_le_sqrt hsq
-    _ = ∑ i : Fin d, |w i| := Real.sqrt_sq (Finset.sum_nonneg fun i _ => abs_nonneg _)
 
 /-- For `ρ > 0`, `ρ/2 ≤ ρp`, and `k : ℕ`, `ρp^{-k} ≤ 2^k ρ^{-k}`. -/
 private lemma rpow_neg_le_of_half_le {ρ ρp : ℝ} (hρ : 0 < ρ) (hp : ρ / 2 ≤ ρp) (k : ℕ) :

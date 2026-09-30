@@ -1,5 +1,7 @@
 import CERW.Support.Coarse.OuterRadius
 import CERW.Support.Crossing.OuterContradiction
+import CERW.Support.Coarse.CrossingArith
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # The outer fluctuation bound
@@ -19,102 +21,6 @@ open LatticeProb Finset CERW CERW.Support.Crossing CERW.Support.Occupation
 open Filter Topology
 
 variable {d : ℕ}
-
-/-- The embedding of lattice sites is additive: `toSpace (x - y) = toSpace x - toSpace y`. -/
-private lemma toSpace_sub_eq (x y : Site d) : toSpace (x - y) = toSpace x - toSpace y := by
-  ext i
-  simp [toSpace, Pi.sub_apply, Int.cast_sub]
-
-/-- The origin of the lattice embeds as the origin of Euclidean space. -/
-private lemma toSpace_zero_eq : toSpace (0 : Site d) = 0 := by
-  ext i
-  simp [toSpace]
-
-/-- The direction of a nonzero vector has norm one. -/
-private lemma norm_unitDir_eq_one {x : EuclideanSpace ℝ (Fin d)} (hx : x ≠ 0) :
-    ‖unitDir x‖ = 1 := by
-  rw [unitDir, norm_smul, norm_inv, norm_norm, inv_mul_cancel₀ (norm_ne_zero_iff.mpr hx)]
-
-/-- The inner product of the direction of `x` with `x` is the norm of `x`. -/
-private lemma inner_unitDir_self_eq (x : EuclideanSpace ℝ (Fin d)) :
-    inner ℝ (unitDir x) x = ‖x‖ := by
-  rcases eq_or_ne x 0 with rfl | hx
-  · simp
-  · rw [unitDir, real_inner_smul_left, real_inner_self_eq_norm_sq]
-    have hx' : ‖x‖ ≠ 0 := norm_ne_zero_iff.mpr hx
-    field_simp
-
-/-- If the path exceeds radius `r > b + 1` by time `n`, then at the first time `t` it reaches
-radius `r` there is a crossing interval `[s, t)` in the direction `v = X_t / |X_t|`: all sites of
-the interval have `v · x > b` and `|x| < r`, and the projected gain over it is at least
-`r - (b + 1)`. -/
-private lemma exists_crossing_interval {Ω : Type*} (X : ℕ → Ω → Site d) (ω : Ω) (n : ℕ)
-    (h0 : X 0 ω = 0) (hstep : ∀ j, X (j + 1) ω - X j ω ∈ unitSteps d) {b r : ℝ}
-    (hb : 0 ≤ b) (hbr : b + 1 < r) (hH : r < maxRadius (fun j => X j ω) n) :
-    ∃ s t : ℕ, s < t ∧ t ≤ n ∧ ∃ v : EuclideanSpace ℝ (Fin d), ‖v‖ = 1 ∧
-      (∀ j ∈ Ico s t, b < inner ℝ v (toSpace (X j ω)) ∧ euclidNorm (X j ω) < r) ∧
-      r - (b + 1) ≤ inner ℝ v (toSpace (X t ω) - toSpace (X s ω)) := by
-  classical
-  have hzero : euclidNorm (X 0 ω) = 0 := by
-    rw [← norm_toSpace, h0, toSpace_zero_eq, norm_zero]
-  have hexn : ∃ j ∈ Finset.range (n + 1), r < euclidNorm (X j ω) :=
-    (Finset.lt_sup'_iff _).mp hH
-  have hex : ∃ j, r ≤ euclidNorm (X j ω) := by
-    obtain ⟨j, -, hj⟩ := hexn
-    exact ⟨j, hj.le⟩
-  obtain ⟨τ, hτspec, hτmin⟩ :
-      ∃ τ, r ≤ euclidNorm (X τ ω) ∧ ∀ j < τ, euclidNorm (X j ω) < r := by
-    exact ⟨Nat.find hex, Nat.find_spec hex, fun j hj => not_le.mp (Nat.find_min hex hj)⟩
-  have hτn : τ ≤ n := by
-    obtain ⟨j, hj, hjr⟩ := hexn
-    by_contra hlt
-    rw [not_le] at hlt
-    have hjn : j ≤ n := Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)
-    exact absurd hjr (not_lt.mpr (hτmin j (lt_of_le_of_lt hjn hlt)).le)
-  have hτpos : 0 < τ := by
-    rcases Nat.eq_zero_or_pos τ with hτ | hτ
-    · rw [hτ, hzero] at hτspec
-      linarith
-    · exact hτ
-  have hxτ : toSpace (X τ ω) ≠ 0 := by
-    intro hx
-    rw [← norm_toSpace, hx, norm_zero] at hτspec
-    linarith
-  set v : EuclideanSpace ℝ (Fin d) := unitDir (toSpace (X τ ω)) with hvdef
-  have hv : ‖v‖ = 1 := norm_unitDir_eq_one hxτ
-  have hfτ : inner ℝ v (toSpace (X τ ω)) = euclidNorm (X τ ω) := by
-    rw [hvdef, inner_unitDir_self_eq, norm_toSpace]
-  obtain ⟨s, hs0, hsτ, hfs, hfin⟩ := exists_last_entrance
-    (f := fun j => inner ℝ v (toSpace (X j ω))) (b := b) (τ := τ)
-    (by rw [h0, toSpace_zero_eq, inner_zero_right]; exact hb)
-    (fun j => by
-      have hsub : inner ℝ v (toSpace (X (j + 1) ω)) - inner ℝ v (toSpace (X j ω)) ≤ 1 := by
-        rw [← inner_sub_right, ← toSpace_sub_eq]
-        exact inner_toSpace_le_one hv (hstep j)
-      linarith)
-    hτpos
-  have hslt : s < τ := by
-    refine lt_of_le_of_ne hsτ ?_
-    rintro rfl
-    rw [hfτ] at hfs
-    linarith
-  refine ⟨s, τ, hslt, hτn, v, hv, ?_, ?_⟩
-  · intro j hj
-    rw [Finset.mem_Ico] at hj
-    exact ⟨hfin j hj.1 hj.2, hτmin j hj.2⟩
-  · rw [inner_sub_right, hfτ]
-    linarith
-
-/-- The projection on a unit vector is at most the Euclidean norm of a site. -/
-private lemma inner_toSpace_le_euclidNorm {v : EuclideanSpace ℝ (Fin d)} (hv : ‖v‖ = 1)
-    (x : Site d) : inner ℝ v (toSpace x) ≤ euclidNorm x := by
-  have h := real_inner_le_norm v (toSpace x)
-  rwa [hv, one_mul, norm_toSpace] at h
-
-/-- The exponent `γ = 2d/(2d - 1)` of the crossing bound is positive once `d ≥ 1`. -/
-private lemma gamma_pos (hd : 1 ≤ d) : 0 < (2 * d : ℝ) / (2 * d - 1) := by
-  have hd' : (1 : ℝ) ≤ d := by exact_mod_cast hd
-  exact div_pos (by linarith) (by linarith)
 
 /-- The scale `N = n^{1/(d+1)}`. -/
 private noncomputable abbrev outerN (d : ℕ) (n : ℕ) : ℝ := (n : ℝ) ^ ((1 : ℝ) / (d + 1))

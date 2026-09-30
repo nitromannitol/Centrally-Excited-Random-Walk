@@ -2,6 +2,7 @@ import CERW.Support.Law.StepMean
 import CERW.Generic.Kernel.NewtonField
 import CERW.Generic.Lattice.Centered
 import CERW.Model.Potential
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # Replacing the lattice gradient by the Newtonian field
@@ -16,6 +17,7 @@ centred sum of `(1 + |x - y|)^{-d}` is logarithmic.
 namespace CERW.Support.LocalTime
 
 open LatticeProb CERW CERW.Support.Law CERW.Generic.Kernel
+open CERW.Support.Occupation
 
 variable {d : ℕ}
 
@@ -31,18 +33,6 @@ private lemma euclidNorm_eq_zero_or_one_le (z : Site d) :
       omega
     have hcast : (1 : ℝ) ≤ |((z i : ℤ) : ℝ)| := by exact_mod_cast hz1
     exact hcast.trans (abs_coord_le_euclidNorm z i)
-
-/-- The Euclidean norm of a vector is at most the sum of its coordinate absolute values. -/
-private lemma norm_le_sum_coords (w : EuclideanSpace ℝ (Fin d)) :
-    ‖w‖ ≤ ∑ i : Fin d, |w i| := by
-  rw [EuclideanSpace.norm_eq]
-  have hsq : ∑ i : Fin d, ‖w i‖ ^ 2 ≤ (∑ i : Fin d, |w i|) ^ 2 := by
-    simpa only [Real.norm_eq_abs, sq_abs] using
-      Finset.sum_sq_le_sq_sum_of_nonneg (s := Finset.univ) (f := fun i => |w i|)
-        (fun i _ => abs_nonneg _)
-  calc Real.sqrt (∑ i : Fin d, ‖w i‖ ^ 2)
-      ≤ Real.sqrt ((∑ i : Fin d, |w i|) ^ 2) := Real.sqrt_le_sqrt hsq
-    _ = ∑ i : Fin d, |w i| := Real.sqrt_sq (Finset.sum_nonneg fun i _ => abs_nonneg _)
 
 /-- The Newtonian field of an embedded site is the scaled embedding. -/
 private lemma smul_newtonField_toSpace (z : Site d) :
@@ -83,7 +73,7 @@ private lemma norm_centralDiff_le {b : Site d → ℝ} {Cg : ℝ}
       rw [abs_div, abs_of_pos (by norm_num : (0 : ℝ) < 2)]
       linarith
     simpa only [centralDiff, PiLp.toLp_apply] using h4
-  calc ‖centralDiff b z‖ ≤ ∑ i : Fin d, |(centralDiff b z) i| := norm_le_sum_coords _
+  calc ‖centralDiff b z‖ ≤ ∑ i : Fin d, |(centralDiff b z) i| := norm_le_sum_abs _
     _ ≤ ∑ _i : Fin d, max Cg 0 * A := Finset.sum_le_sum fun i _ => hcoord i
     _ = (d : ℝ) * (max Cg 0 * A) := by
           rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]

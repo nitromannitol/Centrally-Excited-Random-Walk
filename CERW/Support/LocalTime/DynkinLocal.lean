@@ -1,6 +1,7 @@
 import CERW.Support.Law.Dynkin
 import CERW.Support.Law.StepMean
 import CERW.Support.Occupation.FreshSum
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # The Dynkin decomposition of the local time
@@ -18,12 +19,6 @@ namespace CERW.Support.LocalTime
 open LatticeProb CERW CERW.Support.Law CERW.Support.Occupation Finset
 
 variable {d : ℕ}
-
-/-- The embedded origin is the zero vector. -/
-private theorem toSpace_zero : toSpace (0 : Site d) = 0 := by
-  rw [WithLp.ext_iff]
-  funext i
-  simp
 
 /-- The walk operator commutes with translations. -/
 theorem walkOp_comp_sub (b : Site d → ℝ) (x y : Site d) :

@@ -2,6 +2,7 @@ import CERW.Generic.Lattice.Resolvent
 import CERW.Generic.Lattice.SummableSums
 import CERW.Generic.Lattice.WeightSums
 import CERW.Model.Occupation
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # The local-time envelope in dimensions three and higher
@@ -19,21 +20,9 @@ square root into `λ B_y + A₂² L/(4λ)`. The kernel `k` has bounded mass `k�
 namespace CERW.Support.Contact
 
 open LatticeProb Finset CERW CERW.Generic.Lattice
+open CERW.Support.Occupation
 
 variable {d : ℕ}
-
-/-- The embedding of lattice sites into Euclidean space is additive. -/
-private lemma toSpace_sub (x y : Site d) : toSpace (x - y) = toSpace x - toSpace y := by
-  ext i
-  simp [toSpace]
-
-/-- The Euclidean norm satisfies the triangle inequality. -/
-private lemma euclidNorm_sub_le (x y : Site d) :
-    euclidNorm (x - y) ≤ euclidNorm x + euclidNorm y := by
-  calc euclidNorm (x - y) = ‖toSpace (x - y)‖ := (norm_toSpace _).symm
-    _ = ‖toSpace x - toSpace y‖ := by rw [toSpace_sub]
-    _ ≤ ‖toSpace x‖ + ‖toSpace y‖ := norm_sub_le _ _
-    _ = euclidNorm x + euclidNorm y := by rw [norm_toSpace, norm_toSpace]
 
 /-- The Euclidean norm is `1`-Lipschitz with respect to itself. -/
 private lemma abs_euclidNorm_sub_le (x y : Site d) :

@@ -3,6 +3,8 @@ import CERW.Generic.Kernel.Integrable
 import CERW.Generic.Lattice.Centered
 import CERW.Support.Occupation.CellNorm
 import CERW.Support.Occupation.CellVolume
+import CERW.Generic.Kernel.Modulus
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # Replacing kernel values by cell integrals
@@ -20,16 +22,6 @@ namespace CERW.Support.LocalTime
 open MeasureTheory LatticeProb CERW CERW.Generic.Kernel CERW.Support.Occupation
 
 variable {d : ℕ}
-
-/-- The embedding of lattice sites is additive: `toSpace (x - y) = toSpace x - toSpace y`. -/
-private lemma toSpace_sub (x y : Site d) : toSpace (x - y) = toSpace x - toSpace y := by
-  ext i
-  simp [toSpace, Pi.sub_apply, Int.cast_sub]
-
-/-- The origin of the lattice embeds as the origin of Euclidean space. -/
-private lemma toSpace_zero : toSpace (0 : Site d) = 0 := by
-  ext i
-  simp [toSpace]
 
 /-- The distance of two embedded sites is the Euclidean norm of their lattice difference. -/
 private lemma norm_toSpace_sub (x y : Site d) :
@@ -69,20 +61,13 @@ private lemma rpow_neg_le_two_pow_mul {ρ : ℝ} (hρ : 1 ≤ ρ) :
     _ ≤ (2 : ℝ) ^ d * (1 + ρ) ^ (-(d : ℝ)) :=
         mul_le_mul_of_nonneg_left h2 h2pow_pos.le
 
-/-- The Newtonian field is Borel measurable. -/
-private lemma newtonField_measurable :
-    Measurable (newtonField : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d)) := by
-  have h1 : Measurable (fun v : EuclideanSpace ℝ (Fin d) => (‖v‖ ^ d)⁻¹) :=
-    (measurable_norm.pow_const d).inv
-  exact h1.smul measurable_id
-
 /-- For fixed `w` and `z`, `v ↦ ⟪w, K(v - z)⟫` is measurable. -/
 private lemma inner_newtonField_measurable (w : EuclideanSpace ℝ (Fin d))
     (z : EuclideanSpace ℝ (Fin d)) :
     Measurable (fun v : EuclideanSpace ℝ (Fin d) =>
       inner ℝ w (newtonField (v - z))) := by
   have hcomp : Measurable (fun v : EuclideanSpace ℝ (Fin d) => newtonField (v - z)) :=
-    newtonField_measurable.comp (measurable_id.sub measurable_const)
+    measurable_newtonField.comp (measurable_id.sub measurable_const)
   have hinner : Measurable (fun p : EuclideanSpace ℝ (Fin d) × EuclideanSpace ℝ (Fin d) =>
       inner ℝ p.1 p.2) := continuous_inner.measurable
   exact hinner.comp (measurable_const.prodMk hcomp)
@@ -188,7 +173,6 @@ private lemma near_term_le (hd : 2 ≤ d)
     _ ≤ 1 + 3 * δ * ((d:ℝ) * unitBallVolume d) := by linarith
     _ = 1 + 3 * Real.sqrt d * ((d:ℝ) * unitBallVolume d) := by rw [hδ]
 
-
 /-- For `2√d ≤ |x - y|`, the cell replacement term at `x` is at most
 `(2^d + 2d 3^(d-1)) (√d/2) |x - y|^(-d)`. -/
 private lemma far_term_le (hd : 2 ≤ d)
@@ -271,7 +255,6 @@ private lemma far_term_le (hd : 2 ≤ d)
         rw [Real.rpow_neg hρpos.le, Real.rpow_natCast]; ring
     _ = ((2:ℝ)^d + 2*(d:ℝ)*3^(d-1)) * (Real.sqrt d / 2) * (euclidNorm (x - y)) ^ (-(d:ℝ)) := by
         rw [hδ, hρ]
-
 
 theorem exists_sum_abs_newtonField_sub_setIntegral_le (hd : 2 ≤ d) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Finset (Site d)) (w : Site d → EuclideanSpace ℝ (Fin d))

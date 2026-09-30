@@ -2,6 +2,7 @@ import CERW.Support.Geometry.TailBasic
 import CERW.Support.Occupation.CellNorm
 import CERW.Support.Occupation.CellVolume
 import CERW.Support.Occupation.CellSetVolume
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # Counting departure sites in an annulus by the tail
@@ -18,38 +19,6 @@ open MeasureTheory LatticeProb CERW CERW.Support.Occupation
 open scoped ENNReal
 
 variable {d : ℕ}
-
-/-- A finite disjoint union of cells has volume equal to the number of its sites. -/
-private theorem volume_biUnion_cell (S : Finset (Site d)) :
-    volume (⋃ x ∈ S, cell x) = (S.card : ℝ≥0∞) := by
-  rw [measure_biUnion_finset (fun x _ y _ hxy => cell_disjoint hxy)
-        (fun x _ => measurableSet_cell x)]
-  simp_rw [volume_cell]
-  rw [Finset.sum_const, nsmul_eq_mul, mul_one]
-
-/-- A constant `c` that is a pointwise lower bound on a finite disjoint union of unit cells
-is at most the integral of the bounded function over that union. -/
-private theorem const_mul_card_le_integral_biUnion_cell (S : Finset (Site d))
-    {f : EuclideanSpace ℝ (Fin d) → ℝ} {c : ℝ}
-    (hfint : IntegrableOn f (⋃ x ∈ S, cell x))
-    (hbound : ∀ v ∈ (⋃ x ∈ S, cell x), c ≤ f v) :
-    c * (S.card : ℝ) ≤ ∫ v in (⋃ x ∈ S, cell x), f v := by
-  have hAmeas : MeasurableSet (⋃ x ∈ S, cell x) :=
-    Finset.measurableSet_biUnion S fun x _ => measurableSet_cell x
-  have hvolA : (volume (⋃ x ∈ S, cell x)).toReal = (S.card : ℝ) := by
-    rw [volume_biUnion_cell S, ENNReal.toReal_natCast]
-  have hfine : volume (⋃ x ∈ S, cell x) ≠ ∞ := by
-    rw [volume_biUnion_cell S]
-    exact ENNReal.natCast_ne_top S.card
-  have hIntAc : IntegrableOn (fun _ : EuclideanSpace ℝ (Fin d) => c)
-      (⋃ x ∈ S, cell x) := integrableOn_const hfine
-  have hmono : ∫ v in (⋃ x ∈ S, cell x), c ≤ ∫ v in (⋃ x ∈ S, cell x), f v :=
-    setIntegral_mono_on hIntAc hfint hAmeas hbound
-  have hAc_eq : ∫ v in (⋃ x ∈ S, cell x), c = (S.card : ℝ) * c := by
-    rw [setIntegral_const, smul_eq_mul, Measure.real_def, hvolA]
-  calc c * (S.card : ℝ) = (S.card : ℝ) * c := by ring
-    _ = ∫ v in (⋃ x ∈ S, cell x), c := hAc_eq.symm
-    _ ≤ ∫ v in (⋃ x ∈ S, cell x), f v := hmono
 
 /-- A cell of a departure site in the annulus `ρ < |x| < R'` lies in the annulus
 `ρ - √d/2 < |v| < R' + √d/2` inside the cell set. -/

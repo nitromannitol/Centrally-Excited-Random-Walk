@@ -5,6 +5,7 @@ import CERW.Support.LocalTime.IntervalMart
 import CERW.Support.LocalTime.SourceSum
 import CERW.Support.Geometry.CellModulus
 import CERW.Generic.Young.Absorb
+import CERW.Support.Law.ScaleArith
 
 /-!
 # The local-time lemma
@@ -24,21 +25,6 @@ universe u
 namespace CERW.Support.LocalTime
 
 open MeasureTheory ProbabilityTheory LatticeProb Finset CERW CERW.Support.Law
-
-/-- A measure bound for a set covered by an event of small measure and a null event. -/
-private lemma measure_le_of_subset_union {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
-    {A N B : Set Ω} {a c : ENNReal} (hsub : B ⊆ A ∪ N) (hA : μ A ≤ a) (hN : μ N = 0)
-    (hac : a ≤ c) : μ B ≤ c := by
-  refine (measure_mono hsub).trans ((measure_union_le A N).trans ?_)
-  rw [hN, add_zero]
-  exact hA.trans hac
-
-/-- For `n ≥ 2` the logarithm `log (n + 2)` is at least `1`. -/
-private lemma one_le_log_add_two {n : ℕ} (hn : 2 ≤ n) : 1 ≤ Real.log ((n : ℝ) + 2) := by
-  have hn' : (2 : ℝ) ≤ n := by exact_mod_cast hn
-  rw [Real.le_log_iff_exp_le (by linarith)]
-  have := Real.exp_one_lt_three
-  linarith
 
 /-- A logarithm of a positive number at most `4n + 2` is at most `2 log (n + 2)`. -/
 private lemma log_le_two_mul_log {a : ℝ} (n : ℕ) (ha : 0 < a) (h : a ≤ 4 * (n : ℝ) + 2) :
@@ -289,17 +275,6 @@ private lemma approx_bound {d : ℕ} (hd : 2 ≤ d) {b : Site d → ℝ}
   rw [hdecomp]
   exact approx_error_combination hCb0 hCS0 hCM0 hε hBn hb1
     (by rwa [abs_neg]) hsrc' (by rwa [abs_sub_comm]) (by rwa [abs_neg])
-
-/-- The bound `1 ≤ C n^{-p}` for `n ≤ n₀` once `C ≥ n₀^p`. -/
-private lemma one_le_mul_rpow_neg {C p : ℝ} {n n₀ : ℕ} (hp : 0 < p) (hn : 0 < n)
-    (hnn : n ≤ n₀) (hC : (n₀ : ℝ) ^ p ≤ C) : 1 ≤ C * (n : ℝ) ^ (-p) := by
-  have hn' : (0 : ℝ) < n := by exact_mod_cast hn
-  have h1 : (n : ℝ) ^ p ≤ (n₀ : ℝ) ^ p :=
-    Real.rpow_le_rpow hn'.le (Nat.cast_le.mpr hnn) hp.le
-  have h2 : 0 < (n : ℝ) ^ p := Real.rpow_pos_of_pos hn' p
-  rw [Real.rpow_neg hn'.le]
-  calc (1 : ℝ) = (n : ℝ) ^ p * ((n : ℝ) ^ p)⁻¹ := (mul_inv_cancel₀ h2.ne').symm
-    _ ≤ C * ((n : ℝ) ^ p)⁻¹ := mul_le_mul_of_nonneg_right (h1.trans hC) (inv_nonneg.mpr h2.le)
 
 /-- `lem:local`, for any kernel `b` with the kernel facts. -/
 theorem local_time_potential_of_kernelFacts {d : ℕ} (hd : 2 ≤ d) {b : Site d → ℝ} {h : ℝ → ℝ}

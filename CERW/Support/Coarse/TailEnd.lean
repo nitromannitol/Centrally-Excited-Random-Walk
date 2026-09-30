@@ -5,6 +5,7 @@ import CERW.Support.Main.ScaleLimits
 import CERW.Model.Occupation
 import CERW.Support.Occupation.CellSetVolume
 import CERW.Support.Occupation.CellNorm
+import CERW.Support.Coarse.CrossingArith
 
 /-!
 # The tail end beyond the inradius
@@ -80,30 +81,6 @@ private lemma radial_error_le {Crad Cr C₁ s L Mx ρ Fm A w Ct : ℝ} (hCrad : 
       ≤ Cr * (Real.sqrt (Mx * ρ * Fm * L) + ρ * L) := mul_le_mul_of_nonneg_right hCrad' hX
     _ = Cr * Real.sqrt (Mx * ρ * Fm * L) + Cr * (ρ * L) := by ring
     _ ≤ A / 4 := by linarith
-
-/-- Either `F(r + b')` is at most `A/2`, or the drop across the grid cell is at least
-`A / K` with `K = 4 Cr (S + 1)`. -/
-private lemma step_dichotomy {Crad Cr S Ssh Fm Fp Fm' Fp' A err : ℝ} (hCrad : 0 < Crad)
-    (hCrad' : Crad ≤ Cr) (hS0 : 0 ≤ S) (hS : S ≤ Ssh) (hFp' : Fp' ≤ Fp)
-    (hFm : Fm ≤ Fm') (hFpm : Fp ≤ Fm) (hrad : Fp ≤ Crad * S * (Fm - Fp) + err)
-    (herr : err ≤ A / 4) :
-    Fp' ≤ A / 2 ∨ A / (4 * Cr * (Ssh + 1)) ≤ Fm' - Fp' := by
-  rcases le_or_gt Fp' (A / 2) with h | h
-  · exact Or.inl h
-  · right
-    have hCr0 : 0 < Cr := lt_of_lt_of_le hCrad hCrad'
-    have hD : 0 ≤ Fm - Fp := sub_nonneg.mpr hFpm
-    have h1 : A / 4 < Crad * S * (Fm - Fp) := by linarith
-    have h2 : Crad * S * (Fm - Fp) ≤ Cr * (Ssh + 1) * (Fm - Fp) := by
-      apply mul_le_mul_of_nonneg_right _ hD
-      exact mul_le_mul hCrad' (by linarith) hS0 hCr0.le
-    have h3 : Fm - Fp ≤ Fm' - Fp' := by linarith
-    have hSsh0 : 0 ≤ Ssh := le_trans hS0 hS
-    have h4 : Cr * (Ssh + 1) * (Fm - Fp) ≤ Cr * (Ssh + 1) * (Fm' - Fp') :=
-      mul_le_mul_of_nonneg_left h3 (by positivity)
-    have hpos : 0 < 4 * Cr * (Ssh + 1) := by positivity
-    rw [div_le_iff₀ hpos]
-    nlinarith
 
 /-- The number of dyadic levels is at most a constant multiple of `L = log (n + 2)`. -/
 private lemma levels_count {γ ρ L : ℝ} {n M : ℕ} (hγ : 0 < γ) (hρ : 0 < ρ)

@@ -3,6 +3,8 @@ import CERW.Support.LocalTime.ReplaceCell
 import CERW.Support.LocalTime.ReplaceDirection
 import CERW.Support.Geometry.Bound
 import CERW.Support.Occupation.CellIntegral
+import CERW.Generic.Kernel.Modulus
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # The source sum is the potential up to a logarithm
@@ -21,25 +23,12 @@ open MeasureTheory LatticeProb CERW CERW.Support.Law CERW.Generic.Kernel CERW.Su
 
 variable {d : ℕ}
 
-/-- The embedding of lattice sites is additive. -/
-private lemma toSpace_sub_local (x y : Site d) :
-    toSpace (x - y) = toSpace x - toSpace y := by
-  ext i
-  simp [toSpace, Pi.sub_apply, Int.cast_sub]
-
-/-- The Newtonian field is Borel measurable. -/
-private lemma newtonField_measurable_local :
-    Measurable (newtonField : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d)) := by
-  have h1 : Measurable (fun v : EuclideanSpace ℝ (Fin d) => (‖v‖ ^ d)⁻¹) :=
-    (measurable_norm.pow_const d).inv
-  exact h1.smul measurable_id
-
 /-- For fixed `w` and `z`, `v ↦ ⟪w, K(v - z)⟫` is measurable. -/
 private lemma inner_newtonField_measurable_local (w z : EuclideanSpace ℝ (Fin d)) :
     Measurable (fun v : EuclideanSpace ℝ (Fin d) =>
       inner ℝ w (newtonField (v - z))) := by
   have hcomp : Measurable (fun v : EuclideanSpace ℝ (Fin d) => newtonField (v - z)) :=
-    newtonField_measurable_local.comp (measurable_id.sub measurable_const)
+    measurable_newtonField.comp (measurable_id.sub measurable_const)
   exact continuous_inner.measurable.comp (measurable_const.prodMk hcomp)
 
 /-- For `‖w‖ ≤ 1`, `v ↦ ⟪w, K(v - z)⟫` is integrable on a measurable set of finite volume. -/
@@ -142,7 +131,7 @@ theorem exists_abs_source_sum_sub_potential_le (hd : 2 ≤ d) {b : Site d → �
                 (2 / unitBallVolume d) • newtonField (toSpace (x - y))‖ := by
             apply Finset.sum_congr rfl
             intro x hx
-            rw [← toSpace_sub_local x y]
+            rw [← toSpace_sub x y]
         _ ≤ Ca * Real.log (R' + 2) := hsum
     have h2 : |(2 / unitBallVolume d) * S1 - (2 / unitBallVolume d) * S2| ≤
         (2 / unitBallVolume d) * Cb * Real.log (R' + 2) := by

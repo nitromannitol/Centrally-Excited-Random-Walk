@@ -1,6 +1,7 @@
 import CERW.Support.Law.Dynkin
 import CERW.Support.Law.StepMean
 import CERW.Support.Occupation.FreshSum
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # The squared displacement
@@ -17,57 +18,9 @@ open LatticeProb Finset CERW CERW.Support.Law CERW.Support.Occupation
 
 variable {d : ℕ}
 
-/-- The square of the Euclidean norm is the sum of the squared coordinates. -/
-private theorem euclidNorm_sq_eq_sum (x : Site d) :
-    euclidNorm x ^ 2 = ∑ i : Fin d, ((x i : ℤ) : ℝ) ^ 2 := by
-  rw [euclidNorm, Real.sq_sqrt]
-  exact Finset.sum_nonneg fun i _ => sq_nonneg _
-
 /-- The Euclidean norm of the origin is zero. -/
 private theorem euclidNorm_zero : euclidNorm (0 : Site d) = 0 := by
   simp [euclidNorm]
-
-/-- Shifting by `+unit i` changes only the `i`-th coordinate by `+1`. -/
-private theorem euclidNorm_add_unit_sq (x : Site d) (i : Fin d) :
-    euclidNorm (x + unit i) ^ 2 = euclidNorm x ^ 2 + 2 * ((x i : ℤ) : ℝ) + 1 := by
-  rw [euclidNorm_sq_eq_sum, euclidNorm_sq_eq_sum]
-  have hpoint : ∀ j : Fin d,
-      (((x + unit i) j : ℤ) : ℝ) ^ 2 =
-        (((x j : ℤ) : ℝ)) ^ 2 +
-          (if j = i then 2 * ((x i : ℤ) : ℝ) + 1 else 0) := by
-    intro j
-    by_cases hji : j = i
-    · subst hji
-      rw [Pi.add_apply, unit, Pi.single_eq_same]
-      simp only [if_true]
-      push_cast
-      ring
-    · rw [Pi.add_apply, unit, Pi.single_eq_of_ne hji, add_zero]
-      simp [hji]
-  rw [Finset.sum_congr rfl fun j _ => hpoint j, Finset.sum_add_distrib]
-  simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
-  ring
-
-/-- Shifting by `-unit i` changes only the `i`-th coordinate by `-1`. -/
-private theorem euclidNorm_sub_unit_sq (x : Site d) (i : Fin d) :
-    euclidNorm (x - unit i) ^ 2 = euclidNorm x ^ 2 - 2 * ((x i : ℤ) : ℝ) + 1 := by
-  rw [euclidNorm_sq_eq_sum, euclidNorm_sq_eq_sum]
-  have hpoint : ∀ j : Fin d,
-      (((x - unit i) j : ℤ) : ℝ) ^ 2 =
-        (((x j : ℤ) : ℝ)) ^ 2 +
-          (if j = i then -2 * ((x i : ℤ) : ℝ) + 1 else 0) := by
-    intro j
-    by_cases hji : j = i
-    · subst hji
-      rw [Pi.sub_apply, unit, Pi.single_eq_same]
-      simp only [if_true]
-      push_cast
-      ring
-    · rw [Pi.sub_apply, unit, Pi.single_eq_of_ne hji, sub_zero]
-      simp [hji]
-  rw [Finset.sum_congr rfl fun j _ => hpoint j, Finset.sum_add_distrib]
-  simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true]
-  ring
 
 /-- The inner product of `u_v = v/|v|` with `v` is `|v|`. -/
 private theorem inner_unitDir_self (v : EuclideanSpace ℝ (Fin d)) :

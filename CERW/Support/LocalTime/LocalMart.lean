@@ -1,6 +1,7 @@
 import CERW.Support.LocalTime.Bracket
 import CERW.Generic.Martingale.Dyadic
 import CERW.Generic.Martingale.Clamp
+import CERW.Support.Law.ScaleArith
 
 /-!
 # The local martingales at individual targets
@@ -16,14 +17,6 @@ namespace CERW.Support.LocalTime
 open MeasureTheory ProbabilityTheory LatticeProb Finset CERW CERW.Support.Law
 
 variable {d : ℕ}
-
-/-- The one-step bound forces `C_g ≥ 0`. -/
-private lemma cg_nonneg (hd : 1 ≤ d) {b : Site d → ℝ} {Cg : ℝ}
-    (hgrad : ∀ x e, e ∈ unitSteps d → |b (x + e) - b x| ≤ Cg * (1 + euclidNorm x) ^ (1 - (d : ℝ))) :
-    0 ≤ Cg := by
-  have h := hgrad 0 (unit ⟨0, by omega⟩) (mem_unitSteps.mpr ⟨⟨0, by omega⟩, Or.inl rfl⟩)
-  have h' : |b (unit ⟨0, by omega⟩) - b 0| ≤ Cg := by simpa using h
-  exact (abs_nonneg _).trans h'
 
 /-- A power of `1 + ρ` with nonpositive exponent is at most `1`. -/
 private lemma rpow_one_add_le_one {ρ z : ℝ} (hρ : 0 ≤ ρ) (hz : z ≤ 0) : (1 + ρ) ^ z ≤ 1 :=
@@ -132,14 +125,6 @@ private lemma exists_clamped_translate (hd : 1 ≤ d) {Ω : Type*} [MeasurableSp
   rw [bracket_succ_sub]
   exact hω
 
-/-- The square root of a sum is at most the sum of the square roots. -/
-private lemma sqrt_add_le_add {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
-    Real.sqrt (a + b) ≤ Real.sqrt a + Real.sqrt b := by
-  rw [Real.sqrt_le_left (by positivity)]
-  have h1 := Real.sq_sqrt ha
-  have h2 := Real.sq_sqrt hb
-  nlinarith [mul_nonneg (Real.sqrt_nonneg a) (Real.sqrt_nonneg b)]
-
 /-- The deterministic step: the Freedman threshold `c (√(max (C_g² B) 1 · L) + (2C_g+1) L)` is at
 most `C (√(B L) + L)`. -/
 private lemma threshold_arith {Cg c : ℝ} (hCg : 0 ≤ Cg) (hc : 1 ≤ c) :
@@ -230,22 +215,6 @@ private lemma exists_event_bound (hd : 2 ≤ d) {ε : ℝ} (hε : 0 ≤ ε) (hε
   have hthr := hCdet _ _ hS0 hL1
   simp only [bracket]
   exact lt_of_le_of_lt hthr hE
-
-/-- The base-two logarithm of `⌈W⌉₊`, plus one, is at most `(C_g² + 3)(n + 1)` when
-`W = max (C_g² n) 1`. -/
-private lemma clog_ceil_add_one_le (Cg : ℝ) (n : ℕ) :
-    ((Nat.clog 2 ⌈max (Cg ^ 2 * n) 1⌉₊ : ℕ) : ℝ) + 1 ≤ (Cg ^ 2 + 3) * ((n : ℝ) + 1) := by
-  have hclog : Nat.clog 2 ⌈max (Cg ^ 2 * n) 1⌉₊ ≤ ⌈max (Cg ^ 2 * n) 1⌉₊ :=
-    Nat.clog_le_of_le_pow (Nat.lt_two_pow_self).le
-  have h1 : ((Nat.clog 2 ⌈max (Cg ^ 2 * n) 1⌉₊ : ℕ) : ℝ) ≤ (⌈max (Cg ^ 2 * n) 1⌉₊ : ℝ) := by
-    exact_mod_cast hclog
-  have h2 := Nat.ceil_lt_add_one (zero_le_one.trans (le_max_right (Cg ^ 2 * (n : ℝ)) 1))
-  have h3 : max (Cg ^ 2 * (n : ℝ)) 1 ≤ Cg ^ 2 * n + 1 := max_le (by linarith) (by
-    have := mul_nonneg (sq_nonneg Cg) (Nat.cast_nonneg (α := ℝ) n)
-    linarith)
-  have h4 : (0 : ℝ) ≤ Cg ^ 2 := sq_nonneg _
-  have h5 : (0 : ℝ) ≤ n := Nat.cast_nonneg n
-  nlinarith
 
 /-- The arithmetic of the union bound: `(7(n+1))^D · (G + 3)(n + 1) · 2 e^{-(p + D + 2)L}` is at
 most `(7^D (G + 3) 2^{D+2}) n^{-p}`. -/

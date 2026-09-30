@@ -2,6 +2,7 @@ import CERW.Support.LocalTime.KernelFacts
 import CERW.Support.LocalTime.DynkinLocal
 import CERW.Support.LocalTime.SourceSum
 import CERW.Support.Occupation.Facts
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # The pointwise decomposition of the local time
@@ -18,13 +19,6 @@ namespace CERW.Support.LocalTime
 open LatticeProb CERW CERW.Support.Law CERW.Support.Occupation
 
 variable {d : ℕ}
-
-/-- The Euclidean norm of a lattice difference is at most the sum of the two norms. -/
-private lemma euclidNorm_sub_le (x y : Site d) :
-    euclidNorm (x - y) ≤ euclidNorm x + euclidNorm y := by
-  calc euclidNorm (x - y) = euclidNorm (x + -y) := by rw [sub_eq_add_neg]
-    _ ≤ euclidNorm x + euclidNorm (-y) := euclidNorm_add_le _ _
-    _ = euclidNorm x + euclidNorm y := by rw [CERW.Generic.Lattice.euclidNorm_neg]
 
 /-- A cell lies in the open ball of radius `R` when its site satisfies `|x| + √d/2 < R`. -/
 private lemma cell_subset_ball_of_lt (x : Site d) {R : ℝ}

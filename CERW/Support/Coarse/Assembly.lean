@@ -15,6 +15,7 @@ import CERW.Support.Occupation.CellNorm
 import CERW.Support.Occupation.CellSetVolume
 import CERW.Support.Geometry.TailBasic
 import CERW.Support.Main.ScaleLimits
+import CERW.Support.Law.ScaleArith
 
 /-!
 # The occupation and radius bounds
@@ -171,13 +172,6 @@ private lemma mass_inequality {d : ℕ} (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε)
   rw [hid] at herr
   have h1 := (abs_le.mp herr).1
   have h2 := mul_le_mul_of_nonneg_left hpack (by positivity : 0 ≤ 2 * ε)
-  linarith
-
-/-- For `n ≥ 2` the logarithm `log (n + 2)` is at least `1`. -/
-private lemma one_le_log_add_two {n : ℕ} (hn : 2 ≤ n) : 1 ≤ Real.log ((n : ℝ) + 2) := by
-  have hn' : (2 : ℝ) ≤ n := by exact_mod_cast hn
-  rw [Real.le_log_iff_exp_le (by linarith)]
-  have := Real.exp_one_lt_three
   linarith
 
 /-- If `s² ≤ n` and `t² ≤ n` for a real `n ≥ 0`, then `t s ≤ n`. -/
@@ -402,17 +396,6 @@ private lemma coarse_deterministic {d : ℕ} (hd : 2 ≤ d) {ε : ℝ} (hε : 0 
   have hnN : (n : ℝ) = N ^ (d + 1) := (rpow_frac_pow hnpos.le d).symm
   exact hfin N s R (maxLocalTime x n : ℝ) (maxRadius x n) n hN0 hnN hsd.symm (Nat.cast_nonneg _)
     (by linarith only [hd6, hdR]) hcsN hsCm hMs hHle hnMR hsH
-
-/-- The bound `1 ≤ C n^{-p}` for `n ≤ n₀` once `C ≥ n₀^p`. -/
-private lemma one_le_mul_rpow_neg {C p : ℝ} {n n₀ : ℕ} (hp : 0 < p) (hn : 0 < n)
-    (hnn : n ≤ n₀) (hC : (n₀ : ℝ) ^ p ≤ C) : 1 ≤ C * (n : ℝ) ^ (-p) := by
-  have hn' : (0 : ℝ) < n := by exact_mod_cast hn
-  have h1 : (n : ℝ) ^ p ≤ (n₀ : ℝ) ^ p :=
-    Real.rpow_le_rpow hn'.le (Nat.cast_le.mpr hnn) hp.le
-  have h2 : 0 < (n : ℝ) ^ p := Real.rpow_pos_of_pos hn' p
-  rw [Real.rpow_neg hn'.le]
-  calc (1 : ℝ) = (n : ℝ) ^ p * ((n : ℝ) ^ p)⁻¹ := (mul_inv_cancel₀ h2.ne').symm
-    _ ≤ C * ((n : ℝ) ^ p)⁻¹ := mul_le_mul_of_nonneg_right (h1.trans hC) (inv_nonneg.mpr h2.le)
 
 /-- A measure bound for a set covered by three sets of small measure and a null set. -/
 private lemma measure_le_of_subset_union_three {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}

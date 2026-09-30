@@ -1,6 +1,7 @@
 import CERW.Support.Coarse.Vector
 import CERW.Support.Crossing.Kinematics
 import CERW.Generic.Young.Absorb
+import CERW.Support.Occupation.SiteArith
 
 /-!
 # Crossings through a small set
@@ -17,6 +18,7 @@ inequality absorbs the `k` term: `h² ≤ C_κ (m^γ L^γ + m λ L)` with `γ = 
 namespace CERW.Support.Coarse
 
 open LatticeProb Finset CERW CERW.Support.Crossing
+open CERW.Support.Occupation
 
 variable {d : ℕ}
 
@@ -36,11 +38,6 @@ private lemma compensated_sub_eq {Ω : Type*} (ε : ℝ) (X : ℕ → Ω → Sit
   rw [← hsum]
   rw [smul_add, sub_add_eq_sub_sub]
   abel
-
-/-- The embedded origin is zero. -/
-private lemma toSpace_zero' : toSpace (0 : Site d) = 0 := by
-  ext i
-  simp [toSpace]
 
 /-- The embedded compensated increment projects to the plain projected increment plus `ε` times
 the projected inward directions of the first departures. -/
@@ -70,7 +67,7 @@ private lemma sum_inner_unitDir_ge {Ω : Type*} (X : ℕ → Ω → Site d) (ω 
     have hxj : X j ω ≠ 0 := by
       intro hx
       have hb' := (hsite j hj).1
-      rw [hx, toSpace_zero'] at hb'
+      rw [hx, toSpace_zero] at hb'
       simp only [inner_zero_right] at hb'
       linarith
     by_cases hfresh : X j ω ∉ (range j).image (fun i => X i ω)
