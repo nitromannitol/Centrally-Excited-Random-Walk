@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 00:26.
+generation time. Regenerated 2026-09-30 00:34.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -53,8 +53,8 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-fresh-sum | ds1 | `Support/Occupation/FreshSum.lean` | — | Σ over first visits = Σ over A_n; Σ 1{x_j = y} = ℓ_n(y) | LANDED |
 | s-dynkin-local | ds1 | `Support/LocalTime/DynkinLocal.lean` | s-dynkin, s-fresh-sum, s-step-mean | eq:dynkin, eq:bracket | LANDED |
 | s-bracket | ds4 | `Support/LocalTime/Bracket.lean` | s-dynkin, s-gradient-bound | increments ≤ 2C_g(1+\|X_t−y\|)^{1−d}; conditional variance ≤ C_g²(1+\|X_t−y\|)^{2−2d} | LANDED |
-| s-interval-mart | sonnet | `Support/LocalTime/IntervalMart.lean` | s-dyadic, s-dynkin-local, s-bracket, s-centered-sums, s-mart-shift, s-clamp | eq:interval-mart | IN-FLIGHT (director/sonnet) |
-| s-local-young | director | `Support/LocalTime/IntervalBound.lean` | s-dynkin-local, s-interval-mart, s-packing-lattice | eq:M, eq:interval (Young part landed in Generic/Young/Absorb) | BLOCKED(s-interval-mart) |
+| s-interval-mart | sonnet | `Support/LocalTime/IntervalMart.lean` | s-dyadic, s-dynkin-local, s-bracket, s-centered-sums, s-mart-shift, s-clamp | eq:interval-mart | LANDED |
+| s-local-young | director | `Support/LocalTime/IntervalBound.lean` | s-dynkin-local, s-interval-mart, s-packing-lattice | eq:M, eq:interval (Young part landed in Generic/Young/Absorb) | READY |
 | s-radial-power | ds1 | `Generic/Kernel/RadialPower.lean` | — | ∫_{B(0,ρ)}\|v\|^{−s} = σ_dρ^{d−s}/(d−s) (s<d); ∫_{\|v\|≥ρ}\|v\|^{−s} = σ_dρ^{d−s}/(s−d) (s>d) | LANDED |
 | s-newton-field | ds2 | `Generic/Kernel/NewtonField.lean` | — | K(v)=v/\|v\|^d: \|K(v)\| = \|v\|^{1−d}; \|K(a)−K(b)\| ≤ C_d\|a−b\|/\|b\|^d when 2\|a−b\| ≤ \|b\| | LANDED |
 | s-cell-direction | ds4 | `Support/Occupation/CellDirection.lean` | s-cell-norm | \|u_a−u_b\| ≤ 2\|a−b\|/\|a\|; \|u_x−u_v\| ≤ 2(1+√d)/(1+\|v\|) on C_x | LANDED |
@@ -71,22 +71,23 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-gauss-flux | sonnet | `Generic/Newton/Gauss.lean` | s-polar | ∫ Dφ(v)[K(v−c)] dv = −σ_d φ(c) for φ ∈ C¹_c | LANDED |
 | s-flux | ds2 | `Generic/Newton/Flux.lean` | — | swap identity; flux continuous off r = \|c\|; flux → σ_d | LANDED |
 | s-ball-symmetry | ds1 | `Generic/Newton/BallSymmetry.lean` | — | U_{B(0,b)} is invariant under linear isometries, hence radial | LANDED |
-| s-gauss-flux-theorem | sonnet | `Generic/Newton/GaussFlux.lean` | s-gauss-flux, s-flux, s-polar | flux_c(r) = σ_d·1{\|c\| < r} for r ≠ \|c\| | IN-FLIGHT (director/sonnet) |
-| s-kernel-average | director | `Generic/Newton/ShellAverage.lean` | s-gauss-flux, s-flux, s-polar | eq:kernel-average | READY |
+| s-gauss-flux-theorem | sonnet | `Generic/Newton/GaussFlux.lean` | s-gauss-flux, s-flux, s-polar | flux_c(r) = σ_d·1{\|c\| < r} for r ≠ \|c\| | LANDED |
+| s-kernel-average | sonnet | `Support/Geometry/Newton.lean` | s-gauss-flux, s-flux, s-polar | eq:kernel-average | LANDED |
 | s-potential-bound | ds1 | `Support/Geometry/Bound.lean` | s-potential-integrable | eq:potential-bound | LANDED |
 | s-kernel-modulus | sonnet | `Generic/Kernel/Modulus.lean` | s-radial-power, s-newton-field | eq:kernel-modulus | LANDED |
 | s-holder | sonnet | `Support/Geometry/Holder.lean` | s-kernel-modulus, s-potential-bound | eq:holder | LANDED |
-| s-newton | director | `Support/Geometry/Spherical.lean` | s-kernel-average, s-potential-integrable | eq:newton | BLOCKED(s-kernel-average) |
-| s-ballpotential | director | `Support/Geometry/Ball.lean` | s-newton, s-ball-symmetry | eq:ballpotential | BLOCKED(s-newton) |
-| **lem-geometry** | director | `Frozen/PotentialGeometry.lean` | s-potential-bound, s-holder, s-newton, s-ballpotential | lem:geometry | DRAFT |
+| s-newton | sonnet | `Support/Geometry/Newton.lean` | s-gauss-flux-theorem, s-flux, s-polar, s-ball-symmetry, s-potential-integrable | eq:newton | LANDED |
+| s-ballpotential | sonnet | `Support/Geometry/Newton.lean` | s-newton, s-ball-symmetry | eq:ballpotential | LANDED |
+| **lem-geometry** | director | `Frozen/PotentialGeometry.lean` | s-potential-bound, s-holder, s-newton, s-ballpotential | lem:geometry | DRAFT (proof of the draft statement landed: `Support/Geometry/Assembly.lean`) |
 | **Section 3 (lem:radial, prop:coarse)** | | | | | |
 | s-radial-profile | ds1 | `Generic/Young/RadialProfile.lean` | — | increments of log r and r^{−k}: two-sided mean-value bounds | LANDED |
 | s-levelsets | ds2 | `Support/Coarse/LevelSets.lean` | — | eq:levelsets | IN-FLIGHT (ds2, 00:13) |
-| s-radial-drift | ds1 | `Support/Coarse/RadialDrift.lean` | — | eq:radial-drift | IN-FLIGHT (ds1, 00:20) |
-| s-radial-bracket | ds3 | `Support/Coarse/RadialBracket.lean` | s-cell-weight, s-Fmass | Σ_{\|x\|>r−2} ℓ_n(x)\|x\|^{2−2d} ≤ C r^{1−d} M_n F(r−b) | IN-FLIGHT (ds3, 00:25) |
-| s-shell-count | ds4 | `Support/Coarse/ShellCount.lean` | s-cell-norm, s-Fmass, s-cell-volume | eq:shell-count | IN-FLIGHT (ds4, 00:20) |
-| s-radial-mart | director | `Support/Coarse/RadialMartingale.lean` | s-dyadic, s-dynkin, s-radial-drift, s-Fmass, s-cell-weight | eq:radialbracket, eq:radialmart | BLOCKED(s-radial-drift) |
-| s-radial-source | director | `Support/Coarse/RadialAssembly.lean` | s-dynkin, s-radial-drift, s-Fmass, s-cell-weight | eq:radial-source, eq:shell-count | BLOCKED(s-radial-drift) |
+| s-radial-drift | ds1 | `Support/Coarse/RadialDrift.lean` | — | eq:radial-drift | LANDED |
+| s-radial-bracket | ds3 | `Support/Coarse/RadialBracket.lean` | s-cell-weight, s-Fmass | Σ_{\|x\|>r−2} ℓ_n(x)\|x\|^{2−2d} ≤ C r^{1−d} M_n F(r−b) | LANDED |
+| s-shell-count | ds4 | `Support/Coarse/ShellCount.lean` | s-cell-norm, s-Fmass, s-cell-volume | eq:shell-count | LANDED |
+| s-radial-mart | director | `Support/Coarse/RadialMartingale.lean` | s-dyadic, s-dynkin, s-radial-drift, s-Fmass, s-cell-weight | eq:radialbracket, eq:radialmart | READY |
+| s-tail-lower | ds1 | `Support/Coarse/TailLower.lean` | s-cell-weight, s-cell-membership, s-Fmass | σ_d F(r+b) ≤ 2^{d−1} Σ_{x∈A_n,\|x\|>r+3}\|x\|^{1−d} | IN-FLIGHT (ds1, 00:30) |
+| s-radial-source | ds4 | `Support/Coarse/RadialSource.lean` | s-dynkin, s-radial-drift, s-fresh-sum | eq:radial-source, eq:shell-count | IN-FLIGHT (ds4, 00:30) |
 | **lem-radial** | director | `Frozen/RadialTest.lean` | s-radial-source, s-radial-mart | lem:radial | DRAFT |
 | s-halving | ds2/ds3 | `Generic/Halving/Levels.lean`, `Generic/Halving/Cost.lean` | — | halving on the grid and its cost | LANDED |
 | s-shell | director | `Support/Coarse/Shell.lean` | lem-geometry, lem-local | eq:shell via eq:cap-average | BLOCKED(lem-geometry, lem-local) |
@@ -127,7 +128,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-scale-limits | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
 
-**Counts:** BLOCKED 25, DRAFT 7, IN-FLIGHT 6, LANDED 56, READY 2.
+**Counts:** BLOCKED 20, DRAFT 7, IN-FLIGHT 3, LANDED 64, READY 3.
 
 ## Pre-freeze gate
 

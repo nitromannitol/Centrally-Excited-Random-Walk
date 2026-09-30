@@ -1,0 +1,5 @@
+% s-tail-lower: the source sum of eq:radial-source bounds the tail.
+\paragraph{Statement.} For $b>3+\sqrt d/2$ and $r\geq\sqrt d$: $\sigma_dF(r+b)\leq2^{d-1}\sum_{x\in A_n,|x|>r+3}|x|^{1-d}$.
+\paragraph{Proof.} $\sigma_dF(r+b)=\int_{D_n\cap\{|v|>r+b\}}|v|^{1-d}$. Each such $v$ lies in $C_x$ with $x=\mathrm{cellCenter}(v)\in A_n$ (s-cell-membership), and
+$|x|\geq|v|-\sqrt d/2>r+b-\sqrt d/2>r+3$. So the set is covered by the cells of $S=\{x\in A_n:|x|>r+3\}$, and the integral is at most
+$\sum_{x\in S}\int_{C_x}|v|^{1-d}\leq\sum_{x\in S}2^{d-1}|x|^{1-d}$ (s-cell-weight, since $|x|>r\geq\sqrt d$).

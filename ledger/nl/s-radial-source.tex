@@ -1,0 +1,9 @@
+% s-radial-source: eq:radial-source (pathwise).
+\paragraph{Statement.} Under eq:levelsets, $(P-I)b=\ind_{\{0\}}$, eq:gradient (beyond $R\leq r+3$, with $C_a\omega_d\leq r+3$), the one-step bound and
+$r\geq2$: for a path from the origin, $\eps\omega_d^{-1}\sum_{x\in A_n,|x|>r+3}|x|^{1-d}\leq(1+\eps\sqrt d)C_g(r-1)^{1-d}\cdot\#\{j<n:r-2<|X_j|\leq r+3\}+|W_n|$,
+where $W$ is the Dynkin martingale of $\varphi=(b-h)_+$.
+\paragraph{Proof.} $\varphi(X_0)=0$ and $\varphi(X_n)\geq0$. By s-step-mean the compensator increment is
+$T_j-S_j$, where $T_j=(P-I)\varphi(X_j)$ and $S_j=\eps I_ju_{X_j}\cdot D\varphi(X_j)$. If $|X_j|\leq r-2$, both vanish (s-radial-drift (ii)). On
+the shell, $|T_j|,|D\varphi_i(X_j)|\leq C_g(1+|X_j|)^{1-d}\leq C_g(r-1)^{1-d}$ (s-radial-drift (i) with $\pm e_i$), and
+$|D\varphi|\leq\sqrt d\max_i|D\varphi_i|$. Beyond it $T_j=0$ and $u\cdot D\varphi\geq\omega_d^{-1}|x|^{1-d}$ (s-radial-drift (iii)). The first
+departures beyond the shell sum over $\{x\in A_n:|x|>r+3\}$ (s-fresh-sum). Rearrange $W_n=\varphi(X_n)-\sum_{j<n}(T_j-S_j)$.

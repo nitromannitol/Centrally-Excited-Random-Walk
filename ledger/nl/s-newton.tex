@@ -1,0 +1,13 @@
+% s-newton: eq:kernel-average, eq:newton and eq:ballpotential.
+\paragraph{Statement.} (i) For $v\neq0$, $s>0$, $|v|\neq s$: $\int_Su_v\cdot K(v-s\theta)\dd\sigma(\theta)=\sigma_d|v|^{1-d}\ind\{s<|v|\}$.
+(ii) For bounded measurable $D$ and $s>0$: $\sigma_d^{-1}\int_SU_D(s\theta)\dd\sigma(\theta)=2d\eps F(s)$.
+(iii) $U_{B(0,b)}(y)=2d\eps(b-|y|)_+$ for $b>0$.
+\paragraph{Proof.} (i) Write $v=ru$ with $r=|v|$, $u=u_v$. By the swap identity (s-flux), $u\cdot K(ru-s\theta)=\theta\cdot K(r\theta-su)$. So the
+integral is $r^{1-d}\Phi_{su}(r)$, and $\Phi_{su}(r)=\sigma_d\ind\{s<r\}$ (s-gauss-flux-theorem, $|su|=s\neq r$).
+(ii) $U_D(s\theta)=\frac{2\eps}{\omega_d}\int_Du_v\cdot K(v-s\theta)\dd v$. The integrand is bounded by $|v-s\theta|^{1-d}$, whose
+integral over $D$ is bounded uniformly in $\theta$ (s-potential-integrable), so Fubini applies on $D\times S$. For a.e.\ $v\in D$
+($v\neq0$, $|v|\neq s$; the sphere $|v|=s$ is Lebesgue-null), (i) gives the inner integral. Hence
+$\int_SU_D(s\theta)\dd\sigma=\frac{2\eps}{\omega_d}\sigma_d\int_{D\cap\{|v|>s\}}|v|^{1-d}=\frac{2\eps}{\omega_d}\sigma_d^2F(s)$, and
+$\sigma_d/\omega_d=d$. (iii) At $y=0$: $U(0)=\frac{2\eps}{\omega_d}\int_{B}|v|^{1-d}=\frac{2\eps}{\omega_d}\sigma_db$. For $y\neq0$: $U$ is
+constant on the sphere of radius $s=|y|$ (s-ball-symmetry), so $U(y)$ equals its spherical mean $2d\eps F(s)$. For
+the ball, $F(s)=\sigma_d^{-1}\int_{s<|v|<b}|v|^{1-d}=(b-s)_+$ by polar coordinates.
