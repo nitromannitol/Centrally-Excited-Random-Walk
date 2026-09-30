@@ -445,7 +445,7 @@ nodes:
     source: limit-shapes.tex:1762-1776 (label prop:log-lower)
     file: CERW/Frozen/LogLowerBounds.lean
     export: CERW.Frozen.log_lower_bounds
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 201878321aa214c30fca342516f5666f47deed86c574046207f9383f9234b8b4
     provider: CERW.Frozen.log_lower_bounds
     approved: "2026-09-30"

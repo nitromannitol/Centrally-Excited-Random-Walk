@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 14:53.
+generation time. Regenerated 2026-09-30 15:09.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -204,6 +204,6 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | lem-exp-deviation | `CERW.Frozen.exp_deviation` | lem:exp-deviation | SEALED |
 | prop-bulk-profile | `CERW.Frozen.bulk_profile` | prop:bulk-profile | DRAFT_SORRY |
 | lem-separated-brackets | `CERW.Frozen.separated_brackets` | lem:separated-brackets | DRAFT_SORRY |
-| prop-log-lower | `CERW.Frozen.log_lower_bounds` | prop:log-lower | DRAFT_SORRY |
+| prop-log-lower | `CERW.Frozen.log_lower_bounds` | prop:log-lower | SEALED |
 
-**Revised surface:** 13 of 30 statements proved.
+**Revised surface:** 14 of 30 statements proved.

@@ -1,4 +1,5 @@
 import CERW.Model
+import CERW.Support.Lower.LogLower
 
 /-!
 # prop:log-lower
@@ -65,4 +66,5 @@ theorem CERW.Frozen.log_lower_bounds {d : ℕ} (hd : 2 ≤ d) :
           (3 ≤ d → c * Real.log n < CERW.maxRadius (X · ω) n - r n)
 -- FROZEN-STATEMENT-END
 := by
-  sorry
+  revert hd d
+  exact CERW.Support.Lower.log_lower_bounds_holds

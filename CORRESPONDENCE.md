@@ -84,7 +84,7 @@ live in `CERW/Model/`.
 | `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `limit-shapes.tex:1539-1553`, `lem:exp-deviation` | SEALED |
 | `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `limit-shapes.tex:1658-1665`, `prop:bulk-profile` | DRAFT_SORRY |
 | `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `limit-shapes.tex:1692-1699`, `lem:separated-brackets` | DRAFT_SORRY |
-| `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `limit-shapes.tex:1762-1776`, `prop:log-lower` | DRAFT_SORRY |
+| `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `limit-shapes.tex:1762-1776`, `prop:log-lower` | SEALED |
 
 <!-- FROZEN-SURFACE-END -->
 
