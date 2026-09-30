@@ -1,0 +1,22 @@
+# CERW frozen-statement manifest.
+#
+# One entry per frozen declaration.  The bytes between the FROZEN-STATEMENT
+# markers are the contract: a proof may be written after the end marker, never
+# inside the block.  `frozen_sha256` is the SHA-256 of exactly those bytes.
+#
+# The pinned paper is the mechanical flattening of paper/cerw.tex and its three
+# \input section files (tools/flatten_paper.py).  A line k of
+# sections/local-times.tex is flat line 340+k, of sections/coarse-radius.tex is
+# 543+k, and of sections/fluctuations.tex is 844+k.
+#
+# States: FROZEN (a cited result carried as a hypothesis, nothing to prove here),
+#         DRAFT_SORRY (statement frozen, proof is the one registered `sorry`),
+#         SEALED (a proof exists and its axiom closure is clean),
+#         PROVED (SEALED and independently audited).
+
+version: 1
+library: CERW
+source_pin:
+  file: paper/cerw-flat.tex
+  sha256: 53d8c0a7bbb51cd4749ba1ba55c55cece9dc9b8a9b6a5d5ee42ae4ff89ce943a
+nodes: []
