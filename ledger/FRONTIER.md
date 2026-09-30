@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 12:19.
+generation time. Regenerated 2026-09-30 14:53.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -165,3 +165,45 @@ The Phase B surface was approved with reading (B) of `eq-hausdorff` and sealed; 
 author's ruling in `ledger/approval/KERNEL-ASYMPTOTICS.md`, the kernel hypothesis was removed from
 the six anchors that carried it (version 3), because Lattice-Probability proves the asymptotics; the
 External node is retired, and nothing is assumed.
+
+## The revised paper: the 30 frozen statements
+
+Anchors of the revised paper (`paper/limit-shapes.tex`). The first-version table above keeps its
+node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`,
+`hausdorff-bound`, `local-time-potential`, `potential-geometry`, `radial-test` and `coarse-bounds`.
+`SEALED` means the frozen statement is proved; `DRAFT_SORRY` means its proof is open.
+
+| node | Lean | label | state |
+|---|---|---|---|
+| thm-shape | `CERW.Frozen.limit_shape` | thm:shape | SEALED |
+| thm-fluctuations | `CERW.Frozen.fluctuation_rates` | thm:fluctuations | DRAFT_SORRY |
+| thm-sharp-radii | `CERW.Frozen.sharp_radii` | thm:sharp, part (i) | DRAFT_SORRY |
+| thm-sharp-radii-lil | `CERW.Frozen.sharp_radii_lil` | thm:sharp, part (ii) | DRAFT_SORRY |
+| thm-sharp-bulk | `CERW.Frozen.sharp_bulk` | thm:sharp, part (iii) | DRAFT_SORRY |
+| thm-sharp-width | `CERW.Frozen.sharp_width` | thm:sharp, part (iv) | SEALED |
+| thm-norm-shape | `CERW.Frozen.norm_shape` | thm:norm-shape | DRAFT_SORRY |
+| lem-ballpotential | `CERW.Frozen.norm_ball_potential` | lem:ballpotential | SEALED |
+| lem-local | `CERW.Frozen.norm_local_time_potential` | lem:local | DRAFT_SORRY |
+| lem-freedman | `CERW.Frozen.freedman_bound` | lem:freedman | SEALED |
+| lem-cell | `CERW.Frozen.cell_gradient` | lem:cell | SEALED |
+| lem-geometry | `CERW.Frozen.norm_potential_geometry` | lem:geometry | SEALED |
+| prop-coarse | `CERW.Frozen.norm_coarse_bounds` | prop:coarse | DRAFT_SORRY |
+| lem-radial | `CERW.Frozen.norm_radial_test` | lem:radial | SEALED |
+| lem-crossing | `CERW.Frozen.drift_crossing` | lem:crossing | SEALED |
+| prop-norm-shape | `CERW.Frozen.norm_shape_rates` | prop:norm-shape | DRAFT_SORRY |
+| lem-layer | `CERW.Frozen.layer_potential` | lem:layer | SEALED |
+| lem-cap | `CERW.Frozen.moreau_cap` | lem:cap | SEALED |
+| lem-contact | `CERW.Frozen.contact_potential` | lem:contact | DRAFT_SORRY |
+| lem-outer-crossing | `CERW.Frozen.outer_crossing` | lem:outer-crossing | SEALED |
+| prop-inner | `CERW.Frozen.inner_radius` | prop:inner | DRAFT_SORRY |
+| prop-stronger-outer | `CERW.Frozen.outer_radius` | prop:stronger-outer | DRAFT_SORRY |
+| lem-near-far | `CERW.Frozen.near_far` | lem:near-far | SEALED |
+| thm-moment-fluctuations | `CERW.Frozen.moment_fluctuations` | thm:moment-fluctuations | DRAFT_SORRY |
+| lem-fixed-site-centering | `CERW.Frozen.fixed_site_centering` | lem:fixed-site-centering | DRAFT_SORRY |
+| thm-site-fluctuations | `CERW.Frozen.site_fluctuations` | thm:site-fluctuations | DRAFT_SORRY |
+| lem-exp-deviation | `CERW.Frozen.exp_deviation` | lem:exp-deviation | SEALED |
+| prop-bulk-profile | `CERW.Frozen.bulk_profile` | prop:bulk-profile | DRAFT_SORRY |
+| lem-separated-brackets | `CERW.Frozen.separated_brackets` | lem:separated-brackets | DRAFT_SORRY |
+| prop-log-lower | `CERW.Frozen.log_lower_bounds` | prop:log-lower | DRAFT_SORRY |
+
+**Revised surface:** 13 of 30 statements proved.

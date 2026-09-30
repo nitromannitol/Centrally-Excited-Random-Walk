@@ -1,0 +1,44 @@
+% lem-separated-brackets -- CERW.Frozen.separated_brackets (draft). Source: limit-shapes.tex:1692-1699, label lem:separated-brackets
+\paragraph{Paper (verbatim).}
+\begin{lemma}\label{lem:separated-brackets}
+Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. There exist $0<c_0(d,\drift)\leq C_0(d,\drift)$ and $C(d,\drift)<\infty$ such that, for all sufficiently large~$n$, on~$\Omega_n$, for $1\leq i\leq m$ and $1\leq j\leq m$ with $j\neq i$,
+\begin{equation*}
+c_0\leq\langle S^i\rangle_n\leq C_0
+\qquad\text{and}\qquad
+|\langle S^i,S^j\rangle_n|\leq Cr_n^{-\nf14}\, .
+\end{equation*}
+\end{lemma}
+Definitions the statement relies on (verbatim):
+\textit{the radius $r_n$ (eq:radius, lines 98--100)}
+\begin{equation}\label{eq:radius}
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+\end{equation}
+\textit{$g$ and $G$ (line 406)}
+Let $\Delta f(x)\coloneqq\nf1{2d}\sum_{|e|=1}(f(x+e)-f(x))$, summed over the unit vectors $e\in\Z^d$, be the discrete Laplacian. For $d=2$, let $g$ be the potential kernel of simple random walk, normalized by $g(0)=0$. For $d\geq3$, let $g\coloneqq-G$, where the Green function~$G(x)$ is the expected number of visits to~$x$ by simple random walk from the origin. In both cases $\Delta g=\ind_{\{0\}}$; for $d=2$ see \citet*[Proposition~4.4.2]{LawlerLimic2010}. By \citet[Theorems~4.3.1 and~4.4.4]{LawlerLimic2010}, as $|x|\to\infty$,
+\textit{$\mathcal M^f$ (lines 421--425)}
+For $f\colon\Z^d\to\R$ with bounded nearest-neighbor increments, let
+\begin{equation*}
+\mathcal M^f_t\coloneqq f(X_t)-f(X_0)-\sum_{j<t}\E\bigl(f(X_{j+1})-f(X_j)\bigm|\mathcal F_j\bigr)
+\end{equation*}
+be the martingale in Dynkin's formula for~$f$. By~\eqref{eq:kernel}, the conditional expectation in the sum is $\Delta f(X_j)-\drift I_j\xi(X_j)\cdot\bar\nabla f(X_j)$, with $\bar\nabla f$ defined like~$\bar\nabla g$. For $y\in\Z^d$ write $g_y\coloneqq g(\cdot-y)$ and $\mathcal M^y\coloneqq\mathcal M^{g_y}$. Since $\Delta g_y=\ind_{\{y\}}$ and each site of~$A_n$ has its first departure before time~$n$,
+\textit{$\Omega_n$ (line 1534)}
+Throughout this section $0<\drift<\nf1d$, and $\Omega_n$ is the event of Section~\ref{sec:norm-event} with $p=10$, so $\P(\Omega_n^c)=O(n^{-10})$ and the estimates of Sections~\ref{sec:local}--\ref{sec:outer} used below hold on~$\Omega_n$ for large~$n$. In particular, by Section~\ref{sec:global-profile}, on~$\Omega_n$ for large~$n$,
+\textit{$\sigma_n,k,m,y_i,f_i,S^i$ (lines 1683--1690)}
+Recall the martingales~$\mathcal M^f$ of Section~\ref{sec:dynkin} and the function~$\Gamma(f_1,f_2)$ of~\eqref{eq:site-gamma}. Let $\sigma_n\coloneqq(r_n\log r_n)^{\nf12}$ and $k\coloneqq\lfloor r_n^{\nf18}\rfloor$ when $d=2$, and $\sigma_n\coloneqq r_n^{\nf12}$ when $d\geq3$. Let $m\coloneqq\lfloor r_n^{\nf18}\rfloor$, and for $1\leq i\leq m$ let
+\begin{equation*}
+y_i\coloneqq i\lceil r_n^{\nf14}\rceil e_1\, ,\qquad
+f_i\coloneqq\begin{cases}g_{y_i+ke_1}-g_{y_i},&d=2,\\g_{y_i},&d\geq3\end{cases}
+\qquad\text{and}\qquad
+S^i\coloneqq-\frac{\mathcal M^{f_i}}{\sigma_n}\, .
+\end{equation*}
+Then $|y_i|\leq m\lceil r_n^{\nf14}\rceil\leq r_n^{\nf12}/2$ for large~$n$.
+\paragraph{Transcription.}
+\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set.
+
+\emph{Author's ruling (probabilistic closure).} The paper states the bounds ``on $\Omega_n$ for all large $n$'', where $\Omega_n$ is the event of Section~norm-event with $p=10$ (line 1534), so $\P(\Omega_n^c)=O(n^{-10})$. The Lean statement is the closure: $\exists c_0,C_0,C,n_0$ such that for every walk and every $n\ge n_0$ the set of paths on which some bracket bound fails has measure at most $C\,n^{-10}$. The constants $0<c_0\le C_0$, $C>0$ and $n_0$ depend on $(d,\varepsilon)$ only and precede the probability space; \verb!∃ n₀! is existential, so no junk value for small $n$ ($\sigma_n=0$ or $m_n=0$) can make the statement easier.
+
+\emph{Definitions (lines 1683--1690).} $e_1$ is \verb!LatticeProb.unit ⟨0, _⟩! $=$ \verb!Pi.single 0 1 : Site d!, the first coordinate vector of $\Z^d$ for the given $d\ge2$. $g$ is \verb!CERW.latticeKernel d!: the planar potential kernel $\lim_M\sum_{j<M}[P^j(0,0)-P^j(0,x)]$ ($g(0)=0$) for $d=2$, and $-G$ for $d\ge3$ (line 406). \verb!σ n = if d = 2 then √(r n * log (r n)) else √(r n)!. \verb!k n = m n = ⌊r n ^ (1/8)⌋₊! (natural floor; $k$ only matters for $d=2$). \verb!y n i = ((i * ⌈r n ^ (1/4)⌉₊ : ℕ) : ℤ) • e₁! $=i\lceil r_n^{1/4}\rceil e_1$. \verb!f n i z = if d = 2 then g (z - (y n i + (k n : ℤ) • e₁)) - g (z - y n i) else g (z - y n i)!, i.e.\ $f_i=g_{y_i+ke_1}-g_{y_i}$ for $d=2$ and $g_{y_i}$ for $d\ge3$, where $g_y=g(\cdot-y)$.
+
+\emph{The bracket.} $S^i=-\mathcal M^{f_i}/\sigma_n$, so $\langle S^i,S^j\rangle_n=\langle\mathcal M^{f_i},\mathcal M^{f_j}\rangle_n/\sigma_n^2$; in Lean \verb!B := dynkinBracket (stepProb d ε) (f n i) (f n j) (X · ω) n / σ n ^ 2!. Here \verb!dynkinBracket! $=\sum_{j<n}\big(\sum_{e}p(e)\,\Delta f(e)\,\Delta g(e)-\mathrm{mean}_f\,\mathrm{mean}_g\big)$ is the conditional covariance of the increments of $f(X)$ and $g(X)$ given $\mathcal F_j$, computed from the step law \verb!stepProb d ε (X · ω) j!, which \verb!IsCERW! identifies with the conditional law of the next step given the whole past. Since the compensator of $\mathcal M^f$ is $\mathcal F_j$-measurable, this is the bracket of $\mathcal M^f$ and $\mathcal M^g$.
+
+\emph{Conclusion.} For $1\le i,j\le m_n$ (\verb!i j : ℕ!, \verb!1 ≤ i!, \verb!i ≤ m n!, \verb!1 ≤ j!, \verb!j ≤ m n!): \verb!i = j → c₀ ≤ B ∧ B ≤ C₀! and \verb!i ≠ j → |B| ≤ C * r n ^ (-(1:ℝ) / 4)!, i.e.\ $|B|\le C\,r_n^{-1/4}$.

@@ -1,35 +1,43 @@
-% lem-radial -- anchor CERW.Frozen.radial_test. Source: coarse-radius.tex:38-58 (flat 581-601); b_d, M_sh, phi_r at 20-36.
-\paragraph{Paper (verbatim).} ``Let $b_d=\lceil\sqrt d/2\rceil+6$, and let
-$F(s)=\sigma_d^{-1}\int_{D_n\cap\{|v|>s\}}|v|^{1-d}\dd v$. For every $p>0$, there are $r_0=r_0(d)>2b_d$
-and $C=C(d,\eps,p)>0$ such that, for every integer $n\geq2$, with probability at least $1-Cn^{-p}$,
-simultaneously for all integers $r_0\leq r\leq n$,
-$F(r+b_d)\leq CM_{\rm sh}(r)[F(r-b_d)-F(r+b_d)]+C[\sqrt{M_nr^{1-d}F(r-b_d)L}+r^{1-d}L]$.''
-\paragraph{Proof.} Let $h_d(r)=\frac2\pi\log r+\kappa$ ($d=2$) or $-\frac2{(d-2)\omega_d}r^{2-d}$
-($d\ge3$), and $\phi_r=(b-h_d(r))_+$ with $b$ from \texttt{s-kernel-props}.
-\emph{Step 1 (level sets).} By \texttt{s-levelsets} there is $r_0=r_0(d)>2b_d$, depending only on the
-External's constants, such that for $r\ge r_0$: $\phi_r=0$ on $|x|\le r-1$ and $\phi_r=b-h_d(r)$ on
-$|x|\ge r+1$. The radial profile gains order $r^{1-d}$ over a unit step, against an $O(r^{-d})$
-error. Inner sites are covered by $h_2\to\infty$, and by $h_d\to0$ with $b<0$ when $d\ge3$.
-\emph{Step 2 (drift).} \texttt{s-radial-drift}: the increments of $\phi_r$ vanish on $|x|\le r-2$.
-For $|x|>r+3$, $(P-I)\phi_r(x)=0$ and $u_x\cdot D\phi_r(x)\ge c_d|x|^{1-d}$ (\texttt{s-gradient}).
-On the shell $||x|-r|\le3$, $|(P-I)\phi_r|,|D\phi_r|\le C_dr^{1-d}$, because the positive part is
-1-Lipschitz.
-\emph{Step 3 (martingale).} \texttt{s-dynkin} with $f=\phi_r$ gives the martingale $W^{(r)}$, with
-increments $\le C_dr^{1-d}$ and bracket $\le C_d\sum_{|x|>r-2}\ell_n(x)|x|^{2-2d}\le C_dM_nr^{1-d}F(r-b_d)$.
-Each such departure cell lies outside $r-b_d$, and its weighted integral is comparable to
-$|x|^{1-d}$ (\texttt{s-Fmass}, \texttt{s-cell-norm}). \texttt{s-dyadic}, applied to $r^{d-1}W^{(r)}$
-over the $n$ integer radii and the dyadic levels (including the level below one), gives an event
-$G$ with $\mu(G^c)\le Cn^{-p}$ on which
-$|W^{(r)}_n|\le C[\sqrt{M_nr^{1-d}F(r-b_d)L}+r^{1-d}L]$ for all $r_0\le r\le n$
-(\texttt{s-radial-mart}).
-\emph{Step 4 (source).} Since $\phi_r(X_0)=\phi_r(0)=0$ and $\phi_r(X_n)\ge0$, Dynkin gives
-$c_d\eps\sum_{x\in A_n,|x|>r+3}|x|^{1-d}\le C_dr^{1-d}\sum_{||x|-r|\le3}\ell_n(x)+|W^{(r)}_n|$. The
-first-departure shell term is absorbed by the local time, since each shell site of $A_n$ has
-$\ell_n\ge1$. The left side is at least $cF(r+b_d)$, because each cell meeting $\{|v|>r+b_d\}$ has
-$|x|>r+3$. The shell sum is at most $M_{\rm sh}(r)$ times the number of shell sites of $A_n$, which
-is at most $\sigma_d(r+b_d)^{d-1}[F(r-b_d)-F(r+b_d)]$: shell cells lie in $r-b_d<|v|\le r+b_d$
-(\texttt{s-Fmass}, increments). Multiplying through by $r^{1-d}$ gives the claim on $G$
-(\texttt{s-radial-source}).
-\paragraph{Transcription notes.} $r$ ranges over naturals $r_0\le r\le n$, with $r_0>2b_d$. The
-arguments $r\pm b_d$ are real ($(r:\R)\pm b_d$). $M_{\rm sh}(r)$ is \texttt{shellMax}, a finite
-\texttt{Finset.sup}. $r_0$ is bound before $\eps$ (it depends only on $d$), and $C$ after $\eps,p$.
+% lem-radial -- CERW.Frozen.norm_radial_test (draft). Source: limit-shapes.tex:566-575, label lem:radial
+\paragraph{Paper (verbatim).}
+\begin{lemma}\label{lem:radial}
+Let $p>0$. There exist $\rho_0(d,\gauge)>8d$ and $C(d,\drift,\gauge,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$, the following holds simultaneously for all integers~$\rho_0\leq\rho\leq n$:
+\begin{equation}\label{eq:radial}
+\begin{split}
+F(\rho+4d)\leq{}&C\Bigl(\max_{||x|-\rho|\leq3}\ell_n(x)\Bigr)
+[F(\rho-4d)-F(\rho+4d)]\\
+&+C\Bigl(\max_{|x|\geq\rho-4d}\ell_n(x)\cdot\rho^{1-d}F(\rho-4d)\log n\Bigr)^{\nf12}+C\rho^{1-d}\log n\, .
+\end{split}
+\end{equation}
+\end{lemma}
+Definitions the statement relies on (verbatim): the weighted exterior volume $F$ (eq:Fdef, lines 503--506) and the
+constants convention (line 295).
+\begin{equation}\label{eq:Fdef}
+F(s)\coloneqq\frac1{d\omega_d}\int_{D\cap\{|v|>s\}}|v|^{1-d}\dd v
+\leq\frac{|D|}{d\omega_ds^{d-1}}\, .
+\end{equation}
+\begin{itemize}
+\item The letters $c>0$ and $C>0$ denote constants depending only on $d$, $\drift$ and the exponent~$p$ of the failure probability under discussion, and in Sections~\ref{sec:norm-setup}--\ref{sec:norms} also on the norm~$\gauge$, but not on the choice of the subgradients~$\xi(x)$; they may change from line to line. Every further dependence is stated, and a subscript on~$O$, as in~$O_y$, means that the implied constant also depends on~$y$. We write $a_n\asymp b_n$ if $c\leq a_n/b_n\leq C$, and $O_{\P}(a_n)$ for random variables~$Y_n$ such that $Y_n/a_n$ is tight.
+\end{itemize}
+\paragraph{Transcription.}
+\begin{itemize}
+\item \emph{Quantifier order.} $\rho_0(d,\gauge)>8d$ is bound right after $\gauge$ and before $\drift$, $p$, $\xi$, the walk:
+ \texttt{exists rho0 : R, 8*d < rho0 /\ forall eps, \dots}. $C(d,\drift,\gauge,p)$ is bound after $p$ and before $\xi$ and
+ the probability space (not depending on the subgradients, line 295). $\rho_0$ is real; ``integers $\rho_0\le\rho\le n$'' is
+ \texttt{forall rho : N, rho0 <= rho -> rho <= n -> \dots}.
+\item \emph{Setting.} As in the coarse-bounds twin: \texttt{IsNorm Psi}, $\drift>0$ with eq:ellipticity, subgradients $\xi$ with
+ $\xi(0)=0$, \texttt{IsDriftCERW mu eps xi X}, every $n\ge2$.
+\item \emph{F.} ``$F$ is the function eq:Fdef with $D=D_n$'' is \texttt{CERW.tail d (CERW.cellSet (X . w) n)}, with
+ $\mathrm{tail}(D,s)=(d\,\omega_d)^{-1}\int_{D\cap\{|v|>s\}}\|v\|^{1-d}\,dv$ ($\sigma_d=d\omega_d$, $\omega_d=$ \texttt{unitBallVolume d}).
+ Arguments are $(\rho:\mathbb R)\pm4d$, which are positive because $\rho>8d$.
+\item \emph{Shell maximum.} $\max_{||x|-\rho|\le3}\ell_n(x)=$ \texttt{CERW.shellMax (X . w) n rho} (a \texttt{Finset.sup} over the
+ lattice points with $||x|-\rho|\le3$), cast to \texttt{R}.
+\item \emph{Tail maximum.} $\max_{|x|\ge\rho-4d}\ell_n(x)$ is the \texttt{Finset.sup} of \texttt{localTime} over the sites of
+ \texttt{departureRange} with $\rho-4d\le$ \texttt{euclidNorm x}; since $\ell_n=0$ off $A_n$ this is the maximum over all of $\Z^d$
+ (and $0$ if empty, which is the value of the maximum of zeros).
+\item \emph{Three terms.} The displayed inequality is $F(\rho+4d)\le C\,M_{\rm sh}\,[F(\rho-4d)-F(\rho+4d)]
+ +C\sqrt{M_{\ge}\,\rho^{1-d}F(\rho-4d)\log n}+C\rho^{1-d}\log n$, with $\rho^{1-d}$ a real power and
+ $\log n=$ \texttt{Real.log n}. All three terms carry the same $C$, which also bounds the failure probability
+ (maximum of the line-by-line constants; all three coefficients multiply nonnegative quantities).
+\item \emph{Event.} $\mu\{\omega:\neg\forall\rho\dots\}\le\texttt{ENNReal.ofReal}(C\,n^{-p})$ (outer measure).
+\end{itemize}

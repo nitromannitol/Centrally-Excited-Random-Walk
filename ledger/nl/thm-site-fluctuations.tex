@@ -1,0 +1,43 @@
+% thm-site-fluctuations -- CERW.Frozen.site_fluctuations (draft). Source: limit-shapes.tex:1462-1487, label thm:site-fluctuations
+\paragraph{Paper (verbatim).}
+\begin{theorem}[Local times at fixed sites]\label{thm:site-fluctuations}
+Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. Then the following hold.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \underline{\emph{Central limit theorem}}: for every $y\in\Z^d$, as $n\to\infty$,
+\begin{equation}\label{eq:site-clt}
+\begin{aligned}
+\frac{\ell_n(y)-2d\drift(r_n-|y|)}{\sqrt{r_n\log r_n}}&\xrightarrow{\mathrm d}\mathcal N\Bigl(0,\frac{16\drift}{\pi}\Bigr)&&\text{if } d=2\, ,\\
+\frac{\ell_n(y)-2d\drift(r_n-|y|)}{\sqrt{r_n}}&\xrightarrow{\mathrm d}\mathcal N\bigl(0,2d\drift(2G(0)-1)\bigr)&&\text{if } d\geq3\, .
+\end{aligned}
+\end{equation}
+\item \underline{\emph{Law of the iterated logarithm}}: for every $y\in\Z^d$ and each choice of sign, almost surely,
+\begin{equation*}
+\begin{aligned}
+\limsup_{n\to\infty}\frac{\pm(\ell_n(y)-2d\drift(r_n-|y|))}{\sqrt{2r_n\log r_n\log\log n}}&=\Bigl(\frac{16\drift}{\pi}\Bigr)^{\nf12}&&\text{if } d=2\, ,\\
+\limsup_{n\to\infty}\frac{\pm(\ell_n(y)-2d\drift(r_n-|y|))}{\sqrt{2r_n\log\log n}}&=\bigl(2d\drift(2G(0)-1)\bigr)^{\nf12}&&\text{if } d\geq3\, .
+\end{aligned}
+\end{equation*}
+\item \underline{\emph{Joint limits}}: for all $y_1,\ldots,y_k\in\Z^d$, the convergence in~\eqref{eq:site-clt} holds jointly for $y=y_1,\ldots,y_k$, and the limit is a centered Gaussian vector whose covariance matrix has $(i,j)$ entry
+\begin{equation}\label{eq:site-covariance}
+\begin{cases}
+16\drift/\pi,&d=2,\\
+2d\drift\bigl(2G(y_i-y_j)-\ind_{\{y_i=y_j\}}\bigr),&d\geq3
+\end{cases}\, .
+\end{equation}
+\end{enumerate}
+\end{theorem}
+Definitions the statement relies on (verbatim):
+\textit{the radius $r_n$ (eq:radius, lines 98--100)}
+\begin{equation}\label{eq:radius}
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+\end{equation}
+\textit{$g$ and $G$ (line 406)}
+Let $\Delta f(x)\coloneqq\nf1{2d}\sum_{|e|=1}(f(x+e)-f(x))$, summed over the unit vectors $e\in\Z^d$, be the discrete Laplacian. For $d=2$, let $g$ be the potential kernel of simple random walk, normalized by $g(0)=0$. For $d\geq3$, let $g\coloneqq-G$, where the Green function~$G(x)$ is the expected number of visits to~$x$ by simple random walk from the origin. In both cases $\Delta g=\ind_{\{0\}}$; for $d=2$ see \citet*[Proposition~4.4.2]{LawlerLimic2010}. By \citet[Theorems~4.3.1 and~4.4.4]{LawlerLimic2010}, as $|x|\to\infty$,
+\paragraph{Transcription.}
+\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set.
+
+\emph{Externals.} Both cited results are hypotheses \verb!hCLT!, \verb!hLIL! by the author's ruling.
+
+\emph{Definitions.} \verb!G = LatticeProb.srwGreenInf d!, $G(x)=\sum_{j\ge0}P^j(0,x)$ (the $j=0$ term is included, so $G(0)\ge1$), the expected number of visits; it is only used when $d\ge3$, where the series converges (for $d=2$ it would be a divergent \verb!tsum!, but that branch does not use $G$). \verb!σ n = if d = 2 then √(r n * log (r n)) else √(r n)!. \verb!lil n = if d = 2 then √(2 * r n * log (r n) * log (log n)) else √(2 * r n * log (log n))!. \verb!v = if d = 2 then 16 * ε / Real.pi else 2 * d * ε * (2 * G 0 - 1)!, positive in both cases ($G(0)\ge1$), so \verb!v.toNNReal! has no junk. \verb!cov y z = if d = 2 then 16 * ε / Real.pi else 2 * d * ε * (2 * G (y - z) - if y = z then 1 else 0)! is eq:site-covariance, the indicator being on the \emph{sites}. \verb!dev y n ω = (localTime (X · ω) n y : ℝ) - 2 * d * ε * (r n - euclidNorm y)! is $\ell_n(y)-2d\drift(r_n-|y|)$ (no positive part).
+
+\emph{(i)} $\forall y$: \verb!TendstoInDistribution (fun n ω => dev y n ω / σ n) atTop id (fun _ => μ) (gaussianReal 0 v.toNNReal)!. \emph{(ii)} $\forall y$, $\forall^{\rm ae}\omega$, $\forall\delta>0$, $\forall s\in\{\pm1\}$: eventually \verb!s * dev y n ω ≤ (√v + δ) * lil n! and frequently \verb!(√v - δ) * lil n ≤ s * dev y n ω! (junk-free form of $\limsup=\sqrt v$). \emph{(iii)} $\forall k\ \forall y:\mathrm{Fin}\,k\to\Z^d$: the vector \verb!WithLp.toLp 2 (fun i => dev (y i) n ω / σ n)! in \verb!EuclideanSpace ℝ (Fin k)! converges in distribution to \verb!multivariateGaussian 0 (Matrix.of fun i j => cov (y i) (y j))!. Mathlib's \verb!multivariateGaussian! is \verb!dirac! for a matrix that is not positive semidefinite, but this matrix is the limit of Gram matrices of conditional covariances (for $d=2$ the constant matrix $\frac{16\varepsilon}{\pi}\mathbf 1\mathbf 1^{\top}$), hence positive semidefinite.

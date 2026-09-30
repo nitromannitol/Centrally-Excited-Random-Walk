@@ -2,6 +2,8 @@ import CERW.Support.Law
 import CERW.Support.Drift
 import CERW.Support.Norm
 import CERW.Support.Outer
+import CERW.Support.Lower
+import CERW.Support.Limit
 import CERW.Support.Occupation
 import CERW.Support.LocalTime
 import CERW.Support.Geometry

@@ -1,9 +1,12 @@
 # Correspondence between the paper and the formalization
 
-`paper/cerw-flat.tex` is the pinned source of *The limit shape of centrally
-excited random walk*, the mechanical flattening of `paper/cerw.tex` and its
-three section files. A registered theorem has one declaration in its own file
-under `CERW/Frozen/`, with a paper line anchor and label.
+`paper/limit-shapes.tex` is the pinned source of the revised paper, *Limit
+shapes of centrally excited random walks*. A registered theorem has one
+declaration in its own file under `CERW/Frozen/`, with a paper line anchor and
+label. The seven statements of the first version of the paper
+(`paper/cerw-flat.tex`, the mechanical flattening of `paper/cerw.tex` and its
+three section files) keep their frozen text and cite that file by line; their
+node ids name the Lean theorem (`ball-shape`, `fluctuation-bounds`, …).
 
 The bytes strictly between `FROZEN-STATEMENT-BEGIN` and
 `FROZEN-STATEMENT-END`, with one leading newline dropped and the trailing
@@ -43,20 +46,56 @@ live in `CERW/Model/`.
 
 | id | Lean | paper | state |
 |---|---|---|---|
-| `lem-geometry` | `CERW.Frozen.potential_geometry` | `cerw-flat.tex:497-514`, `lem:geometry` | PROVED |
-| `thm-shape` | `CERW.Frozen.ball_shape` | `cerw-flat.tex:135-160`, `thm:shape` | PROVED |
-| `thm-fluctuations` | `CERW.Frozen.fluctuation_bounds` | `cerw-flat.tex:186-213`, `thm:fluctuations` | PROVED |
-| `eq-hausdorff` | `CERW.Frozen.hausdorff_bound` | `cerw-flat.tex:217-223`, `eq:hausdorff` | PROVED |
-| `lem-local` | `CERW.Frozen.local_time_potential` | `cerw-flat.tex:397-414`, `lem:local` | PROVED |
-| `lem-radial` | `CERW.Frozen.radial_test` | `cerw-flat.tex:581-601`, `lem:radial` | PROVED |
-| `prop-coarse` | `CERW.Frozen.coarse_bounds` | `cerw-flat.tex:547-561`, `prop:coarse` | PROVED |
+| `potential-geometry` | `CERW.Frozen.potential_geometry` | first version of the paper, the lemma on the geometry of the potential, paper/cerw-flat.tex lines 497 to 514 | PROVED |
+| `ball-shape` | `CERW.Frozen.ball_shape` | first version of the paper, the ball shape theorem, paper/cerw-flat.tex lines 135 to 160 | PROVED |
+| `fluctuation-bounds` | `CERW.Frozen.fluctuation_bounds` | first version of the paper, the fluctuation bounds, paper/cerw-flat.tex lines 186 to 213 | PROVED |
+| `hausdorff-bound` | `CERW.Frozen.hausdorff_bound` | first version of the paper, the Hausdorff estimate and the planar remark, paper/cerw-flat.tex lines 217 to 223 | PROVED |
+| `local-time-potential` | `CERW.Frozen.local_time_potential` | first version of the paper, the lemma on local times and the potential, paper/cerw-flat.tex lines 397 to 414 | PROVED |
+| `radial-test` | `CERW.Frozen.radial_test` | first version of the paper, the radial test lemma, paper/cerw-flat.tex lines 581 to 601 | PROVED |
+| `coarse-bounds` | `CERW.Frozen.coarse_bounds` | first version of the paper, the coarse bounds, paper/cerw-flat.tex lines 547 to 561 | PROVED |
+| `ext-martingale-clt` | `CERW.External.MartingaleCLT` | Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1401 and 1521 | FROZEN |
+| `ext-stout-lil` | `CERW.External.StoutLIL` | Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1412, 1521 and 1647 | FROZEN |
+| `thm-shape` | `CERW.Frozen.limit_shape` | `limit-shapes.tex:103-116`, `thm:shape` | SEALED |
+| `thm-fluctuations` | `CERW.Frozen.fluctuation_rates` | `limit-shapes.tex:130-152`, `thm:fluctuations` | DRAFT_SORRY |
+| `thm-sharp-radii` | `CERW.Frozen.sharp_radii` | `limit-shapes.tex:159-164`, `thm:sharp` | DRAFT_SORRY |
+| `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `limit-shapes.tex:165-170`, `thm:sharp` | DRAFT_SORRY |
+| `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `limit-shapes.tex:171-175`, `thm:sharp` | DRAFT_SORRY |
+| `thm-sharp-width` | `CERW.Frozen.sharp_width` | `limit-shapes.tex:176-187`, `thm:sharp` | SEALED |
+| `thm-norm-shape` | `CERW.Frozen.norm_shape` | `limit-shapes.tex:329-342`, `thm:norm-shape` | DRAFT_SORRY |
+| `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `limit-shapes.tex:360-365`, `lem:ballpotential` | SEALED |
+| `lem-local` | `CERW.Frozen.norm_local_time_potential` | `limit-shapes.tex:384-400`, `lem:local` | DRAFT_SORRY |
+| `lem-freedman` | `CERW.Frozen.freedman_bound` | `limit-shapes.tex:436-441`, `lem:freedman` | SEALED |
+| `lem-cell` | `CERW.Frozen.cell_gradient` | `limit-shapes.tex:454-459`, `lem:cell` | SEALED |
+| `lem-geometry` | `CERW.Frozen.norm_potential_geometry` | `limit-shapes.tex:509-527`, `lem:geometry` | SEALED |
+| `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `limit-shapes.tex:546-553`, `prop:coarse` | DRAFT_SORRY |
+| `lem-radial` | `CERW.Frozen.norm_radial_test` | `limit-shapes.tex:566-575`, `lem:radial` | SEALED |
+| `lem-crossing` | `CERW.Frozen.drift_crossing` | `limit-shapes.tex:661-666`, `lem:crossing` | SEALED |
+| `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `limit-shapes.tex:745-761`, `prop:norm-shape` | DRAFT_SORRY |
+| `lem-layer` | `CERW.Frozen.layer_potential` | `limit-shapes.tex:779-784`, `lem:layer` | SEALED |
+| `lem-cap` | `CERW.Frozen.moreau_cap` | `limit-shapes.tex:809-814`, `lem:cap` | SEALED |
+| `lem-contact` | `CERW.Frozen.contact_potential` | `limit-shapes.tex:891-896`, `lem:contact` | DRAFT_SORRY |
+| `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `limit-shapes.tex:988-993`, `lem:outer-crossing` | SEALED |
+| `prop-inner` | `CERW.Frozen.inner_radius` | `limit-shapes.tex:1078-1094`, `prop:inner` | DRAFT_SORRY |
+| `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `limit-shapes.tex:1174-1179`, `prop:stronger-outer` | DRAFT_SORRY |
+| `lem-near-far` | `CERW.Frozen.near_far` | `limit-shapes.tex:1205-1210`, `lem:near-far` | SEALED |
+| `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `limit-shapes.tex:1355-1376`, `thm:moment-fluctuations` | DRAFT_SORRY |
+| `lem-fixed-site-centering` | `CERW.Frozen.fixed_site_centering` | `limit-shapes.tex:1432-1438`, `lem:fixed-site-centering` | DRAFT_SORRY |
+| `thm-site-fluctuations` | `CERW.Frozen.site_fluctuations` | `limit-shapes.tex:1462-1487`, `thm:site-fluctuations` | DRAFT_SORRY |
+| `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `limit-shapes.tex:1539-1553`, `lem:exp-deviation` | SEALED |
+| `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `limit-shapes.tex:1658-1665`, `prop:bulk-profile` | DRAFT_SORRY |
+| `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `limit-shapes.tex:1692-1699`, `lem:separated-brackets` | DRAFT_SORRY |
+| `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `limit-shapes.tex:1762-1776`, `prop:log-lower` | DRAFT_SORRY |
 
 <!-- FROZEN-SURFACE-END -->
 
 ## Cited results
 
-Nothing is assumed. The one result that the frozen statements once carried as a hypothesis is now
-proved in Lattice-Probability.
+Two results that the revised paper cites for its limit laws are assumed and carried as explicit
+hypotheses (`ASSUMPTIONS.md`): the martingale central limit theorem (`CERW.External.MartingaleCLT`,
+Hall and Heyde, Corollary 3.1, in its one-martingale form) and Stout's martingale law of the iterated
+logarithm (`CERW.External.StoutLIL`, in the form the paper verifies at `limit-shapes.tex:1406-1412`).
+The source check is `ledger/audits/external-sources.md`. The result that the first-version
+statements once carried as a hypothesis is proved in Lattice-Probability:
 
 | nodes | cited result | where it is proved |
 |---|---|---|

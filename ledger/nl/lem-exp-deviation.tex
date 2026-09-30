@@ -1,0 +1,25 @@
+% lem-exp-deviation -- CERW.Frozen.exp_deviation (draft). Source: limit-shapes.tex:1539-1553, label lem:exp-deviation
+\paragraph{Paper (verbatim).}
+\begin{lemma}\label{lem:exp-deviation}
+Let $0<c_0\leq C_0$. There exist $c(c_0,C_0)>0$ and $C(c_0,C_0)<\infty$ with the following property. Let $m$ and~$n$ be positive integers, let $b>0$, $\delta\geq0$ and $0\leq\alpha\leq1$, and let $S^1,\ldots,S^m$ be real martingales with respect to a common filtration, with $S^i_0=0$ and $|S^i_{t+1}-S^i_t|\leq b$ for $0\leq t<n$. Let $\Omega$ be an event with $\P(\Omega)\geq1-\alpha$ on which $c_0\leq\langle S^i\rangle_n\leq C_0$ for $1\leq i\leq m$. Then, for every real $\beta\geq C$ with $\beta b\leq c$, the following hold.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item For $1\leq i\leq m$,
+\begin{equation*}
+\P(S^i_n\geq c\beta)\geq\frac14e^{-C\beta^2}-\alpha
+\qquad\text{and}\qquad
+\P(S^i_n\leq-c\beta)\geq\frac14e^{-C\beta^2}-\alpha\, .
+\end{equation*}
+\item If $|\langle S^i,S^j\rangle_n|\leq\delta$ on~$\Omega$ for all $i\neq j$, and $\beta^2\delta+\beta^3b\leq1$, then
+\begin{equation*}
+\P\Bigl(\max_{1\leq i\leq m}S^i_n<c\beta\Bigr)\leq C\bigl(m^{-1}e^{C\beta^2}+\beta^2\delta+\beta^3b+e^{C\beta^2}\sqrt\alpha\bigr)\, .
+\end{equation*}
+\end{enumerate}
+\end{lemma}
+\paragraph{Transcription.}
+No random walk enters this lemma. $\langle S,T\rangle_n$ is \verb!CERW.predBracket μ ℱ S T n! $=\sum_{t<n}\E[(S_{t+1}-S_t)(T_{t+1}-T_t)\mid\mathcal F_t]$, the predictable covariation (an a.e.\ defined conditional expectation, hence used under \verb!∀ᵐ!); $\langle S\rangle_n=\langle S,S\rangle_n$.
+
+\emph{Quantifiers.} $\forall c_0,C_0$ with $0<c_0\le C_0$, $\exists c,C>0$ (depending only on $c_0,C_0$); then for every probability space $(\Omega,\mu)$, filtration \verb!ℱ : Filtration ℕ m0!, integers $m,n>0$, reals $b>0$, $\delta\ge0$, $0\le\alpha\le1$, family \verb!S : Fin m → ℕ → Ω → ℝ! with \verb!∀ i, Martingale (S i) ℱ μ! (integrability follows from this definition), measurable event $E$, and then $\forall\beta\ge C$ with $\beta b\le c$.
+
+\emph{Hypotheses.} $S^i_0=0$ and $|S^i_{t+1}-S^i_t|\le b$ for $t<n$: in the draft both are asserted for \emph{every} $\omega$ (\verb!∀ ω!), which is stronger than the paper's probabilistic reading (almost surely); the two forms are equivalent by truncating the increments, and the audit records this as a concern. $\P(E)\ge1-\alpha$ is \verb!1 - α ≤ (μ E).toReal!. ``On $\Omega$, $c_0\le\langle S^i\rangle_n\le C_0$'' is, for each $i$, \verb!∀ᵐ ω ∂μ, ω ∈ E → c₀ ≤ predBracket μ ℱ (S i) (S i) n ω ∧ predBracket μ ℱ (S i) (S i) n ω ≤ C₀!.
+
+\emph{(i)} \verb!Real.exp (-(C * β ^ 2)) / 4 - α ≤ (μ {ω | c * β ≤ S i n ω}).toReal! and the same bound for \verb!{ω | S i n ω ≤ -(c * β)}!, i.e.\ $\frac14e^{-C\beta^2}-\alpha$. The sets are measurable because a martingale is adapted, so no separate measurability conjunct is needed. \emph{(ii)} Under \verb!∀ i j, i ≠ j → ∀ᵐ ω ∂μ, ω ∈ E → |predBracket μ ℱ (S i) (S j) n ω| ≤ δ! and \verb!β ^ 2 * δ + β ^ 3 * b ≤ 1!: \verb!(μ {ω | ∀ i, S i n ω < c * β}).toReal ≤ C * (m⁻¹ * exp (C * β ^ 2) + β ^ 2 * δ + β ^ 3 * b + exp (C * β ^ 2) * √α)!, where $\{\max_iS^i_n<c\beta\}=\{\forall i,\ S^i_n<c\beta\}$ because $m\ge1$. The same $c$, $C$ serve in $\beta\ge C$, $\beta b\le c$, (i) and (ii), as in the paper.

@@ -1,19 +1,42 @@
-% thm-shape -- anchor CERW.Frozen.ball_shape. Source: cerw.tex:135-160 (label thm:shape); proof fluctuations.tex:290-302.
-\paragraph{Paper (verbatim).} ``Then the following statements hold almost surely. (i) For every
-$0<\eta<a$, for all sufficiently large integers $n$,
-$B(0,(a-\eta)N)\cap\Z^d\subseteq A_n\subseteq V_n\subseteq B(0,(a+\eta)N)\cap\Z^d$. (ii) The departure
-local times satisfy $\sup_{x\in\Z^d}|\frac{\ell_n(x)}N-2d\eps(a-\frac{|x|}N)_+|\to0$. (iii) The range
-satisfies $|V_n|/N^d\to\omega_da^d$. For every fixed $x\in\Z^d$, the local time satisfies
-$\ell_n(x)/N\to2d\eps a$; in particular, every vertex is visited infinitely often.''
-\paragraph{Proof.} By the second conjunct of \texttt{thm-fluctuations} there is a deterministic
-$C$, and a.s. an $n_1(\omega)$, with $\mathrm{Good}(C,X(\omega),n)$ for $n\ge n_1$. Since
-$Q_n\to0$ and $Q_n^{1/d}L_n\to0$, for $0<\eta<a$ eventually $CQ_n\le\eta$ and $CQ_n^{1/d}L_n\le\eta$.
-Monotonicity of the balls in the radius gives (i). (ii) follows from the profile clause, since
-$CQ_n^{1/d}\to0$. For (iii), $|V_n|\le|A_n|+1$ (\texttt{visitedRange\_eq\_insert}) and
-$|A_n|\le|V_n|$, while $|A_n|/N^d\to\omega_da^d$ by the volume clause and $1/N^d\to0$. For fixed $x$,
-$|x|/N\to0$ and the profile clause give $\ell_n(x)/N\to2d\eps a>0$. So $\ell_n(x)\to\infty$, and
-$X_j=x$ for infinitely many $j$. The single null set does not depend on $\eta$ or $x$.
-\paragraph{Transcription notes.} One $\forall^\mathrm{a.e.}$ precedes ``for every $\eta$'' and ``for
-every $x$'', as the paper's ``the following statements hold almost surely'' and its proof
-(``on the same probability-one event'') require. (ii) is written in the eventual form (R-5).
-``Visited infinitely often'' is $\exists^\mathrm{f}j,\ X_j=x$.
+% thm-shape -- CERW.Frozen.limit_shape (draft). Source: limit-shapes.tex:103-116, label thm:shape
+\paragraph{Paper (verbatim).} Definitions used (lines 90--101):
+\begin{verbatim}
+
+For an integer~$n\geq0$ let
+\begin{equation*}
+\ell_n(x)\coloneqq\sum_{j=0}^{n-1}\ind_{\{X_j=x\}}
+\qquad\text{and}\qquad
+A_n\coloneqq\{x:\ell_n(x)>0\}\, .
+\end{equation*}
+The \defn{local time}~$\ell_n(x)$ is the number of departures from~$x$ before time~$n$, and $A_n$ is the \defn{range}; the set of sites visited by time~$n$ is~$A_{n+1}$. Write $B(y,\rho)$ for the open Euclidean ball of radius~$\rho$ about~$y$ and $\omega_d$ for the volume of~$B(0,1)$, and let
+\begin{equation}\label{eq:radius}
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+\end{equation}
+so that the cone $2d\drift(r_n-|v|)_+$ has integral~$n$ over~$\R^d$. Informally, after $n$~steps the walk has visited essentially every site~$x$ with $|x|<r_n$ and essentially no site with $|x|>r_n$, and has departed from each site~$x$ about $2d\drift(r_n-|x|)_+$ times. This profile determines~$r_n$: the local times sum to~$n$, and the slope~$2d\drift$ of the cone is the slope of the potential of a ball, computed in~\eqref{eq:ballpotential-euclid} below.
+\end{verbatim}
+Theorem (lines 103--116):
+\begin{verbatim}
+\begin{theorem}[Limit shape]\label{thm:shape}
+Let $d\geq2$ and $0<\drift<\nf1d$. Then, almost surely, the centrally excited random walk has the following properties.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \underline{\emph{Shape}}: for every $0<\eta<1$ and all sufficiently large~$n$,
+\begin{equation*}
+\{x\in\Z^d:|x|<(1-\eta)r_n\}\subset A_n\subset\{x\in\Z^d:|x|<(1+\eta)r_n\}\, .
+\end{equation*}
+\item \underline{\emph{Local times}}: as $n\to\infty$,
+\begin{equation*}
+\frac1{r_n}\max_{x\in\Z^d}\bigl|\ell_n(x)-2d\drift(r_n-|x|)_+\bigr|\longrightarrow0\, .
+\end{equation*}
+\item \underline{\emph{Recurrence}}: the walk visits every site of~$\Z^d$ infinitely often.
+\end{enumerate}
+\end{theorem}
+\end{verbatim}
+\paragraph{Transcription.} The walk is any process \texttt{X} on any probability space $(\Omega,\mu)$
+with \texttt{CERW.IsCERW μ ε X} ($\varepsilon=\kappa$); $d\ge2$ is \texttt{hd : 2 ≤ d} and $0<\kappa<1/d$ is
+\texttt{hε, hεd}. $\omega_d$ is \texttt{(volume (ball 0 1)).toReal} and $r_n$ is the \texttt{let}
+\texttt{r}, with the natural-number casts taken in $\mathbb R$. $\ell_n$ is \texttt{CERW.localTime} and $A_n$ is
+\texttt{CERW.departureRange} (coerced to a \texttt{Set}), so $A_n=\{X_0,\dots,X_{n-1}\}$ as in the paper.
+``Almost surely'' is a single \texttt{∀ᵐ ω ∂μ} over the conjunction of (i)--(iii), with the quantifier over $\eta$
+inside it. (i) is ``for every $0<\eta<1$, eventually'' with the two inclusions. (ii) ``$\frac1{r_n}\max_x|\cdot|\to0$''
+is read as $\forall\eta>0$, eventually in $n$, $\forall x$, $|\ell_n(x)-2d\kappa\max(r_n-|x|,0)|\le\eta r_n$ (for $|x|\ge r_n$ outside the range both $\ell_n(x)$ and $(r_n-|x|)_+$ vanish, so the maximum is over finitely many $x$ and the two forms are equivalent). (iii) is
+$\forall x,\ \exists^{f} j,\ X_j=x$. No constants occur, so there is no binder-order issue; the hypotheses precede the space.

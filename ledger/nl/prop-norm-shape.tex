@@ -1,0 +1,49 @@
+% prop-norm-shape -- CERW.Frozen.norm_shape_rates (draft). Source: limit-shapes.tex:745-761, label prop:norm-shape
+\paragraph{Paper (verbatim).}
+\begin{proposition}\label{prop:norm-shape}
+Let $\gauge$ be a norm, let $\xi(x)\in\partial \gauge(x)$ be subgradients chosen at the sites $x\in\Z^d\setminus\{0\}$, and let $\drift$ satisfy~\eqref{eq:ellipticity}. For every $p>0$ there exists $C(d,\drift,\gauge,p)<\infty$, not depending on the choice of the subgradients, such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$ the following hold simultaneously.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \underline{\emph{Radii}}:
+\begin{equation}\label{eq:norm-shape}
+\Bigl|\inf_{y\notin D_n}\gauge(y)-r_n\Bigr|\leq C\begin{cases}r_n^{\nf34}(\log n)^{\nf14},&d=2,\\(r_n\log n)^{\nf12},&d\geq3\end{cases}
+\end{equation}
+and
+\begin{equation}\label{eq:norm-outer}
+\max_{0\leq j\leq n}\gauge(X_j)-r_n\leq C\begin{cases}r_n^{\nf56}(\log n)^{\nf76},&d=2,\\r_n^{\nf{d}{d+1}}(\log n)^{\nf{d+2}{d+1}},&d\geq3\end{cases}\, .
+\end{equation}
+\item \underline{\emph{Local times}}:
+\begin{equation}\label{eq:norm-local}
+\max_{x\in\Z^d}|\ell_n(x)-2d\drift(r_n-\gauge(x))_+|\leq C\begin{cases}r_n^{\nf56}(\log n)^{\nf16},&d=2,\\r_n^{\nf{d}{d+1}}(\log n)^{\nf{1}{d+1}},&d\geq3\end{cases}\, .
+\end{equation}
+\end{enumerate}
+\end{proposition}
+Definitions the statement relies on (verbatim): $r_n$ (lines 322--324), $D_n,\Rin,\Rout$ (lines 122--127).
+\begin{equation}\label{eq:radius-norm}
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift|B_\gauge|}\right)^{\nf{1}{d+1}}\, ,
+\end{equation}
+Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
+\begin{equation}\label{eq:radii}
+\Rin(n)\coloneqq\inf_{y\notin D_n}|y|
+\qquad\text{and}\qquad
+\Rout(n)\coloneqq\max_{0\leq j\leq n}|X_j|\, .
+\end{equation}
+\paragraph{Transcription.}
+\begin{itemize}
+\item \emph{Setting and constants.} As in the coarse-bounds twin. One constant $C(d,\drift,\gauge,p)$, bound after $p$ and before
+ $\xi$ and the walk (``not depending on the choice of the subgradients''), serves in the three bounds and in the failure
+ probability.
+\item \emph{Case split.} $d=2$ versus $d\ge3$ is \texttt{if d = 2 then \dots else \dots} ($d\ge2$ is \texttt{hd}). Exponents, with
+ \texttt{R}-valued real powers: $d=2$: $r^{3/4}(\log n)^{1/4}$, $r^{5/6}(\log n)^{7/6}$, $r^{5/6}(\log n)^{1/6}$. $d\ge3$:
+ $(r\log n)^{1/2}$, $r^{d/(d+1)}(\log n)^{(d+2)/(d+1)}$, $r^{d/(d+1)}(\log n)^{1/(d+1)}$. They match eq:norm-shape, eq:norm-outer,
+ eq:norm-local.
+\item \emph{(i) Inner radius.} $\inf_{y\notin D_n}\gauge(y)=$ \texttt{normInnerRadius Psi (X . w) n} $=\texttt{sInf}\,(\gauge''(D_n)^{\complement})$
+ with $D_n=$ \texttt{cellSet} the union of the half-open unit cells of $A_n$; the image is nonempty ($D_n$ bounded) and bounded
+ below by $0$, so \texttt{sInf} is the infimum. The claim is $|\text{that}-r_n|\le\dots$.
+\item \emph{(i) Outer radius.} $\max_{0\le j\le n}\gauge(X_j)=$ \texttt{normMaxRadius Psi (X . w) n} ($\sup'$ over $j\in\{0,\dots,n\}$ of
+ $\gauge(\texttt{toSpace}(X_j))$); the claim is the one-sided bound $\text{that}-r_n\le\dots$.
+\item \emph{(ii) Local times.} $\forall x:\texttt{Site d}$, $|\ell_n(x)-2d\drift\max(r_n-\gauge(x),0)|\le\dots$, where $(r_n-\gauge(x))_+$
+ is \texttt{max (r n - Psi (toSpace x)) 0} and $\ell_n=$ \texttt{localTime}. The maximum over $x\in\Z^d$ is the universal quantifier
+ inside the event (for $|x|$ large both terms vanish).
+\item \emph{Simultaneity and probability.} The three parts are one conjunction inside the event; the bound is
+ $\mu\{\omega:\neg(\cdots)\}\le\texttt{ENNReal.ofReal}(C\,n^{-p})$ for every $n\ge2$.
+\end{itemize}

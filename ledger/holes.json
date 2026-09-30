@@ -1,4 +1,22 @@
 {
-  "holes": {},
-  "total": 0
+  "holes": {
+    "CERW/Frozen/BulkProfile.lean": 1,
+    "CERW/Frozen/ContactPotential.lean": 1,
+    "CERW/Frozen/FixedSiteCentering.lean": 1,
+    "CERW/Frozen/FluctuationRates.lean": 1,
+    "CERW/Frozen/InnerRadius.lean": 1,
+    "CERW/Frozen/LogLowerBounds.lean": 1,
+    "CERW/Frozen/MomentFluctuations.lean": 1,
+    "CERW/Frozen/NormCoarseBounds.lean": 1,
+    "CERW/Frozen/NormLocalTime.lean": 1,
+    "CERW/Frozen/NormShape.lean": 1,
+    "CERW/Frozen/NormShapeRates.lean": 1,
+    "CERW/Frozen/OuterRadius.lean": 1,
+    "CERW/Frozen/SeparatedBrackets.lean": 1,
+    "CERW/Frozen/SharpBulk.lean": 1,
+    "CERW/Frozen/SharpRadii.lean": 1,
+    "CERW/Frozen/SharpRadiiLil.lean": 1,
+    "CERW/Frozen/SiteFluctuations.lean": 1
+  },
+  "total": 17
 }

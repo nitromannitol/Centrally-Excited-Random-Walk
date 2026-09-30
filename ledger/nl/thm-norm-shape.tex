@@ -1,0 +1,69 @@
+% thm-norm-shape -- CERW.Frozen.norm_shape (draft). Source: limit-shapes.tex:329-342, label thm:norm-shape
+\paragraph{Paper (verbatim).}
+\begin{theorem}[Limit shape for a norm]\label{thm:norm-shape}
+Let $\gauge$ be a norm on~$\R^d$, let $\xi(x)\in\partial \gauge(x)$ be chosen at the sites $x\in\Z^d\setminus\{0\}$, let $\drift>0$ satisfy~\eqref{eq:ellipticity}, and let $r_n$ be as in~\eqref{eq:radius-norm}. Then, almost surely, the centrally excited random walk with norm~$\gauge$ has the following properties.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \underline{\emph{Shape}}: for every $0<\eta<1$ and all sufficiently large~$n$,
+\begin{equation*}
+\{x\in\Z^d:\gauge(x)<(1-\eta)r_n\}\subset A_n\subset\{x\in\Z^d:\gauge(x)<(1+\eta)r_n\}\, .
+\end{equation*}
+\item \underline{\emph{Local times}}: as $n\to\infty$,
+\begin{equation*}
+\frac1{r_n}\max_{x\in\Z^d}\bigl|\ell_n(x)-2d\drift(r_n-\gauge(x))_+\bigr|\longrightarrow0\, .
+\end{equation*}
+\item \underline{\emph{Recurrence}}: the walk visits every site of~$\Z^d$ infinitely often.
+\end{enumerate}
+\end{theorem}
+Definitions the statement relies on (verbatim):
+\textit{eq:kernel and eq:ellipticity (lines 312--320)}
+Let $\gauge$ be a norm on~$\R^d$, let $B_\gauge$ be its unit ball, and let $\partial\gauge(x)$ be the set of subgradients of~$\gauge$ at~$x$, as in Section~\ref{sec:norms-intro}; if $\gauge$ is differentiable at~$x$, then $\partial\gauge(x)=\{\nabla\gauge(x)\}$. At each site~$x\neq0$ fix $\xi(x)\in\partial\gauge(x)$, with coordinates~$\xi_i(x)$. The \defn{centrally excited random walk with norm~$\gauge$} moves like simple random walk, except that on its first departure from each site~$x\neq0$ it moves to $x\pm e_i$ with probability
+\begin{equation}\label{eq:kernel}
+\frac1{2d}\mp\frac\drift2\xi_i(x)
+\qquad\text{for } 1\leq i\leq d\, .
+\end{equation}
+We assume that
+\begin{equation}\label{eq:ellipticity}
+\drift\max_{1\leq i\leq d}\gauge(e_i)<\frac1d\, .
+\end{equation}
+\textit{eq:radius-norm (lines 322--325)}
+\begin{equation}\label{eq:radius-norm}
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift|B_\gauge|}\right)^{\nf{1}{d+1}}\, ,
+\end{equation}
+which is~\eqref{eq:radius} when $\gauge$ is the Euclidean norm; the cone $2d\drift(r_n-\gauge(v))_+$ has integral~$n$ over~$\R^d$.
+\textit{subgradient (lines 196--196)}
+The potential that identifies the ball in Theorem~\ref{thm:shape} also identifies the limit shape for other drifts. Let $\gauge$ be a norm on~$\R^d$, with unit ball $B_\gauge\coloneqq\{y\in\R^d:\gauge(y)<1\}$ of volume~$|B_\gauge|$. A \defn{subgradient} of~$\gauge$ at~$x$ is a vector~$\xi$ with $\gauge(y)\geq\gauge(x)+\xi\cdot(y-x)$ for every $y\in\R^d$; where $\gauge$ is differentiable it is the gradient, and for the Euclidean norm it is~$x/|x|$. Suppose that at each site~$x\neq0$ a subgradient~$\xi(x)$ of~$\gauge$ at~$x$ is fixed, and that the walk uses $\xi(x)$ in place of~$x/|x|$ in its transition probabilities at the first departure from~$x$, so that this step has mean~$-\drift\xi(x)$; assume that $\drift$ is small enough for these probabilities to be positive. Then, almost surely, the conclusions of Theorem~\ref{thm:shape} hold with $\gauge(x)$ in place of~$|x|$ and with $r_n$ defined by~\eqref{eq:radius} with $|B_\gauge|$ in place of~$\omega_d$: the range approximates the ball $\{\gauge<r_n\}$, and the local times approximate the cone $2d\drift(r_n-\gauge(x))_+$ (Theorem~\ref{thm:norm-shape}).
+\textit{$\ell_n$ and $A_n$ (lines 91--96)}
+For an integer~$n\geq0$ let
+\begin{equation*}
+\ell_n(x)\coloneqq\sum_{j=0}^{n-1}\ind_{\{X_j=x\}}
+\qquad\text{and}\qquad
+A_n\coloneqq\{x:\ell_n(x)>0\}\, .
+\end{equation*}
+\textit{notation $\xi(0)$ (lines 294--294)}
+\item Let $u_x\coloneqq x/|x|$ for $x\in\R^d\setminus\{0\}$ and $u_0\coloneqq0$, and let $\xi(0)\coloneqq0$.
+\paragraph{Transcription.}
+Paper macros: \verb!\drift! is $\kappa$ (Lean \verb!ε!), \verb!\gauge! is $\Psi$ (Lean \verb!Ψ!), \verb!\nf{a}{b}! is $a/b$.
+
+\emph{Object mapping.}
+\begin{itemize}
+\item $\R^d$ is \verb!EuclideanSpace ℝ (Fin d)!; $\Z^d$ is \verb!LatticeProb.Site d! ($=$ \verb!Fin d → ℤ!), embedded by \verb!CERW.toSpace!, so $\gauge(x)$ for a site $x$ is \verb!Ψ (CERW.toSpace x)!; $e_i$ is \verb!CERW.coordVec i!. The standing assumption $d\ge2$ (lines 85 and 104) is \verb!hd : 2 ≤ d!.
+\item $\gauge$ a norm: \verb!hΨ : CERW.IsNorm Ψ! (subadditive, absolutely homogeneous, zero only at $0$). Nonnegativity, evenness and Lipschitz continuity follow (Lipschitz is machine-checked), so $|B_\gauge|$ is finite and positive.
+\item Chosen subgradients: \verb!ξ : Site d → EuclideanSpace ℝ (Fin d)! with \verb!hξ : ∀ x, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)!. \verb!IsSubgradient Ψ x ξ! is $\forall y,\ \gauge(x)+\xi\cdot(y-x)\le\gauge(y)$ (line 196). The hypothesis \verb!hξ0 : ξ 0 = 0! is the convention $\xi(0):=0$ (line 294). The walk law never reads \verb!ξ 0! (the first departure from $0$ is a simple step), so \verb!hξ0! does not affect the conclusion here; it is kept because the paper fixes it, and it is essential in lem-cell.
+\item Ellipticity: \verb!hε : 0 < ε! and \verb!hεΨ : ∀ i, ε * Ψ (CERW.coordVec i) < 1 / d!; $\max_i$ is written as $\forall i$ (\verb!Fin d! is nonempty).
+
+\item The walk with norm $\gauge$: \verb!X : ℕ → Ω → Site d! on an arbitrary probability space (\verb!Ω : Type u!, \verb![MeasurableSpace Ω]!, \verb!μ : Measure Ω!, \verb![IsProbabilityMeasure μ]!) with \verb!hX : CERW.IsDriftCERW μ ε ξ X!. This says: each \verb!X n! is measurable, \verb!X 0 = 0! almost surely, and every cylinder probability $\mu\{X_j=x_j,\ j\le n+1\}$ equals $\mu\{X_j=x_j,\ j\le n\}$ times \verb!CERW.driftStepProb d ε ξ x n (x (n+1) - x n)!. Here \verb!driftStepProb! is \verb!driftFirstStep d ε (ξ (x n)) e! when \verb!x n ≠ 0 ∧ x n ∉ (Finset.range n).image x! (the first departure from a nonzero site) and the simple-random-walk step otherwise. \verb!driftFirstStep! gives the step $+e_i$ probability $1/(2d)-\tfrac{\kappa}{2}\xi_i$ and the step $-e_i$ probability $1/(2d)+\tfrac\kappa2\xi_i$, which is eq:kernel (\verb!CERW.Support.Drift.driftFirstStep_unit! and \verb!driftFirstStep_neg_unit!). For $\xi(x)=x/|x|$ it is the Euclidean walk (\verb!CERW.Support.Drift.isCERW_iff_isDriftCERW!). The law is fixed, so constants and almost-sure statements do not depend on the realization. Under the norm axioms, the subgradient property and ellipticity, $\kappa|\xi_i(x)|\le\kappa\gauge(e_i)<1/d$ (Euler's relation), so the step probabilities are positive; \verb!CERW.Support.Drift.exists_isDriftCERW! then realises the hypothesis (machine-checked witness), so the hypothesis package is not vacuous.
+
+\item $\ell_n(x)$ is \verb!(CERW.localTime (X · ω) n x : ℝ)!; $A_n$ is \verb!CERW.departureRange (X · ω) n! $=\{X_0,\dots,X_{n-1}\}$.
+\item $r_n$ is \verb!r n := ((d + 1) * n / (2 * d * ε * CERW.normBallVolume Ψ)) ^ ((1 : ℝ) / (d + 1))! (a \verb!let! over $n:\N$), with \verb!normBallVolume Ψ = (volume {y | Ψ y < 1}).toReal! $=|B_\gauge|$. All casts are to $\R$ (checked with \verb!pp.numericTypes!); there is no natural-number division and the denominator is positive.
+\end{itemize}
+
+\emph{Reading choices.}
+\begin{enumerate}
+\item ``Almost surely'' is a single outermost \verb!∀ᵐ ω ∂μ! over the conjunction of (i)--(iii); the quantifiers over $\eta$ and over $x$ sit inside it.
+\item (i) is the inclusion of sets of lattice sites, \verb!{x | Ψ (toSpace x) < (1 - η) * r n} ⊆ ↑(departureRange ..)! and \verb!↑(departureRange ..) ⊆ {x | Ψ (toSpace x) < (1 + η) * r n}!, for every \verb!0 < η < 1!, eventually in $n$ (\verb!∀ᶠ n in atTop!).
+\item (ii): the convergence $\tfrac1{r_n}\max_x|\cdot|\to0$ is written \verb!∀ η, 0 < η → ∀ᶠ n in atTop, ∀ x, |ℓ_n x - 2 * d * ε * max (r n - Ψ (toSpace x)) 0| ≤ η * r n!, the repository's convention for a supremum tending to zero. It is equivalent: $r_n>0$ for $n\ge1$, and the maximum is over finitely many sites (off $A_n$ and off $\{\gauge<r_n\}$ both terms vanish). $(\cdot)_+$ is \verb!max · 0! and $2d\kappa$ is \verb!2 * d * ε!.
+\item (iii) is \verb!∀ x, ∃ᶠ j in atTop, X j ω = x!.
+\item No constants occur, and no external hypothesis (the kernel asymptotics are proved in Lattice-Probability).
+\item For $n=0$, $r_0=0$; this is irrelevant because every clause is eventual.
+\item The statement holds for every choice of $\xi$ satisfying \verb!hξ!; nothing is chosen by the statement.
+\end{enumerate}

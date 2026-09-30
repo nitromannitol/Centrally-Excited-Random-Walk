@@ -1,0 +1,74 @@
+% lem-outer-crossing -- CERW.Frozen.outer_crossing (draft). Source: limit-shapes.tex:988-993, label lem:outer-crossing
+\paragraph{Paper (verbatim).}
+\begin{lemma}\label{lem:outer-crossing}
+Let $\alpha>0$. There exists $C(d,\drift,\gauge,\alpha,p)<\infty$ with the following property. Let $q\in\R^d$ satisfy $|q|\leq\Lambda_\gauge$, and consider a path of the walk that satisfies~\eqref{eq:vector}, and~\eqref{eq:linear-mart} for this~$q$ and every $a\in\Lambda_\gauge\Z\cap[0,\Lambda_\gauge n]$. Let $x_*$ be one of the sites $X_0,\ldots,X_n$ with $q\cdot X_j\leq T\coloneqq q\cdot x_*$ for $0\leq j\leq n$, and let $h>0$ be such that $q\cdot\xi(X_j)\geq\alpha$ for every $0\leq j\leq n$ with $q\cdot X_j>T-h$. For $b\geq0$ let $L_b\coloneqq1+\max\{\ell_n(x):x\in\Z^d,\ q\cdot x\geq b\}$. Then every $b\geq0$ satisfies
+\begin{equation}\label{eq:outer-crossing}
+T\leq\max\{T-h,b\}+CL_b\log n\, .
+\end{equation}
+\end{lemma}
+Definitions the statement relies on (verbatim): $\mathcal M^f$ (lines 421--425), $\mathcal M^{q,a}$ and eq:linear-mart
+(lines 831--839), $Z$ and eq:vector (lines 651--659), and $\Lambda_\gauge$ (line 327).
+For $f\colon\Z^d\to\R$ with bounded nearest-neighbor increments, let
+\begin{equation*}
+\mathcal M^f_t\coloneqq f(X_t)-f(X_0)-\sum_{j<t}\E\bigl(f(X_{j+1})-f(X_j)\bigm|\mathcal F_j\bigr)
+\end{equation*}
+be the martingale in Dynkin's formula for~$f$. By~\eqref{eq:kernel}, the conditional expectation in the sum is $\Delta f(X_j)-\drift I_j\xi(X_j)\cdot\bar\nabla f(X_j)$, with $\bar\nabla f$ defined like~$\bar\nabla g$. For $y\in\Z^d$ write $g_y\coloneqq g(\cdot-y)$ and $\mathcal M^y\coloneqq\mathcal M^{g_y}$. Since $\Delta g_y=\ind_{\{y\}}$ and each site of~$A_n$ has its first departure before time~$n$,
+\begin{quote}
+For $q\in\R^d$ and $a\in\R$, let $\mathcal M^{q,a}$ be the martingale~$\mathcal M^f$ of Section~\ref{sec:dynkin} with $f(x)=(q\cdot x-a)_+$. If $|q|\leq\Lambda_\gauge$, then one step changes $q\cdot X_j$ by at most~$\Lambda_\gauge$, so the increments of~$\mathcal M^{q,a}$ are at most~$C$, and its bracket through time~$n$ is at most $C\sum_{x:q\cdot x>a-\Lambda_\gauge}\ell_n(x)$, because $f$ is constant on $x$ and its neighbors unless $q\cdot x>a-\Lambda_\gauge$. Let
+\begin{equation}\label{eq:tn}
+\tau_n\coloneqq K_1\bar L_n\log n,\qquad\text{where}\quad\bar L_n\coloneqq1+C_0r_nq_n^{\nf{1}{d+1}}\, ,
+\end{equation}
+$C_0$ is the constant in~\eqref{eq:norm-profile}, and $K_1>0$ is the constant, depending only on $d$, $\drift$, $\gauge$ and~$p$, chosen in the proof of Proposition~\ref{prop:norm-shape}. The vectors $\xi(x)$ and~$\nabla F_{\tau_n}(x)$ are deterministic and have length at most~$\Lambda_\gauge$. So Lemma~\ref{lem:freedman} and a union bound over the $O(n^{d+1})$ pairs~$(q,a)$ with $q\in\{\xi(x),\nabla F_{\tau_n}(x)\}$ for some $x\in\Z^d$ with $0<|x|\leq n$ and $a\in\Lambda_\gauge\Z\cap[0,\Lambda_\gauge n]$ give, with probability at least $1-Cn^{-p}$, simultaneously for all these pairs,
+\begin{equation}\label{eq:linear-mart}
+|\mathcal M^{q,a}_n|\leq C\biggl(\sqrt{\log n\sum_{x:q\cdot x>a-\Lambda_\gauge}\ell_n(x)}+\log n\biggr)\, .
+\end{equation}
+Neither this constant~$C$ nor the probability bound depends on $C_0$ or~$K_1$.
+In Sections~\ref{sec:norm-setup}--\ref{sec:norms}, $\gauge$ is a norm, $\drift$ satisfies~\eqref{eq:ellipticity}, $r_n$ is given by~\eqref{eq:radius-norm}, and $U_D$ is the potential~\eqref{eq:potential-norm} defined below; at a point~$v\in\R^d$, $\nabla\gauge(v)$ is the gradient, which exists for almost every~$v$. Let $\Lambda_\gauge\coloneqq\max_{|u|=1}\gauge(u)$ and $c_\gauge\coloneqq\min_{|u|=1}\gauge(u)$; every $\xi\in\partial\gauge(x)$ satisfies $\xi\cdot x=\gauge(x)$ and $|\xi|\leq\Lambda_\gauge$. In Sections~\ref{sec:contact}--\ref{sec:lower}, $\gauge$ is the Euclidean norm, so that $\xi(x)=u_x$, $r_n$ is given by~\eqref{eq:radius}, and $U_D$ is the potential~\eqref{eq:potential-intro}.
+\end{quote}
+A crossing against the drift requires a large increment of the martingale
+\begin{equation}\label{eq:vector-def}
+Z_t\coloneqq X_t+\drift\sum_{j<t}I_j\xi(X_j)\, ,
+\end{equation}
+which takes values in~$\R^d$ and has bounded increments. Azuma's inequality in each coordinate and a union bound over the pairs $s<t$ give, for every $p>0$, with probability at least $1-Cn^{-p}$,
+\begin{equation}\label{eq:vector}
+|Z_t-Z_s|\leq C\sqrt{(t-s)\log n}
+\qquad\text{for } 0\leq s<t\leq n\, .
+\end{equation}
+\paragraph{Transcription.}
+\begin{itemize}
+\item \emph{Deterministic reading (author ruling).} The lemma is about a \emph{path} satisfying eq:vector and eq:linear-mart. The
+ declaration takes a path and hypotheses that are those inequalities, with the event constant as a parameter $C_1>0$. Quantifier
+ order: $d,\gauge,\drift,\alpha,C_1$, then $\exists C>0$, then $\xi$, $n$, $q$, the path, $j_0$, $h$, $b$. So $C=C(d,\drift,\gauge,\alpha,C_1)$
+ is independent of $\xi$, $n$, $q$, the path, $h$ and $b$. The paper's $C(d,\drift,\gauge,\alpha,p)$ depends on $p$ only through the
+ event constant, which is $C_1$. The same $C_1$ is used in eq:vector and in eq:linear-mart (the two event constants of the paper,
+ from Azuma and Freedman, are replaced by their maximum; both hypotheses only weaken as $C_1$ grows).
+\item \emph{Setting.} $d\ge2$, \texttt{IsNorm Psi}, $\drift>0$ with eq:ellipticity, $\alpha>0$, subgradients $\xi(x)\in\partial\gauge(x)$ for
+ $x\ne0$ and $\xi(0)=0$, $n\ge2$ (so $\log n>0$). $q\in\R^d$ with $\|q\|\le\Lambda_\gauge=$ \texttt{normMax Psi}.
+\item \emph{Path.} \texttt{x : N -> Site d} with \texttt{x 0 = 0} and \texttt{x (j+1) - x j $\in$ unitSteps d} for all $j$ (only $x_0,\dots,x_n$
+ matter). Under eq:ellipticity every such path has positive probability, so these are exactly the paths of the walk.
+\item \emph{eq:vector.} With $Z$ the \texttt{let}-bound $Z_t=\texttt{toSpace}(x_t)+\drift\sum_{j<t}\mathbf 1_{\{x_j\notin A_j\}}\xi(x_j)$
+ ($A_j=$ \texttt{departureRange x j}): $\|Z_t-Z_s\|\le C_1\sqrt{(t-s)\log n}$ for all $s<t\le n$.
+\item \emph{eq:linear-mart.} $a\in\Lambda_\gauge\Z\cap[0,\Lambda_\gauge n]$ is $a=k\Lambda_\gauge$ with $k\in\{0,\dots,n\}$ (as $\Lambda_\gauge>0$). For each such
+ $k$, $|\mathcal M^{q,a}_n|\le C_1\bigl(\sqrt{\log n\sum_{x:\,q\cdot x>a-\Lambda_\gauge}\ell_n(x)}+\log n\bigr)$, where
+ $\mathcal M^{q,a}=\mathcal M^f$ with $f(z)=\max(q\cdot z-k\Lambda_\gauge,0)$ is
+ \texttt{dynkinMart (driftStepProb d eps xi) f x n}, i.e.
+ $f(x_n)-f(x_0)-\sum_{j<n}\sum_{e\in\texttt{unitSteps}}p_j(e)\,(f(x_j+e)-f(x_j))$. The inner sum is the conditional expectation
+ $\E(f(X_{j+1})-f(X_j)\mid\mathcal F_j)$ evaluated on the path: $p_j(e)=\texttt{driftStepProb d eps xi x j e}$ is the conditional
+ probability of the step $e$ given $X_0,\dots,X_j$ (eq:kernel at a first departure from $x_j\ne0$, simple random walk step
+ otherwise), which is what \texttt{IsDriftCERW} prescribes. It equals $\Delta f(x_j)-\drift I_j\xi(x_j)\cdot\bar\nabla f(x_j)$
+ (\texttt{CERW.Support.Drift.sum\_driftFirstStep\_mul}, \texttt{stepMean\_driftStepProb}). The sum over $q\cdot x>a-\Lambda_\gauge$ is over the
+ sites of \texttt{departureRange x n} with $k\Lambda_\gauge-\Lambda_\gauge<q\cdot z$ ($\ell_n=0$ elsewhere).
+\item \emph{The maximizer.} $x_*=X_{j_0}$ with $j_0\le n$ and $q\cdot X_j\le q\cdot X_{j_0}$ for $0\le j\le n$;
+ $T=q\cdot x_{j_0}$ is the \texttt{let}-bound.
+\item \emph{$h$ and $\alpha$.} $h>0$ and $\forall j\le n$, $T-h<q\cdot x_j\Rightarrow\alpha\le q\cdot\xi(x_j)$ (this includes $j=0$, where
+ $\xi(x_0)=\xi(0)=0$, so the hypothesis forces $T\ge h$, in the paper as well).
+\item \emph{$L_b$.} $L_b=1+\max\{\ell_n(x):q\cdot x\ge b\}$ is $1+{}$the \texttt{Finset.sup} of \texttt{localTime x n} over the sites of
+ \texttt{departureRange x n} with $b\le q\cdot z$, cast to \texttt{R}. Off $A_n$ the local time is $0$, so this is the paper's
+ maximum over $\Z^d$ whenever $\{q\cdot x\ge b\}$ is nonempty (always, if $q\ne0$); for $q=0$, $b>0$ the paper's maximum is over the
+ empty set and the declaration reads $0$, where the claim is vacuous ($T=0$ and $T-h<0=q\cdot x_0$ would give $\alpha\le0$).
+\item \emph{Conclusion.} For every $b\ge0$: $T\le\max(T-h,b)+C\cdot L_b\cdot\log n$.
+\item \emph{Why the deterministic form is the lemma.} The paper's proof (Steps 1--4) uses: the Dynkin identity above (definition
+ of \texttt{dynkinMart} with the kernel), $\phi(X_0)=0$, $|A_n|\le n$ and $|x_*|\le n$ (unit steps from $0$), $|\xi|\le\Lambda_\gauge$
+ (subgradients), and Lemma~\ref{lem:crossing} (eq:vector). No property of the law beyond the kernel inside \texttt{driftStepProb}
+ is used.
+\end{itemize}

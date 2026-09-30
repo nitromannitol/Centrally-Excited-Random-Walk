@@ -1,0 +1,44 @@
+% thm-sharp-bulk -- CERW.Frozen.sharp_bulk (draft). Source: limit-shapes.tex:156-157 and 171-175, label thm:sharp (part (iii), eq:sharp-bulk)
+\paragraph{Paper (verbatim).} Theorem environment (lines 156--188); this node is part (iii), lines 171--175:
+\begin{verbatim}
+\begin{theorem}[Sharpness]\label{thm:sharp}
+Let $d\geq2$ and $0<\drift<\nf{1}{d}$, and consider the centrally excited random walk.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \underline{\emph{Radii in the plane}}: let $d=2$. For every $p>0$ there exists $c(\drift,p)>0$ such that, for all sufficiently large~$n$,
+\begin{equation}\label{eq:planar-polynomial-lower}
+\P\bigl(r_n-\Rin(n)\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}
+\qquad\text{and}\qquad
+\P\bigl(\Rout(n)-r_n\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}\, .
+\end{equation}
+\item \underline{\emph{Iterated logarithm for the radii in the plane}}: let $d=2$. Almost surely,
+\begin{equation}\label{eq:planar-lil-lower}
+\limsup_{n\to\infty}\frac{r_n-\Rin(n)}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}
+\qquad\text{and}\qquad
+\limsup_{n\to\infty}\frac{\Rout(n)-r_n}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}\, .
+\end{equation}
+\item \underline{\emph{Local times near the origin}}: there exists $c(d,\drift)>0$ such that, for all sufficiently large~$n$, with probability at least $1-n^{-c}$,
+\begin{equation}\label{eq:sharp-bulk}
+\max_{\substack{x\in\Z^d\\|x|\leq r_n^{\nf12}}}\bigl|\ell_n(x)-2d\drift(r_n-|x|)\bigr|
+\geq c\begin{cases}\sqrt{r_n}\log n,&d=2,\\\sqrt{r_n\log n},&d\geq3\end{cases}\, .
+\end{equation}
+\item \underline{\emph{Difference of the radii in the plane}}: let $d=2$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item For every $p>0$ there exists $c(\drift,p)>0$ such that, for all sufficiently large~$n$,
+\begin{equation}\label{eq:planar-width-polynomial}
+\P\bigl(\Rout(n)-\Rin(n)\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}\, .
+\end{equation}
+\item Almost surely,
+\begin{equation}\label{eq:planar-width-lil}
+\limsup_{n\to\infty}\frac{\Rout(n)-\Rin(n)}{\sqrt{r_n\log\log n}}\geq\sqrt{\frac{\pi}{3\drift}}\, .
+\end{equation}
+\end{enumerate}
+\end{enumerate}
+\end{theorem}
+\end{verbatim}
+\paragraph{Transcription.} $d\ge2$ is \texttt{hd : 2 ≤ d}, $\kappa$ is \texttt{ε} with $0<\kappa<1/d$. The constant $c(d,\kappa)>0$ and the
+threshold $n_0$ are bound after $d,\kappa$ and before the probability space; the same $c$ appears as the multiplier in the deviation
+threshold and in the exponent of the probability, exactly as in the paper. The maximum over $\{x\in\mathbb Z^d:|x|\le r_n^{1/2}\}$
+(a finite nonempty set, it contains $0$) being $\ge c\,\phi_n$ is \texttt{∃ x, euclidNorm x ≤ √(r n) ∧ c * φ n ≤ |ℓ_n(x) - 2dε(r n - |x|)|}, with
+$\phi_n=\sqrt{r_n}\log n$ if $d=2$ and $\sqrt{r_n\log n}$ otherwise (\texttt{if d = 2 then … else …}). ``With probability at least $1-n^{-c}$'' is
+an upper bound $n^{-c}$ on the outer measure of the complement (repository convention). No positive part appears in the paper, none in Lean
+(for $|x|\le r_n^{1/2}<r_n$ it would not matter).

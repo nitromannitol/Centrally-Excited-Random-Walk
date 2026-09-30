@@ -1,0 +1,37 @@
+% lem-crossing -- CERW.Frozen.drift_crossing (draft). Source: limit-shapes.tex:661-666, label lem:crossing
+\paragraph{Paper (verbatim).}
+\begin{lemma}\label{lem:crossing}
+On the event in~\eqref{eq:vector}, the following holds for every unit vector~$u$ and all integers $0\leq s<t\leq n$. If $u\cdot\xi(X_j)\geq0$ at every first departure time~$j$ with $s\leq j<t$, then
+\begin{equation*}
+u\cdot(X_t-X_s)\leq C\sqrt{(t-s)\log n}\, .
+\end{equation*}
+\end{lemma}
+The martingale $Z$ and the event of the lemma (verbatim, lines 651--659):
+A crossing against the drift requires a large increment of the martingale
+\begin{equation}\label{eq:vector-def}
+Z_t\coloneqq X_t+\drift\sum_{j<t}I_j\xi(X_j)\, ,
+\end{equation}
+which takes values in~$\R^d$ and has bounded increments. Azuma's inequality in each coordinate and a union bound over the pairs $s<t$ give, for every $p>0$, with probability at least $1-Cn^{-p}$,
+\begin{equation}\label{eq:vector}
+|Z_t-Z_s|\leq C\sqrt{(t-s)\log n}
+\qquad\text{for } 0\leq s<t\leq n\, .
+\end{equation}
+\paragraph{Transcription.}
+\begin{itemize}
+\item \emph{Deterministic reading (author ruling).} ``On the event in eq:vector'' is a hypothesis on a path, with the event's
+ constant as a parameter. The declaration takes $\xi$, a path \texttt{x : N -> Site d}, $n$ and the real constant $C$ as
+ parameters; the same $C$ is the constant of eq:vector (the hypothesis) and of the conclusion.
+\item \emph{Z.} $Z_t=X_t+\drift\sum_{j<t}I_j\xi(X_j)$ is the \texttt{let}-bound
+ $Z\,t=\texttt{toSpace}(x\,t)+\drift\cdot\sum_{j<t}(\text{if } x_j\notin\texttt{departureRange}\ x\ j\text{ then }\xi(x_j)\text{ else }0)$;
+ $x_j\notin\texttt{departureRange}\ x\ j=\{x_0,\dots,x_{j-1}\}$ is $I_j=\mathbf 1_{\{X_j\notin A_j\}}$ (definitionally
+ $x_j\notin(\texttt{range } j).\texttt{image } x$, the test inside \texttt{driftStepProb}).
+\item \emph{Hypothesis eq:vector.} $\forall s<t\le n$, $\|Z_t-Z_s\|\le C\sqrt{(t-s)\log n}$, with \texttt{(t - s : R)} a difference of
+ casts.
+\item \emph{Conclusion.} For every unit vector $u$ ($\|u\|=1$) and all $s<t\le n$: if $0\le u\cdot\xi(x_j)$ at every $j$ with
+ $s\le j<t$ and $x_j\notin\texttt{departureRange}\ x\ j$ (first departure times), then
+ $u\cdot(\texttt{toSpace}(x_t)-\texttt{toSpace}(x_s))\le C\sqrt{(t-s)\log n}$.
+\item \emph{Generality.} The proof in the paper is pathwise and uses only $u\cdot(X_t-X_s)=u\cdot(Z_t-Z_s)-\drift\sum_{s\le j<t}I_ju\cdot\xi(X_j)$,
+ $\drift\ge0$, the hypothesis on the sign, and Cauchy--Schwarz. So the declaration assumes $0\le\drift$ (not $\drift>0$ with
+ eq:ellipticity), and places no condition on $\xi$ (not a subgradient) and none on $x$ (not a nearest-neighbour path from $0$); $d$ is
+ implicit and $n$ is arbitrary. This is a strictly more general statement than the paper's, with the same proof.
+\end{itemize}

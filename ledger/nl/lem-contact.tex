@@ -1,0 +1,52 @@
+% lem-contact -- CERW.Frozen.contact_potential (draft). Source: limit-shapes.tex:891-896, label lem:contact
+\paragraph{Paper (verbatim).}
+\begin{lemma}\label{lem:contact}
+On the event of Section~\ref{sec:norm-event}, for large~$n$,
+\begin{equation*}
+H\leq Cr_nq_n=C\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\geq3\end{cases}\, .
+\end{equation*}
+\end{lemma}
+Definitions the statement relies on (verbatim): $q_n$ (eq:qn, lines 763--766), the event of Section~\ref{sec:norm-event}
+(line 841), and the inner radius $b$, the set $E$, the contact point $y_0$ and $H$ (lines 852--860).
+Throughout the rest of the paper let
+\begin{equation}\label{eq:qn}
+q_n\coloneqq\begin{dcases}\sqrt{\frac{\log n}{r_n}},&d=2,\\\frac{\log n}{r_n},&d\geq3\end{dcases}\, .
+\end{equation}
+\begin{quote}
+Intersect the events of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} with the events on which~\eqref{eq:vector}, \eqref{eq:localmart}, \eqref{eq:quadratic-coarse} and~\eqref{eq:linear-mart} hold; the complement has probability at most $Cn^{-p}$, and everything below is deterministic on this event. Let $K$ be a constant with $\Rout(n)\leq(K-1)r_n$ on the event of Proposition~\ref{prop:coarse}; then $D_n\subset B(0,Kr_n)$ for large~$n$, and~\eqref{eq:quadratic-coarse} gives
+\end{quote}
+Let
+\begin{equation*}
+b\coloneqq\inf\{\gauge(y):y\in\R^d\setminus D_n\}\qquad\text{and}\qquad
+E\coloneqq D_n\setminus\{\gauge<b\}\, ,
+\end{equation*}
+so that $\{\gauge<b\}\subset D_n$. Choose a point~$y_0$ with $\gauge(y_0)=b$ that is the limit of a sequence of points outside~$D_n$. Since the sequence is bounded, some cell~$C_z$ disjoint from~$D_n$ contains infinitely many of its points. Then $\ell_n(z)=0$, the closure of~$C_z$ contains~$y_0$, and $\gauge(z)\geq b$ because $z\in C_z$. Let
+\begin{equation*}
+H\coloneqq U_{D_n}(y_0)\qquad\text{and}\qquad \mathcal I\coloneqq\int_E(\gauge(v)-b)\dd v\, .
+\end{equation*}
+\paragraph{Transcription.}
+\begin{itemize}
+\item \emph{Reading (author ruling).} ``On the event of Section~\ref{sec:norm-event}, for large $n$, $H\le Cr_nq_n$'' is written
+ as a probabilistic closure: for every $p>0$ there are $C>0$ and $n_0$ such that for every $n\ge n_0$, with probability at least
+ $1-Cn^{-p}$, every contact point $y_0$ satisfies $U_{D_n}(y_0)\le Cr_nq_n$. The event is not named in the statement; its
+ complement is bounded directly,
+ $\mu\{\omega:\neg\forall y_0\,(\text{contact}\Rightarrow H\le Cr_nq_n)\}\le\texttt{ENNReal.ofReal}(C\,n^{-p})$ (outer measure). This
+ follows from the paper's lemma (the event has probability at least $1-C'n^{-p}$; take the larger constant) and is the form a
+ union bound needs.
+\item \emph{Contact point.} A contact point is any $y_0$ with $\gauge(y_0)=b=\inf_{y\notin D_n}\gauge(y)$ that is a limit of points
+ outside $D_n$: \texttt{Psi y0 = normInnerRadius Psi (X . w) n} and \texttt{y0 $\in$ closure ((cellSet (X . w) n)\^{}c)}. In the source
+ \texttt{closure (cellSet \dots)\^{}c} parses as the closure of the complement (checked by \texttt{rfl}); $D_n=$ \texttt{cellSet} is the union
+ of the half-open unit cells of $A_n$, and the closure of the complement equals the set of limits of sequences outside $D_n$.
+ The paper's proof (line 857 onward) uses only $\gauge(y_0)=b$ and $y_0\in\overline{C_z}$ for a cell $C_z$ disjoint from
+ $D_n$, so the bound holds for every contact point, as the statement asserts.
+\item \emph{H.} $H=U_{D_n}(y_0)=$ \texttt{normPotential d eps Psi (cellSet (X . w) n) y0}. The bound is one-sided, $H\le Cr_nq_n$.
+\item \emph{Rates.} $q_n$ (eq:qn) is the \texttt{let}-bound \texttt{if d = 2 then sqrt (log n / r n) else log n / r n}, so
+ $r_nq_n=\sqrt{r_n\log n}$ if $d=2$ and $\log n$ if $d\ge3$. $r_n$ is as in the coarse-bounds twin.
+\item \emph{Constants.} $C$ and $n_0$ are bound after $p$ and before $\xi$ and the walk: they depend on $d,\drift,\gauge,p$ and not on
+ the subgradients. The threshold $n_0$ is uniform in $\xi$ because the ``large $n$'' of the proof (e.g.\ $D_n\subset B(0,Kr_n)$,
+ $|y_0|+R\le2n$) comes from constants of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} that do not depend on $\xi$;
+ uniformity is also what Proposition~\ref{prop:norm-shape} needs to absorb $n<n_0$ into $C$. One $C$ serves for the bound on $H$ and
+ for the failure probability.
+\item \emph{Setting.} As in the coarse-bounds twin: $d\ge2$, \texttt{IsNorm Psi}, $\drift>0$ with eq:ellipticity, subgradients $\xi$ with
+ $\xi(0)=0$, \texttt{IsDriftCERW mu eps xi X}.
+\end{itemize}

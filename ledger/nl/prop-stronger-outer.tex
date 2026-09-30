@@ -1,0 +1,26 @@
+% prop-stronger-outer -- CERW.Frozen.outer_radius (draft). Source: limit-shapes.tex:1174-1179, label prop:stronger-outer
+\paragraph{Paper (verbatim).}
+\begin{proposition}[Outer radius]\label{prop:stronger-outer}
+Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf{1}{d}$. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$,
+\begin{equation*}
+\Rout(n)\leq r_n+C\begin{cases}\sqrt{r_n}(\log n)^{\nf52},&d=2,\\(\log n)^{d+1},&d\geq3\end{cases}\, .
+\end{equation*}
+\end{proposition}
+Definitions the statement relies on (verbatim):
+\textit{the radius $r_n$ (eq:radius, lines 98--100)}
+\begin{equation}\label{eq:radius}
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+\end{equation}
+\textit{$D_n$, $\Rin$, $\Rout$ (eq:radii, lines 122--127)}
+Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
+\begin{equation}\label{eq:radii}
+\Rin(n)\coloneqq\inf_{y\notin D_n}|y|
+\qquad\text{and}\qquad
+\Rout(n)\coloneqq\max_{0\leq j\leq n}|X_j|\, .
+\end{equation}
+\paragraph{Transcription.}
+\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set.
+
+\emph{Quantifiers.} $\forall p>0\ \exists C>0\ \forall(\Omega,\mu,X)$ with \verb!IsCERW μ ε X!, $\forall n\ge2$; $C=C(d,\varepsilon,p)$ precedes the probability space.
+
+\emph{Statement.} $\Rout(n)$ is \verb!CERW.maxRadius! ($\max_{0\le j\le n}|X_j|$, \verb!Finset.sup'! over \verb!range (n+1)!). The bound is \verb!maxRadius (X · ω) n ≤ r n + C * (if d = 2 then √(r n) * (log n) ^ (5/2) else (log n) ^ ((d:ℝ) + 1))!, the two cases of the proposition ($\sqrt{r_n}(\log n)^{5/2}$ for $d=2$, $(\log n)^{d+1}$ for $d\ge3$). The exponents are real powers of $\log n>0$ ($n\ge2$), so there is no junk. The probability statement is \verb!μ {ω | ¬ (…)} ≤ ofReal (C * n ^ (-p))!.
