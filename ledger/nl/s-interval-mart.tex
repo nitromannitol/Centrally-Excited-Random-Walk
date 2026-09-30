@@ -1,0 +1,9 @@
+% s-interval-mart: eq:interval-mart.
+\paragraph{Statement.} Under $|b(x+e)-b(x)|\leq C_g(1+|x|)^{1-d}$: for $p>0$ there is $C$ such that for every $n\geq2$, with probability
+at least $1-Cn^{-p}$, $|\mathcal M^y_t-\mathcal M^y_s|\leq Ce_n(M_{s,t})$ for all $0\leq s<t\leq n$ and all $|y|\leq3n$.
+\paragraph{Proof.} By s-bracket the increments are a.s.\ at most $2C_g$; clamp them (s-clamp). Take the predictable bracket
+$V_t=C_g^2\sum_{j<t}(1+|X_j-y|)^{2-2d}$ (s-bracket). Over $[s,t)$,
+$V_t-V_s=C_g^2\sum_x\ell_{s,t}(x)(1+|x-y|)^{2-2d}\leq C_g^2M_{s,t}\sum_{x\in X[s,t)}(1+|x-y|)^{2-2d}$. For $d\geq3$ the last sum is $O(1)$
+(s-centered-sums). For $d=2$ it is $O(L)$, since a.s.\ $|x-y|\leq4n$. Also $V_t-V_s\leq C_g^2n$ surely. Apply s-dyadic with
+$W=C_g^2n$ (or $1$), $b=2C_g+1$ and $K=p+d+4$ to each of the at most $(n+1)^2(6n+1)^d$ pairs. Off the union,
+$|\mathcal M_t-\mathcal M_s|\leq c(\sqrt{(V_t-V_s+1)L}+bL)\leq Ce_n(M_{s,t})$, using $M_{s,t}\geq1$.

@@ -63,7 +63,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 11 | polar coordinates | Sonnet subagent | sonnet | task prompt | 2 + 1 helper | 59k (agent total) | accepted | 1: the director dropped an unused hypothesis from one statement | 118 | `CERW/Generic/Newton/Polar.lean` |
 | 12 | cell modulus of the potential | ds1 | v4.1-flash | 8064 | 1 | ↑197k ↓99k | accepted | 1: the director made its helpers private after a name collision with the parallel Hölder file | 403 | `CERW/Support/Geometry/CellModulus.lean` |
 | 12 | flux through a sphere | ds2 | v4.1-flash | 7710 | 3 | ↑190k ↓93k | accepted | 0 (the director made its helpers private) | 355 | `CERW/Generic/Newton/Flux.lean` |
-| 12 | central difference of the potential kernel | ds3 | v4.1-flash | 7404 | 2 | — | in flight | — | — | `wip/GradientAsymp.lean` |
+| 12 | central difference of the potential kernel | ds3 | v4.1-flash | 7404 | 2 | ↑474k ↓162k | accepted | 0 (the director made its helpers private) | 711 | `CERW/Support/LocalTime/GradientAsymp.lean` |
 | 12 | clamped martingale | ds4 | v4.1-flash | 6038 | 1 | ↑91k ↓36k | accepted | 0 (the director made its helpers private) | 102 | `CERW/Generic/Martingale/Clamp.lean` |
 | 13 | rotational symmetry of a ball potential | ds1 | v4.1-flash | 5170 | 2 | ↑67k ↓23k | accepted | 0 (the director made its helpers private) | 65 | `CERW/Generic/Newton/BallSymmetry.lean` |
 | 13 | Gauss's law for a point source | Sonnet subagent | sonnet | task prompt | 1 + 5 helpers | 75k (agent total) | accepted | 0 | 213 | `CERW/Generic/Newton/Gauss.lean` |
@@ -71,9 +71,13 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 14 | sums over first visits | ds1 | v4.1-flash | 5170 | 3 | ↑39k ↓20k | accepted | 0 | 53 | `CERW/Support/Occupation/FreshSum.lean` |
 | 14 | arithmetic of the first mass scale | ds4 | v4.1-flash | 5067 | 1 | ↑37k ↓33k | accepted | 0 | 99 | `CERW/Support/Coarse/SstarArith.lean` |
 | 14 | Gauss's flux theorem | Sonnet subagent | sonnet | task prompt | 2 | — | in flight | — | — | `wip/GaussFlux.lean` |
-| 15 | Dynkin decomposition of the local time | ds1 | v4.1-flash | 6893 | 3 | — | in flight | — | — | `wip/DynkinLocal.lean` |
+| 15 | Dynkin decomposition of the local time | ds1 | v4.1-flash | 6893 | 3 | ↑152k ↓52k | accepted | 0 | 118 | `CERW/Support/LocalTime/DynkinLocal.lean` |
 | 15 | level sets of the potential kernel | ds2 | v4.1-flash | 6983 | 2 | — | in flight | — | — | `wip/LevelSets.lean` |
-| 15 | bracket of the local-time martingale | ds4 | v4.1-flash | 6004 | 3 | — | in flight | — | — | `wip/Bracket.lean` |
+| 15 | bracket of the local-time martingale | ds4 | v4.1-flash | 6004 | 3 | ↑127k ↓36k | accepted | 0 | 98 | `CERW/Support/LocalTime/Bracket.lean` |
+| 16 | drift of the radial test | ds1 | v4.1-flash | 6720 | 3 | — | in flight | — | — | `wip/RadialDrift.lean` |
+| 16 | shell count by the tail | ds4 | v4.1-flash | 6542 | 1 | — | in flight | — | — | `wip/ShellCount.lean` |
+| 16 | radial bracket by the tail | ds3 | v4.1-flash | 6135 | 1 | — | in flight | — | — | `wip/RadialBracket.lean` |
+| 16 | interval martingales (eq:interval-mart) | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/IntervalMart.lean` |
 
 ## Observations
 

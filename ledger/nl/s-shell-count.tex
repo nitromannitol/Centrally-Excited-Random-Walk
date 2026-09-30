@@ -1,0 +1,6 @@
+% s-shell-count: eq:shell-count.
+\paragraph{Statement.} For $b>3+\sqrt d/2$ and $r>b$, $\#\{x\in A_n:||x|-r|\leq3\}\leq\sigma_d(r+b)^{d-1}[F(r-b)-F(r+b)]$,
+where $F$ is the tail of $D_n$.
+\paragraph{Proof.} For $v\in C_x$, $|v-x|\leq\sqrt d/2$ (s-cell-norm), so the shell cells lie in
+$D_n\cap\{r-b<|v|\leq r+b\}$. They are disjoint with unit volume. On that set $|v|^{1-d}\geq(r+b)^{1-d}$. By s-Fmass,
+$F(r-b)-F(r+b)=\sigma_d^{-1}\int_{D_n\cap\{r-b<|v|\leq r+b\}}|v|^{1-d}\geq\sigma_d^{-1}(r+b)^{1-d}\cdot\#\text{shell}$.

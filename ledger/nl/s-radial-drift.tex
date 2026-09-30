@@ -1,0 +1,8 @@
+% s-radial-drift: eq:radial-drift and the shell bounds, given eq:levelsets and eq:gradient as hypotheses.
+\paragraph{Statement.} Let $\varphi=(b-h)_+$. (i) $|\varphi(x+e)-\varphi(x)|\leq|b(x+e)-b(x)|$. (ii) If $b\leq h$ on $|x|\leq r-1$, then
+$\varphi$ vanishes at $x$ and its neighbours when $|x|\leq r-2$. (iii) If $b\geq h$ on $|x|\geq r+1$, $r\geq0$, $(P-I)b=\ind_{\{0\}}$
+and $|Db(x)-\frac2{\omega_d}x/|x|^d|\leq C_a|x|^{-d}$ for $|x|\geq R$, then for $|x|>r+3$ with $|x|\geq\max(R,C_a\omega_d)$:
+$(P-I)\varphi(x)=0$ and $u_x\cdot D\varphi(x)\geq\omega_d^{-1}|x|^{1-d}$.
+\paragraph{Proof.} (i) $t\mapsto(t-h)_+$ is $1$-Lipschitz. (ii) $|x\pm e_i|\leq|x|+1\leq r-1$. (iii) The neighbours have norm
+$\geq|x|-1>r+2$, so $\varphi=b-h$ at $x$ and its neighbours. Hence $(P-I)\varphi(x)=(P-I)b(x)=0$, since $x\neq0$, and
+$D\varphi(x)=Db(x)$. Then $u_x\cdot Db(x)\geq\frac2{\omega_d}|x|^{1-d}-C_a|x|^{-d}\geq\omega_d^{-1}|x|^{1-d}$.

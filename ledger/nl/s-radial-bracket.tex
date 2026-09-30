@@ -1,0 +1,7 @@
+% s-radial-bracket: the second inequality of eq:radialbracket.
+\paragraph{Statement.} For $b>2+\sqrt d/2$, $b<r$ and $\sqrt d+2\leq r$:
+$\sum_{x\in A_n,|x|>r-2}\ell_n(x)|x|^{2-2d}\leq2^{d-1}\sigma_d(r-2)^{1-d}M_nF(r-b)$.
+\paragraph{Proof.} $\ell_n(x)\leq M_n$. For $|x|>r-2$, $|x|^{2-2d}=|x|^{1-d}|x|^{1-d}\leq(r-2)^{1-d}|x|^{1-d}$. Since $|x|\geq\sqrt d$,
+s-cell-weight gives $|x|^{1-d}\leq2^{d-1}\int_{C_x}|v|^{1-d}$. The cells are disjoint and lie in $D_n\cap\{|v|>r-b\}$, because
+$|v|\geq|x|-\sqrt d/2>r-2-\sqrt d/2>r-b$. So the sum of the cell integrals is at most
+$\int_{D_n\cap\{|v|>r-b\}}|v|^{1-d}=\sigma_dF(r-b)$.
