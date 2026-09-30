@@ -1,0 +1,5 @@
+% s-outer-inclusion: the outer inclusion of eq:sandwich from the radius bound (deterministic).
+\paragraph{Statement.} For $C_2\geq0$ and any $a$ there are $C>0$, $n_0$ such that for $n\geq n_0$: $|b/N-a|\leq C_2Q$ and $H_n\leq b+C_2NQ^{1/d}L$ imply
+$V_n\subseteq\{|x|<(a+CQ^{1/d}L)N\}$.
+\paragraph{Proof.} $n_0$: $n\geq1$ (so $N,L,Q>0$, $L\geq1$) and $Q\leq1$ (\texttt{tendsto\_rate\_zero}). Each $x\in V_n$ is some $Y_j$, $j\leq n$, so $|x|\leq H_n$ (\texttt{euclidNorm\_le\_maxRadius}).
+Then $|x|\leq aN+C_2NQ+C_2NQ^{1/d}L\leq aN+2C_2NQ^{1/d}L<(a+(2C_2+1)Q^{1/d}L)N$, using $Q\leq Q^{1/d}$ (as $Q\leq1$, $d\geq1$), $L\geq1$ and $NQ^{1/d}L>0$.

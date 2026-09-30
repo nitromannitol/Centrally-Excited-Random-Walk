@@ -124,7 +124,9 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 27 | shape theorem from the almost-sure event | ds2 | v4.1-flash | 4473 | 1 | ↑22k ↓4.7k | accepted | 0 | 55 | `CERW/Support/Main/ShapeAssembly.lean` |
 | 28 | inradius (eq:inradius) | ds2 | v4.1-flash | 6104 | 1 | ↑238k ↓125k | accepted | 0 | 397 | `CERW/Support/Contact/Inradius.lean` |
 | 29 | contact setup (eq:bm, eq:contactcell, modulus) | ds2 | v4.1-flash | 5694 | 1 | ↑140k ↓41k | accepted | 1: the director sent a follow-up after dispatch correcting a Mathlib name in the brief | 116 | `CERW/Support/Contact/ContactSetup.lean` |
-| 29 | outer bound from the envelope | ds3 | v4.1-flash | 6123 | 1 | — | in flight | 1: the director sent a follow-up after dispatch replacing a deprecated Mathlib name in the brief | — | `wip/OuterEnvelope.lean` |
+| 29 | outer bound from the envelope | ds3 | v4.1-flash | 6123 | 1 | ↑169k ↓68k | accepted | 1: the director sent a follow-up after dispatch replacing a deprecated Mathlib name in the brief | 193 | `CERW/Support/Coarse/OuterEnvelope.lean` |
+| 30 | mass step on the event (d ≥ 3) | ds2 | v4.1-flash | 6214 | 1 | — | in flight | — | — | `wip/MassEventHigh.lean` |
+| 30 | outer inclusion from the radius bound | ds4 | v4.1-flash | 4941 | 1 | — | in flight | — | — | `wip/OuterInclusion.lean` |
 | 29 | inner clauses of the event | ds4 | v4.1-flash | 6013 | 1 | ↑195k ↓62k | accepted | 0 | 225 | `CERW/Support/Main/InnerClauses.lean` |
 | 27 | Hausdorff bound from the event | ds4 | v4.1-flash | 5941 | 1 | ↑395k ↓211k | accepted | 0 | 503 | `CERW/Support/Main/HausdorffGood.lean` |
 | 27 | planar contact variance (eq:massplanar, eq:envelopeplanar) | ds1 | v4.1-flash | 6297 | 1 | — | in flight | — | — | `wip/MassPlanar.lean` |
@@ -135,7 +137,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 
 ## Observations
 
-* **Waves 1–26.** Every returned DeepSeek packet was accepted: 97/97, two after a statement repair. There were three repairs: a definition
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 98/98, two after a statement repair. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 23/23.
 * **Brief names are machine-checked.** In waves 27 and 29 a brief named a Mathlib lemma that does not
   exist or is deprecated, and a correction had to follow the dispatch. `brief_helper.py` now greps every

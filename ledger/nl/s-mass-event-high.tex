@@ -1,0 +1,7 @@
+% s-mass-event-high: the mass step on the event for d >= 3.
+\paragraph{Statement.} For $d\geq3$, $\varepsilon,C_0,C_1>0$ there are $C>0$, $n_0$ such that for $n\geq n_0$, on $\mathrm{fluctEvent}$, with $b$ the inradius of $D_n$:
+$|D_n\setminus B(0,b)|\leq CN^dQ$ and $\ell_n\leq C(b-|\cdot|)_++CNQ^{1/d}$.
+\paragraph{Proof.} (fl:912--969.) $D_n\subseteq B(0,H_n+\sqrt d)\subseteq B(0,R)$, $R=(C_0+1)N$ for $N\geq\sqrt d$. \texttt{exists\_contact\_setup} gives $b>0$, $y_0$, $z$ with $b\leq|z|\leq b+\sqrt d/2$
+and $\Delta\leq C\varepsilon\log(R+2)\leq C\varepsilon L$ once $R\leq n$. Put $M(y)=$ the Dynkin martingale of $b(\cdot-y)$; the pointwise clause gives $|\ell_n-U+M|\leq C_1L$ and
+the local-martingale clause with \texttt{sum\_range\_eq\_sum\_localTime} gives $|M(y)|\leq C_1(\sqrt{B_yL}+L)$ at $|y|\leq3n$. \texttt{exists\_mass\_high} with $K=C_0+3$
+applies once $L\leq N$, $|z|\leq n$, and $|X_j|\leq j\leq n$ (path clause).
