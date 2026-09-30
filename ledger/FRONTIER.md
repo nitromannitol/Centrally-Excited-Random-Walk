@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 02:27.
+generation time. Regenerated 2026-09-30 02:29.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -132,9 +132,10 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-outer | ds3 | `Support/Coarse/OuterBound.lean` | s-tailend, s-crossing, s-inradius, s-outer-contradiction | eq:outer-contradiction | LANDED |
 | s-scale-limits | ds4 | `Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | LANDED |
 | s-hausdorff-arith | ds3 | `Support/Main/HausdorffArith.lean` | — | Hausdorff and planar exponent identities | LANDED |
-| s-assembly | director | `Support/Main/Event.lean` | s-volume-profile, s-outer, s-good-event | fluctGood on the event at each n | LANDED |
+| s-assembly | sonnet | `Support/Main/GoodCore.lean` | s-volume-profile, s-outer, s-good-event | fluctGood on the event at each n | IN-FLIGHT (director/sonnet) |
 | s-shape-assembly | ds2 | `Support/Main/ShapeAssembly.lean` | s-shape-inclusion, s-shape-count | thm:shape from a.s. eventually fluctGood | LANDED |
 | s-hausdorff-good | ds4 | `Support/Main/HausdorffGood.lean` | s-good-event, s-hausdorff-arith | eq:hausdorff and the planar inner inclusion on fluctGood | LANDED |
+| s-event-prob | sonnet | `Support/Main/EventProb.lean` | prop-coarse, lem-local, lem-radial | P(¬fluctEvent) ≤ C n^{−p} | LANDED |
 | s-good-event | director | `Support/Main/GoodEvent.lean` | — | fluctGood d ε C Y n ≡ Good C Y n | LANDED |
 | s-borel-cantelli | ds1 | `Support/Main/BorelCantelli.lean` | — | Σ C n^{−p} < ∞ ⇒ a.s. eventually | LANDED |
 | s-shape-inclusion | ds2 | `Support/Main/ShapeInclusion.lean` | s-good-event, s-scale-limits | thm:shape inclusions and profile from fluctGood | LANDED |
@@ -143,7 +144,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-shape-assembly | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-good, s-inradius | eq:hausdorff | DRAFT |
 
-**Counts:** BLOCKED 5, DRAFT 7, IN-FLIGHT 1, LANDED 97, READY 2.
+**Counts:** BLOCKED 5, DRAFT 7, IN-FLIGHT 2, LANDED 97, READY 2.
 
 ## Pre-freeze gate
 

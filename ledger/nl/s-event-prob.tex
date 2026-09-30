@@ -1,0 +1,8 @@
+% s-event-prob: the event of Sections 4-5 has probability at least 1 - C n^{-p}.
+\paragraph{Statement.} Given the kernel facts for $b$, with $b_d=\lceil\sqrt d/2\rceil+6$, there is $r_0$ such that for $0<\varepsilon<1/d$ and $p>0$ there are $C_0,C_1>0$ with
+$\mu(\neg\,\mathrm{fluctEvent}(C_0,C_1,b_d,r_0,n))\leq C_1n^{-p}$ for every CERW law and $n\geq2$.
+\paragraph{Proof.} (fl:849--854.) $r_0$ from lem:radial. Fix $\varepsilon,p$. $C_0$: the upper constant of prop:coarse at $p$. The seven exceptional sets:
+prop:coarse (upper bounds); lem:local (interval and global clauses); eq:localmart with $C_g$ from \texttt{gradBound}; eq:quadraticerror with $K=C_0$
+(on the coarse event every $|X_j|\leq H_n\leq C_0N$, $j\leq n$); eq:vector; lem:radial; and the null set where $X_0\neq0$ or a step is not a unit step.
+Off the null set, eq:pointwise holds deterministically (it needs $\varepsilon\leq1$ and $|X_j|\leq j$). Let $C_1$ be at least every constant appearing in a bound
+and at least the sum of the seven probability constants. The union bound gives the claim.
