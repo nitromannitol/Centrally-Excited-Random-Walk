@@ -97,17 +97,22 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 21 | interval Dynkin decomposition | ds3 | v4.1-flash | 5867 | 2 | ↑80k ↓24k | accepted | 0 | 66 | `CERW/Support/LocalTime/IntervalDynkin.lean` |
 | 21 | source sum over k sites | ds4 | v4.1-flash | 4906 | 1 | ↑92k ↓23k | accepted | 0 | 114 | `CERW/Support/LocalTime/SourcePacking.lean` |
 | 21 | first mass scale and preconditions | ds1 | v4.1-flash | 5096 | 1 | ↑44k ↓32k | accepted | 0 | 130 | `CERW/Support/Coarse/Sstar.lean` |
-| 21 | cell count by the tail | ds2 | v4.1-flash | 5334 | 1 | ↑110k ↓72k (first pass) | statement defect found by the worker; resumed after the fix | 1 statement repair: `S = ∅` with `R' < -√d/2` made the statement false; the director added `ρ ≤ R'` | — | `wip/CardTail.lean` |
-| 21 | lem:local assembly | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/LocalAssembly.lean` |
-| 22 | mass identity (eq:massidentity) | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/MassIdentity.lean` |
-| 22 | radius arithmetic | ds4 | v4.1-flash | 4653 | 1 | — | in flight | — | — | `wip/RadiusArith.lean` |
-| 22 | mass error | ds3 | v4.1-flash | 5682 | 1 | — | in flight | — | — | `wip/MassError.lean` |
-| 22 | first moment over ball and excess | ds1 | v4.1-flash | 4778 | 1 | — | in flight | — | — | `wip/BallExcess.lean` |
+| 21 | cell count by the tail | ds2 | v4.1-flash | 5334 | 1 | ↑171k ↓78k | accepted after a statement repair | 1 statement repair: `S = ∅` with `R' < -√d/2` made the statement false; the director added `ρ ≤ R'` | 156 | `CERW/Support/Coarse/CardTail.lean` |
+| 21 | lem:local assembly | Sonnet subagent | sonnet | task prompt | 1 + 10 helpers | 149k (agent total) | accepted | 0 | 368 | `CERW/Support/LocalTime/LocalAssembly.lean` |
+| 22 | mass identity (eq:massidentity) | Sonnet subagent | sonnet | task prompt | 1 + 6 helpers | 77k (agent total) | accepted | 1: the director removed an unused hypothesis | 199 | `CERW/Support/Geometry/MassIdentity.lean` |
+| 22 | radius arithmetic | ds4 | v4.1-flash | 4653 | 1 | ↑95k ↓41k | accepted | 0 | 131 | `CERW/Support/Coarse/RadiusArith.lean` |
+| 22 | mass error | ds3 | v4.1-flash | 5682 | 1 | ↑188k ↓55k | accepted | 0 | 124 | `CERW/Support/Coarse/MassError.lean` |
+| 22 | first moment over ball and excess | ds1 | v4.1-flash | 4778 | 1 | ↑64k ↓20k | accepted | 0 | 64 | `CERW/Support/Contact/BallExcess.lean` |
+| 22 | shell bound (eq:shell) | Sonnet subagent | sonnet | task prompt | 1 | — | in flight | — | — | `wip/Shell.lean` |
+| 23 | pointwise decomposition (eq:pointwise) | ds1 | v4.1-flash | 5994 | 1 | — | in flight | — | — | `wip/Pointwise.lean` |
+| 23 | local martingales (eq:localmart) | ds2 | v4.1-flash | 5870 | 1 | — | in flight | — | — | `wip/LocalMart.lean` |
+| 23 | inradius arithmetic (eq:inradius) | ds4 | v4.1-flash | 5595 | 1 | — | in flight | — | — | `wip/InradiusArith.lean` |
+| 23 | quadratic martingale concentration | ds3 | v4.1-flash | 7217 | 1 | — | in flight | — | — | `wip/QuadraticError.lean` |
 
 ## Observations
 
-* **Waves 1–21.** Every returned DeepSeek packet was accepted: 72/72, one after a statement repair. There were three repairs: a definition
-  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 15/15.
+* **Waves 1–22.** Every returned DeepSeek packet was accepted: 76/76, one after a statement repair. There were three repairs: a definition
+  in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 17/17.
 * **Parallel helpers collide.** Two parallel files in one namespace each added a public helper with the same
   name. Since wave 13, the common rules require every helper a worker adds to be `private`.
 * **Waves 1–4.** 21/21 packets were accepted (wave 4 and the cell-set volume: 5/5, no repair, each under 10 minutes); 16 of 17 with no repair. Wall-clock time per packet was

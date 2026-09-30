@@ -1,0 +1,5 @@
+% s-inradius: eq:inradius (arithmetic core).
+\paragraph{Statement.} With $a=((d+1)/(2d\eps\omega_d))^{1/(d+1)}$: from $|X_n|^2=n-2\eps S+\mathcal Q_n$, $0\leq|X_n|^2\leq C_1N^2$, $|S-\int_D|v||\leq C_1N^d$,
+$\int_D|v|=\frac{d\omega_d}{d+1}b^{d+1}+I_E$, $0\leq I_E\leq C_1nQ$, $|\mathcal Q_n|\leq C_1nQ$, $N^{1-d}\leq Q$ and $N^{-1}\leq Q$, it follows that $|b/N-a|\leq CQ$.
+\paragraph{Proof.} $1-c(b/N)^{d+1}=(|X_n|^2-\mathcal Q_n+2\eps(S-\int_D|v|))/n+2\eps I_E/n$, with $c=2d\eps\omega_d/(d+1)$ and $n=N^{d+1}$. Each term is $O(Q)$. Radius inversion
+(\texttt{abs\_sub\_le\_of\_abs\_one\_sub\_mul\_pow} with $ca^{d+1}=1$) gives $|b/N-a|\leq a\cdot O(Q)$.

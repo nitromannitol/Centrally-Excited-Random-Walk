@@ -5,3 +5,4 @@ import CERW.Support.Geometry.Holder
 import CERW.Support.Geometry.CellModulus
 import CERW.Support.Geometry.Newton
 import CERW.Support.Geometry.Assembly
+import CERW.Support.Geometry.MassIdentity

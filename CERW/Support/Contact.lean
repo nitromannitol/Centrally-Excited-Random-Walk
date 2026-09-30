@@ -4,3 +4,4 @@ import CERW.Support.Contact.ContactCell
 import CERW.Support.Contact.ContactLower
 import CERW.Support.Contact.NormReplace
 import CERW.Support.Contact.Quadratic
+import CERW.Support.Contact.BallExcess

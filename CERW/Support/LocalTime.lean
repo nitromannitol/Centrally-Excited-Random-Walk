@@ -12,3 +12,4 @@ import CERW.Support.LocalTime.KernelBridge
 import CERW.Support.LocalTime.SourceSum
 import CERW.Support.LocalTime.IntervalDynkin
 import CERW.Support.LocalTime.SourcePacking
+import CERW.Support.LocalTime.LocalAssembly

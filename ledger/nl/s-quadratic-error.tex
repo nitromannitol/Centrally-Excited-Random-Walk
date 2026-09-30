@@ -1,0 +1,6 @@
+% s-quadratic-error: eq:quadraticerror.
+\paragraph{Statement.} For $K,p>0$ there is $C$ with $\Pr(|X_j|\leq KN\ \forall j\leq n,\ |\mathcal Q_n|>C(N\sqrt{nL}+NL))\leq Cn^{-p}$ for $n\geq2$.
+\paragraph{Proof.} Let $I_j=\ind\{|X_j|\leq KN\}$, which is $\mathcal F_j$-measurable, and $\mathcal Q'_t=\sum_{j<t}I_j(\mathcal Q_{j+1}-\mathcal Q_j)$. This is a martingale: $\E[I_j\Delta_j\mid\mathcal F_j]=I_j\E[\Delta_j\mid\mathcal F_j]=0$.
+The one-step oscillation of $|\cdot|^2$ at $x$ is $2|x|+1$, so a.s.\ $|I_j\Delta_j|\leq2(2KN+1)$, and the conditional variance is $\leq(2KN+1)^2$. Clamp the increments
+(s-clamp) and take the deterministic bracket $V_t=t(2KN+1)^2$. Apply s-dyadic with $W=n(2KN+1)^2$: $|\mathcal Q'_n|\leq c(\sqrt{WL}+2(2KN+1)L)\leq C(N\sqrt{nL}+NL)$.
+On the event, all $I_j=1$, so $\mathcal Q'_n=\mathcal Q_n$.

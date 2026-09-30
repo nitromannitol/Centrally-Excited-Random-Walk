@@ -1,0 +1,8 @@
+% s-shell: eq:shell (deterministic, given eq:approx on a ball).
+\paragraph{Statement.} There is $C_d$ with: if $s=|A_n|^{1/d}\geq6$, $0\leq\delta\leq s$, $|\widetilde\ell_n-U_{D_n}|\leq\delta$ on $|y|\leq B_0s+4$, $B_0\geq2$,
+$s\leq r\leq B_0s$, $b\geq3$ and $||x|-r|\leq3$, then $\ell_n(x)\leq C_dB_0^\beta s^{1-\alpha}[F(r-b)+\delta]^\alpha$, with $\alpha=\frac1{2d-1}$ and $\beta=\frac{d-1}{2d-1}$.
+\paragraph{Proof.} $|D_n|=|A_n|=s^d$. Let $t=|x|\in[s-3,B_0s+3]$, so $t\geq s/2$ and $t\leq2B_0s$, and let $g=U+\delta$. Then $g\geq\widetilde\ell_n\geq0$ on the sphere of
+radius $t$, and $h:=g(x)\geq\ell_n(x)$. By lem-geometry (Support), $g$ is $\frac12$-Hölder with $A=C\eps s^{1/2}$, $h\leq C\eps s+\delta\leq C_2s$, and
+$\int_Sg(t\theta)\dd\sigma=\sigma_d(2d\eps F(t)+\delta)$. Apply s-cap-average with $A'=\max(A,h/\sqrt t)$ (still a modulus). If $A'=A$:
+$h^{2d-1}\leq C s^{d-1}t^{d-1}(F(t)+\delta)$. Otherwise $ch\leq\sigma_d(2d\eps F+\delta)$, so $h=h^{1-\alpha}h^\alpha\leq(C_2s)^{1-\alpha}(C(F+\delta))^\alpha$. In both
+cases, with $F(t)\leq F(r-b)$ (since $t\geq r-3\geq r-b$ and $F$ is nonincreasing) and $t\leq2B_0s$, this gives the claim.

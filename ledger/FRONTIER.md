@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 01:11.
+generation time. Regenerated 2026-09-30 01:20.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -65,7 +65,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-cell-modulus | ds1 | `Support/Geometry/CellModulus.lean` | s-potential-bound, s-newton-field, s-log-radial | \|U_D(y) − U_D(z)\| ≤ Cε log(R+2) for \|y−z\| ≤ √d (eq:cellmodulus) | LANDED |
 | s-cell-shift | director | `Support/LocalTime/CellShift.lean` | s-kernel-replace, s-cell-modulus | moving y in its cell costs O(L) | READY |
 | s-retained | director | `Support/LocalTime/Retained.lean` | s-dyadic, s-dynkin-local, s-kernel-replace, s-cell-shift | eq:localmart, eq:pointwise, eq:cellmodulus | BLOCKED(s-cell-shift) |
-| **lem-local** | director | `Frozen/LocalTimePotential.lean` | s-local-young, s-kernel-replace, s-direction-error, s-cell-shift, s-interval-mart | lem:local | DRAFT |
+| **lem-local** | director | `Frozen/LocalTimePotential.lean` | s-local-young, s-kernel-replace, s-direction-error, s-cell-shift, s-interval-mart | lem:local | DRAFT (proof of the draft statement landed: `Support/LocalTime/LocalAssembly.lean`) |
 | s-Fmass | ds2 | `Support/Geometry/TailBasic.lean`, `Support/Geometry/TailBounds.lean` | — | F ≥ 0, antitone on (0,∞); F ≤ \|D\|/(σ_ds^{d−1}); F = 0 beyond D; increments | LANDED |
 | s-polar | sonnet | `Generic/Newton/Polar.lean` | — | ∫ f = ∫_0^∞ r^{d−1}∫_S f(rθ)dσ dr for integrable f | LANDED |
 | s-gauss-flux | sonnet | `Generic/Newton/Gauss.lean` | s-polar | ∫ Dφ(v)[K(v−c)] dv = −σ_d φ(c) for φ ∈ C¹_c | LANDED |
@@ -105,10 +105,10 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-coarse-tail | director | `Support/Coarse/Tail.lean` | lem-radial, s-shell, s-halving, s-sstar, s-Fmass | eq:coarse-tail | BLOCKED(lem-radial, s-shell) |
 | s-HvsR | director | `Support/Coarse/OuterRadius.lean` | s-coarse-tail, s-crossing, s-crossing-contradiction, s-cell-weight | eq:HvsR | BLOCKED(s-coarse-tail) |
 | s-radial-packing | sonnet | `Generic/Kernel/RadialPacking.lean` | — | ∫_D\|v\| ≥ (d/(d+1))ω_d^{−1/d}\|D\|^{1+1/d} | LANDED |
-| s-mass-identity | sonnet | `Support/Geometry/MassIdentity.lean` | s-newton, s-polar | eq:massidentity | IN-FLIGHT (director/sonnet) |
-| s-mass-error | ds3 | `Support/Coarse/MassError.lean` | s-cell-integral, s-holder | eq:coarse-masserror (before the identity) | IN-FLIGHT (ds3, 01:08) |
-| s-radius-arith | ds4 | `Support/Coarse/RadiusArith.lean` | s-scale-limits | c s^{d+1} ≤ n + C s^{d+1/2}L ⇒ s ≤ C′N | IN-FLIGHT (ds4, 01:08) |
-| s-card-tail | ds2 | `Support/Coarse/CardTail.lean` | s-cell-norm, s-Fmass | eq:coarse-cellcount (general) | IN-FLIGHT (ds2, 01:04) |
+| s-mass-identity | sonnet | `Support/Geometry/MassIdentity.lean` | s-newton, s-polar | eq:massidentity | LANDED |
+| s-mass-error | ds3 | `Support/Coarse/MassError.lean` | s-cell-integral, s-holder | eq:coarse-masserror (before the identity) | LANDED |
+| s-radius-arith | ds4 | `Support/Coarse/RadiusArith.lean` | s-scale-limits | c s^{d+1} ≤ n + C s^{d+1/2}L ⇒ s ≤ C′N | LANDED |
+| s-card-tail | ds2 | `Support/Coarse/CardTail.lean` | s-cell-norm, s-Fmass | eq:coarse-cellcount (general) | LANDED |
 | s-mass | director | `Support/Coarse/MassIdentity.lean` | lem-geometry, lem-local, s-radial-packing, s-HvsR, s-cell-integral | eq:massidentity, eq:coarse-masserror | BLOCKED(lem-geometry, lem-local, s-HvsR) |
 | **prop-coarse** | director | `Frozen/CoarseBounds.lean` | s-sstar, s-HvsR, s-mass, lem-local | prop:coarse | DRAFT |
 | **Sections 4–5 and the main theorems** | | | | | |
@@ -134,7 +134,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-scale-limits | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
 
-**Counts:** BLOCKED 15, DRAFT 7, IN-FLIGHT 4, LANDED 75, READY 2.
+**Counts:** BLOCKED 15, DRAFT 7, LANDED 79, READY 2.
 
 ## Pre-freeze gate
 
