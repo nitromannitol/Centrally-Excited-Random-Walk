@@ -249,10 +249,11 @@ theorem exists_maxRadius_le_outer (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv C
     rw [hC₁def]
     have hvol : 0 < (d : ℝ) * unitBallVolume d :=
       mul_pos (by exact_mod_cast (by omega : 0 < d)) (unitBallVolume_pos d)
-    have hbase : 0 ≤ (2 * c₂ + 1) ^ ((d : ℝ) - 1) := Real.rpow_nonneg (by nlinarith [hc₂]) _
+    have hbase : 0 ≤ (2 * c₂ + 1) ^ ((d : ℝ) - 1) :=
+      Real.rpow_nonneg (by linarith only [hc₂]) _
     have hprod : 0 ≤ d * unitBallVolume d * (2 * c₂ + 1) ^ ((d : ℝ) - 1) * Ct :=
       mul_nonneg (mul_nonneg hvol.le hbase) hCt
-    linarith
+    linarith only [hprod]
   obtain ⟨n_a, hn_a⟩ := Filter.eventually_atTop.1
     (CERW.Support.Crossing.eventually_outer_lt (d := d) hd hK₁ hC₀pos hC₁pos)
   obtain ⟨n_b, hn_b⟩ := Filter.eventually_atTop.1
@@ -277,12 +278,12 @@ theorem exists_maxRadius_le_outer (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv C
     have h := (hn_b n (le_trans (le_max_right n_a n_b)
       (le_trans (le_max_left (max n_a n_b) 1) hn))).1
     rw [hWL] at h
-    nlinarith [h]
+    simpa only [mul_assoc] using h
   have hb_le : 3 * K₁ * W * L + Real.sqrt d / 2 ≤ c₂ * N := by
     have h := (hn_b n (le_trans (le_max_right n_a n_b)
       (le_trans (le_max_left (max n_a n_b) 1) hn))).2
     rw [hWL, ← hN] at h
-    nlinarith [h]
+    simpa only [mul_assoc] using h
   have hcontr_a : C₀ * ((C₁ * N * L) ^ ((2 * d : ℝ) / (2 * d - 1)) *
       L ^ ((2 * d : ℝ) / (2 * d - 1)) + C₁ * N * L * lam * L) <
       (K₁ * W * L - 1) ^ 2 :=
@@ -294,8 +295,12 @@ theorem exists_maxRadius_le_outer (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv C
   have hb_nonneg : 0 ≤ b := hb_pos.le
   have hsqrtpos : 0 < Real.sqrt d := Real.sqrt_pos.mpr (by exact_mod_cast (by omega : 0 < d))
   have hsqrt_nonneg : 0 ≤ Real.sqrt d := hsqrtpos.le
+  have hKWpos : 0 < K₁ * W * L := by linarith only [hb_ge, hsqrt_nonneg]
+  have hKWnonneg : 0 ≤ K₁ * W * L := hKWpos.le
   have hWLpos : 0 < W * L := by
-    have hprod : 0 < K₁ * (W * L) := by nlinarith [hb_ge, hsqrt_nonneg]
+    have hprod : 0 < K₁ * (W * L) := by
+      have h := hKWpos
+      rwa [mul_assoc] at h
     exact pos_of_mul_pos_right hprod hK₁.le
   have hWLnonneg : 0 ≤ W * L := hWLpos.le
   have hlam : 0 ≤ lam := by
@@ -305,22 +310,24 @@ theorem exists_maxRadius_le_outer (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv C
     · rw [if_neg h2]; exact hL
   by_contra hcon
   rw [not_le] at hcon
-  have hβ : 0 ≤ b + 2 * K₁ * W * L := by linarith [hb_nonneg, hb_ge, hsqrt_nonneg]
-  have hβsucc : b + 2 * K₁ * W * L + 1 < b + 3 * K₁ * W * L := by linarith [hb_ge, hsqrtpos]
+  have hβ : 0 ≤ b + 2 * K₁ * W * L := by linarith only [hb_nonneg, hKWnonneg]
+  have hβsucc : b + 2 * K₁ * W * L + 1 < b + 3 * K₁ * W * L := by
+    linarith only [hb_ge, hsqrtpos]
   obtain ⟨s', t, hst, htn, v, hv, hsite, hgain⟩ := exists_crossing_interval X ω n h0 hstep
     (b := b + 2 * K₁ * W * L) (r := b + 3 * K₁ * W * L) hβ hβsucc hcon
-  have hβpos : 0 < b + 2 * K₁ * W * L := by linarith [hb_nonneg, hb_ge, hsqrt_nonneg]
-  have hrpos : 0 < b + 3 * K₁ * W * L := by linarith [hb_nonneg, hb_ge, hsqrt_nonneg]
+  have hβpos : 0 < b + 2 * K₁ * W * L := by linarith only [hb_nonneg, hKWpos]
+  have hrpos : 0 < b + 3 * K₁ * W * L := by linarith only [hb_nonneg, hKWpos]
   have hκ : (1 / 2 : ℝ) ≤ (b + 2 * K₁ * W * L) / (b + 3 * K₁ * W * L) := by
     rw [le_div_iff₀ hrpos]
-    linarith [hb_nonneg, mul_nonneg hK₁.le hWLnonneg]
+    linarith only [hb_nonneg, hKWnonneg]
   have hgain' : K₁ * W * L - 1 ≤ inner ℝ v (toSpace (X t ω) - toSpace (X s' ω)) :=
-    by linarith [hgain]
+    by linarith only [hgain]
   set m : ℕ := ((Ico s' t).image fun j => X j ω).card with hm
   have hcross := hC₀ X ω s' t v (b + 2 * K₁ * W * L) (b + 3 * K₁ * W * L)
-      (K₁ * W * L - 1) L lam hst hv hβpos hκ (by linarith [hb_ge]) hL hlam hsite hgain'
-      (hvec s' t hst htn) (hint s' t hst htn)
+      (K₁ * W * L - 1) L lam hst hv hβpos hκ (by linarith only [hb_ge, hsqrt_nonneg]) hL hlam
+      hsite hgain' (hvec s' t hst htn) (hint s' t hst htn)
   rw [← hm] at hcross
+  clear hC₀ hvec hint h0 hstep hgain hgain' hβ hβsucc hcon hβpos hrpos hκ hN hLdef hlamdef hWL
   have hDmeas : MeasurableSet (cellSet (fun j => X j ω) n) := measurableSet_cellSet _ n
   have hDbdd : Bornology.IsBounded (cellSet (fun j => X j ω) n) :=
     (Metric.isBounded_ball (x := (0 : EuclideanSpace ℝ (Fin d)))
@@ -329,20 +336,17 @@ theorem exists_maxRadius_le_outer (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv C
   have hβK : b + K₀ * W * L ≤ (b + 2 * K₁ * W * L) - Real.sqrt d / 2 := by
     have hK0WL : K₀ * (W * L) ≤ K₁ * (W * L) := mul_le_mul_of_nonneg_right hK hWLnonneg
     have h1 : K₀ * W * L ≤ K₁ * W * L := by
-      have h2 := hK0WL
-      ring_nf at h2 ⊢
-      exact h2
-    linarith [h1, hb_ge, hsqrt_nonneg]
+      simpa only [mul_assoc] using hK0WL
+    linarith only [h1, hb_ge, hsqrt_nonneg]
   have hβKpos : 0 < (b + 2 * K₁ * W * L) - Real.sqrt d / 2 := by
-    have h : Real.sqrt d / 2 < b + 2 * K₁ * W * L := by linarith [hb_ge, hb_nonneg, hsqrt_nonneg]
-    linarith
+    have h : Real.sqrt d / 2 < b + 2 * K₁ * W * L :=
+      by linarith only [hb_ge, hb_nonneg, hsqrt_nonneg]
+    linarith only [h]
   have hbKpos : 0 < b + K₀ * W * L := by
     have hK0 : 0 ≤ K₀ * (W * L) := mul_nonneg hK₀ hWLnonneg
     have hK0' : 0 ≤ K₀ * W * L := by
-      have h2 := hK0
-      ring_nf at h2 ⊢
-      exact h2
-    linarith [hb_pos, hK0']
+      simpa only [mul_assoc] using hK0
+    linarith only [hb_pos, hK0']
   have htail_mono : tail d (cellSet (fun j => X j ω) n)
         ((b + 2 * K₁ * W * L) - Real.sqrt d / 2) ≤
       tail d (cellSet (fun j => X j ω) n) (b + K₀ * W * L) :=
@@ -357,13 +361,9 @@ theorem exists_maxRadius_le_outer (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv C
     exact Finset.mem_image.mpr
       ⟨j, Finset.mem_range.mpr (lt_of_lt_of_le (Finset.mem_Ico.mp hj).2 htn), rfl⟩
   have hρ : Real.sqrt d / 2 < b + 2 * K₁ * W * L := by
-    linarith [hb_ge, hb_nonneg, hsqrt_nonneg]
+    linarith only [hb_ge, hb_nonneg, hsqrt_nonneg]
   have hρR : b + 2 * K₁ * W * L ≤ b + 3 * K₁ * W * L := by
-    have h3 : 0 ≤ K₁ * W * L := by
-      have h := mul_nonneg hK₁.le hWLnonneg
-      ring_nf at h ⊢
-      exact h
-    linarith [h3]
+    linarith only [hKWnonneg]
   have hSR : ∀ x ∈ ((Ico s' t).image fun j => X j ω),
       b + 2 * K₁ * W * L < euclidNorm x ∧ euclidNorm x < b + 3 * K₁ * W * L := by
     intro x hx
@@ -371,26 +371,23 @@ theorem exists_maxRadius_le_outer (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv C
     exact ⟨lt_of_lt_of_le (hsite j hj).1 (inner_toSpace_le_euclidNorm hv _), (hsite j hj).2⟩
   have hcard := card_le_tail hd1 (fun j => X j ω) n hS hρ hρR hSR
   rw [← hm] at hcard
+  clear hDmeas hDbdd htail_mono hS hρ hρR hSR hβK hβKpos hbKpos v hv hsite hst htn hm
   have hpow : (b + 3 * K₁ * W * L + Real.sqrt d / 2) ^ ((d : ℝ) - 1) ≤
       (2 * c₂ + 1) ^ ((d : ℝ) - 1) * N ^ ((d : ℝ) - 1) := by
     have hbase_nonneg : 0 ≤ b + 3 * K₁ * W * L + Real.sqrt d / 2 := by
-      have h3WL : 0 ≤ 3 * K₁ * W * L := by
-        have h := mul_nonneg hK₁.le hWLnonneg
-        ring_nf at h ⊢
-        linarith [h]
-      linarith [hb_nonneg, h3WL, hsqrt_nonneg]
+      linarith only [hb_nonneg, hKWnonneg, hsqrt_nonneg]
     have hrN : b + 3 * K₁ * W * L + Real.sqrt d / 2 ≤ (2 * c₂ + 1) * N := by
       have h2 : b + 3 * K₁ * W * L + Real.sqrt d / 2 ≤ 2 * (c₂ * N) := by
         linarith only [hb2, hb_le]
       have h3 : 2 * (c₂ * N) ≤ (2 * c₂ + 1) * N := by
         have hdiff : (2 * c₂ + 1) * N - 2 * (c₂ * N) = N := by ring
-        linarith [hNpos.le, hdiff.le]
+        linarith only [hNpos, hdiff]
       exact h2.trans h3
     have hdexp : 0 ≤ (d : ℝ) - 1 := by
       have hdR : (1 : ℝ) ≤ (d : ℝ) := by exact_mod_cast hd1
-      linarith
+      linarith only [hdR]
     have h := Real.rpow_le_rpow hbase_nonneg hrN hdexp
-    have hpos1 : 0 ≤ 2 * c₂ + 1 := by linarith
+    have hpos1 : 0 ≤ 2 * c₂ + 1 := by linarith only [hc₂]
     have hmul : ((2 * c₂ + 1) * N) ^ ((d : ℝ) - 1) =
         (2 * c₂ + 1) ^ ((d : ℝ) - 1) * N ^ ((d : ℝ) - 1) :=
       Real.mul_rpow hpos1 hNpos.le
@@ -402,7 +399,7 @@ theorem exists_maxRadius_le_outer (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv C
     have hAω : 0 ≤ d * unitBallVolume d :=
       mul_nonneg (Nat.cast_nonneg d) (unitBallVolume_pos d).le
     have hP2nonneg : 0 ≤ (2 * c₂ + 1) ^ ((d : ℝ) - 1) * N ^ ((d : ℝ) - 1) :=
-      mul_nonneg (Real.rpow_nonneg (by linarith) _) (Real.rpow_nonneg hNpos.le _)
+      mul_nonneg (Real.rpow_nonneg (by linarith only [hc₂]) _) (Real.rpow_nonneg hNpos.le _)
     have hT1nonneg : 0 ≤ tail d (cellSet (fun j => X j ω) n)
         ((b + 2 * K₁ * W * L) - Real.sqrt d / 2) :=
       CERW.Support.Geometry.tail_nonneg _ _
@@ -457,6 +454,6 @@ theorem exists_maxRadius_le_outer (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) {Cv C
     mul_le_mul_of_nonneg_left (add_le_add hterm1 hterm2) hC₀pos.le
   have hle : (K₁ * W * L - 1) ^ 2 ≤ C₀ * ((C₁ * N * L) ^ ((2 * d : ℝ) / (2 * d - 1)) *
       L ^ ((2 * d : ℝ) / (2 * d - 1)) + C₁ * N * L * lam * L) := le_trans hcross hcomb
-  linarith [hle, hcontr_a]
+  linarith only [hle, hcontr_a]
 
 end CERW.Support.Coarse
