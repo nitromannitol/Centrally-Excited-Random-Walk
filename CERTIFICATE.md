@@ -4,7 +4,7 @@ Formalizes statements pinned in `paper/limit-shapes.tex` as the Lean library `CE
 
 ## What is claimed
 
-Of 39 node(s) registered in `ledger/manifest.yaml`: 18 `SEALED`, 7 `PROVED`, 2 `FROZEN`, 12 `DRAFT_SORRY`. Only `SEALED` and `PROVED` nodes are proved with a clean axiom closure; `FROZEN` nodes are cited results carried as explicit hypotheses and are assumed here, not proved; `CONDITIONAL` and `DRAFT_SORRY` nodes are not yet sealed.
+Of 39 node(s) registered in `ledger/manifest.yaml`: 20 `SEALED`, 7 `PROVED`, 2 `FROZEN`, 10 `DRAFT_SORRY`. Only `SEALED` and `PROVED` nodes are proved with a clean axiom closure; `FROZEN` nodes are cited results carried as explicit hypotheses and are assumed here, not proved; `CONDITIONAL` and `DRAFT_SORRY` nodes are not yet sealed.
 
 ## Environment
 
@@ -13,8 +13,8 @@ Of 39 node(s) registered in `ledger/manifest.yaml`: 18 `SEALED`, 7 `PROVED`, 2 `
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/limit-shapes.tex`) SHA-256 | `8a17876c34051d2829230f755879a4266dc66515936f046d55209406133e64f0` |
-| Build | succeeded, 9010 jobs |
-| Build warnings | 12 |
+| Build | succeeded, 9011 jobs |
+| Build warnings | 10 |
 | Generated | 2026-09-30 |
 
 ## Reproducing it
@@ -49,7 +49,7 @@ python3 -m leanform_tools.certificate . --check
 | 13 | `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `DRAFT_SORRY` | `sorryAx` (registered draft) |
 | 14 | `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `DRAFT_SORRY` | `sorryAx` (registered draft) |
 | 15 | `thm-sharp-width` | `CERW.Frozen.sharp_width` | `SEALED` | classical only |
-| 16 | `thm-norm-shape` | `CERW.Frozen.norm_shape` | `DRAFT_SORRY` | `sorryAx` (registered draft) |
+| 16 | `thm-norm-shape` | `CERW.Frozen.norm_shape` | `SEALED` | classical only |
 | 17 | `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `SEALED` | classical only |
 | 18 | `lem-local` | `CERW.Frozen.norm_local_time_potential` | `SEALED` | classical only |
 | 19 | `lem-freedman` | `CERW.Frozen.freedman_bound` | `SEALED` | classical only |
@@ -58,7 +58,7 @@ python3 -m leanform_tools.certificate . --check
 | 22 | `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `SEALED` | classical only |
 | 23 | `lem-radial` | `CERW.Frozen.norm_radial_test` | `SEALED` | classical only |
 | 24 | `lem-crossing` | `CERW.Frozen.drift_crossing` | `SEALED` | classical only |
-| 25 | `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `DRAFT_SORRY` | `sorryAx` (registered draft) |
+| 25 | `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `SEALED` | classical only |
 | 26 | `lem-layer` | `CERW.Frozen.layer_potential` | `SEALED` | classical only |
 | 27 | `lem-cap` | `CERW.Frozen.moreau_cap` | `SEALED` | classical only |
 | 28 | `lem-contact` | `CERW.Frozen.contact_potential` | `SEALED` | classical only |
@@ -124,5 +124,5 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 
 - Anything not registered as a node in `ledger/manifest.yaml` is outside this certificate; `python3 -m leanform_tools.check_coverage` tracks whether the paper's statements are all registered.
 - The 2 `FROZEN` node(s) are cited results, stated as propositions in `CERW/External/` and carried as explicit hypotheses by the theorems that use them; they are assumed here, not proved.
-- `lem-fixed-site-centering`, `lem-separated-brackets`, `prop-bulk-profile`, `prop-norm-shape`, `prop-stronger-outer`, `thm-fluctuations`, `thm-moment-fluctuations`, `thm-norm-shape`, `thm-sharp-bulk`, `thm-sharp-radii`, `thm-sharp-radii-lil`, `thm-site-fluctuations` are `DRAFT_SORRY`: the statement is frozen and registered, and no proof exists yet.
+- `lem-fixed-site-centering`, `lem-separated-brackets`, `prop-bulk-profile`, `prop-stronger-outer`, `thm-fluctuations`, `thm-moment-fluctuations`, `thm-sharp-bulk`, `thm-sharp-radii`, `thm-sharp-radii-lil`, `thm-site-fluctuations` are `DRAFT_SORRY`: the statement is frozen and registered, and no proof exists yet.
 

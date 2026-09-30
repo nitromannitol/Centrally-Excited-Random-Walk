@@ -61,7 +61,7 @@ live in `CERW/Model/`.
 | `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `limit-shapes.tex:165-170`, `thm:sharp` | DRAFT_SORRY |
 | `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `limit-shapes.tex:171-175`, `thm:sharp` | DRAFT_SORRY |
 | `thm-sharp-width` | `CERW.Frozen.sharp_width` | `limit-shapes.tex:176-187`, `thm:sharp` | SEALED |
-| `thm-norm-shape` | `CERW.Frozen.norm_shape` | `limit-shapes.tex:329-342`, `thm:norm-shape` | DRAFT_SORRY |
+| `thm-norm-shape` | `CERW.Frozen.norm_shape` | `limit-shapes.tex:329-342`, `thm:norm-shape` | SEALED |
 | `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `limit-shapes.tex:360-365`, `lem:ballpotential` | SEALED |
 | `lem-local` | `CERW.Frozen.norm_local_time_potential` | `limit-shapes.tex:384-400`, `lem:local` | SEALED |
 | `lem-freedman` | `CERW.Frozen.freedman_bound` | `limit-shapes.tex:436-441`, `lem:freedman` | SEALED |
@@ -70,7 +70,7 @@ live in `CERW/Model/`.
 | `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `limit-shapes.tex:546-553`, `prop:coarse` | SEALED |
 | `lem-radial` | `CERW.Frozen.norm_radial_test` | `limit-shapes.tex:566-575`, `lem:radial` | SEALED |
 | `lem-crossing` | `CERW.Frozen.drift_crossing` | `limit-shapes.tex:661-666`, `lem:crossing` | SEALED |
-| `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `limit-shapes.tex:745-761`, `prop:norm-shape` | DRAFT_SORRY |
+| `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `limit-shapes.tex:745-761`, `prop:norm-shape` | SEALED |
 | `lem-layer` | `CERW.Frozen.layer_potential` | `limit-shapes.tex:779-784`, `lem:layer` | SEALED |
 | `lem-cap` | `CERW.Frozen.moreau_cap` | `limit-shapes.tex:809-814`, `lem:cap` | SEALED |
 | `lem-contact` | `CERW.Frozen.contact_potential` | `limit-shapes.tex:891-896`, `lem:contact` | SEALED |

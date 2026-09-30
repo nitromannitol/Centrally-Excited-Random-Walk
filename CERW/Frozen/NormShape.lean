@@ -1,4 +1,15 @@
 import CERW.Model
+import CERW.Support.Norm.BallLayer
+import CERW.Support.Norm.CellGradient
+import CERW.Support.Norm.Coarse
+import CERW.Support.Norm.ContactPotential
+import CERW.Support.Norm.Crossing
+import CERW.Support.Norm.Geometry
+import CERW.Support.Norm.LocalTime
+import CERW.Support.Norm.MoreauCap
+import CERW.Support.Norm.OuterCrossing
+import CERW.Support.Norm.Radial
+import CERW.Support.Norm.ShapeRates
 
 /-!
 # thm:norm-shape
@@ -80,4 +91,5 @@ theorem CERW.Frozen.norm_shape {d : ℕ} (hd : 2 ≤ d)
       (∀ x : Site d, ∃ᶠ j in atTop, X j ω = x)
 -- FROZEN-STATEMENT-END
 := by
-  sorry
+  revert hX X μ Ω hεΨ hε ε hξ0 hξ ξ hΨ Ψ hd d
+  exact (CERW.Support.Norm.norm_shape_of (CERW.Support.Norm.norm_shape_rates_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) (CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing) (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) (CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing) @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.layer_potential @CERW.Support.Norm.moreau_cap CERW.Support.Norm.outer_crossing_holds @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential))

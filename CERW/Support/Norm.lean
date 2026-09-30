@@ -9,3 +9,4 @@ import CERW.Support.Norm.CellGradient
 import CERW.Support.Norm.Coarse
 import CERW.Support.Norm.LocalTime
 import CERW.Support.Norm.ContactPotential
+import CERW.Support.Norm.ShapeRates

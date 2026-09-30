@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 16:42.
+generation time. Regenerated 2026-09-30 19:39.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -181,7 +181,7 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | thm-sharp-radii-lil | `CERW.Frozen.sharp_radii_lil` | thm:sharp, part (ii) | DRAFT_SORRY |
 | thm-sharp-bulk | `CERW.Frozen.sharp_bulk` | thm:sharp, part (iii) | DRAFT_SORRY |
 | thm-sharp-width | `CERW.Frozen.sharp_width` | thm:sharp, part (iv) | SEALED |
-| thm-norm-shape | `CERW.Frozen.norm_shape` | thm:norm-shape | DRAFT_SORRY |
+| thm-norm-shape | `CERW.Frozen.norm_shape` | thm:norm-shape | SEALED |
 | lem-ballpotential | `CERW.Frozen.norm_ball_potential` | lem:ballpotential | SEALED |
 | lem-local | `CERW.Frozen.norm_local_time_potential` | lem:local | SEALED |
 | lem-freedman | `CERW.Frozen.freedman_bound` | lem:freedman | SEALED |
@@ -190,7 +190,7 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | prop-coarse | `CERW.Frozen.norm_coarse_bounds` | prop:coarse | SEALED |
 | lem-radial | `CERW.Frozen.norm_radial_test` | lem:radial | SEALED |
 | lem-crossing | `CERW.Frozen.drift_crossing` | lem:crossing | SEALED |
-| prop-norm-shape | `CERW.Frozen.norm_shape_rates` | prop:norm-shape | DRAFT_SORRY |
+| prop-norm-shape | `CERW.Frozen.norm_shape_rates` | prop:norm-shape | SEALED |
 | lem-layer | `CERW.Frozen.layer_potential` | lem:layer | SEALED |
 | lem-cap | `CERW.Frozen.moreau_cap` | lem:cap | SEALED |
 | lem-contact | `CERW.Frozen.contact_potential` | lem:contact | SEALED |
@@ -206,4 +206,4 @@ node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`
 | lem-separated-brackets | `CERW.Frozen.separated_brackets` | lem:separated-brackets | DRAFT_SORRY |
 | prop-log-lower | `CERW.Frozen.log_lower_bounds` | prop:log-lower | SEALED |
 
-**Revised surface:** 18 of 30 statements proved.
+**Revised surface:** 20 of 30 statements proved.

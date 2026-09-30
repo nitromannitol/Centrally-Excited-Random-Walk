@@ -192,7 +192,7 @@ nodes:
     source: limit-shapes.tex:329-342 (label thm:norm-shape)
     file: CERW/Frozen/NormShape.lean
     export: CERW.Frozen.norm_shape
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 2d3df99b7e7b2255c43fc0572eaaab84dd2b700427303abb9633798d13d3d3db
     provider: CERW.Frozen.norm_shape
     approved: "2026-09-30"
@@ -291,7 +291,7 @@ nodes:
     source: limit-shapes.tex:745-761 (label prop:norm-shape)
     file: CERW/Frozen/NormShapeRates.lean
     export: CERW.Frozen.norm_shape_rates
-    state: DRAFT_SORRY
+    state: SEALED
     frozen_sha256: 957071d857eb59f201c69baced31da2dc3a17fc662e15b59f8f59ffb8eba3865
     provider: CERW.Frozen.norm_shape_rates
     approved: "2026-09-30"

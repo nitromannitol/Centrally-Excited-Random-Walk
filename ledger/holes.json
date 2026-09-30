@@ -4,8 +4,6 @@
     "CERW/Frozen/FixedSiteCentering.lean": 1,
     "CERW/Frozen/FluctuationRates.lean": 1,
     "CERW/Frozen/MomentFluctuations.lean": 1,
-    "CERW/Frozen/NormShape.lean": 1,
-    "CERW/Frozen/NormShapeRates.lean": 1,
     "CERW/Frozen/OuterRadius.lean": 1,
     "CERW/Frozen/SeparatedBrackets.lean": 1,
     "CERW/Frozen/SharpBulk.lean": 1,
@@ -13,5 +11,5 @@
     "CERW/Frozen/SharpRadiiLil.lean": 1,
     "CERW/Frozen/SiteFluctuations.lean": 1
   },
-  "total": 12
+  "total": 10
 }
