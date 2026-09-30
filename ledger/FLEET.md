@@ -140,7 +140,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 34 | heartbeat margin: `EnvelopeHigh` | ds2 | v4.1-flash | 5286 | — | ↑166k ↓52k | accepted | 0 | 564 | `CERW/Support/Contact/EnvelopeHigh.lean` |
 | 36 | heartbeat margin: `Shell` | ds2 | v4.1-flash | 5087 | — | ↑87k ↓26k | accepted | 0 | 343 | `CERW/Support/Coarse/Shell.lean` |
 | 37 | heartbeat margin: `QuadraticError` | ds2 | v4.1-flash | 5285 | — | ↑113k ↓34k | accepted | 0 | 516 | `CERW/Support/Contact/QuadraticError.lean` |
-| 38 | heartbeat margin: `LocalAssembly` | ds2 | v4.1-flash | — | — | — | in flight | — | — | `wip/LocalAssembly.lean` |
+| 38 | heartbeat margin: `LocalAssembly` | ds2 | v4.1-flash | 5301 | — | ↑97k ↓35k | accepted | 0 | 404 | `CERW/Support/LocalTime/LocalAssembly.lean` |
 | 34 | heartbeat margin: `MassHigh` | ds3 | v4.1-flash | 5244 | — | ↑200k ↓69k | accepted | 0 | 568 | `CERW/Support/Contact/MassHigh.lean` |
 | 35 | heartbeat margin: `OuterBound` | ds3 | v4.1-flash | 5205 | — | ↑121k ↓48k | accepted | 0 | 459 | `CERW/Support/Coarse/OuterBound.lean` |
 | 37 | heartbeat margin: `GradientAsymp` | ds3 | v4.1-flash | 5280 | — | ↑129k ↓42k | accepted | 0 | 702 | `CERW/Support/LocalTime/GradientAsymp.lean` |
@@ -157,7 +157,7 @@ thinking high, via `pi --no-extensions`, unless noted.
 
 ## Observations
 
-* **Waves 1–26.** Every returned DeepSeek packet was accepted: 118/118, two after a statement repair. One packet (wave 32) was withdrawn and
+* **Waves 1–26.** Every returned DeepSeek packet was accepted: 119/119, two after a statement repair. One packet (wave 32) was withdrawn and
   finished by the director. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 23/23.
 * **Large contexts defeat `nlinarith`.** In wave 32 the worker's single-theorem proof of the inner clauses timed out at the

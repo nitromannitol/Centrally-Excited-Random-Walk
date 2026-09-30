@@ -22,5 +22,5 @@ except the aggregators: 154 of 168 pass, and the 14 below do not.
 | `CERW/Support/Coarse/Tail.lean` | done |
 | `CERW/Support/Contact/QuadraticError.lean` | done |
 | `CERW/Support/LocalTime/GradientAsymp.lean` | done |
-| `CERW/Support/LocalTime/LocalAssembly.lean` | in flight |
+| `CERW/Support/LocalTime/LocalAssembly.lean` | done |
 | `CERW/Support/Main/MassEventPlanar.lean` | in flight |

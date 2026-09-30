@@ -150,6 +150,30 @@ private lemma interval_bound {d : ℕ} {b : Site d → ℝ}
   nlinarith [mul_le_mul_of_nonneg_left hLlam hCb0, mul_le_mul_of_nonneg_left hLlam hCI0,
     mul_nonneg hε hk0]
 
+/-- Combining the five error terms of the approximate local-time bound: if each term is bounded by
+its error scale, then their sum is bounded by the summed scale. -/
+private lemma approx_error_combination {Cb CS CM CI Bn ε m logn A B C D E : ℝ}
+    (hCb0 : 0 ≤ Cb) (hCS0 : 0 ≤ CS) (hCM0 : 0 ≤ CM)
+    (hε : 0 ≤ ε) (hBn : 0 ≤ Bn)
+    (hA : |A| ≤ Cb * (2 * logn)) (hB : |B| ≤ Cb * (2 * logn))
+    (hC : |C| ≤ CS * ε * (2 * logn)) (hD : |D| ≤ CM * ε * (2 * logn))
+    (hE : |E| ≤ CI * (Bn * Real.sqrt m + logn)) :
+    |A + B + C + D + E| ≤
+      (4 * Cb + 2 * CS * ε + 2 * CM * ε + CI) * (Bn * Real.sqrt m + logn) := by
+  have hA' := abs_le.mp hA
+  have hB' := abs_le.mp hB
+  have hC' := abs_le.mp hC
+  have hD' := abs_le.mp hD
+  have hE' := abs_le.mp hE
+  have hK0 : 0 ≤ 4 * Cb + 2 * CS * ε + 2 * CM * ε := by
+    have h1 := mul_nonneg hCS0 hε
+    have h2 := mul_nonneg hCM0 hε
+    linarith
+  have hterm : 0 ≤ (4 * Cb + 2 * CS * ε + 2 * CM * ε) * Bn * Real.sqrt m :=
+    mul_nonneg (mul_nonneg hK0 hBn) (Real.sqrt_nonneg m)
+  rw [abs_le]
+  refine ⟨?_, ?_⟩ <;> nlinarith [hterm]
+
 /-- The pathwise bound of `eq:approx` at a real point `y`, `|y| ≤ 2n`: at the site `z` of the cell
 of `y`, the Dynkin decomposition of `ℓ_n(z)`, the source-sum comparison, the cell modulus and the
 martingale bound. -/
@@ -225,8 +249,8 @@ private lemma approx_bound {d : ℕ} (hd : 2 ≤ d) {b : Site d → ℝ}
       (CERW.Support.Occupation.intervalMax_le_maxLocalTime _ le_rfl))
   have hmt' : |dynkin ε (fun z => b (z - cellCenter y)) X n ω| ≤
       CI * (Bn * Real.sqrt (maxLocalTime (fun j => X j ω) n) + Real.log ((n : ℝ) + 2)) :=
-    hmt.trans (mul_le_mul_of_nonneg_left (by nlinarith [mul_le_mul_of_nonneg_left hmono hBn])
-      hCI0)
+    hmt.trans (mul_le_mul_of_nonneg_left
+      (add_le_add (mul_le_mul_of_nonneg_left hmono hBn) le_rfl) hCI0)
   have hlog1 : Real.log (4 * (n : ℝ) + 2) ≤ 2 * Real.log ((n : ℝ) + 2) :=
     log_le_two_mul_log n (by linarith) le_rfl
   have hlog2 : Real.log ((n : ℝ) + Real.sqrt d + 2) ≤ 2 * Real.log ((n : ℝ) + 2) :=
@@ -250,9 +274,21 @@ private lemma approx_bound {d : ℕ} (hd : 2 ≤ d) {b : Site d → ℝ}
   have hcell : cellLocalTime (fun j => X j ω) n y =
       (localTime (fun j => X j ω) n (cellCenter y) : ℝ) := rfl
   rw [hcell, hdyn]
-  rw [abs_le] at hb1 hb2 hsrc' hmod' hmt' ⊢
-  refine ⟨?_, ?_⟩ <;> nlinarith [hb1.1, hb1.2, hb2.1, hb2.2, hsrc'.1, hsrc'.2, hmod'.1, hmod'.2,
-    hmt'.1, hmt'.2]
+  have hdecomp : b (X n ω - cellCenter y) - b (-cellCenter y) +
+      ε * (∑ z ∈ departureRange (fun j => X j ω) n,
+        inner ℝ (unitDir (toSpace z)) (centralDiff b (z - cellCenter y))) -
+        dynkin ε (fun z => b (z - cellCenter y)) X n ω -
+        potential d ε (cellSet (fun j => X j ω) n) y =
+      b (X n ω - cellCenter y) + (-b (-cellCenter y)) +
+        (ε * (∑ z ∈ departureRange (fun j => X j ω) n,
+          inner ℝ (unitDir (toSpace z)) (centralDiff b (z - cellCenter y))) -
+          potential d ε (cellSet (fun j => X j ω) n) (toSpace (cellCenter y))) +
+        (potential d ε (cellSet (fun j => X j ω) n) (toSpace (cellCenter y)) -
+          potential d ε (cellSet (fun j => X j ω) n) y) +
+        (-dynkin ε (fun z => b (z - cellCenter y)) X n ω) := by ring
+  rw [hdecomp]
+  exact approx_error_combination hCb0 hCS0 hCM0 hε hBn hb1
+    (by rwa [abs_neg]) hsrc' (by rwa [abs_sub_comm]) (by rwa [abs_neg])
 
 /-- The bound `1 ≤ C n^{-p}` for `n ≤ n₀` once `C ≥ n₀^p`. -/
 private lemma one_le_mul_rpow_neg {C p : ℝ} {n n₀ : ℕ} (hp : 0 < p) (hn : 0 < n)
