@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 02:36.
+generation time. Regenerated 2026-09-30 02:37.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -134,7 +134,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-hausdorff-arith | ds3 | `Support/Main/HausdorffArith.lean` | — | Hausdorff and planar exponent identities | LANDED |
 | s-contact-setup | ds2 | `Support/Contact/ContactSetup.lean` | s-contact-cell | eq:bm, eq:contactcell, the contact modulus | LANDED |
 | s-outer-envelope | ds3 | `Support/Coarse/OuterEnvelope.lean` | s-tailend, s-outer, s-envelope-shell | H_n ≤ b + C W L from the envelope | IN-FLIGHT (ds3, 02:32) |
-| s-inner-clauses | ds4 | `Support/Main/InnerClauses.lean` | s-volume-profile, s-good-event | inner, volume and profile clauses and the hole | IN-FLIGHT (ds4, 02:31) |
+| s-inner-clauses | ds4 | `Support/Main/InnerClauses.lean` | s-volume-profile, s-good-event | inner, volume and profile clauses and the hole | LANDED |
 | s-assembly | sonnet | `Support/Main/GoodCore.lean` | s-contact-setup, s-var-planar, s-var-high, s-inradius, s-inner-clauses, s-outer-envelope, s-good-event | fluctEvent ⇒ fluctGood and a hole, for large n | IN-FLIGHT (director/sonnet) |
 | s-fluct-assembly | director | `Support/Main/FluctAssembly.lean` | s-event-prob, s-assembly, s-borel-cantelli, s-shape-assembly | thm:fluctuations and thm:shape from the kernel facts | IN-FLIGHT (director/sonnet) |
 | s-hausdorff-assembly | director | `Support/Main/HausdorffAssembly.lean` | s-event-prob, s-assembly, s-hausdorff-good | eq:hausdorff (two-sided) from the kernel facts | IN-FLIGHT (director/sonnet) |
@@ -149,7 +149,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | **thm-shape** | director | `Frozen/BallShape.lean` | s-fluct-assembly | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | s-hausdorff-assembly | eq:hausdorff | DRAFT |
 
-**Counts:** DRAFT 7, IN-FLIGHT 6, LANDED 98, SUPERSEDED 7.
+**Counts:** DRAFT 7, IN-FLIGHT 5, LANDED 99, SUPERSEDED 7.
 
 ## Pre-freeze gate
 
