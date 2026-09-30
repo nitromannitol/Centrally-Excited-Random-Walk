@@ -4,3 +4,4 @@ import CERW.Support.Lower.LogLower
 import CERW.Support.Lower.SharpRadii
 import CERW.Support.Lower.BulkProfile
 import CERW.Support.Lower.SeparatedBrackets
+import CERW.Support.Lower.SharpBulk
