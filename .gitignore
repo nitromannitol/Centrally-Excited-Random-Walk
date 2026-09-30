@@ -1,0 +1,12 @@
+.lake/
+scratch/
+wip/
+__pycache__/
+*.olean
+*.ilean
+*.trace
+*.log
+PLAN.md
+STATUS.md
+brief/
+paper/README-source.md

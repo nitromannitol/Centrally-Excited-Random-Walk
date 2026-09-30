@@ -1,0 +1,302 @@
+\section{The inner radius and the local-time profile}\label{sec:contact}
+We compare the range with its largest centered ball and then determine
+the radius from the total elapsed time.
+
+Fix $p>0$ and intersect the events in Proposition~\ref{prop:coarse},
+Lemmas~\ref{lem:local} and~\ref{lem:radial}, and
+\eqref{eq:localmart} and~\eqref{eq:vector}. The complement has probability
+at most $Cn^{-p}$. All arguments below are deterministic on this event,
+apart from the additional concentration estimate for the quadratic
+martingale, whose exceptional probability has the same bound.
+Choose a deterministic $K>a+1$ large enough that the coarse radius
+bound implies $D_n\subset B(0,(K-1)N)$. On $B(0,KN)$,
+\eqref{eq:approx} gives
+\begin{equation}\label{eq:global}
+|\widetilde\ell_n(y)-U_{D_n}(y)|\leq\delta_0 ,\qquad
+\delta_0=\begin{cases}C\sqrt N L,&d=2,\\
+C(\sqrt{NL}+L),&d\geq3
+\end{cases}\, .
+\end{equation}
+
+
+Let $D=D_n$ and let $W=NQ^{1/d}$. Write the centered inradius and excess volume as
+\begin{equation}\label{eq:bm}
+ b=\inf\{|y|:y\notin D\},\qquad E=D\setminus B(0,b),\qquad m=|E|\, .
+\end{equation}
+The ball $B(0,b)$ is contained in $D$, up to immaterial cell boundaries.
+Choose $y_0$ of norm $b$ that is a limit of points outside $D$.
+There is an unoccupied lattice cell $C_z$ whose closure contains $y_0$.
+Thus
+\begin{equation}\label{eq:contactcell}
+ \ell_n(z)=0,\quad |z-y_0|\leq\sqrt d/2,\quad |z|\geq b\, .
+\end{equation}
+This follows by taking a convergent subsequence from the finitely
+many cells adjacent to $y_0$; no regularity of $\partial D$ is assumed.
+
+\subsection{The potential at an unvisited site}
+The excess volume gives a positive contribution to the potential at $y_0$.
+We claim that
+\begin{equation}\label{eq:contactbound}
+c\frac{m}{N^{d-1}}\leq U_{D_n}(y_0)
+\leq C(\sqrt{B_zL}+L)\, .
+\end{equation}
+In addition, for every $y\in\R^d$,
+\begin{equation}\label{eq:packing}
+|U_E(y)|\leq Cm^{1/d}\, .
+\end{equation}
+
+If $s=|v|\geq b=|y_0|$, then
+\[
+ \frac{u_v\cdot(v-y_0)}{|v-y_0|^d}
+ =\frac{s^2-v\cdot y_0}{s|v-y_0|^d}
+ \geq\frac1{2s}|v-y_0|^{2-d}
+ \geq 2^{1-d}s^{1-d}\, .
+\]
+The first inequality uses
+$2(s^2-v\cdot y_0)=|v-y_0|^2+s^2-b^2$; the second uses
+$|v-y_0|\leq2s$ and $d\geq2$.
+The singular point is immaterial in the integral. Since
+$U_{B(0,b)}(y_0)=0$ and $s\leq CN$ on $D$, integration proves
+the lower bound in \eqref{eq:contactbound}. The upper bound follows
+from \eqref{eq:pointwise}, \eqref{eq:localmart}, \eqref{eq:cellmodulus}, and
+$\ell_n(z)=0$; the target is admissible because $|z|=O(N)<3n$. Finally $|u_v|\leq1$, and integrating
+$|v-y|^{1-d}$ over a set of volume $m$ is maximized by a centered ball.
+Its integral is $O(m^{1/d})$, proving \eqref{eq:packing}.
+
+
+
+\subsection{The contact variance in higher dimensions}
+Suppose that $d\geq3$. A summable convolution bounds the local variance
+near the unvisited site.
+Put $V=m^{1/d}$ and $s_b(y)=(b-|y|)_+$. Equations
+\eqref{eq:pointwise}, \eqref{eq:localmart}, \eqref{eq:ballpotential}, and
+\eqref{eq:packing} imply, at occupied lattice sites,
+\[
+ \ell_n(y)\leq c_0s_b(y)+C(V+L)+C\sqrt{B_yL}\, .
+\]
+Let
+\[
+ k(x)=(1+|x|)^{2-2d}\ind_{\{|x|\leq3n\}},\quad
+ k_0=\sum_xk(x),\quad J=\sum_x|x|k(x)\, .
+\]
+For sufficiently large $n$, \eqref{eq:coarse} ensures that
+$B_y=(k*\ell_n)(y)$ at every occupied site and at $z$.
+Moreover
+\begin{equation}\label{eq:kernelmoments}
+ k_0\leq C,\qquad
+ J\leq\begin{cases}CL,&d=3,\\C,&d\geq4\end{cases}\, .
+\end{equation}
+Choose a deterministic $\lambda>0$ so small that
+$\lambda k_0<1/2$ for every $n$. Young's inequality gives
+\begin{equation}\label{eq:resolvent}
+ \ell_n\leq c_0s_b+C(V+L)+\lambda k*\ell_n
+ \quad\hbox{on all of }\Z^d\, .
+\end{equation}
+Outside the occupied set the inequality holds trivially because its
+left side is zero and its right side is nonnegative.
+
+Since $s_b$ is $1$-Lipschitz,
+\[
+ (k^{*j}*s_b)(y)\leq k_0^j s_b(y)+j k_0^{j-1}J\qquad(j\geq1)\, .
+\]
+Iterate \eqref{eq:resolvent} and sum the two geometric series. The remaining
+term tends to zero since the operator norm on $\ell^\infty$ is
+$\lambda k_0<1/2$ and $\ell_n$ is bounded.
+Using \eqref{eq:kernelmoments} yields
+\begin{equation}\label{eq:envelopehigh}
+ \ell_n(y)\leq C(s_b(y)+V+L)\quad(y\in\Z^d)\, .
+\end{equation}
+At the unoccupied center $z$, $s_b(z)=0$, so convolution once more gives
+\begin{equation}\label{eq:holebracket}
+ B_z\leq C(V+L)\, .
+\end{equation}
+Indeed $s_b(x)\leq|x-z|$ and hence $(k*s_b)(z)\leq J$.
+The contact inequality now becomes
+\[
+ m\leq CN^{d-1}\big(m^{1/(2d)}\sqrt L+L\big)\, .
+\]
+If the second term is at least half the left side, then
+$m\leq CN^{d-1}L$. Otherwise raise the inequality for
+$m^{1-1/(2d)}$ to the power $2d/(2d-1)$. In both cases,
+\begin{equation}\label{eq:masshigh}
+ m\leq CN^{2d(d-1)/(2d-1)}L^{d/(2d-1)}
+       =CN^d Q\, .
+\end{equation}
+The bound $N^{d-1}L$ is absorbed because $N/L\to\infty$.
+
+\subsection{The planar contact variance}
+Suppose that $d=2$. A first bound on the excess volume removes the
+logarithmic loss in the variance at the unvisited site.
+The coarse global approximation \eqref{eq:global} and the contact
+inequality first give
+\[
+ m\leq CN^{3/2}L\, .
+\]
+By \eqref{eq:ballpotential} and \eqref{eq:packing}, for every occupied $x$,
+\[
+ \ell_n(x)\leq c_0(b-|x|)_+
+       +CN^{3/4}L^{1/2}+C\sqrt N L\, .
+\]
+At the unoccupied center $z$, $(b-|x|)_+\leq|x-z|$.
+All occupied sites lie within distance $CN$ of $z$, so
+\[
+ \sum_{|x-z|\leq CN}\frac{(b-|x|)_+}{(1+|x-z|)^2}
+ \leq CN,\qquad
+ \sum_{|x-z|\leq CN}(1+|x-z|)^{-2}\leq CL\, .
+\]
+Therefore
+\[
+ B_z\leq C\big(N+N^{3/4}L^{3/2}+\sqrt N L^2\big)
+       \leq CN\, .
+\]
+for all sufficiently large $n$. Applying
+\eqref{eq:contactbound} again proves
+\begin{equation}\label{eq:massplanar}
+ m\leq CN^{3/2}\sqrt L=CN^2Q\, .
+\end{equation}
+Combining this with \eqref{eq:global} and \eqref{eq:packing} gives
+\begin{equation}\label{eq:envelopeplanar}
+ \ell_n(y)\leq c_0(b-|y|)_++CW,
+ \qquad W=N^{3/4}L^{1/4}\, .
+\end{equation}
+Here $\sqrt N L=o(W)$.
+In every dimension, \eqref{eq:envelopehigh} or \eqref{eq:envelopeplanar}
+therefore implies
+\begin{equation}\label{eq:shellW}
+ M_{\rm sh}(r)\leq CW\quad\hbox{whenever }r\geq b+3\, .
+\end{equation}
+
+\subsection{Determining the radius}
+The squared displacement determines the radius through the elapsed time.
+Since every step has squared length one and conditional mean
+$-\eps I_ju_{X_j}$, the process
+\[
+\mathcal Q_t=\sum_{j<t}2X_j\cdot(X_{j+1}-X_j+\eps I_ju_{X_j})\, ,
+\]
+is a martingale, and
+\begin{equation}\label{eq:quadratic}
+ |X_n|^2=n-2\eps\sum_{x\in A_n}|x|+\mathcal Q_n\, .
+\end{equation}
+Stop this martingale upon first exiting $B(0,KN)$. Its increments are bounded by $CN$ and its
+bracket by $CnN^2$. Freedman's inequality, intersected with the
+coarse event, yields
+\begin{equation}\label{eq:quadraticerror}
+ |\mathcal Q_n|\leq C\big(N\sqrt{nL}+NL\big)\, .
+\end{equation}
+with another failure probability at most $Cn^{-p}$.
+On the coarse event the stopped and original martingales coincide.
+
+The cell replacement satisfies
+\[
+ \left|\sum_{x\in A_n}|x|-\int_D|v|\dd v\right|
+ \leq (\sqrt d/2)|A_n|\leq CN^d\, .
+\]
+Also
+\[
+ \int_D|v|\dd v
+ =\frac{d\omega_d}{d+1}b^{d+1}+\int_E|v|\dd v,
+ \qquad 0\leq\int_E|v|\dd v\leq CNm\leq CN^{d+1}Q\, .
+\]
+Divide \eqref{eq:quadratic} by $n=N^{d+1}$. Equations
+\eqref{eq:quadraticerror}, \eqref{eq:masshigh}, and \eqref{eq:massplanar} give
+\[
+ \left|1-\frac{c_0\omega_d}{d+1}(b/N)^{d+1}\right|
+ \leq C\left(Q+N^{-1}+N^{-(d-1)/2}\sqrt L
+                         +N^{-d}L+N^{1-d}\right)
+ \leq CQ\, .
+\]
+For $d=2$, the largest additional term is $N^{-1/2}\sqrt L=Q$.
+For $d\geq3$, it is $O(N^{-1}\sqrt L)=O(Q)$.
+Since the positive root of
+$c_0\omega_d t^{d+1}/(d+1)=1$ is $a$, this proves
+\begin{equation}\label{eq:inradius}
+ |b/N-a|\leq CQ\, .
+\end{equation}
+In particular $b\asymp N$. It follows immediately from
+$D=B(0,b)\cup E$ up to null sets that \eqref{eq:volume} holds.
+The inner inclusion in \eqref{eq:sandwich} follows by increasing its
+constant to avoid cell-boundary equality.
+
+Finally, on the approximation region, \eqref{eq:global},
+\eqref{eq:ballpotential}, \eqref{eq:packing}, and \eqref{eq:inradius} give
+\[
+ \left|\widetilde\ell_n(y)-c_0(aN-|y|)_+\right|
+ \leq C(\delta_0+NQ+NQ^{1/d})\leq CW\, .
+\]
+This proves \eqref{eq:profile-rate}; outside a fixed ball containing the range
+both the local time and the comparison cone vanish.
+
+\section{The outer fluctuation bound}\label{sec:outer}
+We bound the weighted exterior volume and use the crossing estimate
+to exclude excursions beyond the claimed radius.
+Start at an integer radius just above $b+2b_d+6$. Since $b\asymp N$,
+\[
+ F(b)\leq CmN^{1-d}\leq CNQ\, .
+\]
+All subsequent radii remain in a fixed annulus of scale $N$.
+Let $\Lambda=CN^{2-d}L$, choosing $C$ sufficiently large.
+If a current dyadic upper bound $A$ satisfies $A\geq\Lambda$, then the
+error in \eqref{eq:radial}, when $F(r-b_d)\leq A$, is at most $A/4$.
+If $F(r+b_d)>A/2$, then \eqref{eq:radial} and \eqref{eq:shellW} therefore force
+\[
+ F(r-b_d)-F(r+b_d)\geq \frac{cA}{W+1}\, .
+\]
+On the grid of spacing $2b_d$, a halving takes at most $C(W+1)$
+steps. There are at most $CL$ levels between $CNQ$ and
+$\Lambda$. If the initial bound is already below $\Lambda$, then no
+halving is needed. Thus, for a deterministic constant $K_0$,
+\begin{equation}\label{eq:tailend}
+ F(b+K_0WL)\leq\Lambda\, .
+\end{equation}
+Rounding errors are absorbed because $W\to\infty$.
+Since $WL=o(N)$, all required radii fit in that fixed annulus.
+
+Set $h=K_1WL$, with $K_1>2K_0$, and suppose that the path
+reaches radius $r=b+3h$ by time $n$. Let
+\[
+ \tau=\min\{t\leq n:|X_t|\geq r\},\quad
+ v=X_\tau/|X_\tau|,\quad \beta=b+2h,
+ \quad s=1+\max\{j<\tau:v\cdot X_j\leq\beta\}\, .
+\]
+The set defining $s$ contains zero. All departures from $s$ through
+$\tau-1$ have projection greater than $\beta$ and radius less than
+$r$, while their net projected displacement is at least $h-1$.
+The ratio $\beta/r$ is bounded below by a fixed positive constant.
+The distinct departure cells in this interval lie in $D_n$ even
+if $\tau=n$. By \eqref{eq:tailend}, their number $m_{\rm cap}$ satisfies
+\[
+ m_{\rm cap}\leq CN^{d-1}F(\beta-\sqrt d/2)
+              \leq CNL\, .
+\]
+Consequently \eqref{eq:crossing} would imply
+\begin{equation}\label{eq:outer-contradiction}
+ (h-1)^2\leq C
+ \begin{cases}
+ N^{4/3}L^{8/3}+NL^4,&d=2,\\
+ N^{2d/(2d-1)}L^{4d/(2d-1)}+NL^3,&d\geq3
+ \end{cases}\, .
+\end{equation}
+The right side is $o(h^2)$: for $d=2$,
+$h^2\asymp N^{3/2}L^{5/2}$; for $d\geq3$,
+$h^2\asymp N^{(4d-4)/(2d-1)}L^{4d/(2d-1)}$ and
+$4d-4>2d$. This contradiction proves the outer inclusion in
+\eqref{eq:sandwich}, using \eqref{eq:inradius} and $NQ=O(WL)$.
+
+The lattice mesh contributes at most $\sqrt d/N$ to Hausdorff distance,
+which is absorbed in \eqref{eq:hausdorff}.
+
+
+
+\begin{proof}[Proof of Theorems~\ref{thm:shape} and~\ref{thm:fluctuations}]
+The preceding estimates prove the inequalities in
+Theorem~\ref{thm:fluctuations} at each deterministic $n$, with total
+failure probability at most $Cn^{-p}$. Fix $p>1$. Borel--Cantelli
+implies that these inequalities hold for every sufficiently large
+integer $n$, almost surely. Since $Q\to0$ and $Q^{1/d}L\to0$,
+the ball inclusions and profile convergence in Theorem~\ref{thm:shape}
+follow. The volume estimate gives $|V_n|/N^d\to\omega_da^d$ because
+$|V_n\setminus A_n|\leq1$. For each fixed lattice site $x$,
+the uniform profile estimate and $|x|/N\to0$ give
+$\ell_n(x)/N\to2d\eps a>0$. The lattice is countable, so the
+walk visits every vertex infinitely often on the same probability-one event.
+\end{proof}
