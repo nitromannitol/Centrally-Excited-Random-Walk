@@ -6,3 +6,8 @@ import CERW.Support.Contact.NormReplace
 import CERW.Support.Contact.Quadratic
 import CERW.Support.Contact.BallExcess
 import CERW.Support.Contact.InradiusArith
+import CERW.Support.Contact.Envelope
+import CERW.Support.Contact.QuadraticError
+import CERW.Support.Contact.Profile
+import CERW.Support.Contact.Volume
+import CERW.Support.Contact.PlanarBracket

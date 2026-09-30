@@ -109,14 +109,19 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 23 | pointwise decomposition (eq:pointwise) | ds1 | v4.1-flash | 5994 | 1 | ↑171k ↓68k | accepted | 0 | 244 | `CERW/Support/LocalTime/Pointwise.lean` |
 | 23 | local martingales (eq:localmart) | ds2 | v4.1-flash | 5870 | 1 | ↑187k ↓73k | accepted | 1: the director rewrapped two long proof lines | 353 | `CERW/Support/LocalTime/LocalMart.lean` |
 | 23 | inradius arithmetic (eq:inradius) | ds4 | v4.1-flash | 5595 | 1 | ↑92k ↓55k | accepted | 0 (the director added the missing hypothesis `0 ≤ Xsq` before dispatch) | 181 | `CERW/Support/Contact/InradiusArith.lean` |
-| 24 | envelope and inner inclusion | ds1 | v4.1-flash | 5763 | 2 | — | in flight | — | — | `wip/Envelope.lean` |
-| 24 | local-time profile (eq:profile-rate) | ds2 | v4.1-flash | 6266 | 1 | — | in flight | — | — | `wip/Profile.lean` |
-| 24 | volume and symmetric difference | ds4 | v4.1-flash | 5229 | 1 | — | in flight | — | — | `wip/Volume.lean` |
-| 23 | quadratic martingale concentration | ds3 | v4.1-flash | 7217 | 1 | — | in flight | — | — | `wip/QuadraticError.lean` |
+| 24 | envelope and inner inclusion | ds1 | v4.1-flash | 5763 | 2 | ↑141k ↓22k | accepted | 0 | 83 | `CERW/Support/Contact/Envelope.lean` |
+| 24 | local-time profile (eq:profile-rate) | ds2 | v4.1-flash | 6266 | 1 | ↑230k ↓77k | accepted | 1: the director removed an unneeded hypothesis (the worker had padded a constant to use it) | 253 | `CERW/Support/Contact/Profile.lean` |
+| 24 | volume and symmetric difference | ds4 | v4.1-flash | 5229 | 1 | ↑213k ↓71k | accepted | 0 | 253 | `CERW/Support/Contact/Volume.lean` |
+| 24 | planar hole bracket | ds3 | v4.1-flash | 5099 | 1 | ↑45k ↓24k | accepted | 0 | 98 | `CERW/Support/Contact/PlanarBracket.lean` |
+| 25 | high-dimensional envelope (eq:envelopehigh) | ds1 | v4.1-flash | 7664 | 1 | — | in flight | — | — | `wip/EnvelopeHigh.lean` |
+| 25 | contact inequality | ds2 | v4.1-flash | 4557 | 1 | — | in flight | — | — | `wip/ContactMass.lean` |
+| 25 | outer fluctuation bound | ds3 | v4.1-flash | 6016 | 1 | — | in flight | — | — | `wip/OuterBound.lean` |
+| 25 | shell envelope and global error | ds4 | v4.1-flash | 4417 | 2 | — | in flight | — | — | `wip/EnvelopeShell.lean` |
+| 23 | quadratic martingale concentration | ds3 | v4.1-flash | 7217 | 1 | ↑693k ↓121k | accepted | 0 | 489 | `CERW/Support/Contact/QuadraticError.lean` |
 
 ## Observations
 
-* **Waves 1–23.** Every returned DeepSeek packet was accepted: 79/79, one after a statement repair. There were three repairs: a definition
+* **Waves 1–24.** Every returned DeepSeek packet was accepted: 84/84, one after a statement repair. There were three repairs: a definition
   in wave 1, a dispatch in wave 9, and helper visibility in wave 12. Every Sonnet leaf was accepted: 19/19.
 * **Parallel helpers collide.** Two parallel files in one namespace each added a public helper with the same
   name. Since wave 13, the common rules require every helper a worker adds to be `private`.

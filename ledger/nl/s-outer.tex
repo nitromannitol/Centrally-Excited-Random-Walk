@@ -1,0 +1,7 @@
+% s-outer: eq:outer-contradiction (deterministic).
+\paragraph{Statement.} With $W=NQ^{1/d}$, $h=K_1WL$, $K_0\leq K_1$: for large $n$, on a path from the origin with unit steps satisfying eq:vector and eq:interval, if
+$c_1N\leq b\leq c_2N$ and $F(b+K_0WL)\leq C_tN^{2-d}L$, then $H_n\leq b+3h$.
+\paragraph{Proof.} As in s-HvsR. If $H_n>r:=b+3h$, take $\tau$, $v$, $\beta=b+2h$ and the last entrance $s'$ into $\{v\cdot x>\beta\}$. The gain is $\geq h-1$,
+$\beta/r\geq\frac12$, and the sites have $\beta<v\cdot x\leq|x|<r$. By s-card-tail, $m\leq\sigma_d(r+\sqrt d/2)^{d-1}F(\beta-\sqrt d/2)$. Here
+$\beta-\sqrt d/2\geq b+K_0WL$ once $K_1WL\geq\sqrt d/2$, and $r\leq2c_2N$, so $m\leq C_1NL$. s-crossing gives
+$(h-1)^2\leq C((C_1NL\cdot L)^\gamma+C_1NL\cdot L\lambda)$, contradicting s-outer-contradiction for large $n$.

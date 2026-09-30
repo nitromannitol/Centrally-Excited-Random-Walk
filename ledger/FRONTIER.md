@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 01:30.
+generation time. Regenerated 2026-09-30 01:39.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -123,18 +123,18 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-shellW | director | `Support/Contact/ShellW.lean` | s-var-high, s-var-planar | eq:shellW | BLOCKED(s-var-high, s-var-planar) |
 | s-quadratic | ds1 | `Support/Contact/Quadratic.lean` | s-dynkin, s-step-mean, s-fresh-sum | eq:quadratic, eq:quadraticerror | LANDED |
 | s-inradius | director | `Support/Contact/Radius.lean` | s-quadratic, s-var-high, s-var-planar | eq:inradius (inversion landed) | BLOCKED(s-var-high, s-var-planar) |
-| s-volume-profile | director | `Support/Contact/Profile.lean` | s-inradius, s-global, lem-geometry | eq:volume, inner eq:sandwich, eq:profile-rate | BLOCKED(s-inradius, s-global, lem-geometry) |
+| s-volume-profile | director | `Support/Contact/Profile.lean` | s-inradius, s-global, lem-geometry | eq:volume, inner eq:sandwich, eq:profile-rate | LANDED |
 | s-outer-contradiction | ds3 | `Support/Crossing/OuterContradiction.lean` | — | C((C₁NL)^γL^γ + C₁NLλL) < (AWL−1)² eventually | LANDED |
 | s-tailend | director | `Support/Outer/TailEnd.lean` | lem-radial, s-shellW, s-halving, s-inradius, s-Fmass | eq:tailend | BLOCKED(lem-radial, s-shellW, s-inradius) |
 | s-outer | director | `Support/Outer/Crossing.lean` | s-tailend, s-crossing, s-inradius, s-outer-contradiction | eq:outer-contradiction | BLOCKED(s-tailend, s-inradius) |
 | s-scale-limits | ds4 | `Support/Main/ScaleLimits.lean` | — | log(n+2)^a/n^c → 0; Q → 0; Q^{1/d}L → 0 | LANDED |
 | s-hausdorff-arith | ds3 | `Support/Main/HausdorffArith.lean` | — | Hausdorff and planar exponent identities | LANDED |
-| s-assembly | director | `Support/Main/Event.lean` | s-volume-profile, s-outer | the event at each n; Borel–Cantelli | BLOCKED(s-volume-profile, s-outer) |
+| s-assembly | director | `Support/Main/Event.lean` | s-volume-profile, s-outer | the event at each n; Borel–Cantelli | BLOCKED(s-outer) |
 | **thm-fluctuations** | director | `Frozen/FluctuationBounds.lean` | s-assembly | thm:fluctuations | DRAFT |
 | **thm-shape** | director | `Frozen/BallShape.lean` | thm-fluctuations, s-scale-limits | thm:shape | DRAFT |
 | **eq-hausdorff** | director | `Frozen/HausdorffBound.lean` | thm-fluctuations, s-hausdorff-arith, s-contact-cell | eq:hausdorff | DRAFT |
 
-**Counts:** BLOCKED 13, DRAFT 7, LANDED 81, READY 2.
+**Counts:** BLOCKED 12, DRAFT 7, LANDED 82, READY 2.
 
 ## Pre-freeze gate
 
