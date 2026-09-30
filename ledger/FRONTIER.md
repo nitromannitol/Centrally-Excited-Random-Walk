@@ -2,7 +2,7 @@
 
 The single source of the carve-up. It is **generated**, not hand-edited: the node table and
 dependencies are fixed by the director, and each status is derived from the checkout at
-generation time. Regenerated 2026-09-30 04:17.
+generation time. Regenerated 2026-09-30 12:14.
 
 * `LANDED`: every target file is in the trunk and sorry-free.
 * `IN-FLIGHT`: the `wip/` leaf exists; the worker comes from the newest brief naming it.
@@ -19,11 +19,11 @@ wave 4 on, each packet's NL twin `ledger/nl/<id>.tex` is written before dispatch
 written only after landing: s-freedman-event, s-potential-integrable, s-radial-packing and
 s-law-cond. Twins for the wave 1–3 packets are not yet written.
 
-**Leaves.** Available from LatticeProb @ b617769 and Mathlib @ 81a5d257; see PLAN §3.1.
+**Leaves.** Available from LatticeProb @ 4bdbaa4 and Mathlib @ 81a5d257; see PLAN §3.1.
 
 | id | owner | files (under `CERW/`) | deps | statement | status |
 |---|---|---|---|---|---|
-| ext-lattice-kernel | director | `External/LatticePotentialKernel.lean` | — | eq:kernel-asymptotics (cited input) | FROZEN |
+| ext-lattice-kernel | director | — (was `External/LatticePotentialKernel.lean`) | — | eq:kernel-asymptotics (formerly the cited input) | RETIRED (proved in Lattice-Probability: `LatticeProb.External.potentialKernelAsymptotics_holds`) |
 | **Model and probability toolkit** | | | | | |
 | s-kernel-moments | ds4 | `Support/Law/Moments.lean` | — | q_x ≥ 0, Σ q_x = 1, mean −εu_x; same for SRW and stepProb | LANDED |
 | s-law-exists | director | `Support/Law/Existence.lean` | s-kernel-moments | a CERW process exists (Ionescu–Tulcea) | LANDED |
@@ -46,7 +46,7 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 | s-centered-sums | ds2 | `Generic/Lattice/Centered.lean` | s-weight-sums, s-packing-lattice | the ball sums centred at y over any finite set | LANDED |
 | s-packing-lattice | ds2 | `Generic/Lattice/Packing.lean` | — | Σ_{x∈E}(1+\|x−y\|)^{1−d} ≤ C_d\|E\|^{1/d} | LANDED |
 | s-kernel-poisson | ds2 | `Support/LocalTime/KernelPoisson.lean` | — | (P−I)b = δ₀ (planar partial-sum limit; b = −G for d ≥ 3); P^M(0,x) → 0 | LANDED |
-| s-kernel-props | ds1 | `Support/LocalTime/KernelFacts.lean`, `Support/LocalTime/KernelBridge.lean` | s-kernel-poisson, s-levelsets, s-gradient, s-gradient-bound | b defined from the External; b(0)=0; b<0 (d≥3); growth O(L)/O(1) | LANDED |
+| s-kernel-props | ds1 | `Support/LocalTime/KernelFacts.lean`, `Support/LocalTime/KernelBridge.lean` | s-kernel-poisson, s-levelsets, s-gradient, s-gradient-bound | b defined from the kernel asymptotics; b(0)=0; b<0 (d≥3); growth O(L)/O(1) | LANDED |
 | s-gradient-bound | ds1 | `Support/LocalTime/GradientBound.lean` | — | \|G(x+e)−G(x)\| ≤ C(1+\|x\|)^{1−d} (d≥3); the same for limits of G_M(0)−G_M(x) | LANDED |
 | s-scalar-taylor | ds2 | `Generic/Kernel/ScalarTaylor.lean` | — | \|log(1+t)−t\| ≤ 2t²; \|(1+t)^α−1−αt\| ≤ \|α\|\|α−1\|2^{\|α−2\|}t² for \|t\| ≤ 1/2 | LANDED |
 | s-gradient | ds3 | `Support/LocalTime/GradientAsymp.lean` | s-scalar-taylor | Db = (2/ω_d)x/\|x\|^d + O(\|x\|^{−d}); \|b(x+e)−b(x)\| ≤ C(1+\|x\|)^{1−d} | LANDED |
@@ -158,9 +158,10 @@ s-law-cond. Twins for the wave 1–3 packets are not yet written.
 
 **Counts:** LANDED 110, SEALED 7, SUPERSEDED 8.
 
-## Pre-freeze gate
+## Freeze record
 
-Complete for all 7 anchors and the External. The evidence is in `ledger/nl/`,
-`ledger/readings.yaml`, `ledger/audits/` and `ledger/approval/PHASE-B.md`. The freeze is **held
-pending the author's delivered approval**. The single open item is the planar remark in
-`eq-hausdorff`: (A) one-sided, as drafted, or (B) two-sided, which is recommended.
+The Phase B surface was approved with reading (B) of `eq-hausdorff` and sealed; the evidence is in
+`ledger/nl/`, `ledger/readings.yaml`, `ledger/audits/` and `ledger/approval/PHASE-B.md`. By the
+author's ruling in `ledger/approval/KERNEL-ASYMPTOTICS.md`, the kernel hypothesis was removed from
+the six anchors that carried it (version 3), because Lattice-Probability proves the asymptotics; the
+External node is retired, and nothing is assumed.

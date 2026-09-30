@@ -1,5 +1,4 @@
-import CERW.External.LatticePotentialKernel
-import CERW.Support.LocalTime.KernelExternal
+import CERW.Support.LocalTime.KernelAsymptotics
 import CERW.Support.Coarse.Assembly
 
 /-!
@@ -36,8 +35,7 @@ $H_n=\max_{j\leq n}|X_j|$.
 ```
 -/
 -- FROZEN-STATEMENT-BEGIN
-theorem CERW.Frozen.coarse_bounds {d : ℕ} (hd : 2 ≤ d)
-    (hK : CERW.External.LatticePotentialKernel d) :
+theorem CERW.Frozen.coarse_bounds {d : ℕ} (hd : 2 ≤ d) :
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) → ∀ p : ℝ, 0 < p → ∃ c C : ℝ, 0 < c ∧ 0 < C ∧
       ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
         (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, 2 ≤ n →
@@ -50,5 +48,5 @@ theorem CERW.Frozen.coarse_bounds {d : ℕ} (hd : 2 ≤ d)
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd hK
+  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd
   exact CERW.Support.Coarse.coarse_bounds_of_kernelFacts hd hF

@@ -1,5 +1,4 @@
-import CERW.External.LatticePotentialKernel
-import CERW.Support.LocalTime.KernelExternal
+import CERW.Support.LocalTime.KernelAsymptotics
 import CERW.Support.Coarse.RadialAssembly
 
 /-!
@@ -42,8 +41,7 @@ $M_{\rm sh}(r)=\max_{x:\,||x|-r|\leq3}\ell_n(x)$.
 ```
 -/
 -- FROZEN-STATEMENT-BEGIN
-theorem CERW.Frozen.radial_test {d : ℕ} (hd : 2 ≤ d)
-    (hK : CERW.External.LatticePotentialKernel d) :
+theorem CERW.Frozen.radial_test {d : ℕ} (hd : 2 ≤ d) :
     let bd : ℕ := ⌈Real.sqrt d / 2⌉₊ + 6
     ∃ r₀ : ℕ, 2 * bd < r₀ ∧ ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) → ∀ p : ℝ, 0 < p →
     ∃ C : ℝ, 0 < C ∧
@@ -61,5 +59,5 @@ theorem CERW.Frozen.radial_test {d : ℕ} (hd : 2 ≤ d)
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd hK
+  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd
   exact CERW.Support.Coarse.radial_test_of_kernelFacts hd hF

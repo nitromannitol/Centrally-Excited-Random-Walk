@@ -1,5 +1,4 @@
-import CERW.External.LatticePotentialKernel
-import CERW.Support.LocalTime.KernelExternal
+import CERW.Support.LocalTime.KernelAsymptotics
 import CERW.Support.Main.KernelAnchors
 
 /-!
@@ -48,7 +47,6 @@ is visited infinitely often.
 -/
 -- FROZEN-STATEMENT-BEGIN
 theorem CERW.Frozen.ball_shape {d : ℕ} (hd : 2 ≤ d)
-    (hK : CERW.External.LatticePotentialKernel d)
     {ε : ℝ} (hε : 0 < ε) (hεd : ε < 1 / (d : ℝ))
     {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (X : ℕ → Ω → Site d) (hX : CERW.IsCERW μ ε X) :
@@ -71,5 +69,5 @@ theorem CERW.Frozen.ball_shape {d : ℕ} (hd : 2 ≤ d)
       (∀ x : Site d, ∃ᶠ j in atTop, X j ω = x)
 -- FROZEN-STATEMENT-END
 := by
-  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd hK
+  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd
   exact CERW.Support.Main.ball_shape_of_kernelFacts hd hF hε hεd μ X hX

@@ -1,1 +1,0 @@
-import CERW.External.LatticePotentialKernel

@@ -1,5 +1,4 @@
-import CERW.External.LatticePotentialKernel
-import CERW.Support.LocalTime.KernelExternal
+import CERW.Support.LocalTime.KernelAsymptotics
 import CERW.Support.LocalTime.LocalAssembly
 
 /-!
@@ -39,8 +38,7 @@ $L=\log(n+2)$, and $\lambda_n,e_n$ have the values displayed above.
 ```
 -/
 -- FROZEN-STATEMENT-BEGIN
-theorem CERW.Frozen.local_time_potential {d : ℕ} (hd : 2 ≤ d)
-    (hK : CERW.External.LatticePotentialKernel d) :
+theorem CERW.Frozen.local_time_potential {d : ℕ} (hd : 2 ≤ d) :
     ∃ Cd : ℝ, 0 < Cd ∧ ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) → ∀ p : ℝ, 0 < p →
     ∃ C : ℝ, 0 < C ∧
       ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -62,5 +60,5 @@ theorem CERW.Frozen.local_time_potential {d : ℕ} (hd : 2 ≤ d)
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd hK
+  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd
   exact CERW.Support.LocalTime.local_time_potential_of_kernelFacts hd hF

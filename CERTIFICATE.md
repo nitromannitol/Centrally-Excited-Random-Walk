@@ -4,7 +4,7 @@ Formalizes statements pinned in `paper/cerw-flat.tex` as the Lean library `CERW`
 
 ## What is claimed
 
-Of 8 node(s) registered in `ledger/manifest.yaml`: 7 `SEALED`, 1 `FROZEN`. Only `SEALED` and `PROVED` nodes are proved with a clean axiom closure; `FROZEN` nodes are cited results carried as explicit hypotheses and are assumed here, not proved; `CONDITIONAL` and `DRAFT_SORRY` nodes are not yet sealed.
+Every node's state in `ledger/manifest.yaml` is `SEALED`: all 7 are proved with no added axiom and no `sorry`.
 
 ## Environment
 
@@ -13,7 +13,7 @@ Of 8 node(s) registered in `ledger/manifest.yaml`: 7 `SEALED`, 1 `FROZEN`. Only 
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/cerw-flat.tex`) SHA-256 | `53d8c0a7bbb51cd4749ba1ba55c55cece9dc9b8a9b6a5d5ee42ae4ff89ce943a` |
-| Build | succeeded, 8898 jobs |
+| Build | succeeded, 8912 jobs |
 | Build warnings | 0 |
 | Generated | 2026-09-30 |
 
@@ -34,14 +34,13 @@ python3 -m leanform_tools.certificate . --check
 
 | # | node | Lean name(s) | state | axiom closure |
 |---|---|---|---|---|
-| 1 | `ext-lattice-kernel` | `CERW.External.LatticePotentialKernel` | `FROZEN` | classical only |
+| 1 | `lem-geometry` | `CERW.Frozen.potential_geometry` | `SEALED` | classical only |
 | 2 | `thm-shape` | `CERW.Frozen.ball_shape` | `SEALED` | classical only |
 | 3 | `thm-fluctuations` | `CERW.Frozen.fluctuation_bounds` | `SEALED` | classical only |
 | 4 | `eq-hausdorff` | `CERW.Frozen.hausdorff_bound` | `SEALED` | classical only |
 | 5 | `lem-local` | `CERW.Frozen.local_time_potential` | `SEALED` | classical only |
-| 6 | `lem-geometry` | `CERW.Frozen.potential_geometry` | `SEALED` | classical only |
-| 7 | `lem-radial` | `CERW.Frozen.radial_test` | `SEALED` | classical only |
-| 8 | `prop-coarse` | `CERW.Frozen.coarse_bounds` | `SEALED` | classical only |
+| 6 | `lem-radial` | `CERW.Frozen.radial_test` | `SEALED` | classical only |
+| 7 | `prop-coarse` | `CERW.Frozen.coarse_bounds` | `SEALED` | classical only |
 
 ## Frozen statements
 
@@ -49,17 +48,15 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 
 | node | SHA-256 of the frozen statement |
 |---|---|
-| `ext-lattice-kernel` | `0e20a9f8598835d5f9953e61bb63affd652066350e769c764ffdd51776c85dda` |
-| `thm-shape` | `e3cff69c7bbfd75bbb9c008af4519d827dbfac5ad7da0f98bba616cd7368718d` |
-| `thm-fluctuations` | `c76a39dbf87bab1d44a3c99b0efa8bbb354f370f82f7a827082b6a447462aa2d` |
-| `eq-hausdorff` | `5c06b6e91dd7ffa34cb6ecb35fe1cc39017bc3d3cb781dd70744a28d91610887` |
-| `lem-local` | `381f9ba4a2c1f8b454c492063c9ad2acec78c90158558099e9d553f8c2b9d959` |
 | `lem-geometry` | `3cd2d5007812191cc3c35903ff940e6d73ef50b4aae6f289a850cac172951121` |
-| `lem-radial` | `b07ab5edb5a29e1f336689eb07fffd5eb9c76b696ece162fd1d24ae8bac6bb09` |
-| `prop-coarse` | `8e67c96197fa7fbe677658163d990249d8ad518a596fb987b624679c6a197d9f` |
+| `thm-shape` | `5a9e41bb7519fdcb1ddecb9600a988040068a3df84e036614489a518817cf7a3` |
+| `thm-fluctuations` | `41d7dc1aa3fda8e59fa02000c8ae88829d8b37c7b78baf95395bb34175e45c5d` |
+| `eq-hausdorff` | `950626aae9fc93dbd322c18522bf8ad56272423803baf6fa1a937d33da46072b` |
+| `lem-local` | `c804956e1998b52392ff46288059b8d424f072a46a753112c24652bf078e6b55` |
+| `lem-radial` | `f663fbeb70e9333ce0aad48009dfbfb9262f2f6c0425a9338611128d781799f8` |
+| `prop-coarse` | `695b02b4055219568e89d469368885395be5c06e2a42645ce0c0d7afa33bbc15` |
 
 ## What is not claimed
 
 - Anything not registered as a node in `ledger/manifest.yaml` is outside this certificate; `python3 -m leanform_tools.check_coverage` tracks whether the paper's statements are all registered.
-- The 1 `FROZEN` node(s) are cited results, stated as propositions in `CERW/External/` and carried as explicit hypotheses by the theorems that use them; they are assumed here, not proved.
 

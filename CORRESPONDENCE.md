@@ -43,32 +43,34 @@ live in `CERW/Model/`.
 
 | id | Lean | paper | state |
 |---|---|---|---|
-| `ext-lattice-kernel` | `CERW.External.LatticePotentialKernel` | cerw-flat.tex:345-359 (eq:kernel-asymptotics, local-times.tex:5-19; Lawler–Limic Thm 4.3.1 for d at least 3, Thm 4.4.4 with the partial-sum definition for d = 2; Cor 4.3.3 is not assumed, eq:gradient is derived in CERW/Support/LocalTime/KernelBridge.lean) | FROZEN |
+| `lem-geometry` | `CERW.Frozen.potential_geometry` | `cerw-flat.tex:497-514`, `lem:geometry` | SEALED |
 | `thm-shape` | `CERW.Frozen.ball_shape` | `cerw-flat.tex:135-160`, `thm:shape` | SEALED |
 | `thm-fluctuations` | `CERW.Frozen.fluctuation_bounds` | `cerw-flat.tex:186-213`, `thm:fluctuations` | SEALED |
 | `eq-hausdorff` | `CERW.Frozen.hausdorff_bound` | `cerw-flat.tex:217-223`, `eq:hausdorff` | SEALED |
 | `lem-local` | `CERW.Frozen.local_time_potential` | `cerw-flat.tex:397-414`, `lem:local` | SEALED |
-| `lem-geometry` | `CERW.Frozen.potential_geometry` | `cerw-flat.tex:497-514`, `lem:geometry` | SEALED |
 | `lem-radial` | `CERW.Frozen.radial_test` | `cerw-flat.tex:581-601`, `lem:radial` | SEALED |
 | `prop-coarse` | `CERW.Frozen.coarse_bounds` | `cerw-flat.tex:547-561`, `prop:coarse` | SEALED |
 
 <!-- FROZEN-SURFACE-END -->
 
-## Cited inputs
+## Cited results
 
-| nodes | input | source scope at the use site |
+Nothing is assumed. The one result that the frozen statements once carried as a hypothesis is now
+proved in Lattice-Probability.
+
+| nodes | cited result | where it is proved |
 |---|---|---|
-| thm-shape, thm-fluctuations, eq-hausdorff, lem-local, lem-radial, prop-coarse | `CERW.External.LatticePotentialKernel d` | The asymptotics of the kernel `b` with `(P − I) b = 1_{0}`. For `d = 2`, `b` is the potential kernel, the limit of the partial sums `Σ_{j<M} [P^j(0,0) − P^j(0,x)]`, with `b(x) = (2/π) log |x| + κ + O(|x|^{-2})` (Lawler–Limic, Theorem 4.4.4). For `d ≥ 3`, `b = −G` with `G(x) = 2/((d−2)ω_d) |x|^{2−d} + O(|x|^{-d})` (Lawler–Limic, Theorem 4.3.1). `lem:local` and `lem:radial` use it to build the local-time potential and the radial test. `prop-coarse`, `thm-fluctuations`, `thm-shape` and `eq-hausdorff` inherit it from them. |
+| thm-shape, thm-fluctuations, eq-hausdorff, lem-local, lem-radial, prop-coarse | The asymptotics of the kernel `b` with `(P − I) b = 1_{0}`. For `d = 2`, `b` is the potential kernel, the limit of the partial sums `Σ_{j<M} [P^j(0,0) − P^j(0,x)]`, with `b(x) = (2/π) log \|x\| + κ + O(\|x\|^{-2})` (Lawler–Limic, Theorem 4.4.4). For `d ≥ 3`, `b = −G` with `G(x) = 2/((d−2)ω_d) \|x\|^{2−d} + O(\|x\|^{-d})` (Lawler–Limic, Theorem 4.3.1). `lem:local` and `lem:radial` use it to build the local-time potential and the radial test; `prop-coarse`, `thm-fluctuations`, `thm-shape` and `eq-hausdorff` inherit it from them. | `LatticeProb.External.potentialKernelAsymptotics_holds`, which proves the proposition `LatticeProb.External.PotentialKernelAsymptotics d` in every dimension. Earlier versions of the six statements carried the same proposition as the hypothesis `CERW.External.LatticePotentialKernel d`; by the author's ruling (`ledger/approval/KERNEL-ASYMPTOTICS.md`) it was removed, and the statements are otherwise unchanged. |
 
-Each frozen proof converts the hypothesis into the kernel facts
+Each frozen proof obtains the kernel facts from the proved asymptotics
 (`CERW.Support.LocalTime.exists_kernelFacts`, in
-`CERW/Support/LocalTime/KernelExternal.lean`) and applies the Support theorem
+`CERW/Support/LocalTime/KernelAsymptotics.lean`) and applies the Support theorem
 for that statement. `lem-geometry` is proved without it.
 
 The gradient estimate for the kernel, `eq:gradient`, is proved rather than cited;
 the paper cites it with the asymptotics at cerw-flat.tex:351, as Lawler–Limic's Corollary 4.3.3. `CERW/Support/LocalTime/KernelBridge.lean`
 derives the gradient asymptotics and the one-step gradient bound from the two
-assumed asymptotics, together with the level sets of `b` and its logarithmic
+asymptotics, together with the level sets of `b` and its logarithmic
 growth.
 
 Freedman's inequality, cited for the martingale bounds, is proved in

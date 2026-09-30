@@ -1,5 +1,4 @@
-import CERW.External.LatticePotentialKernel
-import CERW.Support.LocalTime.KernelExternal
+import CERW.Support.LocalTime.KernelAsymptotics
 import CERW.Support.Main.KernelAnchors
 
 /-!
@@ -49,8 +48,7 @@ constants and a finite random starting time.
 ```
 -/
 -- FROZEN-STATEMENT-BEGIN
-theorem CERW.Frozen.fluctuation_bounds {d : ℕ} (hd : 2 ≤ d)
-    (hK : CERW.External.LatticePotentialKernel d) :
+theorem CERW.Frozen.fluctuation_bounds {d : ℕ} (hd : 2 ≤ d) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
     let a : ℝ := ((d + 1) / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
@@ -78,5 +76,5 @@ theorem CERW.Frozen.fluctuation_bounds {d : ℕ} (hd : 2 ≤ d)
         (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ᵐ ω ∂μ, ∀ᶠ n in atTop, Good C (X · ω) n)
 -- FROZEN-STATEMENT-END
 := by
-  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd hK
+  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd
   exact CERW.Support.Main.fluctuation_bounds_of_kernelFacts hd hF

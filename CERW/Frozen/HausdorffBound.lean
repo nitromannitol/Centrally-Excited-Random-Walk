@@ -1,6 +1,5 @@
-import CERW.External.LatticePotentialKernel
 import Mathlib.Topology.MetricSpace.HausdorffDistance
-import CERW.Support.LocalTime.KernelExternal
+import CERW.Support.LocalTime.KernelAsymptotics
 import CERW.Support.Main.KernelAnchors
 
 /-!
@@ -36,8 +35,7 @@ $Cn^{1/6}\sqrt{\log(n+2)}$ in lattice units.
 ```
 -/
 -- FROZEN-STATEMENT-BEGIN
-theorem CERW.Frozen.hausdorff_bound {d : ℕ} (hd : 2 ≤ d)
-    (hK : CERW.External.LatticePotentialKernel d) :
+theorem CERW.Frozen.hausdorff_bound {d : ℕ} (hd : 2 ≤ d) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
     let a : ℝ := ((d + 1) / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
@@ -59,5 +57,5 @@ theorem CERW.Frozen.hausdorff_bound {d : ℕ} (hd : 2 ≤ d)
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd hK
+  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd
   exact CERW.Support.Main.hausdorff_bound_of_kernelFacts hd hF
