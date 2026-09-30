@@ -1,0 +1,15 @@
+% s-Fmass: the weighted exterior volume F (eq:Fdef, eq:Fmass). Consumed by lem:radial (shell count), prop:coarse (halving start, cell count) and Section 5.
+\paragraph{Statement.} Let $D$ be bounded and measurable, and
+$F(s)=\sigma_d^{-1}\int_{D\cap\{|v|>s\}}|v|^{1-d}\,dv$. Then
+(i) $F\ge0$;
+(ii) for $s>0$ the weight $|v|^{1-d}$ is integrable on $D\cap\{|v|>s\}$;
+(iii) $F$ is nonincreasing on $(0,\infty)$;
+(iv) $F(s)\le|D|/(\sigma_d s^{d-1})$ for $s>0$, $d\ge1$;
+(v) $F(s)=0$ if $D\subseteq\overline B(0,S)$ and $S\le s$;
+(vi) $F(s)-F(s')=\sigma_d^{-1}\int_{D\cap\{s<|v|\le s'\}}|v|^{1-d}$ for $0<s\le s'$.
+\paragraph{Proof.} (i) The integrand is nonnegative. (ii) On $\{|v|>s\}$,
+$0\le|v|^{1-d}\le s^{1-d}$ (exponent $\le0$), and $D$ has finite measure since it is bounded.
+(iii) For $s\le s'$ the domain shrinks and the integrand is nonnegative and integrable by (ii).
+(iv) By (ii) the integral is at most $s^{1-d}|D|$. (v) The domain is empty.
+(vi) $\{|v|>s\}$ is the disjoint union of $\{s<|v|\le s'\}$ and $\{|v|>s'\}$; use additivity of
+the integral with (ii).

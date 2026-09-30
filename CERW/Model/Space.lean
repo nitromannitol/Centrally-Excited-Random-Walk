@@ -81,6 +81,11 @@ theorem mem_cell_iff {x : Site d} {v : EuclideanSpace ℝ (Fin d)} :
     v ∈ cell x ↔ cellCenter v = x :=
   ⟨fun h => (eq_cellCenter_of_mem_cell h).symm, fun h => h ▸ mem_cell_cellCenter v⟩
 
+/-- Cells of distinct sites are disjoint. -/
+theorem cell_disjoint {x y : Site d} (h : x ≠ y) : Disjoint (cell x) (cell y) :=
+  Set.disjoint_left.mpr fun _ hx hy =>
+    h ((eq_cellCenter_of_mem_cell hx).trans (eq_cellCenter_of_mem_cell hy).symm)
+
 /-- An embedded site lies in its own cell. -/
 theorem toSpace_mem_cell (x : Site d) : toSpace x ∈ cell x := by
   intro i

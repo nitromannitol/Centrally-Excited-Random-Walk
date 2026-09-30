@@ -108,6 +108,11 @@ def cellSet (X : ℕ → Site d) (n : ℕ) : Set (EuclideanSpace ℝ (Fin d)) :=
 noncomputable def cellLocalTime (X : ℕ → Site d) (n : ℕ) (v : EuclideanSpace ℝ (Fin d)) : ℝ :=
   (localTime X n (cellCenter v) : ℝ)
 
+/-- The cell local time is nonnegative. -/
+theorem cellLocalTime_nonneg (X : ℕ → Site d) (n : ℕ) (v : EuclideanSpace ℝ (Fin d)) :
+    0 ≤ cellLocalTime X n v :=
+  Nat.cast_nonneg _
+
 /-- `ℓ̃_n` equals `ℓ_n(x)` on `C_x`, including the value zero on unoccupied cells. -/
 theorem cellLocalTime_of_mem_cell (X : ℕ → Site d) (n : ℕ) {x : Site d}
     {v : EuclideanSpace ℝ (Fin d)} (hv : v ∈ cell x) :

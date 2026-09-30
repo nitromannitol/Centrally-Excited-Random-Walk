@@ -27,10 +27,6 @@ theorem unitBallVolume_three : unitBallVolume 3 = Real.pi * 4 / 3 := by
   rw [unitBallVolume, EuclideanSpace.volume_ball_fin_three]
   simp [ENNReal.toReal_ofReal (by positivity : (0 : ℝ) ≤ Real.pi * 4 / 3)]
 
-/-- The unit ball of `ℝ^d` has positive finite volume, so `ω_d > 0`. -/
-theorem unitBallVolume_pos (d : ℕ) : 0 < unitBallVolume d :=
-  ENNReal.toReal_pos (Metric.measure_ball_pos volume _ one_pos).ne' measure_ball_lt_top.ne
-
 /-- At `x = (3, 4)`, with `|x| = 5` and `ε = 1/4`, the first departure steps outward to
 `x + e₁` with probability `1/4 - (1/8)(3/5) = 7/40`, below the simple random walk value `1/4`:
 the drift points to the origin. -/

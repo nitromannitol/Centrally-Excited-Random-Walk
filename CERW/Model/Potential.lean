@@ -22,6 +22,10 @@ open MeasureTheory
 noncomputable def unitBallVolume (d : ℕ) : ℝ :=
   (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
 
+/-- The unit ball of `ℝ^d` has positive finite volume, so `ω_d > 0`. -/
+theorem unitBallVolume_pos (d : ℕ) : 0 < unitBallVolume d :=
+  ENNReal.toReal_pos (Metric.measure_ball_pos volume _ one_pos).ne' measure_ball_lt_top.ne
+
 /-- The potential `U_D(y) = (2ε/ω_d) ∫_D u_v · (v - y) |v - y|^{-d} dv` of `eq:potential-intro`.
 At the single point `v = y` the integrand reads `0`, which does not affect the integral. -/
 noncomputable def potential (d : ℕ) (ε : ℝ) (D : Set (EuclideanSpace ℝ (Fin d)))

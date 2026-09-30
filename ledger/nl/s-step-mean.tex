@@ -1,0 +1,10 @@
+% s-step-mean: the one-step mean of a function. The drift of every Dynkin martingale (eq:dynkin, the proof of lem:radial, eq:vector-def, eq:quadratic).
+\paragraph{Statement.} Let $Df(y)=\sum_i\frac{f(y+e_i)-f(y-e_i)}2e_i$. Then
+$\sum_e \mathrm{srw}(e)f(y+e)=Pf(y)$ and
+$\sum_e q_x(e)f(y+e)=Pf(y)-\varepsilon\,u_x\cdot Df(y)$. Consequently, for the path $x$ at
+time $n$, $\sum_e p_n(e)f(x_n+e)=Pf(x_n)-\varepsilon\,\mathbf 1\{x_n\ne0,\ x_n\notin A_n\}\,u_{x_n}\cdot Df(x_n)$.
+\paragraph{Proof.} Only the unit steps carry mass (\texttt{sum\_unitSteps}). The SRW case is the
+definition of $P$ (\texttt{walkOp}, \texttt{nbrSum}). For $q_x$ the $i$-th pair contributes
+$\frac1{2d}(f(y+e_i)+f(y-e_i))-\frac\varepsilon2\frac{x_i}{|x|}(f(y+e_i)-f(y-e_i))$. Summing gives
+$Pf(y)-\varepsilon\sum_i\frac{x_i}{|x|}D_if(y)$, and $u_x=x/|x|$ has coordinates $x_i/|x|$
+(\texttt{norm\_toSpace}). The last identity follows by cases on the branch of \texttt{stepProb}.

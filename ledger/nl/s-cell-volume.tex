@@ -1,0 +1,8 @@
+% s-cell-volume and s-cellset-volume: volumes of cells. Support for eq:massidentity (int of tilde-ell = n) and eq:radial-packing (|D_n| = R_n).
+\paragraph{Statement.} (i) $C_x$ is measurable and $|C_x|=1$. (ii) $D_n$ is measurable and
+$|D_n|=|A_n|$.
+\paragraph{Proof.} (i) Under the measure-preserving identification $\mathbb R^d\cong\mathrm{Fin}\,d\to\mathbb R$
+(\texttt{PiLp.volume\_preserving\_ofLp}), $C_x$ is the preimage of the box
+$\prod_i[x_i-\tfrac12,x_i+\tfrac12)$, which is measurable with volume $\prod_i 1=1$.
+(ii) $D_n$ is a finite union of the measurable cells $C_x$, $x\in A_n$. Distinct cells are
+disjoint (\texttt{cell\_disjoint}), so $|D_n|=\sum_{x\in A_n}|C_x|=|A_n|$.

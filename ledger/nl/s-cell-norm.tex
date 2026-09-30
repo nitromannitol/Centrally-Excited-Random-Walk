@@ -1,0 +1,7 @@
+% s-cell-norm: the cell set lies in a ball. Support for eq:massidentity (S = H_n + sqrt d) and eq:global.
+\paragraph{Statement.} (i) If $v\in C_x$ then $|v-x|\le\sqrt d/2$. (ii) If $v\in D_n$ then
+$|v|\le H_n+\sqrt d/2$. (iii) For $d\ge1$, $D_n\subseteq B(0,H_n+\sqrt d)$.
+\paragraph{Proof.} (i) Each coordinate satisfies $|v_i-x_i|\le\tfrac12$, so
+$|v-x|^2=\sum_i(v_i-x_i)^2\le d/4$. (ii) $v\in C_x$ with $x\in A_n$, so $x=X_j$ for some $j<n$ and
+$|x|\le H_n$ (\texttt{departureRange\_subset\_ballFinset}); then $|v|\le|x|+|v-x|$.
+(iii) $\sqrt d/2<\sqrt d$ when $d\ge1$.

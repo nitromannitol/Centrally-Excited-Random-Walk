@@ -1,0 +1,10 @@
+% s-cell-membership: membership in the cell set. Support for eq:contactcell and eq:global.
+\paragraph{Statement.} For a lattice path $X$ and $n\ge0$ let $D_n=\bigcup_{x\in A_n}C_x$.
+(i) $v\in D_n$ iff $\mathrm{cc}(v)\in A_n$, where $\mathrm{cc}(v)_i=\lfloor v_i+\tfrac12\rfloor$.
+(ii) For a lattice site $x$, $x\in D_n$ iff $x\in A_n$.
+(iii) $\widetilde\ell_n(v)=0$ whenever $v\notin D_n$.
+\paragraph{Proof.} (i) If $v\in C_x$ with $x\in A_n$ then $x=\mathrm{cc}(v)$, because cells are
+disjoint ($v$ lies in exactly one cell, \texttt{eq\_cellCenter\_of\_mem\_cell}). Conversely
+$v\in C_{\mathrm{cc}(v)}$ (\texttt{mem\_cell\_cellCenter}). (ii) Apply (i) to $v=x$: $\mathrm{cc}(x)=x$
+since $x\in C_x$. (iii) $\widetilde\ell_n(v)=\ell_n(\mathrm{cc}(v))$; by (i) $\mathrm{cc}(v)\notin A_n$,
+so its local time is $0$ (\texttt{mem\_departureRange\_iff}).
