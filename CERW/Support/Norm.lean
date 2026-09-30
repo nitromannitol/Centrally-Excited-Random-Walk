@@ -6,3 +6,4 @@ import CERW.Support.Norm.BallLayer
 import CERW.Support.Norm.Radial
 import CERW.Support.Norm.OuterCrossing
 import CERW.Support.Norm.CellGradient
+import CERW.Support.Norm.Coarse
