@@ -309,7 +309,18 @@ private lemma cost_le {s σ α β B₀ Csh Cr Cw b δ C₁ L cM M Sg : ℝ} (hs 
   have hceil : (⌈s⌉₊ : ℝ) ≤ 2 * s := by
     have := Nat.ceil_lt_add_one hs0.le
     linarith
-  nlinarith
+  have hT : 2 * b * Sg ≤ Cw * B₀ ^ β * s + s := by
+    rw [h2] at h1
+    calc 2 * b * Sg
+        ≤ 8 * b * Cr * (Csh * B₀ ^ β * s ^ (1 - α) *
+              ((s / σ) ^ α / (1 - (2 : ℝ) ^ (-α)))) +
+            8 * b * Cr * (Csh * B₀ ^ β) * (s ^ (1 - α) * (M * δ ^ α)) +
+            (8 * b * Cr + 4 * b) * M := h1
+      _ ≤ Cw * B₀ ^ β * s + s / 2 + s / 2 := add_le_add (add_le_add hT1 hT2) hT3
+      _ = Cw * B₀ ^ β * s + s := by ring
+  calc (⌈s⌉₊ : ℝ) + 2 * b * Sg ≤ 2 * s + (Cw * B₀ ^ β * s + s) :=
+        add_le_add hceil hT
+    _ = (Cw * B₀ ^ β + 3) * s := by ring
 
 /-- Every real power of `log (n + 2)` is eventually at most `ε` times a positive power of `n`. -/
 private lemma eventually_log_rpow_le (a : ℝ) {p ε : ℝ} (hp : 0 < p) (hε : 0 < ε) :
