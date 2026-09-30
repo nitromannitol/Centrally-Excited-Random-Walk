@@ -1,0 +1,8 @@
+% s-lattice-moment-sum -- Sum_{|x|<r}|x|^k = d omega_d r^{d+k}/(d+k) + O(r^{d+k-1}), k = 1, 2.
+\paragraph{Proof.} Each lattice point is the centre of its unit cell $C_x$ (volume $1$). For $|x|<r$,
+$\bigl||x|^k-\int_{C_x}|v|^kdv\bigr|\le C(1+|x|)^{k-1}$ (Lipschitz bound on $C_x$). The union of the cells of
+$\{|x|<r\}$ lies between the balls $B(0,r-\sqrt d/2)$ and $B(0,r+\sqrt d/2)$, and on the symmetric
+difference with $B(0,r)$ (volume $O(r^{d-1})$) the integrand is $O(r^k)$. Finally
+$\int_{B(0,r)}|v|^kdv=d\omega_dr^{d+k}/(d+k)$ (\texttt{CERW/Generic/Kernel/RadialPower.lean},
+polar coordinates, \texttt{MeasureTheory.integral\_fun\_norm\_addHaar}). The number of lattice points
+with $|x|<r$ is $O(r^d)$, so the per-cell errors sum to $O(r^{d+k-1})$.

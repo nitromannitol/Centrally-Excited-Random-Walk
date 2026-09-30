@@ -1,0 +1,9 @@
+% s-planar-log-sum -- Sum_{x in Z^2, 1<=|x|<=r} |x|^{-2} = 2 pi log r + O(1).
+\paragraph{Proof.} Compare each term with the integral of $|v|^{-2}$ over the unit cell $C_x$:
+for $|x|\ge1$, $\bigl||x|^{-2}-\int_{C_x}|v|^{-2}dv\bigr|\le C|x|^{-3}$ (mean value; $|v-x|\le\sqrt2/2$), and
+$\sum_{|x|\ge1}|x|^{-3}<\infty$. The union of the cells with $1\le|x|\le r$ differs from the annulus
+$\{1\le|v|\le r\}$ only within distance $\sqrt2/2$ of its two boundary circles, where $|v|^{-2}$ has
+integral $O(1)$ (near radius $1$) and $O(r\cdot r^{-2})$ (near radius $r$). Finally
+$\int_{1\le|v|\le r}|v|^{-2}dv=2\pi\log r$ (polar coordinates; \texttt{CERW/Generic/Kernel/LogRadial.lean}
+has $\int_{\rho\le|v|<R}|v|^{-d}=\sigma_d\log(R/\rho)$). Useful: \texttt{CERW/Support/Occupation/CellWeight.lean},
+\texttt{CellNorm.lean}, \texttt{CellVolume.lean}, \texttt{CellIntegral.lean}.

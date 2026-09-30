@@ -162,6 +162,8 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 31 | Rademacher for a norm; the gradient is a subgradient | ds2 | v4.1-flash | 5148 | 3 | ↑133k ↓52k | accepted | 0 | 91 | `CERW/Generic/Norm/Gradient.lean` |
 | 31 | drift one-step law | ds3 | v4.1-flash | 4735 | 3 | ↑51k ↓3.2k | accepted | 0 | 42 | `CERW/Support/Drift/StepProb.lean` |
 | 31 | the Euclidean walk as a drift walk | ds4 | v4.1-flash | 4692 | 3 | ↑46k ↓8.7k | accepted | 0 | 62 | `CERW/Support/Drift/Bridge.lean` |
+| 32 | lem:freedman (norm section) | Sonnet subagent | sonnet | task prompt | 1 + 3 helpers | 88k (agent total) | accepted | 0 | 219 | `CERW/Support/Norm/Freedman.lean` |
+| 32 | drift walk existence and conditional step | director | — | mechanical port | 8 | — | accepted | 0 | 250 | `CERW/Support/Drift/Existence.lean`, `CERW/Support/Drift/CondStep.lean` |
 
 ## Observations
 
