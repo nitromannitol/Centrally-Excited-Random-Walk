@@ -4,6 +4,7 @@ import CERW.Support.Main.ScaleLimits
 import CERW.Generic.Lattice
 import LatticeProb.External.PotentialKernelAsymptoticsProved
 import LatticeProb.Walk.HitProb
+import CERW.Support.LocalTime.LatticeKernelFacts
 
 /-!
 # Separated brackets
@@ -127,32 +128,12 @@ private theorem abs_gammaBr_le (hd : 1 ≤ d) (f g : Site d → ℝ) (x : Site d
 
 /-! ### Shared kernel facts -/
 
-/-- The lattice kernel satisfies the kernel facts. -/
-private theorem exists_kernelFacts_lattice (hd : 2 ≤ d) :
-    ∃ h : ℝ → ℝ, KernelFacts d (latticeKernel d) h := by
-  rcases Nat.lt_or_ge d 3 with h3 | h3
-  · obtain rfl : d = 2 := by omega
-    obtain ⟨b, hlim, κ, C, R, hR, hasymp⟩ :=
-      (LatticeProb.External.potentialKernelAsymptotics_holds 2).1 rfl
-    have hb : latticeKernel 2 = b := by
-      funext x
-      simp only [latticeKernel, if_true]
-      exact (hlim x).limUnder_eq
-    rw [hb]
-    exact ⟨_, kernelFacts_two hlim hR hasymp⟩
-  · obtain ⟨C, R, hR, hasymp⟩ := (LatticeProb.External.potentialKernelAsymptotics_holds d).2 h3
-    have hb : latticeKernel d = fun x => -srwGreenInf d x := by
-      funext x
-      simp only [latticeKernel]
-      rw [if_neg (by omega)]
-    rw [hb]
-    exact ⟨_, kernelFacts_ge_three h3 hR hasymp⟩
 
 /-- The one-step bound for the lattice kernel. -/
 private theorem kernel_grad (hd : 2 ≤ d) :
     ∃ Cg : ℝ, 0 ≤ Cg ∧ ∀ x : Site d, ∀ e ∈ unitSteps d,
       |latticeKernel d (x + e) - latticeKernel d x| ≤ Cg * (1 + euclidNorm x) ^ (1 - (d : ℝ)) := by
-  obtain ⟨h, hK⟩ := exists_kernelFacts_lattice (d := d) hd
+  obtain ⟨h, hK⟩ := CERW.Support.LocalTime.exists_kernelFacts_latticeKernel (d := d) hd
   obtain ⟨Cg, hgrad⟩ := hK.gradBound
   refine ⟨|Cg|, abs_nonneg _, fun x e he => (hgrad x e he).trans ?_⟩
   exact mul_le_mul_of_nonneg_right (le_abs_self _)
@@ -161,7 +142,7 @@ private theorem kernel_grad (hd : 2 ≤ d) :
 /-- The Poisson equation `(P - I) b = 1_{0}` for the lattice kernel. -/
 private theorem kernel_poisson (hd : 2 ≤ d) (x : Site d) :
     walkOp (latticeKernel d) x - latticeKernel d x = if x = 0 then 1 else 0 := by
-  obtain ⟨h, hK⟩ := exists_kernelFacts_lattice (d := d) hd
+  obtain ⟨h, hK⟩ := CERW.Support.LocalTime.exists_kernelFacts_latticeKernel (d := d) hd
   exact hK.poisson x
 
 /-- The planar lattice kernel is `(2/π) log |x| + κ + O(|x|^{-2})`. -/

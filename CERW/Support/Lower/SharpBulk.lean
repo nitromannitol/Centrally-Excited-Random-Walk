@@ -1,5 +1,6 @@
 import CERW.Support.Statements
 import CERW.Support.LocalTime
+import CERW.Support.LocalTime.LatticeKernelFacts
 import CERW.Support.Law.Dynkin
 import CERW.Support.Drift.Dynkin
 import CERW.Generic.Martingale.Clamp
@@ -1306,27 +1307,6 @@ private theorem bulk_potential_only (hfluct : fluctuation_rates.{u}) (hd : 2 ≤
       (mul_le_mul_of_nonneg_right (le_max_left _ _) hB0)
   · exact mul_le_mul_of_nonneg_right (le_max_right _ _) (Real.rpow_nonneg (Nat.cast_nonneg n) _)
 
-/-- The lattice kernel satisfies the kernel facts. -/
-private theorem exists_kernelFacts_lattice (hd : 2 ≤ d) :
-    ∃ h : ℝ → ℝ, KernelFacts d (latticeKernel d) h := by
-  rcases Nat.lt_or_ge d 3 with h3 | h3
-  · obtain rfl : d = 2 := by omega
-    obtain ⟨b, hlim, κ, C, R, hR, hasymp⟩ :=
-      (LatticeProb.External.potentialKernelAsymptotics_holds 2).1 rfl
-    have hb : latticeKernel 2 = b := by
-      funext x
-      simp only [latticeKernel, if_true]
-      exact (hlim x).limUnder_eq
-    rw [hb]
-    exact ⟨_, kernelFacts_two hlim hR hasymp⟩
-  · obtain ⟨C, R, hR, hasymp⟩ := (LatticeProb.External.potentialKernelAsymptotics_holds d).2 h3
-    have hb : latticeKernel d = fun x => -srwGreenInf d x := by
-      funext x
-      simp only [latticeKernel]
-      rw [if_neg (by omega)]
-    rw [hb]
-    exact ⟨_, kernelFacts_ge_three h3 hR hasymp⟩
-
 /-- The Dynkin martingale of a difference is the difference of the Dynkin martingales. -/
 private theorem dynkin_sub_fun (ε : ℝ) (a b : Site d → ℝ) {Ω : Type*} (X : ℕ → Ω → Site d)
     (t : ℕ) (ω : Ω) :
@@ -1492,7 +1472,7 @@ private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_devi
     ring
   obtain ⟨c₀, C₀, Cs, hc₀, hcC, hCs, n₀, hsepn⟩ := hsep hd ε hε0 hε1
   obtain ⟨cE, CE, hcE, hCE, hMax⟩ := exists_max_dynkin_large hexp hd1 hε0.le hε1 hc₀ hcC
-  obtain ⟨h, hK⟩ := exists_kernelFacts_lattice hd
+  obtain ⟨h, hK⟩ := exists_kernelFacts_latticeKernel hd
   obtain ⟨Cg, hCg⟩ := hK.gradBound
   obtain ⟨Cpt, hCpt0, hPt⟩ := exists_abs_localTime_sub_potential_add_dynkin_le.{u} hd hK
   obtain ⟨Cu, hCu0, n₁, hpot⟩ := bulk_potential_only hfluct hd hε0 hε1

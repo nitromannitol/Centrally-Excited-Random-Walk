@@ -17,3 +17,4 @@ import CERW.Support.LocalTime.Pointwise
 import CERW.Support.LocalTime.LocalMart
 import CERW.Support.LocalTime.KernelAsymptotics
 import CERW.Support.LocalTime.LocalBracket
+import CERW.Support.LocalTime.LatticeKernelFacts
