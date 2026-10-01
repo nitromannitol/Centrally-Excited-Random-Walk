@@ -1369,6 +1369,23 @@ private theorem measure_le_add_of_four {Ω : Type*} [MeasurableSpace Ω] (μ : M
     _ ≤ a + b + c + 0 := by rw [hD]; gcongr
     _ = a + b + c := add_zero _
 
+/-- The square root of a real number `R ≥ 4` is at most `R / 2`. -/
+private theorem sqrt_le_half_of_four_le {R : ℝ} (hR : 4 ≤ R) : Real.sqrt R ≤ R / 2 := by
+  refine Real.sqrt_le_iff.mpr ⟨by linarith, ?_⟩
+  calc R = R * 4 / 4 := by ring
+    _ ≤ R * R / 4 := by gcongr
+    _ = (R / 2) ^ 2 := by ring
+
+/-- A positive `ε` with `ε < 1 / d` and `1 ≤ d` satisfies `ε ≤ 1`. -/
+private theorem le_one_of_lt_one_div {d : ℕ} {ε : ℝ} (hd1 : 1 ≤ d) (hε0 : 0 < ε)
+    (hε1 : ε < 1 / (d : ℝ)) : ε ≤ 1 := by
+  have hdpos : (0 : ℝ) < d := by exact_mod_cast hd1
+  have h1 : ε * d < 1 := (lt_div_iff₀ hdpos).mp hε1
+  have h2 : (1 : ℝ) ≤ d := by exact_mod_cast hd1
+  calc ε = ε * 1 := (mul_one ε).symm
+    _ ≤ ε * d := mul_le_mul_of_nonneg_left h2 hε0.le
+    _ ≤ 1 := h1.le
+
 /-- **Theorem 1.3 (iii)** for fixed `d` and `ε`, in terms of the scale `r_n`. -/
 private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_deviation.{u})
     (hfluct : fluctuation_rates.{u}) (hd : 2 ≤ d) {ε : ℝ} (hε0 : 0 < ε)
@@ -1383,10 +1400,7 @@ private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_devi
         ENNReal.ofReal ((n : ℝ) ^ (-c)) := by
   have hd1 : 1 ≤ d := by omega
   have hdpos : (0 : ℝ) < d := by exact_mod_cast (by omega : 0 < d)
-  have hε2 : ε ≤ 1 := by
-    have h1 : ε * d < 1 := (lt_div_iff₀ hdpos).mp hε1
-    have h2 : (1 : ℝ) ≤ d := by exact_mod_cast hd1
-    nlinarith
+  have hε2 : ε ≤ 1 := le_one_of_lt_one_div hd1 hε0 hε1
   have hω := unitBallVolume_pos d
   set κ : ℝ := ((d : ℝ) + 1) / (2 * d * ε * unitBallVolume d) with hκ
   have hκ0 : 0 < κ := by positivity
@@ -1475,16 +1489,16 @@ private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_devi
       rw [ae_iff]
       exact hX.start
     exact ae_iff.mp (h0.and (ae_euclidNorm_le hd1 hε0.le hε1 hX))
-  have hRn1 : (1 : ℝ) ≤ R := by linarith
-  have hsqrtR : Real.sqrt R ≤ R / 2 := Real.sqrt_le_iff.mpr ⟨by linarith, by nlinarith⟩
-  have hsqrtn : Real.sqrt R ≤ 3 * n := by linarith
+  have hRn1 : (1 : ℝ) ≤ R := by linarith only [h4]
+  have hsqrtR : Real.sqrt R ≤ R / 2 := sqrt_le_half_of_four_le h4
+  have hsqrtn : Real.sqrt R ≤ 3 * n := by linarith only [hsqrtR, hRn, h4]
   have hsum := measure_le_add_of_four μ (S := {ω | ¬ ∃ x : Site d, euclidNorm x ≤ Real.sqrt R ∧
       c1 * (if d = 2 then Real.sqrt R * Real.log n else Real.sqrt (R * Real.log n)) ≤
         |(localTime (fun j => X j ω) n x : ℝ) - 2 * d * ε * (R - euclidNorm x)|}) ?_
     hsepE hpotE hFmax hnull
   · refine hsum.trans ?_
     rw [← ENNReal.ofReal_add hα0 (by positivity), ← ENNReal.ofReal_add (by positivity) hPmax0]
-    exact ENNReal.ofReal_le_ofReal (by linarith)
+    exact ENNReal.ofReal_le_ofReal (by linarith only [hP6])
   · intro ω hA hB hC hD hS
     simp only [Set.mem_setOf_eq, not_not] at hA hB hD
     simp only [Set.mem_setOf_eq, not_forall, not_lt] at hC
@@ -1501,7 +1515,7 @@ private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_devi
       fun y hy => hB y (hy.trans hsqrtR)
     have hT : σ * (cE * β) ≤ -dynkin ε (sepF d (latticeKernel d) e₁ R (i.val + 1)) X n ω := by
       have := (le_div_iff₀ hσ).mp hi
-      linarith
+      linarith only [this]
     have hT0 : 0 ≤ σ * (cE * β) := mul_nonneg hσ.le (mul_nonneg hcE.le hβ0)
     have hnorm : ∀ N : ℕ, euclidNorm (((N : ℕ) : ℤ) • e₁) = N :=
       fun N => euclidNorm_natCast_smul_unit _ N
@@ -1510,7 +1524,7 @@ private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_devi
       rw [hnorm]
       have h1 := hsites (i.val + 1) hjk
       have h2 : (0 : ℝ) ≤ (kOf R : ℝ) := Nat.cast_nonneg _
-      linarith
+      linarith only [h1, h2]
     obtain ⟨x, hx, hxdev⟩ : ∃ x : Site d, euclidNorm x ≤ Real.sqrt R ∧
         σ * (cE * β) / 2 - (Cpt * Real.log ((n : ℝ) + 2) +
           Cu * (if d = 2 then Real.sqrt (R * Real.log n) else Real.log n)) ≤
