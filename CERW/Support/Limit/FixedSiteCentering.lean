@@ -1,5 +1,6 @@
 import CERW.Support.Statements
 import CERW.Support.Geometry.Assembly
+import CERW.Support.Geometry.BallCompare
 import CERW.Support.Contact.NormReplace
 import CERW.Support.Occupation.CellNorm
 import CERW.Support.Occupation.CellSetVolume
@@ -171,34 +172,6 @@ private lemma abs_potentialIntegrand_sub_norm_le (hd : 1 ≤ d) {r W : ℝ} (hr 
     _ ≤ (d * 3 ^ d + 1) * 2 ^ d * (‖y‖ + W) / r ^ d :=
         div_le_div_of_nonneg_right hnum hrd.le
 
-/-- For measurable sets of finite volume and a function integrable on both, the difference of
-the integrals over `D` and over `B` is at most `M |D ∆ B|` if `|g| ≤ M` on `D ∆ B`. -/
-private lemma abs_setIntegral_sub_le {g : EuclideanSpace ℝ (Fin d) → ℝ}
-    {D B : Set (EuclideanSpace ℝ (Fin d))} (hD : MeasurableSet D) (hB : MeasurableSet B)
-    (hDfin : volume D ≠ ⊤) (hBfin : volume B ≠ ⊤)
-    (hgD : IntegrableOn g D) (hgB : IntegrableOn g B) {M : ℝ} (hM : ∀ v ∈ D ∆ B, |g v| ≤ M) :
-    |(∫ v in D, g v) - ∫ v in B, g v| ≤ M * (volume (D ∆ B)).toReal := by
-  have h1 := integral_inter_add_sdiff hB hgD
-  have h2 := integral_inter_add_sdiff hD hgB
-  rw [Set.inter_comm B D] at h2
-  have hdiff : (∫ v in D, g v) - ∫ v in B, g v =
-      (∫ v in D \ B, g v) - ∫ v in B \ D, g v := by linarith
-  have hfin1 : volume (D \ B) < ⊤ := (measure_mono Set.sdiff_subset).trans_lt hDfin.lt_top
-  have hfin2 : volume (B \ D) < ⊤ := (measure_mono Set.sdiff_subset).trans_lt hBfin.lt_top
-  have hb1 := norm_setIntegral_le_of_norm_le_const (f := g) (C := M) hfin1
-    (fun v hv => by rw [Real.norm_eq_abs]; exact hM v (Or.inl hv))
-  have hb2 := norm_setIntegral_le_of_norm_le_const (f := g) (C := M) hfin2
-    (fun v hv => by rw [Real.norm_eq_abs]; exact hM v (Or.inr hv))
-  rw [Real.norm_eq_abs] at hb1 hb2
-  have hsd : (volume (D ∆ B)).toReal = (volume (D \ B)).toReal + (volume (B \ D)).toReal := by
-    rw [measure_symmDiff_eq hD.nullMeasurableSet hB.nullMeasurableSet,
-      ENNReal.toReal_add hfin1.ne hfin2.ne]
-  rw [hdiff, hsd]
-  calc |(∫ v in D \ B, g v) - ∫ v in B \ D, g v|
-      ≤ |∫ v in D \ B, g v| + |∫ v in B \ D, g v| := abs_sub _ _
-    _ ≤ M * (volume (D \ B)).toReal + M * (volume (B \ D)).toReal := add_le_add hb1 hb2
-    _ = M * ((volume (D \ B)).toReal + (volume (B \ D)).toReal) := by ring
-
 /-- A continuous function is integrable on a bounded set. -/
 private lemma integrableOn_norm_of_isBounded {S : Set (EuclideanSpace ℝ (Fin d))}
     (hS : Bornology.IsBounded S) : IntegrableOn (fun v : EuclideanSpace ℝ (Fin d) => ‖v‖) S :=
@@ -218,59 +191,17 @@ private theorem abs_potential_sub_le (hd : 2 ≤ d) {ε r W : ℝ} (hε : 0 < ε
           ((∫ v in D, ‖v‖) - ∫ v in Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r, ‖v‖)| ≤
       2 * ε / unitBallVolume d * ((d * 3 ^ d + 1) * 2 ^ d * (‖y‖ + W) / r ^ d *
         (volume (D ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r)).toReal) := by
-  have hω := unitBallVolume_pos d
-  have hc : 0 ≤ 2 * ε / unitBallVolume d := by positivity
   have hBb : Bornology.IsBounded (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r) :=
     Metric.isBounded_ball
-  have hBm : MeasurableSet (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r) :=
-    Metric.isOpen_ball.measurableSet
-  have hDfin : volume D ≠ ⊤ := hDb.measure_lt_top.ne
-  have hBfin : volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r) ≠ ⊤ :=
-    measure_ball_lt_top.ne
-  have hfD := Geometry.integrableOn_potentialIntegrand (d := d) (by omega) hD hDfin y
-  have hfB := Geometry.integrableOn_potentialIntegrand (d := d) (by omega) hBm hBfin y
   have hnD := (integrableOn_norm_of_isBounded hDb).div_const (r ^ d)
   have hnB := (integrableOn_norm_of_isBounded hBb).div_const (r ^ d)
-  have hM : ∀ v ∈ D ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r,
-      |inner ℝ (unitDir v) (v - y) / ‖v - y‖ ^ d - ‖v‖ / r ^ d| ≤
-        (d * 3 ^ d + 1) * 2 ^ d * (‖y‖ + W) / r ^ d := fun v hv =>
-    abs_potentialIntegrand_sub_norm_le (by omega) hr (hann v hv) hW hy
-  have key := abs_setIntegral_sub_le
-    (g := fun v => inner ℝ (unitDir v) (v - y) / ‖v - y‖ ^ d - ‖v‖ / r ^ d)
-    hD hBm hDfin hBfin (hfD.sub hnD) (hfB.sub hnB) hM
-  rw [integral_sub hfD hnD, integral_sub hfB hnB, integral_div, integral_div] at key
-  have hpotB : potential d ε (Metric.ball 0 r) y = 2 * d * ε * (r - ‖y‖) := by
-    rw [Geometry.potential_ball hd ε hr y, max_eq_left (by linarith)]
-  have hpotD : potential d ε D y =
-      2 * ε / unitBallVolume d * ∫ v in D, inner ℝ (unitDir v) (v - y) / ‖v - y‖ ^ d := rfl
-  have hpotB' : potential d ε (Metric.ball 0 r) y = 2 * ε / unitBallVolume d *
-      ∫ v in Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r,
-        inner ℝ (unitDir v) (v - y) / ‖v - y‖ ^ d := rfl
-  have hLHS : potential d ε D y - 2 * d * ε * (r - ‖y‖) -
-        2 * ε / unitBallVolume d / r ^ d *
-          ((∫ v in D, ‖v‖) - ∫ v in Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r, ‖v‖) =
-      2 * ε / unitBallVolume d *
-        (((∫ v in D, inner ℝ (unitDir v) (v - y) / ‖v - y‖ ^ d) -
-            (∫ v in D, ‖v‖) / r ^ d) -
-          ((∫ v in Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r,
-              inner ℝ (unitDir v) (v - y) / ‖v - y‖ ^ d) -
-            (∫ v in Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r, ‖v‖) / r ^ d)) := by
-    rw [← hpotB, hpotD, hpotB']
-    ring
-  rw [hLHS, abs_mul, abs_of_nonneg hc]
-  exact mul_le_mul_of_nonneg_left key hc
-
-/-- Scaling by `r` carries `(r⁻¹ • S) ∆ B(0, 1)` to `S ∆ B(0, r)`, so the volumes differ by
-`r^d`. -/
-private lemma volume_symmDiff_ball {r : ℝ} (hr : 0 < r) (S : Set (EuclideanSpace ℝ (Fin d))) :
-    volume (S ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r) =
-      ENNReal.ofReal (r ^ d) *
-        volume ((r⁻¹ • S) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1) := by
-  have h : S ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r =
-      r • ((r⁻¹ • S) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1) := by
-    rw [Set.smul_set_symmDiff₀ hr.ne', smul_inv_smul₀ hr.ne', smul_ball hr.ne', smul_zero,
-      Real.norm_eq_abs, abs_of_pos hr, mul_one]
-  rw [h, Measure.addHaar_smul, finrank_euclideanSpace_fin, abs_of_pos (pow_pos hr d)]
+  have key := Geometry.abs_potential_sub_ball_sub_le hd hε.le hD hDb (z := y) (r := r)
+    (M := (d * 3 ^ d + 1) * 2 ^ d * (‖y‖ + W) / r ^ d) (h := fun v => ‖v‖ / r ^ d) hnD hnB
+    (fun v hv => abs_potentialIntegrand_sub_norm_le (by omega) hr (hann v hv) hW hy)
+  rw [integral_div, integral_div, Geometry.potential_ball hd ε hr y,
+    max_eq_left (by linarith)] at key
+  refine le_of_eq_of_le (congrArg abs ?_) key
+  ring
 
 /-- The first moment of the ball: `∫_{B(0,r)} |v| dv = d ω_d r^{d+1} / (d + 1)`. -/
 private lemma integral_ball_norm (hd : 1 ≤ d) {r : ℝ} (hr : 0 < r) :
@@ -433,29 +364,6 @@ private theorem abs_centering_le (hd : 2 ≤ d) {ε r A B m m₀ : ℝ} (hε : 0
           quadraticMart ε X n / (unitBallVolume d * r ^ d))| := by congr 1; ring
     _ ≤ _ := (abs_add_le _ _).trans (add_le_add hfirst hsecond)
 
-/-- The volume of `S ∆ B(0, r)` is at most `r^d m` when that of `(r⁻¹ • S) ∆ B(0, 1)` is at
-most `m`. -/
-private lemma toReal_volume_symmDiff_le {r m : ℝ} (hr : 0 < r) (hm0 : 0 ≤ m)
-    (S : Set (EuclideanSpace ℝ (Fin d)))
-    (hm : volume ((r⁻¹ • S) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1) ≤
-      ENNReal.ofReal m) :
-    (volume (S ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r)).toReal ≤ r ^ d * m := by
-  rw [volume_symmDiff_ball hr S]
-  have h : ENNReal.ofReal (r ^ d) *
-      volume ((r⁻¹ • S) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1) ≤
-      ENNReal.ofReal (r ^ d) * ENNReal.ofReal m := by gcongr
-  rw [← ENNReal.ofReal_mul (pow_pos hr d).le] at h
-  exact ENNReal.toReal_le_of_le_ofReal (by positivity) h
-
-/-- The `d + 1`-st power of `x ^ (1 / (d + 1))` is `x`. -/
-private lemma rpow_inv_succ_pow (d : ℕ) {x : ℝ} (hx : 0 ≤ x) :
-    (x ^ ((1 : ℝ) / (d + 1))) ^ (d + 1) = x := by
-  rw [← Real.rpow_natCast, ← Real.rpow_mul hx]
-  have h : (1 : ℝ) / (d + 1) * ((d + 1 : ℕ) : ℝ) = 1 := by
-    push_cast
-    field_simp
-  rw [h, Real.rpow_one]
-
 /-- `L ^ (5/2) = (√L)^5`. -/
 private lemma rpow_five_halves {L : ℝ} (hL : 0 ≤ L) :
     L ^ ((5 : ℝ) / 2) = Real.sqrt L ^ 5 := by
@@ -545,7 +453,7 @@ private theorem centering_planar (hd2 : d = 2) {ε : ℝ} (hε : 0 < ε) (y : Si
   simp only [pow_zero, mul_one, one_mul, pow_one] at hr1 hry hrs hrL
   have hrn : r n ^ (d + 1) = (d + 1) * n / (2 * d * ε * unitBallVolume d) := by
     rw [hr n]
-    exact rpow_inv_succ_pow d (by positivity)
+    exact Geometry.rpow_inv_succ_pow d (by positivity)
   obtain ⟨⟨hin, hout⟩, hvol⟩ := hn
   have hr0 : 0 < r n := by linarith
   obtain ⟨t, ht⟩ : ∃ t : ℝ, t = Real.sqrt (r n) := ⟨_, rfl⟩
@@ -582,7 +490,7 @@ private theorem centering_planar (hd2 : d = 2) {ε : ℝ} (hε : 0 < ε) (y : Si
         _ ≤ t * (t / 8) := by gcongr
     have h4 : t * (t / 8) = r n / 8 := by rw [← ht2]; ring
     linarith
-  have hm := toReal_volume_symmDiff_le hr0 (by positivity) (cellSet Y n) hvol
+  have hm := Geometry.toReal_volume_symmDiff_le hr0 (by positivity) (cellSet Y n) hvol
   have hmm : C₁ * (u / t) ≤ C₁ := by
     have : u / t ≤ 1 := (div_le_one ht0).mpr hut
     calc C₁ * (u / t) ≤ C₁ * 1 := by gcongr
@@ -672,7 +580,7 @@ private theorem centering_high (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) (y : Sit
   simp only [pow_zero, mul_one, one_mul, pow_one] at hr1 hry hrs hrL hrk
   have hrn : r n ^ (d + 1) = (d + 1) * n / (2 * d * ε * unitBallVolume d) := by
     rw [hr n]
-    exact rpow_inv_succ_pow d (by positivity)
+    exact Geometry.rpow_inv_succ_pow d (by positivity)
   obtain ⟨⟨hin, hout⟩, hvol⟩ := hn
   have hr0 : 0 < r n := by linarith
   have hpow : Real.log n ^ ((d : ℝ) + 1) = Real.log n ^ (d + 1) := by
@@ -686,7 +594,7 @@ private theorem centering_high (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) (y : Sit
     have h1 : C₁ * Real.log n ≤ C₁ * Real.log n ^ (d + 1) := by gcongr
     have h2 : 8 * C₁ * Real.log n ^ (d + 1) ≤ r n := hr8
     linarith
-  have hm := toReal_volume_symmDiff_le hr0 (by positivity) (cellSet Y n) hvol
+  have hm := Geometry.toReal_volume_symmDiff_le hr0 (by positivity) (cellSet Y n) hvol
   have hmm : C₁ * (Real.log n / r n) ≤ C₁ := by
     have : Real.log n / r n ≤ 1 := (div_le_one hr0).mpr hrL
     calc C₁ * (Real.log n / r n) ≤ C₁ * 1 := by gcongr
