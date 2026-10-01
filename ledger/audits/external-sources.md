@@ -275,3 +275,5 @@ predictable and random, as `StoutLIL` does (`B (n+1)` is `ℱ n`-measurable, and
 * **Verdict:** the CONCERN is narrowed to the lower conjunct of `StoutLIL`, and it stays open for the
   author. The check is to read Hall–Heyde (1980) Theorem 4.8 or Stout (1970) Theorem 1 and confirm
   that `K_n` may be `F_{n-1}`-measurable.
+
+* **Uses in this repository:** `ledger/audits/stout-uses.md` maps each use of `StoutLIL` to the conjunct it consumes and says whether it survives a weaker form.
