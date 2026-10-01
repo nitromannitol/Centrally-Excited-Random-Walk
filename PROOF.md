@@ -278,7 +278,7 @@ Here `Ψ = |·|`, `ξ(x) = u_x`, and `b` is the inner radius, `E = D_n ∖ B(0, 
 The martingale central limit theorem and the law of the iterated logarithm enter as the hypotheses
 `hCLT : MartingaleCLT` and `hLIL : StoutLIL`. Their exact forms are in `CORRESPONDENCE.md` and
 `ASSUMPTIONS.md`.
-* **`thm:moment-fluctuations`** (`MomentFluctuations.lean`, `MomentLil.lean`). The Dynkin martingale `𝒬`
+* **`thm:moment-fluctuations`** (`MomentFluctuations.lean`, `MomentLil.lean`, `MomentCommon.lean`). The Dynkin martingale `𝒬`
   of `|x|²` equals `2ε Σ_{x ∈ A_n} |x| - n + |X_n|²`. Its bracket is
   `(4/d) Σ_{t<n} |X_t|² - 4ε² Σ_{first departures} |X_t|²`, which is asymptotic to `r_n^{d+3}` times an
   explicit constant: the local times are compared with the limit profile (`thm:shape`) and a lattice sum
@@ -437,6 +437,18 @@ The layers:
   files: `Main/LimitShape.lean` imports `CERW.Frozen.BallShape`, `Lower/BulkProfile.lean` imports
   `CERW.Frozen.CoarseBounds` and `CERW.Frozen.LocalTimePotential`, and `Lower/SharpWidth.lean` imports
   `CERW.Frozen.CoarseBounds`.
+* An argument used by several proofs is stated once, in a shared module:
+  * `Norm/DriftSite.lean`: Dynkin's formula at a site, the bracket bounds of the drift walk and the
+    cell modulus of the norm potential. It is imported by the proofs of `lem:local` and `lem:contact`.
+  * `Norm/VectorBound.lean`: the vector bound for the drift-compensated walk. It is used by `prop:coarse`
+    and `prop:norm-shape`.
+  * `LocalTime/LatticeKernelFacts.lean`: the kernel facts of `latticeKernel`. They are used by
+    `thm:site-fluctuations`, `thm:sharp` (iii) and `lem:separated-brackets`.
+  * `Geometry/BallCompare.lean`: the comparison of the potential of a set with that of a ball when their
+    symmetric difference is small. It is used by `lem:fixed-site-centering`, `prop:bulk-profile` and
+    `thm:sharp` (iii); `prop:norm-shape` uses only its identity `(x^{1/(d+1)})^{d+1} = x`.
+  * `Limit/MomentCommon.lean`: the bracket, normalization and iterated-logarithm lemmas for the sum of
+    the distances. They are used by `thm:moment-fluctuations` and `thm:sharp` (ii).
 * Each frozen file imports `CERW.Model` and the modules that prove it, and the cited result it carries
   as a hypothesis, if any. The first-version frozen files other than `PotentialGeometry.lean` import the
   bridge `Support/LocalTime/KernelAsymptotics.lean`, which imports the proved kernel asymptotics of
