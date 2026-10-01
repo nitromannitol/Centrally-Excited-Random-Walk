@@ -14,6 +14,7 @@ import CERW.Support.Norm.Coarse
 import CERW.Generic.Lattice.Packing
 import Mathlib.MeasureTheory.Integral.RieszMarkovKakutani.Real
 import Mathlib.Analysis.Convex.Cone.Extension
+import CERW.Support.Norm.DriftSite
 
 /-!
 # The local times and the norm potential
@@ -22,7 +23,8 @@ import Mathlib.Analysis.Convex.Cone.Extension
 drift field `ξ`, a choice of subgradients of a norm `Ψ`, given the estimate of `lem:cell`
 (`cell_gradient`). The proof is the one of the Euclidean case (`CERW.Support.LocalTime`):
 
-* Dynkin's formula for the kernel `b(· - y)` and the walk with drift field (`driftDynkin`);
+* Dynkin's formula for the kernel `b(· - y)` and the walk with drift field (`driftDynkin`), and
+  `eq:cellmodulus` for the norm potential, both from `CERW.Support.Norm.DriftSite`;
 * the interval martingale bound from Freedman's inequality at dyadic brackets;
 * the Young absorption for the interval maxima, and the approximation of the local times by
   the source sum.
@@ -1356,56 +1358,6 @@ open CERW.Support.Occupation CERW.Support.LocalTime
 
 variable {d : ℕ}
 
-/-- At the origin the drift vanishes, so the nonzero indicator may be dropped. -/
-private lemma ite_ne_zero_inner (b : Site d → ℝ) (ε : ℝ) (ξ : Site d → EuclideanSpace ℝ (Fin d))
-    (hξ0 : ξ 0 = 0) (y z : Site d) :
-    (if z ≠ 0 then ε * inner ℝ (ξ z) (centralDiff b (z - y)) else 0) =
-      ε * inner ℝ (ξ z) (centralDiff b (z - y)) := by
-  by_cases hz : z = 0
-  · subst z
-    simp [hξ0]
-  · simp [hz]
-
-/-- The Dynkin compensator increment of `b(· - y)` at time `j` is the visit indicator at `y`
-minus the first-departure drift. -/
-private lemma driftNextMean_sub_self {b : Site d → ℝ}
-    (hb : ∀ x, walkOp b x - b x = if x = 0 then 1 else 0) (ε : ℝ)
-    (ξ : Site d → EuclideanSpace ℝ (Fin d)) (x : ℕ → Site d) (y : Site d) (j : ℕ) :
-    driftNextMean ε ξ (fun z => b (z - y)) x j - b (x j - y) =
-      (if x j = y then 1 else 0) -
-        (if x j ≠ 0 ∧ x j ∉ (range j).image x then
-          ε * inner ℝ (ξ (x j)) (centralDiff b (x j - y)) else 0) := by
-  rw [driftNextMean, sum_driftStepProb_mul ε ξ x j (fun z => b (z - y)),
-    walkOp_comp_sub, centralDiff_comp_sub, sub_right_comm, hb (x j - y)]
-  simp only [sub_eq_zero]
-
-/-- `eq:dynkin` for the walk with a drift field, pathwise:
-`ℓ_n(y) = b(X_n - y) - b(-y) + ε Σ_{x ∈ A_n} ξ(x) · Db(x - y) - 𝓜^y_n`. -/
-private theorem localTime_eq_driftDynkin {b : Site d → ℝ}
-    (hb : ∀ x, walkOp b x - b x = if x = 0 then 1 else 0) (ε : ℝ)
-    {ξ : Site d → EuclideanSpace ℝ (Fin d)} (hξ0 : ξ 0 = 0) {Ω : Type*}
-    (X : ℕ → Ω → Site d) (ω : Ω) (h0 : X 0 ω = 0) (n : ℕ) (y : Site d) :
-    (localTime (fun j => X j ω) n y : ℝ) =
-      b (X n ω - y) - b (-y) +
-        ε * (∑ z ∈ departureRange (fun j => X j ω) n,
-          inner ℝ (ξ z) (centralDiff b (z - y))) -
-        driftDynkin ε ξ (fun z => b (z - y)) X n ω := by
-  have hfresh := sum_fresh_ne_zero_eq_sum_departureRange (fun i => X i ω) n
-    (fun z => ε * inner ℝ (ξ z) (centralDiff b (z - y)))
-  have hstep :
-      ∑ j ∈ range n,
-          (driftNextMean ε ξ (fun z => b (z - y)) (fun i => X i ω) j - b (X j ω - y)) =
-        (localTime (fun j => X j ω) n y : ℝ) -
-          ε * ∑ z ∈ departureRange (fun j => X j ω) n,
-              inner ℝ (ξ z) (centralDiff b (z - y)) := by
-    simp_rw [driftNextMean_sub_self hb ε ξ (fun i => X i ω) y]
-    rw [Finset.sum_sub_distrib, sum_ite_eq_localTime, hfresh]
-    simp_rw [ite_ne_zero_inner b ε ξ hξ0 y]
-    rw [Finset.mul_sum]
-  simp only [driftDynkin]
-  rw [h0, zero_sub, hstep]
-  ring
-
 /-- The interval Dynkin decomposition of `ℓ_{s,t}(y)` for the walk with a drift field, for a path
 from the origin. -/
 private theorem intervalLocalTime_eq_driftDynkin {b : Site d → ℝ}
@@ -1418,8 +1370,8 @@ private theorem intervalLocalTime_eq_driftDynkin {b : Site d → ℝ}
           inner ℝ (ξ z) (centralDiff b (z - y))) -
         (driftDynkin ε ξ (fun z => b (z - y)) X t ω -
           driftDynkin ε ξ (fun z => b (z - y)) X s ω) := by
-  have ht := localTime_eq_driftDynkin hb ε hξ0 X ω h0 t y
-  have hs := localTime_eq_driftDynkin hb ε hξ0 X ω h0 s y
+  have ht := ContactDynkin.localTime_eq_driftDynkin hb ε ξ hξ0 X ω h0 t y
+  have hs := ContactDynkin.localTime_eq_driftDynkin hb ε ξ hξ0 X ω h0 s y
   have hadd : ((localTime (fun j => X j ω) s y : ℕ) : ℝ) +
       (intervalLocalTime (fun j => X j ω) s t y : ℝ) =
       ((localTime (fun j => X j ω) t y : ℕ) : ℝ) := by
@@ -1439,110 +1391,6 @@ open MeasureTheory ProbabilityTheory LatticeProb Finset CERW CERW.Support.Law CE
 open CERW.Support.Occupation CERW.Support.LocalTime
 
 variable {d : ℕ}
-
-/-- The increments of the Dynkin martingale of `b(· - y)` for the walk with a drift field are at
-most `2 C_g (1 + |X_t - y|)^{1-d}`, almost surely. -/
-private lemma ae_abs_driftDynkin_translate_succ_sub_le {Ω : Type*} [MeasurableSpace Ω]
-    {ε : ℝ} {ξ : Site d → EuclideanSpace ℝ (Fin d)} {μ : Measure Ω} [IsProbabilityMeasure μ]
-    {X : ℕ → Ω → Site d} (hd : 1 ≤ d) (hε : 0 ≤ ε)
-    (hξ : ∀ z i, ε * |ξ z i| ≤ 1 / (d : ℝ)) (hX : IsDriftCERW μ ε ξ X) {b : Site d → ℝ} {Cg : ℝ}
-    (hgrad : ∀ x e, e ∈ unitSteps d → |b (x + e) - b x| ≤ Cg * (1 + euclidNorm x) ^ (1 - (d : ℝ)))
-    (y : Site d) :
-    ∀ᵐ ω ∂μ, ∀ t, |driftDynkin ε ξ (fun z => b (z - y)) X (t + 1) ω -
-      driftDynkin ε ξ (fun z => b (z - y)) X t ω| ≤
-        2 * (Cg * (1 + euclidNorm (X t ω - y)) ^ (1 - (d : ℝ))) := by
-  filter_upwards [ae_abs_driftDynkin_succ_sub_le hd hε hξ hX (fun z => b (z - y))] with ω hω
-  intro t
-  exact hω t (Cg * (1 + euclidNorm (X t ω - y)) ^ (1 - (d : ℝ))) fun e he => by
-    rw [add_sub_right_comm]
-    exact hgrad (X t ω - y) e he
-
-/-- The conditional variances of the Dynkin martingale of `b(· - y)` for the walk with a drift
-field are at most `C_g² (1 + |X_t - y|)^{2-2d}`. -/
-private lemma condExp_sq_driftDynkin_translate_le {Ω : Type*} [MeasurableSpace Ω]
-    {ε : ℝ} {ξ : Site d → EuclideanSpace ℝ (Fin d)} {μ : Measure Ω} [IsProbabilityMeasure μ]
-    {X : ℕ → Ω → Site d} (hd : 1 ≤ d) (hε : 0 ≤ ε)
-    (hξ : ∀ z i, ε * |ξ z i| ≤ 1 / (d : ℝ)) (hX : IsDriftCERW μ ε ξ X) {b : Site d → ℝ} {Cg : ℝ}
-    (hgrad : ∀ x e, e ∈ unitSteps d → |b (x + e) - b x| ≤ Cg * (1 + euclidNorm x) ^ (1 - (d : ℝ)))
-    (y : Site d) (t : ℕ) :
-    μ[fun ω => (driftDynkin ε ξ (fun z => b (z - y)) X (t + 1) ω -
-        driftDynkin ε ξ (fun z => b (z - y)) X t ω) ^ 2 | pathFiltration hX.measurable t] ≤ᵐ[μ]
-      fun ω => Cg ^ 2 * (1 + euclidNorm (X t ω - y)) ^ (2 - 2 * (d : ℝ)) := by
-  have hCg : 0 ≤ Cg := cg_nonneg hd hgrad
-  filter_upwards [condExp_sq_driftDynkin_succ_sub_le hd hε hξ hX (fun z => b (z - y)) t] with ω hω
-  refine hω.trans ?_
-  set ρ : ℝ := euclidNorm (X t ω - y) with hρ
-  set B : ℝ := Cg * (1 + ρ) ^ (1 - (d : ℝ)) with hBdef
-  have hbase : 0 ≤ (1 + ρ : ℝ) := by
-    rw [hρ]
-    linarith [euclidNorm_nonneg (X t ω - y)]
-  have hB : 0 ≤ B := by
-    rw [hBdef]
-    exact mul_nonneg hCg (Real.rpow_nonneg hbase _)
-  have hterm : ∀ e ∈ unitSteps d, driftStepProb d ε ξ (fun j => X j ω) t e *
-        (b ((X t ω + e) - y) - b (X t ω - y)) ^ 2 ≤
-      driftStepProb d ε ξ (fun j => X j ω) t e * B ^ 2 := by
-    intro e he
-    refine mul_le_mul_of_nonneg_left ?_ (driftStepProb_nonneg hε hξ _ t e)
-    have hosc := hgrad (X t ω - y) e he
-    calc (b ((X t ω + e) - y) - b (X t ω - y)) ^ 2
-        = (b ((X t ω - y) + e) - b (X t ω - y)) ^ 2 := by rw [add_sub_right_comm]
-      _ = |b ((X t ω - y) + e) - b (X t ω - y)| ^ 2 := (sq_abs _).symm
-      _ ≤ B ^ 2 := by
-          rw [hBdef]
-          exact pow_le_pow_left₀ (abs_nonneg _) hosc 2
-  have hsum : ∑ e ∈ unitSteps d, driftStepProb d ε ξ (fun j => X j ω) t e *
-        (b ((X t ω + e) - y) - b (X t ω - y)) ^ 2 ≤ B ^ 2 := by
-    calc ∑ e ∈ unitSteps d, driftStepProb d ε ξ (fun j => X j ω) t e *
-          (b ((X t ω + e) - y) - b (X t ω - y)) ^ 2
-        ≤ ∑ e ∈ unitSteps d, driftStepProb d ε ξ (fun j => X j ω) t e * B ^ 2 :=
-            Finset.sum_le_sum hterm
-      _ = B ^ 2 := by rw [← Finset.sum_mul, sum_driftStepProb hd ε ξ _ t, one_mul]
-  refine hsum.trans ?_
-  have hsqrpow : ((1 + ρ) ^ (1 - (d : ℝ))) ^ 2 = (1 + ρ) ^ (2 - 2 * (d : ℝ)) := by
-    rw [← Real.rpow_natCast, ← Real.rpow_mul hbase]
-    congr 1
-    push_cast
-    ring
-  rw [hBdef, mul_pow, hsqrpow]
-
-/-- The translated Dynkin martingale of the walk with a drift field agrees almost surely with a
-martingale whose increments are at most `2 C_g + 1` everywhere and whose conditional variances are
-at most the bracket increments. -/
-private lemma exists_clamped_translate_drift (hd : 1 ≤ d) {Ω : Type*} [MeasurableSpace Ω]
-    {μ : Measure Ω} [IsProbabilityMeasure μ] {ε : ℝ} {ξ : Site d → EuclideanSpace ℝ (Fin d)}
-    (hε : 0 ≤ ε) (hξ : ∀ z i, ε * |ξ z i| ≤ 1 / (d : ℝ))
-    {X : ℕ → Ω → Site d} (hX : IsDriftCERW μ ε ξ X) {b : Site d → ℝ} {Cg : ℝ}
-    (hgrad : ∀ x e, e ∈ unitSteps d → |b (x + e) - b x| ≤ Cg * (1 + euclidNorm x) ^ (1 - (d : ℝ)))
-    (y : Site d) :
-    ∃ M : ℕ → Ω → ℝ, Martingale M (pathFiltration hX.measurable) μ ∧
-      (∀ i ω, |M (i + 1) ω - M i ω| ≤ 2 * Cg + 1) ∧
-      (∀ j, μ[fun ω => (M (j + 1) ω - M j ω) ^ 2 | pathFiltration hX.measurable j] ≤ᵐ[μ]
-        fun ω => bracket Cg y X (j + 1) ω - bracket Cg y X j ω) ∧
-      ∀ᵐ ω ∂μ, ∀ i, M i ω = driftDynkin ε ξ (fun z => b (z - y)) X i ω := by
-  have hCg := cg_nonneg hd hgrad
-  have hmart := martingale_driftDynkin hd hε hξ hX (fun z => b (z - y))
-  have hinc : ∀ i, ∀ᵐ ω ∂μ, |driftDynkin ε ξ (fun z => b (z - y)) X (i + 1) ω -
-      driftDynkin ε ξ (fun z => b (z - y)) X i ω| ≤ 2 * Cg + 1 := fun i =>
-    (ae_abs_driftDynkin_translate_succ_sub_le hd hε hξ hX hgrad y).mono fun ω hω => by
-      have h1 : (1 + euclidNorm (X i ω - y)) ^ (1 - (d : ℝ)) ≤ 1 :=
-        rpow_one_add_le_one (euclidNorm_nonneg _) (by
-          have : (1 : ℝ) ≤ d := by exact_mod_cast hd
-          linarith)
-      have h2 := hω i
-      nlinarith
-  obtain ⟨M, hM, hbd, -, hae⟩ := CERW.Generic.Martingale.exists_martingale_clamp hmart
-    (b := 2 * Cg + 1) (by linarith) hinc
-  refine ⟨M, hM, hbd, fun j => ?_, hae⟩
-  have hsq : (fun ω => (M (j + 1) ω - M j ω) ^ 2) =ᵐ[μ]
-      fun ω => (driftDynkin ε ξ (fun z => b (z - y)) X (j + 1) ω -
-        driftDynkin ε ξ (fun z => b (z - y)) X j ω) ^ 2 := by
-    filter_upwards [hae] with ω hω
-    rw [hω, hω]
-  refine (condExp_congr_ae hsq).trans_le ?_
-  filter_upwards [condExp_sq_driftDynkin_translate_le hd hε hξ hX hgrad y j] with ω hω
-  rw [bracket_succ_sub]
-  exact hω
 
 /-- The interval maximum is at least one on a nonempty interval. -/
 private lemma one_le_intervalMax (x : ℕ → Site d) {s t : ℕ} (hst : s < t) :
@@ -1705,7 +1553,8 @@ private lemma exists_event_bound (hd : 2 ≤ d) {ε : ℝ} (hε : 0 ≤ ε)
   obtain ⟨Cdet, hCdet0, hCdet⟩ := exists_det_bound hd hCg hc1
   refine ⟨Cdet, hCdet0, ?_⟩
   intro Ω _ μ _ ξ hξ X hX n hn s t y hst htn hy
-  obtain ⟨M, hM, hbd, hvar, hae⟩ := exists_clamped_translate_drift hd1 hε hξ hX hgrad y
+  obtain ⟨M, hM, hbd, hvar, hae⟩ :=
+    ContactDynkin.exists_clamped_translate_drift hd1 hε hξ hX hgrad y
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hst.le
   have hnR : (1 : ℝ) ≤ n := by exact_mod_cast (by omega : 1 ≤ n)
   have hL : 0 < Real.log ((n : ℝ) + 2) := Real.log_pos (by linarith)
@@ -1978,448 +1827,6 @@ private lemma integrableOn_inner_field_newtonField (hd : 2 ≤ d)
     _ = ‖g v‖ * ‖v - z‖ ^ (1 - (d : ℝ)) := by rw [norm_newtonField hd]
     _ ≤ Λ * ‖v - z‖ ^ (1 - (d : ℝ)) :=
         mul_le_mul_of_nonneg_right (hgb v) (Real.rpow_nonneg (norm_nonneg _) _)
-
-/-- The integrand `g(v) · (v - y) |v - y|^{-d}` of the potential of a field `g`. -/
-private noncomputable def fieldIntegrand {d : ℕ}
-    (g : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d))
-    (y : EuclideanSpace ℝ (Fin d)) (v : EuclideanSpace ℝ (Fin d)) : ℝ :=
-  inner ℝ (g v) (v - y) / ‖v - y‖ ^ d
-
-/-- The far-field constant `2^d + 2 d 3^{d-1}`. -/
-private def farFieldConstant (d : ℕ) : ℝ := (2 : ℝ) ^ d + 2 * (d : ℝ) * 3 ^ (d - 1)
-
-/-- The difference of the field integrands is bounded by the difference of the Newtonian fields,
-for a field of norm at most one. -/
-private lemma abs_fieldIntegrand_sub_le {d : ℕ}
-    (g : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d)) (hg : ∀ v, ‖g v‖ ≤ 1)
-    (v y z : EuclideanSpace ℝ (Fin d)) :
-    |fieldIntegrand g y v - fieldIntegrand g z v|
-      ≤ ‖newtonField (v - y) - newtonField (v - z)‖ := by
-  simp only [fieldIntegrand]
-  rw [← inner_newtonField (g v) (v - y),
-    ← inner_newtonField (g v) (v - z), ← inner_sub_right]
-  calc |inner ℝ (g v) (newtonField (v - y) - newtonField (v - z))|
-      ≤ ‖g v‖ * ‖newtonField (v - y) - newtonField (v - z)‖ :=
-        abs_real_inner_le_norm _ _
-    _ ≤ 1 * ‖newtonField (v - y) - newtonField (v - z)‖ :=
-        mul_le_mul_of_nonneg_right (hg v) (norm_nonneg _)
-    _ = ‖newtonField (v - y) - newtonField (v - z)‖ := one_mul _
-
-/-- On a measurable set of finite volume the integrand of a measurable field of norm at most one
-is integrable. -/
-private lemma integrableOn_fieldIntegrand (hd : 2 ≤ d)
-    (g : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d)) (hg : ∀ v, ‖g v‖ ≤ 1)
-    (hgm : Measurable g) {D : Set (EuclideanSpace ℝ (Fin d))} (hD : MeasurableSet D)
-    (hDfin : volume D ≠ ⊤) (y : EuclideanSpace ℝ (Fin d)) :
-    IntegrableOn (fieldIntegrand g y) D := by
-  refine (integrableOn_inner_field_newtonField hd hgm hg hD hDfin y).congr ?_
-  filter_upwards with v
-  exact inner_newtonField (g v) (v - y)
-
-/-- Integral of `|v - z|^{-d}` over an annulus centred at `z`, obtained from the corresponding
-integral at the origin by translation. -/
-private lemma integrableOn_annulus_sub_rpow_neg_and_integral_eq (hd : 1 ≤ d)
-    (z : EuclideanSpace ℝ (Fin d)) {ρ R : ℝ} (hρ : 0 < ρ) (hρR : ρ ≤ R) :
-    IntegrableOn (fun v => ‖v - z‖ ^ (-(d : ℝ))) (Metric.ball z R \ Metric.ball z ρ) ∧
-      ∫ v in Metric.ball z R \ Metric.ball z ρ, ‖v - z‖ ^ (-(d : ℝ))
-        = d * unitBallVolume d * Real.log (R / ρ) := by
-  obtain ⟨hint, hval⟩ := integrableOn_annulus_norm_rpow_and_integral_eq (d := d) hd hρ hρR
-  have hmp := measurePreserving_sub_right (volume : Measure (EuclideanSpace ℝ (Fin d))) z
-  have hemb := measurableEmbedding_subRight z
-  have hset : Metric.ball z R \ Metric.ball z ρ
-      = (fun v : EuclideanSpace ℝ (Fin d) => v - z) ⁻¹'
-          (Metric.ball 0 R \ Metric.ball 0 ρ) := by
-    ext v
-    simp only [Set.mem_sdiff, Set.mem_preimage, mem_ball_iff_norm, sub_zero]
-  rw [hset]
-  refine ⟨?_, ?_⟩
-  · exact (hmp.integrableOn_comp_preimage hemb (f := fun v => ‖v‖ ^ (-(d : ℝ)))).mpr hint
-  · rw [hmp.setIntegral_preimage_emb hemb (fun v => ‖v‖ ^ (-(d : ℝ))), hval]
-
-/-- Near-field bound: the difference of the potential integrands over `D ∩ B(z, 2√d)` is at most
-`5 d ω_d √d`. -/
-private lemma setIntegral_abs_fieldIntegrand_sub_le_near (hd : 2 ≤ d)
-    (g : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d)) (hgb : ∀ v, ‖g v‖ ≤ 1)
-    (hgm : Measurable g)
-    {D : Set (EuclideanSpace ℝ (Fin d))} (hD : MeasurableSet D)
-    (hDfin : volume D ≠ ⊤) (y z : EuclideanSpace ℝ (Fin d))
-    (hyz : ‖y - z‖ ≤ Real.sqrt d) :
-    ∫ v in D ∩ Metric.ball z (2 * Real.sqrt d),
-        |fieldIntegrand g y v - fieldIntegrand g z v|
-      ≤ 5 * (d : ℝ) * unitBallVolume d * Real.sqrt d := by
-  have hd1 : 1 ≤ d := by omega
-  have hd1R : (1 : ℝ) ≤ d := by exact_mod_cast hd1
-  have hδ1 : 1 ≤ Real.sqrt d := Real.one_le_sqrt.mpr hd1R
-  have hδpos : 0 < Real.sqrt d := lt_of_lt_of_le zero_lt_one hδ1
-  have hsubY : D ∩ Metric.ball z (2 * Real.sqrt d) ⊆ Metric.ball y (3 * Real.sqrt d) := by
-    intro v hv
-    have hvz : ‖v - z‖ < 2 * Real.sqrt d := by
-      have h := hv.2
-      rwa [Metric.mem_ball, dist_eq_norm] at h
-    rw [Metric.mem_ball, dist_eq_norm]
-    calc ‖v - y‖ ≤ ‖v - z‖ + ‖z - y‖ := by
-          rw [show v - y = (v - z) + (z - y) by abel]
-          exact norm_add_le _ _
-      _ = ‖v - z‖ + ‖y - z‖ := by rw [norm_sub_rev z y]
-      _ < 2 * Real.sqrt d + Real.sqrt d := by linarith
-      _ = 3 * Real.sqrt d := by ring
-  obtain ⟨hintY, hvalY⟩ :=
-    integrableOn_ball_and_integral_eq (d := d) hd1 y (ρ := 3 * Real.sqrt d) (by positivity)
-  obtain ⟨hintZ, hvalZ⟩ :=
-    integrableOn_ball_and_integral_eq (d := d) hd1 z (ρ := 2 * Real.sqrt d) (by positivity)
-  have hgy : IntegrableOn (fun v => ‖v - y‖ ^ (1 - (d : ℝ)))
-      (D ∩ Metric.ball z (2 * Real.sqrt d)) := hintY.mono_set hsubY
-  have hgz : IntegrableOn (fun v => ‖v - z‖ ^ (1 - (d : ℝ)))
-      (D ∩ Metric.ball z (2 * Real.sqrt d)) :=
-    hintZ.mono_set Set.inter_subset_right
-  have hg : IntegrableOn (fun v => ‖v - y‖ ^ (1 - (d : ℝ)) + ‖v - z‖ ^ (1 - (d : ℝ)))
-      (D ∩ Metric.ball z (2 * Real.sqrt d)) := hgy.add hgz
-  have hfyD : IntegrableOn (fieldIntegrand g y) D :=
-    integrableOn_fieldIntegrand hd g hgb hgm hD hDfin y
-  have hfzD : IntegrableOn (fieldIntegrand g z) D :=
-    integrableOn_fieldIntegrand hd g hgb hgm hD hDfin z
-  have hfs : IntegrableOn (fun v => |fieldIntegrand g y v - fieldIntegrand g z v|)
-      (D ∩ Metric.ball z (2 * Real.sqrt d)) :=
-    ((hfyD.mono_set Set.inter_subset_left).sub (hfzD.mono_set Set.inter_subset_left)).abs
-  calc
-    ∫ v in D ∩ Metric.ball z (2 * Real.sqrt d),
-        |fieldIntegrand g y v - fieldIntegrand g z v|
-        ≤ ∫ v in D ∩ Metric.ball z (2 * Real.sqrt d),
-            (‖v - y‖ ^ (1 - (d : ℝ)) + ‖v - z‖ ^ (1 - (d : ℝ))) := by
-          refine setIntegral_mono_on hfs hg (hD.inter measurableSet_ball) (fun v _ => ?_)
-          refine (abs_fieldIntegrand_sub_le g hgb v y z).trans ?_
-          calc ‖newtonField (v - y) - newtonField (v - z)‖
-              ≤ ‖newtonField (v - y)‖ + ‖newtonField (v - z)‖ := norm_sub_le _ _
-            _ = ‖v - y‖ ^ (1 - (d : ℝ)) + ‖v - z‖ ^ (1 - (d : ℝ)) := by
-                rw [norm_newtonField hd, norm_newtonField hd]
-      _ = (∫ v in D ∩ Metric.ball z (2 * Real.sqrt d), ‖v - y‖ ^ (1 - (d : ℝ)))
-            + ∫ v in D ∩ Metric.ball z (2 * Real.sqrt d), ‖v - z‖ ^ (1 - (d : ℝ)) :=
-          integral_add hgy hgz
-      _ ≤ (∫ v in Metric.ball y (3 * Real.sqrt d), ‖v - y‖ ^ (1 - (d : ℝ)))
-            + ∫ v in Metric.ball z (2 * Real.sqrt d), ‖v - z‖ ^ (1 - (d : ℝ)) := by
-          refine add_le_add ?_ ?_
-          · exact setIntegral_mono_set hintY
-              (Filter.Eventually.of_forall (fun v => Real.rpow_nonneg (norm_nonneg _) _))
-              hsubY.eventuallyLE
-          · exact setIntegral_mono_set hintZ
-              (Filter.Eventually.of_forall (fun v => Real.rpow_nonneg (norm_nonneg _) _))
-              Set.inter_subset_right.eventuallyLE
-      _ = 5 * (d : ℝ) * unitBallVolume d * Real.sqrt d := by
-          rw [hvalY, hvalZ]
-          ring
-
-/-- Far-field bound: the difference of the potential integrands over
-`D \ B(z, 2√d)` is at most `A_d √d σ_d log(((3 + √d)(R + 2))/(2√d))`. -/
-private lemma setIntegral_abs_fieldIntegrand_sub_le_far (hd : 2 ≤ d)
-    (g : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d)) (hgb : ∀ v, ‖g v‖ ≤ 1)
-    (hgm : Measurable g) {R : ℝ} (hR : 1 ≤ R)
-    {D : Set (EuclideanSpace ℝ (Fin d))} (hD : MeasurableSet D)
-    (hDfin : volume D ≠ ⊤) (hDsub : D ⊆ Metric.ball 0 R)
-    (y z : EuclideanSpace ℝ (Fin d)) (hy : ‖y‖ ≤ 2 * R)
-    (hyz : ‖y - z‖ ≤ Real.sqrt d) :
-    ∫ v in D \ Metric.ball z (2 * Real.sqrt d),
-        |fieldIntegrand g y v - fieldIntegrand g z v|
-      ≤ farFieldConstant d * Real.sqrt d
-        * ((d : ℝ) * unitBallVolume d
-          * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))) := by
-  have hd1 : 1 ≤ d := by omega
-  have hd1R : (1 : ℝ) ≤ d := by exact_mod_cast hd1
-  have hδ1 : 1 ≤ Real.sqrt d := Real.one_le_sqrt.mpr hd1R
-  have hδpos : 0 < Real.sqrt d := lt_of_lt_of_le zero_lt_one hδ1
-  have hRpos : 0 < R := lt_of_lt_of_le zero_lt_one hR
-  have hA : 0 ≤ farFieldConstant d := by
-    rw [farFieldConstant]; positivity
-  have h2δpos : 0 < 2 * Real.sqrt d := by positivity
-  have hR'pos : 0 < (3 + Real.sqrt d) * (R + 2) := by positivity
-  have h2δR' : 2 * Real.sqrt d ≤ (3 + Real.sqrt d) * (R + 2) := by
-    nlinarith [hR, hδpos]
-  have hsubset : D \ Metric.ball z (2 * Real.sqrt d) ⊆
-      Metric.ball z ((3 + Real.sqrt d) * (R + 2)) \ Metric.ball z (2 * Real.sqrt d) := by
-    intro v hv
-    refine ⟨?_, hv.2⟩
-    have hvD : v ∈ D := hv.1
-    have hvR : ‖v‖ < R := by
-      have := hDsub hvD
-      rwa [Metric.mem_ball, dist_zero_right] at this
-    have hz : ‖z‖ ≤ 2 * R + Real.sqrt d := by
-      calc ‖z‖ = ‖(z - y) + y‖ := by rw [sub_add_cancel]
-        _ ≤ ‖z - y‖ + ‖y‖ := norm_add_le _ _
-        _ = ‖y - z‖ + ‖y‖ := by rw [norm_sub_rev]
-        _ ≤ Real.sqrt d + 2 * R := by linarith
-        _ = 2 * R + Real.sqrt d := by ring
-    have hlt : ‖v - z‖ < (3 + Real.sqrt d) * (R + 2) := by
-      have htri : ‖v - z‖ ≤ ‖v‖ + ‖z‖ := norm_sub_le _ _
-      nlinarith [hvR, hz, hRpos, hδpos]
-    rwa [Metric.mem_ball, dist_eq_norm]
-  obtain ⟨hannInt, hannVal⟩ :=
-    integrableOn_annulus_sub_rpow_neg_and_integral_eq (d := d) hd1 z
-      (ρ := 2 * Real.sqrt d) (R := (3 + Real.sqrt d) * (R + 2)) h2δpos h2δR'
-  have hbig : IntegrableOn (fun v => farFieldConstant d * Real.sqrt d * ‖v - z‖ ^ (-(d : ℝ)))
-      (Metric.ball z ((3 + Real.sqrt d) * (R + 2)) \ Metric.ball z (2 * Real.sqrt d)) :=
-    hannInt.const_mul (farFieldConstant d * Real.sqrt d)
-  have hsmall : IntegrableOn
-      (fun v => farFieldConstant d * Real.sqrt d * ‖v - z‖ ^ (-(d : ℝ)))
-      (D \ Metric.ball z (2 * Real.sqrt d)) := hbig.mono_set hsubset
-  have hfyD : IntegrableOn (fieldIntegrand g y) D :=
-    integrableOn_fieldIntegrand hd g hgb hgm hD hDfin y
-  have hfzD : IntegrableOn (fieldIntegrand g z) D :=
-    integrableOn_fieldIntegrand hd g hgb hgm hD hDfin z
-  have hfs : IntegrableOn (fun v => |fieldIntegrand g y v - fieldIntegrand g z v|)
-      (D \ Metric.ball z (2 * Real.sqrt d)) :=
-    ((hfyD.mono_set Set.sdiff_subset).sub (hfzD.mono_set Set.sdiff_subset)).abs
-  have hpt : ∀ v ∈ D \ Metric.ball z (2 * Real.sqrt d),
-      |fieldIntegrand g y v - fieldIntegrand g z v|
-        ≤ farFieldConstant d * Real.sqrt d * ‖v - z‖ ^ (-(d : ℝ)) := by
-    intro v hv
-    have hvz : 2 * Real.sqrt d ≤ ‖v - z‖ := by
-      have hnot : ¬ ‖v - z‖ < 2 * Real.sqrt d := by
-        intro hlt
-        exact hv.2 (by rwa [Metric.mem_ball, dist_eq_norm])
-      linarith
-    have hsub : 2 * ‖(v - y) - (v - z)‖ ≤ ‖v - z‖ := by
-      have h1 : (v - y) - (v - z) = z - y := by abel
-      rw [h1, norm_sub_rev]
-      linarith
-    have hK := norm_newtonField_sub_le (a := v - y) (b := v - z) hsub
-    have hneg : 0 < ‖v - z‖ := lt_of_lt_of_le h2δpos hvz
-    have hnum : farFieldConstant d * ‖(v - y) - (v - z)‖
-        ≤ farFieldConstant d * Real.sqrt d := by
-      have hle : ‖(v - y) - (v - z)‖ ≤ Real.sqrt d := by
-        rw [show (v - y) - (v - z) = z - y by abel, norm_sub_rev]
-        exact hyz
-      exact mul_le_mul_of_nonneg_left hle hA
-    have hden : (0 : ℝ) < ‖v - z‖ ^ d := pow_pos hneg d
-    calc |fieldIntegrand g y v - fieldIntegrand g z v|
-        ≤ ‖newtonField (v - y) - newtonField (v - z)‖ := abs_fieldIntegrand_sub_le g hgb v y z
-      _ ≤ farFieldConstant d * ‖(v - y) - (v - z)‖ / ‖v - z‖ ^ d := hK
-      _ = (farFieldConstant d * ‖(v - y) - (v - z)‖) / ‖v - z‖ ^ d := by ring
-      _ ≤ (farFieldConstant d * Real.sqrt d) / ‖v - z‖ ^ d :=
-          div_le_div_of_nonneg_right hnum hden.le
-      _ = farFieldConstant d * Real.sqrt d * ‖v - z‖ ^ (-(d : ℝ)) := by
-          rw [Real.rpow_neg (norm_nonneg _), Real.rpow_natCast, div_eq_mul_inv]
-  have hfar1 : ∫ v in D \ Metric.ball z (2 * Real.sqrt d),
-        |fieldIntegrand g y v - fieldIntegrand g z v|
-      ≤ ∫ v in D \ Metric.ball z (2 * Real.sqrt d),
-          farFieldConstant d * Real.sqrt d * ‖v - z‖ ^ (-(d : ℝ)) :=
-    setIntegral_mono_on hfs hsmall (hD.diff measurableSet_ball) hpt
-  have hfar2 : ∫ v in D \ Metric.ball z (2 * Real.sqrt d),
-          farFieldConstant d * Real.sqrt d * ‖v - z‖ ^ (-(d : ℝ))
-      ≤ ∫ v in Metric.ball z ((3 + Real.sqrt d) * (R + 2)) \ Metric.ball z (2 * Real.sqrt d),
-          farFieldConstant d * Real.sqrt d * ‖v - z‖ ^ (-(d : ℝ)) :=
-    setIntegral_mono_set hbig (Filter.Eventually.of_forall (fun v => by positivity))
-      hsubset.eventuallyLE
-  have hfar3 : ∫ v in Metric.ball z ((3 + Real.sqrt d) * (R + 2))
-          \ Metric.ball z (2 * Real.sqrt d),
-          farFieldConstant d * Real.sqrt d * ‖v - z‖ ^ (-(d : ℝ))
-      = farFieldConstant d * Real.sqrt d
-          * ((d : ℝ) * unitBallVolume d
-            * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))) := by
-    rw [integral_const_mul, hannVal]
-  exact hfar1.trans (hfar2.trans (le_of_eq hfar3))
-
-/-- Arithmetic bound: for nonnegative `δ` and `A`, `M ≥ 0` and `L ≥ 1`, if `Lf ≤ M + L`, then
-`5 δ + A δ Lf ≤ (5 + A (1 + M)) δ L`. -/
-private lemma add_mul_le_mul_log {δ A M L Lf : ℝ} (hδ : 0 ≤ δ) (hA : 0 ≤ A) (hM : 0 ≤ M)
-    (hL : 1 ≤ L) (hlog : Lf ≤ M + L) :
-    5 * δ + A * δ * Lf ≤ (5 + A * (1 + M)) * δ * L := by
-  have h1 : 5 * δ ≤ 5 * δ * L := by nlinarith
-  have h2 : A * δ * Lf ≤ A * δ * (M + L) :=
-    mul_le_mul_of_nonneg_left hlog (mul_nonneg hA hδ)
-  have h4 : A * δ * M ≤ A * δ * M * L := by
-    have hAM : 0 ≤ A * δ * M := mul_nonneg (mul_nonneg hA hδ) hM
-    nlinarith
-  nlinarith [h1, h2, h4]
-
-/-- The potential of a field `g`: `(2ε/ω_d) ∫_D ⟪g(v), v - y⟫ |v - y|^{-d} dv`. -/
-private noncomputable def fieldPotential {d : ℕ}
-    (g : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d)) (ε : ℝ)
-    (D : Set (EuclideanSpace ℝ (Fin d))) (y : EuclideanSpace ℝ (Fin d)) : ℝ :=
-  2 * ε / unitBallVolume d * ∫ v in D, fieldIntegrand g y v
-
-/-- `eq:cellmodulus` for a measurable field of norm at most one: for `D ⊆ B(0, R)` with `R ≥ 1`,
-and `y, z` with `|y| ≤ 2R` and `|y - z| ≤ √d`, `|U_D(y) - U_D(z)| ≤ C_d ε log(R + 2)`. -/
-private theorem exists_fieldPotential_cell_modulus (hd : 2 ≤ d) :
-    ∃ C : ℝ, 0 ≤ C ∧ ∀ g : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d),
-      (∀ v, ‖g v‖ ≤ 1) → Measurable g →
-      ∀ ε : ℝ, 0 ≤ ε → ∀ R : ℝ, 1 ≤ R →
-      ∀ D : Set (EuclideanSpace ℝ (Fin d)), MeasurableSet D → D ⊆ Metric.ball 0 R →
-      ∀ y z : EuclideanSpace ℝ (Fin d), ‖y‖ ≤ 2 * R → ‖y - z‖ ≤ Real.sqrt d →
-        |fieldPotential g ε D y - fieldPotential g ε D z| ≤ C * ε * Real.log (R + 2) := by
-  have hd1 : 1 ≤ d := by omega
-  have hd1R : (1 : ℝ) ≤ d := by exact_mod_cast hd1
-  have hδ1 : 1 ≤ Real.sqrt d := Real.one_le_sqrt.mpr hd1R
-  have hδpos : 0 < Real.sqrt d := lt_of_lt_of_le zero_lt_one hδ1
-  have hδnn : 0 ≤ Real.sqrt d := hδpos.le
-  have hAnn : 0 ≤ farFieldConstant d := by
-    rw [farFieldConstant]; positivity
-  let C : ℝ := 2 * (d : ℝ) * Real.sqrt d
-    * (5 + farFieldConstant d * (1 + Real.log (3 + Real.sqrt d)))
-  refine ⟨C, ?_, ?_⟩
-  · have hlog3 : 0 ≤ Real.log (3 + Real.sqrt d) := Real.log_nonneg (by linarith [hδpos])
-    have h5 : 0 ≤ 5 + farFieldConstant d * (1 + Real.log (3 + Real.sqrt d)) := by nlinarith
-    change 0 ≤ 2 * (d : ℝ) * Real.sqrt d
-      * (5 + farFieldConstant d * (1 + Real.log (3 + Real.sqrt d)))
-    exact mul_nonneg (mul_nonneg (mul_nonneg (by norm_num) (Nat.cast_nonneg d)) hδnn) h5
-  intro g hg hgm ε hε R hR D hD hDsub y z hy hyz
-  have hω : 0 < unitBallVolume d := unitBallVolume_pos d
-  have hωne : unitBallVolume d ≠ 0 := hω.ne'
-  have hDfin : volume D ≠ ⊤ := by
-    have hle : volume D ≤ volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) R) :=
-      measure_mono hDsub
-    exact ne_of_lt (lt_of_le_of_lt hle measure_ball_lt_top)
-  have hcoef : 0 ≤ 2 * ε / unitBallVolume d := by positivity
-  have hfyD : IntegrableOn (fieldIntegrand g y) D :=
-    integrableOn_fieldIntegrand hd g hg hgm hD hDfin y
-  have hfzD : IntegrableOn (fieldIntegrand g z) D :=
-    integrableOn_fieldIntegrand hd g hg hgm hD hDfin z
-  have hU : fieldPotential g ε D y - fieldPotential g ε D z
-      = (2 * ε / unitBallVolume d)
-        * ∫ v in D, (fieldIntegrand g y v - fieldIntegrand g z v) := by
-    rw [fieldPotential, fieldPotential, ← mul_sub, ← integral_sub hfyD hfzD]
-  have habsInt : |∫ v in D, (fieldIntegrand g y v - fieldIntegrand g z v)|
-      ≤ ∫ v in D, |fieldIntegrand g y v - fieldIntegrand g z v| := by
-    have h := norm_integral_le_integral_norm (μ := volume.restrict D)
-      (fun v => fieldIntegrand g y v - fieldIntegrand g z v)
-    simpa only [Real.norm_eq_abs] using h
-  have habsU : |fieldPotential g ε D y - fieldPotential g ε D z|
-      ≤ (2 * ε / unitBallVolume d)
-        * ∫ v in D, |fieldIntegrand g y v - fieldIntegrand g z v| := by
-    rw [hU, abs_mul, abs_of_nonneg hcoef]
-    exact mul_le_mul_of_nonneg_left habsInt hcoef
-  have hfsD : IntegrableOn (fun v => |fieldIntegrand g y v - fieldIntegrand g z v|) D :=
-    (hfyD.sub hfzD).abs
-  have hsplit : ∫ v in D, |fieldIntegrand g y v - fieldIntegrand g z v|
-      = (∫ v in D ∩ Metric.ball z (2 * Real.sqrt d),
-          |fieldIntegrand g y v - fieldIntegrand g z v|)
-        + (∫ v in D \ Metric.ball z (2 * Real.sqrt d),
-          |fieldIntegrand g y v - fieldIntegrand g z v|) :=
-    (integral_inter_add_sdiff (μ := volume) (s := D) (t := Metric.ball z (2 * Real.sqrt d))
-      measurableSet_ball hfsD).symm
-  have hnear := setIntegral_abs_fieldIntegrand_sub_le_near hd g hg hgm
-    hD hDfin y z hyz
-  have hfar := setIntegral_abs_fieldIntegrand_sub_le_far hd g hg hgm
-    hR hD hDfin hDsub y z hy hyz
-  have hintD : ∫ v in D, |fieldIntegrand g y v - fieldIntegrand g z v|
-      ≤ 5 * (d : ℝ) * unitBallVolume d * Real.sqrt d
-        + farFieldConstant d * Real.sqrt d
-          * ((d : ℝ) * unitBallVolume d
-            * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))) := by
-    rw [hsplit]
-    exact add_le_add hnear hfar
-  have hmain : |fieldPotential g ε D y - fieldPotential g ε D z|
-      ≤ (2 * ε / unitBallVolume d)
-        * (5 * (d : ℝ) * unitBallVolume d * Real.sqrt d
-          + farFieldConstant d * Real.sqrt d
-            * ((d : ℝ) * unitBallVolume d
-              * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d)))) :=
-    habsU.trans (mul_le_mul_of_nonneg_left hintD hcoef)
-  have hlog_far : Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))
-      ≤ Real.log (3 + Real.sqrt d) + Real.log (R + 2) := by
-    have hle : ((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d) ≤ (3 + Real.sqrt d) * (R + 2) :=
-      div_le_self (by positivity) (by linarith [hδ1])
-    calc Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))
-        ≤ Real.log ((3 + Real.sqrt d) * (R + 2)) := Real.log_le_log (by positivity) hle
-      _ = Real.log (3 + Real.sqrt d) + Real.log (R + 2) :=
-          Real.log_mul (by positivity) (by linarith)
-  have hlogM : 0 ≤ Real.log (3 + Real.sqrt d) := Real.log_nonneg (by linarith [hδpos])
-  have hlogR : 1 ≤ Real.log (R + 2) := by
-    have hexp : Real.exp 1 ≤ R + 2 := by
-      have h3 : Real.exp 1 < 3 := lt_trans Real.exp_one_lt_d9 (by norm_num)
-      linarith
-    have h := Real.log_le_log (Real.exp_pos 1) hexp
-    rwa [Real.log_exp] at h
-  have hbase : 5 * Real.sqrt d + farFieldConstant d * Real.sqrt d
-        * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))
-      ≤ (5 + farFieldConstant d * (1 + Real.log (3 + Real.sqrt d)))
-        * Real.sqrt d * Real.log (R + 2) :=
-    add_mul_le_mul_log hδnn hAnn hlogM hlogR hlog_far
-  have hcoef2 : (2 * ε / unitBallVolume d) * ((d : ℝ) * unitBallVolume d)
-      = 2 * (d : ℝ) * ε := by
-    calc (2 * ε / unitBallVolume d) * ((d : ℝ) * unitBallVolume d)
-        = (2 * ε * (d : ℝ) * unitBallVolume d) / unitBallVolume d := by ring
-      _ = 2 * ε * (d : ℝ) := mul_div_cancel_right₀ _ hωne
-      _ = 2 * (d : ℝ) * ε := by ring
-  have hfac : (2 * ε / unitBallVolume d)
-        * (5 * (d : ℝ) * unitBallVolume d * Real.sqrt d
-          + farFieldConstant d * Real.sqrt d
-            * ((d : ℝ) * unitBallVolume d
-              * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))))
-      = 2 * ε * (d : ℝ)
-        * (5 * Real.sqrt d + farFieldConstant d * Real.sqrt d
-          * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))) := by
-    calc (2 * ε / unitBallVolume d)
-          * (5 * (d : ℝ) * unitBallVolume d * Real.sqrt d
-            + farFieldConstant d * Real.sqrt d
-              * ((d : ℝ) * unitBallVolume d
-                * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))))
-        = (2 * ε / unitBallVolume d)
-          * (((d : ℝ) * unitBallVolume d)
-            * (5 * Real.sqrt d + farFieldConstant d * Real.sqrt d
-              * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d)))) := by ring
-      _ = ((2 * ε / unitBallVolume d) * ((d : ℝ) * unitBallVolume d))
-          * (5 * Real.sqrt d + farFieldConstant d * Real.sqrt d
-            * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))) := by ring
-      _ = (2 * (d : ℝ) * ε)
-          * (5 * Real.sqrt d + farFieldConstant d * Real.sqrt d
-            * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))) := by
-          rw [hcoef2]
-      _ = 2 * ε * (d : ℝ)
-          * (5 * Real.sqrt d + farFieldConstant d * Real.sqrt d
-            * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))) := by ring
-  calc |fieldPotential g ε D y - fieldPotential g ε D z|
-      ≤ (2 * ε / unitBallVolume d)
-        * (5 * (d : ℝ) * unitBallVolume d * Real.sqrt d
-          + farFieldConstant d * Real.sqrt d
-            * ((d : ℝ) * unitBallVolume d
-              * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d)))) := hmain
-    _ = 2 * ε * (d : ℝ)
-        * (5 * Real.sqrt d + farFieldConstant d * Real.sqrt d
-          * Real.log (((3 + Real.sqrt d) * (R + 2)) / (2 * Real.sqrt d))) := hfac
-    _ ≤ 2 * ε * (d : ℝ)
-        * ((5 + farFieldConstant d * (1 + Real.log (3 + Real.sqrt d)))
-          * Real.sqrt d * Real.log (R + 2)) :=
-        mul_le_mul_of_nonneg_left hbase (by positivity)
-    _ = C * ε * Real.log (R + 2) := by dsimp only [C]; ring
-
-/-- `eq:cellmodulus` for the norm potential: for `D ⊆ B(0, R)` with `R ≥ 1`, and `y, z` with
-`|y| ≤ 2R` and `|y - z| ≤ √d`, `|U_D(y) - U_D(z)| ≤ C ε log(R + 2)`. -/
-private theorem exists_normPotential_cell_modulus (hd : 2 ≤ d) {Ψ : EuclideanSpace ℝ (Fin d) → ℝ}
-    (hΨ : IsNorm Ψ) :
-    ∃ C : ℝ, 0 ≤ C ∧ ∀ ε : ℝ, 0 ≤ ε → ∀ R : ℝ, 1 ≤ R →
-      ∀ D : Set (EuclideanSpace ℝ (Fin d)), MeasurableSet D → D ⊆ Metric.ball 0 R →
-      ∀ y z : EuclideanSpace ℝ (Fin d), ‖y‖ ≤ 2 * R → ‖y - z‖ ≤ Real.sqrt d →
-        |normPotential d ε Ψ D y - normPotential d ε Ψ D z| ≤ C * ε * Real.log (R + 2) := by
-  obtain ⟨C₀, hC₀, hC⟩ := exists_fieldPotential_cell_modulus hd
-  have hΛ : 0 ≤ normMax Ψ := normMax_nonneg_of_isNorm hΨ
-  set Λ := normMax Ψ with hΛdef
-  refine ⟨(Λ + 1) * C₀, by positivity, ?_⟩
-  intro ε hε R hR D hD hDsub y z hy hyz
-  have hΛ1 : 0 < Λ + 1 := by linarith
-  set g : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d) :=
-    fun v => (Λ + 1)⁻¹ • gradient Ψ v with hg_def
-  have hg : ∀ v, ‖g v‖ ≤ 1 := fun v => by
-    rw [hg_def, norm_smul, Real.norm_eq_abs, abs_of_pos (inv_pos.mpr hΛ1)]
-    calc (Λ + 1)⁻¹ * ‖gradient Ψ v‖ ≤ (Λ + 1)⁻¹ * (Λ + 1) :=
-          mul_le_mul_of_nonneg_left ((norm_gradient_le_normMax hΨ v).trans (by linarith))
-            (inv_pos.mpr hΛ1).le
-      _ = 1 := inv_mul_cancel₀ hΛ1.ne'
-  have hgm : Measurable g := (measurable_gradient_field Ψ).const_smul (Λ + 1)⁻¹
-  have hrel : ∀ w, normPotential d ε Ψ D w = (Λ + 1) * fieldPotential g ε D w := by
-    intro w
-    unfold normPotential fieldPotential
-    have hpt : ∀ v, inner ℝ (gradient Ψ v) (v - w) / ‖v - w‖ ^ d =
-        (Λ + 1) * fieldIntegrand g w v := by
-      intro v
-      simp only [fieldIntegrand, hg_def, inner_smul_left, RCLike.conj_to_real]
-      field_simp
-    simp_rw [hpt]
-    rw [integral_const_mul]
-    ring
-  rw [hrel y, hrel z, ← mul_sub, abs_mul, abs_of_pos hΛ1]
-  calc (Λ + 1) * |fieldPotential g ε D y - fieldPotential g ε D z|
-      ≤ (Λ + 1) * (C₀ * ε * Real.log (R + 2)) :=
-        mul_le_mul_of_nonneg_left (hC g hg hgm ε hε R hR D hD hDsub y z hy hyz) hΛ1.le
-    _ = (Λ + 1) * C₀ * ε * Real.log (R + 2) := by ring
 
 /-- The source sum of `eq:dynkin` for the walk with drift field `ξ` differs from the norm potential
 by `O(ε log(R' + 2))`: the gradient is replaced by the Newtonian field, the kernel value by its cell
@@ -2823,7 +2230,7 @@ private lemma approx_bound_drift {d : ℕ} (hd : 2 ≤ d) {b : Site d → ℝ}
   have hcellSet : cellSet (fun j => X j ω) n ⊆ Metric.ball 0 ((n : ℝ) + Real.sqrt d) :=
     (CERW.Support.Occupation.cellSet_subset_ball (by omega) (fun j => X j ω) n).trans
       (Metric.ball_subset_ball (by linarith))
-  have hdyn := localTime_eq_driftDynkin hb ε hξ0 X ω h0 n (cellCenter y)
+  have hdyn := ContactDynkin.localTime_eq_driftDynkin hb ε ξ hξ0 X ω h0 n (cellCenter y)
   have hb1 : |b (X n ω - cellCenter y)| ≤ Cb * (2 * Real.log ((n : ℝ) + 2)) := by
     refine (hCb _).trans (mul_le_mul_of_nonneg_left ?_ hCb0)
     refine log_le_two_mul_log n (by linarith [euclidNorm_nonneg (X n ω - cellCenter y)]) ?_
@@ -2958,7 +2365,7 @@ theorem norm_local_time_potential_of (hcell : cell_gradient) :
   obtain ⟨Cb, hCb⟩ := hK.growth
   obtain ⟨CP, hCP0, hCP⟩ := exists_abs_sum_inner_drift_centralDiff_le hd hgrad (normMax Ψ)
   obtain ⟨CS, hCS0, hCS⟩ := exists_abs_source_sum_sub_normPotential_le hd hR hgradA hgrad hΨ hcell
-  obtain ⟨CM, hCM0, hCM⟩ := exists_normPotential_cell_modulus hd hΨ
+  obtain ⟨CM, hCM0, hCM⟩ := ContactModulus.exists_normPotential_cell_modulus hd hΨ
   have hCb' : ∀ x : Site d, |b x| ≤ |Cb| * Real.log (euclidNorm x + 2) := fun x =>
     (hCb x).trans (mul_le_mul_of_nonneg_right (le_abs_self Cb)
       (Real.log_nonneg (by linarith [euclidNorm_nonneg x])))

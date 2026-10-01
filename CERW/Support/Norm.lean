@@ -1,4 +1,6 @@
 import CERW.Support.Norm.Freedman
+import CERW.Support.Norm.DriftSite
+import CERW.Support.Norm.VectorBound
 import CERW.Support.Norm.MoreauCap
 import CERW.Support.Norm.Geometry
 import CERW.Support.Norm.Crossing

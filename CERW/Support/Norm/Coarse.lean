@@ -22,6 +22,7 @@ import CERW.Support.Coarse.CardTail
 import CERW.Support.Coarse.CrossingArith
 import CERW.Support.Crossing.Kinematics
 import CERW.Support.Crossing.Contradiction
+import CERW.Support.Norm.VectorBound
 
 /-!
 # The occupation and radius bounds for the norm walk
@@ -33,7 +34,8 @@ Euclidean case (`CERW.Support.Coarse.Assembly`):
 
 1. `eq:vector` for the compensated position `Z_t = X_t + ε Σ_{j<t} I_j ξ(X_j)`: each coordinate is
    a Dynkin martingale with increments at most `2` and conditional variances at most `1`, and
-   Freedman's inequality at dyadic brackets applies on every interval.
+   Freedman's inequality at dyadic brackets applies on every interval
+   (`CERW.Support.Norm.VectorBound`).
 2. `eq:shell` for the norm potential: the spherical mean of `U_D` lies below `2dε Λ_Ψ F(t)`.
 3. The mass identity `∫_{B(0,S)} U_D = 2ε ∫_D Ψ` and `Ψ ≥ c_Ψ |·|` turn the radial packing
    inequality into an upper bound for the mass scale.
@@ -55,292 +57,6 @@ open CERW.Support.Statements
 open Finset CERW CERW.Support.Drift CERW.Support.Law
 
 variable {d : ℕ}
-
-/-- The compensated position `Z_t = x_t + ε Σ_{j<t} I_j ξ(x_j)` of a path `x` in the field `ξ`,
-where `I_j` marks a first departure. -/
-private noncomputable def driftCompensated (ε : ℝ) (ξ : Site d → EuclideanSpace ℝ (Fin d))
-    (x : ℕ → Site d) (t : ℕ) : EuclideanSpace ℝ (Fin d) :=
-  toSpace (x t) + ε • ∑ j ∈ range t, if x j ∉ departureRange x j then ξ (x j) else 0
-
-/-- The `k`-th coordinate of the compensated position is the Dynkin martingale of the `k`-th
-coordinate plus the initial coordinate, when `ξ 0 = 0`. -/
-private lemma driftCompensated_apply (hd : 1 ≤ d) {Ω : Type*} (ε : ℝ)
-    (ξ : Site d → EuclideanSpace ℝ (Fin d)) (hξ0 : ξ 0 = 0) (X : ℕ → Ω → Site d) (t : ℕ)
-    (ω : Ω) (k : Fin d) :
-    driftCompensated ε ξ (fun j => X j ω) t k =
-      driftDynkin ε ξ (fun z : Site d => ((z k : ℤ) : ℝ)) X t ω + ((X 0 ω k : ℤ) : ℝ) := by
-  have hterm : ∀ j, driftNextMean ε ξ (fun z : Site d => ((z k : ℤ) : ℝ)) (fun i => X i ω) j -
-      ((X j ω k : ℤ) : ℝ) = -(ε * (if X j ω ∉ departureRange (fun i => X i ω) j
-        then ξ (X j ω) else 0).ofLp k) := by
-    intro j
-    rw [driftNextMean_coord hd ε ξ _ j k]
-    by_cases h0 : X j ω = 0
-    · simp [h0, hξ0, departureRange]
-    · by_cases hdep : X j ω ∈ (range j).image (fun i => X i ω)
-      · simp [departureRange, hdep]
-      · simp [departureRange, hdep, h0]
-  rw [driftCompensated, driftDynkin, PiLp.add_apply, PiLp.smul_apply, toSpace_apply, smul_eq_mul,
-    WithLp.ofLp_sum, Finset.sum_apply, sum_congr rfl fun j _ => hterm j, sum_neg_distrib,
-    ← mul_sum]
-  ring
-
-/-- A vector of Euclidean space has norm at most the sum of the absolute values of its
-coordinates. -/
-private lemma norm_le_sum_abs_coord (w : EuclideanSpace ℝ (Fin d)) : ‖w‖ ≤ ∑ k, |w k| := by
-  rw [EuclideanSpace.norm_eq, Real.sqrt_le_iff]
-  refine ⟨sum_nonneg fun _ _ => abs_nonneg _, ?_⟩
-  simpa only [Real.norm_eq_abs, sq_abs] using
-    sum_sq_le_sq_sum_of_nonneg (s := univ) (f := fun k => |w k|) fun _ _ => abs_nonneg _
-
-/-- A process whose steps are at most `b` moves by at most `k b` in `k` steps. -/
-private lemma abs_sub_le_mul_of_steps {M : ℕ → ℝ} {b : ℝ} (h : ∀ i, |M (i + 1) - M i| ≤ b)
-    (s k : ℕ) : |M (s + k) - M s| ≤ k * b := by
-  induction k with
-  | zero => simp
-  | succ k ih =>
-    have hstep := h (s + k)
-    calc |M (s + (k + 1)) - M s|
-        = |(M (s + k + 1) - M (s + k)) + (M (s + k) - M s)| := by ring_nf
-      _ ≤ |M (s + k + 1) - M (s + k)| + |M (s + k) - M s| := abs_add_le _ _
-      _ ≤ ((k + 1 : ℕ) : ℝ) * b := by push_cast; linarith
-
-/-- If `x ≤ c (√(δL) + 2L)` and `x ≤ 2δ`, with `δ ≥ 1`, then `x ≤ (2 + 3c) √(δL)`: the smaller
-of `δ` and `L` is at most `√(δL)`. -/
-private lemma le_mul_sqrt_of_le_two {c x δ L : ℝ} (hc : 0 ≤ c) (hδ : 1 ≤ δ) (hL : 0 < L)
-    (h1 : x ≤ c * (Real.sqrt (δ * L) + 2 * L)) (h2 : x ≤ 2 * δ) :
-    x ≤ (2 + 3 * c) * Real.sqrt (δ * L) := by
-  have hδ0 : 0 < δ := by linarith
-  set a := Real.sqrt (δ * L) with ha
-  have ha0 : 0 ≤ a := Real.sqrt_nonneg _
-  have ha2 : a ^ 2 = δ * L := Real.sq_sqrt (mul_nonneg hδ0.le hL.le)
-  rcases le_total δ L with hle | hle
-  · have hδa : δ ≤ a := by
-      refine le_of_not_gt fun hcon => ?_
-      nlinarith
-    nlinarith
-  · have hLa : L ≤ a := by
-      refine le_of_not_gt fun hcon => ?_
-      nlinarith
-    nlinarith
-
-/-- Freedman's inequality on every interval `[s, t] ⊆ [0, n]`, at the threshold `L = log n`: a
-martingale with increments at most `2` and conditional variances at most `1` satisfies
-`|M_t - M_s| ≤ c √((t - s) L)` except on an event of probability at most `(n + 1) · 2 n^{-K}`. -/
-private lemma exists_interval_bound_log {K : ℝ} (hK : 0 ≤ K) :
-    ∃ c : ℝ, 0 < c ∧ ∀ {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
-      [IsProbabilityMeasure μ] {ℱ : Filtration ℕ m0} {M : ℕ → Ω → ℝ},
-      Martingale M ℱ μ → (∀ i ω, |M (i + 1) ω - M i ω| ≤ 2) →
-      (∀ j, μ[fun ω => (M (j + 1) ω - M j ω) ^ 2 | ℱ j] ≤ᵐ[μ] fun _ => 1) →
-      ∀ n : ℕ, 2 ≤ n → ∀ s t : ℕ, s < t → t ≤ n →
-        μ {ω | c * Real.sqrt (((t : ℝ) - s) * Real.log n) < |M t ω - M s ω|} ≤
-          ENNReal.ofReal (((n : ℝ) + 1) * (2 * (n : ℝ) ^ (-K))) := by
-  obtain ⟨c, hc1, hc⟩ := CERW.Generic.Martingale.exists_dyadic_bound hK
-  refine ⟨2 + 3 * c, by linarith, ?_⟩
-  intro Ω m0 μ _ ℱ M hmart hinc hvar n hn s t hst htn
-  obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hst.le
-  have hk : 1 ≤ k := by omega
-  have hnR : (1 : ℝ) ≤ n := by exact_mod_cast (by omega : 1 ≤ n)
-  have hnpos : (0 : ℝ) < n := by linarith
-  have hL : 0 < Real.log (n : ℝ) := Real.log_pos (by exact_mod_cast (by omega : 1 < n))
-  have hkR : (1 : ℝ) ≤ k := by exact_mod_cast hk
-  have hkn : ((s + k : ℕ) : ℝ) - s ≤ n := by
-    have : s + k ≤ n := htn
-    have h2 : ((s + k : ℕ) : ℝ) ≤ n := by exact_mod_cast this
-    have h3 : (0 : ℝ) ≤ s := Nat.cast_nonneg s
-    linarith
-  have hvar' : ∀ j, μ[fun ω => (M (j + 1) ω - M j ω) ^ 2 | ℱ j] ≤ᵐ[μ]
-      fun ω => ((((j + 1 : ℕ) : ℝ) : ℝ) - (j : ℝ) : ℝ) := by
-    intro j
-    have h1 : (fun _ : Ω => (((j + 1 : ℕ) : ℝ) - (j : ℝ))) = fun _ => 1 := by
-      funext _
-      push_cast
-      ring
-    rw [h1]
-    exact hvar j
-  have hdy := hc hmart (V := fun j _ => (j : ℝ)) (fun j => stronglyMeasurable_const)
-    (fun _ => by simp) (fun j _ => by simp) hvar' (b := 2) (by norm_num) s k
-    (fun i _ _ ω => hinc i ω) (W := n) (L := Real.log (n : ℝ)) hnR hL (fun _ => hkn)
-  have hcast : ((s + k : ℕ) : ℝ) - s = k := by
-    push_cast
-    ring
-  have hmax : max (k : ℝ) 1 = (k : ℝ) := max_eq_left hkR
-  have hexp : Real.exp (-(K * Real.log (n : ℝ))) = (n : ℝ) ^ (-K) := by
-    rw [Real.rpow_def_of_pos hnpos]
-    congr 1
-    ring
-  refine le_trans (measure_mono fun ω hω => ?_) (hdy.trans ?_)
-  · simp only [Set.mem_setOf_eq, hcast, hmax] at hω ⊢
-    refine lt_of_not_ge fun hle => absurd hω (not_lt_of_ge ?_)
-    have hsteps := abs_sub_le_mul_of_steps (M := fun i => M i ω) (fun i => hinc i ω) s k
-    exact le_mul_sqrt_of_le_two (by linarith) hkR hL hle (by linarith)
-  · rw [hexp]
-    refine ENNReal.ofReal_le_ofReal (mul_le_mul_of_nonneg_right ?_ (by positivity))
-    rw [Nat.ceil_natCast]
-    have hclog : Nat.clog 2 n ≤ n := Nat.clog_le_of_le_pow (Nat.lt_two_pow_self).le
-    have : (Nat.clog 2 n : ℝ) ≤ n := by exact_mod_cast hclog
-    linarith
-
-/-- A unit step changes a coordinate of a site by at most one. -/
-private lemma abs_coord_add_sub_le_one (k : Fin d) (x e : Site d) (he : e ∈ unitSteps d) :
-    |((((x + e) k : ℤ) : ℝ)) - ((x k : ℤ) : ℝ)| ≤ 1 := by
-  obtain ⟨i, rfl | rfl⟩ := mem_unitSteps.mp he
-  · simp only [Pi.add_apply, unit_apply_coord]
-    split_ifs <;> simp
-  · simp only [Pi.add_apply, Pi.neg_apply, unit_apply_coord]
-    split_ifs <;> simp
-
-/-- Each coordinate of the walk with drift field `ξ` yields a martingale with increments at most
-`2` and conditional variances at most `1` that agrees almost surely with its Dynkin
-martingale. -/
-private lemma exists_clamped_coord_drift (hd : 1 ≤ d) {Ω : Type*} [MeasurableSpace Ω]
-    {μ : Measure Ω} [IsProbabilityMeasure μ] {ε : ℝ} (hε : 0 ≤ ε)
-    {ξ : Site d → EuclideanSpace ℝ (Fin d)} (hξ : ∀ z i, ε * |ξ z i| ≤ 1 / (d : ℝ))
-    {X : ℕ → Ω → Site d} (hX : IsDriftCERW μ ε ξ X) (k : Fin d) :
-    ∃ M : ℕ → Ω → ℝ, Martingale M (pathFiltration hX.measurable) μ ∧
-      (∀ i ω, |M (i + 1) ω - M i ω| ≤ 2) ∧
-      (∀ j, μ[fun ω => (M (j + 1) ω - M j ω) ^ 2 | pathFiltration hX.measurable j] ≤ᵐ[μ]
-        fun _ => 1) ∧
-      ∀ᵐ ω ∂μ, ∀ i, M i ω = driftDynkin ε ξ (fun z : Site d => ((z k : ℤ) : ℝ)) X i ω := by
-  set f : Site d → ℝ := fun z => ((z k : ℤ) : ℝ) with hf
-  have hmart := martingale_driftDynkin hd hε hξ hX f
-  have hinc : ∀ i, ∀ᵐ ω ∂μ, |driftDynkin ε ξ f X (i + 1) ω - driftDynkin ε ξ f X i ω| ≤ 2 :=
-    fun i => (ae_abs_driftDynkin_succ_sub_le hd hε hξ hX f).mono fun ω hω => by
-      simpa using hω i 1 fun e he => abs_coord_add_sub_le_one k (X i ω) e he
-  obtain ⟨M, hM, hbd, -, hae⟩ := CERW.Generic.Martingale.exists_martingale_clamp hmart
-    (b := 2) (by norm_num) hinc
-  refine ⟨M, hM, hbd, fun j => ?_, hae⟩
-  have hsq : (fun ω => (M (j + 1) ω - M j ω) ^ 2) =ᵐ[μ]
-      fun ω => (driftDynkin ε ξ f X (j + 1) ω - driftDynkin ε ξ f X j ω) ^ 2 := by
-    filter_upwards [hae] with ω hω
-    rw [hω, hω]
-  refine (condExp_congr_ae hsq).trans_le ?_
-  filter_upwards [condExp_sq_driftDynkin_succ_sub_le hd hε hξ hX f j] with ω hω
-  refine hω.trans ?_
-  calc ∑ e ∈ unitSteps d, driftStepProb d ε ξ (fun i => X i ω) j e * (f (X j ω + e) - f (X j ω)) ^ 2
-      ≤ ∑ e ∈ unitSteps d, driftStepProb d ε ξ (fun i => X i ω) j e * 1 := by
-        refine sum_le_sum fun e he =>
-          mul_le_mul_of_nonneg_left ?_ (driftStepProb_nonneg hε hξ _ j e)
-        have := abs_coord_add_sub_le_one k (X j ω) e he
-        rw [← sq_abs]
-        nlinarith [abs_nonneg (f (X j ω + e) - f (X j ω))]
-    _ = 1 := by simp only [mul_one, sum_driftStepProb hd ε ξ _ j]
-
-/-- If every coordinate of a family of processes that agree with the Dynkin martingales moves by
-at most `R` between `s` and `t`, then the compensated position moves by at most `d R`. -/
-private lemma norm_driftCompensated_sub_le (hd : 1 ≤ d) {Ω : Type*} (ε : ℝ)
-    (ξ : Site d → EuclideanSpace ℝ (Fin d)) (hξ0 : ξ 0 = 0) (X : ℕ → Ω → Site d)
-    (M : Fin d → ℕ → Ω → ℝ) (ω : Ω)
-    (hω : ∀ k i, M k i ω = driftDynkin ε ξ (fun z : Site d => ((z k : ℤ) : ℝ)) X i ω)
-    (s t : ℕ) {R : ℝ} (hR : ∀ k, |M k t ω - M k s ω| ≤ R) :
-    ‖driftCompensated ε ξ (fun j => X j ω) t - driftCompensated ε ξ (fun j => X j ω) s‖ ≤
-      d * R := by
-  refine (norm_le_sum_abs_coord _).trans ?_
-  calc ∑ k, |(driftCompensated ε ξ (fun j => X j ω) t -
-        driftCompensated ε ξ (fun j => X j ω) s) k|
-      ≤ ∑ _k : Fin d, R := by
-        refine sum_le_sum fun k _ => ?_
-        have h := hR k
-        rw [hω k t, hω k s] at h
-        have e : (driftCompensated ε ξ (fun j => X j ω) t -
-            driftCompensated ε ξ (fun j => X j ω) s) k =
-            driftDynkin ε ξ (fun z : Site d => ((z k : ℤ) : ℝ)) X t ω -
-              driftDynkin ε ξ (fun z : Site d => ((z k : ℤ) : ℝ)) X s ω := by
-          rw [PiLp.sub_apply, driftCompensated_apply hd ε ξ hξ0,
-            driftCompensated_apply hd ε ξ hξ0]
-          ring
-        rw [e]
-        exact h
-    _ = d * R := by simp
-
-/-- The arithmetic of the union bound: `D (n + 1)² · (n + 1) · 2 n^{-(p+3)}` is at most
-`16 D n^{-p}`. -/
-private lemma union_bound_arith_log {p : ℝ} {n : ℕ} (hn : 1 ≤ n) (D : ℕ) :
-    ((D : ℝ) * ((n : ℝ) + 1) ^ 2) * (((n : ℝ) + 1) * (2 * (n : ℝ) ^ (-(p + 3)))) ≤
-      (16 * D) * (n : ℝ) ^ (-p) := by
-  have h2 := CERW.Generic.Martingale.pow_mul_rpow_neg_le hn 3 p
-  have hD : (0 : ℝ) ≤ D := Nat.cast_nonneg D
-  have h3 : (0 : ℝ) ≤ ((D : ℝ) * ((n : ℝ) + 1) ^ 2) * ((n : ℝ) + 1) := by positivity
-  calc ((D : ℝ) * ((n : ℝ) + 1) ^ 2) * (((n : ℝ) + 1) * (2 * (n : ℝ) ^ (-(p + 3))))
-      = 2 * D * (((n : ℝ) + 1) ^ 3 * (n : ℝ) ^ (-(p + ((3 : ℕ) : ℝ)))) := by
-        push_cast
-        ring
-    _ ≤ 2 * D * (2 ^ 3 * (n : ℝ) ^ (-p)) := by
-        refine mul_le_mul_of_nonneg_left h2 (by positivity)
-    _ = (16 * D) * (n : ℝ) ^ (-p) := by ring
-
-/-- `eq:vector` for the walk with drift field `ξ`: for every `p > 0` there is `C`, independent of
-`ξ`, such that for every `n ≥ 2`, with probability at least `1 - C n^{-p}`,
-`|Z_t - Z_s| ≤ C √((t - s) log n)` for all `0 ≤ s < t ≤ n`. -/
-private theorem exists_driftCompensated_bound (hd : 1 ≤ d) {ε : ℝ} (hε : 0 ≤ ε) {p : ℝ}
-    (hp : 0 < p) :
-    ∃ C : ℝ, 0 < C ∧ ∀ {ξ : Site d → EuclideanSpace ℝ (Fin d)},
-      (∀ z i, ε * |ξ z i| ≤ 1 / (d : ℝ)) → ξ 0 = 0 →
-      ∀ {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
-        {X : ℕ → Ω → Site d}, IsDriftCERW μ ε ξ X → ∀ n : ℕ, 2 ≤ n →
-        μ {ω | ∃ s t : ℕ, s < t ∧ t ≤ n ∧
-          C * Real.sqrt (((t : ℝ) - s) * Real.log n) <
-            ‖driftCompensated ε ξ (fun j => X j ω) t -
-              driftCompensated ε ξ (fun j => X j ω) s‖} ≤
-          ENNReal.ofReal (C * (n : ℝ) ^ (-p)) := by
-  obtain ⟨c, hc0, hc⟩ := exists_interval_bound_log (K := p + 3) (by linarith)
-  have hd0 : (1 : ℝ) ≤ d := by exact_mod_cast hd
-  refine ⟨d * c + 16 * d, by positivity, ?_⟩
-  intro ξ hξ hξ0 Ω _ μ _ X hX n hn
-  have hn1 : 1 ≤ n := by omega
-  choose M hM hbd hvar hae using fun k : Fin d => exists_clamped_coord_drift hd hε hξ hX k
-  set P : Finset (ℕ × ℕ) := ((range (n + 1)) ×ˢ (range (n + 1))).filter (fun q => q.1 < q.2)
-    with hP
-  set B : Fin d → ℕ × ℕ → Set Ω := fun k q =>
-    {ω | c * Real.sqrt (((q.2 : ℝ) - q.1) * Real.log n) < |M k q.2 ω - M k q.1 ω|}
-    with hB
-  have hsub : {ω | ∃ s t : ℕ, s < t ∧ t ≤ n ∧
-      (d * c + 16 * d) * Real.sqrt (((t : ℝ) - s) * Real.log n) <
-        ‖driftCompensated ε ξ (fun j => X j ω) t -
-          driftCompensated ε ξ (fun j => X j ω) s‖} ≤ᵐ[μ] ⋃ k, ⋃ q ∈ P, B k q := by
-    filter_upwards [ae_all_iff.mpr hae] with ω hω hE
-    obtain ⟨s, t, hst, htn, hlt⟩ := hE
-    by_contra hnot
-    have hnot' : ω ∉ ⋃ k, ⋃ q ∈ P, B k q := hnot
-    simp only [Set.mem_iUnion, not_exists, hB, Set.mem_setOf_eq, not_lt] at hnot'
-    have hmem : (s, t) ∈ P := by
-      simp only [hP, mem_filter, mem_product, mem_range]
-      omega
-    have hle := norm_driftCompensated_sub_le hd ε ξ hξ0 X M ω hω s t
-      (R := c * Real.sqrt (((t : ℝ) - s) * Real.log n)) fun k => hnot' k (s, t) hmem
-    have hsq := Real.sqrt_nonneg (((t : ℝ) - s) * Real.log n)
-    nlinarith
-  set a : ℝ := ((n : ℝ) + 1) * (2 * (n : ℝ) ^ (-(p + 3))) with ha
-  have hnpos : (0 : ℝ) < n := by exact_mod_cast (by omega : 0 < n)
-  have ha0 : 0 ≤ a := by positivity
-  have hbound : ∀ k : Fin d, ∀ q ∈ P, μ (B k q) ≤ ENNReal.ofReal a := by
-    intro k q hq
-    have hq' := mem_filter.mp hq
-    have h2 : q.2 ≤ n := by
-      have := mem_range.mp (mem_product.mp hq'.1).2
-      omega
-    exact hc (hM k) (hbd k) (hvar k) n hn q.1 q.2 hq'.2 h2
-  have hPcard : (P.card : ℝ) ≤ ((n : ℝ) + 1) ^ 2 := by
-    have h1 : P.card ≤ (n + 1) * (n + 1) := by
-      refine (card_filter_le _ _).trans ?_
-      simp
-    exact_mod_cast h1.trans_eq (by ring)
-  refine (measure_mono_ae hsub).trans ?_
-  calc μ (⋃ k, ⋃ q ∈ P, B k q) ≤ ∑ k, μ (⋃ q ∈ P, B k q) := measure_iUnion_fintype_le _ _
-    _ ≤ ∑ k : Fin d, ∑ q ∈ P, μ (B k q) := sum_le_sum fun k _ => measure_biUnion_finset_le _ _
-    _ ≤ ∑ _k : Fin d, ∑ _q ∈ P, ENNReal.ofReal a :=
-        sum_le_sum fun k _ => sum_le_sum fun q hq => hbound k q hq
-    _ = ENNReal.ofReal ((d : ℝ) * P.card * a) := by
-        simp only [sum_const, card_univ, Fintype.card_fin, nsmul_eq_mul]
-        rw [← ENNReal.ofReal_natCast, ← ENNReal.ofReal_natCast,
-          ← ENNReal.ofReal_mul (by positivity), ← ENNReal.ofReal_mul (by positivity), mul_assoc]
-    _ ≤ ENNReal.ofReal ((d * c + 16 * d) * (n : ℝ) ^ (-p)) := by
-        refine ENNReal.ofReal_le_ofReal ?_
-        have h1 : (d : ℝ) * P.card * a ≤ ((d : ℝ) * ((n : ℝ) + 1) ^ 2) * a :=
-          mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hPcard (by positivity)) ha0
-        have h2 := union_bound_arith_log (p := p) hn1 d
-        have h3 : (0 : ℝ) ≤ (n : ℝ) ^ (-p) := Real.rpow_nonneg (Nat.cast_nonneg n) _
-        nlinarith [mul_nonneg (mul_nonneg (by linarith : (0 : ℝ) ≤ d) hc0.le) h3]
-
 section NormFacts
 
 variable {Ψ : EuclideanSpace ℝ (Fin d) → ℝ}
@@ -1821,7 +1537,7 @@ theorem norm_coarse_bounds_of (hlocal : norm_local_time_potential.{u})
   obtain ⟨ρ₀, -, hrad⟩ := hradial hd Ψ hΨ
   obtain ⟨Cl, hCl, hloc⟩ := hlocal hd Ψ hΨ ε hε hell p hp
   obtain ⟨Cr, hCr, hrad'⟩ := hrad ε hε hell p hp
-  obtain ⟨Cv, hCv, hvec⟩ := exists_driftCompensated_bound hd1 hε.le hp
+  obtain ⟨Cv, hCv, hvec⟩ := VectorBound.exists_driftCompensated_bound hd1 hε.le hp
   obtain ⟨c₁, C₁, hc₁, hC₁, n₀, hn₀, hdet⟩ :=
     norm_coarse_deterministic hd hΨ hε (K := Cl) (Cr := Cr) (Cv := Cv) (ρ₀ := ρ₀) hCl hCr
   have hV : 0 < normBallVolume Ψ := normBallVolume_pos hd1 hΨ
