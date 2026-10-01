@@ -1,0 +1,69 @@
+name: CI
+
+# Builds the project and the Mathlib-only comparator surface on GitHub-hosted runners
+# (`ubuntu-latest`).  No `pull_request` trigger: the cached `.lake` trees are the artifacts
+# every later gate trusts.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build, warning gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Reclaim runner disk space
+        shell: bash
+        run: |
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc \
+                      /usr/local/.ghcup /usr/local/share/powershell \
+                      /usr/share/swift /usr/local/share/boost || true
+          df -h /
+
+      - name: Set up Lean and fetch the Mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          build: false
+          use-mathlib-cache: true
+
+      - name: Restore project build artifacts
+        id: cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: .lake/build
+          key: lake-proj-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-proj-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
+
+      - name: Enforce warning-free production build
+        shell: bash
+        run: |
+          set -o pipefail
+          lake build 2>&1 | tee production-build.log
+          if grep -iE '^warning:|declaration uses .sorry' production-build.log; then
+            echo "Production build emitted a warning."
+            exit 1
+          fi
+
+      - name: Build the Mathlib-only comparator surface
+        run: lake build CERWAudit
+
+      - name: Check the challenge vocabulary is Mathlib-only and self-consistent
+        run: |
+          bash CERWAudit/check_standalone.sh --vocabulary
+
+      - name: Save project build artifacts
+        if: always() && steps.cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .lake/build
+          key: lake-proj-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}

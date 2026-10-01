@@ -1,0 +1,14 @@
+{
+  "challenge_module": "CERWAudit.LimitShape.Challenge",
+  "solution_module": "CERWAudit.LimitShape.Solution",
+  "theorem_names": [
+    "CERW.StatementAudit.LimitShape.limit_shape"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

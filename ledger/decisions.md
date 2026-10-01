@@ -90,3 +90,33 @@ regenerated.
 
 **Recorded** by the active worker on the author's instruction to continue the critical path
 (2026-10-01). The frozen surface was not re-opened.
+
+## D4 (2026-10-01). One version only: the earlier Euclidean version is removed
+
+**The author's ruling.** The repository is a single-version product based solely on the final paper
+`paper/limit-shapes.tex`. The earlier pinned paper and the seven nodes frozen from it are removed:
+`ball-shape`, `fluctuation-bounds`, `hausdorff-bound`, `potential-geometry`, `radial-test`,
+`coarse-bounds` and the ball shape theorem, together with `paper/cerw-flat.tex`, `paper/cerw.tex`,
+`paper/sections/` and `paper/proof-audit-source.md`.
+
+**What changed.**
+- Five nodes are deleted outright (`ball-shape`, `fluctuation-bounds`, `hausdorff-bound`,
+  `potential-geometry`, `radial-test`) with their frozen files and manifest entries; none is used by a
+  remaining statement.  The ball shape theorem is folded into the final-paper node `thm-shape`: its
+  proof is now derived directly from the kernel facts in `Support/Main/LimitShape.lean`.
+- Two nodes are kept because final-paper statements depend on them, and re-sourced to the final paper
+  as the Euclidean case of its norm lemmas: `local-time-potential` (`limit-shapes.tex:385-401`,
+  `lem:local`) and `coarse-bounds` (`limit-shapes.tex:547-554`, `prop:coarse`).  Their frozen bytes,
+  hashes, versions and states are unchanged; only the `source:` line and the docstring move.
+- `ledger/manifest.yaml` drops the five entries and cites only `limit-shapes.tex`; the header no longer
+  mentions a second version.  CORRESPONDENCE, PROOF, README and `formalization.yaml` carry no
+  version-history commentary.  `CERWAudit/LimitShape` is re-pointed from the ball shape theorem to
+  `CERW.StatementAudit.LimitShape.limit_shape`.
+
+**Evidence.** `lake env lean` accepts `Support/Main/LimitShape.lean`, `CERW/Frozen/LimitShape.lean`,
+`CERW/Frozen/LocalTimePotential.lean`, `CERW/Frozen/CoarseBounds.lean`, `Support/Lower/BulkProfile.lean`,
+`Support/Lower/SharpWidth.lean` and `CERW/Frozen.lean`; `lake build CERWAudit` succeeds; the comparator
+prints `Your solution is okay!` with the nanoda kernel enabled.
+
+**Recorded** by the active worker on the author's instruction (2026-10-01).  The remaining frozen
+statements were not re-opened.

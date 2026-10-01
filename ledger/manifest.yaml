@@ -4,10 +4,8 @@
 # markers are the contract: a proof may be written after the end marker, never
 # inside the block.  `frozen_sha256` is the SHA-256 of exactly those bytes.
 #
-# The pinned paper is paper/limit-shapes.tex, the revised text of the paper.
-# The seven statements of the first version (paper/cerw-flat.tex, the
-# mechanical flattening of paper/cerw.tex and its three section files) keep
-# their frozen text; their sources cite that file by line.
+# The pinned paper is paper/limit-shapes.tex, the text of the paper.  Every
+# statement is sourced to that file; there is no second version.
 #
 # States: FROZEN (a cited result carried as a hypothesis, nothing to prove here),
 #         DRAFT_SORRY (statement frozen, proof is the one registered `sorry`),
@@ -21,54 +19,10 @@ source_pin:
   sha256: d39e7f24d52e7a095508daefd075c7e9651289be97cfe5eadd67d8008aaa8328
 nodes:
 
-  - id: potential-geometry
-    version: 2
-    kind: theorem
-    source: first version of the paper, the lemma on the geometry of the potential, paper/cerw-flat.tex lines 497 to 514
-    file: CERW/Frozen/PotentialGeometry.lean
-    export: CERW.Frozen.potential_geometry
-    state: PROVED
-    frozen_sha256: 3cd2d5007812191cc3c35903ff940e6d73ef50b4aae6f289a850cac172951121
-    provider: CERW.Frozen.potential_geometry
-    approved: "2026-09-30"
-
-  - id: ball-shape
-    version: 3
-    kind: theorem
-    source: first version of the paper, the ball shape theorem, paper/cerw-flat.tex lines 135 to 160
-    file: CERW/Frozen/BallShape.lean
-    export: CERW.Frozen.ball_shape
-    state: PROVED
-    frozen_sha256: 5a9e41bb7519fdcb1ddecb9600a988040068a3df84e036614489a518817cf7a3
-    provider: CERW.Frozen.ball_shape
-    approved: "2026-09-30"
-
-  - id: fluctuation-bounds
-    version: 3
-    kind: theorem
-    source: first version of the paper, the fluctuation bounds, paper/cerw-flat.tex lines 186 to 213
-    file: CERW/Frozen/FluctuationBounds.lean
-    export: CERW.Frozen.fluctuation_bounds
-    state: PROVED
-    frozen_sha256: 41d7dc1aa3fda8e59fa02000c8ae88829d8b37c7b78baf95395bb34175e45c5d
-    provider: CERW.Frozen.fluctuation_bounds
-    approved: "2026-09-30"
-
-  - id: hausdorff-bound
-    version: 3
-    kind: theorem
-    source: first version of the paper, the Hausdorff estimate and the planar remark, paper/cerw-flat.tex lines 217 to 223
-    file: CERW/Frozen/HausdorffBound.lean
-    export: CERW.Frozen.hausdorff_bound
-    state: PROVED
-    frozen_sha256: 950626aae9fc93dbd322c18522bf8ad56272423803baf6fa1a937d33da46072b
-    provider: CERW.Frozen.hausdorff_bound
-    approved: "2026-09-30"
-
   - id: local-time-potential
     version: 3
     kind: theorem
-    source: first version of the paper, the lemma on local times and the potential, paper/cerw-flat.tex lines 397 to 414
+    source: paper/limit-shapes.tex:385-401 (lem:local, Euclidean case)
     file: CERW/Frozen/LocalTimePotential.lean
     export: CERW.Frozen.local_time_potential
     state: PROVED
@@ -76,21 +30,10 @@ nodes:
     provider: CERW.Frozen.local_time_potential
     approved: "2026-09-30"
 
-  - id: radial-test
-    version: 3
-    kind: theorem
-    source: first version of the paper, the radial test lemma, paper/cerw-flat.tex lines 581 to 601
-    file: CERW/Frozen/RadialTest.lean
-    export: CERW.Frozen.radial_test
-    state: PROVED
-    frozen_sha256: f663fbeb70e9333ce0aad48009dfbfb9262f2f6c0425a9338611128d781799f8
-    provider: CERW.Frozen.radial_test
-    approved: "2026-09-30"
-
   - id: coarse-bounds
     version: 3
     kind: theorem
-    source: first version of the paper, the coarse bounds, paper/cerw-flat.tex lines 547 to 561
+    source: paper/limit-shapes.tex:547-554 (prop:coarse, Euclidean case)
     file: CERW/Frozen/CoarseBounds.lean
     export: CERW.Frozen.coarse_bounds
     state: PROVED

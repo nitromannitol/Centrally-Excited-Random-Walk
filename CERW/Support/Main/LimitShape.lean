@@ -1,4 +1,5 @@
-import CERW.Frozen.BallShape
+import CERW.Support.LocalTime.KernelAsymptotics
+import CERW.Support.Main.KernelAnchors
 import CERW.Support.Drift.Existence
 import CERW.Support.Drift.Bridge
 import CERW.Generic.Norm.Subgradient
@@ -6,9 +7,9 @@ import CERW.Generic.Norm.Subgradient
 /-!
 # The limit shape theorem in the revised normalization, and the non-vacuity of the norm walk
 
-`limit_shape` is Theorem 1.1 of the revised paper, written with `r_n = ((d+1)n/(2dεω_d))^{1/(d+1)}`;
-it follows from the frozen `CERW.Frozen.ball_shape`, since `r_n = a·n^{1/(d+1)}` with
-`a = ((d+1)/(2dεω_d))^{1/(d+1)}`. `exists_norm_realization` shows that the hypotheses of the
+`limit_shape` is Theorem 1.1 of the paper, written with `r_n = ((d+1)n/(2dεω_d))^{1/(d+1)}`.
+It is proved from the kernel-facts support lemma, exactly as the Euclidean ball-shape estimates
+of the same proof. `exists_norm_realization` shows that the hypotheses of the
 statements about the walk with norm `Ψ` can be met: for every norm, every choice of subgradients
 and every `ε > 0` with `ε max_i Ψ(e_i) < 1/d` there is a realization of the walk.
 -/
@@ -37,7 +38,8 @@ theorem limit_shape {d : ℕ} (hd : 2 ≤ d)
           ≤ η * r n) ∧
       (∀ x : Site d, ∃ᶠ j in atTop, X j ω = x) := by
   intro ωd r
-  have key := CERW.Frozen.ball_shape hd hε hεd μ X hX
+  obtain ⟨_, _, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd
+  have key := CERW.Support.Main.ball_shape_of_kernelFacts hd hF hε hεd μ X hX
   have hω : 0 < ωd := CERW.unitBallVolume_pos d
   have hd0 : (0 : ℝ) < d := by exact_mod_cast (by omega : 0 < d)
   have hc : 0 < ((d : ℝ) + 1) / (2 * d * ε * ωd) := by positivity

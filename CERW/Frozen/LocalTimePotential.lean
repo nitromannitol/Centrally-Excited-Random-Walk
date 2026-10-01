@@ -4,7 +4,7 @@ import CERW.Support.LocalTime.LocalAssembly
 /-!
 # The local-time potential
 
-`lem:local` of the paper (`paper/cerw-flat.tex:397-414`). The bytes between
+`lem:local` of the paper (`limit-shapes.tex:385-401`, Euclidean case). The bytes between
 the markers are the frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
@@ -14,7 +14,7 @@ open MeasureTheory Filter Topology
 open scoped symmDiff Pointwise
 open LatticeProb (Site euclidNorm)
 
-/-- `lem:local` (`cerw-flat.tex:397-414`):
+/-- `lem:local` (`limit-shapes.tex:385-401`, Euclidean case):
 
 ```latex
 \begin{lemma}\label{lem:local}
