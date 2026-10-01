@@ -171,39 +171,40 @@ External node is retired, and nothing is assumed.
 Anchors of the revised paper (`paper/limit-shapes.tex`). The first-version table above keeps its
 node names; those nodes are now registered as `ball-shape`, `fluctuation-bounds`,
 `hausdorff-bound`, `local-time-potential`, `potential-geometry`, `radial-test` and `coarse-bounds`.
-`SEALED` means the frozen statement is proved; `DRAFT_SORRY` means its proof is open.
+`SEALED` means the frozen statement is proved; `PROVED` means it is sealed and independently
+audited; `DRAFT_SORRY` means its proof is open. All 30 are `PROVED` (ruling D2, `ledger/decisions.md`).
 
 | node | Lean | label | state |
 |---|---|---|---|
-| thm-shape | `CERW.Frozen.limit_shape` | thm:shape | SEALED |
-| thm-fluctuations | `CERW.Frozen.fluctuation_rates` | thm:fluctuations | SEALED |
-| thm-sharp-radii | `CERW.Frozen.sharp_radii` | thm:sharp, part (i) | SEALED |
-| thm-sharp-radii-lil | `CERW.Frozen.sharp_radii_lil` | thm:sharp, part (ii) | SEALED |
-| thm-sharp-bulk | `CERW.Frozen.sharp_bulk` | thm:sharp, part (iii) | SEALED |
-| thm-sharp-width | `CERW.Frozen.sharp_width` | thm:sharp, part (iv) | SEALED |
-| thm-norm-shape | `CERW.Frozen.norm_shape` | thm:norm-shape | SEALED |
-| lem-ballpotential | `CERW.Frozen.norm_ball_potential` | lem:ballpotential | SEALED |
-| lem-local | `CERW.Frozen.norm_local_time_potential` | lem:local | SEALED |
-| lem-freedman | `CERW.Frozen.freedman_bound` | lem:freedman | SEALED |
-| lem-cell | `CERW.Frozen.cell_gradient` | lem:cell | SEALED |
-| lem-geometry | `CERW.Frozen.norm_potential_geometry` | lem:geometry | SEALED |
-| prop-coarse | `CERW.Frozen.norm_coarse_bounds` | prop:coarse | SEALED |
-| lem-radial | `CERW.Frozen.norm_radial_test` | lem:radial | SEALED |
-| lem-crossing | `CERW.Frozen.drift_crossing` | lem:crossing | SEALED |
-| prop-norm-shape | `CERW.Frozen.norm_shape_rates` | prop:norm-shape | SEALED |
-| lem-layer | `CERW.Frozen.layer_potential` | lem:layer | SEALED |
-| lem-cap | `CERW.Frozen.moreau_cap` | lem:cap | SEALED |
-| lem-contact | `CERW.Frozen.contact_potential` | lem:contact | SEALED |
-| lem-outer-crossing | `CERW.Frozen.outer_crossing` | lem:outer-crossing | SEALED |
-| prop-inner | `CERW.Frozen.inner_radius` | prop:inner | SEALED |
-| prop-stronger-outer | `CERW.Frozen.outer_radius` | prop:stronger-outer | SEALED |
-| lem-near-far | `CERW.Frozen.near_far` | lem:near-far | SEALED |
-| thm-moment-fluctuations | `CERW.Frozen.moment_fluctuations` | thm:moment-fluctuations | SEALED |
-| lem-fixed-site-centering | `CERW.Frozen.fixed_site_centering` | lem:fixed-site-centering | SEALED |
-| thm-site-fluctuations | `CERW.Frozen.site_fluctuations` | thm:site-fluctuations | SEALED |
-| lem-exp-deviation | `CERW.Frozen.exp_deviation` | lem:exp-deviation | SEALED |
-| prop-bulk-profile | `CERW.Frozen.bulk_profile` | prop:bulk-profile | SEALED |
-| lem-separated-brackets | `CERW.Frozen.separated_brackets` | lem:separated-brackets | SEALED |
-| prop-log-lower | `CERW.Frozen.log_lower_bounds` | prop:log-lower | SEALED |
+| thm-shape | `CERW.Frozen.limit_shape` | thm:shape | PROVED |
+| thm-fluctuations | `CERW.Frozen.fluctuation_rates` | thm:fluctuations | PROVED |
+| thm-sharp-radii | `CERW.Frozen.sharp_radii` | thm:sharp, part (i) | PROVED |
+| thm-sharp-radii-lil | `CERW.Frozen.sharp_radii_lil` | thm:sharp, part (ii) | PROVED |
+| thm-sharp-bulk | `CERW.Frozen.sharp_bulk` | thm:sharp, part (iii) | PROVED |
+| thm-sharp-width | `CERW.Frozen.sharp_width` | thm:sharp, part (iv) | PROVED |
+| thm-norm-shape | `CERW.Frozen.norm_shape` | thm:norm-shape | PROVED |
+| lem-ballpotential | `CERW.Frozen.norm_ball_potential` | lem:ballpotential | PROVED |
+| lem-local | `CERW.Frozen.norm_local_time_potential` | lem:local | PROVED |
+| lem-freedman | `CERW.Frozen.freedman_bound` | lem:freedman | PROVED |
+| lem-cell | `CERW.Frozen.cell_gradient` | lem:cell | PROVED |
+| lem-geometry | `CERW.Frozen.norm_potential_geometry` | lem:geometry | PROVED |
+| prop-coarse | `CERW.Frozen.norm_coarse_bounds` | prop:coarse | PROVED |
+| lem-radial | `CERW.Frozen.norm_radial_test` | lem:radial | PROVED |
+| lem-crossing | `CERW.Frozen.drift_crossing` | lem:crossing | PROVED |
+| prop-norm-shape | `CERW.Frozen.norm_shape_rates` | prop:norm-shape | PROVED |
+| lem-layer | `CERW.Frozen.layer_potential` | lem:layer | PROVED |
+| lem-cap | `CERW.Frozen.moreau_cap` | lem:cap | PROVED |
+| lem-contact | `CERW.Frozen.contact_potential` | lem:contact | PROVED |
+| lem-outer-crossing | `CERW.Frozen.outer_crossing` | lem:outer-crossing | PROVED |
+| prop-inner | `CERW.Frozen.inner_radius` | prop:inner | PROVED |
+| prop-stronger-outer | `CERW.Frozen.outer_radius` | prop:stronger-outer | PROVED |
+| lem-near-far | `CERW.Frozen.near_far` | lem:near-far | PROVED |
+| thm-moment-fluctuations | `CERW.Frozen.moment_fluctuations` | thm:moment-fluctuations | PROVED |
+| lem-fixed-site-centering | `CERW.Frozen.fixed_site_centering` | lem:fixed-site-centering | PROVED |
+| thm-site-fluctuations | `CERW.Frozen.site_fluctuations` | thm:site-fluctuations | PROVED |
+| lem-exp-deviation | `CERW.Frozen.exp_deviation` | lem:exp-deviation | PROVED |
+| prop-bulk-profile | `CERW.Frozen.bulk_profile` | prop:bulk-profile | PROVED |
+| lem-separated-brackets | `CERW.Frozen.separated_brackets` | lem:separated-brackets | PROVED |
+| prop-log-lower | `CERW.Frozen.log_lower_bounds` | prop:log-lower | PROVED |
 
 **Revised surface:** 30 of 30 statements proved.
