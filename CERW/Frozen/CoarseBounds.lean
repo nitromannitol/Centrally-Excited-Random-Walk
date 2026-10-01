@@ -4,7 +4,7 @@ import CERW.Support.Coarse.Assembly
 /-!
 # The occupation and radius bounds
 
-`prop:coarse` of the paper (`paper/cerw-flat.tex:547-561`). The bytes between
+`prop:coarse` of the paper (`limit-shapes.tex:547-554`, Euclidean case). The bytes between
 the markers are the frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

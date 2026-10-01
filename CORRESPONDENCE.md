@@ -3,10 +3,7 @@
 `paper/limit-shapes.tex` is the pinned source of the revised paper, *Limit
 shapes of centrally excited random walks*. A registered theorem has one
 declaration in its own file under `CERW/Frozen/`, with a paper line anchor and
-label. The seven statements of the first version of the paper
-(`paper/cerw-flat.tex`, the mechanical flattening of `paper/cerw.tex` and its
-three section files) keep their frozen text and cite that file by line; their
-node ids name the Lean theorem (`ball-shape`, `fluctuation-bounds`, …). The
+label. The
 paper writes the drift as `κ`; Lean, and this file, write `ε`.
 
 The bytes strictly between `FROZEN-STATEMENT-BEGIN` and
@@ -62,14 +59,13 @@ live in `CERW/Model/`.
   Euclidean unit sphere, which are attained.
 - `r_n` is `((d + 1) * n / (2 * d * ε * ωd)) ^ (1 / (d + 1))`, with
   `ωd = (volume (ball 0 1)).toReal`, and for a norm the same with
-  `CERW.normBallVolume Ψ` in place of `ωd`. The first version writes
-  `N = n ^ (1 / (d + 1))` and `a = ((d + 1) / (2 * d * ε * ωd)) ^ (1 / (d + 1))`.
+  `CERW.normBallVolume Ψ` in place of `ωd`.
   Every cast to `ℝ` is at a leaf.
 
 **Occupation.**
 - `A_n` is `CERW.departureRange`, the set `{X_0, …, X_{n-1}}`, and `ℓ_n` is
   `CERW.localTime`; the paper's set of sites visited by time `n` is `A_{n+1}`,
-  and the first version's `V_n` is `CERW.visitedRange`. `M_n` is
+  and the set of sites visited by time `n` is `CERW.visitedRange`. `M_n` is
   `CERW.maxLocalTime`, and `H_n = max_{j ≤ n} |X_j|` is `CERW.maxRadius`.
 - `D_n` is `CERW.cellSet`, the union of the unit cells of `A_n`, and `ℓ̃_n` is
   `CERW.cellLocalTime`. `M_sh(r)` is `CERW.shellMax`. `M_{s,t}` and `k_{s,t}`
@@ -137,7 +133,7 @@ live in `CERW/Model/`.
 **Constants.**
 - Constants follow the parameters they may depend on and precede the
   probability space, and for the norm walk they precede `ξ` as well. The
-  constants `C_d` of the first version's `lem:local` and `lem:geometry` precede
+  constants `C_d` of `lem:local` and `lem:geometry` precede
   `ε`; `C(d)` of `lem:cell` precedes `Ψ` and `ξ`; `C(d, Ψ)` of `lem:geometry`
   precedes `ε` and `D`; and `ρ₀` of `lem:radial` precedes `ε`. `PROOF.md`,
   section 4, lists the readings of the individual statements.
@@ -150,13 +146,8 @@ live in `CERW/Model/`.
 
 | id | Lean | paper | state |
 |---|---|---|---|
-| `potential-geometry` | `CERW.Frozen.potential_geometry` | first version of the paper, the lemma on the geometry of the potential, paper/cerw-flat.tex lines 497 to 514 | PROVED |
-| `ball-shape` | `CERW.Frozen.ball_shape` | first version of the paper, the ball shape theorem, paper/cerw-flat.tex lines 135 to 160 | PROVED |
-| `fluctuation-bounds` | `CERW.Frozen.fluctuation_bounds` | first version of the paper, the fluctuation bounds, paper/cerw-flat.tex lines 186 to 213 | PROVED |
-| `hausdorff-bound` | `CERW.Frozen.hausdorff_bound` | first version of the paper, the Hausdorff estimate and the planar remark, paper/cerw-flat.tex lines 217 to 223 | PROVED |
-| `local-time-potential` | `CERW.Frozen.local_time_potential` | first version of the paper, the lemma on local times and the potential, paper/cerw-flat.tex lines 397 to 414 | PROVED |
-| `radial-test` | `CERW.Frozen.radial_test` | first version of the paper, the radial test lemma, paper/cerw-flat.tex lines 581 to 601 | PROVED |
-| `coarse-bounds` | `CERW.Frozen.coarse_bounds` | first version of the paper, the coarse bounds, paper/cerw-flat.tex lines 547 to 561 | PROVED |
+| `local-time-potential` | `CERW.Frozen.local_time_potential` | paper/limit-shapes.tex:385-401 (lem:local, Euclidean case) | PROVED |
+| `coarse-bounds` | `CERW.Frozen.coarse_bounds` | paper/limit-shapes.tex:547-554 (prop:coarse, Euclidean case) | PROVED |
 | `ext-martingale-clt` | `CERW.External.MartingaleCLT` | Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1399 and 1519 | FROZEN |
 | `ext-stout-lil` | `CERW.External.StoutLIL` | Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644 | FROZEN |
 | `thm-shape` | `CERW.Frozen.limit_shape` | `limit-shapes.tex:103-116`, `thm:shape` | PROVED |
@@ -224,21 +215,21 @@ source check is `ledger/audits/external-sources.md`. It compares the proposition
 the cited theorems in the literature and records both as implied, with a remark. The propositions carry the
 universe of `Ω` as a parameter.
 
-The result that the first-version statements once carried as a hypothesis is proved in
+The kernel asymptotics that the statements use are proved in
 Lattice-Probability:
 
 | nodes | cited result | where it is proved |
 |---|---|---|
-| `ball-shape`, `fluctuation-bounds`, `hausdorff-bound`, `local-time-potential`, `radial-test`, `coarse-bounds`, and, in the revised surface, `lem-local`, `lem-radial`, `lem-contact`, `prop-inner`, `thm-site-fluctuations` | The asymptotics of the kernel `b` with `(P − I) b = 1_{0}`. For `d = 2`, `b` is the potential kernel, the limit of the partial sums `Σ_{j<M} [P^j(0,0) − P^j(0,x)]`, with `b(x) = (2/π) log \|x\| + κ + O(\|x\|^{-2})` (Lawler–Limic, Theorem 4.4.4). For `d ≥ 3`, `b = −G` with `G(x) = 2/((d−2)ω_d) \|x\|^{2−d} + O(\|x\|^{-d})` (Lawler–Limic, Theorem 4.3.1). `local-time-potential` and `lem-local` use it to build the local-time potential, `radial-test` and `lem-radial` the radial test, `lem-contact` and `prop-inner` the contact argument, and `thm-site-fluctuations` the lattice kernel `g` of Section 3; the other statements inherit it from these. | `LatticeProb.External.potentialKernelAsymptotics_holds`, which proves the proposition `LatticeProb.External.PotentialKernelAsymptotics d` in every dimension. Earlier versions of six first-version statements carried the same proposition as the hypothesis `CERW.External.LatticePotentialKernel d`; by the author's ruling (`ledger/approval/KERNEL-ASYMPTOTICS.md`) it was removed, and the statements are otherwise unchanged. |
+| `local-time-potential`, `coarse-bounds`, `lem-local`, `lem-radial`, `lem-contact`, `prop-inner`, `thm-site-fluctuations` | The asymptotics of the kernel `b` with `(P − I) b = 1_{0}`. For `d = 2`, `b` is the potential kernel, the limit of the partial sums `Σ_{j<M} [P^j(0,0) − P^j(0,x)]`, with `b(x) = (2/π) log \|x\| + κ + O(\|x\|^{-2})` (Lawler–Limic, Theorem 4.4.4). For `d ≥ 3`, `b = −G` with `G(x) = 2/((d−2)ω_d) \|x\|^{2−d} + O(\|x\|^{-d})` (Lawler–Limic, Theorem 4.3.1). `local-time-potential` and `lem-local` use it to build the local-time potential, `lem-radial` the radial test, `lem-contact` and `prop-inner` the contact argument, and `thm-site-fluctuations` the lattice kernel `g` of Section 3; the other statements inherit it from these. | `LatticeProb.External.potentialKernelAsymptotics_holds`, which proves the proposition `LatticeProb.External.PotentialKernelAsymptotics d` in every dimension. |
 
 Each proof that uses the asymptotics obtains the kernel facts from them
 (`CERW.Support.LocalTime.exists_kernelFacts`, in
 `CERW/Support/LocalTime/KernelAsymptotics.lean`) and applies the Support theorem
-for that statement. `potential-geometry` and `lem-geometry` do not use them.
+for that statement. `lem:geometry` does not use them.
 
 The gradient estimate for the kernel, `eq:gradient`, is proved rather than cited;
 the paper cites it with the asymptotics as Lawler–Limic's Corollaries 4.3.3 and 4.4.5
-(`cerw-flat.tex:351` in the first version). `CERW/Support/LocalTime/KernelBridge.lean`
+. `CERW/Support/LocalTime/KernelBridge.lean`
 derives the gradient asymptotics and the one-step gradient bound from the two
 asymptotics, together with the level sets of `b` and its logarithmic
 growth.
@@ -262,7 +253,7 @@ Mathlib's, and is applied in `CERW/Generic/Norm/Gradient.lean`. The existence of
 distributional Laplacian of a norm as a locally finite measure is proved in
 `CERW/Support/Norm/LocalTime.lean`, from the Riesz–Markov–Kakutani theorem.
 
-The planar remark after `eq:hausdorff` in the first version is stated in its
+The planar remark after `eq:hausdorff` is stated in its
 two-sided reading: the inner radius is at least `aN − C n^{1/6} √L`, and some
 unvisited site lies within `aN + C n^{1/6} √L`. The one-sided reading is also
 proved, as `CERW.Support.Main.hausdorff_bound_one_sided_of_kernelFacts`, but it is not

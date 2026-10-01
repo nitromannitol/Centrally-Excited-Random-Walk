@@ -1,10 +1,5 @@
 import CERW.Frozen.LocalTimePotential
-import CERW.Frozen.PotentialGeometry
-import CERW.Frozen.RadialTest
 import CERW.Frozen.CoarseBounds
-import CERW.Frozen.FluctuationBounds
-import CERW.Frozen.BallShape
-import CERW.Frozen.HausdorffBound
 import CERW.Frozen.LimitShape
 import CERW.Frozen.FluctuationRates
 import CERW.Frozen.SharpRadii

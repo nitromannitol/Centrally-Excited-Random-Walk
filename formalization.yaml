@@ -1,0 +1,71 @@
+version: v0.4
+project:
+  name: Centrally-Excited-Random-Walk
+  description: 'A Lean 4/Mathlib formalization of centrally excited random walk (CERW) on Z^d, d >= 2:
+    the limit shape theorem for the Euclidean walk and for a walk whose drift is a subgradient of a norm,
+    the fluctuation bounds, and the sharpness results (Theorem 1.1, Theorem 1.2, Theorem 1.3 and Theorem
+    2.1 of the revised paper), together with every lemma and proposition of Sections 2-9. Two cited martingale
+    limit theorems enter as explicit hypotheses; the kernel asymptotics quoted from the literature are
+    proved in the shared Lattice-Probability library.'
+  authors:
+  - Ahmed Bou-Rabee
+  - Yuval Peres
+  license: Apache-2.0
+classification:
+  arxiv:
+  - math.PR
+  msc2020:
+  - 60K35
+  - 60G50
+  - 60G42
+  - 31C20
+sources:
+- title: Limit shapes of centrally excited random walks
+  authors:
+  - Ahmed Bou-Rabee
+  - Yuval Peres
+  id: TODO(author)
+  type: manuscript
+  location: paper/limit-shapes.tex
+  relationship: formalizes
+  note: 'Revised paper, pinned at paper/limit-shapes.tex; Theorems 1.1, 1.2, 1.3 and 2.1 and Sections
+    2-9 are formalized. TODO(author): arXiv identifier and license at release.'
+  author_endorsement: n/a
+automation:
+  methods:
+  - method: agent
+    models:
+    - Claude
+    - DeepSeek
+  spend_usd: TODO(author)
+status:
+  scope: 'The frozen statement surface is registered in ledger/manifest.yaml with SHA-256 hashes: the
+    revised paper''s Theorems 1.1, 1.2, 1.3 and 2.1 (Theorem 1.3 split into four parts) and every lemma
+    and proposition of Sections 2-9. The two cited martingale limit theorems (Hall-Heyde and Stout) are
+    stated in CERW/External/ and carried as explicit hypotheses. A Mathlib-only comparator challenge for
+    the limit shape theorem CERW.Frozen.limit_shape is provided under CERWAudit/LimitShape/.'
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+  - propext
+  - Classical.choice
+  - Quot.sound
+  main_results:
+  - declaration: CERW.Frozen.limit_shape
+    file: CERW/Frozen/LimitShape.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    comparator_config: CERWAudit/LimitShape/comparator.json
+fidelity:
+  divergences: CORRESPONDENCE.md records how each registered statement reads the paper; PROOF.md lists
+    the points at which the formalized statements differ from the published text.
+review:
+  status: in-progress
+  reviewers:
+  - Ahmed Bou-Rabee
+  notes: Statement-level decisions are recorded in ledger/approval/; the two cited martingale limit theorems
+    are assumed rather than proved. Not external peer review.
+acknowledgements: Built on Lean 4, Mathlib, Lake and the shared Lattice-Probability library.

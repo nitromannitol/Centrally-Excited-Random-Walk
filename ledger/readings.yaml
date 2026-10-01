@@ -5,43 +5,12 @@
 # hypotheses; (8) first consumer elaborates; (9) library model.
 
 clauses:
-  ball-shape: >-
-    (1) No existential constants; a, N are the paper's formulas via let. (2) A single ∀ᵐ ω ∂μ
-    precedes "for every η" and "for every x", as the paper's "the following statements hold
-    almost surely". μ is any probability measure under which X is centrally excited random walk
-    (IsCERW, R-1). (4) sup_x → 0 is written ∀η>0 ∀ᶠn ∀x (R-5). Division by N n is used only
-    eventually, where N n > 0. (5) Balls are open (<); 2dε(a − |x|/N)_+ is max (…) 0; the fixed-x
-    limit is 2dεa. (6) No hypothesis: the kernel asymptotics are proved in Lattice-Probability. (7) d ≥ 2 and 0 < ε < 1/d
-    as in the paper. (8) The prototype derives the statement's shape from thm-fluctuations.
-  fluctuation-bounds: >-
-    (1) ∀ε, ∀p, ∃ C n₀, then the realization: C and n₀ depend only on d, ε, p. The eventual constant
-    comes after ε. (2) The second conjunct is ∀ᵐ ω, ∀ᶠ n. The first bounds the outer measure of the
-    bad event by C n^{-p} (R-4). (4) Volumes are in ℝ≥0∞; the sup is ∀x; N⁻¹ with n ≥ n₀ ≥ 1; Q ≥ 0.
-    (5) Q = (L/N)^{1/2} (d=2), (L/N)^{d/(2d−1)} (d≥3); radii a − CQ and a + CQ^{1/d}L; profile
-    CQ^{1/d}; one C for the event and the probability, as in the paper. (6) No hypothesis: the kernel
-    asymptotics are proved in Lattice-Probability. (8) The prototype extracts the profile clause of Good.
-  hausdorff-bound: >-
-    (1) ∀ε, ∀p, ∃ C n₀ before the realization. (4) hausdorffEDist is in ℝ≥0∞ (R-5); N⁻¹ with
-    n ≥ n₀ ≥ 1. (5) d=2: n^{-1/12}L^{5/4}; d≥3: n^{-1/((d+1)(2d−1))}L^{2d/(2d−1)}; planar inner
-    deficit C n^{1/6}√L. (R-7) The statement is a probability bound with its own constant.
-    (6) No hypothesis: the kernel asymptotics are proved in Lattice-Probability.
   local-time-potential: >-
     (1) ∃ C_d before ε (the paper's C_d depends only on d, R-15), then ∀ε ∀p ∃C, then the
     realization and ∀ n ≥ 2. (4) M_n, M_{s,t} are Finset.sup of ℕ (the empty value 0 is correct);
     sqrt of nonnegative arguments; the potential is integrable on the bounded cell set. (5) λ_n and
     e_n as displayed; the range 0 ≤ s < t ≤ n over naturals; |y| ≤ 2n. (6) No hypothesis: the kernel
     asymptotics are proved in Lattice-Probability. (8) The prototype instantiates at ε, p = 1, n = 2.
-  potential-geometry: >-
-    (1) ∃ C_d before ε and D (R-15). (4) R = (volume D).toReal is honest because D is bounded; the
-    Bochner integrals in U_D and F are integrable for bounded measurable D; the sphere integral is of
-    a continuous function. (5) The σ_d normalization equals the total mass of volume.toSphere
-    (d·ω_d); ‖U_D‖_∞ is written ∀y. The ball clause uses the open ball with the same ε. (6) No
-    External. (7) D measurable and bounded, as the paper says.
-  radial-test: >-
-    (1) ∃ r₀ (depending on d only) before ε; C after ε, p. (4) r ± b_d are real, and r − b_d > 0
-    because r ≥ r₀ > 2b_d; shellMax is a finite Finset.sup. (5) b_d = ⌈√d/2⌉ + 6; the error terms
-    are √(M_n r^{1−d} F(r − b_d) L) and r^{1−d} L; integers r₀ ≤ r ≤ n. (6) No hypothesis: the kernel
-    asymptotics are proved in Lattice-Probability.
   coarse-bounds: >-
     (1) ∀ε ∀p ∃ c C, then the realization. (5) One c and one C for all six inequalities and for
     the probability, as the paper states; H_n = max_{j≤n}|X_j| (maxRadius). (6) No hypothesis: the kernel
@@ -88,7 +57,7 @@ clauses:
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-introduction.md).
     $d=2$ is \texttt{hd : d = 2}; the external Stout law of the iterated logarithm is carried as
     the hypothesis \texttt{hLIL : CERW.External.StoutLIL.{u}} (author ruling: the proof reaches
-    Stout's theorem through Theorem~\ref{thm:moment-fluctuations}(ii), line 1412). ``Almost surely
+    Stout's theorem through Theorem~\ref{thm:moment-fluctuations}(ii), line 1410). ``Almost surely
     $\limsup_n a_n\ge L$'' is written junk-free (repository convention) as \texttt{∀ᵐ ω, ∀ δ > 0,
     ∃ᶠ n, (L - δ) * √(r n * log (log n)) ≤ a n} with $L=1/\sqrt{10\pi\kappa}$, $a_n=r_n-R_{\rm
     in}(n)$ for the first display and $a_n=R_{\rm out}(n)-r_n$ for the second; both displays are
@@ -111,7 +80,7 @@ clauses:
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-introduction.md).
     $d=2$ is \texttt{hd : d = 2}; part (iv)(a) and (iv)(b) are the two conjuncts of one node
     (author ruling), and the external Stout law of the iterated logarithm is carried as
-    \texttt{hLIL : CERW.External.StoutLIL.{u}} (it is used in (b), line 1647; (a) does not use
+    \texttt{hLIL : CERW.External.StoutLIL.{u}} (it is used in (b), line 1644; (a) does not use
     it). Version 2 (author erratum ruling, 2026-10-01) makes it the premise
     \texttt{CERW.External.StoutLIL.{u} →} of the conjunct (b) only, so (a) is unconditional. (a): $\forall p>0,\exists c>0,\exists n_0,\forall(\Omega,\mu,X),\forall n\ge n_0$, the
     event $\{c\sqrt{r_n\log n}\le R_{\rm out}(n)-R_{\rm in}(n)\}$ is measurable and has
@@ -171,7 +140,7 @@ clauses:
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-norm-setup.md). Paper
     macros: \verb!\gauge! is $\Psi$. \emph{Object mapping.} \begin{itemize} \item $\gauge$, $\xi$:
     \verb!Ψ! with \verb!CERW.IsNorm Ψ!, and \verb!ξ : Site d → EuclideanSpace ℝ (Fin d)! with
-    \verb!∀ x, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)! and \verb!ξ 0 = 0! (line 294).
+    \verb!∀ x, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)! and \verb!ξ 0 = 0! (line 295).
     The hypothesis \verb!ξ 0 = 0! is essential here: the lemma is asserted for every $x\in\Z^d$
     including $x=0$, where $\xi(0)=0$ is a subgradient because $\gauge\ge0$ (paper proof, line
     462). \verb!hd : 2 ≤ d! is the standing assumption. \item $C_x$ is \verb!CERW.cell x! $=\{v:\
@@ -202,14 +171,14 @@ clauses:
     Lebesgue measure on \texttt{EuclideanSpace R (Fin d)}. All casts are to \texttt{R} (checked
     with \texttt{pp.coercions}). \item \emph{Subgradients.} $\xi(x)\in\partial\gauge(x)$ for
     $x\ne0$ is \texttt{IsSubgradient Psi (toSpace x) (xi x)}, that is
-    $\gauge(y)\ge\gauge(x)+\xi(x)\cdot(y-x)$ for all $y$. $\xi(0)=0$ is line 294. \item
+    $\gauge(y)\ge\gauge(x)+\xi(x)\cdot(y-x)$ for all $y$. $\xi(0)=0$ is line 295. \item
     \emph{Walk.} \texttt{IsDriftCERW mu eps xi X}: $X_0=0$ almost surely
   lem-radial: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-norm-shape.md).
     \begin{itemize} \item \emph{Quantifier order.} $\rho_0(d,\gauge)>8d$ is bound right after
     $\gauge$ and before $\drift$, $p$, $\xi$, the walk: \texttt{exists rho0 : R, 8*d < rho0 /\
     forall eps, \dots}. $C(d,\drift,\gauge,p)$ is bound after $p$ and before $\xi$ and the
-    probability space (not depending on the subgradients, line 295). $\rho_0$ is real; ``integers
+    probability space (not depending on the subgradients, line 296). $\rho_0$ is real; ``integers
     $\rho_0\le\rho\le n$'' is \texttt{forall rho : N, rho0 <= rho -> rho <= n -> \dots}. \item
     \emph{Setting.} As in the coarse-bounds twin: \texttt{IsNorm Psi}, $\drift>0$ with
     eq:ellipticity, subgradients $\xi$ with $\xi(0)=0$, \texttt{IsDriftCERW mu eps xi X}, every
@@ -321,7 +290,7 @@ clauses:
   lem-near-far: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-limit-laws.md).
     Standing assumptions: \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d!
-    ($\drift=\varepsilon$). $U_D^+$ (line 1125) is \verb!CERW.positivePotential d ε D y!
+    ($\drift=\varepsilon$). $U_D^+$ (line 1124) is \verb!CERW.positivePotential d ε D y!
     $=\frac{2\varepsilon}{\omega_d}\int_D\max\{u_v\cdot(v-y)|v-y|^{-d},0\}\,dv$, with
     $u_v=\|v\|^{-1}v$ (\verb!CERW.unitDir!, $u_0=0$) and the integrand read as $0$ at $v=y$. All
     integrals in the statement are Bochner integrals of functions that are integrable for bounded
@@ -406,7 +375,7 @@ clauses:
     probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional
     set. \emph{Author's ruling (probabilistic closure).} The paper states the bounds ``on
     $\Omega_n$ for all large $n$'', where $\Omega_n$ is the event of Section~norm-event with
-    $p=10$ (line 1534), so $\P(\Omega_n^c)=O(n^{-10})$. The Lean statement is the closure:
+    $p=10$ (line 1532), so $\P(\Omega_n^c)=O(n^{-10})$. The Lean statement is the closure:
     $\exists
   prop-log-lower: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-limit-laws.md).
@@ -443,22 +412,13 @@ clauses:
     a.s., then $\limsup S_n/(2s_n^2\log\log s_n^2)^{1/2}=1$ a.s. I am not certain from memory of
     the exact hypothesis wording of the original theorem (in particular whether the paper's
     predictable bound or a weaker form is stated there); the Lean Prop is the form the paper
-    itself verifies at lines 1406--1412. \texttt{S} is the martingale
+    itself verifies at lines 1404--1410. \texttt{S} is the martingale
 constants: {}
 
 exponents:
-  hausdorff-bound:
-  - detail: '2d/(2d-1): notation: the paper''s L^{2d/(2d-1)} is Lean''s L ^ ((2 * d : ℝ) / (2 * d - 1)); the ascription sits on the numerator, so the spellings differ only by it'
-    kind: notation
   local-time-potential:
   - detail: '-d: definition: the paper''s |v-y|^{-d} in U_D is the division by ‖v - y‖ ^ d in the body of CERW.potential, which the statement names'
     kind: definition
-  potential-geometry:
-  - detail: '-d: definition: the paper''s |v-y|^{-d} in U_D is the division by ‖v - y‖ ^ d in the body of CERW.potential, which the statement names'
-    kind: definition
-  - detail: 'd-1: notation: the paper''s S^{d-1} names the unit sphere by its dimension, not a power; Lean integrates against volume.toSphere on Metric.sphere 0 1'
-    kind: notation
-
   thm-fluctuations:
   - detail: '\nf32, \nf52: notation: the paper writes fractional exponents with its macro \nf (\nf{a}{b} and \nf ab are a/b); Lean writes each as a real quotient, for example ((1 : ℝ) / 2), so the spellings differ only by the macro'
     kind: notation
@@ -501,17 +461,4 @@ exponents:
   - detail: '1: notation: in S^1, …, S^m the superscript indexes the martingales (Lean''s S i), it is not a power; the paper''s m^{-1} is Lean''s (m : ℝ)⁻¹'
     kind: notation
 hazards:
-  ball-shape:
-    toReal: "ω_d = volume of the unit ball: finite and positive (unitBallVolume_pos)"
-  fluctuation-bounds:
-    toReal: "ω_d = volume of the unit ball: finite and positive (unitBallVolume_pos)"
-    inv: "N⁻¹ with N = n^{1/(d+1)} > 0 for n ≥ n₀ ≥ 1, and eventually in the second conjunct"
-  hausdorff-bound:
-    toReal: "ω_d = volume of the unit ball: finite and positive (unitBallVolume_pos)"
-    inv: "N⁻¹ with N = n^{1/(d+1)} > 0 for n ≥ n₀ ≥ 1"
-  potential-geometry:
-    toReal: "ω_d is finite and positive; R = (volume D).toReal is finite because D is bounded"
-    inv: "(d·ω_d)⁻¹ with d ≥ 2 and ω_d > 0"
-    bochner: "U_D is continuous (the Hölder clause), so its sphere integral is of an integrable function"
-
 noise: []
