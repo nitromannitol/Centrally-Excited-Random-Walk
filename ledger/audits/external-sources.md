@@ -252,3 +252,26 @@ The earlier audit records that the consumers (paper lines 1401, 1412, 1521, 1647
 1. Read Hall-Heyde p. 58-59 (Theorem 3.2, Corollary 3.1 and the Remarks on (3.21)/constant `eta^2`/`eta^2 > 0`).
 2. Read Stout (1970), Theorem 1 and its convention for small `s_n^2`, or Stout (1974), Theorem 5.4.1 (archive.org `almostsureconver0000stou` is borrowable with an account; Springer `10.1007/BF00533299`).
 3. Nothing else is open: the Lean-to-source reductions in 2.3, 2.4 and 3.3 do not depend on the wording of the conventions.
+
+## Addendum: sources retrieved for the form of `StoutLIL`
+
+The open question was whether Stout's theorem allows the bound on the increments to be
+predictable and random, as `StoutLIL` does (`B (n+1)` is `ℱ n`-measurable, and
+`B n · √(log log s_n²) / s_n → 0` almost surely), or only deterministic. Retrieved since:
+
+* **Upper half: confirmed.** de la Peña, Klass and Lai, *Pseudo-maximization and self-normalized
+  processes*, Probab. Surveys 4 (2007), arXiv:0709.2233, Theorem 3.1, attributed to Stout (1970,
+  1973). It assumes `d_n ≤ m_n` for an `F_{n-1}`-measurable `m_n ≥ 0`, `σ_n² → ∞` a.s. and
+  `lim sup m_n √(log log σ_n²) / σ_n = 0` a.s., and concludes `lim sup M_n / √(2σ_n² log log σ_n²) ≤ 1`
+  a.s. With `m_n := B n`, this implies the first conjunct of `StoutLIL` (the `∀ᶠ` upper bound).
+* **Lower half: not confirmed.** The two restatements of Stout (1970) retrieved both use a
+  deterministic sequence `(α_n)` of positive reals with `α_n → 0` and `|Y_n| ≤ α_n s_n / √L(s_n²)`:
+  * Zeng, Ann. Inst. H. Poincaré Probab. Statist. 51 (2015), arXiv:1212.1504, introduction;
+  * Panja, Ricard and Saha, arXiv:2509.22037v2, (1.1).
+
+  Neither restatement says the deterministic form is Stout's full generality. The deterministic form
+  is strictly weaker than the second conjunct of `StoutLIL` (the `∃ᶠ` lower bound). Hall–Heyde
+  Theorem 4.8 and Stout (1974) Theorem 5.4.1, which would settle it, are still unread.
+* **Verdict:** the CONCERN is narrowed to the lower conjunct of `StoutLIL`, and it stays open for the
+  author. The check is to read Hall–Heyde (1980) Theorem 4.8 or Stout (1970) Theorem 1 and confirm
+  that `K_n` may be `F_{n-1}`-measurable.
