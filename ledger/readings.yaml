@@ -112,7 +112,8 @@ clauses:
     $d=2$ is \texttt{hd : d = 2}; part (iv)(a) and (iv)(b) are the two conjuncts of one node
     (author ruling), and the external Stout law of the iterated logarithm is carried as
     \texttt{hLIL : CERW.External.StoutLIL.{u}} (it is used in (b), line 1647; (a) does not use
-    it). (a): $\forall p>0,\exists c>0,\exists n_0,\forall(\Omega,\mu,X),\forall n\ge n_0$, the
+    it). Version 2 (author erratum ruling, 2026-10-01) makes it the premise
+    \texttt{CERW.External.StoutLIL.{u} →} of the conjunct (b) only, so (a) is unconditional. (a): $\forall p>0,\exists c>0,\exists n_0,\forall(\Omega,\mu,X),\forall n\ge n_0$, the
     event $\{c\sqrt{r_n\log n}\le R_{\rm out}(n)-R_{\rm in}(n)\}$ is measurable and has
     probability at least $n^{-p}$. (b): ``almost surely $\limsup\ge\sqrt{\pi/(3\kappa)}$'' is
     written junk-free as \texttt{∀ᵐ ω, ∀ δ > 0, ∃ᶠ n, (√(π/(3ε)) - δ) * √(r n * log (log n)) ≤

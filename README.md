@@ -124,7 +124,7 @@ hand-edited number inside this block is a failure, not a correction.
 
 The table of registered statements, with the state of each, is in [`CORRESPONDENCE.md`](CORRESPONDENCE.md).
 
-The theorems that use a cited result carry it as a hypothesis: `sharp_radii_lil` and `sharp_width` carry `hLIL : CERW.External.StoutLIL`, and `moment_fluctuations` and `site_fluctuations` carry both `hCLT : CERW.External.MartingaleCLT` and `hLIL`. No other theorem carries a hypothesis beyond the parameters of the paper's statement. The kernel asymptotics that the proofs use are supplied by `LatticeProb.External.potentialKernelAsymptotics_holds`, a theorem of Lattice-Probability whose axiom closure is the same three standard axioms.
+The theorems that use a cited result carry it as a hypothesis: `sharp_radii_lil` carries `hLIL : CERW.External.StoutLIL`, `sharp_width` carries it as the premise of its part (b) only, so that its part (a) is unconditional, and `moment_fluctuations` and `site_fluctuations` carry both `hCLT : CERW.External.MartingaleCLT` and `hLIL`. No other theorem carries a hypothesis beyond the parameters of the paper's statement. The kernel asymptotics that the proofs use are supplied by `LatticeProb.External.potentialKernelAsymptotics_holds`, a theorem of Lattice-Probability whose axiom closure is the same three standard axioms.
 
 ## Building and checking
 

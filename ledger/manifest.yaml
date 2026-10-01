@@ -176,15 +176,15 @@ nodes:
     approved: "2026-09-30"
 
   - id: thm-sharp-width
-    version: 1
+    version: 2
     kind: theorem
     source: limit-shapes.tex:176-187 (label thm:sharp, part (iv))
     file: CERW/Frozen/SharpWidth.lean
     export: CERW.Frozen.sharp_width
     state: SEALED
-    frozen_sha256: 6c26721bb1e9223f6ed6ff77edfa2a0b32367a5ae44fd12ba2ca2da5478b644e
+    frozen_sha256: 33c8d67f92937c4993df7f3a5cf0fa8c7871390124e8971eab54adbd076f20da
     provider: CERW.Frozen.sharp_width
-    approved: "2026-09-30"
+    approved: "2026-10-01"
 
   - id: thm-norm-shape
     version: 1

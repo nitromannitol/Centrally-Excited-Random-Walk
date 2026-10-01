@@ -166,8 +166,9 @@ theorem sharp_radii_lil_inhabited :
 
 /-- In dimension two with `ε = 1/8`, the width of the shell between the inner and outer radii of
 centrally excited random walk is bounded below with polynomial probability and satisfies the lower
-bound of the law of the iterated logarithm of the frozen statement. -/
-theorem sharp_width_applies (hLIL : CERW.External.StoutLIL.{0}) :
+bound of the law of the iterated logarithm of the frozen statement, the latter given Stout's law of
+the iterated logarithm. -/
+theorem sharp_width_applies :
     let d : ℕ := 2
     let ε : ℝ := 1 / 8
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
@@ -178,7 +179,8 @@ theorem sharp_width_applies (hLIL : CERW.External.StoutLIL.{0}) :
         let E : Set Ω := {ω | c * Real.sqrt (r n * Real.log n)
           ≤ CERW.maxRadius (X · ω) n - CERW.innerRadius (X · ω) n}
         MeasurableSet E ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ E) ∧
-    (∀ {Ω : Type} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (CERW.External.StoutLIL.{0} →
+      ∀ {Ω : Type} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
       (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
       ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ → ∃ᶠ n : ℕ in atTop,
         (Real.sqrt (Real.pi / (3 * ε)) - δ) * Real.sqrt (r n * Real.log (Real.log n))
@@ -186,7 +188,7 @@ theorem sharp_width_applies (hLIL : CERW.External.StoutLIL.{0}) :
   intro d ε ωd r
   have hε : 0 < ε := by norm_num [ε]
   have hεd : ε < 1 / (d : ℝ) := by norm_num [ε, d]
-  exact CERW.Frozen.sharp_width rfl hLIL ε hε hεd
+  exact CERW.Frozen.sharp_width rfl ε hε hεd
 
 /-- In dimension two with `ε = 1/8`, there is a probability space carrying a centrally excited
 random walk, so the hypothesis of `sharp_width` is satisfiable. -/
