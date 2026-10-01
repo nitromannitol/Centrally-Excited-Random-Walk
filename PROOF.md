@@ -482,6 +482,9 @@ Frozen.RadialTest
 Frozen.CoarseBounds
   Support.LocalTime.KernelAsymptotics (above)
   Support.Coarse.Assembly
+External.MartingaleCLT
+  Mathlib.Probability.Distributions.Gaussian.Real
+  Mathlib.MeasureTheory.Function.ConvergenceInDistribution
 Frozen.LimitShape
   Support.Main.LimitShape
 Frozen.FluctuationRates
@@ -642,7 +645,7 @@ Frozen.OuterRadius
 Frozen.NearFar
   Support.Outer.NearFar (above)
 Frozen.MomentFluctuations
-  External.MartingaleCLT
+  External.MartingaleCLT (above)
   External.StoutLIL (above)
   Support.Inner.InnerRadius (above)
   Support.Limit.MomentFluctuations
