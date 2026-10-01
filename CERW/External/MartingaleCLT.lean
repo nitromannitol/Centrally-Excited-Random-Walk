@@ -5,7 +5,7 @@ import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
 /-!
 # A cited result carried as a hypothesis
 
-Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1401 and 1521. It is stated as a proposition and carried as an explicit hypothesis by every theorem whose
+Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1399 and 1519. It is stated as a proposition and carried as an explicit hypothesis by every theorem whose
 proof uses it; it is never assumed as an axiom. See `ASSUMPTIONS.md`.
 -/
 
@@ -15,7 +15,7 @@ open MeasureTheory Filter Topology ProbabilityTheory
 open scoped symmDiff Pointwise NNReal
 open LatticeProb (Site euclidNorm)
 
-/-- Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1401 and 1521. -/
+/-- Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1399 and 1519. -/
 -- FROZEN-STATEMENT-BEGIN
 def CERW.External.MartingaleCLT : Prop :=
   ∀ {Ω : Type u} [m0 : MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]

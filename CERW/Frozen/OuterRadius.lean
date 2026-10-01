@@ -39,7 +39,7 @@ Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf{1}{d}$. For every $p>0
 Definitions the statement relies on (verbatim):
 \textit{the radius $r_n$ (eq:radius, lines 98--100)}
 \begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
 \textit{$D_n$, $\Rin$, $\Rout$ (eq:radii, lines 122--127)}
 Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are

@@ -33,7 +33,7 @@ open LatticeProb (Site euclidNorm)
 Definitions used (lines 98--101 and 121--127):
 \begin{verbatim}
 \begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
 so that the cone $2d\drift(r_n-|v|)_+$ has integral~$n$ over~$\R^d$. Informally, after $n$~steps the walk has visited essentially every site~$x$ with $|x|<r_n$ and essentially no site with $|x|>r_n$, and has departed from each site~$x$ about $2d\drift(r_n-|x|)_+$ times. This profile determines~$r_n$: the local times sum to~$n$, and the slope~$2d\drift$ of the cone is the slope of the potential of a ball, computed in~\eqref{eq:ballpotential-euclid} below.
 ...

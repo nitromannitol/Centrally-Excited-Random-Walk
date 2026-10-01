@@ -25,19 +25,19 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{lemma}\label{lem:contact}
-On the event of Section~\ref{sec:norm-event}, for large~$n$,
+For every $p>0$ there exist $C(d,\drift,\gauge,p)<\infty$ and an integer~$n_0(d,\drift,\gauge,p)$ such that, for every integer~$n\geq n_0$, with probability at least $1-Cn^{-p}$, every point~$y$ in the closure of~$\R^d\setminus D_n$ with $\gauge(y)=b$ satisfies
 \begin{equation*}
-H\leq Cr_nq_n=C\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\geq3\end{cases}\, .
+U_{D_n}(y)\leq Cr_nq_n=C\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\geq3\end{cases}\, .
 \end{equation*}
 \end{lemma}
-Definitions the statement relies on (verbatim): $q_n$ (eq:qn, lines 763--766), the event of Section~\ref{sec:norm-event}
-(line 841), and the inner radius $b$, the set $E$, the contact point $y_0$ and $H$ (lines 852--860).
+Definitions the statement relies on (verbatim): $q_n$ (eq:qn, lines 764--767), the event of Section~\ref{sec:norm-event}
+(line 842), and the inner radius $b$, the set $E$, the contact point $y_0$ and $H$ (lines 853--861).
 Throughout the rest of the paper let
 \begin{equation}\label{eq:qn}
 q_n\coloneqq\begin{dcases}\sqrt{\frac{\log n}{r_n}},&d=2,\\\frac{\log n}{r_n},&d\geq3\end{dcases}\, .
 \end{equation}
 \begin{quote}
-Intersect the events of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} with the events on which~\eqref{eq:vector}, \eqref{eq:localmart}, \eqref{eq:quadratic-coarse} and~\eqref{eq:linear-mart} hold; the complement has probability at most $Cn^{-p}$, and everything below is deterministic on this event. Let $K$ be a constant with $\Rout(n)\leq(K-1)r_n$ on the event of Proposition~\ref{prop:coarse}; then $D_n\subset B(0,Kr_n)$ for large~$n$, and~\eqref{eq:quadratic-coarse} gives
+Intersect the events of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} with the events on which~\eqref{eq:vector}, \eqref{eq:localmart}, \eqref{eq:quadratic-coarse} and~\eqref{eq:linear-mart} hold; the complement has probability at most $Cn^{-p}$, and the arguments below are deterministic on this event, intersected with the event of Lemma~\ref{lem:contact} where they use that lemma. Let $K$ be a constant with $\Rout(n)\leq(K-1)r_n$ on the event of Proposition~\ref{prop:coarse}; then $D_n\subset B(0,Kr_n)$ for large~$n$, and~\eqref{eq:quadratic-coarse} gives
 \end{quote}
 Let
 \begin{equation*}

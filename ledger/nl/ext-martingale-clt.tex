@@ -1,9 +1,9 @@
-% ext-martingale-clt -- CERW.External.MartingaleCLT (draft). Source: limit-shapes.tex:1401 and 1521 (citation of Hall--Heyde 1980, Corollary 3.1)
-\paragraph{Paper (verbatim).} Line 1401 (Theorem~\ref{thm:moment-fluctuations}, Step 2):
+% ext-martingale-clt -- CERW.External.MartingaleCLT (draft). Source: limit-shapes.tex:1399 and 1519 (citation of Hall--Heyde 1980, Corollary 3.1)
+\paragraph{Paper (verbatim).} Line 1399 (Theorem~\ref{thm:moment-fluctuations}, Step 2):
 \begin{verbatim}
 Hence, almost surely, for each positive threshold the conditional Lindeberg sum vanishes for large~$n$. The martingale central limit theorem with deterministic normalization \citep[Corollary~3.1]{HallHeyde1980} and~\eqref{eq:moment-bracket-limit} give
 \end{verbatim}
-Line 1521 (Theorem~\ref{thm:site-fluctuations}, Step 4):
+Line 1519 (Theorem~\ref{thm:site-fluctuations}, Step 4):
 \begin{verbatim}
 \emph{Step 4: Limit laws for the martingales.} For finitely many fixed sites~$y_i$ the increments of~$\mathcal M^{y_i}$ are bounded by a constant. The limits of the brackets, the martingale central limit theorem of \citet[Corollary~3.1]{HallHeyde1980}, which allows a zero limiting variance, and the Cram\'er--Wold device show that the vector $(-\mathcal M_n^{y_i})_i$, divided by $\sqrt{r_n\log r_n}$ when $d=2$ and by $\sqrt{r_n}$ when $d\geq3$, converges in distribution to the centered Gaussian vector with covariance~\eqref{eq:site-covariance}. The increments are bounded, so the law of the iterated logarithm of \citet{Stout1970} applies to $\mathcal M^y$ and~$-\mathcal M^y$; since $\log\log\langle\mathcal M^y\rangle_n\sim\log\log n$, it gives part~(ii) with $-\mathcal M^y_n$ in place of $\ell_n(y)-2d\drift(r_n-|y|)$.
 \end{verbatim}
@@ -13,7 +13,7 @@ $\sum_iE[X_{ni}^2\mathbf 1_{|X_{ni}|>\delta}\mid\mathcal F_{n,i-1}]\to0$ in prob
 probability for an a.s.\ finite $\eta^2$, and the $\sigma$-fields are nested ($\mathcal F_{n,i}\subseteq\mathcal F_{n+1,i}$; I believe this is not needed for constant
 $\eta^2$), then $S_{nk_n}\to Z$ in distribution with characteristic function $E\exp(-\tfrac12\eta^2t^2)$. The Lean Prop is the special case $k_n=n$,
 $\mathcal F_{n,i}=\mathcal F_i$ (so nesting is automatic), $S_{ni}=S_i/s_n$ for one martingale $S$ with $S_0=0$ and a deterministic
-normalizer $s_n>0$, and $\eta^2=v\in\mathbb R_{\ge0}$ a constant (zero allowed, as line 1521 requires; \texttt{gaussianReal 0 0} is the Dirac mass at $0$). The Lindeberg
+normalizer $s_n>0$, and $\eta^2=v\in\mathbb R_{\ge0}$ a constant (zero allowed, as line 1519 requires; \texttt{gaussianReal 0 0} is the Dirac mass at $0$). The Lindeberg
 hypothesis is \texttt{TendstoInMeasure} to $0$ of $\sum_{i<n}E[((S_{i+1}-S_i)/s_n)^2\mathbf 1_{\delta<|S_{i+1}-S_i|/s_n}\mid\mathcal F_i]$; the variance
 hypothesis is \texttt{TendstoInMeasure} of \texttt{predBracket μ ℱ S S n / s n ^ 2} to the constant $v$; the conclusion is
 \texttt{TendstoInDistribution (S n / s n) atTop id (fun _ => μ) (gaussianReal 0 v)}. The uses verify both hypotheses almost surely, which implies

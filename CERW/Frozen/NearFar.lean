@@ -24,7 +24,7 @@ U_D^+(y)\leq C\bigl(\lambda w^{d-1}\bigr)^{\nf1d}+C\lambda\, .
 \end{equation*}
 \end{lemma}
 Definitions the statement relies on (verbatim):
-\textit{$U_D^+$ (lines 1123--1126)}
+\textit{$U_D^+$ (lines 1122--1125)}
 For a bounded measurable set~$D\subset\R^d$ and $y\in\R^d$, the potential of~$D$ with its negative contributions discarded is
 \begin{equation*}
 U_D^+(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\left[u_v\cdot\frac{v-y}{|v-y|^d}\right]_+\dd v\, .
