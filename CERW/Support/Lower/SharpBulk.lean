@@ -4,6 +4,7 @@ import CERW.Support.LocalTime.LatticeKernelFacts
 import CERW.Support.Law.Dynkin
 import CERW.Support.Drift.Dynkin
 import CERW.Generic.Martingale.Clamp
+import CERW.Support.Geometry.BallCompare
 import CERW.Support.Geometry.Bound
 import CERW.Support.Geometry.Newton
 import CERW.Support.Occupation.CellNorm
@@ -978,14 +979,8 @@ private theorem scale_final (hd : 2 ≤ d) {κ : ℝ} (hκ : 0 < κ) (r : ℕ �
         sigmaOf d (r n) * (cE * betaOf CE (r n)) / 2 -
           (Cpt * Real.log ((n : ℝ) + 2) +
             Cu * (if d = 2 then Real.sqrt (r n * Real.log n) else Real.log n)) := by
-  have hd1 : (0 : ℝ) < (d : ℝ) + 1 := by positivity
-  have hrn : ∀ n : ℕ, κ * (n : ℝ) = r n ^ (d + 1) := by
-    intro n
-    rw [hr n, ← Real.rpow_natCast, ← Real.rpow_mul (by positivity)]
-    have : (1 : ℝ) / ((d : ℝ) + 1) * ((d + 1 : ℕ) : ℝ) = 1 := by
-      push_cast
-      field_simp
-    rw [this, Real.rpow_one]
+  have hrn : ∀ n : ℕ, κ * (n : ℝ) = r n ^ (d + 1) := fun n => by
+    rw [hr n, Geometry.rpow_inv_succ_pow d (by positivity)]
   have hrt : Tendsto r atTop atTop := by
     have h1 : Tendsto (fun n : ℕ => κ * (n : ℝ)) atTop atTop :=
       tendsto_natCast_atTop_atTop.const_mul_atTop hκ
@@ -1010,34 +1005,6 @@ private theorem scale_final (hd : 2 ≤ d) {κ : ℝ} (hκ : 0 < κ) (r : ℕ �
           else Real.sqrt (r n * Real.log n)) :=
           mul_le_mul_of_nonneg_right (min_le_right _ _) hΛ
       _ ≤ _ := h2 n (hrn n)
-
-/-- For measurable sets of finite volume and a function integrable on both, the difference of
-the integrals over `D` and over `B` is at most `M |D ∆ B|` if `|g| ≤ M` on `D ∆ B`. -/
-private lemma bulkPotential_abs_setIntegral_sub_le {g : EuclideanSpace ℝ (Fin d) → ℝ}
-    {D B : Set (EuclideanSpace ℝ (Fin d))} (hD : MeasurableSet D) (hB : MeasurableSet B)
-    (hDfin : volume D ≠ ⊤) (hBfin : volume B ≠ ⊤)
-    (hgD : IntegrableOn g D) (hgB : IntegrableOn g B) {M : ℝ} (hM : ∀ v ∈ D ∆ B, |g v| ≤ M) :
-    |(∫ v in D, g v) - ∫ v in B, g v| ≤ M * (volume (D ∆ B)).toReal := by
-  have h1 := integral_inter_add_sdiff hB hgD
-  have h2 := integral_inter_add_sdiff hD hgB
-  rw [Set.inter_comm B D] at h2
-  have hdiff : (∫ v in D, g v) - ∫ v in B, g v =
-      (∫ v in D \ B, g v) - ∫ v in B \ D, g v := by linarith
-  have hfin1 : volume (D \ B) < ⊤ := (measure_mono Set.sdiff_subset).trans_lt hDfin.lt_top
-  have hfin2 : volume (B \ D) < ⊤ := (measure_mono Set.sdiff_subset).trans_lt hBfin.lt_top
-  have hb1 := norm_setIntegral_le_of_norm_le_const (f := g) (C := M) hfin1
-    (fun v hv => by rw [Real.norm_eq_abs]; exact hM v (Or.inl hv))
-  have hb2 := norm_setIntegral_le_of_norm_le_const (f := g) (C := M) hfin2
-    (fun v hv => by rw [Real.norm_eq_abs]; exact hM v (Or.inr hv))
-  rw [Real.norm_eq_abs] at hb1 hb2
-  have hsd : (volume (D ∆ B)).toReal = (volume (D \ B)).toReal + (volume (B \ D)).toReal := by
-    rw [measure_symmDiff_eq hD.nullMeasurableSet hB.nullMeasurableSet,
-      ENNReal.toReal_add hfin1.ne hfin2.ne]
-  rw [hdiff, hsd]
-  calc |(∫ v in D \ B, g v) - ∫ v in B \ D, g v|
-      ≤ |∫ v in D \ B, g v| + |∫ v in B \ D, g v| := abs_sub _ _
-    _ ≤ M * (volume (D \ B)).toReal + M * (volume (B \ D)).toReal := add_le_add hb1 hb2
-    _ = M * ((volume (D \ B)).toReal + (volume (B \ D)).toReal) := by ring
 
 /-- At distance at least `ρ` from `v`, the potential's integrand is at most `ρ^{1-d}`. -/
 private lemma bulkPotential_abs_potentialIntegrand_le_inv_pow (hd : 1 ≤ d) {ρ : ℝ} (hρ : 0 < ρ)
@@ -1065,53 +1032,12 @@ private theorem bulkPotential_abs_potential_sub_ball_le (hd : 2 ≤ d) {ε r ρ 
       2 * ε / unitBallVolume d * ((ρ ^ (d - 1))⁻¹ * m) := by
   have hω := unitBallVolume_pos d
   have hc : 0 ≤ 2 * ε / unitBallVolume d := by positivity
-  have hBm : MeasurableSet (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r) :=
-    Metric.isOpen_ball.measurableSet
-  have hDfin : volume D ≠ ⊤ := hDb.measure_lt_top.ne
-  have hBfin : volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r) ≠ ⊤ :=
-    measure_ball_lt_top.ne
-  have hfD := Geometry.integrableOn_potentialIntegrand (d := d) (by omega) hD hDfin z
-  have hfB := Geometry.integrableOn_potentialIntegrand (d := d) (by omega) hBm hBfin z
   have hM0 : 0 ≤ (ρ ^ (d - 1))⁻¹ := by positivity
-  have key := bulkPotential_abs_setIntegral_sub_le hD hBm hDfin hBfin hfD hfB
+  exact (Geometry.abs_potential_sub_ball_le_of_integrand_le hd hε.le hD hDb (z := z) (r := r)
     (M := (ρ ^ (d - 1))⁻¹)
-    (fun v hv => bulkPotential_abs_potentialIntegrand_le_inv_pow (by omega) hρ (hfar v hv))
-  have hdiff : potential d ε D z - potential d ε (Metric.ball 0 r) z =
-      2 * ε / unitBallVolume d *
-        ((∫ v in D, inner ℝ (unitDir v) (v - z) / ‖v - z‖ ^ d) -
-          ∫ v in Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r,
-            inner ℝ (unitDir v) (v - z) / ‖v - z‖ ^ d) := by
-    unfold potential
-    ring
-  rw [hdiff, abs_mul, abs_of_nonneg hc]
-  exact mul_le_mul_of_nonneg_left (key.trans (mul_le_mul_of_nonneg_left hm hM0)) hc
-
-/-- Scaling by `r` carries `(r⁻¹ • S) ∆ B(0, 1)` to `S ∆ B(0, r)`, so the volumes differ by
-`r^d`. -/
-private lemma bulkPotential_volume_symmDiff_ball {r : ℝ} (hr : 0 < r)
-    (S : Set (EuclideanSpace ℝ (Fin d))) :
-    volume (S ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r) =
-      ENNReal.ofReal (r ^ d) *
-        volume ((r⁻¹ • S) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1) := by
-  have h : S ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r =
-      r • ((r⁻¹ • S) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1) := by
-    rw [Set.smul_set_symmDiff₀ hr.ne', smul_inv_smul₀ hr.ne', smul_ball hr.ne', smul_zero,
-      Real.norm_eq_abs, abs_of_pos hr, mul_one]
-  rw [h, Measure.addHaar_smul, finrank_euclideanSpace_fin, abs_of_pos (pow_pos hr d)]
-
-/-- The volume of `S ∆ B(0, r)` is at most `r^d m` when that of `(r⁻¹ • S) ∆ B(0, 1)` is at
-most `m`. -/
-private lemma bulkPotential_toReal_volume_symmDiff_le {r m : ℝ} (hr : 0 < r) (hm0 : 0 ≤ m)
-    (S : Set (EuclideanSpace ℝ (Fin d)))
-    (hm : volume ((r⁻¹ • S) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1) ≤
-      ENNReal.ofReal m) :
-    (volume (S ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) r)).toReal ≤ r ^ d * m := by
-  rw [bulkPotential_volume_symmDiff_ball hr S]
-  have h : ENNReal.ofReal (r ^ d) *
-      volume ((r⁻¹ • S) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1) ≤
-      ENNReal.ofReal (r ^ d) * ENNReal.ofReal m := by gcongr
-  rw [← ENNReal.ofReal_mul (pow_pos hr d).le] at h
-  exact ENNReal.toReal_le_of_le_ofReal (by positivity) h
+    (fun v hv => bulkPotential_abs_potentialIntegrand_le_inv_pow (by omega) hρ
+      (hfar v hv))).trans
+    (mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left hm hM0) hc)
 
 /-- Every point of `D_n ∆ B(0, r)` has norm at least `r - A` when `r - A ≤ R_in(n)` and
 `A ≥ 0`. -/
@@ -1233,7 +1159,7 @@ private theorem bulkPotential_core (hd : 2 ≤ d) {ε κ C₁ : ℝ} (hε : 0 < 
     Metric.isBounded_ball.subset (Occupation.cellSet_subset_ball hd1 Y n)
   have hq0 : 0 ≤ C₁ * if d = 2 then Real.sqrt (Real.log n / r n) else Real.log n / r n :=
     mul_nonneg hC₁.le (by split_ifs <;> positivity)
-  have hvol := bulkPotential_toReal_volume_symmDiff_le hρpos hq0 (cellSet Y n) hvolY
+  have hvol := Geometry.toReal_volume_symmDiff_le hρpos hq0 (cellSet Y n) hvolY
   have hz : ‖toSpace y‖ ≤ r n / 2 := by rw [norm_toSpace]; exact hy
   have hfar : ∀ v ∈ cellSet Y n ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) (r n),
       1 / 4 * r n ≤ ‖v - toSpace y‖ := by
