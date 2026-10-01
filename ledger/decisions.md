@@ -68,3 +68,25 @@ recommended. Version 2 implies version 1 verbatim (see D1). This follows the pre
 version 2, because version 3 differs from version 2 only in deleting one binder.
 
 **Still held for the author.** P6, the AI paragraph of the paper (`limit-shapes.tex:303`).
+
+## D3 (2026-10-01). The pin: the paper is reconciled with the frozen statements
+
+**The author's ruling.** D3 is approved. The pinned text `paper/limit-shapes.tex` is reconciled with
+the frozen statements: where the paper and the frozen blocks differ, the compiling Lean is the
+authority, so the paper was edited to state what the frozen statements state. This closes P6, the AI
+paragraph, whose final form is in the re-pinned text.
+
+**What changed.** Only the paper and its pin changed. `paper/limit-shapes.tex` was edited (notation,
+the norm hypothesis, the discussion of Theorem~1.3 parts~(i) and~(iv), and the AI paragraph).
+`ledger/manifest.yaml` records the new `source_pin.sha256`
+`d39e7f24d52e7a095508daefd075c7e9651289be97cfe5eadd67d8008aaa8328` and the shifted `source:` line
+ranges. The frozen bytes, their hashes, their versions and their states are unchanged: no `state:`,
+`version:` or `frozen_sha256:` line moves. CERTIFICATE, CORRESPONDENCE and ASSUMPTIONS are
+regenerated.
+
+**Evidence.** `check_manifest`, `check_coverage`, `paper_anchors`, `check_exponents`,
+`check_constants`, `check_clauses`, `check_hazards` and `check_progress` pass on the re-pinned tree;
+`tools/verify.py` passes all 15 gates after regeneration.
+
+**Recorded** by the active worker on the author's instruction to continue the critical path
+(2026-10-01). The frozen surface was not re-opened.

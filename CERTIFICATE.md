@@ -12,7 +12,7 @@ Of 39 node(s) registered in `ledger/manifest.yaml`: 37 `PROVED`, 2 `FROZEN`. Onl
 |---|---|
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
-| Paper (`paper/limit-shapes.tex`) SHA-256 | `8a17876c34051d2829230f755879a4266dc66515936f046d55209406133e64f0` |
+| Paper (`paper/limit-shapes.tex`) SHA-256 | `d39e7f24d52e7a095508daefd075c7e9651289be97cfe5eadd67d8008aaa8328` |
 | Build | succeeded, 9025 jobs |
 | Build warnings | 0 |
 | Generated | 2026-10-01 |
