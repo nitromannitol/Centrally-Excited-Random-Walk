@@ -1,35 +1,35 @@
 % lem-cell -- CERW.Frozen.cell_gradient (draft). Source: limit-shapes.tex:455-460, label lem:cell
 \paragraph{Paper (verbatim).}
 \begin{lemma}\label{lem:cell}
-There exists $C(d)<\infty$ such that, for every $x\in\Z^d$,
+There exists $C(d)<\infty$ such that, for every norm~$\gauge$, every choice of the subgradients~$\xi(x)$ and every $x\in\Z^d$, the distributional Laplacian~$\mu$ of~$\gauge$ satisfies
 \begin{equation*}
 \int_{C_x}|\nabla \gauge(v)-\xi(x)|\dd v\leq C\mu\bigl(B(x,6\sqrt d)\bigr)\, .
 \end{equation*}
 \end{lemma}
 Definitions the statement relies on (verbatim):
-\textit{$\mu$ and eq:hessian-growth (lines 449--452)}
+\textit{$\mu$ and eq:hessian-growth (lines 450--453)}
 Let $\mu$ be the distributional Laplacian of~$\gauge$ on~$\R^d$, so that $\int\phi\dd\mu=\int \gauge(v)\sum_{i=1}^d\partial_i^2\phi(v)\dd v$ for every smooth compactly supported function~$\phi$ on~$\R^d$. It is a positive Radon measure, because the smooth convex functions obtained by mollifying~$\gauge$ have nonnegative Laplacian. For $y\in\R^d$ and $R>0$, let $\phi$ be smooth with $0\leq\phi\leq1$, $\phi=1$ on~$B(y,R)$, support in~$B(y,2R)$ and $|\nabla\phi|\leq2/R$. Integrating by parts and using $|\nabla \gauge|\leq\Lambda_\gauge$ gives
 \begin{equation}\label{eq:hessian-growth}
 \mu(B(y,R))\leq\int\phi\dd\mu=-\int\nabla \gauge\cdot\nabla\phi\leq2^{d+1}\omega_d\Lambda_\gauge R^{d-1}\, .
 \end{equation}
 \textit{$C_x$ and $D_n$ (lines 122--122)}
 Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
-\textit{notation $\xi(0)$ (lines 294--294)}
+\textit{notation $\xi(0)$ (lines 295--295)}
 \item Let $u_x\coloneqq x/|x|$ for $x\in\R^d\setminus\{0\}$ and $u_0\coloneqq0$, and let $\xi(0)\coloneqq0$.
 \paragraph{Transcription.}
 Paper macros: \verb!\gauge! is $\Psi$.
 
 \emph{Object mapping.}
 \begin{itemize}
-\item $\gauge$, $\xi$: \verb!Ψ! with \verb!CERW.IsNorm Ψ!, and \verb!ξ : Site d → EuclideanSpace ℝ (Fin d)! with \verb!∀ x, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)! and \verb!ξ 0 = 0! (line 294). The hypothesis \verb!ξ 0 = 0! is essential here: the lemma is asserted for every $x\in\Z^d$ including $x=0$, where $\xi(0)=0$ is a subgradient because $\gauge\ge0$ (paper proof, line 462). \verb!hd : 2 ≤ d! is the standing assumption.
+\item $\gauge$, $\xi$: \verb!Ψ! with \verb!CERW.IsNorm Ψ!, and \verb!ξ : Site d → EuclideanSpace ℝ (Fin d)! with \verb!∀ x, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)! and \verb!ξ 0 = 0! (line 295). The hypothesis \verb!ξ 0 = 0! is essential here: the lemma is asserted for every $x\in\Z^d$ including $x=0$, where $\xi(0)=0$ is a subgradient because $\gauge\ge0$ (paper proof, line 463). \verb!hd : 2 ≤ d! is the standing assumption.
 \item $C_x$ is \verb!CERW.cell x! $=\{v:\ \forall i,\ x_i-\tfrac12\le v_i<x_i+\tfrac12\}$ (half-open cube; the half-open or closed choice is immaterial for the Lebesgue integral). $B(x,6\sqrt d)$ is the open ball \verb!Metric.ball (CERW.toSpace x) (6 * Real.sqrt d)!.
 \item $\nabla\gauge(v)$ is \verb!gradient Ψ v!, the Mathlib gradient (value $0$ where $\gauge$ is not differentiable). That set is Lebesgue-null (a norm is Lipschitz: Rademacher; machine-checked), and \verb!gradient Ψ! appears only under an integral, so the junk value is never seen. The integrand \verb!‖gradient Ψ v - ξ x‖! is measurable (\verb!gradient! is measurable; machine-checked) and bounded by $K+\|\xi(x)\|$ ($K$ the Lipschitz constant, machine-checked bound on \verb!‖gradient Ψ v‖!) on the bounded cell, so the Bochner integral is a genuine integral.
-\item $\mu$, the distributional Laplacian of $\gauge$ (line 449): a measure \verb!m : Measure (EuclideanSpace ℝ (Fin d))! with \verb!IsLocallyFiniteMeasure m! (a positive Radon measure) and \verb!CERW.IsDistribLaplacian Ψ m!, i.e.\ \verb!∀ φ, ContDiff ℝ ∞ φ → HasCompactSupport φ → ∫ v, φ v ∂m = ∫ v, Ψ v * Laplacian.laplacian φ v!. Here \verb!Laplacian.laplacian! is Mathlib's $\Delta=\sum_i\partial_i^2$ (computed in an orthonormal basis) and \verb!∞! is $C^\infty$ (machine-checked: \verb!(∞ : WithTop ℕ∞) = ((⊤ : ℕ∞) : WithTop ℕ∞)!, not analytic). Both sides are genuine integrals: $\varphi$ is continuous with compact support, and $\gauge\,\Delta\varphi$ is continuous with compact support.
+\item $\mu$, the distributional Laplacian of $\gauge$ (line 450): a measure \verb!m : Measure (EuclideanSpace ℝ (Fin d))! with \verb!IsLocallyFiniteMeasure m! (a positive Radon measure) and \verb!CERW.IsDistribLaplacian Ψ m!, i.e.\ \verb!∀ φ, ContDiff ℝ ∞ φ → HasCompactSupport φ → ∫ v, φ v ∂m = ∫ v, Ψ v * Laplacian.laplacian φ v!. Here \verb!Laplacian.laplacian! is Mathlib's $\Delta=\sum_i\partial_i^2$ (computed in an orthonormal basis) and \verb!∞! is $C^\infty$ (machine-checked: \verb!(∞ : WithTop ℕ∞) = ((⊤ : ℕ∞) : WithTop ℕ∞)!, not analytic). Both sides are genuine integrals: $\varphi$ is continuous with compact support, and $\gauge\,\Delta\varphi$ is continuous with compact support.
 \end{itemize}
 
 \emph{Reading choices.}
 \begin{enumerate}
-\item \textbf{$\mu$ is quantified.} The draft states the lemma for every locally finite measure satisfying the defining identity, rather than for a named $\mu$. Two locally finite measures with the same integrals against all $C_c^\infty$ functions coincide, so the hypothesis pins the paper's $\mu$; the paper shows that it exists (positive Radon measure, by mollification, lines 449--450). The statement is therefore equivalent to the paper's, \emph{provided} that such a measure exists for every norm. The existence lemma is not yet in the repository; it is required for non-vacuity and is used by the proof of lem-local (via eq:hessian-growth).
+\item \textbf{$\mu$ is quantified.} The draft states the lemma for every locally finite measure satisfying the defining identity, rather than for a named $\mu$. Two locally finite measures with the same integrals against all $C_c^\infty$ functions coincide, so the hypothesis pins the paper's $\mu$; the paper shows that it exists (positive Radon measure, by mollification, lines 450--451). The statement is therefore equivalent to the paper's, \emph{provided} that such a measure exists for every norm. The existence lemma is not yet in the repository; it is required for non-vacuity and is used by the proof of lem-local (via eq:hessian-growth).
 \item \textbf{Quantifier order.} \verb!∃ C, 0 < C ∧ ∀ Ψ, IsNorm Ψ → ∀ ξ, .. → ∀ m, .. → ∀ x, ..!: $C=C(d)$ is chosen before $\gauge$, before $\xi$, before $\mu$ and before $x$, as the paper states $C(d)$. (The paper's proof indeed gives a constant depending on $d$ only: the statement is homogeneous in $\gauge$, $h(x)=0$, and the mollification bound is dimensional.)
 \item The inequality is in \verb!ℝ≥0∞!: \verb!ENNReal.ofReal (∫ ..) ≤ ENNReal.ofReal C * m (ball ..)!. The integral is nonnegative, so \verb!ofReal! is exact; $m$ is finite on balls (locally finite), so the right side is finite.
 \item The constant $C$ is bound with \verb!0 < C! (the paper's $C<\infty$, nonnegativity being without loss of generality).

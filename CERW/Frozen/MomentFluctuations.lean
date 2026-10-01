@@ -38,19 +38,19 @@ Let $\gauge$ be the Euclidean norm, let $0<\drift<\nf1d$, and let $\Rmom(n)$ be 
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \underline{\emph{Central limit theorem}}: as $n\to\infty$,
 \begin{equation*}
-\frac{\sum_{x\in A_n}|x|-n/(2\drift)}{r_n^{\nf{d+3}{2}}}
+\frac{\sum_{x\in A_n}|x|-n/(2\drift)}{r_n^{\nf{(d+3)}{2}}}
 \xrightarrow{\mathrm d}\mathcal N\Bigl(0,\frac{2d\omega_d}{\drift(d+2)(d+3)}\Bigr)
 \end{equation*}
 and
 \begin{equation*}
-\frac{\Rmom(n)-r_n}{r_n^{\nf{3-d}{2}}}
+\frac{\Rmom(n)-r_n}{r_n^{\nf{(3-d)}{2}}}
 \xrightarrow{\mathrm d}\mathcal N\Bigl(0,\frac{2}{\drift d\omega_d(d+2)(d+3)}\Bigr)\, .
 \end{equation*}
 \item \underline{\emph{Law of the iterated logarithm}}: for each choice of sign, almost surely,
 \begin{align}
-\limsup_{n\to\infty}\frac{\pm\bigl(\sum_{x\in A_n}|x|-n/(2\drift)\bigr)}{r_n^{\nf{d+3}{2}}\sqrt{2\log\log n}}
+\limsup_{n\to\infty}\frac{\pm\bigl(\sum_{x\in A_n}|x|-n/(2\drift)\bigr)}{r_n^{\nf{(d+3)}{2}}\sqrt{2\log\log n}}
 &=\Bigl(\frac{2d\omega_d}{\drift(d+2)(d+3)}\Bigr)^{\nf12}\, ,\notag\\
-\limsup_{n\to\infty}\frac{\pm(\Rmom(n)-r_n)}{r_n^{\nf{3-d}{2}}\sqrt{2\log\log n}}
+\limsup_{n\to\infty}\frac{\pm(\Rmom(n)-r_n)}{r_n^{\nf{(3-d)}{2}}\sqrt{2\log\log n}}
 &=\Bigl(\frac{2}{\drift d\omega_d(d+2)(d+3)}\Bigr)^{\nf12}\, .\label{eq:moment-radius-lil}
 \end{align}
 \end{enumerate}
@@ -58,16 +58,16 @@ and
 Definitions the statement relies on (verbatim):
 \textit{the radius $r_n$ (eq:radius, lines 98--100)}
 \begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
-\textit{$\mathcal Q_n$ and $\Rmom$ (eq:moment-martingale, eq:radial-moment-def, lines 1346--1353)}
+\textit{$\mathcal Q_n$ and $\Rmom$ (eq:moment-martingale, eq:radial-moment-def, lines 1344--1351)}
 For the Euclidean norm, \eqref{eq:quadratic} reads
 \begin{equation}\label{eq:moment-martingale}
 \mathcal Q_n=2\drift\sum_{x\in A_n}|x|-n+|X_n|^2\, .
 \end{equation}
 Let $\Rmom(n)$ be the radius of the centered ball on which the integral of~$|v|$ equals $\sum_{x\in A_n}|x|$, that is,
 \begin{equation}\label{eq:radial-moment-def}
-\Rmom(n)\coloneqq\left(\frac{d+1}{d\omega_d}\sum_{x\in A_n}|x|\right)^{\nf{1}{d+1}}\, .
+\Rmom(n)\coloneqq\left(\frac{d+1}{d\omega_d}\sum_{x\in A_n}|x|\right)^{\nf{1}{(d+1)}}\, .
 \end{equation}
 ```
 -/

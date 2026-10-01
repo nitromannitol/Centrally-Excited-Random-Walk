@@ -18,7 +18,7 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{lemma}\label{lem:radial}
-Let $p>0$. There exist $\rho_0(d,\gauge)>8d$ and $C(d,\drift,\gauge,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$, the following holds simultaneously for all integers~$\rho_0\leq\rho\leq n$:
+There exists $\rho_0(d,\gauge)>8d$ such that, for every $\drift>0$ satisfying~\eqref{eq:ellipticity} and every $p>0$, there exists $C(d,\drift,\gauge,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$, the following holds simultaneously for all integers~$\rho_0\leq\rho\leq n$:
 \begin{equation}\label{eq:radial}
 \begin{split}
 F(\rho+4d)\leq{}&C\Bigl(\max_{||x|-\rho|\leq3}\ell_n(x)\Bigr)
@@ -27,8 +27,8 @@ F(\rho+4d)\leq{}&C\Bigl(\max_{||x|-\rho|\leq3}\ell_n(x)\Bigr)
 \end{split}
 \end{equation}
 \end{lemma}
-Definitions the statement relies on (verbatim): the weighted exterior volume $F$ (eq:Fdef, lines 503--506) and the
-constants convention (line 295).
+Definitions the statement relies on (verbatim): the weighted exterior volume $F$ (eq:Fdef, lines 504--507) and the
+constants convention (line 296).
 \begin{equation}\label{eq:Fdef}
 F(s)\coloneqq\frac1{d\omega_d}\int_{D\cap\{|v|>s\}}|v|^{1-d}\dd v
 \leq\frac{|D|}{d\omega_ds^{d-1}}\, .

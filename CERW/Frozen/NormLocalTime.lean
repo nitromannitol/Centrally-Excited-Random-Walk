@@ -36,20 +36,20 @@ M_{s,t}\leq Ck_{s,t}^{\nf{1}{d}}+C(\log n)^2\, .
 \end{enumerate}
 \end{lemma}
 Definitions the statement relies on (verbatim):
-\textit{$M_{s,t}$ and $k_{s,t}$ (lines 377--382)}
+\textit{$M_{s,t}$ and $k_{s,t}$ (lines 378--383)}
 For integers~$0\leq s<t\leq n$, let
 \begin{equation*}
 M_{s,t}\coloneqq\max_{x\in\Z^d}\sum_{s\leq j<t}\ind_{\{X_j=x\}}
 \qquad\text{and}\qquad
 k_{s,t}\coloneqq\sum_{s\leq j<t}I_j\, .
 \end{equation*}
-\textit{notation $I_j$, $\widetilde\ell_n$, $n\ge2$ (lines 297--299)}
+\textit{notation $I_j$, $\widetilde\ell_n$, $n\ge2$ (lines 298--300)}
 \item The indicator that the step at time~$j$ is a first departure is $I_j\coloneqq\ind_{\{X_j\notin A_j\}}$, so that $\E(X_{j+1}-X_j\mid\mathcal F_j)=-\drift I_j\xi(X_j)$, where $\xi(x)=u_x$ for the Euclidean norm.
 \item The function~$\widetilde\ell_n$ on~$\R^d$ equals $\ell_n(x)$ on~$C_x$ for every $x\in\Z^d$; it vanishes off~$D_n$.
 \item All estimates concern integers~$n\geq2$, so that $\log n>0$. In a statement that holds with probability at least $1-Cn^{-p}$ for all sufficiently large~$n$, enlarging~$C$ makes it hold for every $n\geq2$.
 \textit{$D_n$ (lines 122--122)}
 Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
-\textit{eq:potential-norm (lines 348--352)}
+\textit{eq:potential-norm (lines 349--353)}
 For a norm~$\gauge$, the potential~\eqref{eq:potential-intro} is defined with the gradient of~$\gauge$ in place of~$v/|v|$: for a bounded measurable set~$D\subset\R^d$ and $y\in\R^d$, let
 \begin{equation}\label{eq:potential-norm}
 U_D(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\nabla\gauge(v)\cdot\frac{v-y}{|v-y|^d}\dd v

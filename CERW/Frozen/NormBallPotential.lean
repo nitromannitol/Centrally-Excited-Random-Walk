@@ -24,7 +24,7 @@ U_{\{\gauge<\rho\}}(y)=2d\drift(\rho-\gauge(y))_+\, .
 \end{equation}
 \end{lemma}
 Definitions the statement relies on (verbatim):
-\textit{eq:potential-norm (lines 348--352)}
+\textit{eq:potential-norm (lines 349--353)}
 For a norm~$\gauge$, the potential~\eqref{eq:potential-intro} is defined with the gradient of~$\gauge$ in place of~$v/|v|$: for a bounded measurable set~$D\subset\R^d$ and $y\in\R^d$, let
 \begin{equation}\label{eq:potential-norm}
 U_D(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\nabla\gauge(v)\cdot\frac{v-y}{|v-y|^d}\dd v

@@ -7,13 +7,13 @@ U_D^+(y)\leq C\bigl(\lambda w^{d-1}\bigr)^{\nf1d}+C\lambda\, .
 \end{equation*}
 \end{lemma}
 Definitions the statement relies on (verbatim):
-\textit{$U_D^+$ (lines 1123--1126)}
+\textit{$U_D^+$ (lines 1122--1125)}
 For a bounded measurable set~$D\subset\R^d$ and $y\in\R^d$, the potential of~$D$ with its negative contributions discarded is
 \begin{equation*}
 U_D^+(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\left[u_v\cdot\frac{v-y}{|v-y|^d}\right]_+\dd v\, .
 \end{equation*}
 \paragraph{Transcription.}
-Standing assumptions: \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! ($\drift=\varepsilon$). $U_D^+$ (line 1125) is \verb!CERW.positivePotential d ε D y! $=\frac{2\varepsilon}{\omega_d}\int_D\max\{u_v\cdot(v-y)|v-y|^{-d},0\}\,dv$, with $u_v=\|v\|^{-1}v$ (\verb!CERW.unitDir!, $u_0=0$) and the integrand read as $0$ at $v=y$. All integrals in the statement are Bochner integrals of functions that are integrable for bounded measurable $D$ (here $D\subset\{b\le|v|\le b+w\}$), so no junk value $0$ arises.
+Standing assumptions: \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! ($\drift=\varepsilon$). $U_D^+$ (line 1124) is \verb!CERW.positivePotential d ε D y! $=\frac{2\varepsilon}{\omega_d}\int_D\max\{u_v\cdot(v-y)|v-y|^{-d},0\}\,dv$, with $u_v=\|v\|^{-1}v$ (\verb!CERW.unitDir!, $u_0=0$) and the integrand read as $0$ at $v=y$. All integrals in the statement are Bochner integrals of functions that are integrable for bounded measurable $D$ (here $D\subset\{b\le|v|\le b+w\}$), so no junk value $0$ arises.
 
 \emph{Quantifiers.} $\forall\varepsilon\in(0,1/d)\ \exists C>0\ \forall w,b,\lambda\in\R$ with $1\le w\le b$ and $1\le\lambda$, $\forall D$ measurable with \verb!D ⊆ {v | b ≤ ‖v‖ ∧ ‖v‖ ≤ b + w}!, then the two hypotheses, then $\forall y$ with $b\le\|y\|\le b+w$. So $C=C(d,\varepsilon)$ precedes $w,b,\lambda,D$.
 

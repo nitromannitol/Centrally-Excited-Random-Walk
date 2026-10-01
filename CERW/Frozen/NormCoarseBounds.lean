@@ -30,7 +30,7 @@ cr_n\leq\Rout(n)\leq Cr_n\, .
 \end{equation*}
 \end{proposition}
 Definitions the statement relies on (verbatim): $\ell_n,A_n$ (lines 92--96), the radii (lines 123--127),
-the norm setting (lines 313--324) and the conventions $\xi(0)=0$ and on constants (lines 294--295).
+the norm setting (lines 314--325) and the conventions $\xi(0)=0$ and on constants (lines 295--296).
 \begin{equation*}
 \ell_n(x)\coloneqq\sum_{j=0}^{n-1}\ind_{\{X_j=x\}}
 \qquad\text{and}\qquad
@@ -51,7 +51,7 @@ We assume that
 \end{equation}
 Every $\xi\in\partial\gauge(x)$ satisfies $\xi\cdot y\leq\gauge(y)$ for every~$y$, with equality at $y=x$ (Euler's relation); so $|\xi_i(x)|\leq\gauge(e_i)$, and~\eqref{eq:ellipticity} makes the probabilities~\eqref{eq:kernel} positive. The step at the first departure from~$x$ has conditional mean~$-\drift\xi(x)$, whose inner product with~$x$ is $-\drift\gauge(x)<0$. The Euclidean norm, with $\xi(x)=x/|x|$, gives the walk of Section~\ref{sec:introduction}, and then~\eqref{eq:ellipticity} reads $\drift<\nf1d$. Let
 \begin{equation}\label{eq:radius-norm}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift|B_\gauge|}\right)^{\nf{1}{d+1}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift|B_\gauge|}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
 \begin{itemize}
 \item Let $u_x\coloneqq x/|x|$ for $x\in\R^d\setminus\{0\}$ and $u_0\coloneqq0$, and let $\xi(0)\coloneqq0$.

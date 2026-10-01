@@ -3,7 +3,7 @@ import CERW.Model
 /-!
 # A cited result carried as a hypothesis
 
-Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1412, 1521 and 1647. It is stated as a proposition and carried as an explicit hypothesis by every theorem whose
+Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644. It is stated as a proposition and carried as an explicit hypothesis by every theorem whose
 proof uses it; it is never assumed as an axiom. See `ASSUMPTIONS.md`.
 -/
 
@@ -13,7 +13,7 @@ open MeasureTheory Filter Topology ProbabilityTheory
 open scoped symmDiff Pointwise NNReal
 open LatticeProb (Site euclidNorm)
 
-/-- Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1412, 1521 and 1647. -/
+/-- Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644. -/
 -- FROZEN-STATEMENT-BEGIN
 def CERW.External.StoutLIL : Prop :=
   ∀ {Ω : Type u} [m0 : MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]

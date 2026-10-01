@@ -41,13 +41,13 @@ where $\mathcal Q$ is the martingale of~\eqref{eq:quadratic}.
 Definitions the statement relies on (verbatim):
 \textit{the radius $r_n$ (eq:radius, lines 98--100)}
 \begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
 \textit{the potential (eq:potential-intro, lines 217--219)}
 \begin{equation}\label{eq:potential-intro}
 U_D(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\frac{v}{|v|}\cdot\frac{v-y}{|v-y|^d}\dd v
 \end{equation}
-\textit{$\mathcal Q_n$ (eq:moment-martingale, lines 1346--1349)}
+\textit{$\mathcal Q_n$ (eq:moment-martingale, lines 1344--1347)}
 For the Euclidean norm, \eqref{eq:quadratic} reads
 \begin{equation}\label{eq:moment-martingale}
 \mathcal Q_n=2\drift\sum_{x\in A_n}|x|-n+|X_n|^2\, .

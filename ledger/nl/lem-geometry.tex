@@ -1,7 +1,7 @@
 % lem-geometry -- CERW.Frozen.norm_potential_geometry (draft). Source: limit-shapes.tex:510-528, label lem:geometry
 \paragraph{Paper (verbatim).}
 \begin{lemma}\label{lem:geometry}
-Let $D\subset\R^d$ be a bounded measurable set. There exists $C(d,\gauge)<\infty$ such that the following hold.
+There exists $C(d,\gauge)<\infty$ such that, for every $\drift>0$, not necessarily satisfying~\eqref{eq:ellipticity}, and every bounded measurable set~$D\subset\R^d$, the following hold.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \underline{\emph{Bound}}:
 \begin{equation}\label{eq:potential-bound}
@@ -9,7 +9,7 @@ Let $D\subset\R^d$ be a bounded measurable set. There exists $C(d,\gauge)<\infty
 \end{equation}
 \item \underline{\emph{H\"older continuity}}: for all $y,z\in\R^d$,
 \begin{equation}\label{eq:holder}
-|U_D(y)-U_D(z)|\leq C\drift|D|^{\nf{1}{2d}}|y-z|^{\nf{1}{2}}\, .
+|U_D(y)-U_D(z)|\leq C\drift|D|^{\nf{1}{(2d)}}|y-z|^{\nf{1}{2}}\, .
 \end{equation}
 \item \underline{\emph{Spherical averages}}: for every $s>0$,
 \begin{equation}\label{eq:newton}
@@ -20,15 +20,15 @@ The right side of~\eqref{eq:newton} lies between $2d\drift c_\gauge F(s)$ and $2
 \end{enumerate}
 \end{lemma}
 Definitions the statement relies on (verbatim):
-\textit{eq:Fdef (lines 503--507)}
+\textit{eq:Fdef (lines 504--508)}
 \begin{equation}\label{eq:Fdef}
 F(s)\coloneqq\frac1{d\omega_d}\int_{D\cap\{|v|>s\}}|v|^{1-d}\dd v
 \leq\frac{|D|}{d\omega_ds^{d-1}}\, .
 \end{equation}
 The function~$F$ is nonincreasing and continuous. We write $\dd S$ for surface measure on a sphere.
-\textit{$\Lambda_\gauge$, $c_\gauge$ (lines 327--327)}
-In Sections~\ref{sec:norm-setup}--\ref{sec:norms}, $\gauge$ is a norm, $\drift$ satisfies~\eqref{eq:ellipticity}, $r_n$ is given by~\eqref{eq:radius-norm}, and $U_D$ is the potential~\eqref{eq:potential-norm} defined below; at a point~$v\in\R^d$, $\nabla\gauge(v)$ is the gradient, which exists for almost every~$v$. Let $\Lambda_\gauge\coloneqq\max_{|u|=1}\gauge(u)$ and $c_\gauge\coloneqq\min_{|u|=1}\gauge(u)$; every $\xi\in\partial\gauge(x)$ satisfies $\xi\cdot x=\gauge(x)$ and $|\xi|\leq\Lambda_\gauge$. In Sections~\ref{sec:contact}--\ref{sec:lower}, $\gauge$ is the Euclidean norm, so that $\xi(x)=u_x$, $r_n$ is given by~\eqref{eq:radius}, and $U_D$ is the potential~\eqref{eq:potential-intro}.
-\textit{eq:potential-norm (lines 348--352)}
+\textit{$\Lambda_\gauge$, $c_\gauge$ (lines 328--328)}
+In Sections~\ref{sec:norm-setup}--\ref{sec:norms}, $\gauge$ is a norm, $\drift>0$ satisfies~\eqref{eq:ellipticity}, $r_n$ is given by~\eqref{eq:radius-norm}, and $U_D$ is the potential~\eqref{eq:potential-norm} defined below; at a point~$v\in\R^d$, $\nabla\gauge(v)$ is the gradient, which exists for almost every~$v$. Let $\Lambda_\gauge\coloneqq\max_{|u|=1}\gauge(u)$ and $c_\gauge\coloneqq\min_{|u|=1}\gauge(u)$; every $\xi\in\partial\gauge(x)$ satisfies $\xi\cdot x=\gauge(x)$ and $|\xi|\leq\Lambda_\gauge$. In Sections~\ref{sec:contact}--\ref{sec:lower}, $\gauge$ is the Euclidean norm, so that $\xi(x)=u_x$, $r_n$ is given by~\eqref{eq:radius}, and $U_D$ is the potential~\eqref{eq:potential-intro}.
+\textit{eq:potential-norm (lines 349--353)}
 For a norm~$\gauge$, the potential~\eqref{eq:potential-intro} is defined with the gradient of~$\gauge$ in place of~$v/|v|$: for a bounded measurable set~$D\subset\R^d$ and $y\in\R^d$, let
 \begin{equation}\label{eq:potential-norm}
 U_D(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\nabla\gauge(v)\cdot\frac{v-y}{|v-y|^d}\dd v

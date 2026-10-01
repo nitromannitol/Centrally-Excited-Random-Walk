@@ -10,13 +10,13 @@ where $\mathcal Q$ is the martingale of~\eqref{eq:quadratic}.
 Definitions the statement relies on (verbatim):
 \textit{the radius $r_n$ (eq:radius, lines 98--100)}
 \begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
 \textit{the potential (eq:potential-intro, lines 217--219)}
 \begin{equation}\label{eq:potential-intro}
 U_D(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\frac{v}{|v|}\cdot\frac{v-y}{|v-y|^d}\dd v
 \end{equation}
-\textit{$\mathcal Q_n$ (eq:moment-martingale, lines 1346--1349)}
+\textit{$\mathcal Q_n$ (eq:moment-martingale, lines 1344--1347)}
 For the Euclidean norm, \eqref{eq:quadratic} reads
 \begin{equation}\label{eq:moment-martingale}
 \mathcal Q_n=2\drift\sum_{x\in A_n}|x|-n+|X_n|^2\, .
@@ -26,6 +26,6 @@ For the Euclidean norm, \eqref{eq:quadratic} reads
 
 \emph{Quantifiers.} $\forall y\in\Z^d\ \exists C>0\ \forall(\Omega,\mu,X)$ with \verb!IsCERW μ ε X!: almost surely, eventually in $n$. So $C=C(d,\varepsilon,y)$ is deterministic and precedes the probability space, while the threshold $n_0(\omega)$ is random (``almost surely, for all sufficiently large $n$''): \verb!∀ᵐ ω ∂μ, ∀ᶠ n in atTop, …!.
 
-\emph{Definitions.} $U_{D_n}(y)$ is \verb!CERW.potential d ε (CERW.cellSet (X · ω) n) (CERW.toSpace y)! (the site $y$ embedded in $\R^d$; a Bochner integral over the bounded measurable set $D_n$ of an integrable kernel, so no junk). $\mathcal Q_n$ is \verb!CERW.quadraticMart ε (X · ω) n! $=2\varepsilon\sum_{x\in A_n}|x|-n+|X_n|^2$, which is eq:moment-martingale (line 1347); the big operator binds only \verb!euclidNorm x!.
+\emph{Definitions.} $U_{D_n}(y)$ is \verb!CERW.potential d ε (CERW.cellSet (X · ω) n) (CERW.toSpace y)! (the site $y$ embedded in $\R^d$; a Bochner integral over the bounded measurable set $D_n$ of an integrable kernel, so no junk). $\mathcal Q_n$ is \verb!CERW.quadraticMart ε (X · ω) n! $=2\varepsilon\sum_{x\in A_n}|x|-n+|X_n|^2$, which is eq:moment-martingale (line 1345); the big operator binds only \verb!euclidNorm x!.
 
 \emph{Statement.} \verb!|U - 2 * d * ε * (r n - euclidNorm y) - Q / (ωd * r n ^ d)| ≤ C * (if d = 2 then (log n) ^ 3 else 1)! with \verb!r n ^ d! and \verb!(log n) ^ 3! natural powers; the case split $(\log n)^3$ for $d=2$ and $1$ for $d\ge3$ is the paper's.

@@ -45,7 +45,7 @@ Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. For every $p>0$ th
 Definitions the statement relies on (verbatim):
 \textit{the radius $r_n$ (eq:radius, lines 98--100)}
 \begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{d+1}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
 \textit{$D_n$, $\Rin$, $\Rout$ (eq:radii, lines 122--127)}
 Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
@@ -54,7 +54,7 @@ Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$,
 \qquad\text{and}\qquad
 \Rout(n)\coloneqq\max_{0\leq j\leq n}|X_j|\, .
 \end{equation}
-\textit{$q_n$ (eq:qn, lines 763--766)}
+\textit{$q_n$ (eq:qn, lines 764--767)}
 Throughout the rest of the paper let
 \begin{equation}\label{eq:qn}
 q_n\coloneqq\begin{dcases}\sqrt{\frac{\log n}{r_n}},&d=2,\\\frac{\log n}{r_n},&d\geq3\end{dcases}\, .

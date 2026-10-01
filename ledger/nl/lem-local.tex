@@ -18,20 +18,20 @@ M_{s,t}\leq Ck_{s,t}^{\nf{1}{d}}+C(\log n)^2\, .
 \end{enumerate}
 \end{lemma}
 Definitions the statement relies on (verbatim):
-\textit{$M_{s,t}$ and $k_{s,t}$ (lines 377--382)}
+\textit{$M_{s,t}$ and $k_{s,t}$ (lines 378--383)}
 For integers~$0\leq s<t\leq n$, let
 \begin{equation*}
 M_{s,t}\coloneqq\max_{x\in\Z^d}\sum_{s\leq j<t}\ind_{\{X_j=x\}}
 \qquad\text{and}\qquad
 k_{s,t}\coloneqq\sum_{s\leq j<t}I_j\, .
 \end{equation*}
-\textit{notation $I_j$, $\widetilde\ell_n$, $n\ge2$ (lines 297--299)}
+\textit{notation $I_j$, $\widetilde\ell_n$, $n\ge2$ (lines 298--300)}
 \item The indicator that the step at time~$j$ is a first departure is $I_j\coloneqq\ind_{\{X_j\notin A_j\}}$, so that $\E(X_{j+1}-X_j\mid\mathcal F_j)=-\drift I_j\xi(X_j)$, where $\xi(x)=u_x$ for the Euclidean norm.
 \item The function~$\widetilde\ell_n$ on~$\R^d$ equals $\ell_n(x)$ on~$C_x$ for every $x\in\Z^d$; it vanishes off~$D_n$.
 \item All estimates concern integers~$n\geq2$, so that $\log n>0$. In a statement that holds with probability at least $1-Cn^{-p}$ for all sufficiently large~$n$, enlarging~$C$ makes it hold for every $n\geq2$.
 \textit{$D_n$ (lines 122--122)}
 Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
-\textit{eq:potential-norm (lines 348--352)}
+\textit{eq:potential-norm (lines 349--353)}
 For a norm~$\gauge$, the potential~\eqref{eq:potential-intro} is defined with the gradient of~$\gauge$ in place of~$v/|v|$: for a bounded measurable set~$D\subset\R^d$ and $y\in\R^d$, let
 \begin{equation}\label{eq:potential-norm}
 U_D(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\nabla\gauge(v)\cdot\frac{v-y}{|v-y|^d}\dd v
@@ -48,16 +48,16 @@ Paper macros: \verb!\drift! is $\kappa$ (Lean \verb!ε!), \verb!\gauge! is $\Psi
 
 \item $\max_x\ell_n(x)$ is \verb!(CERW.maxLocalTime (X · ω) n : ℝ)! (the \verb!Finset.sup! of \verb!localTime! over $A_n$); $|A_n|$ is \verb!((CERW.departureRange (X · ω) n).card : ℝ)!.
 \item $M_{s,t}$ is \verb!(CERW.intervalMax (X · ω) s t : ℝ)!, the maximum over the sites visited in $[s,t)$ of the number of visits in $[s,t)$; for $s<t$ this is $\max_x\sum_{s\le j<t}\mathbf 1_{\{X_j=x\}}$.
-\item $k_{s,t}$ is \verb!(CERW.freshCount (X · ω) s t : ℝ)! $=\#\{s\le j<t:\ X_j\notin A_j\}$ with $A_j=$ \verb!departureRange (X · ω) j!, i.e. $\sum_{s\le j<t}I_j$ with $I_j=\mathbf 1_{\{X_j\notin A_j\}}$ (line 297; note $I_0=1$ since $A_0=\emptyset$, consistent with $k_{0,n}=|A_n|$).
+\item $k_{s,t}$ is \verb!(CERW.freshCount (X · ω) s t : ℝ)! $=\#\{s\le j<t:\ X_j\notin A_j\}$ with $A_j=$ \verb!departureRange (X · ω) j!, i.e. $\sum_{s\le j<t}I_j$ with $I_j=\mathbf 1_{\{X_j\notin A_j\}}$ (line 298; note $I_0=1$ since $A_0=\emptyset$, consistent with $k_{0,n}=|A_n|$).
 \item $\widetilde\ell_n(y)$ is \verb!CERW.cellLocalTime (X · ω) n y! $=\ell_n(\text{cellCenter}\,y)$, equal to $\ell_n(x)$ on $C_x$ and $0$ off $D_n$; $D_n$ is \verb!CERW.cellSet (X · ω) n! $=\bigcup_{x\in A_n}C_x$ with \verb!CERW.cell x! $=x+[-\tfrac12,\tfrac12)^d$; $U_{D_n}(y)$ is \verb!CERW.normPotential d ε Ψ (cellSet ..) y! (see lem-ballpotential for the gradient convention; $D_n$ is bounded and measurable, so the integrand is integrable).
 \end{itemize}
 
 \emph{Reading choices.}
 \begin{enumerate}
-\item \textbf{Quantifier order.} \verb!∀ Ψ, IsNorm Ψ → ∀ ε, 0 < ε → ellipticity → ∀ p, 0 < p → ∃ C, 0 < C ∧ ∀ ξ, .. → ∀ (Ω μ X), IsDriftCERW μ ε ξ X → ∀ n, 2 ≤ n → ..!. So $C$ depends on $d,\varepsilon,\Psi,p$ and on nothing else: not on the choice of $\xi$ (line 295), not on the probability space, not on $n$.
+\item \textbf{Quantifier order.} \verb!∀ Ψ, IsNorm Ψ → ∀ ε, 0 < ε → ellipticity → ∀ p, 0 < p → ∃ C, 0 < C ∧ ∀ ξ, .. → ∀ (Ω μ X), IsDriftCERW μ ε ξ X → ∀ n, 2 ≤ n → ..!. So $C$ depends on $d,\varepsilon,\Psi,p$ and on nothing else: not on the choice of $\xi$ (line 296), not on the probability space, not on $n$.
 \item \textbf{Probability.} ``With probability at least $1-Cn^{-p}$'' is \verb!μ {ω | ¬ (..)} ≤ ENNReal.ofReal (C * n ^ (-p))! on the outer measure of the complement of the conjunction of (i), (ii), (iii) (repository convention); (ii) and (iii) sit inside the event as \verb!∀ s t, s < t → t ≤ n → ..! and \verb!∀ y, ‖y‖ ≤ 2 * n → ..!, so all three hold simultaneously.
-\item \textbf{One constant.} The paper's $C$ in (i), (ii), (iii) and in the probability is one letter that may change from line to line (line 295). One $C>0$ suffices: enlarging $C$ weakens every inequality and the probability bound, so the maximum of the finitely many constants works.
-\item $\log n$ is \verb!Real.log n! for $n\ge2$ (line 299), so $\log n>0$; $(\log n)^2$ is \verb!Real.log n ^ 2!.
+\item \textbf{One constant.} The paper's $C$ in (i), (ii), (iii) and in the probability is one letter that may change from line to line (line 296). One $C>0$ suffices: enlarging $C$ weakens every inequality and the probability bound, so the maximum of the finitely many constants works.
+\item $\log n$ is \verb!Real.log n! for $n\ge2$ (line 300), so $\log n>0$; $(\log n)^2$ is \verb!Real.log n ^ 2!.
 \item (iii) the case split is \verb!if d = 2 then sqrt M * log n else sqrt (M * log n)! with $M=$ \verb!maxLocalTime! cast to $\R$: $(\max_x\ell_n)^{1/2}\log n$ for $d=2$ and $(\max_x\ell_n\log n)^{1/2}$ for $d\ge3$. The paper's exponent $\nf12$ is \verb!Real.sqrt!.
 \item (iii) is asserted for every $y\in\R^d$ with $|y|\le2n$, written \verb!‖y‖ ≤ 2 * n!.
 \item No external hypothesis: the kernel asymptotics used in the proof are proved in Lattice-Probability.
