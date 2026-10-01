@@ -1,6 +1,7 @@
 import CERW.Model
 import CERW.Support.Law
 import CERW.Support.Guards.DriftCrossing
+import CERW.Support.Guards.ExpDeviation
 import CERW.Support.Guards.LimitLaws
 import CERW.Support.Guards.LowerBounds
 import CERW.Support.Guards.NormPotential
