@@ -4,7 +4,7 @@ import CERW.Support.Norm.Crossing
 /-!
 # lem:crossing
 
-`lem:crossing` of the revised paper (`limit-shapes.tex:661-666`). The bytes between the markers are the
+`lem:crossing` of the revised paper (`limit-shapes.tex:662-667`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

@@ -22,7 +22,7 @@ import CERW.Support.Outer.OuterRadius
 /-!
 # thm:site-fluctuations
 
-`thm:site-fluctuations` of the revised paper (`limit-shapes.tex:1462-1487`). The bytes between the markers are the
+`thm:site-fluctuations` of the revised paper (`limit-shapes.tex:1460-1485`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

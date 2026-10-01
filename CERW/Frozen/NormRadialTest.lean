@@ -4,7 +4,7 @@ import CERW.Support.Norm.Radial
 /-!
 # lem:radial
 
-`lem:radial` of the revised paper (`limit-shapes.tex:566-575`). The bytes between the markers are the
+`lem:radial` of the revised paper (`limit-shapes.tex:567-576`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

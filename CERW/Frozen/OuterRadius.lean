@@ -17,7 +17,7 @@ import CERW.Support.Outer.OuterRadius
 /-!
 # prop:stronger-outer
 
-`prop:stronger-outer` of the revised paper (`limit-shapes.tex:1174-1179`). The bytes between the markers are the
+`prop:stronger-outer` of the revised paper (`limit-shapes.tex:1172-1177`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
