@@ -460,6 +460,7 @@ already listed is marked "(above)".
 
 ```
 Frozen.PotentialGeometry
+  Mathlib.MeasureTheory.Constructions.HaarToSphere
   Support.Geometry.Assembly
 Frozen.BallShape
   Support.LocalTime.KernelAsymptotics
@@ -468,6 +469,7 @@ Frozen.FluctuationBounds
   Support.LocalTime.KernelAsymptotics (above)
   Support.Main.KernelAnchors (above)
 Frozen.HausdorffBound
+  Mathlib.Topology.MetricSpace.HausdorffDistance
   Support.LocalTime.KernelAsymptotics (above)
   Support.Main.KernelAnchors (above)
 Frozen.LocalTimePotential
@@ -481,51 +483,126 @@ Frozen.CoarseBounds
   Support.Coarse.Assembly
 Frozen.LimitShape
   Support.Main.LimitShape
+Frozen.FluctuationRates
+  Support.Inner.InnerRadius
+  Support.Lower.ExpDeviation
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer
+  Support.Norm.CellGradient
+  Support.Norm.Coarse
+  Support.Norm.ContactPotential
+  Support.Norm.Crossing
+  Support.Norm.Geometry
+  Support.Norm.LocalTime
+  Support.Norm.OuterCrossing
+  Support.Norm.Radial
+  Support.Outer.NearFar
+  Support.Outer.OuterRadius
+Frozen.SharpRadii
+  Support.Inner.InnerRadius (above)
+  Support.Lower.ExpDeviation (above)
+  Support.Lower.SharpRadii
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Outer.NearFar (above)
+  Support.Outer.OuterRadius (above)
 Frozen.SharpRadiiLil
   External.StoutLIL
+  Support.Inner.InnerRadius (above)
+  Support.Limit.MomentLil
+  Support.Lower.ExpDeviation (above)
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Outer.NearFar (above)
+  Support.Outer.OuterRadius (above)
+Frozen.SharpBulk
+  Support.Inner.InnerRadius (above)
+  Support.Lower.ExpDeviation (above)
+  Support.Lower.SeparatedBrackets
+  Support.Lower.SharpBulk
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Outer.NearFar (above)
+  Support.Outer.OuterRadius (above)
 Frozen.SharpWidth
   External.StoutLIL (above)
-  Support.Lower.ExpDeviation
+  Support.Lower.ExpDeviation (above)
   Support.Lower.SharpWidth
   Support.Main.LimitShape (above)
+Frozen.NormShape
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.MoreauCap
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Norm.ShapeRates
 Frozen.NormBallPotential
-  Support.Norm.BallLayer
+  Support.Norm.BallLayer (above)
 Frozen.NormLocalTime
-  Support.Norm.CellGradient
-  Support.Norm.LocalTime
+  Support.Norm.CellGradient (above)
+  Support.Norm.LocalTime (above)
 Frozen.FreedmanBound
   Support.Norm.Freedman
 Frozen.CellGradient
   Support.Norm.CellGradient (above)
 Frozen.NormPotentialGeometry
-  Support.Norm.Geometry
+  Support.Norm.Geometry (above)
 Frozen.NormCoarseBounds
   Support.Norm.CellGradient (above)
-  Support.Norm.Coarse
-  Support.Norm.Crossing
+  Support.Norm.Coarse (above)
+  Support.Norm.Crossing (above)
   Support.Norm.LocalTime (above)
-  Support.Norm.Radial
+  Support.Norm.Radial (above)
 Frozen.NormRadialTest
   Support.Norm.Radial (above)
 Frozen.DriftCrossing
   Support.Norm.Crossing (above)
-Frozen.LayerPotential
-  Support.Norm.BallLayer (above)
-Frozen.MoreauCap
-  Support.Norm.MoreauCap
-Frozen.ContactPotential
+Frozen.NormShapeRates
   Support.Norm.BallLayer (above)
   Support.Norm.CellGradient (above)
   Support.Norm.Coarse (above)
-  Support.Norm.ContactPotential
+  Support.Norm.ContactPotential (above)
   Support.Norm.Crossing (above)
   Support.Norm.Geometry (above)
   Support.Norm.LocalTime (above)
+  Support.Norm.MoreauCap (above)
+  Support.Norm.OuterCrossing (above)
   Support.Norm.Radial (above)
-Frozen.OuterCrossing
-  Support.Norm.OuterCrossing
-Frozen.InnerRadius
-  Support.Inner.InnerRadius
+  Support.Norm.ShapeRates (above)
+Frozen.LayerPotential
+  Support.Norm.BallLayer (above)
+Frozen.MoreauCap
+  Support.Norm.MoreauCap (above)
+Frozen.ContactPotential
   Support.Norm.BallLayer (above)
   Support.Norm.CellGradient (above)
   Support.Norm.Coarse (above)
@@ -534,16 +611,123 @@ Frozen.InnerRadius
   Support.Norm.Geometry (above)
   Support.Norm.LocalTime (above)
   Support.Norm.Radial (above)
+Frozen.OuterCrossing
+  Support.Norm.OuterCrossing (above)
+Frozen.InnerRadius
+  Support.Inner.InnerRadius (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.Radial (above)
+Frozen.OuterRadius
+  Support.Inner.InnerRadius (above)
+  Support.Lower.ExpDeviation (above)
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Outer.NearFar (above)
+  Support.Outer.OuterRadius (above)
 Frozen.NearFar
-  Support.Outer.NearFar
+  Support.Outer.NearFar (above)
 Frozen.MomentFluctuations
   External.MartingaleCLT
   External.StoutLIL (above)
+  Support.Inner.InnerRadius (above)
+  Support.Limit.MomentFluctuations
+  Support.Lower.ExpDeviation (above)
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Outer.NearFar (above)
+  Support.Outer.OuterRadius (above)
+Frozen.FixedSiteCentering
+  Support.Inner.InnerRadius (above)
+  Support.Limit.FixedSiteCentering
+  Support.Lower.ExpDeviation (above)
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Outer.NearFar (above)
+  Support.Outer.OuterRadius (above)
 Frozen.SiteFluctuations
   External.MartingaleCLT (above)
   External.StoutLIL (above)
+  Support.Inner.InnerRadius (above)
+  Support.Limit.FixedSiteCentering (above)
+  Support.Limit.MomentFluctuations (above)
+  Support.Limit.SiteFluctuations
+  Support.Lower.ExpDeviation (above)
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Outer.NearFar (above)
+  Support.Outer.OuterRadius (above)
 Frozen.ExpDeviation
   Support.Lower.ExpDeviation (above)
+Frozen.BulkProfile
+  Support.Inner.InnerRadius (above)
+  Support.Lower.BulkProfile
+  Support.Lower.ExpDeviation (above)
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Outer.NearFar (above)
+  Support.Outer.OuterRadius (above)
+Frozen.SeparatedBrackets
+  Support.Inner.InnerRadius (above)
+  Support.Lower.ExpDeviation (above)
+  Support.Lower.SeparatedBrackets (above)
+  Support.Main.LimitShape (above)
+  Support.Norm.BallLayer (above)
+  Support.Norm.CellGradient (above)
+  Support.Norm.Coarse (above)
+  Support.Norm.ContactPotential (above)
+  Support.Norm.Crossing (above)
+  Support.Norm.Geometry (above)
+  Support.Norm.LocalTime (above)
+  Support.Norm.OuterCrossing (above)
+  Support.Norm.Radial (above)
+  Support.Outer.NearFar (above)
+  Support.Outer.OuterRadius (above)
 Frozen.LogLowerBounds
   Support.Lower.LogLower
 ```

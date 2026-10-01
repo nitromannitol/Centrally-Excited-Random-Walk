@@ -13,9 +13,9 @@ Of 39 node(s) registered in `ledger/manifest.yaml`: 30 `SEALED`, 7 `PROVED`, 2 `
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/limit-shapes.tex`) SHA-256 | `8a17876c34051d2829230f755879a4266dc66515936f046d55209406133e64f0` |
-| Build | succeeded, 9017 jobs |
+| Build | succeeded, 9023 jobs |
 | Build warnings | 0 |
-| Generated | 2026-09-30 |
+| Generated | 2026-10-01 |
 
 ## Reproducing it
 

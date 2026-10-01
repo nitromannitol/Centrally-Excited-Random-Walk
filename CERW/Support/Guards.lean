@@ -1,5 +1,11 @@
 import CERW.Model
 import CERW.Support.Law
+import CERW.Support.Guards.LimitLaws
+import CERW.Support.Guards.LowerBounds
+import CERW.Support.Guards.NormPotential
+import CERW.Support.Guards.NormRates
+import CERW.Support.Guards.NormShape
+import CERW.Support.Guards.Radii
 
 /-!
 # Guards: the vocabulary says what the paper says
