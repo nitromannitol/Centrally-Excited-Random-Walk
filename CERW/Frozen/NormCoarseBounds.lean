@@ -8,7 +8,7 @@ import CERW.Support.Norm.Radial
 /-!
 # prop:coarse
 
-`prop:coarse` of the revised paper (`limit-shapes.tex:546-553`). The bytes between the markers are the
+`prop:coarse` of the revised paper (`limit-shapes.tex:547-554`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

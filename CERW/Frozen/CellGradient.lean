@@ -4,7 +4,7 @@ import CERW.Support.Norm.CellGradient
 /-!
 # lem:cell
 
-`lem:cell` of the revised paper (`limit-shapes.tex:454-459`). The bytes between the markers are the
+`lem:cell` of the revised paper (`limit-shapes.tex:455-460`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

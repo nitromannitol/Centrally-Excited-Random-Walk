@@ -4,7 +4,7 @@ import CERW.Support.Norm.MoreauCap
 /-!
 # lem:cap
 
-`lem:cap` of the revised paper (`limit-shapes.tex:809-814`). The bytes between the markers are the
+`lem:cap` of the revised paper (`limit-shapes.tex:810-815`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

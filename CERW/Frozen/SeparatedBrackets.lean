@@ -18,7 +18,7 @@ import CERW.Support.Outer.OuterRadius
 /-!
 # lem:separated-brackets
 
-`lem:separated-brackets` of the revised paper (`limit-shapes.tex:1692-1699`). The bytes between the markers are the
+`lem:separated-brackets` of the revised paper (`limit-shapes.tex:1689-1696`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

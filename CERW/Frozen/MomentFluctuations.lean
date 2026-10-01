@@ -20,7 +20,7 @@ import CERW.Support.Outer.OuterRadius
 /-!
 # thm:moment-fluctuations
 
-`thm:moment-fluctuations` of the revised paper (`limit-shapes.tex:1355-1376`). The bytes between the markers are the
+`thm:moment-fluctuations` of the revised paper (`limit-shapes.tex:1353-1374`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

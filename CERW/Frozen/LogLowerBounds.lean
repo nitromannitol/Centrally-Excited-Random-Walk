@@ -4,7 +4,7 @@ import CERW.Support.Lower.LogLower
 /-!
 # prop:log-lower
 
-`prop:log-lower` of the revised paper (`limit-shapes.tex:1762-1776`). The bytes between the markers are the
+`prop:log-lower` of the revised paper (`limit-shapes.tex:1759-1773`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

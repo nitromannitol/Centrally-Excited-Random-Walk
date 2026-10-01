@@ -4,7 +4,7 @@ import CERW.Support.Lower.ExpDeviation
 /-!
 # lem:exp-deviation
 
-`lem:exp-deviation` of the revised paper (`limit-shapes.tex:1539-1553`). The bytes between the markers are the
+`lem:exp-deviation` of the revised paper (`limit-shapes.tex:1537-1551`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

@@ -4,7 +4,7 @@ import CERW.Support.Norm.BallLayer
 /-!
 # lem:layer
 
-`lem:layer` of the revised paper (`limit-shapes.tex:779-784`). The bytes between the markers are the
+`lem:layer` of the revised paper (`limit-shapes.tex:780-785`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

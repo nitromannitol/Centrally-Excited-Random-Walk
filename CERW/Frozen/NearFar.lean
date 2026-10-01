@@ -4,7 +4,7 @@ import CERW.Support.Outer.NearFar
 /-!
 # lem:near-far
 
-`lem:near-far` of the revised paper (`limit-shapes.tex:1205-1210`). The bytes between the markers are the
+`lem:near-far` of the revised paper (`limit-shapes.tex:1203-1208`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

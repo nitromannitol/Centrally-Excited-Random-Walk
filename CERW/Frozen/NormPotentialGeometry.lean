@@ -4,7 +4,7 @@ import CERW.Support.Norm.Geometry
 /-!
 # lem:geometry
 
-`lem:geometry` of the revised paper (`limit-shapes.tex:509-527`). The bytes between the markers are the
+`lem:geometry` of the revised paper (`limit-shapes.tex:510-528`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
