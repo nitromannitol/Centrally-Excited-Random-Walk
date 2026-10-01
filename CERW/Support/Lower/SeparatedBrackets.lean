@@ -2355,6 +2355,67 @@ private theorem axis_norm (i₀ : Fin d) (i Yc : ℕ) :
   push_cast
   rw [abs_of_nonneg (by positivity)]
 
+/-- A site at distance at least `t²` from the origin has Green function at most `K / t²`, for
+`d ≥ 3` and a kernel with the decay `|G(x)| ≤ K (1 + |x|)^{2-d}`. -/
+private theorem srwGreenInf_le_of_sq_le (hd : 3 ≤ d) {K t : ℝ} (hK0 : 0 ≤ K)
+    (hK : ∀ x : Site d, |latticeKernel d x| ≤ K * (1 + euclidNorm x) ^ (2 - (d : ℝ)))
+    (ht : 1 ≤ t) {w : Site d} (hw : t ^ 2 ≤ euclidNorm w) :
+    srwGreenInf d w ≤ K / t ^ 2 := by
+  have h1 := hK w
+  rw [latticeKernel_high hd, abs_neg, abs_of_nonneg (srwGreenInf_nonneg w)] at h1
+  refine h1.trans ?_
+  have ht2 : (1 : ℝ) ≤ t ^ 2 := one_le_pow₀ ht
+  have hb : t ^ 2 ≤ 1 + euclidNorm w := by linarith
+  have hd3 : (3 : ℝ) ≤ d := by exact_mod_cast hd
+  have h2 : (1 + euclidNorm w) ^ (2 - (d : ℝ)) ≤ (t ^ 2) ^ (2 - (d : ℝ)) :=
+    Real.rpow_le_rpow_of_nonpos (by linarith) hb (by linarith)
+  have h3 : (t ^ 2) ^ (2 - (d : ℝ)) ≤ (t ^ 2) ^ (-1 : ℝ) :=
+    Real.rpow_le_rpow_of_exponent_le ht2 (by linarith)
+  rw [Real.rpow_neg_one] at h3
+  calc K * (1 + euclidNorm w) ^ (2 - (d : ℝ)) ≤ K * (t ^ 2)⁻¹ :=
+        mul_le_mul_of_nonneg_left (h2.trans h3) hK0
+    _ = K / t ^ 2 := by rw [div_eq_mul_inv]
+
+/-- If `C ≤ a t` with `a ≥ 0` and `t ≥ 1`, then `C / t² ≤ a`. -/
+private theorem div_sq_le_of_le_mul {C a t : ℝ} (ha : 0 ≤ a) (ht : 1 ≤ t) (h : C ≤ t * a) :
+    C / t ^ 2 ≤ a := by
+  have ht0 : 0 < t := by linarith
+  rw [div_le_iff₀ (pow_pos ht0 2)]
+  have h1 : t ≤ t ^ 2 := le_self_pow₀ ht (by norm_num)
+  have h2 : a * t ≤ a * t ^ 2 := mul_le_mul_of_nonneg_left h1 ha
+  calc C ≤ t * a := h
+    _ = a * t := mul_comm _ _
+    _ ≤ a * t ^ 2 := h2
+
+/-- The diagonal bracket bounds: if `B` is within `s` of `2 d ε T`, with `T ≥ 1`, `d ε > 0` and
+`s ≤ min (d ε) 1`, then `d ε ≤ B ≤ 2 d ε T + 1`. -/
+private theorem diag_bracket_bounds {d ε T s B : ℝ} (hdε : 0 < d * ε) (hT : 1 ≤ T)
+    (hs1 : s ≤ d * ε) (hs2 : s ≤ 1) (h : |B - 2 * d * ε * T| ≤ s) :
+    d * ε ≤ B ∧ B ≤ 2 * d * ε * T + 1 := by
+  have h1 : d * ε * 1 ≤ d * ε * T := mul_le_mul_of_nonneg_left hT hdε.le
+  have h2 := abs_le.mp h
+  constructor <;> linarith [h2.1, h2.2]
+
+/-- The off-diagonal bracket bound: if `B` is within `C₁ / t²` of `2 d ε (G + G')` with `G`, `G'`
+nonnegative and at most `K / t²`, then `|B| ≤ (4 d ε K + C₁ + 1) / t²`. -/
+private theorem off_diag_bracket_bound {d ε C₁ K t G G' B : ℝ} (hd : 0 ≤ d) (hε : 0 < ε)
+    (ht : 0 < t) (hG : 0 ≤ G) (hG' : 0 ≤ G') (hGK : G ≤ K / t ^ 2) (hGK' : G' ≤ K / t ^ 2)
+    (h : |B - 2 * d * ε * (G + G')| ≤ C₁ / t ^ 2) :
+    |B| ≤ (4 * d * ε * K + C₁ + 1) / t ^ 2 := by
+  have h0 : 0 ≤ 2 * d * ε := by positivity
+  have hsum : G + G' ≤ 2 * (K / t ^ 2) := by linarith
+  have hmul : 2 * d * ε * (G + G') ≤ 2 * d * ε * (2 * (K / t ^ 2)) :=
+    mul_le_mul_of_nonneg_left hsum h0
+  have hmul0 : 0 ≤ 2 * d * ε * (G + G') := mul_nonneg h0 (add_nonneg hG hG')
+  have hkey : (4 * d * ε * K + C₁ + 1) / t ^ 2 =
+      2 * d * ε * (2 * (K / t ^ 2)) + C₁ / t ^ 2 + 1 / t ^ 2 := by ring
+  have h5 : 0 ≤ 1 / t ^ 2 := by positivity
+  have h6 : 0 ≤ 2 * d * ε * (2 * (K / t ^ 2)) := le_trans hmul0 hmul
+  have h7 : 0 ≤ C₁ / t ^ 2 := le_trans (abs_nonneg _) h
+  have h2 := abs_le.mp h
+  rw [abs_le, hkey]
+  constructor <;> linarith [h2.1, h2.2]
+
 /-- **The brackets for `d ≥ 3`**: for large `t`, the normalized diagonal brackets lie between
 two positive constants and the off-diagonal ones are at most `C / t²`. -/
 private theorem assembly_high (hd : 3 ≤ d) (i₀ : Fin d) {ε : ℝ} (hε0 : 0 < ε)
@@ -2374,16 +2435,18 @@ private theorem assembly_high (hd : 3 ≤ d) (i₀ : Fin d) {ε : ℝ} (hε0 : 0
   have hG0 : 1 ≤ srwGreenInf d (0 : Site d) := one_le_srwGreenInf_origin hd
   have hd0 : (0 : ℝ) < d := by exact_mod_cast (by omega : 0 < d)
   have hdε : 0 < (d : ℝ) * ε := mul_pos hd0 hε0
-  set Tii : ℝ := 2 * srwGreenInf d 0 - 1 with hTii
-  have hT1 : 1 ≤ Tii := by rw [hTii]; linarith
-  refine ⟨max 1 (C₁ / (d * ε) + C₁ + 1), d * ε, 2 * d * ε * Tii + 1, 4 * d * ε * K + C₁ + 1,
+  have hT1 : 1 ≤ 2 * srwGreenInf d (0 : Site d) - 1 := by linarith
+  refine ⟨max 1 (C₁ / (d * ε) + C₁ + 1), d * ε,
+    2 * d * ε * (2 * srwGreenInf d (0 : Site d) - 1) + 1, 4 * d * ε * K + C₁ + 1,
     le_max_left _ _, hdε, ?_, by positivity, ?_⟩
-  · nlinarith
+  · have h1 : (d : ℝ) * ε * 1 ≤ d * ε * (2 * srwGreenInf d (0 : Site d) - 1) :=
+      mul_le_mul_of_nonneg_left hT1 hdε.le
+    linarith
   intro t Yc m n Y err ht hY1 hY2 hm herr hprof i j hi1 him hj1 hjm B hB
   have ht1 : 1 ≤ t := le_trans (le_max_left _ _) ht
   have ht0 : 0 < t := by linarith
   have hYc1 : 1 ≤ Yc := by
-    have : (1 : ℝ) ≤ Yc := le_trans (by nlinarith) hY1
+    have : (1 : ℝ) ≤ Yc := le_trans (one_le_pow₀ ht1) hY1
     exact_mod_cast this
   have hnorm : ∀ i : ℕ, 1 ≤ i → i ≤ m →
       euclidNorm (((i * Yc : ℕ) : ℤ) • unit i₀) ≤ 2 * t ^ 3 := by
@@ -2396,25 +2459,20 @@ private theorem assembly_high (hd : 3 ≤ d) (i₀ : Fin d) {ε : ℝ} (hε0 : 0
   have hpair' := hpair t n Y _ _ err ht1 (hnorm i hi1 him) (hnorm j hj1 hjm) herr hprof
   rw [← hB] at hpair'
   have hsmall1 : C₁ / t ^ 2 ≤ d * ε := by
-    rw [div_le_iff₀ (by positivity)]
     have h1 : C₁ / (d * ε) ≤ t :=
       le_trans (le_max_of_le_right (by linarith [hC₁0])) ht
     rw [div_le_iff₀ hdε] at h1
-    nlinarith
+    exact div_sq_le_of_le_mul hdε.le ht1 h1
   have hsmall2 : C₁ / t ^ 2 ≤ 1 := by
-    rw [div_le_one (by positivity)]
     have h1 : C₁ + 1 ≤ t :=
       le_trans (le_max_of_le_right (by linarith [div_nonneg hC₁0 hdε.le])) ht
-    nlinarith
+    exact div_sq_le_of_le_mul zero_le_one ht1 (by linarith)
   constructor
   · rintro rfl
     have hval := (high_tsum hd (((i * Yc : ℕ) : ℤ) • unit i₀) (((i * Yc : ℕ) : ℤ) • unit i₀)).2
     rw [if_pos rfl] at hval
     rw [hval] at hpair'
-    have h2 := abs_le.mp hpair'
-    constructor
-    · nlinarith
-    · nlinarith
+    exact diag_bracket_bounds hdε hT1 hsmall1 hsmall2 hpair'
   · intro hij
     have hne : (((i * Yc : ℕ) : ℤ) • unit i₀) ≠ (((j * Yc : ℕ) : ℤ) • unit i₀) := by
       intro h
@@ -2433,51 +2491,9 @@ private theorem assembly_high (hd : 3 ≤ d) (i₀ : Fin d) {ε : ℝ} (hε0 : 0
         t ^ 2 ≤ euclidNorm (((j * Yc : ℕ) : ℤ) • unit i₀ - ((i * Yc : ℕ) : ℤ) • unit i₀) := by
       rw [← neg_sub, CERW.Generic.Lattice.euclidNorm_neg]
       exact hdist'
-    have hG : ∀ w : Site d, t ^ 2 ≤ euclidNorm w → srwGreenInf d w ≤ K / t ^ 2 := by
-      intro w hw
-      have h1 := hK w
-      rw [latticeKernel_high hd, abs_neg, abs_of_nonneg (srwGreenInf_nonneg w)] at h1
-      refine h1.trans ?_
-      have hb : t ^ 2 ≤ 1 + euclidNorm w := by linarith
-      have h2 : (1 + euclidNorm w) ^ (2 - (d : ℝ)) ≤ (t ^ 2) ^ (2 - (d : ℝ)) :=
-        Real.rpow_le_rpow_of_nonpos (by positivity) hb (by
-          have : (3 : ℝ) ≤ d := by exact_mod_cast hd
-          linarith)
-      have h3 : (t ^ 2) ^ (2 - (d : ℝ)) ≤ (t ^ 2) ^ (-1 : ℝ) :=
-        Real.rpow_le_rpow_of_exponent_le (by nlinarith) (by
-          have : (3 : ℝ) ≤ d := by exact_mod_cast hd
-          linarith)
-      rw [Real.rpow_neg_one] at h3
-      calc K * (1 + euclidNorm w) ^ (2 - (d : ℝ)) ≤ K * (t ^ 2)⁻¹ :=
-            mul_le_mul_of_nonneg_left (h2.trans h3) hK0
-        _ = K / t ^ 2 := by rw [div_eq_mul_inv]
-    have hT : srwGreenInf d (((i * Yc : ℕ) : ℤ) • unit i₀ - ((j * Yc : ℕ) : ℤ) • unit i₀) +
-        srwGreenInf d (((j * Yc : ℕ) : ℤ) • unit i₀ - ((i * Yc : ℕ) : ℤ) • unit i₀) ≤
-        2 * (K / t ^ 2) := by
-      have := hG _ hdist'
-      have := hG _ hdist''
-      linarith
-    have hT0 : 0 ≤ srwGreenInf d (((i * Yc : ℕ) : ℤ) • unit i₀ - ((j * Yc : ℕ) : ℤ) • unit i₀) +
-        srwGreenInf d (((j * Yc : ℕ) : ℤ) • unit i₀ - ((i * Yc : ℕ) : ℤ) • unit i₀) :=
-      add_nonneg (srwGreenInf_nonneg _) (srwGreenInf_nonneg _)
-    have h2 := abs_le.mp hpair'
-    rw [abs_le]
-    have hkey : 2 * d * ε * (2 * (K / t ^ 2)) + C₁ / t ^ 2 ≤ (4 * d * ε * K + C₁ + 1) / t ^ 2 := by
-      have : (4 * d * ε * K + C₁ + 1) / t ^ 2 = 4 * d * ε * (K / t ^ 2) + C₁ / t ^ 2 +
-          1 / t ^ 2 := by ring
-      rw [this]
-      have : 0 ≤ 1 / t ^ 2 := by positivity
-      nlinarith
-    have hmul : 2 * (d : ℝ) * ε *
-        (srwGreenInf d (((i * Yc : ℕ) : ℤ) • unit i₀ - ((j * Yc : ℕ) : ℤ) • unit i₀) +
-          srwGreenInf d (((j * Yc : ℕ) : ℤ) • unit i₀ - ((i * Yc : ℕ) : ℤ) • unit i₀)) ≤
-        2 * d * ε * (2 * (K / t ^ 2)) :=
-      mul_le_mul_of_nonneg_left hT (by positivity)
-    have hmul0 : 0 ≤ 2 * (d : ℝ) * ε *
-        (srwGreenInf d (((i * Yc : ℕ) : ℤ) • unit i₀ - ((j * Yc : ℕ) : ℤ) • unit i₀) +
-          srwGreenInf d (((j * Yc : ℕ) : ℤ) • unit i₀ - ((i * Yc : ℕ) : ℤ) • unit i₀)) :=
-      mul_nonneg (by positivity) hT0
-    constructor <;> linarith [h2.1, h2.2]
+    exact off_diag_bracket_bound hd0.le hε0 ht0 (srwGreenInf_nonneg _) (srwGreenInf_nonneg _)
+      (srwGreenInf_le_of_sq_le hd hK0 hK ht1 hdist') (srwGreenInf_le_of_sq_le hd hK0 hK ht1 hdist'')
+      hpair'
 
 /-- The total mass of `Γ` of a planar dipole of size `k` with itself. -/
 private noncomputable def dipoleMass (k : ℕ) : ℝ :=
@@ -2534,6 +2550,66 @@ private theorem planar_Vk : ∃ cV : ℝ, 0 ≤ cV ∧ ∃ k₀ : ℕ, 1 ≤ k�
       mul_le_mul hc2 hlk2 (by linarith) (by positivity)
     nlinarith
 
+/-- The window bound for a dipole at a site `z` of norm at most `2 t³`: with `V ≥ 0` the dipole
+mass and `k ≤ t`, one has `(|z| + 3 k) V + C k² (1 + |z|) ≤ 5 t³ V + 3 C t⁵`. -/
+private theorem dipole_window_arith {z V CW t k : ℝ} (hz0 : 0 ≤ z) (hz : z ≤ 2 * t ^ 3)
+    (hk0 : 0 ≤ k) (hk : k ≤ t) (ht : 1 ≤ t) (hV0 : 0 ≤ V) (hCW : 0 ≤ CW) :
+    (z + 3 * k) * V + CW * k ^ 2 * (1 + z) ≤ 5 * t ^ 3 * V + 3 * CW * t ^ 5 := by
+  have h3 : t ≤ t ^ 3 := le_self_pow₀ ht (by norm_num)
+  have h1 : (z + 3 * k) * V ≤ 5 * t ^ 3 * V := by
+    apply mul_le_mul_of_nonneg_right _ hV0
+    linarith
+  have hk2 : k ^ 2 ≤ t ^ 2 := pow_le_pow_left₀ hk0 hk 2
+  have ht25 : t ^ 2 ≤ t ^ 5 := pow_le_pow_right₀ ht (by norm_num)
+  have h4 : k ^ 2 * (1 + z) ≤ t ^ 2 * (1 + 2 * t ^ 3) :=
+    mul_le_mul hk2 (by linarith) (by linarith) (by positivity)
+  have h5 : t ^ 2 * (1 + 2 * t ^ 3) = t ^ 2 + 2 * t ^ 5 := by ring
+  have h6 : k ^ 2 * (1 + z) ≤ 3 * t ^ 5 := by linarith
+  have h7 : CW * (k ^ 2 * (1 + z)) ≤ CW * (3 * t ^ 5) := mul_le_mul_of_nonneg_left h6 hCW
+  have h8 : CW * k ^ 2 * (1 + z) = CW * (k ^ 2 * (1 + z)) := by ring
+  have h9 : CW * (3 * t ^ 5) = 3 * CW * t ^ 5 := by ring
+  linarith
+
+/-- The arithmetic of the error terms in the pair estimate for `d = 2`: the dipole mass `V` is at
+most `c L` with `L ≥ 1`, the profile error is at most `P a₆` and `a₃, a₅ ≤ a₆`, `1 ≤ a₆`. -/
+private theorem planar_error_arith {V cV L P CW ε err a3 a5 a6 : ℝ} (hV0 : 0 ≤ V)
+    (hVL : V ≤ cV * L) (hcV : 0 ≤ cV) (hL : 1 ≤ L) (hP : 0 ≤ P) (hCW : 0 ≤ CW) (hε : 0 < ε)
+    (h3 : a3 ≤ a6) (h5 : a5 ≤ a6) (h6 : 1 ≤ a6) (herr : err ≤ P * a6) :
+    6 * 2 * (V + 2) + err * V + 2 * 2 * ε * (5 * a3 * V + 3 * CW * a5) ≤
+      (12 * (cV + 2) + P * cV + 20 * ε * cV + 12 * ε * CW) * a6 * L := by
+  have ha6 : 0 ≤ a6 := by linarith
+  have hX : a6 * 1 ≤ a6 * L := mul_le_mul_of_nonneg_left hL ha6
+  have hLX : 1 * L ≤ a6 * L := mul_le_mul_of_nonneg_right h6 (by linarith)
+  have b0 : cV * (1 * L) ≤ cV * (a6 * L) := mul_le_mul_of_nonneg_left hLX hcV
+  have b2 : err * V ≤ P * a6 * (cV * L) :=
+    (mul_le_mul_of_nonneg_right herr hV0).trans
+      (mul_le_mul_of_nonneg_left hVL (mul_nonneg hP ha6))
+  have b3 : a3 * V ≤ a6 * (cV * L) := mul_le_mul h3 hVL hV0 ha6
+  have b3' : 20 * ε * (a3 * V) ≤ 20 * ε * (a6 * (cV * L)) :=
+    mul_le_mul_of_nonneg_left b3 (by positivity)
+  have b4 : a5 ≤ a6 * L := by linarith
+  have b4' : 12 * ε * CW * a5 ≤ 12 * ε * CW * (a6 * L) :=
+    mul_le_mul_of_nonneg_left b4 (by positivity)
+  linarith
+
+/-- Dividing the bracket estimate of the pair estimate for `d = 2` by `t⁸ log t⁸ = 8 t⁸ L`. -/
+private theorem planar_div_arith {A S ε t L M : ℝ} (ht : 0 < t) (hL : 0 < L)
+    (hlog8 : Real.log (t ^ 8) = 8 * L)
+    (hkey : |A - 2 * ((2 : ℕ) : ℝ) * ε * t ^ 8 * S| ≤ M * t ^ 6 * L) :
+    |A / (t ^ 8 * Real.log (t ^ 8)) -
+        2 * ((2 : ℕ) : ℝ) * ε * t ^ 8 * S / (t ^ 8 * Real.log (t ^ 8))| ≤ M / 8 / t ^ 2 := by
+  have hSpos : 0 < t ^ 8 * Real.log (t ^ 8) := by rw [hlog8]; positivity
+  have heq : A / (t ^ 8 * Real.log (t ^ 8)) -
+        2 * ((2 : ℕ) : ℝ) * ε * t ^ 8 * S / (t ^ 8 * Real.log (t ^ 8)) =
+      (A - 2 * ((2 : ℕ) : ℝ) * ε * t ^ 8 * S) / (t ^ 8 * Real.log (t ^ 8)) := by ring
+  rw [heq, abs_div, abs_of_pos hSpos]
+  calc _ ≤ M * t ^ 6 * L / (t ^ 8 * Real.log (t ^ 8)) :=
+        div_le_div_of_nonneg_right hkey hSpos.le
+    _ = M / 8 / t ^ 2 := by
+        rw [hlog8]
+        have : L ≠ 0 := hL.ne'
+        field_simp
+
 /-- **The pair estimate for `d = 2`.** -/
 private theorem planar_pair {ε : ℝ} (hε0 : 0 < ε) (hε1 : ε < 1 / ((2 : ℕ) : ℝ)) {P : ℝ}
     (hP : 0 ≤ P) :
@@ -2557,37 +2633,18 @@ private theorem planar_pair {ε : ℝ} (hε0 : 0 < ε) (hε1 : ε < 1 / ((2 : �
   have hk1 : 1 ≤ k := le_trans hk₀1 hk0
   have ht1 : 1 ≤ t := by linarith
   have ht0 : 0 < t := by linarith
-  set L : ℝ := Real.log t with hL
-  have hlog8 : Real.log (t ^ 8) = 8 * L := by rw [Real.log_pow]; push_cast; ring
+  have hlog8 : Real.log (t ^ 8) = 8 * Real.log t := by rw [Real.log_pow]; push_cast; ring
   have hV0 : 0 ≤ dipoleMass k := dipoleMass_nonneg k hk1
-  have hVL : dipoleMass k ≤ cV * L := (hVk t k hk0 ht3 hkt hkt2).1
+  have hVL : dipoleMass k ≤ cV * Real.log t := (hVk t k hk0 ht3 hkt hkt2).1
   have hWS : ∀ z : Site 2, euclidNorm z ≤ 2 * t ^ 3 → ∀ S : Finset (Site 2),
       ∑ x ∈ S, min (euclidNorm x) (t ^ 8) * gammaBr (dipole z k) (dipole z k) x ≤
         5 * t ^ 3 * dipoleMass k + 3 * CW * t ^ 5 := by
     intro z hz S
-    refine (hW k hkW z (t ^ 8) (by positivity) S).trans ?_
-    change (euclidNorm z + 3 * k) * dipoleMass k + CW * (k : ℝ) ^ 2 * (1 + euclidNorm z) ≤ _
-    have hk' : (k : ℝ) ≤ t := hkt
-    have hkn : (0 : ℝ) ≤ k := Nat.cast_nonneg k
-    have h1 : (euclidNorm z + 3 * k) * dipoleMass k ≤ 5 * t ^ 3 * dipoleMass k := by
-      apply mul_le_mul_of_nonneg_right _ hV0
-      have : t ≤ t ^ 3 := by
-        simpa using pow_le_pow_right₀ ht1 (show 1 ≤ 3 by norm_num)
-      linarith
-    have h2 : CW * (k : ℝ) ^ 2 * (1 + euclidNorm z) ≤ 3 * CW * t ^ 5 := by
-      have h3 : (k : ℝ) ^ 2 * (1 + euclidNorm z) ≤ 3 * t ^ 5 := by
-        have hk2 : (k : ℝ) ^ 2 ≤ t ^ 2 := pow_le_pow_left₀ hkn hk' 2
-        have ht25 : t ^ 2 ≤ t ^ 5 := pow_le_pow_right₀ ht1 (by norm_num)
-        have : (k : ℝ) ^ 2 * (1 + euclidNorm z) ≤ t ^ 2 * (1 + 2 * t ^ 3) :=
-          mul_le_mul hk2 (by linarith) (by linarith [euclidNorm_nonneg z]) (by positivity)
-        nlinarith
-      calc CW * (k : ℝ) ^ 2 * (1 + euclidNorm z) = CW * ((k : ℝ) ^ 2 * (1 + euclidNorm z)) := by
-            ring
-        _ ≤ CW * (3 * t ^ 5) := mul_le_mul_of_nonneg_left h3 hCW0
-        _ = 3 * CW * t ^ 5 := by ring
-    linarith
+    refine (hW k hkW z (t ^ 8) (pow_nonneg ht0.le 8) S).trans ?_
+    exact dipole_window_arith (V := dipoleMass k) (euclidNorm_nonneg z) hz (Nat.cast_nonneg k)
+      hkt ht1 hV0 hCW0
   have hmain := bracket_approx (d := 2) (by norm_num) hε0.le hε1 Y n (t ^ 8) err
-    (dipoleMass k) (5 * t ^ 3 * dipoleMass k + 3 * CW * t ^ 5) 2 (by positivity) hprof
+    (dipoleMass k) (5 * t ^ 3 * dipoleMass k + 3 * CW * t ^ 5) 2 (pow_nonneg ht0.le 8) hprof
     (dipole y k) (dipole y' k) (planar_V k hk1 y) (planar_V k hk1 y') (hWS y hy) (hWS y' hy')
     (planar_D k hk1 y) (planar_D k hk1 y')
   have ht6 : t ^ 3 ≤ t ^ 6 := pow_le_pow_right₀ ht1 (by norm_num)
@@ -2595,43 +2652,10 @@ private theorem planar_pair {ε : ℝ} (hε0 : 0 < ε) (hε1 : ε < 1 / ((2 : �
   have ht60 : (1 : ℝ) ≤ t ^ 6 := one_le_pow₀ ht1
   have hE : 6 * ((2 : ℕ) : ℝ) * (dipoleMass k + 2) + err * dipoleMass k +
       2 * ((2 : ℕ) : ℝ) * ε * (5 * t ^ 3 * dipoleMass k + 3 * CW * t ^ 5) ≤
-      (12 * (cV + 2) + P * cV + 20 * ε * cV + 12 * ε * CW) * t ^ 6 * L := by
+      (12 * (cV + 2) + P * cV + 20 * ε * cV + 12 * ε * CW) * t ^ 6 * Real.log t := by
     push_cast
-    have a1 : 12 * (dipoleMass k + 2) ≤ 12 * (cV + 2) * t ^ 6 * L := by
-      have : dipoleMass k + 2 ≤ (cV + 2) * L := by nlinarith
-      have h := mul_le_mul_of_nonneg_left this (by norm_num : (0 : ℝ) ≤ 12)
-      have h12 : (0 : ℝ) ≤ 12 * (cV + 2) := by linarith
-      have : 12 * ((cV + 2) * L) ≤ 12 * (cV + 2) * t ^ 6 * L := by
-        nlinarith [mul_nonneg h12 (by linarith : (0 : ℝ) ≤ L)]
-      linarith
-    have a2 : err * dipoleMass k ≤ P * cV * t ^ 6 * L := by
-      have h1 := mul_le_mul herr hVL hV0 (by positivity)
-      nlinarith
-    have a3 : 4 * ε * (5 * t ^ 3 * dipoleMass k) ≤ 20 * ε * cV * t ^ 6 * L := by
-      have h1 : t ^ 3 * dipoleMass k ≤ t ^ 6 * (cV * L) :=
-        mul_le_mul ht6 hVL hV0 (by positivity)
-      nlinarith
-    have a4 : 4 * ε * (3 * CW * t ^ 5) ≤ 12 * ε * CW * t ^ 6 * L := by
-      have : t ^ 5 ≤ t ^ 6 * L := by nlinarith
-      have h5 : 0 ≤ 12 * ε * CW := by positivity
-      nlinarith
-    nlinarith
-  have hkey := hmain.trans hE
-  have hSpos : 0 < t ^ 8 * Real.log (t ^ 8) := by rw [hlog8]; positivity
-  have heq : dynkinBracket (stepProb 2 ε) (dipole y k) (dipole y' k) Y n /
-            (t ^ 8 * Real.log (t ^ 8)) -
-        2 * ((2 : ℕ) : ℝ) * ε * t ^ 8 * (∑' x, gammaBr (dipole y k) (dipole y' k) x) /
-          (t ^ 8 * Real.log (t ^ 8)) =
-      (dynkinBracket (stepProb 2 ε) (dipole y k) (dipole y' k) Y n -
-        2 * ((2 : ℕ) : ℝ) * ε * t ^ 8 * ∑' x, gammaBr (dipole y k) (dipole y' k) x) /
-          (t ^ 8 * Real.log (t ^ 8)) := by ring
-  rw [heq, abs_div, abs_of_pos hSpos]
-  calc _ ≤ (12 * (cV + 2) + P * cV + 20 * ε * cV + 12 * ε * CW) * t ^ 6 * L /
-        (t ^ 8 * Real.log (t ^ 8)) := div_le_div_of_nonneg_right hkey hSpos.le
-    _ = (12 * (cV + 2) + P * cV + 20 * ε * cV + 12 * ε * CW) / 8 / t ^ 2 := by
-        rw [hlog8]
-        have : L ≠ 0 := by positivity
-        field_simp
+    exact planar_error_arith hV0 hVL hcV0 hlog1 hP hCW0 hε0 ht6 ht56 ht60 herr
+  exact planar_div_arith ht0 (lt_of_lt_of_le one_pos hlog1) hlog8 (hmain.trans hE)
 
 /-- The off-diagonal bound from the main term `ε T / (2 L)` and the error `C₁ / t²`. -/
 private theorem off_diag_final {ε CT C₁ t T B L : ℝ} (hε0 : 0 < ε) (hL1 : 1 ≤ L) (ht0 : 0 < t)
@@ -2651,6 +2675,55 @@ private theorem off_diag_final {ε CT C₁ t T B L : ℝ} (hε0 : 0 < ε) (hL1 :
   have h5 : 0 ≤ 1 / t ^ 2 := by positivity
   rw [h4]
   linarith
+
+/-- The normalization of the main term of the bracket for `d = 2`:
+`2 · 2 ε t⁸ T / (t⁸ log t⁸) = ε T / (2 log t)`. -/
+private theorem planar_normalize {ε t L : ℝ} (ht : 0 < t) (hL : 0 < L)
+    (hlog8 : Real.log (t ^ 8) = 8 * L) (T : ℝ) :
+    2 * ((2 : ℕ) : ℝ) * ε * t ^ 8 * T / (t ^ 8 * Real.log (t ^ 8)) = ε * T / (2 * L) := by
+  rw [hlog8]
+  have : L ≠ 0 := hL.ne'
+  push_cast
+  field_simp
+  ring
+
+/-- The diagonal bracket bounds for `d = 2`: if the dipole mass `V` satisfies `L ≤ V ≤ c L` with
+`L ≥ 1` and `B` is within `s ≤ ε / 4` of `ε V / (2 L)`, with `ε ≤ 1`, then
+`ε / 4 ≤ B ≤ ε c / 2 + 1`. -/
+private theorem planar_diag_arith {ε cV V L B s : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) (hL : 1 ≤ L)
+    (hV1 : L ≤ V) (hV2 : V ≤ cV * L) (hs : s ≤ ε / 4) (h : |B - ε * V / (2 * L)| ≤ s) :
+    ε / 4 ≤ B ∧ B ≤ ε * cV / 2 + 1 := by
+  have hL0 : 0 < L := by linarith
+  have hq1 : ε / 2 ≤ ε * V / (2 * L) := by
+    rw [le_div_iff₀ (by positivity)]
+    have := mul_le_mul_of_nonneg_left hV1 hε.le
+    linarith
+  have hq2 : ε * V / (2 * L) ≤ ε * cV / 2 := by
+    rw [div_le_iff₀ (by positivity)]
+    have := mul_le_mul_of_nonneg_left hV2 hε.le
+    linarith
+  have h2 := abs_le.mp h
+  constructor <;> linarith [h2.1, h2.2]
+
+/-- Two numbers `k ≤ t` with `3 ≤ t` satisfy `2 k ≤ t²`. -/
+private theorem two_mul_le_sq {t k : ℝ} (ht : 3 ≤ t) (hk : k ≤ t) : 2 * k ≤ t ^ 2 := by
+  have h1 : 2 * t ≤ t * t := mul_le_mul_of_nonneg_right (by linarith) (by linarith)
+  rw [sq]
+  linarith
+
+/-- The off-diagonal total of `Γ` for two dipoles of size `k ≤ t` whose centres are at distance
+at least `t²` is at most `C / t²`. -/
+private theorem dipole_tail_arith {T CT k t D : ℝ} (hCT : 0 ≤ CT) (ht : 0 < t) (hk0 : 0 ≤ k)
+    (hk : k ≤ t) (hD : t ^ 2 ≤ |D|) (h : |T| ≤ CT * k ^ 2 / D ^ 2) : |T| ≤ CT / t ^ 2 := by
+  have hD2 : t ^ 4 ≤ D ^ 2 := by
+    rw [← sq_abs]
+    calc t ^ 4 = (t ^ 2) ^ 2 := by ring
+      _ ≤ _ := pow_le_pow_left₀ (by positivity) hD 2
+  have hk2 : k ^ 2 ≤ t ^ 2 := pow_le_pow_left₀ hk0 hk 2
+  refine h.trans ?_
+  calc CT * k ^ 2 / D ^ 2 ≤ CT * t ^ 2 / t ^ 4 :=
+        div_le_div₀ (by positivity) (mul_le_mul_of_nonneg_left hk2 hCT) (by positivity) hD2
+    _ = CT / t ^ 2 := by field_simp
 
 /-- **The brackets for `d = 2`**: for large `t`, the normalized diagonal brackets lie between
 two positive constants and the off-diagonal ones are at most `C / t²`. -/
@@ -2672,11 +2745,12 @@ private theorem assembly_planar {ε : ℝ} (hε0 : 0 < ε) (hε1 : ε < 1 / ((2 
   obtain ⟨cV, hcV0, k₀, hk₀1, hVk⟩ := planar_Vk
   obtain ⟨CT, hCT0, kT, hT⟩ := planar_T_off
   have hε1' : ε < 1 / 2 := by simpa using hε1
-  set K₀ : ℕ := max k₁ (max k₀ kT) with hK₀
+  obtain ⟨K₀, hK₀⟩ : ∃ K₀ : ℕ, K₀ = max k₁ (max k₀ kT) := ⟨_, rfl⟩
   refine ⟨max (max 3 (2 * (K₀ : ℝ))) (max (Real.exp cV) (4 * C₁ / ε + 1)), ε / 4,
     ε * cV / 2 + 1, ε * CT + C₁ + 1, le_trans (le_max_left _ _) (le_max_left _ _),
     by positivity, ?_, by positivity, ?_⟩
-  · nlinarith [mul_nonneg hε0.le hcV0]
+  · have := mul_nonneg hε0.le hcV0
+    linarith
   intro t Yc k m n Y err ht hY1 hY2 hm hkt hkt2 herr hprof i j hi1 him hj1 hjm B hB
   have ht3 : 3 ≤ t := le_trans (le_trans (le_max_left _ _) (le_max_left _ _)) ht
   have ht2K : 2 * (K₀ : ℝ) ≤ t := le_trans (le_trans (le_max_right _ _) (le_max_left _ _)) ht
@@ -2687,9 +2761,9 @@ private theorem assembly_planar {ε : ℝ} (hε0 : 0 < ε) (hε1 : ε < 1 / ((2 
   have hkK : K₀ ≤ k := by
     have : (K₀ : ℝ) ≤ k := by linarith
     exact_mod_cast this
-  have hk₁k : k₁ ≤ k := le_trans (le_max_left _ _) hkK
-  have hk₀k : k₀ ≤ k := le_trans (le_trans (le_max_left _ _) (le_max_right _ _)) hkK
-  have hkTk : kT ≤ k := le_trans (le_trans (le_max_right _ _) (le_max_right _ _)) hkK
+  have hk₁k : k₁ ≤ k := le_trans (hK₀ ▸ le_max_left _ _) hkK
+  have hk₀k : k₀ ≤ k := le_trans (hK₀ ▸ le_trans (le_max_left _ _) (le_max_right _ _)) hkK
+  have hkTk : kT ≤ k := le_trans (hK₀ ▸ le_trans (le_max_right _ _) (le_max_right _ _)) hkK
   have hk1 : 1 ≤ k := le_trans hk₁1 hk₁k
   have hL1 : 1 ≤ Real.log t := by
     rw [Real.le_log_iff_exp_le ht0]
@@ -2700,13 +2774,12 @@ private theorem assembly_planar {ε : ℝ} (hε0 : 0 < ε) (hε1 : ε < 1 / ((2 
     rwa [Real.log_exp] at this
   have hlog8 : Real.log (t ^ 8) = 8 * Real.log t := by rw [Real.log_pow]; push_cast; ring
   have hYc1 : 1 ≤ Yc := by
-    have : (1 : ℝ) ≤ Yc := le_trans (by nlinarith) hY1
+    have : (1 : ℝ) ≤ Yc := le_trans (one_le_pow₀ ht1) hY1
     exact_mod_cast this
   have hsmall : C₁ / t ^ 2 ≤ ε / 4 := by
-    rw [div_le_iff₀ (by positivity)]
     have h1 : 4 * C₁ / ε ≤ t := by linarith
     rw [div_le_iff₀ hε0] at h1
-    nlinarith
+    exact div_sq_le_of_le_mul (by positivity) ht1 (by linarith)
   have hnorm : ∀ i : ℕ, 1 ≤ i → i ≤ m →
       euclidNorm (((i * Yc : ℕ) : ℤ) • unit (0 : Fin 2)) ≤ 2 * t ^ 3 := by
     intro i hi1 him
@@ -2718,64 +2791,22 @@ private theorem assembly_planar {ε : ℝ} (hε0 : 0 < ε) (hε1 : ε < 1 / ((2 
   have hpair' := hpair t k n Y _ _ err hk₁k ht3 hkt hkt2 (hnorm i hi1 him) (hnorm j hj1 hjm)
     herr hprof hL1
   rw [← hB] at hpair'
-  have hmain : ∀ T : ℝ, 2 * ((2 : ℕ) : ℝ) * ε * t ^ 8 * T / (t ^ 8 * Real.log (t ^ 8)) =
-      ε * T / (2 * Real.log t) := by
-    intro T
-    rw [hlog8]
-    have : Real.log t ≠ 0 := by positivity
-    push_cast
-    field_simp
-    ring
+  have hmain := planar_normalize (ε := ε) ht0 (lt_of_lt_of_le one_pos hL1) hlog8
   constructor
   · rintro rfl
     obtain ⟨hs, hv⟩ := planar_T_diag k hk1 (((i * Yc : ℕ) : ℤ) • unit (0 : Fin 2))
     rw [hv, hmain] at hpair'
     have hV := hVk t k hk₀k ht3 hkt hkt2
-    have hV1 : Real.log t ≤ dipoleMass k := hV.2 hcVL
-    have hV2 : dipoleMass k ≤ cV * Real.log t := hV.1
-    have hL0 : 0 < Real.log t := by linarith
-    have hq1 : ε / 2 ≤ ε * (2 * (latticeKernel 2 ((k : ℤ) • unit (0 : Fin 2)) +
-        latticeKernel 2 (-((k : ℤ) • unit (0 : Fin 2)))) - 2) / (2 * Real.log t) := by
-      rw [le_div_iff₀ (by positivity)]
-      have : Real.log t ≤ 2 * (latticeKernel 2 ((k : ℤ) • unit (0 : Fin 2)) +
-          latticeKernel 2 (-((k : ℤ) • unit (0 : Fin 2)))) - 2 := hV1
-      nlinarith
-    have hq2 : ε * (2 * (latticeKernel 2 ((k : ℤ) • unit (0 : Fin 2)) +
-        latticeKernel 2 (-((k : ℤ) • unit (0 : Fin 2)))) - 2) / (2 * Real.log t) ≤
-        ε * cV / 2 := by
-      rw [div_le_iff₀ (by positivity)]
-      have : 2 * (latticeKernel 2 ((k : ℤ) • unit (0 : Fin 2)) +
-          latticeKernel 2 (-((k : ℤ) • unit (0 : Fin 2)))) - 2 ≤ cV * Real.log t := hV2
-      nlinarith
-    have h2 := abs_le.mp hpair'
-    constructor
-    · linarith [h2.1, h2.2]
-    · linarith [h2.1, h2.2]
+    exact planar_diag_arith hε0 (by linarith) hL1 (hV.2 hcVL) hV.1 hsmall hpair'
   · intro hij
     have hsep := axis_sep_abs Yc hij
     have h2k : 2 * (k : ℤ) ≤ |((i * Yc : ℕ) : ℤ) - ((j * Yc : ℕ) : ℤ)| := by
-      have h1 : 2 * (k : ℝ) ≤ Yc := by nlinarith
       have h2 : 2 * (k : ℝ) ≤ |((((i * Yc : ℕ) : ℤ) - ((j * Yc : ℕ) : ℤ) : ℤ) : ℝ)| :=
-        le_trans h1 hsep
+        le_trans (two_mul_le_sq ht3 hkt) (le_trans hY1 hsep)
       exact_mod_cast h2
     obtain ⟨hs, hbound⟩ := hT k hkTk ((i * Yc : ℕ) : ℤ) ((j * Yc : ℕ) : ℤ) h2k
     rw [hmain] at hpair'
-    set T : ℝ := ∑' x, gammaBr (dipole (((i * Yc : ℕ) : ℤ) • unit (0 : Fin 2)) k)
-      (dipole (((j * Yc : ℕ) : ℤ) • unit (0 : Fin 2)) k) x with hTdef
-    have hD : t ^ 4 ≤ ((((i * Yc : ℕ) : ℤ) - ((j * Yc : ℕ) : ℤ) : ℤ) : ℝ) ^ 2 := by
-      rw [← sq_abs]
-      have h1 : t ^ 2 ≤ |((((i * Yc : ℕ) : ℤ) - ((j * Yc : ℕ) : ℤ) : ℤ) : ℝ)| :=
-        le_trans hY1 hsep
-      calc t ^ 4 = (t ^ 2) ^ 2 := by ring
-        _ ≤ _ := pow_le_pow_left₀ (by positivity) h1 2
-    have hk2 : (k : ℝ) ^ 2 ≤ t ^ 2 := pow_le_pow_left₀ (Nat.cast_nonneg k) hkt 2
-    have hT' : |T| ≤ CT / t ^ 2 := by
-      refine hbound.trans ?_
-      calc CT * (k : ℝ) ^ 2 / ((((i * Yc : ℕ) : ℤ) - ((j * Yc : ℕ) : ℤ) : ℤ) : ℝ) ^ 2
-          ≤ CT * t ^ 2 / t ^ 4 := by
-            apply div_le_div₀ (by positivity) (mul_le_mul_of_nonneg_left hk2 hCT0)
-              (by positivity) hD
-        _ = CT / t ^ 2 := by field_simp
+    have hT' := dipole_tail_arith hCT0 ht0 (Nat.cast_nonneg k) hkt (le_trans hY1 hsep) hbound
     exact off_diag_final hε0 hL1 ht0 hT' hpair'
 
 /-! ### The scales -/
