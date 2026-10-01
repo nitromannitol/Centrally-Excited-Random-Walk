@@ -1103,7 +1103,7 @@ private lemma rpow_arith {x p C : ℝ} (hx : 0 < x) (h : 4 * (C + 1) ≤ x ^ (p 
 /-! ### The polynomial lower bound -/
 
 /-- Theorem 1.3 (iv) (a): the polynomial lower bound for the difference of the radii. -/
-private theorem width_poly (hexp : exp_deviation.{u}) :
+theorem sharp_width_poly_of (hexp : exp_deviation.{u}) :
     ∀ {d : ℕ} (_ : d = 2),
       let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
       ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
@@ -1609,6 +1609,6 @@ and at least `√(π/(3ε)) √(r_n log log n)` infinitely often. -/
 theorem sharp_width_of (hshape : limit_shape.{u})
     (hexp : exp_deviation.{u}) : sharp_width.{u} := by
   intro d hd hS ωd ε hε0 hε1 r
-  exact ⟨width_poly hexp hd ε hε0 hε1, width_lil hshape hd hS ε hε0 hε1⟩
+  exact ⟨sharp_width_poly_of hexp hd ε hε0 hε1, width_lil hshape hd hS ε hε0 hε1⟩
 
 end CERW.Support.Lower
