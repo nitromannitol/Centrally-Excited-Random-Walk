@@ -564,7 +564,9 @@ def sharp_radii_lil : Prop :=
             (1 / Real.sqrt (10 * Real.pi * ε) - δ) * Real.sqrt (r n * Real.log (Real.log n))
               ≤ CERW.maxRadius (X · ω) n - r n)
 
-/-- The draft statement of `CERW.Frozen.sharp_width`. -/
+/-- The draft statement of `CERW.Frozen.sharp_width`, in its version 1 form, with `StoutLIL` a
+hypothesis of both parts. Version 2 of the frozen statement makes it a premise of part (b) only and
+proves part (a) from `CERW.Support.Lower.sharp_width_poly_of`. -/
 def sharp_width : Prop :=
   ∀ {d : ℕ} (_ : d = 2)
       (_ : StoutLIL.{u}),

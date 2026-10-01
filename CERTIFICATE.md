@@ -94,7 +94,7 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 | `thm-sharp-radii` | `72fbd89c684fe5947057fbbf5cfb00e6a2689b59aede6a5dfe1c5a74c4ce4c9c` |
 | `thm-sharp-radii-lil` | `869d4e4bded4584de27d0d3a44a2ea3d3cee876cfbdc54a88aa23207a0a2e2c3` |
 | `thm-sharp-bulk` | `9bab71e5d1b9792c8f8c11bfc783ad04d6eb135525693acdcd98b660959668e8` |
-| `thm-sharp-width` | `6c26721bb1e9223f6ed6ff77edfa2a0b32367a5ae44fd12ba2ca2da5478b644e` |
+| `thm-sharp-width` | `33c8d67f92937c4993df7f3a5cf0fa8c7871390124e8971eab54adbd076f20da` |
 | `thm-norm-shape` | `2d3df99b7e7b2255c43fc0572eaaab84dd2b700427303abb9633798d13d3d3db` |
 | `lem-ballpotential` | `a1b46e20b7aa5a120584785042d8dac1ceb272e0d1513492f51dad5ea7cbe4c8` |
 | `lem-local` | `9c472ab635b0014c78ca5373c2288ed7181ee112a164c30ac614ec8c8752a3a7` |

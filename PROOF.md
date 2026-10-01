@@ -65,8 +65,9 @@ that carry it. Whether a registered statement is complete is recorded only in th
 | Martingale law of the iterated logarithm, Stout (1970) (cited, assumed) | `CERW.External.StoutLIL` | `CERW/External/StoutLIL.lean` |
 | the cited kernel asymptotics, `eq:kernel-asymptotics` | proved in Lattice-Probability: `LatticeProb.External.potentialKernelAsymptotics_holds` | `LatticeProb/External/PotentialKernelAsymptoticsProved.lean` |
 
-The theorems that use a cited result carry it as a hypothesis: `sharp_radii_lil` and `sharp_width`
-carry `hLIL : CERW.External.StoutLIL`, and `moment_fluctuations` and `site_fluctuations` carry
+The theorems that use a cited result carry it as a hypothesis: `sharp_radii_lil` carries
+`hLIL : CERW.External.StoutLIL`, `sharp_width` carries it as the premise of its part (b) only (its
+part (a) is unconditional), and `moment_fluctuations` and `site_fluctuations` carry
 `hCLT : CERW.External.MartingaleCLT` as well. No other theorem carries a hypothesis beyond the parameters of
 the paper's statement.
 
@@ -814,8 +815,9 @@ use them. A difference that makes a statement weaker than the paper's is marked 
 **Theorem 1.3 and its parts.**
 15. Theorem 1.3 is split into four statements, one for each part, by the author's ruling
     (`ledger/approval/REVISED-SURFACE.md`): `sharp_radii` (i), `sharp_radii_lil` (ii, with `hLIL`),
-    `sharp_bulk` (iii) and `sharp_width` (iv, with `hLIL`, which only (b) uses). The two parts (a) and (b)
-    of (iv) are two conjuncts of one statement. The planar parts take `hd : d = 2`.
+    `sharp_bulk` (iii) and `sharp_width` (iv). The two parts (a) and (b) of (iv) are two conjuncts of
+    one statement; Stout's law is the premise `CERW.External.StoutLIL →` of the conjunct (b) alone, so
+    (a) is unconditional (version 2, the author's erratum ruling, `ledger/decisions.md`). The planar parts take `hd : d = 2`.
 16. In part (iii) the maximum `≥ c φ_n` over `{x : |x| ≤ r_n^{1/2}}` is `∃ x, |x| ≤ √r_n ∧ c φ_n ≤ |…|`, the
     probability bound is on the complement, and the same `c` is the multiplier and the exponent of
     `n^{-c}`. No positive part appears, because `|x| ≤ r_n^{1/2} < r_n`. Part (i) states the two displays of

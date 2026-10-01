@@ -59,8 +59,7 @@ Let $d\geq2$ and $0<\drift<\nf{1}{d}$, and consider the centrally excited random
 ```
 -/
 -- FROZEN-STATEMENT-BEGIN
-theorem CERW.Frozen.sharp_width {d : ℕ} (hd : d = 2)
-    (hLIL : CERW.External.StoutLIL.{u}) :
+theorem CERW.Frozen.sharp_width {d : ℕ} (hd : d = 2) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
     let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
@@ -70,12 +69,15 @@ theorem CERW.Frozen.sharp_width {d : ℕ} (hd : d = 2)
         let E : Set Ω := {ω | c * Real.sqrt (r n * Real.log n)
           ≤ CERW.maxRadius (X · ω) n - CERW.innerRadius (X · ω) n}
         MeasurableSet E ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ E) ∧
-    (∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (CERW.External.StoutLIL.{u} →
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
       (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
       ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ → ∃ᶠ n : ℕ in atTop,
         (Real.sqrt (Real.pi / (3 * ε)) - δ) * Real.sqrt (r n * Real.log (Real.log n))
           ≤ CERW.maxRadius (X · ω) n - CERW.innerRadius (X · ω) n)
 -- FROZEN-STATEMENT-END
 := by
-  revert hLIL hd d
-  exact CERW.Support.Lower.sharp_width_of @CERW.Support.Main.limit_shape @CERW.Support.Lower.exp_deviation
+  intro ωd ε hε0 hε1 r
+  exact ⟨CERW.Support.Lower.sharp_width_poly_of @CERW.Support.Lower.exp_deviation hd ε hε0 hε1,
+    fun hLIL => (CERW.Support.Lower.sharp_width_of @CERW.Support.Main.limit_shape
+      @CERW.Support.Lower.exp_deviation hd hLIL ε hε0 hε1).2⟩
