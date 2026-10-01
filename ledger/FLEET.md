@@ -164,6 +164,32 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 31 | the Euclidean walk as a drift walk | ds4 | v4.1-flash | 4692 | 3 | ↑46k ↓8.7k | accepted | 0 | 62 | `CERW/Support/Drift/Bridge.lean` |
 | 32 | lem:freedman (norm section) | Sonnet subagent | sonnet | task prompt | 1 + 3 helpers | 88k (agent total) | accepted | 0 | 219 | `CERW/Support/Norm/Freedman.lean` |
 | 32 | drift walk existence and conditional step | director | — | mechanical port | 8 | — | accepted | 0 | 250 | `CERW/Support/Drift/Existence.lean`, `CERW/Support/Drift/CondStep.lean` |
+| 33 | lem:local (norm walk) | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 3067 | `CERW/Support/Norm/LocalTime.lean` |
+| 33 | prop:coarse (norm walk) | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1953 | `CERW/Support/Norm/Coarse.lean` |
+| 33 | lem:contact | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 5976 | `CERW/Support/Norm/ContactPotential.lean` |
+| 33 | prop:norm-shape and thm:norm-shape | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 3424 | `CERW/Support/Norm/ShapeRates.lean` |
+| 33 | lem:radial (norm walk) | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1405 | `CERW/Support/Norm/Radial.lean` |
+| 33 | lem:cell | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 876 | `CERW/Support/Norm/CellGradient.lean` |
+| 33 | lem:outer-crossing | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 840 | `CERW/Support/Norm/OuterCrossing.lean` |
+| 33 | lem:ballpotential and lem:layer | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 629 | `CERW/Support/Norm/BallLayer.lean` |
+| 33 | lem:geometry (norm) | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 675 | `CERW/Support/Norm/Geometry.lean` |
+| 33 | lem:cap and the Moreau envelope | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 467 | `CERW/Support/Norm/MoreauCap.lean` |
+| 33 | prop:inner | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1160 | `CERW/Support/Inner/InnerRadius.lean` |
+| 33 | prop:stronger-outer and thm:fluctuations | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 5923 | `CERW/Support/Outer/OuterRadius.lean` |
+| 33 | lem:near-far | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 363 | `CERW/Support/Outer/NearFar.lean` |
+| 33 | thm:moment-fluctuations | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 2166 | `CERW/Support/Limit/MomentFluctuations.lean` |
+| 33 | thm:sharp (ii) through the moment-radius law | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1827 | `CERW/Support/Limit/MomentLil.lean` |
+| 33 | lem:fixed-site-centering | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 736 | `CERW/Support/Limit/FixedSiteCentering.lean` |
+| 33 | thm:site-fluctuations | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 3954 | `CERW/Support/Limit/SiteFluctuations.lean` |
+| 33 | lem:exp-deviation | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1504 | `CERW/Support/Lower/ExpDeviation.lean` |
+| 33 | thm:sharp (i) | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1847 | `CERW/Support/Lower/SharpRadii.lean` |
+| 33 | thm:sharp (iii) | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1648 | `CERW/Support/Lower/SharpBulk.lean` |
+| 33 | thm:sharp (iv) | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1614 | `CERW/Support/Lower/SharpWidth.lean` |
+| 33 | prop:bulk-profile | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 605 | `CERW/Support/Lower/BulkProfile.lean` |
+| 33 | lem:separated-brackets | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 3109 | `CERW/Support/Lower/SeparatedBrackets.lean` |
+| 33 | prop:log-lower | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 2220 | `CERW/Support/Lower/LogLower.lean` |
+| 33 | drift Dynkin layer | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 371 | `CERW/Support/Drift/Dynkin.lean` |
+| 33 | thm:shape literal and guards | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 164 | `CERW/Support/Main/LimitShape.lean` |
 
 ## Observations
 
