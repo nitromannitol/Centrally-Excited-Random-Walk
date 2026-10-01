@@ -277,3 +277,22 @@ predictable and random, as `StoutLIL` does (`B (n+1)` is `ℱ n`-measurable, and
   that `K_n` may be `F_{n-1}`-measurable.
 
 * **Uses in this repository:** `ledger/audits/stout-uses.md` maps each use of `StoutLIL` to the conjunct it consumes and says whether it survives a weaker form.
+
+## Resolution: the predictable form is Stout's own
+
+Stout (1970), Z. Wahrsch. verw. Gebiete 15, 279–290, is open access
+(https://link.springer.com/content/pdf/10.1007/BF00533299.pdf). Its text, checked twice independently:
+
+* **p. 280.** "… by requiring that the K_n be merely F_{n−1} measurable rather than constants."
+* **Theorem 1 (p. 286), the upper half.** If s_n² → ∞ and |Y_n| ≤ K_n s_n/u_n, where K_n are
+  F_{n−1} measurable with K_n → 0, then lim sup X_n/(s_n u_n) ≤ 1.
+* **Theorem 2 (p. 287), the lower half.** Under the same hypotheses, lim sup X_n/(s_n u_n) ≥ 1.
+* **p. 288.** "In prior versions of our results, K_n were constant. Dropping this restriction
+  improved the utility of Theorems 1 and 2."
+
+`StoutLIL` is therefore Theorems 1 and 2 of Stout (1970), with the reduction already recorded
+above: `K_n := B_n u_n / s_n`, using the `max(·, e^e)` convention for the finitely many small `n`.
+The bound is required for every `n`, as Stout requires.
+* **Verdict:** **IMPLIED**. The CONCERN is closed.
+* **Consequence:** the contingency analysis in `stout-uses.md` is not needed. The quotations and
+  further restatements are in `stout-source.md`.

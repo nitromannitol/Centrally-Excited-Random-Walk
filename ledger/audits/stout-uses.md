@@ -1,5 +1,8 @@
 # How the development uses the martingale law of the iterated logarithm
 
+*Closed: the predictable form is Stout (1970), Theorems 1 and 2 (see `external-sources.md`,
+"Resolution"). This analysis is kept as a record and is not needed.*
+
 Notation. `P_n` is `predBracket μ ℱ S S n` (the `s_n²` of the hypothesis) and `L(x) = log log max(x, e^e)`.
 "Surely" means: outside one null set, for all `n` at once.
 * (U): only the eventual upper bound, with predictable random `B`, is available.
