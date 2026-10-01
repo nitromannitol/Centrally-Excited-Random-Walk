@@ -4,3 +4,4 @@ import CERW.Generic.Martingale.Shift
 import CERW.Generic.Martingale.Dyadic
 import CERW.Generic.Martingale.Clamp
 import CERW.Generic.Martingale.Lil
+import CERW.Generic.Martingale.CLT
