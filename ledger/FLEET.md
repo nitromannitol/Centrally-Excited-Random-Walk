@@ -190,6 +190,14 @@ thinking high, via `pi --no-extensions`, unless noted.
 | 33 | prop:log-lower | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 2220 | `CERW/Support/Lower/LogLower.lean` |
 | 33 | drift Dynkin layer | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 371 | `CERW/Support/Drift/Dynkin.lean` |
 | 33 | thm:shape literal and guards | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 164 | `CERW/Support/Main/LimitShape.lean` |
+| 34 | shared moment-martingale helpers | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1637 | `CERW/Support/Limit/MomentCommon.lean` |
+| 34 | shared kernel facts of the lattice kernel | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 41 | `CERW/Support/LocalTime/LatticeKernelFacts.lean` |
+| 34 | shared comparison with the ball potential | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 147 | `CERW/Support/Geometry/BallCompare.lean` |
+| 34 | thm:sharp (iii) onto the shared ball comparison | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1568 | `CERW/Support/Lower/SharpBulk.lean` |
+| 34 | shared Dynkin formula at a site and cell modulus | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 719 | `CERW/Support/Norm/DriftSite.lean` |
+| 34 | shared vector bound for the drift walk | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 311 | `CERW/Support/Norm/VectorBound.lean` |
+| 35 | thm:sharp (iii) within half the heartbeat budget | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 1568 | `CERW/Support/Lower/SharpBulk.lean` |
+| 35 | lem:separated-brackets within half the heartbeat budget | Sonnet subagent | sonnet | task prompt | 1 + helpers | — | accepted | 0 | 3121 | `CERW/Support/Lower/SeparatedBrackets.lean` |
 
 ## Observations
 
