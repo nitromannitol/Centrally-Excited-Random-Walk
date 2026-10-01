@@ -157,38 +157,38 @@ live in `CERW/Model/`.
 | `local-time-potential` | `CERW.Frozen.local_time_potential` | first version of the paper, the lemma on local times and the potential, paper/cerw-flat.tex lines 397 to 414 | PROVED |
 | `radial-test` | `CERW.Frozen.radial_test` | first version of the paper, the radial test lemma, paper/cerw-flat.tex lines 581 to 601 | PROVED |
 | `coarse-bounds` | `CERW.Frozen.coarse_bounds` | first version of the paper, the coarse bounds, paper/cerw-flat.tex lines 547 to 561 | PROVED |
-| `ext-martingale-clt` | `CERW.External.MartingaleCLT` | Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1401 and 1521 | FROZEN |
-| `ext-stout-lil` | `CERW.External.StoutLIL` | Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1412, 1521 and 1647 | FROZEN |
+| `ext-martingale-clt` | `CERW.External.MartingaleCLT` | Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1399 and 1519 | FROZEN |
+| `ext-stout-lil` | `CERW.External.StoutLIL` | Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644 | FROZEN |
 | `thm-shape` | `CERW.Frozen.limit_shape` | `limit-shapes.tex:103-116`, `thm:shape` | PROVED |
 | `thm-fluctuations` | `CERW.Frozen.fluctuation_rates` | `limit-shapes.tex:130-152`, `thm:fluctuations` | PROVED |
 | `thm-sharp-radii` | `CERW.Frozen.sharp_radii` | `limit-shapes.tex:159-164`, `thm:sharp` | PROVED |
 | `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `limit-shapes.tex:165-170`, `thm:sharp` | PROVED |
 | `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `limit-shapes.tex:171-175`, `thm:sharp` | PROVED |
 | `thm-sharp-width` | `CERW.Frozen.sharp_width` | `limit-shapes.tex:176-187`, `thm:sharp` | PROVED |
-| `thm-norm-shape` | `CERW.Frozen.norm_shape` | `limit-shapes.tex:329-342`, `thm:norm-shape` | PROVED |
-| `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `limit-shapes.tex:360-365`, `lem:ballpotential` | PROVED |
-| `lem-local` | `CERW.Frozen.norm_local_time_potential` | `limit-shapes.tex:384-400`, `lem:local` | PROVED |
-| `lem-freedman` | `CERW.Frozen.freedman_bound` | `limit-shapes.tex:436-441`, `lem:freedman` | PROVED |
-| `lem-cell` | `CERW.Frozen.cell_gradient` | `limit-shapes.tex:454-459`, `lem:cell` | PROVED |
-| `lem-geometry` | `CERW.Frozen.norm_potential_geometry` | `limit-shapes.tex:509-527`, `lem:geometry` | PROVED |
-| `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `limit-shapes.tex:546-553`, `prop:coarse` | PROVED |
-| `lem-radial` | `CERW.Frozen.norm_radial_test` | `limit-shapes.tex:566-575`, `lem:radial` | PROVED |
-| `lem-crossing` | `CERW.Frozen.drift_crossing` | `limit-shapes.tex:661-666`, `lem:crossing` | PROVED |
-| `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `limit-shapes.tex:745-761`, `prop:norm-shape` | PROVED |
-| `lem-layer` | `CERW.Frozen.layer_potential` | `limit-shapes.tex:779-784`, `lem:layer` | PROVED |
-| `lem-cap` | `CERW.Frozen.moreau_cap` | `limit-shapes.tex:809-814`, `lem:cap` | PROVED |
-| `lem-contact` | `CERW.Frozen.contact_potential` | `limit-shapes.tex:891-896`, `lem:contact` | PROVED |
-| `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `limit-shapes.tex:988-993`, `lem:outer-crossing` | PROVED |
-| `prop-inner` | `CERW.Frozen.inner_radius` | `limit-shapes.tex:1078-1094`, `prop:inner` | PROVED |
-| `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `limit-shapes.tex:1174-1179`, `prop:stronger-outer` | PROVED |
-| `lem-near-far` | `CERW.Frozen.near_far` | `limit-shapes.tex:1205-1210`, `lem:near-far` | PROVED |
-| `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `limit-shapes.tex:1355-1376`, `thm:moment-fluctuations` | PROVED |
-| `lem-fixed-site-centering` | `CERW.Frozen.fixed_site_centering` | `limit-shapes.tex:1432-1438`, `lem:fixed-site-centering` | PROVED |
-| `thm-site-fluctuations` | `CERW.Frozen.site_fluctuations` | `limit-shapes.tex:1462-1487`, `thm:site-fluctuations` | PROVED |
-| `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `limit-shapes.tex:1539-1553`, `lem:exp-deviation` | PROVED |
-| `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `limit-shapes.tex:1658-1665`, `prop:bulk-profile` | PROVED |
-| `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `limit-shapes.tex:1692-1699`, `lem:separated-brackets` | PROVED |
-| `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `limit-shapes.tex:1762-1776`, `prop:log-lower` | PROVED |
+| `thm-norm-shape` | `CERW.Frozen.norm_shape` | `limit-shapes.tex:330-343`, `thm:norm-shape` | PROVED |
+| `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `limit-shapes.tex:361-366`, `lem:ballpotential` | PROVED |
+| `lem-local` | `CERW.Frozen.norm_local_time_potential` | `limit-shapes.tex:385-401`, `lem:local` | PROVED |
+| `lem-freedman` | `CERW.Frozen.freedman_bound` | `limit-shapes.tex:437-442`, `lem:freedman` | PROVED |
+| `lem-cell` | `CERW.Frozen.cell_gradient` | `limit-shapes.tex:455-460`, `lem:cell` | PROVED |
+| `lem-geometry` | `CERW.Frozen.norm_potential_geometry` | `limit-shapes.tex:510-528`, `lem:geometry` | PROVED |
+| `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `limit-shapes.tex:547-554`, `prop:coarse` | PROVED |
+| `lem-radial` | `CERW.Frozen.norm_radial_test` | `limit-shapes.tex:567-576`, `lem:radial` | PROVED |
+| `lem-crossing` | `CERW.Frozen.drift_crossing` | `limit-shapes.tex:662-667`, `lem:crossing` | PROVED |
+| `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `limit-shapes.tex:746-762`, `prop:norm-shape` | PROVED |
+| `lem-layer` | `CERW.Frozen.layer_potential` | `limit-shapes.tex:780-785`, `lem:layer` | PROVED |
+| `lem-cap` | `CERW.Frozen.moreau_cap` | `limit-shapes.tex:810-815`, `lem:cap` | PROVED |
+| `lem-contact` | `CERW.Frozen.contact_potential` | `limit-shapes.tex:892-897`, `lem:contact` | PROVED |
+| `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `limit-shapes.tex:989-994`, `lem:outer-crossing` | PROVED |
+| `prop-inner` | `CERW.Frozen.inner_radius` | `limit-shapes.tex:1060-1076`, `prop:inner` | PROVED |
+| `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `limit-shapes.tex:1172-1177`, `prop:stronger-outer` | PROVED |
+| `lem-near-far` | `CERW.Frozen.near_far` | `limit-shapes.tex:1203-1208`, `lem:near-far` | PROVED |
+| `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `limit-shapes.tex:1353-1374`, `thm:moment-fluctuations` | PROVED |
+| `lem-fixed-site-centering` | `CERW.Frozen.fixed_site_centering` | `limit-shapes.tex:1430-1436`, `lem:fixed-site-centering` | PROVED |
+| `thm-site-fluctuations` | `CERW.Frozen.site_fluctuations` | `limit-shapes.tex:1460-1485`, `thm:site-fluctuations` | PROVED |
+| `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `limit-shapes.tex:1537-1551`, `lem:exp-deviation` | PROVED |
+| `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `limit-shapes.tex:1655-1662`, `prop:bulk-profile` | PROVED |
+| `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `limit-shapes.tex:1689-1696`, `lem:separated-brackets` | PROVED |
+| `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `limit-shapes.tex:1759-1773`, `prop:log-lower` | PROVED |
 
 <!-- FROZEN-SURFACE-END -->
 
