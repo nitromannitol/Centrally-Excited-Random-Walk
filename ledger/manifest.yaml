@@ -126,7 +126,7 @@ nodes:
     source: limit-shapes.tex:103-116 (label thm:shape)
     file: CERW/Frozen/LimitShape.lean
     export: CERW.Frozen.limit_shape
-    state: SEALED
+    state: PROVED
     frozen_sha256: afe23ec124a7797b5a935f8d6c7c9d284e866118f2c4af2c98d04da9da6894e3
     provider: CERW.Frozen.limit_shape
     approved: "2026-09-30"
@@ -137,7 +137,7 @@ nodes:
     source: limit-shapes.tex:130-152 (label thm:fluctuations)
     file: CERW/Frozen/FluctuationRates.lean
     export: CERW.Frozen.fluctuation_rates
-    state: SEALED
+    state: PROVED
     frozen_sha256: ec18ac337d2fb2ca751b815ad92dd51d844ed4a40d5189a740a641e0e09812a4
     provider: CERW.Frozen.fluctuation_rates
     approved: "2026-09-30"
@@ -148,7 +148,7 @@ nodes:
     source: limit-shapes.tex:159-164 (label thm:sharp, part (i))
     file: CERW/Frozen/SharpRadii.lean
     export: CERW.Frozen.sharp_radii
-    state: SEALED
+    state: PROVED
     frozen_sha256: 72fbd89c684fe5947057fbbf5cfb00e6a2689b59aede6a5dfe1c5a74c4ce4c9c
     provider: CERW.Frozen.sharp_radii
     approved: "2026-09-30"
@@ -159,7 +159,7 @@ nodes:
     source: limit-shapes.tex:165-170 (label thm:sharp, part (ii))
     file: CERW/Frozen/SharpRadiiLil.lean
     export: CERW.Frozen.sharp_radii_lil
-    state: SEALED
+    state: PROVED
     frozen_sha256: 869d4e4bded4584de27d0d3a44a2ea3d3cee876cfbdc54a88aa23207a0a2e2c3
     provider: CERW.Frozen.sharp_radii_lil
     approved: "2026-09-30"
@@ -170,7 +170,7 @@ nodes:
     source: limit-shapes.tex:171-175 (label thm:sharp, part (iii))
     file: CERW/Frozen/SharpBulk.lean
     export: CERW.Frozen.sharp_bulk
-    state: SEALED
+    state: PROVED
     frozen_sha256: 9bab71e5d1b9792c8f8c11bfc783ad04d6eb135525693acdcd98b660959668e8
     provider: CERW.Frozen.sharp_bulk
     approved: "2026-09-30"
@@ -181,7 +181,7 @@ nodes:
     source: limit-shapes.tex:176-187 (label thm:sharp, part (iv))
     file: CERW/Frozen/SharpWidth.lean
     export: CERW.Frozen.sharp_width
-    state: SEALED
+    state: PROVED
     frozen_sha256: 33c8d67f92937c4993df7f3a5cf0fa8c7871390124e8971eab54adbd076f20da
     provider: CERW.Frozen.sharp_width
     approved: "2026-10-01"
@@ -192,7 +192,7 @@ nodes:
     source: limit-shapes.tex:329-342 (label thm:norm-shape)
     file: CERW/Frozen/NormShape.lean
     export: CERW.Frozen.norm_shape
-    state: SEALED
+    state: PROVED
     frozen_sha256: 2d3df99b7e7b2255c43fc0572eaaab84dd2b700427303abb9633798d13d3d3db
     provider: CERW.Frozen.norm_shape
     approved: "2026-09-30"
@@ -203,7 +203,7 @@ nodes:
     source: limit-shapes.tex:360-365 (label lem:ballpotential)
     file: CERW/Frozen/NormBallPotential.lean
     export: CERW.Frozen.norm_ball_potential
-    state: SEALED
+    state: PROVED
     frozen_sha256: a1b46e20b7aa5a120584785042d8dac1ceb272e0d1513492f51dad5ea7cbe4c8
     provider: CERW.Frozen.norm_ball_potential
     approved: "2026-09-30"
@@ -214,7 +214,7 @@ nodes:
     source: limit-shapes.tex:384-400 (label lem:local)
     file: CERW/Frozen/NormLocalTime.lean
     export: CERW.Frozen.norm_local_time_potential
-    state: SEALED
+    state: PROVED
     frozen_sha256: 9c472ab635b0014c78ca5373c2288ed7181ee112a164c30ac614ec8c8752a3a7
     provider: CERW.Frozen.norm_local_time_potential
     approved: "2026-09-30"
@@ -225,7 +225,7 @@ nodes:
     source: limit-shapes.tex:436-441 (label lem:freedman)
     file: CERW/Frozen/FreedmanBound.lean
     export: CERW.Frozen.freedman_bound
-    state: SEALED
+    state: PROVED
     frozen_sha256: cf4024fbf5336db798bcdf60c0710b003595a90f491d5a6bbbfaf4eac9774dfc
     provider: CERW.Frozen.freedman_bound
     approved: "2026-09-30"
@@ -236,7 +236,7 @@ nodes:
     source: limit-shapes.tex:454-459 (label lem:cell)
     file: CERW/Frozen/CellGradient.lean
     export: CERW.Frozen.cell_gradient
-    state: SEALED
+    state: PROVED
     frozen_sha256: 714ade301bc1979807177f7ec5bd32758cdcf61b2e11398901589a5fd015e638
     provider: CERW.Frozen.cell_gradient
     approved: "2026-09-30"
@@ -247,7 +247,7 @@ nodes:
     source: limit-shapes.tex:509-527 (label lem:geometry)
     file: CERW/Frozen/NormPotentialGeometry.lean
     export: CERW.Frozen.norm_potential_geometry
-    state: SEALED
+    state: PROVED
     frozen_sha256: 36f84b69b6bb20030cc8b8fbc58ab36459afae9b3d224ddbf4d1ee26898e2192
     provider: CERW.Frozen.norm_potential_geometry
     approved: "2026-09-30"
@@ -258,7 +258,7 @@ nodes:
     source: limit-shapes.tex:546-553 (label prop:coarse)
     file: CERW/Frozen/NormCoarseBounds.lean
     export: CERW.Frozen.norm_coarse_bounds
-    state: SEALED
+    state: PROVED
     frozen_sha256: 89c6dc199bee5ccc0681ec40288efb12f6e90289785f4bcdbf8cc5f46a0b9c98
     provider: CERW.Frozen.norm_coarse_bounds
     approved: "2026-09-30"
@@ -269,7 +269,7 @@ nodes:
     source: limit-shapes.tex:566-575 (label lem:radial)
     file: CERW/Frozen/NormRadialTest.lean
     export: CERW.Frozen.norm_radial_test
-    state: SEALED
+    state: PROVED
     frozen_sha256: 79c9161163689caa8ad03b7b419f3c53b436a51625bac098cb795ac0a44cf5e8
     provider: CERW.Frozen.norm_radial_test
     approved: "2026-09-30"
@@ -280,7 +280,7 @@ nodes:
     source: limit-shapes.tex:661-666 (label lem:crossing)
     file: CERW/Frozen/DriftCrossing.lean
     export: CERW.Frozen.drift_crossing
-    state: SEALED
+    state: PROVED
     frozen_sha256: 9cf28f703d6b7d3287e50bd21fd5ebba214375e9ce936ed72444f8705bf6e6e4
     provider: CERW.Frozen.drift_crossing
     approved: "2026-09-30"
@@ -291,7 +291,7 @@ nodes:
     source: limit-shapes.tex:745-761 (label prop:norm-shape)
     file: CERW/Frozen/NormShapeRates.lean
     export: CERW.Frozen.norm_shape_rates
-    state: SEALED
+    state: PROVED
     frozen_sha256: 957071d857eb59f201c69baced31da2dc3a17fc662e15b59f8f59ffb8eba3865
     provider: CERW.Frozen.norm_shape_rates
     approved: "2026-09-30"
@@ -302,7 +302,7 @@ nodes:
     source: limit-shapes.tex:779-784 (label lem:layer)
     file: CERW/Frozen/LayerPotential.lean
     export: CERW.Frozen.layer_potential
-    state: SEALED
+    state: PROVED
     frozen_sha256: 168161bee795c953f19970049ce2b040961fbf0ed09f48ed27e9589e62d6d672
     provider: CERW.Frozen.layer_potential
     approved: "2026-09-30"
@@ -313,7 +313,7 @@ nodes:
     source: limit-shapes.tex:809-814 (label lem:cap)
     file: CERW/Frozen/MoreauCap.lean
     export: CERW.Frozen.moreau_cap
-    state: SEALED
+    state: PROVED
     frozen_sha256: 14b391e12e2e542881212dca73d7d39fdab298ac65ff56bd6716d7a3aedd8211
     provider: CERW.Frozen.moreau_cap
     approved: "2026-09-30"
@@ -324,7 +324,7 @@ nodes:
     source: limit-shapes.tex:891-896 (label lem:contact)
     file: CERW/Frozen/ContactPotential.lean
     export: CERW.Frozen.contact_potential
-    state: SEALED
+    state: PROVED
     frozen_sha256: eb80fa4defc32bc2461e9cc0a270bca9e97e50b384ce75221dc9d0bac134acf2
     provider: CERW.Frozen.contact_potential
     approved: "2026-09-30"
@@ -335,7 +335,7 @@ nodes:
     source: limit-shapes.tex:988-993 (label lem:outer-crossing)
     file: CERW/Frozen/OuterCrossing.lean
     export: CERW.Frozen.outer_crossing
-    state: SEALED
+    state: PROVED
     frozen_sha256: acd67ade6a88d8bc0fa901f9ae60e79283bfef0873c9fbd5cd7064d165909da0
     provider: CERW.Frozen.outer_crossing
     approved: "2026-09-30"
@@ -346,7 +346,7 @@ nodes:
     source: limit-shapes.tex:1078-1094 (label prop:inner)
     file: CERW/Frozen/InnerRadius.lean
     export: CERW.Frozen.inner_radius
-    state: SEALED
+    state: PROVED
     frozen_sha256: 2d9401fb69c6e5346005b003eeff3a0e41b744489a8ffb0baef89864cb60a244
     provider: CERW.Frozen.inner_radius
     approved: "2026-09-30"
@@ -357,7 +357,7 @@ nodes:
     source: limit-shapes.tex:1174-1179 (label prop:stronger-outer)
     file: CERW/Frozen/OuterRadius.lean
     export: CERW.Frozen.outer_radius
-    state: SEALED
+    state: PROVED
     frozen_sha256: 6590555088155da416f44b0c49d47773a5ee72de758fc397ca5ef2755dc403de
     provider: CERW.Frozen.outer_radius
     approved: "2026-09-30"
@@ -368,7 +368,7 @@ nodes:
     source: limit-shapes.tex:1205-1210 (label lem:near-far)
     file: CERW/Frozen/NearFar.lean
     export: CERW.Frozen.near_far
-    state: SEALED
+    state: PROVED
     frozen_sha256: 1bd6626860ec14cd2e1cb1cbc4905ac3d8d5cb64c05f20a4479af337a5d7cabf
     provider: CERW.Frozen.near_far
     approved: "2026-09-30"
@@ -379,7 +379,7 @@ nodes:
     source: limit-shapes.tex:1355-1376 (label thm:moment-fluctuations)
     file: CERW/Frozen/MomentFluctuations.lean
     export: CERW.Frozen.moment_fluctuations
-    state: SEALED
+    state: PROVED
     frozen_sha256: 7497a8697e453618822f482d3812dffce4b3dbdd4d2214100ef3b22c9c5568dd
     provider: CERW.Frozen.moment_fluctuations
     approved: "2026-09-30"
@@ -390,7 +390,7 @@ nodes:
     source: limit-shapes.tex:1432-1438 (label lem:fixed-site-centering)
     file: CERW/Frozen/FixedSiteCentering.lean
     export: CERW.Frozen.fixed_site_centering
-    state: SEALED
+    state: PROVED
     frozen_sha256: 0c4ecaed7602a58c804a769396308b5a346ff427b933958b983b38b6f99b033f
     provider: CERW.Frozen.fixed_site_centering
     approved: "2026-09-30"
@@ -401,7 +401,7 @@ nodes:
     source: limit-shapes.tex:1462-1487 (label thm:site-fluctuations)
     file: CERW/Frozen/SiteFluctuations.lean
     export: CERW.Frozen.site_fluctuations
-    state: SEALED
+    state: PROVED
     frozen_sha256: 4f6d4b89263fe0acabf00c7ef9556190a5b731f8148989dacf7c94f014b8936e
     provider: CERW.Frozen.site_fluctuations
     approved: "2026-09-30"
@@ -412,7 +412,7 @@ nodes:
     source: limit-shapes.tex:1539-1553 (label lem:exp-deviation)
     file: CERW/Frozen/ExpDeviation.lean
     export: CERW.Frozen.exp_deviation
-    state: SEALED
+    state: PROVED
     frozen_sha256: 0fb6a8e898e488c397a7ff3c6461b5680328f8472a3405de58677791f6b3168d
     provider: CERW.Frozen.exp_deviation
     approved: "2026-09-30"
@@ -423,7 +423,7 @@ nodes:
     source: limit-shapes.tex:1658-1665 (label prop:bulk-profile)
     file: CERW/Frozen/BulkProfile.lean
     export: CERW.Frozen.bulk_profile
-    state: SEALED
+    state: PROVED
     frozen_sha256: 34aa5668e98eaba6d8c37552c243e758e12c645e90f222ff30b20621630d0e34
     provider: CERW.Frozen.bulk_profile
     approved: "2026-09-30"
@@ -434,7 +434,7 @@ nodes:
     source: limit-shapes.tex:1692-1699 (label lem:separated-brackets)
     file: CERW/Frozen/SeparatedBrackets.lean
     export: CERW.Frozen.separated_brackets
-    state: SEALED
+    state: PROVED
     frozen_sha256: 342581ac105e4d601df6d9e1d5fbf1238a798aa55c2213d3fbf733f1735a4b78
     provider: CERW.Frozen.separated_brackets
     approved: "2026-09-30"
@@ -445,7 +445,7 @@ nodes:
     source: limit-shapes.tex:1762-1776 (label prop:log-lower)
     file: CERW/Frozen/LogLowerBounds.lean
     export: CERW.Frozen.log_lower_bounds
-    state: SEALED
+    state: PROVED
     frozen_sha256: 201878321aa214c30fca342516f5666f47deed86c574046207f9383f9234b8b4
     provider: CERW.Frozen.log_lower_bounds
     approved: "2026-09-30"

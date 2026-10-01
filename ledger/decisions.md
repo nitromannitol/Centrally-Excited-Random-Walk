@@ -37,3 +37,34 @@ version 1 statement, verbatim, from the version 2 theorem.
 - `lake build` passes, with no error and no warning.
 - `#print axioms CERW.Frozen.sharp_width` gives `[propext, Classical.choice, Quot.sound]`.
 - `python3 tools/verify.py` exits 0, with all 15 gates passing.
+
+## D2 (2026-10-01). P5: the 30 statements of the revised paper are promoted from SEALED to PROVED
+
+**The author's ruling.** P5 is approved. The 30 SEALED nodes of the revised surface are promoted to
+PROVED. Every one of them has been independently audited.
+
+**What changed.** Only the `state:` field changed, from `SEALED` to `PROVED`, for all 30 nodes. The
+frozen bytes, their hashes and the versions stay as they are. The manifest now has 37 `PROVED` nodes
+(the seven first-version statements of G8 and these 30) and 2 `FROZEN` Externals, the martingale
+CLT and Stout's LIL. CERTIFICATE, CORRESPONDENCE, README and PROOF are regenerated, and
+`ledger/FRONTIER.md` and STATUS are updated.
+
+**The audits behind it.**
+- The four pre-freeze readings (`ledger/audits/prefreeze-reading-*.md`).
+- The post-seal audit of the first 18 sealed nodes (`ledger/audits/postseal-revised-audit.md`),
+  which found no defect.
+- The pre-landing audit of the Support theorems behind the last seals
+  (`ledger/audits/prelanding-audit.md`).
+- The audit of the Theorem 1.2 and Proposition 7.1 proofs (`ledger/audits/outer-radius-audit.md`).
+- The refute-first audit of all 30 nodes (`ledger/audits/proved-gate-audit.md`): 29 PASS, 1 CONCERN,
+  0 DEFECT. The CONCERN was `hLIL` on part (a) of `thm-sharp-width`, and D1 resolves it.
+- Stout's predictable-bound form is confirmed against Stout (1970)
+  (`ledger/audits/stout-source.md`).
+
+**`thm-sharp-width` is promoted at version 2.** The audits read version 1. Version 2 differs from
+version 1 only in moving the binder `hLIL` onto part (b), which is the change the proved-gate audit
+recommended. Version 2 implies version 1 verbatim (see D1). This follows the precedent of
+`ledger/approval/PROVED-PROMOTION.md`, where version 3 of six statements was promoted on audits of
+version 2, because version 3 differs from version 2 only in deleting one binder.
+
+**Still held for the author.** P6, the AI paragraph of the paper (`limit-shapes.tex:303`).
