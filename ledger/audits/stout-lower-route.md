@@ -2,7 +2,7 @@
 
 This is a working record, not a ruling. It extends `stout-lil-feasibility.md`, section 3, with the
 design decisions taken while the pieces were written, and lists which pieces are proved. The
-target is `CERW.External.StoutLIL`, the conclusion `∃ᶠ n, (1 − δ) √(2 P_n log log P_n) ≤ S_n`.
+target was the cited result `CERW.External.StoutLIL`, now `CERW.Generic.Martingale.Lil.StoutLower`, the conclusion `∃ᶠ n, (1 − δ) √(2 P_n log log P_n) ≤ S_n`.
 Nothing here is assumed: every item marked proved is a theorem with axioms
 `propext, Classical.choice, Quot.sound`.
 
@@ -58,10 +58,12 @@ Nothing here is assumed: every item marked proved is a theorem with axioms
 | Lévy along the blocks, passage window, lower bound for padded data | `LilAssembly/LevyBlocks.lean`, `PassageWindow.lean`, `NiceLower.lean` | proved |
 | padded data of a martingale with sure data: gate, bound, bracket, the thirteen fields | `LilAssembly/PaddedConstruction.lean`, `PaddedStructure.lean`, `PaddedRatio.lean`, `PaddedBlocks.lean`, `PaddedDataOf.lean` | proved |
 | gate open from a start time on, lower half for sure data, clamping, the reduction | `LilAssembly/GateOpenAe.lean`, `LowerOfSure.lean`, `ReductionProof.lean` | proved |
-| the lower half of Stout's law, `CERW.External.StoutLIL` | `LilAssembly/StoutLower.lean` (`stout_lower`) | proved |
+| the lower half of Stout's law, `CERW.Generic.Martingale.Lil.StoutLower` | `LilAssembly/StoutLower.lean` (`stout_lower`) | proved |
 
 ## Open points
 
-None for the route. The theorem `CERW.Generic.Martingale.LilAssembly.stout_lower` has the
-statement of `CERW.External.StoutLIL` and axioms `propext, Classical.choice, Quot.sound`. What
-remains is to retire the assumption in the manifest and the documents.
+None. The theorem `CERW.Generic.Martingale.LilAssembly.stout_lower` has the statement
+`CERW.Generic.Martingale.Lil.StoutLower` and axioms `propext, Classical.choice, Quot.sound`. The
+cited result was retired by ruling D7. The hypotheses of the theorem are satisfiable:
+`CERW.Generic.Martingale.LilAssembly.stoutLower_hypotheses_satisfiable` exhibits the walk of
+independent fair signs, with the bound `1`, as a witness of every hypothesis.

@@ -18,4 +18,5 @@ import CERW.Generic.Martingale.LilAssembly.GateOpenAe
 import CERW.Generic.Martingale.LilAssembly.LowerOfSure
 import CERW.Generic.Martingale.LilAssembly.ReductionProof
 import CERW.Generic.Martingale.LilAssembly.StoutLower
+import CERW.Generic.Martingale.LilAssembly.HypothesesSatisfiable
 import CERW.Generic.Martingale.LilAssembly.NiceLower
