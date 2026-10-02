@@ -413,6 +413,9 @@ clauses:
     the exact hypothesis wording of the original theorem (in particular whether the paper's
     predictable bound or a weaker form is stated there); the Lean Prop is the form the paper
     itself verifies at lines 1404--1410. \texttt{S} is the martingale
+    (\dots). Version 2 (ruling D5, 2026-10-01): the External is the lower half alone, Stout (1970),
+    Theorem~2, the \texttt{∃ᶠ} conjunct; the upper half, Theorem~1, the \texttt{∀ᶠ} conjunct, is
+    proved under the same hypotheses as \texttt{CERW.Generic.Martingale.Lil.stout\_upper}.
 constants: {}
 
 exponents:

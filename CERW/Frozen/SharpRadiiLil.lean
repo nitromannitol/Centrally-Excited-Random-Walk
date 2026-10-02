@@ -1,4 +1,5 @@
 import CERW.External.StoutLIL
+import CERW.Support.Stout
 import CERW.Model
 import CERW.Support.Inner.InnerRadius
 import CERW.Support.Limit.MomentLil
@@ -87,5 +88,6 @@ theorem CERW.Frozen.sharp_radii_lil {d : ℕ} (hd : d = 2)
             ≤ CERW.maxRadius (X · ω) n - r n)
 -- FROZEN-STATEMENT-END
 := by
+  replace hLIL : CERW.Support.Statements.StoutLIL.{u} := CERW.Support.stoutLIL_full hLIL
   revert hLIL hd d
   exact (CERW.Support.Lower.sharp_radii_lil_holds_of @CERW.Support.Main.limit_shape (CERW.Support.Outer.fluctuation_rates_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) (CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing) @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) (CERW.Support.Outer.outer_radius_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) (CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing) @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) CERW.Support.Outer.near_far_holds CERW.Support.Norm.outer_crossing_holds) CERW.Support.Outer.near_far_holds))

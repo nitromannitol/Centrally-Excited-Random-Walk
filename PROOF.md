@@ -61,7 +61,9 @@ The theorems that use a cited result carry it as a hypothesis: `sharp_radii_lil`
 `hLIL : CERW.External.StoutLIL`, `sharp_width` carries it as the premise of its part (b) only (its
 part (a) is unconditional), and `moment_fluctuations` and `site_fluctuations` carry
 `hCLT : CERW.External.MartingaleCLT` as well. No other theorem carries a hypothesis beyond the parameters of
-the paper's statement.
+the paper's statement. `CERW.External.StoutLIL` is only the lower half of Stout's law (Stout 1970,
+Theorem 2). The upper half (Theorem 1) is proved, as `CERW.Generic.Martingale.Lil.stout_upper`, and
+`CERW.Support.stoutLIL_full` combines the two halves into the law that the proofs use.
 
 The proofs are organized as follows. A Support theorem takes as hypotheses the statement propositions of
 `CERW/Support/Statements.lean` that its proof uses. For example,
@@ -876,8 +878,13 @@ use them. A difference that makes a statement weaker than the paper's is marked 
 29. `StoutLIL` is the form of Stout's theorem that the paper verifies at lines 1406 to 1412: a
     square-integrable martingale `S` with `S_0 = 0`, an increment bound `|S_{n+1} - S_n| ≤ B_{n+1}` almost
     surely with `B_{n+1}` measurable with respect to `ℱ_n` (predictable), `⟨S⟩_n → ∞` and
-    `B_n √(log log(⟨S⟩_n ∨ e^e))/√⟨S⟩_n → 0` almost surely. The conclusion is the two halves of
-    `limsup S_n/√(2⟨S⟩_n log log ⟨S⟩_n) = 1` in the form of point 5. The hypothesis `S_0 = 0` at every `ω`
+    `B_n √(log log(⟨S⟩_n ∨ e^e))/√⟨S⟩_n → 0` almost surely. Its conclusion is the lower half
+    of `limsup S_n/√(2⟨S⟩_n log log ⟨S⟩_n) = 1` in the form of point 5: for every `δ > 0`, frequently
+    `S_n ≥ (1 - δ)√(2⟨S⟩_n log log ⟨S⟩_n)` (Stout's Theorem 2). The upper half, eventually
+    `S_n ≤ (1 + δ)√(2⟨S⟩_n log log ⟨S⟩_n)` (Stout's Theorem 1), is proved under the same hypotheses, as
+    `CERW.Generic.Martingale.Lil.stout_upper`: geometric blocks of the bracket, Freedman's inequality
+    for the running maximum after the martingale is truncated predictably where `B_{n+1}` is large,
+    and Borel–Cantelli (`CERW/Generic/Martingale/Lil/`). The hypothesis `S_0 = 0` at every `ω`
     is met by the Dynkin martingales, which start at `0`, and by `𝒬 - 𝒬_0` for the quadratic martingale,
     since `𝒬_0 = |X_0|²` vanishes only almost surely. The two signs come from applying the proposition
     to `S` and to `-S`.

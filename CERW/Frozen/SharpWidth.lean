@@ -1,4 +1,5 @@
 import CERW.External.StoutLIL
+import CERW.Support.Stout
 import CERW.Model
 import CERW.Support.Lower.ExpDeviation
 import CERW.Support.Lower.SharpWidth
@@ -80,4 +81,4 @@ theorem CERW.Frozen.sharp_width {d : ℕ} (hd : d = 2) :
   intro ωd ε hε0 hε1 r
   exact ⟨CERW.Support.Lower.sharp_width_poly_of @CERW.Support.Lower.exp_deviation hd ε hε0 hε1,
     fun hLIL => (CERW.Support.Lower.sharp_width_of @CERW.Support.Main.limit_shape
-      @CERW.Support.Lower.exp_deviation hd hLIL ε hε0 hε1).2⟩
+      @CERW.Support.Lower.exp_deviation hd (CERW.Support.stoutLIL_full hLIL) ε hε0 hε1).2⟩

@@ -120,3 +120,38 @@ prints `Your solution is okay!` with the nanoda kernel enabled.
 
 **Recorded** by the active worker on the author's instruction (2026-10-01).  The remaining frozen
 statements were not re-opened.
+
+## D5 (2026-10-01). The upper half of Stout's law is proved; the External is reduced to the lower half
+
+**The author's ruling.** The two cited Externals were to be checked for provability from Mathlib and
+LatticeProb. Where a proof is feasible, it is added as a proved theorem and the External is reduced
+or replaced. Where it is not, the reason and the exact missing pieces are recorded.
+
+**Feasibility.** Two independent studies were made, each with a compiled name probe:
+`ledger/audits/stout-lil-feasibility.md` and `ledger/audits/martingale-clt-feasibility.md`.
+- Stout's upper half (Theorem 1): feasible.
+- Stout's lower half (Theorem 2): not feasible now. It needs a sharp conditional lower tail, a
+  padding wrapper with `condExp` on a product filtration, conditioning at random times, and a
+  re-indexed conditional Borel–Cantelli. The details are in HANDOFF.md and the study.
+- The martingale CLT: feasible. Its packets are being integrated below the assumed result
+  (`232514b`), and the External stays until the proof is complete.
+
+**What changed.**
+- `CERW.Generic.Martingale.Lil.stout_upper` (`bb3afde`) proves Stout (1970), Theorem 1, under
+  exactly the hypotheses of the External, with axioms `[propext, Classical.choice, Quot.sound]`.
+- `ext-stout-lil` is re-frozen as version 2, with `frozen_sha256`
+  `a00af760ed3d885102378f58eb1951856af4a2ae2cd2bea125aa141bb1b6de7c`. Its conclusion is now the
+  `∃ᶠ` conjunct alone: Stout's Theorem 2, the lower half. The `∀ᶠ` conjunct is deleted, because it
+  is proved. The hypotheses are unchanged.
+- `CERW.Support.stoutLIL_full : CERW.External.StoutLIL → Statements.StoutLIL` combines the proved
+  upper half with the assumed lower half.
+- The four theorems that carry `hLIL` (`sharp_radii_lil`, `sharp_width`, `moment_fluctuations`,
+  `site_fluctuations`) now route it through the bridge. Their frozen bytes and hashes are unchanged.
+  They mention the External only by name, so each of them is now a stronger theorem: it assumes
+  only the lower half.
+
+**Checks.**
+- Both directions are checked in `scratch/externals/BridgeCheck.lean`: the upper half plus the
+  verbatim lower half gives version 1, and version 1 gives the lower half. So version 2 is exactly
+  version 1 minus a proved conjunct.
+- `lake build` passes with no error and no warning, and `stout_upper` has the axioms above.
