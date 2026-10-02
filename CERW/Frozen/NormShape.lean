@@ -43,7 +43,7 @@ Let $d\geq2$, let $\gauge$ be a norm on~$\R^d$, let $\xi(x)\in\partial \gauge(x)
 \end{theorem}
 Definitions the statement relies on (verbatim):
 \textit{eq:kernel and eq:ellipticity (lines 313--321)}
-Let $\gauge$ be a norm on~$\R^d$, let $B_\gauge$ be its unit ball, and let $\partial\gauge(x)$ be the set of subgradients of~$\gauge$ at~$x$, as in Section~\ref{sec:norms-intro}. If $\gauge$ is differentiable at~$x$, then $\partial\gauge(x)=\{\nabla\gauge(x)\}$. At each site~$x\neq0$ fix $\xi(x)\in\partial\gauge(x)$, with coordinates~$\xi_i(x)$. The \defn{centrally excited random walk with norm~$\gauge$} moves like simple random walk, except that on its first departure from each site~$x\neq0$ it moves to $x\pm e_i$ with probability
+Let $\gauge$ be a norm on~$\R^d$, let $B_\gauge$ be its unit ball, and let $\partial\gauge(x)$ be the set of subgradients of~$\gauge$ at~$x$, as in Section~\ref{sec:norms-intro}. If $\gauge$ is differentiable at~$x$, then $\partial\gauge(x)=\{\nabla\gauge(x)\}$. At each site~$x\neq0$ we fix $\xi(x)\in\partial\gauge(x)$, with coordinates~$\xi_i(x)$. The \defn{centrally excited random walk with norm~$\gauge$} moves like simple random walk, except that on its first departure from each site~$x\neq0$ it moves to $x\pm e_i$ with probability
 \begin{equation}\label{eq:kernel}
 \frac1{2d}\mp\frac\drift2\xi_i(x)
 \qquad\text{for } 1\leq i\leq d\, .

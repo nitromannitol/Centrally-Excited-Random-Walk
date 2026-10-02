@@ -25,7 +25,7 @@ There exists $C(d)<\infty$ such that, for every norm~$\gauge$, every choice of t
 \end{lemma}
 Definitions the statement relies on (verbatim):
 \textit{$\mu$ and eq:hessian-growth (lines 450--453)}
-Let $\mu$ be the distributional Laplacian of~$\gauge$ on~$\R^d$, so that $\int\phi\dd\mu=\int \gauge(v)\sum_{i=1}^d\partial_i^2\phi(v)\dd v$ for every smooth compactly supported function~$\phi$ on~$\R^d$. It is a positive Radon measure, since the smooth convex functions obtained by mollifying~$\gauge$ have nonnegative Laplacian. For $y\in\R^d$ and $R>0$, let $\phi$ be smooth with $0\leq\phi\leq1$, $\phi=1$ on~$B(y,R)$, support in~$B(y,2R)$ and $|\nabla\phi|\leq2/R$. Integrating by parts and using $|\nabla \gauge|\leq\Lambda_\gauge$ gives
+Let $\mu$ be the distributional Laplacian of~$\gauge$ on~$\R^d$, so that $\int\phi\dd\mu=\int \gauge(v)\sum_{i=1}^d\partial_i^2\phi(v)\dd v$ for every smooth compactly supported function~$\phi$ on~$\R^d$. It is a positive Radon measure, since the smooth convex functions obtained by mollifying~$\gauge$ have nonnegative Laplacian. For $y\in\R^d$ and $R>0$, let $\phi$ be smooth with $0\leq\phi\leq1$, $\phi=1$ on~$B(y,R)$, support in~$B(y,2R)$ and $|\nabla\phi|\leq2/R$. Integrating by parts and using $|\nabla \gauge|\leq\Lambda_\gauge$, we get
 \begin{equation}\label{eq:hessian-growth}
 \mu(B(y,R))\leq\int\phi\dd\mu=-\int\nabla \gauge\cdot\nabla\phi\leq2^{d+1}\omega_d\Lambda_\gauge R^{d-1}\, .
 \end{equation}
