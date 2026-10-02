@@ -53,13 +53,15 @@ Nothing here is assumed: every item marked proved is a theorem with axioms
 | block increments under the conditioned measure | `LilLower/ConditionedBlock.lean` | proved |
 | level gate, open before the start time | `LilLower/Gate.lean` | proved |
 | bracket of the padded process | `LilLower/PaddedBracket.lean` | proved |
-| block parameters, arithmetic, conditional bound, combination, transfer, final theorem | `Generic/Martingale/LilAssembly/` | in progress |
+| sharp lower tail for one block, bracket values at the passage times, block sums | `LilLower/BlockLowerBound.lean`, `PassageValues.lean`, `BlockIncBound.lean`, `BlockSums.lean` | proved |
+| block parameters, arithmetic, conditional bound for the blocks | `LilAssembly/BlockArith.lean`, `BlockLowerProof.lean` | proved |
+| Lévy along the blocks, passage window, lower bound for padded data | `LilAssembly/LevyBlocks.lean`, `PassageWindow.lean`, `NiceLower.lean` | proved |
+| padded data of a martingale with sure data: gate, bound, bracket, the thirteen fields | `LilAssembly/PaddedConstruction.lean`, `PaddedStructure.lean`, `PaddedRatio.lean`, `PaddedBlocks.lean`, `PaddedDataOf.lean` | proved |
+| gate open from a start time on, lower half for sure data, clamping, the reduction | `LilAssembly/GateOpenAe.lean`, `LowerOfSure.lean`, `ReductionProof.lean` | proved |
+| the lower half of Stout's law, `CERW.External.StoutLIL` | `LilAssembly/StoutLower.lean` (`stout_lower`) | proved |
 
 ## Open points
 
-- The arithmetic that combines the block increment with the step-0 bound: the choice of `θ`, `δ'`
-  and the exponent `η` of the sharp lower tail against the sum of `q_k`.
-- The measurability of the events `A_k` in the stopping σ-algebra of `τ_k`.
-- That `P̃` grows by at most `max(b², 1)` per step, which fixes the window width.
-- The final theorem `CERW.External.StoutLIL`, which would retire the last assumption of the
-  development in the way ruling D6 retired the martingale central limit theorem.
+None for the route. The theorem `CERW.Generic.Martingale.LilAssembly.stout_lower` has the
+statement of `CERW.External.StoutLIL` and axioms `propext, Classical.choice, Quot.sound`. What
+remains is to retire the assumption in the manifest and the documents.
