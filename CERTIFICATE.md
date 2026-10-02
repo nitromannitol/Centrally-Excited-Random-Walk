@@ -4,7 +4,7 @@ Formalizes statements pinned in `paper/limit-shapes.tex` as the Lean library `CE
 
 ## What is claimed
 
-Of 33 node(s) registered in `ledger/manifest.yaml`: 32 `PROVED`, 1 `FROZEN`. Only `SEALED` and `PROVED` nodes are proved with a clean axiom closure; `FROZEN` nodes are cited results carried as explicit hypotheses and are assumed here, not proved; `CONDITIONAL` and `DRAFT_SORRY` nodes are not yet sealed.
+Every node's state in `ledger/manifest.yaml` is `SEALED` or `PROVED` (0 SEALED, 32 PROVED, 32 total): all are proved with no added axiom and no `sorry`.
 
 ## Environment
 
@@ -13,7 +13,7 @@ Of 33 node(s) registered in `ledger/manifest.yaml`: 32 `PROVED`, 1 `FROZEN`. Onl
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/limit-shapes.tex`) SHA-256 | `55ac45ee0504a38eea83703a40f239d852878b03608aeb591682794145e2ad72` |
-| Build | succeeded, 9099 jobs |
+| Build | succeeded, 9098 jobs |
 | Build warnings | 0 |
 | Generated | 2026-10-02 |
 
@@ -36,37 +36,36 @@ python3 -m leanform_tools.certificate . --check
 |---|---|---|---|---|
 | 1 | `local-time-potential` | `CERW.Frozen.local_time_potential` | `PROVED` | classical only |
 | 2 | `coarse-bounds` | `CERW.Frozen.coarse_bounds` | `PROVED` | classical only |
-| 3 | `ext-stout-lil` | `CERW.External.StoutLIL` | `FROZEN` | classical only |
-| 4 | `thm-shape` | `CERW.Frozen.limit_shape` | `PROVED` | classical only |
-| 5 | `thm-fluctuations` | `CERW.Frozen.fluctuation_rates` | `PROVED` | classical only |
-| 6 | `thm-sharp-radii` | `CERW.Frozen.sharp_radii` | `PROVED` | classical only |
-| 7 | `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `PROVED` | classical only |
-| 8 | `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `PROVED` | classical only |
-| 9 | `thm-sharp-width` | `CERW.Frozen.sharp_width` | `PROVED` | classical only |
-| 10 | `thm-norm-shape` | `CERW.Frozen.norm_shape` | `PROVED` | classical only |
-| 11 | `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `PROVED` | classical only |
-| 12 | `lem-local` | `CERW.Frozen.norm_local_time_potential` | `PROVED` | classical only |
-| 13 | `lem-freedman` | `CERW.Frozen.freedman_bound` | `PROVED` | classical only |
-| 14 | `lem-cell` | `CERW.Frozen.cell_gradient` | `PROVED` | classical only |
-| 15 | `lem-geometry` | `CERW.Frozen.norm_potential_geometry` | `PROVED` | classical only |
-| 16 | `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `PROVED` | classical only |
-| 17 | `lem-radial` | `CERW.Frozen.norm_radial_test` | `PROVED` | classical only |
-| 18 | `lem-crossing` | `CERW.Frozen.drift_crossing` | `PROVED` | classical only |
-| 19 | `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `PROVED` | classical only |
-| 20 | `lem-layer` | `CERW.Frozen.layer_potential` | `PROVED` | classical only |
-| 21 | `lem-cap` | `CERW.Frozen.moreau_cap` | `PROVED` | classical only |
-| 22 | `lem-contact` | `CERW.Frozen.contact_potential` | `PROVED` | classical only |
-| 23 | `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `PROVED` | classical only |
-| 24 | `prop-inner` | `CERW.Frozen.inner_radius` | `PROVED` | classical only |
-| 25 | `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `PROVED` | classical only |
-| 26 | `lem-near-far` | `CERW.Frozen.near_far` | `PROVED` | classical only |
-| 27 | `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `PROVED` | classical only |
-| 28 | `lem-fixed-site-centering` | `CERW.Frozen.fixed_site_centering` | `PROVED` | classical only |
-| 29 | `thm-site-fluctuations` | `CERW.Frozen.site_fluctuations` | `PROVED` | classical only |
-| 30 | `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `PROVED` | classical only |
-| 31 | `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `PROVED` | classical only |
-| 32 | `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `PROVED` | classical only |
-| 33 | `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `PROVED` | classical only |
+| 3 | `thm-shape` | `CERW.Frozen.limit_shape` | `PROVED` | classical only |
+| 4 | `thm-fluctuations` | `CERW.Frozen.fluctuation_rates` | `PROVED` | classical only |
+| 5 | `thm-sharp-radii` | `CERW.Frozen.sharp_radii` | `PROVED` | classical only |
+| 6 | `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `PROVED` | classical only |
+| 7 | `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `PROVED` | classical only |
+| 8 | `thm-sharp-width` | `CERW.Frozen.sharp_width` | `PROVED` | classical only |
+| 9 | `thm-norm-shape` | `CERW.Frozen.norm_shape` | `PROVED` | classical only |
+| 10 | `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `PROVED` | classical only |
+| 11 | `lem-local` | `CERW.Frozen.norm_local_time_potential` | `PROVED` | classical only |
+| 12 | `lem-freedman` | `CERW.Frozen.freedman_bound` | `PROVED` | classical only |
+| 13 | `lem-cell` | `CERW.Frozen.cell_gradient` | `PROVED` | classical only |
+| 14 | `lem-geometry` | `CERW.Frozen.norm_potential_geometry` | `PROVED` | classical only |
+| 15 | `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `PROVED` | classical only |
+| 16 | `lem-radial` | `CERW.Frozen.norm_radial_test` | `PROVED` | classical only |
+| 17 | `lem-crossing` | `CERW.Frozen.drift_crossing` | `PROVED` | classical only |
+| 18 | `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `PROVED` | classical only |
+| 19 | `lem-layer` | `CERW.Frozen.layer_potential` | `PROVED` | classical only |
+| 20 | `lem-cap` | `CERW.Frozen.moreau_cap` | `PROVED` | classical only |
+| 21 | `lem-contact` | `CERW.Frozen.contact_potential` | `PROVED` | classical only |
+| 22 | `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `PROVED` | classical only |
+| 23 | `prop-inner` | `CERW.Frozen.inner_radius` | `PROVED` | classical only |
+| 24 | `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `PROVED` | classical only |
+| 25 | `lem-near-far` | `CERW.Frozen.near_far` | `PROVED` | classical only |
+| 26 | `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `PROVED` | classical only |
+| 27 | `lem-fixed-site-centering` | `CERW.Frozen.fixed_site_centering` | `PROVED` | classical only |
+| 28 | `thm-site-fluctuations` | `CERW.Frozen.site_fluctuations` | `PROVED` | classical only |
+| 29 | `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `PROVED` | classical only |
+| 30 | `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `PROVED` | classical only |
+| 31 | `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `PROVED` | classical only |
+| 32 | `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `PROVED` | classical only |
 
 ## Frozen statements
 
@@ -76,13 +75,12 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 |---|---|
 | `local-time-potential` | `c804956e1998b52392ff46288059b8d424f072a46a753112c24652bf078e6b55` |
 | `coarse-bounds` | `695b02b4055219568e89d469368885395be5c06e2a42645ce0c0d7afa33bbc15` |
-| `ext-stout-lil` | `a00af760ed3d885102378f58eb1951856af4a2ae2cd2bea125aa141bb1b6de7c` |
 | `thm-shape` | `afe23ec124a7797b5a935f8d6c7c9d284e866118f2c4af2c98d04da9da6894e3` |
 | `thm-fluctuations` | `ec18ac337d2fb2ca751b815ad92dd51d844ed4a40d5189a740a641e0e09812a4` |
 | `thm-sharp-radii` | `72fbd89c684fe5947057fbbf5cfb00e6a2689b59aede6a5dfe1c5a74c4ce4c9c` |
-| `thm-sharp-radii-lil` | `869d4e4bded4584de27d0d3a44a2ea3d3cee876cfbdc54a88aa23207a0a2e2c3` |
+| `thm-sharp-radii-lil` | `02bf74c87e998ed87b8992806d085f7b87649b45355fb1c033f486b3a551d74e` |
 | `thm-sharp-bulk` | `9bab71e5d1b9792c8f8c11bfc783ad04d6eb135525693acdcd98b660959668e8` |
-| `thm-sharp-width` | `33c8d67f92937c4993df7f3a5cf0fa8c7871390124e8971eab54adbd076f20da` |
+| `thm-sharp-width` | `7654422573bbcdf512793dc39bc4b1ad143d87ac0abe8e945ac27c5b17988e14` |
 | `thm-norm-shape` | `2d3df99b7e7b2255c43fc0572eaaab84dd2b700427303abb9633798d13d3d3db` |
 | `lem-ballpotential` | `a1b46e20b7aa5a120584785042d8dac1ceb272e0d1513492f51dad5ea7cbe4c8` |
 | `lem-local` | `9c472ab635b0014c78ca5373c2288ed7181ee112a164c30ac614ec8c8752a3a7` |
@@ -100,9 +98,9 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 | `prop-inner` | `2d9401fb69c6e5346005b003eeff3a0e41b744489a8ffb0baef89864cb60a244` |
 | `prop-stronger-outer` | `6590555088155da416f44b0c49d47773a5ee72de758fc397ca5ef2755dc403de` |
 | `lem-near-far` | `1bd6626860ec14cd2e1cb1cbc4905ac3d8d5cb64c05f20a4479af337a5d7cabf` |
-| `thm-moment-fluctuations` | `8537594c5384a3799bd5cb220d2da87d09050a547a6e33edc0104b22da8b1b77` |
+| `thm-moment-fluctuations` | `06ccccaa3cbc9ff36d4593ff974c1072aaec54ed01617a3fcf5087e54e13fe5f` |
 | `lem-fixed-site-centering` | `0c4ecaed7602a58c804a769396308b5a346ff427b933958b983b38b6f99b033f` |
-| `thm-site-fluctuations` | `ce5797e132513714f22dc8711fdd82a00d6d2cedd8c9334fb328fdeeb9518d5e` |
+| `thm-site-fluctuations` | `5dd4c40c63104a13a9388667d3a2574e8e90abfe53486acd60c7e7eb87292552` |
 | `lem-exp-deviation` | `0fb6a8e898e488c397a7ff3c6461b5680328f8472a3405de58677791f6b3168d` |
 | `prop-bulk-profile` | `34aa5668e98eaba6d8c37552c243e758e12c645e90f222ff30b20621630d0e34` |
 | `lem-separated-brackets` | `342581ac105e4d601df6d9e1d5fbf1238a798aa55c2213d3fbf733f1735a4b78` |
@@ -111,5 +109,4 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 ## What is not claimed
 
 - Anything not registered as a node in `ledger/manifest.yaml` is outside this certificate; `python3 -m leanform_tools.check_coverage` tracks whether the paper's statements are all registered.
-- The 1 `FROZEN` node(s) are cited results, stated as propositions in `CERW/External/` and carried as explicit hypotheses by the theorems that use them; they are assumed here, not proved.
 

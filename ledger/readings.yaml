@@ -64,6 +64,7 @@ clauses:
     conjuncts under the same \texttt{∀ δ} inside one \texttt{∀ᵐ}. Dividing by $\sqrt{r_n\log\log
     n}>0$ (true for $n\ge3$) recovers the ratio form, and the finitely many $n$ with $\log\log
     n\le0$ do not affect a ``frequently''
+    Version 2 (ruling D7, 2026-10-02): the binder \verb!hLIL! is deleted; Stout's law is proved.
   thm-sharp-bulk: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-introduction.md).
     $d\ge2$ is \texttt{hd : 2 ≤ d}, $\kappa$ is \texttt{ε} with $0<\kappa<1/d$. The constant
@@ -88,6 +89,7 @@ clauses:
     written junk-free as \texttt{∀ᵐ ω, ∀ δ > 0, ∃ᶠ n, (√(π/(3ε)) - δ) * √(r n * log (log n)) ≤
     maxRadius - innerRadius}. Both use \texttt{CERW.maxRadius} $=R_{\rm out}$ and
     \texttt{CERW.innerRadius} $=R_{\rm
+    Version 3 (ruling D7, 2026-10-02): the premise of part (b) is deleted; Stout's law is proved.
   thm-norm-shape: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-norm-setup.md). Paper
     macros: \verb!\drift! is $\kappa$ (Lean \verb!ε!), \verb!\gauge! is $\Psi$ (Lean \verb!Ψ!),
@@ -313,6 +315,7 @@ clauses:
     hypotheses \verb!hCLT : CERW.External.MartingaleCLT.{u}! (Hall--Heyde Cor.~3.1, deterministic
     normalization) and \verb!hLIL : CERW.External.StoutLIL.{u}! (Stout 1970); Steps 2 and 3 of
     Version 2 (ruling D6, 2026-10-01): the binder \verb!hCLT! is deleted; the martingale central limit theorem is proved (\verb!CERW.Generic.Martingale.CLT.martingaleCLT_proved!).
+    Version 3 (ruling D7, 2026-10-02): the binder \verb!hLIL! is deleted; Stout's law is proved.
   lem-fixed-site-centering: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-limit-laws.md).
     \emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!,
@@ -340,6 +343,7 @@ clauses:
     $G(x)=\sum_{j\ge0}P^j(0,x)$ (the $j=0$ term is included, so $G(0)\ge1$), the expected number
     of visits; it is
     Version 2 (ruling D6, 2026-10-01): the binder \verb!hCLT! is deleted; the martingale central limit theorem is proved (\verb!CERW.Generic.Martingale.CLT.martingaleCLT_proved!).
+    Version 3 (ruling D7, 2026-10-02): the binder \verb!hLIL! is deleted; Stout's law is proved.
   lem-exp-deviation: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-limit-laws.md). No
     random walk enters this lemma. $\langle S,T\rangle_n$ is \verb!CERW.predBracket μ ℱ S T n!
@@ -419,6 +423,7 @@ clauses:
     (\dots). Version 2 (ruling D5, 2026-10-01): the External is the lower half alone, Stout (1970),
     Theorem~2, the \texttt{∃ᶠ} conjunct; the upper half, Theorem~1, the \texttt{∀ᶠ} conjunct, is
     proved under the same hypotheses as \texttt{CERW.Generic.Martingale.Lil.stout\_upper}.
+    Retired (ruling D7, 2026-10-02): proved as \texttt{CERW.Generic.Martingale.LilAssembly.stout\_lower}; the proposition is \texttt{CERW.Generic.Martingale.Lil.StoutLower}, no longer a registered External.
 constants: {}
 
 exponents:

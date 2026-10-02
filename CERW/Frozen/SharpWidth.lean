@@ -1,4 +1,5 @@
-import CERW.External.StoutLIL
+import CERW.Generic.Martingale.Lil.LowerStatement
+import CERW.Generic.Martingale.LilAssembly.StoutLower
 import CERW.Support.Stout
 import CERW.Model
 import CERW.Support.Lower.ExpDeviation
@@ -70,8 +71,7 @@ theorem CERW.Frozen.sharp_width {d : ℕ} (hd : d = 2) :
         let E : Set Ω := {ω | c * Real.sqrt (r n * Real.log n)
           ≤ CERW.maxRadius (X · ω) n - CERW.innerRadius (X · ω) n}
         MeasurableSet E ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ E) ∧
-    (CERW.External.StoutLIL.{u} →
-      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
       (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
       ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ → ∃ᶠ n : ℕ in atTop,
         (Real.sqrt (Real.pi / (3 * ε)) - δ) * Real.sqrt (r n * Real.log (Real.log n))
@@ -80,5 +80,6 @@ theorem CERW.Frozen.sharp_width {d : ℕ} (hd : d = 2) :
 := by
   intro ωd ε hε0 hε1 r
   exact ⟨CERW.Support.Lower.sharp_width_poly_of @CERW.Support.Lower.exp_deviation hd ε hε0 hε1,
-    fun hLIL => (CERW.Support.Lower.sharp_width_of @CERW.Support.Main.limit_shape
-      @CERW.Support.Lower.exp_deviation hd (CERW.Support.stoutLIL_full hLIL) ε hε0 hε1).2⟩
+    (CERW.Support.Lower.sharp_width_of @CERW.Support.Main.limit_shape
+      @CERW.Support.Lower.exp_deviation hd (CERW.Support.stoutLIL_full
+        CERW.Generic.Martingale.LilAssembly.stout_lower) ε hε0 hε1).2⟩

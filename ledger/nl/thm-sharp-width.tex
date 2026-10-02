@@ -41,3 +41,4 @@ external Stout law of the iterated logarithm is carried as \texttt{hLIL : CERW.E
 $\{c\sqrt{r_n\log n}\le R_{\rm out}(n)-R_{\rm in}(n)\}$ is measurable and has probability at least $n^{-p}$. (b): ``almost surely
 $\limsup\ge\sqrt{\pi/(3\kappa)}$'' is written junk-free as \texttt{∀ᵐ ω, ∀ δ > 0, ∃ᶠ n, (√(π/(3ε)) - δ) * √(r n * log (log n)) ≤ maxRadius - innerRadius}.
 Both use \texttt{CERW.maxRadius} $=R_{\rm out}$ and \texttt{CERW.innerRadius} $=R_{\rm in}$.
+\paragraph{Version 3 (ruling D7).} The premise \verb!CERW.External.StoutLIL →! of part (b) is deleted: Stout's law of the iterated logarithm is proved.
