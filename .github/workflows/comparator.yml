@@ -3,10 +3,9 @@ name: Comparator audit
 # Runs the official leanprover/comparator on every CERWAudit/<X> pair: for each pair it checks
 # that Solution proves a statement whose full dependency closure matches Challenge's, uses only
 # the permitted axioms, and is accepted by BOTH the Lean kernel (replay) and the independent
-# nanoda kernel.
+# nanoda kernel.  Manual dispatch only until the public release; the release adds
+# `push: branches: [main]`.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -16,7 +15,7 @@ concurrency:
 env:
   COMPARATOR_REV: "575674928e239f5bc452aab72d1dd7b0f1326494"  # leanprover/comparator
   LEAN4EXPORT_REV: "v4.32.0"                                  # MUST match ./lean-toolchain
-  NANODA_REV: "68d5ca9db226849b41a6fff59d796ff19d0a8840"      # ammkrn/nanoda_lib
+  NANODA_REV: "6ae1f0cd962f081f6c423454c5da729d841236a7"      # ammkrn/nanoda_lib
   LANDRUN_REV: "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4"     # Zouuup/landrun
 
 jobs:

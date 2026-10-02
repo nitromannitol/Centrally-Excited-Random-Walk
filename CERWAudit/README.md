@@ -78,6 +78,6 @@ expecting `Your solution is okay!`.
 **Status.**  The challenge elaborates on Mathlib alone with one intentional `sorry`; the
 solution builds and proves the byte-identical statement from `CERW.Frozen.limit_shape` through
 `CERWAudit/Support/LimitShapeBridge.lean`; `leanprover/comparator` at commit
-`575674928e239f5bc452aab72d1dd7b0f1326494`, with nanoda at `68d5ca9db226849b41a6fff59d796ff19d0a8840`
+`575674928e239f5bc452aab72d1dd7b0f1326494`, with nanoda at `6ae1f0cd962f081f6c423454c5da729d841236a7`
 and landrun at `811cfff51ceaf3d9843708aa6d22e9b84ccac8b4`, printed `Your solution is okay!`
 with the nanoda kernel enabled.
