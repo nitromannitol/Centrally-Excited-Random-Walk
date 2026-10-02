@@ -874,8 +874,8 @@ use them. A difference that makes a statement weaker than the paper's is marked 
     `⟨S⟩_n/s_n² → v` in measure for a constant `v ≥ 0`; the conclusion is convergence in distribution to
     `gaussianReal 0 v`, rather than stable convergence. The filtrations `ℱ_{n,i} = ℱ_i` are nested, so the
     nesting hypothesis of the cited theorem holds. `v = 0` is allowed (`gaussianReal 0 0` is the point mass at
-    `0`), which the paper asks for at line 1521.
-29. `StoutLIL` is the form of Stout's theorem that the paper verifies at lines 1406 to 1412: a
+    `0`), which the paper asks for at line 1519.
+29. `StoutLIL` is the form of Stout's theorem that the paper verifies at lines 1404 to 1410: a
     square-integrable martingale `S` with `S_0 = 0`, an increment bound `|S_{n+1} - S_n| ≤ B_{n+1}` almost
     surely with `B_{n+1}` measurable with respect to `ℱ_n` (predictable), `⟨S⟩_n → ∞` and
     `B_n √(log log(⟨S⟩_n ∨ e^e))/√⟨S⟩_n → 0` almost surely. Its conclusion is the lower half
