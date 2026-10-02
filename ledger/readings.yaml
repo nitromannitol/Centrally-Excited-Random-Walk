@@ -312,6 +312,7 @@ clauses:
     set. \emph{Externals.} By the author's ruling the theorem carries both cited results as
     hypotheses \verb!hCLT : CERW.External.MartingaleCLT.{u}! (Hall--Heyde Cor.~3.1, deterministic
     normalization) and \verb!hLIL : CERW.External.StoutLIL.{u}! (Stout 1970); Steps 2 and 3 of
+    Version 2 (ruling D6, 2026-10-01): the binder \verb!hCLT! is deleted; the martingale central limit theorem is proved (\verb!CERW.Generic.Martingale.CLT.martingaleCLT_proved!).
   lem-fixed-site-centering: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-limit-laws.md).
     \emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!,
@@ -338,6 +339,7 @@ clauses:
     author's ruling. \emph{Definitions.} \verb!G = LatticeProb.srwGreenInf d!,
     $G(x)=\sum_{j\ge0}P^j(0,x)$ (the $j=0$ term is included, so $G(0)\ge1$), the expected number
     of visits; it is
+    Version 2 (ruling D6, 2026-10-01): the binder \verb!hCLT! is deleted; the martingale central limit theorem is proved (\verb!CERW.Generic.Martingale.CLT.martingaleCLT_proved!).
   lem-exp-deviation: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-limit-laws.md). No
     random walk enters this lemma. $\langle S,T\rangle_n$ is \verb!CERW.predBracket μ ℱ S T n!
@@ -401,6 +403,7 @@ clauses:
     characteristic function $E\exp(-\tfrac12\eta^2t^2)$. The Lean Prop is the special case
     $k_n=n$, $\mathcal F_{n,i}=\mathcal F_i$ (so nesting is automatic), $S_{ni}=S_i/s_n$ for one
     martingale $S$ with $S_0=0$ and a deterministic normalizer $s_n>0$, and $\eta^2=v\in\mathbb
+    Retired (ruling D6, 2026-10-01): proved as \texttt{CERW.Generic.Martingale.CLT.martingaleCLT\_proved}; no longer a registered External.
   ext-stout-lil: >-
     Independent refute-first reading: PASS (ledger/audits/prefreeze-reading-introduction.md). The
     cited result, as I read it (Stout, \emph{A martingale analogue of Kolmogorov's law of the

@@ -1,4 +1,4 @@
-import CERW.External.MartingaleCLT
+import CERW.Generic.Martingale.CLT.Statement
 import Mathlib.MeasureTheory.Measure.LevyConvergence
 import CERW.Generic.Martingale.CLT.Interfaces
 
@@ -8,7 +8,7 @@ import CERW.Generic.Martingale.CLT.Interfaces
 Convergence of characteristic functions to the Gaussian one gives convergence in distribution to
 `gaussianReal 0 v`. The array form `ArrayCLT` of the martingale central limit theorem, for rows
 `M n` that are square-integrable martingales started at `0`, implies the form carried by
-`CERW.External.MartingaleCLT`, which has one martingale `S` and normalizers `s n`.
+`CERW.Generic.Martingale.CLT.MartingaleCLT`, which has one martingale `S` and normalizers `s n`.
 -/
 
 universe u
@@ -83,7 +83,8 @@ private theorem predBracket_div_const_ae_eq {Ω : Type*} {m0 : MeasurableSpace �
 
 /-- The array form of the martingale central limit theorem implies the form with a single
 martingale `S`, normalizers `s n` and the rows `S k / s n`. -/
-theorem martingaleCLT_of_arrayCLT (h : ArrayCLT.{u}) : CERW.External.MartingaleCLT.{u} := by
+theorem martingaleCLT_of_arrayCLT (h : ArrayCLT.{u}) :
+    CERW.Generic.Martingale.CLT.MartingaleCLT.{u} := by
   intro Ω m0 μ hμ ℱ S hS hL hS0 s hs v hLind hBr
   have hrow : ∀ n, (fun k ω => S k ω / s n) = (s n)⁻¹ • S := fun n => by
     funext k ω

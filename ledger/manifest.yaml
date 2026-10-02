@@ -41,17 +41,6 @@ nodes:
     provider: CERW.Frozen.coarse_bounds
     approved: "2026-09-30"
 
-  - id: ext-martingale-clt
-    version: 1
-    kind: definition
-    source: Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1399 and 1519
-    file: CERW/External/MartingaleCLT.lean
-    export: CERW.External.MartingaleCLT
-    state: FROZEN
-    frozen_sha256: 3dda91ee188303c328444fa193d691293fcb7eae0810c38d432d8e3d858ef13c
-    provider: CERW.External.MartingaleCLT
-    approved: "2026-09-30"
-
   - id: ext-stout-lil
     version: 2
     kind: definition
@@ -317,15 +306,15 @@ nodes:
     approved: "2026-09-30"
 
   - id: thm-moment-fluctuations
-    version: 1
+    version: 2
     kind: theorem
     source: limit-shapes.tex:1353-1374 (label thm:moment-fluctuations)
     file: CERW/Frozen/MomentFluctuations.lean
     export: CERW.Frozen.moment_fluctuations
     state: PROVED
-    frozen_sha256: 7497a8697e453618822f482d3812dffce4b3dbdd4d2214100ef3b22c9c5568dd
+    frozen_sha256: 8537594c5384a3799bd5cb220d2da87d09050a547a6e33edc0104b22da8b1b77
     provider: CERW.Frozen.moment_fluctuations
-    approved: "2026-09-30"
+    approved: "2026-10-01"
 
   - id: lem-fixed-site-centering
     version: 1
@@ -339,15 +328,15 @@ nodes:
     approved: "2026-09-30"
 
   - id: thm-site-fluctuations
-    version: 1
+    version: 2
     kind: theorem
     source: limit-shapes.tex:1460-1485 (label thm:site-fluctuations)
     file: CERW/Frozen/SiteFluctuations.lean
     export: CERW.Frozen.site_fluctuations
     state: PROVED
-    frozen_sha256: 4f6d4b89263fe0acabf00c7ef9556190a5b731f8148989dacf7c94f014b8936e
+    frozen_sha256: ce5797e132513714f22dc8711fdd82a00d6d2cedd8c9334fb328fdeeb9518d5e
     provider: CERW.Frozen.site_fluctuations
-    approved: "2026-09-30"
+    approved: "2026-10-01"
 
   - id: lem-exp-deviation
     version: 1

@@ -1,4 +1,4 @@
-import CERW.External.MartingaleCLT
+import CERW.Generic.Martingale.CLT.Statement
 import Mathlib.MeasureTheory.Measure.LevyConvergence
 import CERW.Generic.Martingale.CLT.Interfaces
 import CERW.Generic.Martingale.CLT.ArrayForm
@@ -10,7 +10,7 @@ The array form `ArrayCLT` of the martingale central limit theorem is derived fro
 hypotheses that remain as inputs: convergence of the characteristic function of the last term of
 each row (`H1`), and the passage from characteristic-function convergence to convergence in
 distribution (`H2`). The array form implies the single-martingale form
-`CERW.External.MartingaleCLT` carried by the paper.
+`CERW.Generic.Martingale.CLT.MartingaleCLT` carried by the paper.
 
 The unconditional discharge of `H1` and `H2` — from the increment step bound, the path-bracket
 properties, the truncated increments, the compensated exponential and the characteristic-function
@@ -71,7 +71,7 @@ theorem martingaleCLT_holds
       (∀ t : ℝ, Tendsto (fun n => ∫ ω, Complex.exp (t * X n ω * Complex.I) ∂μ) atTop
         (𝓝 (Complex.exp (-(t ^ 2 * v / 2 : ℝ))))) →
       TendstoInDistribution X atTop id (fun _ => μ) (gaussianReal 0 v)) :
-    CERW.External.MartingaleCLT.{u} :=
+    CERW.Generic.Martingale.CLT.MartingaleCLT.{u} :=
   martingaleCLT_of_arrayCLT (arrayCLT_of_charFun hH1 hH2)
 
 end CERW.Generic.Martingale.CLT
