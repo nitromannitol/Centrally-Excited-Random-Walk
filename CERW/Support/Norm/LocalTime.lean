@@ -30,7 +30,7 @@ drift field `ξ`, a choice of subgradients of a norm `Ψ`, given the estimate of
   the source sum.
 
 The step specific to norms is the replacement of the lattice drift `ξ(x)` by the gradient `∇Ψ(v)`
-on the cells (lines 486-494 of the paper). It uses `lem:cell` and the hessian growth
+on the cells (lines 479-483 of the paper). It uses `lem:cell` and the hessian growth
 `μ(B(y, R)) ≤ C Λ_Ψ R^{d-1}` (`eq:hessian-growth`) of the distributional Laplacian `μ` of `Ψ`.
 A locally finite measure `μ` with `IsDistribLaplacian Ψ μ` exists: the functional
 `φ ↦ ∫ Ψ Δφ` is positive on the smooth compactly supported functions, because second difference
