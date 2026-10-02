@@ -14,7 +14,7 @@ open MeasureTheory Filter Topology
 open scoped symmDiff Pointwise
 open LatticeProb (Site euclidNorm)
 
-/-- `prop:coarse` (`cerw-flat.tex:547-561`):
+/-- `prop:coarse` (`limit-shapes.tex:547-554`, Euclidean case):
 
 ```latex
 \begin{proposition}\label{prop:coarse}
