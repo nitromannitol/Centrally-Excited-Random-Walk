@@ -137,8 +137,8 @@ def PathwiseUpper : Prop :=
     (∀ᶠ k in atTop, ¬ BlockHit S B V θ ε δ k ω) →
     ∀ᶠ n in atTop, S n ω ≤ (1 + δ) * Real.sqrt (2 * V n ω * Real.log (Real.log (V n ω)))
 
-/-- The upper half of Stout's law of the iterated logarithm: the first conjunct of
-`CERW.External.StoutLIL`, under the same hypotheses. -/
+/-- The upper half of Stout's law of the iterated logarithm (Stout 1970, Theorem 1), under the
+hypotheses of the lower half `CERW.Generic.Martingale.Lil.StoutLower`. -/
 def StoutUpper : Prop :=
   ∀ {Ω : Type u} [m0 : MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (ℱ : Filtration ℕ m0) (S : ℕ → Ω → ℝ), Martingale S ℱ μ → (∀ n, MemLp (S n) 2 μ) →

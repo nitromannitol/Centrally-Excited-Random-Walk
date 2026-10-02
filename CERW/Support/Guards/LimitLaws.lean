@@ -11,7 +11,7 @@ import CERW.Support.Law.Existence
 For `d = 2` and `ε = 1/8`, the hypotheses of the frozen limit laws (moment fluctuations,
 fixed-site centering, site fluctuations, the radii law of the iterated logarithm, and the
 width of the shell) hold together, since centrally excited random walk exists with these
-parameters. The cited hypothesis `hLIL` stays a hypothesis of the guards.
+parameters. The guards carry no hypothesis beyond the parameters.
 -/
 
 namespace CERW.Support.Guards
@@ -22,8 +22,7 @@ open LatticeProb (Site euclidNorm)
 /-- In dimension two with `ε = 1/8`, the sum of the distances from the origin over the departure
 range and the moment radius satisfy the central limit theorem and the law of the iterated
 logarithm of the frozen statement, for every centrally excited random walk. -/
-theorem moment_fluctuations_applies
-    (hLIL : CERW.External.StoutLIL.{0}) :
+theorem moment_fluctuations_applies :
     let d : ℕ := 2
     let ε : ℝ := 1 / 8
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
@@ -52,7 +51,7 @@ theorem moment_fluctuations_applies
   have hd : 2 ≤ d := le_rfl
   have hε : 0 < ε := by norm_num [ε]
   have hεd : ε < 1 / (d : ℝ) := by norm_num [ε, d]
-  exact CERW.Frozen.moment_fluctuations hd hLIL ε hε hεd μ X hX
+  exact CERW.Frozen.moment_fluctuations hd ε hε hεd μ X hX
 
 /-- In dimension two with `ε = 1/8`, there is a probability space carrying a centrally excited
 random walk, so the hypothesis of `moment_fluctuations` is satisfiable. -/
@@ -93,8 +92,7 @@ theorem fixed_site_centering_inhabited :
 /-- In dimension two with `ε = 1/8`, the local times at fixed sites satisfy the central limit
 theorem, the law of the iterated logarithm and the joint limits of the frozen statement, for every
 centrally excited random walk. -/
-theorem site_fluctuations_applies
-    (hLIL : CERW.External.StoutLIL.{0}) :
+theorem site_fluctuations_applies :
     let d : ℕ := 2
     let ε : ℝ := 1 / 8
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
@@ -127,7 +125,7 @@ theorem site_fluctuations_applies
   have hd : 2 ≤ d := le_rfl
   have hε : 0 < ε := by norm_num [ε]
   have hεd : ε < 1 / (d : ℝ) := by norm_num [ε, d]
-  exact CERW.Frozen.site_fluctuations hd hLIL ε hε hεd μ X hX
+  exact CERW.Frozen.site_fluctuations hd ε hε hεd μ X hX
 
 /-- In dimension two with `ε = 1/8`, there is a probability space carrying a centrally excited
 random walk, so the hypothesis of `site_fluctuations` is satisfiable. -/
@@ -138,7 +136,7 @@ theorem site_fluctuations_inhabited :
 
 /-- In dimension two with `ε = 1/8`, the inner and outer radii of centrally excited random walk
 satisfy the lower bound of the law of the iterated logarithm of the frozen statement. -/
-theorem sharp_radii_lil_applies (hLIL : CERW.External.StoutLIL.{0}) :
+theorem sharp_radii_lil_applies :
     let d : ℕ := 2
     let ε : ℝ := 1 / 8
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
@@ -155,7 +153,7 @@ theorem sharp_radii_lil_applies (hLIL : CERW.External.StoutLIL.{0}) :
   intro d ε ωd r Ω _ μ _ X hX
   have hε : 0 < ε := by norm_num [ε]
   have hεd : ε < 1 / (d : ℝ) := by norm_num [ε, d]
-  exact CERW.Frozen.sharp_radii_lil rfl hLIL ε hε hεd μ X hX
+  exact CERW.Frozen.sharp_radii_lil rfl ε hε hεd μ X hX
 
 /-- In dimension two with `ε = 1/8`, there is a probability space carrying a centrally excited
 random walk, so the hypothesis of `sharp_radii_lil` is satisfiable. -/
@@ -179,8 +177,7 @@ theorem sharp_width_applies :
         let E : Set Ω := {ω | c * Real.sqrt (r n * Real.log n)
           ≤ CERW.maxRadius (X · ω) n - CERW.innerRadius (X · ω) n}
         MeasurableSet E ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ E) ∧
-    (CERW.External.StoutLIL.{0} →
-      ∀ {Ω : Type} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (∀ {Ω : Type} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
       (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
       ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ → ∃ᶠ n : ℕ in atTop,
         (Real.sqrt (Real.pi / (3 * ε)) - δ) * Real.sqrt (r n * Real.log (Real.log n))

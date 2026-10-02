@@ -14,8 +14,8 @@ universe u
 namespace CERW.Generic.Martingale.LilAssembly
 
 /-- **The lower half of Stout's law of the iterated logarithm**, Stout (1970), Theorem 2, proved
-from Mathlib: the proposition `CERW.External.StoutLIL`. -/
-theorem stout_lower : CERW.External.StoutLIL.{u} :=
+from Mathlib: the proposition `CERW.Generic.Martingale.Lil.StoutLower`. -/
+theorem stout_lower : CERW.Generic.Martingale.Lil.StoutLower.{u} :=
   reduction_of.{u} (niceLower_of.{u} block_lower.{u})
 
 end CERW.Generic.Martingale.LilAssembly

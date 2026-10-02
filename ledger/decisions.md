@@ -188,3 +188,40 @@ ascriptions. `cerw-audit2` checked both glues independently in a clean worktree,
 
 **Consequence.** The only assumption left in the development is Stout's Theorem 2. Its missing
 pieces are recorded in `ledger/audits/stout-lil-feasibility.md` and HANDOFF.md.
+
+## D7 (2026-10-02). The lower half of Stout's law is proved; nothing is assumed
+
+**The author's ruling.** As in D5 and D6: where a cited External can be proved, the proof is added
+and the External is reduced or replaced.
+
+**What was proved.** `CERW.Generic.Martingale.LilAssembly.stout_lower` proves the lower half of
+Stout's law of the iterated logarithm (Stout 1970, Theorem 2), in the form the paper uses, with no
+hypotheses. Its axioms are `[propext, Classical.choice, Quot.sound]`. The proof is the feasibility
+study's route, `ledger/audits/stout-lil-feasibility.md`:
+- the sharp lower tail by exponential tilting, without a change of measure (`Tilt/`, `3daf258`,
+  `6078159`);
+- padding with independent signs, a level gate with a start time, and conditioned blocks
+  (`LilLower/`, cerw-audit1);
+- block arithmetic, Lévy's Borel–Cantelli lemma along the passage times, the passage window and the
+  pathwise combination (`LilAssembly/`);
+- the block lower bound and the reduction from padded data (cerw-audit1, `7efcc26`).
+`cerw-audit2` audited the landings. Together with D5 and D6, both cited martingale limit theorems
+are now proved from Mathlib and Lattice-Probability.
+
+**What changed.**
+- In `thm-sharp-radii-lil` (version 2), `thm-moment-fluctuations` (version 3) and
+  `thm-site-fluctuations` (version 3) the binder `(hLIL : CERW.External.StoutLIL.{u})` is deleted.
+  In `thm-sharp-width` (version 3) the premise `CERW.External.StoutLIL.{u} →` of part (b) is
+  deleted. Nothing else in their frozen bytes changes, so each new version implies the old one. The
+  proofs supply `CERW.Support.stoutLIL_full stout_lower`, and the four stay PROVED.
+- The node `ext-stout-lil` is retired. The manifest has 32 nodes and no FROZEN node.
+  `ASSUMPTIONS.md` says that nothing is assumed.
+- The proposition moves out of the frozen directory `CERW/External/`, which is removed together with
+  its index. It becomes `CERW.Generic.Martingale.Lil.StoutLower` in
+  `CERW/Generic/Martingale/Lil/LowerStatement.lean`, with its body unchanged. Its users (`Core.lean`,
+  `StoutLower.lean`, `Support/Stout.lean`) are renamed, and the guards drop `hLIL`.
+- The docs: README, PROOF, CORRESPONDENCE, readings and the NL twins.
+- The paper's line 304 (the AI paragraph) is changed by the paper session in a follow-up re-pin.
+
+**Consequence.** Every registered statement is proved from Mathlib and Lattice-Probability. No
+cited result is carried as a hypothesis.

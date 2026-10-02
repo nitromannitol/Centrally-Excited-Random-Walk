@@ -1,4 +1,4 @@
-import CERW.External.StoutLIL
+import CERW.Generic.Martingale.Lil.LowerStatement
 import CERW.Generic.Martingale.LilLower
 import CERW.Generic.Martingale.Tilt.LimitStatements
 import CERW.Generic.Martingale.LilAssembly.Statements
@@ -111,6 +111,6 @@ def NiceLower : Prop :=
 
 /-- **The reduction.** The lower bound for padded data gives the lower half of the law of the
 iterated logarithm, the cited result. -/
-def Reduction : Prop := NiceLower.{u} → CERW.External.StoutLIL.{u}
+def Reduction : Prop := NiceLower.{u} → CERW.Generic.Martingale.Lil.StoutLower.{u}
 
 end CERW.Generic.Martingale.LilAssembly
