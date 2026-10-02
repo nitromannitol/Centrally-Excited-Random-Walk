@@ -16,7 +16,7 @@ version: 1
 library: CERW
 source_pin:
   file: paper/limit-shapes.tex
-  sha256: d39e7f24d52e7a095508daefd075c7e9651289be97cfe5eadd67d8008aaa8328
+  sha256: 55ac45ee0504a38eea83703a40f239d852878b03608aeb591682794145e2ad72
 nodes:
 
   - id: local-time-potential

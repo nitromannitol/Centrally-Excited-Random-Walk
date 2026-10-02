@@ -18,7 +18,7 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{lemma}\label{lem:crossing}
-Let $\drift\geq0$, let $\xi\colon\Z^d\to\R^d$ be a function, let $X_0,X_1,\ldots$ be a sequence of sites of~$\Z^d$, let $C$ be a real number, and let $n\geq2$ be an integer. Assume that $Z$, defined by~\eqref{eq:vector-def} with $A_j$ and $I_j=\ind_{\{X_j\notin A_j\}}$ formed from this sequence, satisfies~\eqref{eq:vector}. Let $u$ be a unit vector, and let $0\leq s<t\leq n$ be integers such that $u\cdot\xi(X_j)\geq0$ for every $s\leq j<t$ with $I_j=1$. Then
+Let $\drift\geq0$, let $\xi\colon\Z^d\to\R^d$ be a function, let $X_0,X_1,\ldots$ be a sequence of sites of~$\Z^d$, let $C$ be a real number, and let $n\geq2$ be an integer. Assume that $Z$, defined by~\eqref{eq:vector-def} with $A_j$ and $I_j=\ind_{\{X_j\notin A_j\}}$ formed from this sequence, satisfies~\eqref{eq:vector}. Let $u$ be a unit vector. Let $0\leq s<t\leq n$ be integers such that $u\cdot\xi(X_j)\geq0$ for every $s\leq j<t$ with $I_j=1$. Then
 \begin{equation*}
 u\cdot(X_t-X_s)\leq C\sqrt{(t-s)\log n}\, .
 \end{equation*}

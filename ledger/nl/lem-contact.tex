@@ -13,14 +13,14 @@ Throughout the rest of the paper let
 q_n\coloneqq\begin{dcases}\sqrt{\frac{\log n}{r_n}},&d=2,\\\frac{\log n}{r_n},&d\geq3\end{dcases}\, .
 \end{equation}
 \begin{quote}
-Intersect the events of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} with the events on which~\eqref{eq:vector}, \eqref{eq:localmart}, \eqref{eq:quadratic-coarse} and~\eqref{eq:linear-mart} hold; the complement has probability at most $Cn^{-p}$, and the arguments below are deterministic on this event, intersected with the event of Lemma~\ref{lem:contact} where they use that lemma. Let $K$ be a constant with $\Rout(n)\leq(K-1)r_n$ on the event of Proposition~\ref{prop:coarse}; then $D_n\subset B(0,Kr_n)$ for large~$n$, and~\eqref{eq:quadratic-coarse} gives
+Intersect the events of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} with the events on which~\eqref{eq:vector}, \eqref{eq:localmart}, \eqref{eq:quadratic-coarse} and~\eqref{eq:linear-mart} hold. The complement has probability at most $Cn^{-p}$, and the arguments below are deterministic on this event, intersected with the event of Lemma~\ref{lem:contact} where they use that lemma. Let $K$ be a constant with $\Rout(n)\leq(K-1)r_n$ on the event of Proposition~\ref{prop:coarse}. Then $D_n\subset B(0,Kr_n)$ for large~$n$, and~\eqref{eq:quadratic-coarse} gives
 \end{quote}
 Let
 \begin{equation*}
 b\coloneqq\inf\{\gauge(y):y\in\R^d\setminus D_n\}\qquad\text{and}\qquad
 E\coloneqq D_n\setminus\{\gauge<b\}\, ,
 \end{equation*}
-so that $\{\gauge<b\}\subset D_n$. Choose a point~$y_0$ with $\gauge(y_0)=b$ that is the limit of a sequence of points outside~$D_n$. Since the sequence is bounded, some cell~$C_z$ disjoint from~$D_n$ contains infinitely many of its points. Then $\ell_n(z)=0$, the closure of~$C_z$ contains~$y_0$, and $\gauge(z)\geq b$ because $z\in C_z$. Let
+so that $\{\gauge<b\}\subset D_n$. Choose a point~$y_0$ with $\gauge(y_0)=b$ that is the limit of a sequence of points outside~$D_n$. Since the sequence is bounded, some cell~$C_z$ disjoint from~$D_n$ contains infinitely many of its points. Then $\ell_n(z)=0$, the closure of~$C_z$ contains~$y_0$, and $\gauge(z)\geq b$ since $z\in C_z$. Let
 \begin{equation*}
 H\coloneqq U_{D_n}(y_0)\qquad\text{and}\qquad \mathcal I\coloneqq\int_E(\gauge(v)-b)\dd v\, .
 \end{equation*}

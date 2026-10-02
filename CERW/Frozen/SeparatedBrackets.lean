@@ -32,7 +32,7 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{lemma}\label{lem:separated-brackets}
-Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. There exist $0<c_0(d,\drift)\leq C_0(d,\drift)$ and $C(d,\drift)<\infty$ such that, for all sufficiently large~$n$, with probability at least $1-Cn^{-10}$, simultaneously for $1\leq i\leq m$ and $1\leq j\leq m$ with $j\neq i$,
+Let $\gauge$ be the Euclidean norm. Let $0<\drift<\nf1d$. There exist $0<c_0(d,\drift)\leq C_0(d,\drift)$ and $C(d,\drift)<\infty$ such that, for all sufficiently large~$n$, with probability at least $1-Cn^{-10}$, simultaneously for $1\leq i\leq m$ and $1\leq j\leq m$ with $j\neq i$,
 \begin{equation*}
 c_0\leq\langle S^i\rangle_n\leq C_0
 \qquad\text{and}\qquad
@@ -45,7 +45,7 @@ Definitions the statement relies on (verbatim):
 r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
 \textit{$g$ and $G$ (line 407)}
-Let $\Delta f(x)\coloneqq(2d)^{-1}\sum_{|e|=1}(f(x+e)-f(x))$, summed over the unit vectors $e\in\Z^d$, be the discrete Laplacian. For $d=2$, let $g$ be the potential kernel of simple random walk, normalized by $g(0)=0$. For $d\geq3$, let $g\coloneqq-G$, where the Green function~$G(x)$ is the expected number of visits to~$x$ by simple random walk from the origin. In both cases $\Delta g=\ind_{\{0\}}$; for $d=2$ see \citet*[Proposition~4.4.2]{LawlerLimic2010}. By \citet[Theorems~4.3.1 and~4.4.4]{LawlerLimic2010}, as $|x|\to\infty$,
+Let $\Delta f(x)\coloneqq(2d)^{-1}\sum_{|e|=1}(f(x+e)-f(x))$, summed over the unit vectors $e\in\Z^d$, be the discrete Laplacian. For $d=2$, let $g$ be the potential kernel of simple random walk, normalized by $g(0)=0$. For $d\geq3$, let $g\coloneqq-G$, where the Green function~$G(x)$ is the expected number of visits to~$x$ by simple random walk from the origin. In both cases $\Delta g=\ind_{\{0\}}$. For $d=2$ see \citet*[Proposition~4.4.2]{LawlerLimic2010}. By \citet[Theorems~4.3.1 and~4.4.4]{LawlerLimic2010}, as $|x|\to\infty$,
 \textit{$\mathcal M^f$ (lines 422--426)}
 For $f\colon\Z^d\to\R$ with bounded nearest-neighbor increments, let
 \begin{equation*}
