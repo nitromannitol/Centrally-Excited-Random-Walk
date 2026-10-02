@@ -12,7 +12,7 @@ Every node's state in `ledger/manifest.yaml` is `SEALED` or `PROVED` (0 SEALED, 
 |---|---|
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
-| Paper (`paper/limit-shapes.tex`) SHA-256 | `813f0a628baed89223705fb4bc500b4f44bed82d0e5ecc282d679da57707b796` |
+| Paper (`paper/limit-shapes.tex`) SHA-256 | `b8224f4136929f0a1471574e3dfcf5c95f2bb75d7fac57796c740800c168a5ae` |
 | Build | succeeded, 9099 jobs |
 | Build warnings | 0 |
 | Generated | 2026-10-02 |

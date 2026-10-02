@@ -18,7 +18,7 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{lemma}\label{lem:outer-crossing}
-Let $\alpha>0$ and $C_2>0$. There exists $C(d,\drift,\gauge,\alpha,C_2)<\infty$ with the following property. Let $q\in\R^d$ satisfy $|q|\leq\Lambda_\gauge$, and consider a path of the walk that satisfies~\eqref{eq:vector} with $C_2$ in place of~$C$, and~\eqref{eq:linear-mart} with $C_2$ in place of~$C$ for this~$q$ and every $a\in\Lambda_\gauge\Z\cap[0,\Lambda_\gauge n]$. Let $x_*$ be one of the sites $X_0,\ldots,X_n$ with $q\cdot X_j\leq T\coloneqq q\cdot x_*$ for $0\leq j\leq n$. Let $h>0$ be such that $q\cdot\xi(X_j)\geq\alpha$ for every $0\leq j\leq n$ with $q\cdot X_j>T-h$. For $b\geq0$ let $L_b\coloneqq1+\max\{\ell_n(x):x\in\Z^d,\ q\cdot x\geq b\}$. Then every $b\geq0$ satisfies
+Let $\alpha>0$ and $C_2>0$. There exists $C(d,\drift,\gauge,\alpha,C_2)<\infty$ with the following property. Let $q\in\R^d$ satisfy $|q|\leq\Lambda_\gauge$, and consider a path of the walk that satisfies~\eqref{eq:vector} with $C_2$ in place of~$C$, and~\eqref{eq:linear-mart} with $C_2$ in place of~$C$ for this~$q$ and every $a\in\Lambda_\gauge\Z\cap[0,\Lambda_\gauge n]$. Let $x_*$ be one of the sites $X_0,\ldots,X_n$ with $q\cdot X_j\leq T\coloneqq q\cdot x_*$ for $0\leq j\leq n$. Let $h>0$ be such that $q\cdot\xi(X_j)\geq\alpha$ for all $0\leq j\leq n$ with $q\cdot X_j>T-h$. For $b\geq0$ let $L_b\coloneqq1+\max\{\ell_n(x):x\in\Z^d,\ q\cdot x\geq b\}$. Then every $b\geq0$ satisfies
 \begin{equation}\label{eq:outer-crossing}
 T\leq\max\{T-h,b\}+CL_b\log n\, .
 \end{equation}
@@ -31,22 +31,22 @@ For $f\colon\Z^d\to\R$ with bounded nearest-neighbor increments, let
 \end{equation*}
 be the martingale in Dynkin's formula for~$f$. By~\eqref{eq:kernel}, the conditional expectation in the sum is $\Delta f(X_j)-\drift I_j\xi(X_j)\cdot\bar\nabla f(X_j)$, with $\bar\nabla f$ defined like~$\bar\nabla g$. For $y\in\Z^d$ write $g_y\coloneqq g(\cdot-y)$ and $\mathcal M^y\coloneqq\mathcal M^{g_y}$. Since $\Delta g_y=\ind_{\{y\}}$ and each site of~$A_n$ has its first departure before time~$n$,
 \begin{quote}
-For $q\in\R^d$ and $a\in\R$, let $\mathcal M^{q,a}$ be the martingale~$\mathcal M^f$ of Section~\ref{sec:dynkin} with $f(x)=(q\cdot x-a)_+$. If $|q|\leq\Lambda_\gauge$, then one step changes $q\cdot X_j$ by at most~$\Lambda_\gauge$, so the increments of~$\mathcal M^{q,a}$ are at most~$C$, and its bracket through time~$n$ is at most $C\sum_{x:q\cdot x>a-\Lambda_\gauge}\ell_n(x)$, since $f$ is constant on $x$ and its neighbors unless $q\cdot x>a-\Lambda_\gauge$. Let
+For $q\in\R^d$ and $a\in\R$, let $\mathcal M^{q,a}$ be the martingale~$\mathcal M^f$ of Section~\ref{sec:dynkin} with $f(x)=(q\cdot x-a)_+$. If $|q|\leq\Lambda_\gauge$, then one step changes $q\cdot X_j$ by at most~$\Lambda_\gauge$, so the increments of~$\mathcal M^{q,a}$ are at most~$C$, and its bracket through time~$n$ is $\leq C\sum_{x:q\cdot x>a-\Lambda_\gauge}\ell_n(x)$, since $f$ is constant on $x$ and its neighbors unless $q\cdot x>a-\Lambda_\gauge$. Let
 \begin{equation}\label{eq:tn}
 \tau_n\coloneqq K_1\bar L_n\log n,\qquad\text{where}\quad\bar L_n\coloneqq1+C_0r_nq_n^{\nf{1}{(d+1)}}\, ,
 \end{equation}
-$C_0$ is the constant in~\eqref{eq:norm-profile}, and $K_1>0$ is the constant, depending only on $d$, $\drift$, $\gauge$ and~$p$, chosen in the proof of Proposition~\ref{prop:norm-shape}. The vectors $\xi(x)$ and~$\nabla F_{\tau_n}(x)$ are deterministic and have length at most~$\Lambda_\gauge$. So Lemma~\ref{lem:freedman} and a union bound over the $O(n^{d+1})$ pairs~$(q,a)$ with $q\in\{\xi(x),\nabla F_{\tau_n}(x)\}$ for some $x\in\Z^d$ with $0<|x|\leq n$ and $a\in\Lambda_\gauge\Z\cap[0,\Lambda_\gauge n]$ give, with probability at least $1-Cn^{-p}$, simultaneously for all these pairs,
+$C_0$ is the constant in~\eqref{eq:norm-profile}, and $K_1>0$ is the constant, depending only on $d$, $\drift$, $\gauge$ and~$p$, chosen in the proof of Proposition~\ref{prop:norm-shape}. The vectors $\xi(x)$ and~$\nabla F_{\tau_n}(x)$ are deterministic and have length at most~$\Lambda_\gauge$. So Lemma~\ref{lem:freedman} and a union bound over the $O(n^{d+1})$ pairs~$(q,a)$ with $q\in\{\xi(x),\nabla F_{\tau_n}(x)\}$ for some $x\in\Z^d$ with $0<|x|\leq n$ and $a\in\Lambda_\gauge\Z\cap[0,\Lambda_\gauge n]$ give, with probability $\geq 1-Cn^{-p}$, simultaneously for all these pairs,
 \begin{equation}\label{eq:linear-mart}
 |\mathcal M^{q,a}_n|\leq C\biggl(\sqrt{\log n\sum_{x:q\cdot x>a-\Lambda_\gauge}\ell_n(x)}+\log n\biggr)\, .
 \end{equation}
-Neither this constant~$C$ nor the probability bound depends on $C_0$ or~$K_1$.
+Note that neither this constant~$C$ nor the probability bound depends on $C_0$ or~$K_1$.
 In Sections~\ref{sec:norm-setup}--\ref{sec:norms}, $\gauge$ is a norm, $\drift>0$ satisfies~\eqref{eq:ellipticity}, $r_n$ is given by~\eqref{eq:radius-norm}, and $U_D$ is the potential~\eqref{eq:potential-norm} defined below. At a point~$v\in\R^d$, $\nabla\gauge(v)$ is the gradient, which exists for almost every~$v$. Let $\Lambda_\gauge\coloneqq\max_{|u|=1}\gauge(u)$ and $c_\gauge\coloneqq\min_{|u|=1}\gauge(u)$. Every $\xi\in\partial\gauge(x)$ satisfies $\xi\cdot x=\gauge(x)$ and $|\xi|\leq\Lambda_\gauge$. In Sections~\ref{sec:contact}--\ref{sec:lower}, $\gauge$ is the Euclidean norm, so that $\xi(x)=u_x$, $r_n$ is given by~\eqref{eq:radius}, and $U_D$ is the potential~\eqref{eq:potential-intro}.
 \end{quote}
 A crossing against the drift requires a large increment of the martingale
 \begin{equation}\label{eq:vector-def}
 Z_t\coloneqq X_t+\drift\sum_{j<t}I_j\xi(X_j)\, ,
 \end{equation}
-which takes values in~$\R^d$ and has bounded increments. Azuma's inequality in each coordinate and a union bound over the pairs $s<t$ give, for every $p>0$, with probability at least $1-Cn^{-p}$,
+which takes values in~$\R^d$ and has bounded increments. Azuma's inequality in each coordinate and a union bound over the pairs $s<t$ give, for all $p>0$, with probability at least $1-Cn^{-p}$,
 \begin{equation}\label{eq:vector}
 |Z_t-Z_s|\leq C\sqrt{(t-s)\log n}
 \qquad\text{for } 0\leq s<t\leq n\, .

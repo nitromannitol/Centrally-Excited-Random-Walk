@@ -19,7 +19,7 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{lemma}\label{lem:local}
-Let $p>0$. There exists $C(d,\drift,\gauge,p)<\infty$ such that, for every integer~$n\geq2$, the following estimates hold simultaneously with probability at least $1-Cn^{-p}$.
+Let $p>0$. There exists $C(d,\drift,\gauge,p)<\infty$ such that, for all integers~$n\geq2$, the following estimates hold simultaneously with probability $\geq 1-Cn^{-p}$.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \underline{\emph{Largest local time}}:
 \begin{equation}\label{eq:M}
@@ -29,7 +29,7 @@ Let $p>0$. There exists $C(d,\drift,\gauge,p)<\infty$ such that, for every integ
 \begin{equation}\label{eq:interval}
 M_{s,t}\leq Ck_{s,t}^{\nf{1}{d}}+C(\log n)^2\, .
 \end{equation}
-\item \underline{\emph{Approximation by the potential}}: for every $y\in\R^d$ with $|y|\leq2n$,
+\item \underline{\emph{Approximation by the potential}}: for all $y\in\R^d$ with $|y|\leq2n$,
 \begin{equation}\label{eq:approx}
 |\widetilde\ell_n(y)-U_{D_n}(y)|\leq C\log n+C\begin{cases}\bigl(\max_x\ell_n(x)\bigr)^{\nf12}\log n,&d=2,\\\bigl(\max_x\ell_n(x)\log n\bigr)^{\nf12},&d\geq3\end{cases}\, .
 \end{equation}
@@ -45,8 +45,8 @@ k_{s,t}\coloneqq\sum_{s\leq j<t}I_j\, .
 \end{equation*}
 \textit{notation $I_j$, $\widetilde\ell_n$, $n\ge2$ (lines 298--300)}
 \item The indicator that the step at time~$j$ is a first departure is $I_j\coloneqq\ind_{\{X_j\notin A_j\}}$, so that $\E(X_{j+1}-X_j\mid\mathcal F_j)=-\drift I_j\xi(X_j)$, where $\xi(x)=u_x$ for the Euclidean norm.
-\item The function~$\widetilde\ell_n$ on~$\R^d$ equals $\ell_n(x)$ on~$C_x$ for every $x\in\Z^d$. It vanishes off~$D_n$.
-\item All estimates concern integers~$n\geq2$, so that $\log n>0$. In a statement that holds with probability at least $1-Cn^{-p}$ for all sufficiently large~$n$, enlarging~$C$ makes it hold for every $n\geq2$.
+\item The function~$\widetilde\ell_n$ on~$\R^d$ equals $\ell_n(x)$ on~$C_x$ for all $x\in\Z^d$. It vanishes off~$D_n$.
+\item All estimates concern integers~$n\geq2$, so that $\log n>0$. In a statement that holds with probability $\geq 1-Cn^{-p}$ for all sufficiently large~$n$, enlarging~$C$ makes it hold for all $n\geq2$.
 \textit{$D_n$ (lines 122--122)}
 Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$. Let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
 \textit{eq:potential-norm (lines 349--353)}

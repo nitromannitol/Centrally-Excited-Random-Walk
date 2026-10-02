@@ -4,7 +4,7 @@
 \begin{equation}\label{eq:radius}
 r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
-so that the cone $2d\drift(r_n-|v|)_+$ has integral~$n$ over~$\R^d$. Informally, after $n$~steps the walk has visited essentially every site~$x$ with $|x|<r_n$ and essentially no site with $|x|>r_n$, and has departed from each site~$x$ about $2d\drift(r_n-|x|)_+$ times. This profile determines~$r_n$: the local times sum to~$n$, and the slope~$2d\drift$ of the cone is the slope of the potential of a ball, computed in~\eqref{eq:ballpotential-euclid} below.
+so that the cone $2d\drift(r_n-|v|)_+$ has integral~$n$ over~$\R^d$. Informally, after $n$~steps the walk has visited essentially every site~$x$ with $|x|<r_n$ and essentially no site with $|x|>r_n$, and has departed from each site~$x$ about $2d\drift(r_n-|x|)_+$ times. This profile determines~$r_n$. Indeed, the local times sum to~$n$, and the slope~$2d\drift$ of the cone is the slope of the potential of a ball, computed in~\eqref{eq:ballpotential-euclid} below.
 ...
 
 Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$. Let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
@@ -17,7 +17,7 @@ Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$.
 Theorem (lines 130--152):
 \begin{verbatim}
 \begin{theorem}[Fluctuation bounds]\label{thm:fluctuations}
-Let $d\geq2$ and $0<\drift<\nf{1}{d}$, and consider the centrally excited random walk. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, the following bounds hold simultaneously with probability at least $1-Cn^{-p}$.
+Let $d\geq2$ and $0<\drift<\nf{1}{d}$, and consider the centrally excited random walk. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for all integers~$n\geq2$, the following bounds hold simultaneously with probability at least $1-Cn^{-p}$.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \underline{\emph{Radii}}:
 \begin{equation*}
