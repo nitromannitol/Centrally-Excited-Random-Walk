@@ -155,3 +155,36 @@ or replaced. Where it is not, the reason and the exact missing pieces are record
   verbatim lower half gives version 1, and version 1 gives the lower half. So version 2 is exactly
   version 1 minus a proved conjunct.
 - `lake build` passes with no error and no warning, and `stout_upper` has the axioms above.
+
+## D6 (2026-10-01). The martingale central limit theorem is proved; its External is retired
+
+**The author's ruling.** As in D5: where a cited External can be proved, the proof is added and the
+External is reduced or replaced.
+
+**What was proved.** `CERW.Generic.Martingale.CLT.martingaleCLT_proved : CERW.External.MartingaleCLT`
+has no hypotheses and axioms `[propext, Classical.choice, Quot.sound]`. It is Hall and Heyde (1980),
+Corollary 3.1, in the form the paper uses. The proof uses the characteristic function, with a
+predictable truncation at bracket level `v + 1` and an exponential compensator. The packets are in
+`CERW/Generic/Martingale/CLT/` (DeepSeek fleet, `232514b`). The unconditional glue is
+`CLT/Proved.lean` (`2466101`, by the session `cerw-audit1`). The advisor's Sonnet agent reached the
+same result independently in `wip/CltProved.lean`, by the intro-then-exact pattern with `.{u}`
+ascriptions. `cerw-audit2` checked both glues independently in a clean worktree, at
+`-DmaxHeartbeats=100000` and at universes 0, 1 and 3.
+- The move of the proposition was first pushed alone, inside the CI commit `9a3e62f`, which swept
+  in the staged rename from the shared index. That left `origin/main` unbuildable until this
+  commit, which fixes the five importers and the manifest.
+
+**What changed.**
+- `thm-moment-fluctuations` and `thm-site-fluctuations` are re-frozen as version 2 and stay PROVED.
+  In each, the single binder `(hCLT : CERW.External.MartingaleCLT.{u})` is deleted, and nothing else
+  changes. The proofs supply `martingaleCLT_proved` in its place. Deleting a hypothesis only
+  strengthens a statement, so version 2 implies version 1. This follows the precedent of
+  `ledger/approval/KERNEL-ASYMPTOTICS.md`.
+- The node `ext-martingale-clt` is retired. The manifest has 33 nodes, and the only FROZEN node is
+  `ext-stout-lil`, the lower half of Stout's law (D5). The proposition moves out of the frozen
+  directory `CERW/External/` into the library, as `CERW.Generic.Martingale.CLT.MartingaleCLT` in
+  `CERW/Generic/Martingale/CLT/Statement.lean`, with the body unchanged. Its five users are updated.
+- The guards `moment_fluctuations_applies` and `site_fluctuations_applies` drop `hCLT`.
+
+**Consequence.** The only assumption left in the development is Stout's Theorem 2. Its missing
+pieces are recorded in `ledger/audits/stout-lil-feasibility.md` and HANDOFF.md.
