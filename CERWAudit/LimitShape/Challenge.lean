@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-# Ball shape — comparator challenge
+# Limit shape — comparator challenge
 
 Mathlib-only comparator challenge for the limit shape theorem `thm:shape`
 (`paper/limit-shapes.tex:103-116`), the headline theorem of *Limit shapes of centrally excited

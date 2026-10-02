@@ -6,11 +6,14 @@ Each headline theorem has a directory here with the same four files.
   every object the theorem mentions: the lattice and its Euclidean norm, the one-step kernel,
   the Prop-valued CERW law, the departure local time, the departure range and the visited
   range. It states the theorem and ends in a single `sorry`. This file is the object of
-  trust: a reader checks what it says, not how it is proved. - `SolutionBasic.lean` is a verbatim, mechanical copy of the vocabulary block of
+  trust: a reader checks what it says, not how it is proved.
+- `SolutionBasic.lean` is a verbatim, mechanical copy of the vocabulary block of
   `Challenge.lean` (between `VOCABULARY-BEGIN` and `VOCABULARY-END`). It imports only
-  `Mathlib`, so the vocabulary elaborates in the solution exactly as in the challenge. - `Solution.lean` imports the library together with `SolutionBasic` and the bridges in
+  `Mathlib`, so the vocabulary elaborates in the solution exactly as in the challenge.
+- `Solution.lean` imports the library together with `SolutionBasic` and the bridges in
   `Support/`, restates the challenge theorem byte-for-byte, and proves it from the library's
-  verified statement. - `comparator.json` names the challenge module, the solution module, the theorem and the
+  verified statement.
+- `comparator.json` names the challenge module, the solution module, the theorem and the
   permitted axioms (`propext`, `Classical.choice`, `Quot.sound`).
 
 The files under `Support/` are part of the solutions. `LimitShapeBridge.lean` identifies the
