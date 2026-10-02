@@ -8,3 +8,4 @@ import CERW.Generic.Martingale.CLT.CharFunBound
 import CERW.Generic.Martingale.CLT.ArrayTendsto
 import CERW.Generic.Martingale.CLT.ArrayForm
 import CERW.Generic.Martingale.CLT.Assembly
+import CERW.Generic.Martingale.CLT.Proved
