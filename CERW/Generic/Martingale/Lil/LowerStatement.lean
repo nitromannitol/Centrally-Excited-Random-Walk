@@ -3,8 +3,9 @@ import CERW.Model
 /-!
 # The statement of the lower half of the martingale law of the iterated logarithm
 
-Stout (1970), Theorem 2, in the form the paper uses. It is proved, as `CERW.Generic.Martingale.LilAssembly.stout_lower`.
-Until ruling D7 it was the cited External `CERW.Generic.Martingale.Lil.StoutLower`, carried as a hypothesis.
+Stout (1970), Theorem 2, in the form the paper uses. It is proved, as
+`CERW.Generic.Martingale.LilAssembly.stout_lower`. Until ruling D7 it was the cited External
+`CERW.External.StoutLIL`, carried as a hypothesis.
 -/
 
 universe u
