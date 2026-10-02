@@ -18,7 +18,7 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{proposition}[Lower bounds for the radii]\label{prop:log-lower}
-Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. There exist $c(d,\drift)>0$, $C(d,\drift)<\infty$ and $h_0(d,\drift)>0$ such that the following hold.
+Let $\gauge$ be the Euclidean norm. Let $0<\drift<\nf1d$. There exist $c(d,\drift)>0$, $C(d,\drift)<\infty$ and $h_0(d,\drift)>0$ such that the following hold.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \underline{\emph{Tail bounds}}: for all sufficiently large~$n$ and every real~$h$ with $h_0\leq h\leq\nf{r_n}{8}$,
 \begin{align}
@@ -38,7 +38,7 @@ Definitions the statement relies on (verbatim):
 r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
 \textit{$D_n$, $\Rin$, $\Rout$ (eq:radii, lines 122--127)}
-Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
+Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$. Let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
 \begin{equation}\label{eq:radii}
 \Rin(n)\coloneqq\inf_{y\notin D_n}|y|
 \qquad\text{and}\qquad
