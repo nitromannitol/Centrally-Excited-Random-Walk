@@ -35,7 +35,8 @@ inequality and the Cramér–Wold device.
 
 The only assumed results are the two martingale limit theorems the paper cites for its limit
 laws: Hall and Heyde's martingale central limit theorem and Stout's martingale law of the
-iterated logarithm. Each is a proposition in [`CERW/External/`](CERW/External/) and an explicit
+iterated logarithm. Of Stout's law only the lower half (Stout 1970, Theorem 2) is assumed: the
+upper half (Theorem 1) is proved, as `CERW.Generic.Martingale.Lil.stout_upper`. Each is a proposition in [`CERW/External/`](CERW/External/) and an explicit
 hypothesis of every theorem whose proof uses it.
 
 ## Guarantees

@@ -32,7 +32,7 @@ def CERW.External.MartingaleCLT : Prop :=
 
 * **Lean name** `CERW.External.StoutLIL`
 * **File** `CERW/External/StoutLIL.lean`
-* **Cited at** Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644
+* **Cited at** Stout (1970), Theorem 2, the lower half of the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644
 * **Not proved here**: this one is assumed outright
 
 ```lean
@@ -47,8 +47,6 @@ def CERW.External.StoutLIL : Prop :=
           (Real.exp (Real.exp 1))))) / Real.sqrt (CERW.predBracket μ ℱ S S n ω))
       atTop (𝓝 0)) →
     ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ →
-      (∀ᶠ n : ℕ in atTop, S n ω ≤ (1 + δ) * Real.sqrt (2 * CERW.predBracket μ ℱ S S n ω *
-        Real.log (Real.log (CERW.predBracket μ ℱ S S n ω)))) ∧
-      (∃ᶠ n : ℕ in atTop, (1 - δ) * Real.sqrt (2 * CERW.predBracket μ ℱ S S n ω *
-        Real.log (Real.log (CERW.predBracket μ ℱ S S n ω))) ≤ S n ω)
+      ∃ᶠ n : ℕ in atTop, (1 - δ) * Real.sqrt (2 * CERW.predBracket μ ℱ S S n ω *
+        Real.log (Real.log (CERW.predBracket μ ℱ S S n ω))) ≤ S n ω
 ```

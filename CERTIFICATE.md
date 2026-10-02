@@ -13,7 +13,7 @@ Of 34 node(s) registered in `ledger/manifest.yaml`: 32 `PROVED`, 2 `FROZEN`. Onl
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/limit-shapes.tex`) SHA-256 | `d39e7f24d52e7a095508daefd075c7e9651289be97cfe5eadd67d8008aaa8328` |
-| Build | succeeded, 9043 jobs |
+| Build | succeeded, 9044 jobs |
 | Build warnings | 0 |
 | Generated | 2026-10-01 |
 
@@ -78,7 +78,7 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 | `local-time-potential` | `c804956e1998b52392ff46288059b8d424f072a46a753112c24652bf078e6b55` |
 | `coarse-bounds` | `695b02b4055219568e89d469368885395be5c06e2a42645ce0c0d7afa33bbc15` |
 | `ext-martingale-clt` | `3dda91ee188303c328444fa193d691293fcb7eae0810c38d432d8e3d858ef13c` |
-| `ext-stout-lil` | `1083ad6a8937fdef84acebe264debc5e9dcef224425a011d771be34e2c72996f` |
+| `ext-stout-lil` | `a00af760ed3d885102378f58eb1951856af4a2ae2cd2bea125aa141bb1b6de7c` |
 | `thm-shape` | `afe23ec124a7797b5a935f8d6c7c9d284e866118f2c4af2c98d04da9da6894e3` |
 | `thm-fluctuations` | `ec18ac337d2fb2ca751b815ad92dd51d844ed4a40d5189a740a641e0e09812a4` |
 | `thm-sharp-radii` | `72fbd89c684fe5947057fbbf5cfb00e6a2689b59aede6a5dfe1c5a74c4ce4c9c` |

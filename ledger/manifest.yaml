@@ -53,15 +53,15 @@ nodes:
     approved: "2026-09-30"
 
   - id: ext-stout-lil
-    version: 1
+    version: 2
     kind: definition
-    source: Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644
+    source: Stout (1970), Theorem 2, the lower half of the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644
     file: CERW/External/StoutLIL.lean
     export: CERW.External.StoutLIL
     state: FROZEN
-    frozen_sha256: 1083ad6a8937fdef84acebe264debc5e9dcef224425a011d771be34e2c72996f
+    frozen_sha256: a00af760ed3d885102378f58eb1951856af4a2ae2cd2bea125aa141bb1b6de7c
     provider: CERW.External.StoutLIL
-    approved: "2026-09-30"
+    approved: "2026-10-01"
 
   - id: thm-shape
     version: 1

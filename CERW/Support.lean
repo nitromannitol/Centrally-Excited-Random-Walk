@@ -14,3 +14,4 @@ import CERW.Support.Contact
 import CERW.Support.Main
 import CERW.Support.Guards
 import CERW.Support.Statements
+import CERW.Support.Stout

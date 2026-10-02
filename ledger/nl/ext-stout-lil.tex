@@ -27,3 +27,8 @@ $S_{n+1}-S_n$ (\texttt{StronglyMeasurable[ℱ n] (B (n+1))}, and $|S_{n+1}-S_n|\
 \texttt{B n * √(log (log (max ⟨S⟩ₙ (exp (exp 1))))) / √⟨S⟩ₙ → 0} a.s., and $\langle S\rangle_n\to\infty$ a.s. The conclusion is junk-free (repository convention): a.s.,
 $\forall\delta>0$, eventually $S_n\le(1+\delta)\sqrt{2\langle S\rangle_n\log\log\langle S\rangle_n}$ and frequently $S_n\ge(1-\delta)\sqrt{2\langle S\rangle_n\log\log\langle S\rangle_n}$
 (the lower sign follows by applying the Prop to $-S$, as the paper does). Reading choice: $S_0=0$ everywhere, as for the CLT external.
+\paragraph{Version 2 (ruling D5, 2026-10-01).} The External is now the lower half alone, Stout (1970),
+Theorem~2: under the same hypotheses, a.s., $\forall\delta>0$, frequently
+$S_n\ge(1-\delta)\sqrt{2\langle S\rangle_n\log\log\langle S\rangle_n}$. The upper half, Theorem~1 (eventually
+$S_n\le(1+\delta)\sqrt{2\langle S\rangle_n\log\log\langle S\rangle_n}$), is proved:
+\texttt{CERW.Generic.Martingale.Lil.stout\_upper}, and \texttt{CERW.Support.stoutLIL\_full} combines the two.

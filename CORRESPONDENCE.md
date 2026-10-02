@@ -149,7 +149,7 @@ live in `CERW/Model/`.
 | `local-time-potential` | `CERW.Frozen.local_time_potential` | paper/limit-shapes.tex:385-401 (lem:local, Euclidean case) | PROVED |
 | `coarse-bounds` | `CERW.Frozen.coarse_bounds` | paper/limit-shapes.tex:547-554 (prop:coarse, Euclidean case) | PROVED |
 | `ext-martingale-clt` | `CERW.External.MartingaleCLT` | Hall and Heyde (1980), Corollary 3.1, cited at limit-shapes.tex lines 1399 and 1519 | FROZEN |
-| `ext-stout-lil` | `CERW.External.StoutLIL` | Stout (1970), the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644 | FROZEN |
+| `ext-stout-lil` | `CERW.External.StoutLIL` | Stout (1970), Theorem 2, the lower half of the martingale law of the iterated logarithm, cited at limit-shapes.tex lines 1410, 1519 and 1644 | FROZEN |
 | `thm-shape` | `CERW.Frozen.limit_shape` | `limit-shapes.tex:103-116`, `thm:shape` | PROVED |
 | `thm-fluctuations` | `CERW.Frozen.fluctuation_rates` | `limit-shapes.tex:130-152`, `thm:fluctuations` | PROVED |
 | `thm-sharp-radii` | `CERW.Frozen.sharp_radii` | `limit-shapes.tex:159-164`, `thm:sharp` | PROVED |
@@ -197,7 +197,7 @@ each is carried as an explicit hypothesis by every theorem whose proof uses it
 | node | cited result | Lean form | cited at | carried by |
 |---|---|---|---|---|
 | `ext-martingale-clt` | Hall and Heyde (1980), Corollary 3.1, the martingale central limit theorem | `CERW.External.MartingaleCLT`: for one square-integrable martingale `S` with `S_0 = 0`, deterministic normalizers `s_n > 0` and `v : ℝ≥0`, if the conditional Lindeberg sums `Σ_{i<n} E[((ΔS_{i+1})/s_n)² 1{\|ΔS_{i+1}\|/s_n > δ} \| ℱ_i]` tend to `0` in measure for every `δ > 0` and `⟨S⟩_n/s_n²` tends to `v` in measure, then `S_n/s_n` tends in distribution to `gaussianReal 0 v` | `limit-shapes.tex:1401, 1521` | `moment_fluctuations`, `site_fluctuations`, as `hCLT` |
-| `ext-stout-lil` | Stout (1970), the martingale law of the iterated logarithm | `CERW.External.StoutLIL`: for one square-integrable martingale `S` with `S_0 = 0` and a predictable bound `B_{n+1}` (`ℱ_n`-measurable) on `\|ΔS_{n+1}\|` almost surely, if `⟨S⟩_n → ∞` and `B_n √(log log (⟨S⟩_n ∨ e^e))/√⟨S⟩_n → 0` almost surely, then almost surely, for every `δ > 0`, eventually `S_n ≤ (1 + δ) √(2⟨S⟩_n log log ⟨S⟩_n)`, and frequently `S_n ≥ (1 - δ) √(2⟨S⟩_n log log ⟨S⟩_n)` | `limit-shapes.tex:1412, 1521, 1647` | `sharp_radii_lil`, `moment_fluctuations`, `site_fluctuations`, as `hLIL`; `sharp_width`, as the premise of part (b) only |
+| `ext-stout-lil` | Stout (1970), Theorem 2, the lower half of the martingale law of the iterated logarithm | `CERW.External.StoutLIL`: for one square-integrable martingale `S` with `S_0 = 0` and a predictable bound `B_{n+1}` (`ℱ_n`-measurable) on `\|ΔS_{n+1}\|` almost surely, if `⟨S⟩_n → ∞` and `B_n √(log log (⟨S⟩_n ∨ e^e))/√⟨S⟩_n → 0` almost surely, then almost surely, for every `δ > 0`, frequently `S_n ≥ (1 - δ) √(2⟨S⟩_n log log ⟨S⟩_n)`. The upper half, eventually `S_n ≤ (1 + δ) √(2⟨S⟩_n log log ⟨S⟩_n)` (Stout's Theorem 1), is proved under the same hypotheses: `CERW.Generic.Martingale.Lil.stout_upper` | `limit-shapes.tex:1412, 1521, 1647` | `sharp_radii_lil`, `moment_fluctuations`, `site_fluctuations`, as `hLIL`; `sharp_width`, as the premise of part (b) only |
 
 The paper uses them at the following places:
 - line 1401, Theorem 8.1: the central limit theorem for the quadratic martingale `𝒬`;
