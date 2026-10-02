@@ -28,7 +28,7 @@ There exists $C(d,\gauge)<\infty$ such that, for every $\drift>0$, not necessari
 \begin{equation}\label{eq:holder}
 |U_D(y)-U_D(z)|\leq C\drift|D|^{\nf{1}{(2d)}}|y-z|^{\nf{1}{2}}\, .
 \end{equation}
-\item \underline{\emph{Spherical averages}}: for every $s>0$,
+\item \underline{\emph{Spherical averages}}: for all $s>0$,
 \begin{equation}\label{eq:newton}
 \frac1{d\omega_ds^{d-1}}\int_{\{|v|=s\}}U_D(v)\dd S(v)
 =\frac{2\drift}{\omega_d}\int_{D\cap\{|v|>s\}}\frac{\gauge(v)}{|v|^d}\dd v\, .
