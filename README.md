@@ -103,7 +103,7 @@ paper/         the pinned papers
 
 ## How this was built
 
-The Lean code was written by Claude, DeepSeek under the close supervision of the author; models, tooling and cost are disclosed in `formalization.yaml`.
+The Lean code was written by AI coding agents under the close supervision of the author; the models, tooling and cost are disclosed in [`formalization.yaml`](formalization.yaml).
 
 ## Authors, citation, acknowledgements
 
