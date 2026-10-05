@@ -1,5 +1,4 @@
-import CERW.Support.LocalTime.KernelAsymptotics
-import CERW.Support.Coarse.Assembly
+import CERW.Support.Norm.EuclideanCoarse
 
 /-!
 # The occupation and radius bounds
@@ -48,5 +47,4 @@ theorem CERW.Frozen.coarse_bounds {d : ℕ} (hd : 2 ≤ d) :
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd
-  exact CERW.Support.Coarse.coarse_bounds_of_kernelFacts hd hF
+  exact CERW.Support.Norm.EuclideanCoarse.coarse_bounds_euclid hd
