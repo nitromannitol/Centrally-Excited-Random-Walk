@@ -318,7 +318,7 @@ private lemma max_dir_eq (x : Site 2) :
 
 /-- The sum of the first coordinates of the directions over a finite set of sites that contains
 the lattice disk of radius `ρ` and lies in the disk of radius `R`. -/
-private theorem abs_sum_dir_le (A : Finset (Site 2)) {ρ R : ℝ} (hρ : 0 ≤ ρ) (hR : 0 ≤ R)
+theorem abs_sum_dir_le (A : Finset (Site 2)) {ρ R : ℝ} (hρ : 0 ≤ ρ) (hR : 0 ≤ R)
     (hin : ∀ x : Site 2, euclidNorm x < ρ → x ∈ A) (hout : ∀ x ∈ A, euclidNorm x ≤ R) :
     |∑ x ∈ A, (unitDir (toSpace x)) 0| ≤ (R - ρ + 1) * (R + ρ + 6) := by
   classical
@@ -643,7 +643,7 @@ private lemma dynkin_coord_eq {d : ℕ} (hd : 1 ≤ d) {Ω : Type*} (ε : ℝ) (
 /-- The first coordinate of the compensated position `Z_t = X_t + ε Σ_{j<t} I_j u_{X_j}` is,
 up to a null set, a martingale `Y` for the natural filtration with `Y_0 = 0`, increments at most
 `2` everywhere, and bracket between `n/2 - ε²|A_n|` and `n/2`. -/
-private theorem exists_coord_martingale {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
+theorem exists_coord_martingale {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) :
     ∃ Y : ℕ → Ω → ℝ, Martingale Y (pathFiltration hX.measurable) μ ∧
@@ -734,7 +734,7 @@ private lemma innerRadius_congr {d : ℕ} {x y : ℕ → Site d} {n : ℕ} (h : 
   simp only [innerRadius, cellSet, himage]
 
 /-- The difference of the two radii is a measurable function of the sample point. -/
-private lemma measurable_width {Ω : Type*} [MeasurableSpace Ω] {X : ℕ → Ω → Site 2}
+lemma measurable_width {Ω : Type*} [MeasurableSpace Ω] {X : ℕ → Ω → Site 2}
     (hX : ∀ n, Measurable (X n)) (n : ℕ) :
     Measurable (fun ω => maxRadius (fun j => X j ω) n - innerRadius (fun j => X j ω) n) := by
   have hG : (fun ω => maxRadius (fun j => X j ω) n - innerRadius (fun j => X j ω) n) =
@@ -887,7 +887,7 @@ private lemma innerRadius_le_maxRadius_add_one (x : ℕ → Site 2) (n : ℕ) :
 /-- If the first coordinate of the compensated position exceeds `T + M` and the outer radius is at
 most `M`, then the difference of the radii is at least `T / (ε (2 M + 7)) - 1`: the sum of the
 directions over the range is bounded by the width of the annulus. -/
-private lemma width_ge_of_dev {x : ℕ → Site 2} {n : ℕ} {ε T M : ℝ} (hε : 0 < ε)
+lemma width_ge_of_dev {x : ℕ → Site 2} {n : ℕ} {ε T M : ℝ} (hε : 0 < ε)
     (hM : maxRadius x n ≤ M)
     (hdev : T + M ≤ ((x n 0 : ℤ) : ℝ) +
       ε * ∑ z ∈ departureRange x n, (unitDir (toSpace z)) 0) :
@@ -983,7 +983,7 @@ private lemma rpow_sixth_cube {x : ℝ} (hx : 0 ≤ x) :
 
 /-- The radius `r_n` of the statement in the plane is `K (n^(1/6))²` with `K` a positive
 constant: the volume of the unit disk is `π`. -/
-private lemma planar_radius_eq {ε : ℝ} (hε : 0 < ε) (n : ℕ) :
+lemma planar_radius_eq {ε : ℝ} (hε : 0 < ε) (n : ℕ) :
     ((((2 : ℕ) : ℝ) + 1) * n / (2 * ((2 : ℕ) : ℝ) * ε *
         (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin 2)) 1)).toReal)) ^
         ((1 : ℝ) / (((2 : ℕ) : ℝ) + 1)) =
