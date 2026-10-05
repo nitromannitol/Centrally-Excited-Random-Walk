@@ -14,3 +14,4 @@ import CERW.Support.Lower.PlanarGap.Width
 import CERW.Support.Lower.PlanarGap.VectorClt
 import CERW.Support.Lower.PlanarGap.SharpWidthDiskMass
 import CERW.Support.Lower.PlanarGap.SmallBall
+import CERW.Support.Lower.PlanarGap.SmallBallCompose
