@@ -4,6 +4,7 @@ import CERW.Support
 import CERW.Frozen
 import CERW.Support.Norm.CoarseCapEvents
 import CERW.Support.Norm.CoarseVolume
+import CERW.Support.Norm.GradientIdentity
 import CERW.Support.Norm.MinkowskiGauge
 import CERW.Support.Lower.PlanarGap.Annulus
 import CERW.Support.Lower.PlanarGap.Width
