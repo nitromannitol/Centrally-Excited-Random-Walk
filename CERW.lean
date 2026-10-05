@@ -9,3 +9,4 @@ import CERW.Support.Norm.MinkowskiGauge
 import CERW.Support.Lower.PlanarGap.Annulus
 import CERW.Support.Lower.PlanarGap.Width
 import CERW.Support.Lower.PlanarGap.VectorClt
+import CERW.Support.Lower.PlanarGap.SharpWidthDiskMass
