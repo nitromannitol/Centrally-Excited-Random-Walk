@@ -35,7 +35,7 @@ Theorem 2.1 (`thm:norm-shape`) follows from Proposition 5.1 with `p = 2` by the 
 lemma.
 
 The names `layer_potential`, `norm_ball_potential`, `norm_potential_geometry`, `moreau_cap` and
-`drift_crossing` are also the names of proved theorems in `CERW.Support.Norm`; the two public
+`drift_crossing` are also the names of proved theorems in `CERW.Support.Norm`; the two assembly
 theorems are therefore declared from within `CERW.Support.Statements`, where these names refer to
 the statements.
 -/
@@ -1699,7 +1699,7 @@ variable {d : ℕ} {Ψ : EuclideanSpace ℝ (Fin d) → ℝ}
 
 /-- The deterministic geometry of the inner radius: the contact bound controls the excess
 `∫_E (Ψ - b)`, the mass identity controls `b`, and the layer bound controls the profile. -/
-private theorem inner_geometry (hd : 2 ≤ d) (hΨ : IsNorm Ψ) {ε : ℝ} (hε : 0 < ε)
+theorem inner_geometry (hd : 2 ≤ d) (hΨ : IsNorm Ψ) {ε : ℝ} (hε : 0 < ε)
     (hball : Statements.norm_ball_potential) (hlayer : Statements.layer_potential)
     (hgeom : Statements.norm_potential_geometry) :
     ∃ C_L : ℝ, 0 < C_L ∧ ∀ (X : ℕ → Site d) (n : ℕ), X 0 = 0 → 1 ≤ n →
@@ -2529,7 +2529,8 @@ variable {d : ℕ} {Ψ : EuclideanSpace ℝ (Fin d) → ℝ}
 
 /-! ## The linear martingales -/
 
-private theorem exists_linear_martingale_bound (hd : 2 ≤ d) (hΨ : IsNorm Ψ) {ε : ℝ}
+/-- A simultaneous half-space martingale bound for a deterministic finite family of directions. -/
+theorem exists_linear_martingale_bound (hd : 2 ≤ d) (hΨ : IsNorm Ψ) {ε : ℝ}
     (hε : 0 < ε) (hell : ∀ i : Fin d, ε * Ψ (coordVec i) < 1 / (d : ℝ)) {p : ℝ} (hp : 0 < p) :
     ∃ C : ℝ, 0 < C ∧ ∀ {ξ : Site d → EuclideanSpace ℝ (Fin d)},
       (∀ x : Site d, x ≠ 0 → IsSubgradient Ψ (toSpace x) (ξ x)) → ξ 0 = 0 →
