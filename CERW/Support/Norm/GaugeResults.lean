@@ -11,30 +11,32 @@ subgradients at the sites `x ≠ 0`, with `ξ(0) = 0`, and let `X` be the centra
 walk with drift field `ξ` (`IsDriftCERW μ ε ξ X`). Let `|K|` be the volume of `K` and
 `r_n = ((d+1) n / (2 d ε |K|))^{1/(d+1)}`.
 
-The statements below are the results of the source for this walk, with the hypotheses above and no
-other:
+Theorem 2.1 (shape, local times, recurrence) and Proposition 5.1 (rates) hold for `ψ`, with the
+volume `|K|` of the body in place of the volume of the unit ball of the norm. The statements below
+are these results with the hypotheses above and no other:
 
 * `gauge_limit_shape_inclusions`, `gauge_limit_shape_local_times`, `gauge_limit_shape_recurrence`
-  and `gauge_limit_shape`: the three parts of the limit shape theorem and their conjunction.
-  Almost surely, for every `0 < η < 1` and all large `n`, the lattice points of
-  `((1 - η) r_n) • interior K` lie in the set `A_n` of departed sites, and `A_n` lies in the lattice
-  points of `((1 + η) r_n) • interior K`; as `n → ∞`, `r_n⁻¹ sup_x |ℓ_n(x) - 2 d ε (r_n - ψ(x))₊|`
-  tends to `0`; and the walk visits every site infinitely often.
-* `gauge_rates`: the proposition on the rates, with probability at least `1 - C n^{-p}` for every
-  `n ≥ 2`, the inner radius, the outer radius and the local times satisfy the rates of the source,
-  with a constant `C` that depends neither on the choice of subgradients, nor on the probability
-  space, nor on `n`.
+  and their conjunction `gauge_limit_shape`. Almost surely, for every `0 < η < 1` and all large
+  `n`, the lattice points `x` with `ψ(x) < (1 - η) r_n` are departed sites and every departed site
+  `x` has `ψ(x) < (1 + η) r_n`; for every `η > 0` and all large `n`, the local times satisfy
+  `|ℓ_n(x) - 2 d ε (r_n - ψ(x))₊| ≤ η r_n` for every `x`; and every site is visited infinitely
+  often. `gauge_limit_shape_local_times_sup` states the second part as the convergence to `0` of
+  `r_n⁻¹ sup_x |ℓ_n(x) - 2 d ε (r_n - ψ(x))₊|`, together with the boundedness of the family.
+* `gauge_rates`: for every `p > 0` there is `C > 0`, depending on `d, ε, K, p` only, such that for
+  every choice of subgradients, every walk and every `n ≥ 2`, with probability at least
+  `1 - C n^{-p}` the bounds of Proposition 5.1 on the inner radius, the outer radius and the local
+  times hold simultaneously.
 * `gauge_inner_radius_upper_bound`: the one-sided bound on the inner radius.
 * `gauge_volume_limit`: `|A_n| / r_n^d` tends to `|K|` almost surely.
-* `convex_body_limit_shape`: for the body `K` itself, the existence of a positive drift with the
-  ellipticity, of subgradient choices and of walks, and, for every such choice and walk, the limit
-  shape theorem together with the volume limit.
+* `convex_body_limit_shape`: for the body `K` itself, a positive drift with the ellipticity, for
+  every such drift a choice of subgradients and a walk, and, for every such choice and walk, the
+  limit shape theorem with the dilates of the interior of `K`, together with the volume limit.
 
-Each statement is proved by applying the closed results `GaugeShapeEvents.gauge_shape_rates`,
+Each statement is obtained by applying `GaugeShapeEvents.gauge_shape_rates`,
 `GaugeShapeEvents.gauge_shape`, `GaugeShapeEvents.gauge_inner_upper`,
-`GaugeShapeVolume.gauge_shape_volume_body` and `ConvexBodyShape.isLimitShape_of_compact_convex`,
-whose proofs apply the proved coarse bounds, local time potential lemma, contact estimate and
-projection events of the gauge; none of these is a hypothesis here.
+`GaugeShapeVolume.gauge_shape_volume_body` and `ConvexBodyShape.isLimitShape_of_compact_convex`.
+The coarse bounds, the local time potential lemma, the contact estimate and the projection events
+of the Minkowski functional are consumed through their proofs; none of them is a hypothesis.
 -/
 
 universe u
@@ -77,7 +79,8 @@ theorem gauge_limit_shape_inclusions (hd : 2 ≤ d) (hK : IsCompact K) (hc : Con
   exact h.mono fun ω hω => hω.1
 
 /-- **Limit shape theorem, part (ii), for the Minkowski functional of a convex body.** Almost
-surely, `r_n⁻¹ sup_{x ∈ ℤ^d} |ℓ_n(x) - 2 d ε (r_n - ψ(x))₊|` tends to `0` as `n → ∞`. -/
+surely, for every `η > 0` and all large `n`, `|ℓ_n(x) - 2 d ε (r_n - ψ(x))₊| ≤ η r_n` for every
+`x ∈ ℤ^d`; that is, `r_n⁻¹ max_x |ℓ_n(x) - 2 d ε (r_n - ψ(x))₊|` tends to `0`. -/
 theorem gauge_limit_shape_local_times (hd : 2 ≤ d) (hK : IsCompact K) (hc : Convex ℝ K)
     (h0 : (0 : EuclideanSpace ℝ (Fin d)) ∈ interior K)
     {ξ : Site d → EuclideanSpace ℝ (Fin d)}
@@ -89,7 +92,31 @@ theorem gauge_limit_shape_local_times (hd : 2 ≤ d) (hK : IsCompact K) (hc : Co
     (X : ℕ → Ω → Site d) (hX : IsDriftCERW μ ε ξ X) :
     let r : ℕ → ℝ := fun n =>
       ((d + 1) * n / (2 * d * ε * (volume K).toReal)) ^ ((1 : ℝ) / (d + 1))
-    ∀ᵐ ω ∂μ, Tendsto (fun n : ℕ => (1 / r n) * ⨆ x : Site d,
+    ∀ᵐ ω ∂μ, ∀ η : ℝ, 0 < η → ∀ᶠ n : ℕ in atTop, ∀ x : Site d,
+      |(localTime (X · ω) n x : ℝ) - 2 * d * ε * max (r n - gauge K (toSpace x)) 0| ≤ η * r n := by
+  intro r
+  have h := gauge_shape.{u} hd hK hc h0 hξ hξ0 hε hell μ X hX
+  dsimp only at h
+  rw [normBallVolume_gauge hK hc h0] at h
+  exact h.mono fun ω hω => hω.2.1
+
+/-- **Limit shape theorem, part (ii), in the form of a limit of a supremum.** Almost surely, the
+family `|ℓ_n(x) - 2 d ε (r_n - ψ(x))₊|`, `x ∈ ℤ^d`, is bounded for all large `n`, and
+`r_n⁻¹ sup_x |ℓ_n(x) - 2 d ε (r_n - ψ(x))₊|` tends to `0` as `n → ∞`. -/
+theorem gauge_limit_shape_local_times_sup (hd : 2 ≤ d) (hK : IsCompact K) (hc : Convex ℝ K)
+    (h0 : (0 : EuclideanSpace ℝ (Fin d)) ∈ interior K)
+    {ξ : Site d → EuclideanSpace ℝ (Fin d)}
+    (hξ : ∀ x : Site d, x ≠ 0 → IsSubgradient (gauge K) (toSpace x) (ξ x)) (hξ0 : ξ 0 = 0)
+    {ε : ℝ} (hε : 0 < ε)
+    (hell : ∀ i : Fin d,
+      ε * gauge K (coordVec i) < 1 / (d : ℝ) ∧ ε * gauge K (-coordVec i) < 1 / (d : ℝ))
+    {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (X : ℕ → Ω → Site d) (hX : IsDriftCERW μ ε ξ X) :
+    let r : ℕ → ℝ := fun n =>
+      ((d + 1) * n / (2 * d * ε * (volume K).toReal)) ^ ((1 : ℝ) / (d + 1))
+    ∀ᵐ ω ∂μ, (∀ᶠ n : ℕ in atTop, BddAbove (Set.range fun x : Site d =>
+        |(localTime (X · ω) n x : ℝ) - 2 * d * ε * max (r n - gauge K (toSpace x)) 0|)) ∧
+      Tendsto (fun n : ℕ => (1 / r n) * ⨆ x : Site d,
         |(localTime (X · ω) n x : ℝ) - 2 * d * ε * max (r n - gauge K (toSpace x)) 0|)
       atTop (𝓝 0) := by
   intro r
@@ -97,23 +124,22 @@ theorem gauge_limit_shape_local_times (hd : 2 ≤ d) (hK : IsCompact K) (hc : Co
   have hV : 0 < (volume K).toReal := by
     rw [← normBallVolume_gauge hK hc h0]
     exact normBallVolume_gauge_pos hK hc h0
-  have h := gauge_shape.{u} hd hK hc h0 hξ hξ0 hε hell μ X hX
+  have h := gauge_limit_shape_local_times hd hK hc h0 hξ hξ0 hε hell μ X hX
   dsimp only at h
-  rw [normBallVolume_gauge hK hc h0] at h
   filter_upwards [h] with ω hω
-  obtain ⟨-, hloc, -⟩ := hω
+  refine ⟨(hω 1 one_pos).mono fun n hn => ⟨1 * r n, ?_⟩, ?_⟩
+  · rintro _ ⟨x, rfl⟩
+    exact hn x
   rw [Metric.tendsto_nhds]
   intro δ hδ
-  filter_upwards [hloc (δ / 2) (by positivity), eventually_ge_atTop 1] with n hn hn1
+  filter_upwards [hω (δ / 2) (by positivity), eventually_ge_atTop 1] with n hn hn1
   have hr0 : 0 < r n := scale_pos hd1 hε hV hn1
-  have hsup0 : 0 ≤ ⨆ x : Site d, |(localTime (X · ω) n x : ℝ) -
-      2 * d * ε * max (r n - gauge K (toSpace x)) 0| :=
-    Real.iSup_nonneg fun x => abs_nonneg _
   have hsup : (⨆ x : Site d, |(localTime (X · ω) n x : ℝ) -
       2 * d * ε * max (r n - gauge K (toSpace x)) 0|) ≤ δ / 2 * r n :=
     Real.iSup_le hn (by positivity)
   have hnn : 0 ≤ (1 / r n) * ⨆ x : Site d, |(localTime (X · ω) n x : ℝ) -
-      2 * d * ε * max (r n - gauge K (toSpace x)) 0| := by positivity
+      2 * d * ε * max (r n - gauge K (toSpace x)) 0| :=
+    mul_nonneg (by positivity) (Real.iSup_nonneg fun x => abs_nonneg _)
   have hle : (1 / r n) * ⨆ x : Site d, |(localTime (X · ω) n x : ℝ) -
       2 * d * ε * max (r n - gauge K (toSpace x)) 0| ≤ δ / 2 := by
     calc (1 / r n) * ⨆ x : Site d, |(localTime (X · ω) n x : ℝ) -
@@ -158,9 +184,9 @@ theorem gauge_limit_shape (hd : 2 ≤ d) (hK : IsCompact K) (hc : Convex ℝ K)
         {x : Site d | gauge K (toSpace x) < (1 - η) * r n} ⊆ ↑(departureRange (X · ω) n) ∧
           (↑(departureRange (X · ω) n) : Set (Site d)) ⊆
             {x | gauge K (toSpace x) < (1 + η) * r n}) ∧
-      Tendsto (fun n : ℕ => (1 / r n) * ⨆ x : Site d,
-        |(localTime (X · ω) n x : ℝ) - 2 * d * ε * max (r n - gauge K (toSpace x)) 0|)
-        atTop (𝓝 0) ∧
+      (∀ η : ℝ, 0 < η → ∀ᶠ n : ℕ in atTop, ∀ x : Site d,
+        |(localTime (X · ω) n x : ℝ) - 2 * d * ε * max (r n - gauge K (toSpace x)) 0| ≤
+          η * r n) ∧
       (∀ x : Site d, ∃ᶠ j in atTop, X j ω = x) := by
   intro r
   have h1 := gauge_limit_shape_inclusions hd hK hc h0 hξ hξ0 hε hell μ X hX
