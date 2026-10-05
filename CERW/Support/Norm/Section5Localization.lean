@@ -1,5 +1,6 @@
 import CERW.Support.Norm
 import CERW.Support.Norm.ContactEvent
+import CERW.Support.Norm.CoarseVolume
 import CERW.Support.Contact.ContactSetup
 import CERW.Support.Contact.InradiusArith
 import CERW.Support.Contact.Volume
@@ -1974,9 +1975,7 @@ private theorem localization_core {d : ℕ} (hd : 2 ≤ d) {Ψ : EuclideanSpace 
         ∀ ω ∈ E7 Ψ ε ξ K X n, ω ∈ legalSet X →
           ContactBound d Ψ ε C (fun j => X j ω) n := by
   obtain ⟨K, C, hC, n₀, hn₀, hmain⟩ := contact_on_section5Event.{u}
-    (CERW.Support.Norm.norm_coarse_bounds_of
-      (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds)
-      CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing)
+    CERW.Support.Norm.CoarseVolume.norm_coarse_bounds_closed.{u}
     (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds)
     (fun {_} hd {_} hΨ {_} hε hell {_} hp =>
       CERW.Support.Norm.exists_linear_martingale_bound hd hΨ hε hell hp)
