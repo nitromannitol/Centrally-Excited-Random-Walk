@@ -54,7 +54,3 @@ theorem multivariateGaussian_halfI_smallBall_sharpWidth (δ : ℝ) (hδ : 0 < δ
   field_simp
 
 end CERW.PlanarGap
-
-#print axioms CERW.PlanarGap.sqrt_threePi_mul_sqrt_pi_three
-#print axioms CERW.PlanarGap.multivariateGaussian_halfI_closedBall_sharpWidth
-#print axioms CERW.PlanarGap.multivariateGaussian_halfI_smallBall_sharpWidth

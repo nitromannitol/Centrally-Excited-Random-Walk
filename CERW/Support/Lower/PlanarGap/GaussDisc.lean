@@ -1,7 +1,7 @@
 /-
 # The exact 2D centred Gaussian closed-disk mass — law identification
 
-Packet: `cerw-ds3-gaussdisc`.  The planar gap constant of `oct4.tex:1488` is reduced to the law
+The planar gap constant of `oct4.tex:1488` is reduced to the law
 of `Z_n / √n`, which is asymptotically the centred Gaussian on `EuclideanSpace ℝ (Fin 2)` with
 covariance `(1/2) I₂`; because `‖N‖² ~ Exp(1)`, the closed-disk mass is
 `P(‖N‖ ≤ t) = 1 − e^{−t²}`.
@@ -322,14 +322,3 @@ theorem multivariateGaussian_halfI_smallBall_threePi (δ a : ℝ) (hδ : 0 < δ)
   rw [mul_pow, Real.sq_sqrt (by positivity)]
 
 end CERW.PlanarGap
-
-#print axioms CERW.PlanarGap.multivariateGaussian_halfI_eq_pi
-#print axioms CERW.PlanarGap.integral_zero_to_mul_exp_neg_sq
-#print axioms CERW.PlanarGap.gaussianPDF_half_prod_eq
-#print axioms CERW.PlanarGap.pi_gaussianReal_half_eq_withDensity
-#print axioms CERW.PlanarGap.multivariateGaussian_halfI_eq_withDensity
-#print axioms CERW.PlanarGap.multivariateGaussian_halfI_closedBall
-#print axioms CERW.PlanarGap.multivariateGaussian_halfI_normSq_le
-#print axioms CERW.PlanarGap.multivariateGaussian_halfI_closedBall_pos
-#print axioms CERW.PlanarGap.multivariateGaussian_halfI_closedBall_scale
-#print axioms CERW.PlanarGap.multivariateGaussian_halfI_smallBall_threePi
