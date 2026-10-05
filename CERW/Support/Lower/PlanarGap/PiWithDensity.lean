@@ -1,7 +1,7 @@
 /-
 # The `Measure.pi`–`withDensity` bridge (two coordinates)
 
-Packet `cerw-ds3-pi-withdensity`.  This is the single measure-theoretic input that the exact
+This is the single measure-theoretic input that the exact
 2D Gaussian closed-disk mass (`GaussDisc.lean`) was missing: for a finite index type and
 measurable nonnegative densities, the product measure of the densities is the density of the
 product of the products.
@@ -117,7 +117,3 @@ theorem Measure.map_withDensity_measurableEquiv {α β : Type*} [MeasurableSpace
   by_cases hx : e x ∈ s <;> simp [Set.indicator, hx, Set.mem_preimage]
 
 end MeasureTheory
-
-#print axioms MeasureTheory.lintegral_piFinTwo_prod
-#print axioms MeasureTheory.Measure.pi_withDensity_fin_two
-#print axioms MeasureTheory.Measure.map_withDensity_measurableEquiv
