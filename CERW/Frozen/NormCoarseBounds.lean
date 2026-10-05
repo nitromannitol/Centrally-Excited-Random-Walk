@@ -1,9 +1,7 @@
 import CERW.Model
 import CERW.Support.Norm.CellGradient
-import CERW.Support.Norm.Coarse
-import CERW.Support.Norm.Crossing
+import CERW.Support.Norm.CoarseVolume
 import CERW.Support.Norm.LocalTime
-import CERW.Support.Norm.Radial
 
 /-!
 # prop:coarse
@@ -79,4 +77,4 @@ theorem CERW.Frozen.norm_coarse_bounds {d : ℕ} (hd : 2 ≤ d) :
 -- FROZEN-STATEMENT-END
 := by
   revert hd d
-  exact CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing
+  exact CERW.Support.Norm.CoarseVolume.norm_coarse_bounds_closed

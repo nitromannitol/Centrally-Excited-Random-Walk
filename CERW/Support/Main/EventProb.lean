@@ -1,5 +1,5 @@
 import CERW.Support.Main.Event
-import CERW.Support.Coarse.Assembly
+import CERW.Support.Norm.EuclideanCoarse
 import CERW.Support.Coarse.RadialAssembly
 import CERW.Support.LocalTime.LocalAssembly
 import CERW.Support.LocalTime.Pointwise
@@ -109,7 +109,8 @@ theorem exists_event_prob (hd : 2 ≤ d) {b : Site d → ℝ} {h : ℝ → ℝ} 
   obtain ⟨r₀, hr₀, hrad⟩ := Coarse.radial_test_of_kernelFacts.{u} hd hK
   refine ⟨r₀, ?_⟩
   intro ε hε hεd p hp
-  obtain ⟨c, C₀, -, hC₀, hcoarse⟩ := Coarse.coarse_bounds_of_kernelFacts.{u} hd hK ε hε hεd p hp
+  obtain ⟨c, C₀, -, hC₀, hcoarse⟩ :=
+    CERW.Support.Norm.EuclideanCoarse.coarse_bounds_euclid.{u} hd ε hε hεd p hp
   obtain ⟨Cd, hCd, hloc⟩ := local_time_potential_of_kernelFacts.{u} hd hK
   obtain ⟨Cl, hCl, hloc'⟩ := hloc ε hε hεd p hp
   obtain ⟨Cr, hCr, hrad'⟩ := hrad ε hε hεd p hp
