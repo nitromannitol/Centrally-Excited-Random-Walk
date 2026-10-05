@@ -1,11 +1,12 @@
 import CERW.Support.Statements
 import CERW.Support.Norm.Freedman
-import CERW.Support.Norm.MoreauCap
 import CERW.Support.Norm.Geometry
 import CERW.Support.Norm.Crossing
 import CERW.Support.Norm.BallLayer
 import CERW.Support.Norm.Radial
 import CERW.Support.Norm.OuterCrossing
+import CERW.Support.Norm.ProjectionGeometry
+import CERW.Support.Norm.OuterProjection
 import CERW.Support.Norm.CellGradient
 import CERW.Support.Norm.Coarse
 import CERW.Support.Norm.LocalTime
@@ -22,19 +23,19 @@ Proposition 5.1 (`prop:norm-shape`): for every `p > 0` there is a constant `C`, 
 the choice of subgradients, such that with probability at least `1 - C n^{-p}` the inner radius
 `inf_{y ∉ D_n} Ψ(y)`, the outer radius `max_{j ≤ n} Ψ(X_j)` and the local times `ℓ_n` are within
 the stated rates of `r_n` and of the cone `2dε (r_n - Ψ)_+`. It follows from the local-time
-potential estimate, the coarse bounds, the contact bound, the layer and ball potentials, the
-Moreau cap and the outer crossing lemma, which are carried as hypotheses, together with the
-martingale events of Section 5.2 (the vector bound `eq:vector`, from
-`CERW.Support.Norm.VectorBound`, and the linear martingales `eq:linear-mart`), proved by
+potential estimate, the coarse bounds, the contact bound, the layer and ball potentials and the
+outer crossing lemma, which are carried as hypotheses, together with the martingale events of
+Section 5.2 (the vector bound `eq:vector`, from `CERW.Support.Norm.VectorBound`, and the linear
+martingales `eq:linear-mart`, here for the finite family of projection directions), proved by
 Freedman's inequality at dyadic brackets.
 
 The inner radius is determined by the mass identity `∫_{B(0,S)} U_{D_n} = 2ε ∫_{D_n} Ψ` and the
 local-time approximation of the potential, the excess `∫_E (Ψ - b)` is bounded through the
-potential at a contact point of the cell set, and the outer radius through the Moreau envelope.
-Theorem 2.1 (`thm:norm-shape`) follows from Proposition 5.1 with `p = 2` by the Borel–Cantelli
-lemma.
+potential at a contact point of the cell set, and the outer radius through the Euclidean
+projection onto the ball `{Ψ ≤ r_n}` (`CERW.Support.Norm.OuterProjection`). Theorem 2.1
+(`thm:norm-shape`) follows from Proposition 5.1 with `p = 2` by the Borel–Cantelli lemma.
 
-The names `layer_potential`, `norm_ball_potential`, `norm_potential_geometry`, `moreau_cap` and
+The names `layer_potential`, `norm_ball_potential`, `norm_potential_geometry` and
 `drift_crossing` are also the names of proved theorems in `CERW.Support.Norm`; the two assembly
 theorems are therefore declared from within `CERW.Support.Statements`, where these names refer to
 the statements.
@@ -525,49 +526,6 @@ private lemma one_le_mul_rpow (d : ℕ) {r ℓ : ℝ} (hr : 1 ≤ r) (hℓ : 1 �
       _ ≤ r ^ (d + 1) * rateQ d r ℓ := mul_le_mul_of_nonneg_left hq (by positivity)
   exact (one_le_pow_iff_of_nonneg (mul_nonneg hr0.le hy) (Nat.succ_ne_zero d)).1 h1
 
-/-- The pure real-variable form of the outer-radius smallness conditions. -/
-private lemma outer_core {K₁ C₀ η Λsq E θ r ℓ x : ℝ} (hK₁ : 0 < K₁) (hC₀ : 0 < C₀)
-    (hη : 0 < η) (hΛsq : 0 < Λsq) (hE : 0 < E) (hθ : 0 < θ)
-    (hθs : K₁ * (1 + C₀) * θ * (η + Λsq) ≤ 1 / 4) (hr : 0 < r) (hℓ : 0 ≤ ℓ) (hx : 1 ≤ x)
-    (hxℓ : x * ℓ ≤ r * θ) :
-    η * (K₁ * (1 + C₀ * x) * ℓ) ≤ r / 2 ∧ K₁ * (1 + C₀ * x) * ℓ * Λsq < r / 2 ∧
-      E * (K₁ * (1 + C₀ * x) * ℓ) ≤ E * (K₁ * (1 + C₀)) * (x * ℓ) := by
-  have hA : 0 < K₁ * (1 + C₀) := by positivity
-  have hτ1 : K₁ * (1 + C₀ * x) * ℓ ≤ K₁ * (1 + C₀) * (x * ℓ) := by
-    have h : 1 + C₀ * x ≤ (1 + C₀) * x := by
-      have e : (1 + C₀) * x = x + C₀ * x := by ring
-      linarith
-    calc K₁ * (1 + C₀ * x) * ℓ ≤ K₁ * ((1 + C₀) * x) * ℓ :=
-          mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left h hK₁.le) hℓ
-      _ = K₁ * (1 + C₀) * (x * ℓ) := by ring
-  have hτ2 : K₁ * (1 + C₀ * x) * ℓ ≤ K₁ * (1 + C₀) * (r * θ) :=
-    hτ1.trans (mul_le_mul_of_nonneg_left hxℓ hA.le)
-  have hκ : 0 ≤ K₁ * (1 + C₀) * θ := by positivity
-  have hκη : K₁ * (1 + C₀) * θ * η ≤ 1 / 4 := by
-    have h1 : 0 ≤ K₁ * (1 + C₀) * θ * Λsq := mul_nonneg hκ hΛsq.le
-    have h2 : K₁ * (1 + C₀) * θ * (η + Λsq) =
-        K₁ * (1 + C₀) * θ * η + K₁ * (1 + C₀) * θ * Λsq := mul_add _ _ _
-    linarith
-  have hκΛ : K₁ * (1 + C₀) * θ * Λsq ≤ 1 / 4 := by
-    have h1 : 0 ≤ K₁ * (1 + C₀) * θ * η := mul_nonneg hκ hη.le
-    have h2 : K₁ * (1 + C₀) * θ * (η + Λsq) =
-        K₁ * (1 + C₀) * θ * η + K₁ * (1 + C₀) * θ * Λsq := mul_add _ _ _
-    linarith
-  refine ⟨?_, ?_, ?_⟩
-  · calc η * (K₁ * (1 + C₀ * x) * ℓ) ≤ η * (K₁ * (1 + C₀) * (r * θ)) :=
-          mul_le_mul_of_nonneg_left hτ2 hη.le
-      _ = r * (K₁ * (1 + C₀) * θ * η) := by ring
-      _ ≤ r * (1 / 4) := mul_le_mul_of_nonneg_left hκη hr.le
-      _ ≤ r / 2 := by linarith
-  · calc K₁ * (1 + C₀ * x) * ℓ * Λsq ≤ K₁ * (1 + C₀) * (r * θ) * Λsq :=
-          mul_le_mul_of_nonneg_right hτ2 hΛsq.le
-      _ = r * (K₁ * (1 + C₀) * θ * Λsq) := by ring
-      _ ≤ r * (1 / 4) := mul_le_mul_of_nonneg_left hκΛ hr.le
-      _ < r / 2 := by linarith
-  · calc E * (K₁ * (1 + C₀ * x) * ℓ) ≤ E * (K₁ * (1 + C₀) * (x * ℓ)) :=
-          mul_le_mul_of_nonneg_left hτ1 hE.le
-      _ = E * (K₁ * (1 + C₀)) * (x * ℓ) := by ring
-
 end CERW.Support.Norm.RateInequalities
 
 namespace CERW.Support.Norm
@@ -672,35 +630,6 @@ private theorem profile_arith (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε)
             (mul_le_mul_of_nonneg_left h3 hc1)
       _ = (C_δ + C_L * C_I' ^ ((1 : ℝ) / (d + 1)) + 2 * d * ε * C_b) *
           (r * rateQ d r ℓ ^ ((1 : ℝ) / (d + 1))) := by ring
-
-/-- The smallness conditions and the size bound for the outer-radius time scale. -/
-private theorem outer_arith (hd : 2 ≤ d) {K₁ C₀ η Λsq E : ℝ} (hK₁ : 0 < K₁) (hC₀ : 0 < C₀)
-    (hη : 0 < η) (hΛsq : 0 < Λsq) (hE : 0 < E) :
-    ∃ C r₀ M : ℝ, 0 < C ∧ 0 < M ∧ ∀ r ℓ : ℝ, r₀ ≤ r → 1 ≤ ℓ → M * ℓ ^ (d + 5) ≤ r →
-      η * (K₁ * (1 + C₀ * (r * rateQ d r ℓ ^ ((1 : ℝ) / (d + 1)))) * ℓ) ≤ r / 2 ∧
-      K₁ * (1 + C₀ * (r * rateQ d r ℓ ^ ((1 : ℝ) / (d + 1)))) * ℓ * Λsq < r / 2 ∧
-      E * (K₁ * (1 + C₀ * (r * rateQ d r ℓ ^ ((1 : ℝ) / (d + 1)))) * ℓ) ≤
-        C * (r * rateQ d r ℓ ^ ((1 : ℝ) / (d + 1)) * ℓ) := by
-  have hA : 0 < K₁ * (1 + C₀) := by positivity
-  have hP : 0 < η + Λsq := add_pos hη hΛsq
-  have hθ : 0 < 1 / (4 * (K₁ * (1 + C₀)) * (η + Λsq)) := by positivity
-  obtain ⟨M, hM1, hM⟩ := RateInequalities.rate_local_mul_le hd hθ
-  refine ⟨E * (K₁ * (1 + C₀)), 1, M, by positivity, by linarith, ?_⟩
-  intro r ℓ hr hℓ hMr
-  obtain ⟨-, -, hℓr⟩ := RateInequalities.regime hd hM1 hℓ hMr
-  have hr0 : 0 < r := by linarith
-  have hy := hM r ℓ hℓ hMr
-  have hx1 := RateInequalities.one_le_mul_rpow d hr hℓ hℓr
-  have hxℓ : r * rateQ d r ℓ ^ ((1 : ℝ) / (d + 1)) * ℓ ≤
-      r * (1 / (4 * (K₁ * (1 + C₀)) * (η + Λsq))) := by
-    calc r * rateQ d r ℓ ^ ((1 : ℝ) / (d + 1)) * ℓ
-        = r * (rateQ d r ℓ ^ ((1 : ℝ) / (d + 1)) * ℓ) := by ring
-      _ ≤ r * (1 / (4 * (K₁ * (1 + C₀)) * (η + Λsq))) :=
-          mul_le_mul_of_nonneg_left hy hr0.le
-  have hθs : K₁ * (1 + C₀) * (1 / (4 * (K₁ * (1 + C₀)) * (η + Λsq))) * (η + Λsq) ≤ 1 / 4 := by
-    apply le_of_eq
-    field_simp
-  exact RateInequalities.outer_core hK₁ hC₀ hη hΛsq hE hθ hθs hr0 (by linarith) hx1 hxℓ
 
 end CERW.Support.Norm
 
@@ -2036,171 +1965,6 @@ private theorem inner_rates (hd : 2 ≤ d) (hΨ : IsNorm Ψ) {ε : ℝ} (hε : 0
 
 end CERW.Support.Norm
 
-namespace CERW.Support.Norm.OuterRadius
-
-open CERW
-
-variable {d : ℕ}
-
-/-- The origin of the lattice embeds as the origin of Euclidean space. -/
-private theorem toSpace_zero_eq : toSpace (0 : Site d) = 0 := by
-  ext i
-  simp [toSpace]
-
-/-- A vector `y` whose pairing with a vector `q` of norm at most `Λ` is at least `s`, where
-`τ Λ² < s`, has norm greater than `τ Λ`. -/
-private theorem lt_norm_of_lt_inner {q y : EuclideanSpace ℝ (Fin d)} {Λ τ s : ℝ}
-    (hΛ : 0 < Λ) (hq : ‖q‖ ≤ Λ) (hs : τ * Λ ^ 2 < s) (hy : s ≤ inner ℝ q y) :
-    τ * Λ < ‖y‖ := by
-  have h1 : inner ℝ q y ≤ Λ * ‖y‖ :=
-    (real_inner_le_norm q y).trans (mul_le_mul_of_nonneg_right hq (norm_nonneg y))
-  have h2 : (τ * Λ) * Λ < ‖y‖ * Λ :=
-    calc (τ * Λ) * Λ = τ * Λ ^ 2 := by ring
-      _ < s := hs
-      _ ≤ inner ℝ q y := hy
-      _ ≤ Λ * ‖y‖ := h1
-      _ = ‖y‖ * Λ := by ring
-  exact lt_of_mul_lt_mul_right h2 hΛ.le
-
-/-- If every site whose pairing with `q` is at least `r` has local time at most `Lb`, then the
-largest local time among the points of the departure range with this property is at most `Lb`. -/
-private theorem sup_localTime_le {q : EuclideanSpace ℝ (Fin d)} {r Lb : ℝ} (hLb : 0 ≤ Lb)
-    (x : ℕ → Site d) (n : ℕ)
-    (h : ∀ z : Site d, r ≤ inner ℝ q (toSpace z) → (localTime x n z : ℝ) ≤ Lb) :
-    ((((departureRange x n).filter (fun z => r ≤ inner ℝ q (toSpace z))).sup
-      (localTime x n) : ℕ) : ℝ) ≤ Lb := by
-  have h1 : ((departureRange x n).filter (fun z => r ≤ inner ℝ q (toSpace z))).sup
-      (localTime x n) ≤ ⌊Lb⌋₊ :=
-    Finset.sup_le fun z hz => Nat.le_floor (h z (Finset.mem_filter.1 hz).2)
-  exact (Nat.cast_le.2 h1).trans (Nat.floor_le hLb)
-
-end CERW.Support.Norm.OuterRadius
-
-namespace CERW.Support.Norm
-
-open CERW.Support.Statements CERW
-
-variable {d : ℕ} {Ψ : EuclideanSpace ℝ (Fin d) → ℝ}
-
-/-- The outer radius from the crossing lemma and the cap of the Moreau envelope, for a path on
-which the vector bound and the linear martingale bounds hold and the local times beyond `r` are
-at most `L_b`: the scale `τ` of the envelope is fixed by `4 C_out (1 + L_b) log n ≤ η τ`. -/
-private theorem outer_deterministic (hd : 2 ≤ d) (hΨ : IsNorm Ψ) {ε : ℝ} (hε : 0 < ε)
-    (hell : ∀ i : Fin d, ε * Ψ (coordVec i) < 1 / (d : ℝ))
-    (hcap : Statements.moreau_cap) (houter : Statements.outer_crossing)
-    {C₁ : ℝ} (hC₁ : 0 < C₁) :
-    ∃ C_out : ℝ, 0 < C_out ∧ ∀ (ξ : Site d → EuclideanSpace ℝ (Fin d)),
-      (∀ x : Site d, x ≠ 0 → IsSubgradient Ψ (toSpace x) (ξ x)) → ξ 0 = 0 →
-      ∀ (n : ℕ), 2 ≤ n → ∀ (x : ℕ → Site d), x 0 = 0 →
-      (∀ j, x (j + 1) - x j ∈ unitSteps d) → ∀ (τ r Lb : ℝ), 0 < τ → 0 < r → 0 ≤ Lb →
-      normMin Ψ ^ 4 / (8 * normMax Ψ ^ 2) * τ ≤ r / 2 →
-      τ * normMax Ψ ^ 2 < r / 2 →
-      4 * C_out * (1 + Lb) * Real.log n ≤ normMin Ψ ^ 4 / (8 * normMax Ψ ^ 2) * τ →
-      (∀ z : Site d, r ≤ Ψ (toSpace z) → (localTime x n z : ℝ) ≤ Lb) →
-      (∀ s t : ℕ, s < t → t ≤ n →
-        ‖(toSpace (x t) + ε • ∑ j ∈ Finset.range t,
-            if x j ∉ departureRange x j then ξ (x j) else 0) -
-          (toSpace (x s) + ε • ∑ j ∈ Finset.range s,
-            if x j ∉ departureRange x j then ξ (x j) else 0)‖ ≤
-          C₁ * Real.sqrt (((t : ℝ) - s) * Real.log n)) →
-      (∀ j : ℕ, j ≤ n → x j ≠ 0 → ∀ k : ℕ, k ≤ n →
-        |dynkinMart (driftStepProb d ε ξ)
-            (fun z => max (inner ℝ (gradient (moreauEnvelope Ψ τ) (toSpace (x j)))
-              (toSpace z) - k * normMax Ψ) 0) x n| ≤
-          C₁ * (Real.sqrt (Real.log n * ∑ z ∈ (departureRange x n).filter
-              (fun z => (k : ℝ) * normMax Ψ - normMax Ψ <
-                inner ℝ (gradient (moreauEnvelope Ψ τ) (toSpace (x j))) (toSpace z)),
-            (localTime x n z : ℝ)) + Real.log n)) →
-      normMaxRadius Ψ x n ≤
-        r + (normMin Ψ ^ 4 / (8 * normMax Ψ ^ 2) / 4 + normMax Ψ ^ 2 / 2) * τ := by
-  have hd1 : 1 ≤ d := by omega
-  obtain ⟨hcpos, -⟩ := CERW.Generic.Norm.normMin_pos_mul_le hΨ hd1
-  have hcΛ : normMin Ψ ≤ normMax Ψ :=
-    CERW.Support.Norm.ContactAssembly.normMin_le_normMax hd1 hΨ
-  have hΛpos : 0 < normMax Ψ := lt_of_lt_of_le hcpos hcΛ
-  have hα : 0 < normMin Ψ ^ 2 / 2 := div_pos (pow_pos hcpos 2) two_pos
-  obtain ⟨C, hCpos, hC⟩ := houter hd Ψ hΨ ε hε hell _ hα C₁ hC₁
-  refine ⟨C, hCpos, ?_⟩
-  intro ξ hξ hξ0 n hn x hx0 hstep τ r Lb hτ hr hLb hη1 hη2 hη3 hloc hZ hmart
-  have hη : 0 < normMin Ψ ^ 4 / (8 * normMax Ψ ^ 2) :=
-    div_pos (pow_pos hcpos 4) (mul_pos (by norm_num) (pow_pos hΛpos 2))
-  set η := normMin Ψ ^ 4 / (8 * normMax Ψ ^ 2) with hηdef
-  have hητ : 0 < η * τ := mul_pos hη hτ
-  obtain ⟨j₀, hj₀mem, hj₀max⟩ :=
-    Finset.exists_max_image (Finset.range (n + 1))
-      (fun j => moreauEnvelope Ψ τ (toSpace (x j)))
-      ⟨0, Finset.mem_range.2 (Nat.succ_pos n)⟩
-  have hj₀n : j₀ ≤ n := Nat.lt_succ_iff.1 (Finset.mem_range.1 hj₀mem)
-  have hmax : ∀ j ≤ n,
-      moreauEnvelope Ψ τ (toSpace (x j)) ≤ moreauEnvelope Ψ τ (toSpace (x j₀)) :=
-    fun j hj => hj₀max j (Finset.mem_range.2 (Nat.lt_succ_of_le hj))
-  have hsub := isSubgradient_gradient_moreauEnvelope hΨ hτ (toSpace (x j₀))
-  have hmart₀ := hmart j₀ hj₀n
-  set q := gradient (moreauEnvelope Ψ τ) (toSpace (x j₀)) with hq
-  have hqΛ : ‖q‖ ≤ normMax Ψ := norm_le_normMax_of_isSubgradient hΨ hsub
-  have hqΨ : ∀ y, inner ℝ q y ≤ Ψ y := (CERW.Generic.Norm.subgradient_euler hΨ hsub).2
-  have hlin : ∀ j ≤ n, inner ℝ q (toSpace (x j)) ≤ inner ℝ q (toSpace (x j₀)) := by
-    intro j hj
-    have h1 : moreauEnvelope Ψ τ (toSpace (x j₀))
-        + (inner ℝ q (toSpace (x j)) - inner ℝ q (toSpace (x j₀)))
-        ≤ moreauEnvelope Ψ τ (toSpace (x j)) := by
-      rw [← inner_sub_right]
-      exact moreauEnvelope_ge_linear hΨ hτ (toSpace (x j₀)) (toSpace (x j))
-    have h2 := hmax j hj
-    linarith
-  have hΨle : ∀ j ≤ n,
-      Ψ (toSpace (x j)) ≤ inner ℝ q (toSpace (x j₀)) + τ * normMax Ψ ^ 2 / 2 := by
-    intro j hj
-    have h1 := (moreauEnvelope_comparison hΨ hτ (toSpace (x j))).1
-    have h2 := hmax j hj
-    have h3 : moreauEnvelope Ψ τ (toSpace (x j₀)) ≤ inner ℝ q (toSpace (x j₀)) :=
-      ((moreauEnvelope_comparison hΨ hτ (toSpace (x j₀))).2).trans (min_le_right _ _)
-    linarith
-  have hradius : normMaxRadius Ψ x n ≤ inner ℝ q (toSpace (x j₀)) + τ * normMax Ψ ^ 2 / 2 := by
-    unfold normMaxRadius
-    exact Finset.sup'_le _ _ fun j hj => hΨle j (Nat.lt_succ_iff.1 (Finset.mem_range.1 hj))
-  have hkey : inner ℝ q (toSpace (x j₀)) ≤ r + η * τ / 4 := by
-    by_cases hTr : inner ℝ q (toSpace (x j₀)) ≤ r
-    · linarith
-    · replace hTr := not_le.1 hTr
-      have hx₀ : x j₀ ≠ 0 := by
-        intro h0
-        rw [h0, OuterRadius.toSpace_zero_eq, inner_zero_right] at hTr
-        linarith
-      have hcapH : ∀ j ≤ n, inner ℝ q (toSpace (x j₀)) - η * τ < inner ℝ q (toSpace (x j)) →
-          normMin Ψ ^ 2 / 2 ≤ inner ℝ q (ξ (x j)) := by
-        intro j hj hlt
-        have hs : r / 2 ≤ inner ℝ q (toSpace (x j)) := by linarith
-        have hnorm : τ * normMax Ψ < ‖toSpace (x j)‖ :=
-          OuterRadius.lt_norm_of_lt_inner hΛpos hqΛ hη2 hs
-        have hne : toSpace (x j) ≠ 0 := by
-          intro h0
-          rw [h0, norm_zero] at hnorm
-          have := mul_pos hτ hΛpos
-          linarith
-        have hxj : x j ≠ 0 := fun h0 => hne (by rw [h0, OuterRadius.toSpace_zero_eq])
-        exact hcap hd hΨ hτ (toSpace (x j₀)) (toSpace (x j)) (hmax j hj) hlt hnorm
-          (ξ (x j)) (hξ (x j) hxj)
-      have hcross := hC ξ hξ hξ0 n hn q hqΛ x hx0 hstep hZ (fun k hk => hmart₀ hx₀ k hk)
-        j₀ hj₀n hlin (η * τ) hητ hcapH r hr.le
-      have hsup := OuterRadius.sup_localTime_le (q := q) (r := r) hLb x n
-        (fun z hz => hloc z (hz.trans (hqΨ _)))
-      have hlog : 0 ≤ Real.log n := Real.log_nonneg (by exact_mod_cast (by omega : 1 ≤ n))
-      have hE : C * (1 + ((((departureRange x n).filter
-            (fun z => r ≤ inner ℝ q (toSpace z))).sup (localTime x n) : ℕ) : ℝ))
-            * Real.log n ≤ η * τ / 4 := by
-        have h1 := mul_le_mul_of_nonneg_right
-          (mul_le_mul_of_nonneg_left (add_le_add_left hsup 1) hCpos.le) hlog
-        linarith
-      rcases max_cases (inner ℝ q (toSpace (x j₀)) - η * τ) r with ⟨hm, _⟩ | ⟨hm, _⟩
-      · rw [hm] at hcross
-        linarith
-      · rw [hm] at hcross
-        linarith
-  linarith
-
-end CERW.Support.Norm
-
 namespace CERW.Support.Norm
 
 open CERW.Support.Statements CERW
@@ -2209,20 +1973,22 @@ variable {d : ℕ} {Ψ : EuclideanSpace ℝ (Fin d) → ℝ}
 
 /-! ## The outer radius from the profile -/
 
-/-- The outer radius bound: the deterministic crossing argument combined with the arithmetic of
-the rates. The constant `K₁` fixes the scale `τ = K₁ (1 + L_b) log n` of the Moreau envelope. -/
+/-- The outer radius bound: the deterministic projection argument
+(`OuterProjection.outer_deterministic_projection`) combined with the arithmetic of the rates.
+For a selection `P` of nearest points of `{Ψ ≤ r}` and local times beyond `r` at most
+`C_lt r q^{1/(d+1)}`, the outer radius exceeds `r` by at most `C r q^{1/(d+1)} log n`. -/
 private theorem outer_rates (hd : 2 ≤ d) (hΨ : IsNorm Ψ) {ε : ℝ} (hε : 0 < ε)
     (hell : ∀ i : Fin d, ε * Ψ (coordVec i) < 1 / (d : ℝ))
-    (hcap : Statements.moreau_cap) (houter : Statements.outer_crossing)
-    {C₁ C_lt : ℝ} (hC₁ : 0 < C₁) (hC_lt : 0 < C_lt) :
-    ∃ K₁ C r₀ M : ℝ, 0 < K₁ ∧ 0 < C ∧ 0 < M ∧
-      ∀ (ξ : Site d → EuclideanSpace ℝ (Fin d)),
+    (houter : Statements.outer_crossing) {C₁ C_lt : ℝ} (hC₁ : 0 < C₁) (hC_lt : 0 < C_lt) :
+    ∃ C : ℝ, 0 < C ∧ ∀ (ξ : Site d → EuclideanSpace ℝ (Fin d)),
       (∀ x : Site d, x ≠ 0 → IsSubgradient Ψ (toSpace x) (ξ x)) → ξ 0 = 0 →
       ∀ (n : ℕ), 2 ≤ n → ∀ (x : ℕ → Site d), x 0 = 0 →
-      (∀ j, x (j + 1) - x j ∈ unitSteps d) → ∀ (τ r : ℝ), r₀ ≤ r → 1 ≤ Real.log n →
-      M * Real.log n ^ (d + 5) ≤ r →
-      τ = K₁ * (1 + C_lt * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1)))) *
-        Real.log n →
+      (∀ j, x (j + 1) - x j ∈ unitSteps d) → ∀ r : ℝ, 1 ≤ r → 1 ≤ Real.log n →
+      Real.log n ≤ r →
+      ∀ P : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d),
+        (∀ y, Ψ (P y) ≤ r) →
+        (∀ y v, Ψ v ≤ r → ‖y - P y‖ ≤ ‖y - v‖) →
+        (∀ y v, Ψ v ≤ r → inner ℝ (y - P y) (v - P y) ≤ 0) →
       (∀ z : Site d, r ≤ Ψ (toSpace z) →
         (localTime x n z : ℝ) ≤ C_lt * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1)))) →
       (∀ s t : ℕ, s < t → t ≤ n →
@@ -2231,51 +1997,40 @@ private theorem outer_rates (hd : 2 ≤ d) (hΨ : IsNorm Ψ) {ε : ℝ} (hε : 0
           (toSpace (x s) + ε • ∑ j ∈ Finset.range s,
             if x j ∉ departureRange x j then ξ (x j) else 0)‖ ≤
           C₁ * Real.sqrt (((t : ℝ) - s) * Real.log n)) →
-      (∀ j : ℕ, j ≤ n → x j ≠ 0 → ∀ k : ℕ, k ≤ n →
+      (∀ j : ℕ, j ≤ n → r < Ψ (toSpace (x j)) → ∀ k : ℕ, k ≤ n →
         |dynkinMart (driftStepProb d ε ξ)
-            (fun z => max (inner ℝ (gradient (moreauEnvelope Ψ τ) (toSpace (x j)))
-              (toSpace z) - k * normMax Ψ) 0) x n| ≤
+            (fun z => max (inner ℝ ((normMax Ψ / ‖toSpace (x j) - P (toSpace (x j))‖) •
+                (toSpace (x j) - P (toSpace (x j)))) (toSpace z) - k * normMax Ψ) 0) x n| ≤
           C₁ * (Real.sqrt (Real.log n * ∑ z ∈ (departureRange x n).filter
               (fun z => (k : ℝ) * normMax Ψ - normMax Ψ <
-                inner ℝ (gradient (moreauEnvelope Ψ τ) (toSpace (x j))) (toSpace z)),
+                inner ℝ ((normMax Ψ / ‖toSpace (x j) - P (toSpace (x j))‖) •
+                  (toSpace (x j) - P (toSpace (x j)))) (toSpace z)),
             (localTime x n z : ℝ)) + Real.log n)) →
       normMaxRadius Ψ x n - r ≤
         C * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1)) * Real.log n) := by
-  have hd1 : 1 ≤ d := by omega
-  obtain ⟨hc0, hcle⟩ := CERW.Generic.Norm.normMin_pos_mul_le hΨ hd1
-  have hΛ : 0 < normMax Ψ := lt_of_lt_of_le hc0 (ContactAssembly.normMin_le_normMax hd1 hΨ)
-  obtain ⟨C_out, hCout, hdet⟩ := outer_deterministic hd hΨ hε hell hcap houter hC₁
-  set η : ℝ := normMin Ψ ^ 4 / (8 * normMax Ψ ^ 2) with hηdef
-  have hη : 0 < η := by positivity
-  set K₁ : ℝ := 4 * C_out / η with hK₁
-  have hK₁0 : 0 < K₁ := by positivity
-  obtain ⟨C_oa, r_oa, M_oa, hCoa, hMoa, hoa⟩ := outer_arith hd (K₁ := K₁) (C₀ := C_lt)
-    (η := η) (Λsq := normMax Ψ ^ 2) (E := η / 4 + normMax Ψ ^ 2 / 2) hK₁0 hC_lt hη
-    (by positivity) (by positivity)
-  refine ⟨K₁, C_oa, max r_oa 1, M_oa, hK₁0, hCoa, hMoa, ?_⟩
-  intro ξ hξ hξ0 n hn x hx0 hstep τ r hr hℓ hM hτ hprof hvec hLM
-  have hr_oa : r_oa ≤ r := le_trans (le_max_left _ _) hr
-  have hr0 : 0 < r := lt_of_lt_of_le one_pos (le_trans (le_max_right _ _) hr)
-  obtain ⟨h1, h2, h3⟩ := hoa r (Real.log n) hr_oa hℓ hM
-  have hℓ0 : 0 < Real.log n := lt_of_lt_of_le one_pos hℓ
-  have hqnn : 0 ≤ rateQ d r (Real.log n) := rateQ_nonneg d hr0 hℓ0.le
-  set Lb : ℝ := C_lt * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1))) with hLb
-  have hLb0 : 0 ≤ Lb := by
-    have : 0 ≤ rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1)) := Real.rpow_nonneg hqnn _
-    positivity
-  have hτ0 : 0 < τ := by
-    rw [hτ]
-    have : 0 < 1 + Lb := by linarith
-    positivity
-  have hτ' : τ = K₁ * (1 + Lb) * Real.log n := hτ
-  rw [← hτ'] at h1 h2 h3
-  have h4 : 4 * C_out * (1 + Lb) * Real.log n ≤ η * τ := by
-    rw [hτ', hK₁]
-    have : η * (4 * C_out / η * (1 + Lb) * Real.log n) = 4 * C_out * (1 + Lb) * Real.log n := by
-      field_simp
-    rw [this]
-  have hfin := hdet ξ hξ hξ0 n hn x hx0 hstep τ r Lb hτ0 hr0 hLb0 h1 h2 h4 hprof hvec hLM
-  linarith
+  obtain ⟨C_out, hCout, hdet⟩ :=
+    OuterProjection.outer_deterministic_projection hd hΨ hε hell houter hC₁
+  refine ⟨C_out * (1 + C_lt), mul_pos hCout (by linarith), ?_⟩
+  intro ξ hξ hξ0 n hn x hx0 hstep r hr hℓ hℓr P hPmem hPmin hPvar hprof hvec hLM
+  have hr0 : 0 < r := by linarith
+  have hℓ0 : 0 < Real.log n := by linarith
+  have hx1 := RateInequalities.one_le_mul_rpow d hr hℓ hℓr
+  have hLb : 0 ≤ C_lt * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1))) :=
+    mul_nonneg hC_lt.le (by linarith)
+  have hfin := hdet ξ hξ hξ0 n hn x hx0 hstep r
+    (C_lt * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1)))) hr0 hLb P hPmem hPmin hPvar
+    hprof hvec hLM
+  have hshift : 1 + C_lt * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1))) ≤
+      (1 + C_lt) * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1))) := by
+    nlinarith
+  calc normMaxRadius Ψ x n - r
+      ≤ C_out * (1 + C_lt * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1)))) *
+        Real.log n := by linarith
+    _ ≤ C_out * ((1 + C_lt) * (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1)))) *
+        Real.log n :=
+        mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hshift hCout.le) hℓ0.le
+    _ = C_out * (1 + C_lt) *
+        (r * rateQ d r (Real.log n) ^ ((1 : ℝ) / (d + 1)) * Real.log n) := by ring
 
 end CERW.Support.Norm
 
@@ -2869,7 +2624,7 @@ private lemma union_count_arith {C p : ℝ} (hC : 0 ≤ C) (d : ℕ) {n : ℕ} (
 /-- Proposition 5.1 from the estimates of Sections 3 to 5 and the assumed lemmas. -/
 private theorem main_rates (hlocal : Statements.norm_local_time_potential.{u})
     (hcoarse : Statements.norm_coarse_bounds.{u}) (hcontact : Statements.contact_potential.{u})
-    (hlayer : Statements.layer_potential) (hcap : Statements.moreau_cap)
+    (hlayer : Statements.layer_potential)
     (houter : Statements.outer_crossing) (hgeom : Statements.norm_potential_geometry)
     (hball : Statements.norm_ball_potential) : Statements.norm_shape_rates.{u} := by
   intro d hd Ψ hΨ ε hε hell r p hp
@@ -2885,19 +2640,19 @@ private theorem main_rates (hlocal : Statements.norm_local_time_potential.{u})
   obtain ⟨C_V, hC_V, hvec⟩ := VectorBound.exists_driftCompensated_bound.{u} hd1 hε.le hp
   obtain ⟨C_LM, hC_LM, hLM⟩ := exists_linear_martingale_bound.{u} hd hΨ hε hell
     (p := p + d + 1) (by positivity)
-  obtain ⟨K₁, C_ob, r_ob, M_ob, hK₁, hC_ob, hM_ob, hout⟩ :=
-    outer_rates hd hΨ hε hell hcap houter (C₁ := max C_V C_LM) (C_lt := C_lt)
+  obtain ⟨C_ob, hC_ob, hout⟩ :=
+    outer_rates hd hΨ hε hell houter (C₁ := max C_V C_LM) (C_lt := C_lt)
       (lt_max_of_lt_left hC_V) hC_lt
   set X₀ : ℝ := 2 * d * ε * normBallVolume Ψ with hX₀
   have hX₀pos : 0 < X₀ := by positivity
   have hrdef : ∀ n : ℕ, r n = (((d : ℝ) + 1) * n / X₀) ^ ((1 : ℝ) / (d + 1)) := fun n => rfl
-  set M₀ : ℝ := max M_in M_ob with hM₀
+  set M₀ : ℝ := max M_in 1 with hM₀
   have hM₀pos : 0 < M₀ := lt_max_of_lt_left hM_in
-  have hreg : ∀ᶠ n : ℕ in atTop, max n_c 3 ≤ n ∧ max r_in r_ob ≤ r n ∧
+  have hreg : ∀ᶠ n : ℕ in atTop, max n_c 3 ≤ n ∧ max r_in 1 ≤ r n ∧
       M₀ * Real.log n ^ (d + 5) ≤ r n ∧ (C_co + 1) * r n ≤ 2 * n := by
     have h1 : ∀ᶠ n : ℕ in atTop, max n_c 3 ≤ n := eventually_ge_atTop _
     have hrt := tendsto_scale d hX₀pos
-    have h2 : ∀ᶠ n : ℕ in atTop, max r_in r_ob ≤ r n := hrt.eventually_ge_atTop _
+    have h2 : ∀ᶠ n : ℕ in atTop, max r_in 1 ≤ r n := hrt.eventually_ge_atTop _
     have hpos : ∀ᶠ n : ℕ in atTop, 0 < r n := hrt.eventually_gt_atTop 0
     have h3 : ∀ᶠ n : ℕ in atTop, M₀ * Real.log n ^ (d + 5) ≤ r n := by
       have ht := tendsto_log_rpow_div_scale d hX₀pos ((d + 5 : ℕ) : ℝ)
@@ -2937,15 +2692,15 @@ private theorem main_rates (hlocal : Statements.norm_local_time_potential.{u})
       linarith [Real.exp_one_lt_three]
     have hℓ0 : 0 < Real.log n := by linarith
     have hr_in : r_in ≤ r n := (le_max_left _ _).trans hrr
-    have hr_ob : r_ob ≤ r n := (le_max_right _ _).trans hrr
+    have hr1 : 1 ≤ r n := (le_max_right _ _).trans hrr
     have hrpos : 0 < r n := by
       rw [hrdef n]
       exact Real.rpow_pos_of_pos (by positivity) _
     have hpowℓ : 0 ≤ Real.log n ^ (d + 5) := pow_nonneg hℓ0.le _
     have hM_in' : M_in * Real.log n ^ (d + 5) ≤ r n :=
       le_trans (mul_le_mul_of_nonneg_right (le_max_left _ _) hpowℓ) hMlog
-    have hM_ob' : M_ob * Real.log n ^ (d + 5) ≤ r n :=
-      le_trans (mul_le_mul_of_nonneg_right (le_max_right _ _) hpowℓ) hMlog
+    have hℓr : Real.log n ≤ r n :=
+      (RateInequalities.regime hd (le_max_right M_in 1) hℓ1 hMlog).2.2
     have hξ' := ContactAssembly.drift_coord_le hΨ hε hell hξ hξ0
     have hpath : ∀ᵐ ω ∂μ, X 0 ω = 0 ∧ ∀ j, X (j + 1) ω - X j ω ∈ unitSteps d := by
       have h0 : ∀ᵐ ω ∂μ, X 0 ω = 0 := by
@@ -2956,23 +2711,17 @@ private theorem main_rates (hlocal : Statements.norm_local_time_potential.{u})
       exact ⟨h0, hs⟩
     have hN : μ {ω | ¬ (X 0 ω = 0 ∧ ∀ j, X (j + 1) ω - X j ω ∈ unitSteps d)} = 0 :=
       ae_iff.mp hpath
-    obtain ⟨τ, hτdef⟩ : ∃ τ : ℝ, τ = K₁ * (1 + C_lt * (r n * rateQ d (r n) (Real.log n) ^
-        ((1 : ℝ) / (d + 1)))) * Real.log n := ⟨_, rfl⟩
-    have hτ0 : 0 < τ := by
-      have hq := rateQ_nonneg d hrpos hℓ0.le
-      have h : 0 ≤ C_lt * (r n * rateQ d (r n) (Real.log n) ^ ((1 : ℝ) / (d + 1))) := by
-        have := Real.rpow_nonneg hq ((1 : ℝ) / (d + 1))
-        positivity
-      have h' : 0 < 1 + C_lt * (r n * rateQ d (r n) (Real.log n) ^ ((1 : ℝ) / (d + 1))) := by
-        linarith
-      rw [hτdef]
-      positivity
+    -- the nearest points of the deterministic set `{Ψ ≤ r_n}`, chosen before the finite family of
+    -- directions and before the probabilistic event
+    obtain ⟨P, hPmem, hPmin, hPvar⟩ :=
+      ProjectionGeometry.exists_nearestSelection hΨ (r := r n) hrpos.le
     set Q : Finset (EuclideanSpace ℝ (Fin d)) := (LatticeProb.ballFinset d (n : ℝ)).image
-      (fun z => gradient (moreauEnvelope Ψ τ) (toSpace z)) with hQdef
+      (fun z => (normMax Ψ / ‖toSpace z - P (toSpace z)‖) • (toSpace z - P (toSpace z)))
+      with hQdef
     have hQ : ∀ q ∈ Q, ‖q‖ ≤ normMax Ψ := by
       intro q hq
       obtain ⟨z, -, rfl⟩ := Finset.mem_image.mp hq
-      exact norm_le_normMax_of_isSubgradient hΨ (isSubgradient_gradient_moreauEnvelope hΨ hτ0 _)
+      exact ProjectionGeometry.norm_scaledDirection_le hΛ.le _
     have hc1 : Q.card ≤ (LatticeProb.ballFinset d (n : ℝ)).card := Finset.card_image_le
     have hcard : (Q.card : ℝ) ≤ (2 * (n : ℝ) + 1) ^ d :=
       (Nat.cast_le.mpr hc1).trans (LatticeProb.card_ballFinset_le d hnpos.le)
@@ -3011,18 +2760,19 @@ private theorem main_rates (hlocal : Statements.norm_local_time_potential.{u})
           max_eq_right (by linarith), mul_zero, sub_zero,
           abs_of_nonneg (Nat.cast_nonneg _)] at h
         exact h
-      have hfin := hout ξ hξ hξ0 n hn2 (fun j => X j ω) hpathω.1 hpathω.2 τ (r n) hr_ob hℓ1
-        hM_ob' hτdef hprofω (by
+      have hfin := hout ξ hξ hξ0 n hn2 (fun j => X j ω) hpathω.1 hpathω.2 (r n) hr1 hℓ1 hℓr
+        P hPmem hPmin hPvar hprofω (by
           intro s t hst htn
           by_contra hcon'
           apply g4
           exact ⟨s, t, hst, htn, lt_of_le_of_lt
             (mul_le_mul_of_nonneg_right (le_max_left _ _) (Real.sqrt_nonneg _))
             (not_le.mp hcon')⟩) (by
-          intro j hj hxj k hk
+          intro j hj _ k hk
           by_contra hcon'
           apply g5
-          refine ⟨gradient (moreauEnvelope Ψ τ) (toSpace (X j ω)), ?_, k, hk, ?_⟩
+          refine ⟨(normMax Ψ / ‖toSpace (X j ω) - P (toSpace (X j ω))‖) •
+            (toSpace (X j ω) - P (toSpace (X j ω))), ?_, k, hk, ?_⟩
           · exact Finset.mem_image.mpr ⟨X j ω, LatticeProb.mem_ballFinset_iff.mpr
               ((CERW.Support.Occupation.euclidNorm_le_of_steps (fun j => X j ω) hpathω.1
                 hpathω.2 j).trans (by exact_mod_cast hj)), rfl⟩
@@ -3088,13 +2838,13 @@ namespace CERW.Support.Statements
 
 /-- Proposition 5.1 (prop:norm-shape): the rates for the inner radius, the outer radius and the
 local times of the centrally excited random walk with a norm, from Lemmas 3.1, 4.1, 5.4, 5.2, 5.5,
-5.3, 3.4 and 2.2. The constant does not depend on the choice of subgradients. -/
+3.4 and 2.2. The constant does not depend on the choice of subgradients. -/
 theorem _root_.CERW.Support.Norm.norm_shape_rates_of (hlocal : norm_local_time_potential.{u})
     (hcoarse : norm_coarse_bounds.{u}) (hcontact : contact_potential.{u})
-    (hlayer : layer_potential) (hcap : moreau_cap) (houter : outer_crossing)
+    (hlayer : layer_potential) (houter : outer_crossing)
     (hgeom : norm_potential_geometry) (hball : norm_ball_potential) :
     norm_shape_rates.{u} :=
-  CERW.Support.Norm.main_rates hlocal hcoarse hcontact hlayer hcap houter hgeom hball
+  CERW.Support.Norm.main_rates hlocal hcoarse hcontact hlayer houter hgeom hball
 
 /-- Theorem 2.1 from Proposition 5.1. -/
 theorem _root_.CERW.Support.Norm.norm_shape_of (hrates : norm_shape_rates.{u}) :
