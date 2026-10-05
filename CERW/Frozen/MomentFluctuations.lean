@@ -10,13 +10,11 @@ import CERW.Support.Lower.ExpDeviation
 import CERW.Support.Main.LimitShape
 import CERW.Support.Norm.BallLayer
 import CERW.Support.Norm.CellGradient
-import CERW.Support.Norm.Coarse
+import CERW.Support.Norm.CoarseVolume
 import CERW.Support.Norm.ContactPotential
-import CERW.Support.Norm.Crossing
 import CERW.Support.Norm.Geometry
 import CERW.Support.Norm.LocalTime
 import CERW.Support.Norm.OuterCrossing
-import CERW.Support.Norm.Radial
 import CERW.Support.Outer.NearFar
 import CERW.Support.Outer.OuterRadius
 
@@ -102,4 +100,4 @@ theorem CERW.Frozen.moment_fluctuations {d : ℕ} (hd : 2 ≤ d) :
   have hLIL : CERW.Support.Statements.StoutLIL.{u} :=
     CERW.Support.stoutLIL_full CERW.Generic.Martingale.LilAssembly.stout_lower
   revert hLIL hCLT hd d
-  exact (CERW.Support.Limit.moment_fluctuations_of @CERW.Support.Main.limit_shape (CERW.Support.Outer.fluctuation_rates_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) (CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing) @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) (CERW.Support.Outer.outer_radius_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) (CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing) @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) CERW.Support.Outer.near_far_holds CERW.Support.Norm.outer_crossing_holds) CERW.Support.Outer.near_far_holds))
+  exact (CERW.Support.Limit.moment_fluctuations_of @CERW.Support.Main.limit_shape (CERW.Support.Outer.fluctuation_rates_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.CoarseVolume.norm_coarse_bounds_closed @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) (CERW.Support.Outer.outer_radius_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.CoarseVolume.norm_coarse_bounds_closed @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) CERW.Support.Outer.near_far_holds CERW.Support.Norm.outer_crossing_holds) CERW.Support.Outer.near_far_holds))

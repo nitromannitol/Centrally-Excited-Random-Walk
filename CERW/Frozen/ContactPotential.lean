@@ -1,12 +1,10 @@
 import CERW.Model
 import CERW.Support.Norm.BallLayer
 import CERW.Support.Norm.CellGradient
-import CERW.Support.Norm.Coarse
+import CERW.Support.Norm.CoarseVolume
 import CERW.Support.Norm.ContactPotential
-import CERW.Support.Norm.Crossing
 import CERW.Support.Norm.Geometry
 import CERW.Support.Norm.LocalTime
-import CERW.Support.Norm.Radial
 
 /-!
 # lem:contact
@@ -71,4 +69,4 @@ theorem CERW.Frozen.contact_potential {d : ℕ} (hd : 2 ≤ d) :
 -- FROZEN-STATEMENT-END
 := by
   revert hd d
-  exact (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) (CERW.Support.Norm.norm_coarse_bounds_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.norm_radial_test_holds @CERW.Support.Norm.drift_crossing) @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential)
+  exact (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.CoarseVolume.norm_coarse_bounds_closed @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential)
