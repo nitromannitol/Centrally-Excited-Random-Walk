@@ -4,8 +4,11 @@ import CERW.Support.LocalTime.LocalAssembly
 /-!
 # The local-time potential
 
-`lem:local` of the paper (`limit-shapes.tex:385-401`, Euclidean case). The bytes between
-the markers are the frozen contract recorded in `ledger/manifest.yaml`.
+`lem:local` of the paper (`limit-shapes.tex:393-409`, Euclidean case). This module is preserved
+support, no longer a registered node: its statement and proof are those of
+`Frozen/LocalTimePotential.lean` of commit f7696856, with only the freeze markers removed. It is the
+Euclidean case that the proofs of `BulkProfile` consume; the pinned paper states the corresponding
+result for a norm (`lem:local`, `limit-shapes.tex:393-409`).
 -/
 
 universe u
@@ -14,7 +17,7 @@ open MeasureTheory Filter Topology
 open scoped symmDiff Pointwise
 open LatticeProb (Site euclidNorm)
 
-/-- `lem:local` (`limit-shapes.tex:385-401`, Euclidean case):
+/-- `lem:local` (`limit-shapes.tex:393-409`, Euclidean case):
 
 ```latex
 \begin{lemma}\label{lem:local}
@@ -37,7 +40,6 @@ $L=\log(n+2)$, and $\lambda_n,e_n$ have the values displayed above.
 \end{lemma}
 ```
 -/
--- FROZEN-STATEMENT-BEGIN
 theorem CERW.Frozen.local_time_potential {d : ℕ} (hd : 2 ≤ d) :
     ∃ Cd : ℝ, 0 < Cd ∧ ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) → ∀ p : ℝ, 0 < p →
     ∃ C : ℝ, 0 < C ∧
@@ -58,7 +60,6 @@ theorem CERW.Frozen.local_time_potential {d : ℕ} (hd : 2 ≤ d) :
                         - CERW.potential d ε (CERW.cellSet (X · ω) n) y|
                       ≤ C * e (CERW.maxLocalTime (X · ω) n))}
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
--- FROZEN-STATEMENT-END
 := by
   obtain ⟨b, h, hF⟩ := CERW.Support.LocalTime.exists_kernelFacts hd
   exact CERW.Support.LocalTime.local_time_potential_of_kernelFacts hd hF

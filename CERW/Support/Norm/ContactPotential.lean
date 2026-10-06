@@ -43,7 +43,7 @@ import CERW.Support.Norm.DriftSite
 /-!
 # The contact bound for the centrally excited random walk with a norm
 
-`lem:contact` (Lemma 5.4 of the revised paper, lines 828-987) in its probabilistic closure: for
+`lem:contact` (Lemma 5.2 of the revised paper, lines 724-864) in its probabilistic closure: for
 every `p` there are `C` and `n₀` such that, for `n ≥ n₀`, with probability at least `1 - C n^{-p}`
 every contact point `y₀` (`Ψ(y₀) = inf_{y ∉ D_n} Ψ(y)`, `y₀` in the closure of the complement of
 `D_n`) has `U_{D_n}(y₀) ≤ C r_n q_n`.

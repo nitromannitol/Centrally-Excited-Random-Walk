@@ -11,7 +11,7 @@ import CERW.Support.Norm.ShapeRates
 /-!
 # thm:norm-shape
 
-`thm:norm-shape` of the revised paper (`limit-shapes.tex:330-343`). The bytes between the markers are the
+`thm:norm-shape` of the revised paper (`limit-shapes.tex:338-351`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
@@ -27,7 +27,7 @@ open LatticeProb (Site euclidNorm)
 \begin{theorem}[Limit shape for a norm]\label{thm:norm-shape}
 Let $d\geq2$, let $\gauge$ be a norm on~$\R^d$, let $\xi(x)\in\partial \gauge(x)$ be chosen at the sites $x\in\Z^d\setminus\{0\}$, let $\drift>0$ satisfy~\eqref{eq:ellipticity}, and let $r_n$ be as in~\eqref{eq:radius-norm}. Then, almost surely, the centrally excited random walk with norm~$\gauge$ has the following properties.
 \begin{enumerate}[label=\textup{(\roman*)}]
-\item \underline{\emph{Shape}}: for all $0<\eta<1$ and all sufficiently large~$n$,
+\item \underline{\emph{Shape}}: for every $0<\eta<1$ and all sufficiently large~$n$,
 \begin{equation*}
 \{x\in\Z^d:\gauge(x)<(1-\eta)r_n\}\subset A_n\subset\{x\in\Z^d:\gauge(x)<(1+\eta)r_n\}\, .
 \end{equation*}
@@ -39,8 +39,8 @@ Let $d\geq2$, let $\gauge$ be a norm on~$\R^d$, let $\xi(x)\in\partial \gauge(x)
 \end{enumerate}
 \end{theorem}
 Definitions the statement relies on (verbatim):
-\textit{eq:kernel and eq:ellipticity (lines 313--321)}
-Let $\gauge$ be a norm on~$\R^d$, let $B_\gauge$ be its unit ball, and let $\partial\gauge(x)$ be the set of subgradients of~$\gauge$ at~$x$, as in Section~\ref{sec:norms-intro}. If $\gauge$ is differentiable at~$x$, then $\partial\gauge(x)=\{\nabla\gauge(x)\}$. At each site~$x\neq0$ we fix $\xi(x)\in\partial\gauge(x)$, with coordinates~$\xi_i(x)$. The \defn{centrally excited random walk with norm~$\gauge$} moves like simple random walk, except that on its first departure from each site~$x\neq0$ it moves to $x\pm e_i$ with probability
+\textit{eq:kernel and eq:ellipticity (lines 321--329)}
+Let $\gauge$ be a norm on~$\R^d$, let $B_\gauge$ be its unit ball, and let $\partial\gauge(x)$ be the set of subgradients of~$\gauge$ at~$x$, as in Section~\ref{sec:norms-intro}; if $\gauge$ is differentiable at~$x$, then $\partial\gauge(x)=\{\nabla\gauge(x)\}$. At each site~$x\neq0$ fix $\xi(x)\in\partial\gauge(x)$, with coordinates~$\xi_i(x)$. The \defn{centrally excited random walk with norm~$\gauge$} moves like simple random walk, except that on its first departure from each site~$x\neq0$ it moves to $x\pm e_i$ with probability
 \begin{equation}\label{eq:kernel}
 \frac1{2d}\mp\frac\drift2\xi_i(x)
 \qquad\text{for } 1\leq i\leq d\, .
@@ -49,13 +49,13 @@ We assume that
 \begin{equation}\label{eq:ellipticity}
 \drift\max_{1\leq i\leq d}\gauge(e_i)<\frac1d\, .
 \end{equation}
-\textit{eq:radius-norm (lines 323--326)}
+\textit{eq:radius-norm (lines 331--334)}
 \begin{equation}\label{eq:radius-norm}
 r_n\coloneqq\left(\frac{(d+1)n}{2d\drift|B_\gauge|}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
-which is~\eqref{eq:radius} when $\gauge$ is the Euclidean norm. The cone $2d\drift(r_n-\gauge(v))_+$ has integral~$n$ over~$\R^d$.
-\textit{subgradient (lines 196--196)}
-The potential that identifies the ball in Theorem~\ref{thm:shape} also identifies the limit shape for other drifts. Let $\gauge$ be a norm on~$\R^d$, with unit ball $B_\gauge\coloneqq\{y\in\R^d:\gauge(y)<1\}$ of volume~$|B_\gauge|$. A \defn{subgradient} of~$\gauge$ at~$x$ is a vector~$\xi$ with $\gauge(y)\geq\gauge(x)+\xi\cdot(y-x)$ for all $y\in\R^d$. Where $\gauge$ is differentiable it is the gradient. In particular, for the Euclidean norm it is~$x/|x|$. We suppose that at each site~$x\neq0$ a subgradient~$\xi(x)$ of~$\gauge$ at~$x$ is fixed, and that the walk uses $\xi(x)$ in place of~$x/|x|$ in its transition probabilities at the first departure from~$x$, so that this step has mean~$-\drift\xi(x)$. We assume that $\drift\max_i\gauge(e_i)<\nf1d$, which makes these probabilities positive. Then, almost surely, the conclusions of Theorem~\ref{thm:shape} hold with $\gauge(x)$ in place of~$|x|$ and with $r_n$ defined by~\eqref{eq:radius} with $|B_\gauge|$ in place of~$\omega_d$: the range approximates the ball $\{\gauge<r_n\}$, and the local times approximate the cone $2d\drift(r_n-\gauge(x))_+$ (Theorem~\ref{thm:norm-shape}).
+which is~\eqref{eq:radius} when $\gauge$ is the Euclidean norm; the cone $2d\drift(r_n-\gauge(v))_+$ has integral~$n$ over~$\R^d$.
+\textit{subgradient (line 204)}
+The potential that identifies the ball in Theorem~\ref{thm:shape} also identifies the limit shape for other drifts. Let $\gauge$ be a norm on~$\R^d$, with unit ball $B_\gauge\coloneqq\{y\in\R^d:\gauge(y)<1\}$ of volume~$|B_\gauge|$. A \defn{subgradient} of~$\gauge$ at~$x$ is a vector~$\xi$ with $\gauge(y)\geq\gauge(x)+\xi\cdot(y-x)$ for every $y\in\R^d$; where $\gauge$ is differentiable it is the gradient, and for the Euclidean norm it is~$x/|x|$. Suppose that at each site~$x\neq0$ a subgradient~$\xi(x)$ of~$\gauge$ at~$x$ is fixed, and that the walk uses $\xi(x)$ in place of~$x/|x|$ in its transition probabilities at the first departure from~$x$, so that this step has mean~$-\drift\xi(x)$; assume that $\drift$ is small enough for these probabilities to be positive. Then, almost surely, the conclusions of Theorem~\ref{thm:shape} hold with $\gauge(x)$ in place of~$|x|$ and with $r_n$ defined by~\eqref{eq:radius} with $|B_\gauge|$ in place of~$\omega_d$: the range approximates the ball $\{\gauge<r_n\}$, and the local times approximate the cone $2d\drift(r_n-\gauge(x))_+$ (Theorem~\ref{thm:norm-shape}).
 \textit{$\ell_n$ and $A_n$ (lines 91--96)}
 For an integer~$n\geq0$ let
 \begin{equation*}
@@ -63,8 +63,8 @@ For an integer~$n\geq0$ let
 \qquad\text{and}\qquad
 A_n\coloneqq\{x:\ell_n(x)>0\}\, .
 \end{equation*}
-\textit{notation $\xi(0)$ (lines 295--295)}
-\item Let $u_x\coloneqq x/|x|$ for $x\in\R^d\setminus\{0\}$ and $u_0\coloneqq0$. Let $\xi(0)\coloneqq0$.
+\textit{notation $\xi(0)$ (line 303)}
+\item Let $u_x\coloneqq x/|x|$ for $x\in\R^d\setminus\{0\}$ and $u_0\coloneqq0$, and let $\xi(0)\coloneqq0$.
 ```
 -/
 -- FROZEN-STATEMENT-BEGIN

@@ -1,5 +1,3 @@
-import CERW.Frozen.LocalTimePotential
-import CERW.Frozen.CoarseBounds
 import CERW.Frozen.LimitShape
 import CERW.Frozen.FluctuationRates
 import CERW.Frozen.SharpRadii
@@ -11,13 +9,10 @@ import CERW.Frozen.NormBallPotential
 import CERW.Frozen.NormLocalTime
 import CERW.Frozen.FreedmanBound
 import CERW.Frozen.CellGradient
-import CERW.Frozen.NormPotentialGeometry
 import CERW.Frozen.NormCoarseBounds
-import CERW.Frozen.NormRadialTest
 import CERW.Frozen.DriftCrossing
 import CERW.Frozen.NormShapeRates
 import CERW.Frozen.LayerPotential
-import CERW.Frozen.MoreauCap
 import CERW.Frozen.ContactPotential
 import CERW.Frozen.OuterCrossing
 import CERW.Frozen.InnerRadius

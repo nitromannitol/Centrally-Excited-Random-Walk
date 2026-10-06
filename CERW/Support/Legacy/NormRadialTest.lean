@@ -4,8 +4,12 @@ import CERW.Support.Norm.Radial
 /-!
 # lem:radial
 
-`lem:radial` of the revised paper (`limit-shapes.tex:567-576`). The bytes between the markers are the
-frozen contract recorded in `ledger/manifest.yaml`.
+`lem:radial` of the previous pin of the paper (`limit-shapes.tex@04d3cbfa:567-576`). This module is
+preserved support, no longer a registered node: its statement and proof are those of
+`Frozen/NormRadialTest.lean` of commit f7696856, with only the freeze markers removed.
+`limit-shapes.tex@04d3cbfa` is the paper of the previous pin (sha256
+04d3cbfad3cce1b373752f3cc2db3c7e2c34c155cea0727a3ddeb0b0e21c7f59); the pinned paper does not state
+`lem:radial`, and the proofs of `NormPotential` consume it.
 -/
 
 universe u
@@ -38,7 +42,6 @@ F(s)\coloneqq\frac1{d\omega_d}\int_{D\cap\{|v|>s\}}|v|^{1-d}\dd v
 \end{itemize}
 ```
 -/
--- FROZEN-STATEMENT-BEGIN
 theorem CERW.Frozen.norm_radial_test {d : ℕ} (hd : 2 ≤ d) :
     ∀ Ψ : EuclideanSpace ℝ (Fin d) → ℝ, CERW.IsNorm Ψ →
     ∃ ρ₀ : ℝ, 8 * d < ρ₀ ∧
@@ -61,7 +64,6 @@ theorem CERW.Frozen.norm_radial_test {d : ℕ} (hd : 2 ≤ d) :
                       * CERW.tail d (CERW.cellSet (X · ω) n) ((ρ : ℝ) - 4 * d) * Real.log n)
                 + C * (ρ : ℝ) ^ (1 - (d : ℝ)) * Real.log n}
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
--- FROZEN-STATEMENT-END
 := by
   revert hd d
   exact CERW.Support.Norm.norm_radial_test_holds

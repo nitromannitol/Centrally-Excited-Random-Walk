@@ -2,7 +2,7 @@ import CERW.Generic.Martingale.Lil.LowerStatement
 import CERW.Generic.Martingale.LilAssembly.StoutLower
 import CERW.Support.Stout
 import CERW.Model
-import CERW.Support.Lower.ExpDeviation
+import CERW.Support.Lower.ExpDeviationAE
 import CERW.Support.Lower.SharpWidth
 import CERW.Support.Main.LimitShape
 import CERW.Support.Lower.PlanarGap.SmallBallCompose
@@ -53,9 +53,9 @@ theorem sharp_width_extended {d : ℕ} (hd : d = 2) :
           ≤ a * Real.sqrt (r n)}) atTop ≤
           ENNReal.ofReal (1 - Real.exp (-(3 * ε * a ^ 2 / Real.pi)))) := by
   intro ωd ε hε0 hε1 r
-  refine ⟨CERW.Support.Lower.sharp_width_poly_of @CERW.Support.Lower.exp_deviation hd ε hε0 hε1,
+  refine ⟨CERW.Support.Lower.sharp_width_poly_of @CERW.Support.Lower.exp_deviation_ae_upTo hd ε hε0 hε1,
     (CERW.Support.Lower.sharp_width_of @CERW.Support.Main.limit_shape
-      @CERW.Support.Lower.exp_deviation hd (CERW.Support.stoutLIL_full
+      @CERW.Support.Lower.exp_deviation_ae_upTo hd (CERW.Support.stoutLIL_full
         CERW.Generic.Martingale.LilAssembly.stout_lower) ε hε0 hε1).2,
     fun a ha0 Ω _ μ _ X hX => ?_⟩
   subst hd

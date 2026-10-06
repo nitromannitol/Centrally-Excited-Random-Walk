@@ -1,10 +1,11 @@
-import CERW.Frozen.DriftCrossing
+import CERW.Support.Norm.Crossing
 
 /-!
 # Guard for the crossing lemma
 
-`lem:crossing` is deterministic. A guard exhibits one concrete instance of every one of its
-hypotheses: the zero drift field and the constant path at the origin in the plane, with the
+The deterministic crossing statement `CERW.Support.Norm.drift_crossing` holds for every path and every
+constant; `lem:crossing` applies it on the vector event, and `SourceEvents` applies that statement at a
+law of the walk. A guard exhibits one concrete instance of every hypothesis of the deterministic statement: the zero drift field and the constant path at the origin in the plane, with the
 constant `C = 1` and `n = 2`. The martingale `Z` of the statement is then identically zero, so the
 event inequality holds, and the conclusion is the trivial bound `0 ≤ √(⋯)`.
 -/
@@ -14,7 +15,7 @@ namespace CERW.Support.Guards
 open MeasureTheory LatticeProb CERW
 
 /-- On the zero drift field and the constant path at the origin in the plane, with `ε = 1/4`,
-`n = 2` and `C = 1`, the conclusion of `lem:crossing` holds for every unit vector and every
+`n = 2` and `C = 1`, the conclusion of the deterministic crossing statement holds for every unit vector and every
 interval. -/
 theorem drift_crossing_applies :
     let x : ℕ → Site 2 := fun _ => 0
@@ -22,7 +23,7 @@ theorem drift_crossing_applies :
       inner ℝ u (CERW.toSpace (x t) - CERW.toSpace (x s))
         ≤ 1 * Real.sqrt ((t - s : ℝ) * Real.log 2) := by
   intro x u hu s t hst ht
-  refine CERW.Frozen.drift_crossing (d := 2) (ε := 1 / 4) (by norm_num)
+  refine CERW.Support.Norm.drift_crossing (d := 2) (ε := 1 / 4) (by norm_num)
     (fun _ : Site 2 => 0) x 2 1 ?_ u hu s t hst ht ?_
   · intro s t hst ht
     have hZ : ∀ r : ℕ, (fun r => CERW.toSpace (x r) + (1 / 4 : ℝ) •

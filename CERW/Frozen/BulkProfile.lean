@@ -16,7 +16,7 @@ import CERW.Support.Outer.OuterRadius
 /-!
 # prop:bulk-profile
 
-`prop:bulk-profile` of the revised paper (`limit-shapes.tex:1655-1662`). The bytes between the markers are the
+`prop:bulk-profile` of the revised paper (`limit-shapes.tex:1507-1514`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
@@ -30,7 +30,7 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{proposition}\label{prop:bulk-profile}
-Let $\gauge$ be the Euclidean norm, let $0<\drift<\nf1d$, and let $0<\theta<1$ and $p>0$. There exists $C(d,\drift,\theta,p)<\infty$ such that, for all integers~$n\geq2$, with probability $\geq 1-Cn^{-p}$,
+Let $\gauge$ be the Euclidean norm, let $0<\drift<\nf1d$, and let $0<\theta<1$ and $p>0$. There exists $C(d,\drift,\theta,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$,
 \begin{equation}\label{eq:bulk-profile}
 \max_{\substack{y\in\Z^d\\|y|\leq\theta r_n}}\bigl|\ell_n(y)-2d\drift(r_n-|y|)\bigr|
 \leq C\begin{cases}\sqrt{r_n}\log n,&d=2,\\\sqrt{r_n\log n},&d\geq3\end{cases}\, .
@@ -40,7 +40,7 @@ The same bound holds for all sufficiently large~$n$ almost surely.
 Definitions the statement relies on (verbatim):
 \textit{the radius $r_n$ (eq:radius, lines 98--100)}
 \begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
 \end{equation}
 ```
 -/

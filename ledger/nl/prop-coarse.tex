@@ -1,7 +1,7 @@
-% prop-coarse -- CERW.Frozen.norm_coarse_bounds (draft). Source: limit-shapes.tex:547-554, label prop:coarse
+% prop-coarse -- CERW.Frozen.norm_coarse_bounds (draft). Source: limit-shapes.tex:538-545, label prop:coarse
 \paragraph{Paper (verbatim).}
 \begin{proposition}\label{prop:coarse}
-Let $p>0$. There exist $c(d,\drift,\gauge,p)>0$ and $C(d,\drift,\gauge,p)<\infty$ such that, for every integer~$n\geq2$, with probability $\geq 1-Cn^{-p}$,
+Let $p>0$. There exist $c(d,\drift,\gauge,p)>0$ and $C(d,\drift,\gauge,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$,
 \begin{equation*}
 cr_n^d\leq|A_n|\leq Cr_n^d,\qquad
 cr_n\leq\max_{x\in\Z^d}\ell_n(x)\leq Cr_n,\qquad
@@ -9,7 +9,7 @@ cr_n\leq\Rout(n)\leq Cr_n\, .
 \end{equation*}
 \end{proposition}
 Definitions the statement relies on (verbatim): $\ell_n,A_n$ (lines 92--96), the radii (lines 123--127),
-the norm setting (lines 314--325) and the conventions $\xi(0)=0$ and on constants (lines 295--296).
+the norm setting (lines 322--333) and the conventions $\xi(0)=0$ and on constants (lines 303--304).
 \begin{equation*}
 \ell_n(x)\coloneqq\sum_{j=0}^{n-1}\ind_{\{X_j=x\}}
 \qquad\text{and}\qquad
@@ -28,13 +28,13 @@ We assume that
 \begin{equation}\label{eq:ellipticity}
 \drift\max_{1\leq i\leq d}\gauge(e_i)<\frac1d\, .
 \end{equation}
-Every $\xi\in\partial\gauge(x)$ satisfies $\xi\cdot y\leq\gauge(y)$ for all~$y$, with equality at $y=x$ (Euler's relation). So $|\xi_i(x)|\leq\gauge(e_i)$, and~\eqref{eq:ellipticity} makes the probabilities~\eqref{eq:kernel} positive. The step at the first departure from~$x$ has conditional mean~$-\drift\xi(x)$, whose inner product with~$x$ is $-\drift\gauge(x)<0$. The Euclidean norm, with $\xi(x)=x/|x|$, gives the walk of Section~\ref{sec:introduction}, and then~\eqref{eq:ellipticity} reads $\drift<\nf1d$. Let
+Every $\xi\in\partial\gauge(x)$ satisfies $\xi\cdot y\leq\gauge(y)$ for every~$y$, with equality at $y=x$ (Euler's relation); so $|\xi_i(x)|\leq\gauge(e_i)$, and~\eqref{eq:ellipticity} makes the probabilities~\eqref{eq:kernel} positive. The step at the first departure from~$x$ has conditional mean~$-\drift\xi(x)$, whose inner product with~$x$ is $-\drift\gauge(x)<0$. The Euclidean norm, with $\xi(x)=x/|x|$, gives the walk of Section~\ref{sec:introduction}, and then~\eqref{eq:ellipticity} reads $\drift<\nf1d$. Let
 \begin{equation}\label{eq:radius-norm}
 r_n\coloneqq\left(\frac{(d+1)n}{2d\drift|B_\gauge|}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
 \begin{itemize}
-\item Let $u_x\coloneqq x/|x|$ for $x\in\R^d\setminus\{0\}$ and $u_0\coloneqq0$. Let $\xi(0)\coloneqq0$.
-\item The letters $c>0$ and $C>0$ denote constants depending only on $d$, $\drift$ and the exponent~$p$ of the failure probability under discussion, and in Sections~\ref{sec:norm-setup}--\ref{sec:norms} also on the norm~$\gauge$, but not on the choice of the subgradients~$\xi(x)$. They may change from line to line. Note that every further dependence is stated, and a subscript on~$O$, as in~$O_y$, means that the implied constant also depends on~$y$. We write $a_n\asymp b_n$ if $c\leq a_n/b_n\leq C$, and $O_{\P}(a_n)$ for random variables~$Y_n$ such that $Y_n/a_n$ is tight.
+\item Let $u_x\coloneqq x/|x|$ for $x\in\R^d\setminus\{0\}$ and $u_0\coloneqq0$, and let $\xi(0)\coloneqq0$.
+\item The letters $c>0$ and $C>0$ denote constants depending only on $d$, $\drift$ and the exponent~$p$ of the failure probability under discussion, and in Sections~\ref{sec:norm-setup}--\ref{sec:norms} also on the norm~$\gauge$, but not on the choice of the subgradients~$\xi(x)$; they may change from line to line. Every further dependence is stated, and a subscript on~$O$, as in~$O_y$, means that the implied constant also depends on~$y$. We write $a_n\asymp b_n$ if $c\leq a_n/b_n\leq C$, and $O_{\P}(a_n)$ for random variables~$Y_n$ such that $Y_n/a_n$ is tight.
 \end{itemize}
 \paragraph{Transcription.}
 \begin{itemize}
@@ -45,12 +45,12 @@ r_n\coloneqq\left(\frac{(d+1)n}{2d\drift|B_\gauge|}\right)^{\nf{1}{(d+1)}}\, ,
  $=(\mathrm{vol}\{\gauge<1\}).\texttt{toReal}$ for Lebesgue measure on \texttt{EuclideanSpace R (Fin d)}. All casts are to \texttt{R}
  (checked with \texttt{pp.coercions}).
 \item \emph{Subgradients.} $\xi(x)\in\partial\gauge(x)$ for $x\ne0$ is \texttt{IsSubgradient Psi (toSpace x) (xi x)}, that is
- $\gauge(y)\ge\gauge(x)+\xi(x)\cdot(y-x)$ for all $y$. $\xi(0)=0$ is line 295.
+ $\gauge(y)\ge\gauge(x)+\xi(x)\cdot(y-x)$ for all $y$. $\xi(0)=0$ is line 303.
 \item \emph{Walk.} \texttt{IsDriftCERW mu eps xi X}: $X_0=0$ almost surely and every cylinder probability factors through
  \texttt{driftStepProb}, which is eq:kernel at a first departure from $x\ne0$ ($x\notin\{X_0,\dots,X_{n-1}\}$) and the simple
  random walk step otherwise. The sample space is an arbitrary \texttt{Type u}; constants precede it.
 \item \emph{Constants.} $c,C$ are bound after $p$ and before $\xi$ and the probability space. They depend on $d,\drift,\gauge,p$
- and not on the choice of subgradients (line 296). One letter $C$ serves in the upper bounds and in the failure probability
+ and not on the choice of subgradients (line 304). One letter $C$ serves in the upper bounds and in the failure probability
  ($C$ may change from line to line, so one takes the maximum).
 \item \emph{Quantities.} $|A_n|=$ \texttt{(departureRange (X . w) n).card}, where $A_n=\{x:\ell_n(x)>0\}=\{X_0,\dots,X_{n-1}\}$.
  $\max_x\ell_n(x)=$ \texttt{maxLocalTime} (a $\sup$ over $A_n$; $\ell_n$ vanishes off $A_n$).
