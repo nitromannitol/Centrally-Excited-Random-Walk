@@ -20,7 +20,7 @@ import CERW.Support.Drift.Dynkin
 `outer_radius_of` is Proposition 7.1 (the bound `R_out(n) ≤ r_n + C (log n)^{d+1}`, respectively
 `r_n + C √r_n (log n)^{5/2}` in the plane) and `fluctuation_rates_of` is Theorem 1.2, both for
 the Euclidean centrally excited random walk. The inputs are Proposition 6.1 (`inner_radius`), the
-near-far lemma (Lemma 7.2, `near_far`), the outer crossing lemma (Lemma 5.5, `outer_crossing`) and,
+near-far lemma (Lemma 7.2, `near_far`), the outer crossing lemma (Lemma 4.3, `outer_crossing`) and,
 for Theorem 1.2, Proposition 7.1 itself (`outer_radius`).
 
 The proof is deterministic on the intersection of three good events: the events of

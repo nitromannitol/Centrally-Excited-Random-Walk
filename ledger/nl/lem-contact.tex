@@ -1,52 +1,88 @@
-% lem-contact -- CERW.Frozen.contact_potential (draft). Source: limit-shapes.tex:892-897, label lem:contact
+% lem-contact -- CERW.Frozen.contact_potential, version 2. Source: limit-shapes.tex:773-778 (label lem:contact)
 \paragraph{Paper (verbatim).}
+\begin{verbatim}
 \begin{lemma}\label{lem:contact}
-For every $p>0$ there exist $C(d,\drift,\gauge,p)<\infty$ and an integer~$n_0(d,\drift,\gauge,p)$ such that, for all integers~$n\geq n_0$, with probability $\geq 1-Cn^{-p}$, every point~$y$ in the closure of~$\R^d\setminus D_n$ with $\gauge(y)=b$ satisfies
+There exists $C(d,\drift,\gauge,p)<\infty$ such that, on the event of Section~\ref{sec:norm-event}, for large~$n$,
 \begin{equation*}
-U_{D_n}(y)\leq Cr_nq_n=C\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\geq3\end{cases}\, .
+H\leq Cr_nq_n=C\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\geq3\end{cases}\, .
 \end{equation*}
 \end{lemma}
-Definitions the statement relies on (verbatim): $q_n$ (eq:qn, lines 764--767), the event of Section~\ref{sec:norm-event}
-(line 842), and the inner radius $b$, the set $E$, the contact point $y_0$ and $H$ (lines 853--861).
-Throughout the rest of the paper let
-\begin{equation}\label{eq:qn}
-q_n\coloneqq\begin{dcases}\sqrt{\frac{\log n}{r_n}},&d=2,\\\frac{\log n}{r_n},&d\geq3\end{dcases}\, .
-\end{equation}
-\begin{quote}
-We intersect the events of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} with the events on which~\eqref{eq:vector}, \eqref{eq:localmart}, \eqref{eq:quadratic-coarse} and~\eqref{eq:linear-mart} hold. The complement has probability $\leq Cn^{-p}$, and the arguments below are deterministic on this event, intersected with the event of Lemma~\ref{lem:contact} where they use that lemma. Let $K$ be a constant with $\Rout(n)\leq(K-1)r_n$ on the event of Proposition~\ref{prop:coarse}. Then $D_n\subset B(0,Kr_n)$ for large~$n$, and~\eqref{eq:quadratic-coarse} gives
-\end{quote}
-Let
-\begin{equation*}
-b\coloneqq\inf\{\gauge(y):y\in\R^d\setminus D_n\}\qquad\text{and}\qquad
-E\coloneqq D_n\setminus\{\gauge<b\}\, ,
-\end{equation*}
-so that $\{\gauge<b\}\subset D_n$. We choose a point~$y_0$ with $\gauge(y_0)=b$ that is the limit of a sequence of points outside~$D_n$. Since the sequence is bounded, some cell~$C_z$ disjoint from~$D_n$ contains infinitely many of its points. Then $\ell_n(z)=0$, the closure of~$C_z$ contains~$y_0$, and $\gauge(z)\geq b$ since $z\in C_z$. Let
-\begin{equation*}
-H\coloneqq U_{D_n}(y_0)\qquad\text{and}\qquad \mathcal I\coloneqq\int_E(\gauge(v)-b)\dd v\, .
-\end{equation*}
-\paragraph{Transcription.}
-\begin{itemize}
-\item \emph{Reading (author ruling).} ``On the event of Section~\ref{sec:norm-event}, for large $n$, $H\le Cr_nq_n$'' is written
- as a probabilistic closure: for every $p>0$ there are $C>0$ and $n_0$ such that for every $n\ge n_0$, with probability at least
- $1-Cn^{-p}$, every contact point $y_0$ satisfies $U_{D_n}(y_0)\le Cr_nq_n$. The event is not named in the statement; its
- complement is bounded directly,
- $\mu\{\omega:\neg\forall y_0\,(\text{contact}\Rightarrow H\le Cr_nq_n)\}\le\texttt{ENNReal.ofReal}(C\,n^{-p})$ (outer measure). This
- follows from the paper's lemma (the event has probability at least $1-C'n^{-p}$; take the larger constant) and is the form a
- union bound needs.
-\item \emph{Contact point.} A contact point is any $y_0$ with $\gauge(y_0)=b=\inf_{y\notin D_n}\gauge(y)$ that is a limit of points
- outside $D_n$: \texttt{Psi y0 = normInnerRadius Psi (X . w) n} and \texttt{y0 $\in$ closure ((cellSet (X . w) n)\^{}c)}. In the source
- \texttt{closure (cellSet \dots)\^{}c} parses as the closure of the complement (checked by \texttt{rfl}); $D_n=$ \texttt{cellSet} is the union
- of the half-open unit cells of $A_n$, and the closure of the complement equals the set of limits of sequences outside $D_n$.
- The paper's proof (line 858 onward) uses only $\gauge(y_0)=b$ and $y_0\in\overline{C_z}$ for a cell $C_z$ disjoint from
- $D_n$, so the bound holds for every contact point, as the statement asserts.
-\item \emph{H.} $H=U_{D_n}(y_0)=$ \texttt{normPotential d eps Psi (cellSet (X . w) n) y0}. The bound is one-sided, $H\le Cr_nq_n$.
-\item \emph{Rates.} $q_n$ (eq:qn) is the \texttt{let}-bound \texttt{if d = 2 then sqrt (log n / r n) else log n / r n}, so
- $r_nq_n=\sqrt{r_n\log n}$ if $d=2$ and $\log n$ if $d\ge3$. $r_n$ is as in the coarse-bounds twin.
-\item \emph{Constants.} $C$ and $n_0$ are bound after $p$ and before $\xi$ and the walk: they depend on $d,\drift,\gauge,p$ and not on
- the subgradients. The threshold $n_0$ is uniform in $\xi$ because the ``large $n$'' of the proof (e.g.\ $D_n\subset B(0,Kr_n)$,
- $|y_0|+R\le2n$) comes from constants of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} that do not depend on $\xi$;
- uniformity is also what Proposition~\ref{prop:norm-shape} needs to absorb $n<n_0$ into $C$. One $C$ serves for the bound on $H$ and
- for the failure probability.
-\item \emph{Setting.} As in the coarse-bounds twin: $d\ge2$, \texttt{IsNorm Psi}, $\drift>0$ with eq:ellipticity, subgradients $\xi$ with
- $\xi(0)=0$, \texttt{IsDriftCERW mu eps xi X}.
-\end{itemize}
+\end{verbatim}
+\paragraph{Exact Lean contract.}
+\begin{verbatim}
+theorem CERW.Frozen.contact_potential {d : ℕ} (hd : 2 ≤ d) :
+    ∀ Ψ : EuclideanSpace ℝ (Fin d) → ℝ, CERW.IsNorm Ψ →
+    ∀ ε : ℝ, 0 < ε → (∀ i : Fin d, ε * Ψ (CERW.coordVec i) < 1 / (d : ℝ)) →
+    let r : ℕ → ℝ := fun n =>
+      ((d + 1) * n / (2 * d * ε * CERW.normBallVolume Ψ)) ^ ((1 : ℝ) / (d + 1))
+    let q : ℕ → ℝ := fun n =>
+      if d = 2 then Real.sqrt (Real.log n / r n) else Real.log n / r n
+    (∀ n : ℕ, ∃! P : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d),
+      (∀ y, Ψ (P y) ≤ r n) ∧ ∀ y v, Ψ v ≤ r n → ‖y - P y‖ ≤ ‖y - v‖) ∧
+    ∀ p : ℝ, 0 < p →
+    ∃ c_co C_co C_loc C_vec C_mart C_quad C_lin C : ℝ,
+      0 < c_co ∧ 0 < C_co ∧ 0 < C_loc ∧ 0 < C_vec ∧ 0 < C_mart ∧ 0 < C_quad ∧ 0 < C_lin ∧
+      0 < C ∧ ∃ n₀ : ℕ, 2 ≤ n₀ ∧
+      ∀ ξ : Site d → EuclideanSpace ℝ (Fin d),
+        (∀ x : Site d, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)) → ξ 0 = 0 →
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsDriftCERW μ ε ξ X → ∀ n : ℕ, n₀ ≤ n →
+        ∀ P : EuclideanSpace ℝ (Fin d) → EuclideanSpace ℝ (Fin d),
+          (∀ y, Ψ (P y) ≤ r n) → (∀ y v, Ψ v ≤ r n → ‖y - P y‖ ≤ ‖y - v‖) →
+        let Λ : ℝ := CERW.normMax Ψ
+        let Z : (ℕ → Site d) → ℕ → EuclideanSpace ℝ (Fin d) := fun x t =>
+          CERW.toSpace (x t) + ε •
+            ∑ j ∈ Finset.range t, if x j ∉ CERW.departureRange x j then ξ (x j) else 0
+        let Q : (ℕ → Site d) → ℕ → ℝ := fun x t =>
+          ∑ j ∈ Finset.range t, 2 * inner ℝ (CERW.toSpace (x j))
+            (CERW.toSpace (x (j + 1)) - CERW.toSpace (x j) +
+              ε • (if x j ∉ CERW.departureRange x j then ξ (x j) else 0))
+        let lin : Finset (EuclideanSpace ℝ (Fin d)) → (ℕ → Site d) → Prop := fun S x =>
+          ∀ v ∈ S, ∀ k : ℕ, k ≤ n →
+            |CERW.dynkinMart (CERW.driftStepProb d ε ξ)
+                (fun z => max (inner ℝ v (CERW.toSpace z) - k * Λ) 0) x n|
+              ≤ C_lin * (Real.sqrt (Real.log n * ∑ z ∈ (CERW.departureRange x n).filter
+                    (fun z => k * Λ - Λ < inner ℝ v (CERW.toSpace z)),
+                    (CERW.localTime x n z : ℝ)) + Real.log n)
+        let E : Set Ω := {ω |
+          (c_co * r n ^ d ≤ ((CERW.departureRange (X · ω) n).card : ℝ) ∧
+            ((CERW.departureRange (X · ω) n).card : ℝ) ≤ C_co * r n ^ d ∧
+            c_co * r n ≤ (CERW.maxLocalTime (X · ω) n : ℝ) ∧
+            (CERW.maxLocalTime (X · ω) n : ℝ) ≤ C_co * r n ∧
+            c_co * r n ≤ CERW.maxRadius (X · ω) n ∧ CERW.maxRadius (X · ω) n ≤ C_co * r n) ∧
+          ((CERW.maxLocalTime (X · ω) n : ℝ)
+              ≤ C_loc * ((CERW.departureRange (X · ω) n).card : ℝ) ^ ((1 : ℝ) / d)
+                + C_loc * Real.log n ^ 2 ∧
+            (∀ s t : ℕ, s < t → t ≤ n →
+              (CERW.intervalMax (X · ω) s t : ℝ)
+                ≤ C_loc * (CERW.freshCount (X · ω) s t : ℝ) ^ ((1 : ℝ) / d)
+                  + C_loc * Real.log n ^ 2) ∧
+            ∀ y : EuclideanSpace ℝ (Fin d), ‖y‖ ≤ 2 * n →
+              |CERW.cellLocalTime (X · ω) n y
+                  - CERW.normPotential d ε Ψ (CERW.cellSet (X · ω) n) y|
+                ≤ C_loc * Real.log n + C_loc * (if d = 2 then
+                    Real.sqrt (CERW.maxLocalTime (X · ω) n) * Real.log n
+                  else Real.sqrt (CERW.maxLocalTime (X · ω) n * Real.log n))) ∧
+          (∀ s t : ℕ, s < t → t ≤ n →
+            ‖Z (X · ω) t - Z (X · ω) s‖ ≤ C_vec * Real.sqrt ((t - s : ℝ) * Real.log n)) ∧
+          (∀ y : Site d, euclidNorm y ≤ 3 * n →
+            |CERW.dynkinMart (CERW.driftStepProb d ε ξ)
+                (fun z => CERW.latticeKernel d (z - y)) (X · ω) n|
+              ≤ C_mart * (Real.sqrt ((∑ x ∈ CERW.departureRange (X · ω) n,
+                    (CERW.localTime (X · ω) n x : ℝ)
+                      * (1 + euclidNorm (x - y)) ^ (2 - 2 * (d : ℝ))) * Real.log n)
+                  + Real.log n)) ∧
+          |Q (X · ω) n| ≤ C_quad * (CERW.maxRadius (X · ω) n + 1) * Real.sqrt (n * Real.log n) ∧
+          lin (((LatticeProb.ballFinset d (n : ℝ)).filter (fun x => x ≠ 0)).image
+              (fun x => (Λ / ‖CERW.toSpace x‖) • CERW.toSpace x)) (X · ω) ∧
+          lin (((LatticeProb.ballFinset d (n : ℝ)).filter
+              (fun x => r n < Ψ (CERW.toSpace x))).image
+              (fun x => (Λ / ‖CERW.toSpace x - P (CERW.toSpace x)‖) •
+                (CERW.toSpace x - P (CERW.toSpace x)))) (X · ω)}
+        μ Eᶜ ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p)) ∧
+        ∀ᵐ ω ∂μ, ω ∈ E → ∀ y₀ : EuclideanSpace ℝ (Fin d),
+          Ψ y₀ = CERW.normInnerRadius Ψ (X · ω) n →
+          y₀ ∈ closure (CERW.cellSet (X · ω) n)ᶜ →
+            CERW.normPotential d ε Ψ (CERW.cellSet (X · ω) n) y₀ ≤ C * r n * q n
+\end{verbatim}
+\paragraph{Approval.} The author approved this successor on 2026-10-06.

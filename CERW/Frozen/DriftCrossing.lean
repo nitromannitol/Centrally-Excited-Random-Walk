@@ -1,12 +1,11 @@
 import CERW.Model
-import CERW.Support.Norm.Crossing
+import CERW.Support.RevisedPaper
 
 /-!
-# lem:crossing
+# lem-crossing
 
-`lem:crossing` of the revised paper (`limit-shapes.tex:662-667`). The bytes between the markers are the
-frozen contract recorded in `ledger/manifest.yaml`.
--/
+The statement of `limit-shapes.tex:559-564 (label lem:crossing)`.
+-/ 
 
 universe u
 
@@ -14,38 +13,103 @@ open MeasureTheory Filter Topology ProbabilityTheory
 open scoped symmDiff Pointwise NNReal
 open LatticeProb (Site euclidNorm)
 
-/-- `lem:crossing`:
+/-- `lem:crossing` on the event of `eq:vector`, with its probability bound:
 
 ```latex
 \begin{lemma}\label{lem:crossing}
-Let $\drift\geq0$, let $\xi\colon\Z^d\to\R^d$ be a function, let $X_0,X_1,\ldots$ be a sequence of sites of~$\Z^d$, let $C$ be a real number, and let $n\geq2$ be an integer. Assume that $Z$, defined by~\eqref{eq:vector-def} with $A_j$ and $I_j=\ind_{\{X_j\notin A_j\}}$ formed from this sequence, satisfies~\eqref{eq:vector}. Let $u$ be a unit vector. Let $0\leq s<t\leq n$ be integers such that $u\cdot\xi(X_j)\geq0$ for all $s\leq j<t$ with $I_j=1$. Then
+On the event in~\eqref{eq:vector}, with the constant~$C$ of~\eqref{eq:vector}, the following holds
+for every unit vector~$u$ and all integers $0\leq s<t\leq n$. If $u\cdot\xi(X_j)\geq0$ at every
+first departure time~$j$ with $s\leq j<t$, then
 \begin{equation*}
 u\cdot(X_t-X_s)\leq C\sqrt{(t-s)\log n}\, .
 \end{equation*}
 \end{lemma}
-The martingale $Z$ and the event of the lemma (verbatim, lines 652--660):
+Definitions the statement relies on (verbatim):
+\textit{$Z$, the event and the constant of eq:vector (lines 549--557)}
 A crossing against the drift requires a large increment of the martingale
 \begin{equation}\label{eq:vector-def}
 Z_t\coloneqq X_t+\drift\sum_{j<t}I_j\xi(X_j)\, ,
 \end{equation}
-which takes values in~$\R^d$ and has bounded increments. By Azuma's inequality in each coordinate and a union bound over the pairs $s<t$, we have, for all $p>0$, with probability at least $1-Cn^{-p}$,
+which takes values in~$\R^d$ and has bounded increments. Azuma's inequality in each coordinate and a
+union bound over the pairs $s<t$ give, for every $p>0$, with probability at least $1-Cn^{-p}$,
 \begin{equation}\label{eq:vector}
 |Z_t-Z_s|\leq C\sqrt{(t-s)\log n}
 \qquad\text{for } 0\leq s<t\leq n\, .
 \end{equation}
+\textit{the norm, the subgradients, eq:kernel and eq:ellipticity (lines 321--330)}
+Let $\gauge$ be a norm on~$\R^d$, let $B_\gauge$ be its unit ball, and let $\partial\gauge(x)$ be
+the set of subgradients of~$\gauge$ at~$x$, as in Section~\ref{sec:norms-intro}; if $\gauge$ is
+differentiable at~$x$, then $\partial\gauge(x)=\{\nabla\gauge(x)\}$. At each site~$x\neq0$ fix
+$\xi(x)\in\partial\gauge(x)$, with coordinates~$\xi_i(x)$. The \defn{centrally excited random walk
+with norm~$\gauge$} moves like simple random walk, except that on its first departure from each
+site~$x\neq0$ it moves to $x\pm e_i$ with probability
+\begin{equation}\label{eq:kernel}
+\frac1{2d}\mp\frac\drift2\xi_i(x)
+\qquad\text{for } 1\leq i\leq d\, .
+\end{equation}
+We assume that
+\begin{equation}\label{eq:ellipticity}
+\drift\max_{1\leq i\leq d}\gauge(e_i)<\frac1d\, .
+\end{equation}
+Every $\xi\in\partial\gauge(x)$ satisfies $\xi\cdot y\leq\gauge(y)$ for every~$y$, with equality at
+$y=x$ (Euler's relation); so $|\xi_i(x)|\leq\gauge(e_i)$, and~\eqref{eq:ellipticity} makes the
+probabilities~\eqref{eq:kernel} positive. The step at the first departure from~$x$ has conditional
+mean~$-\drift\xi(x)$, whose inner product with~$x$ is $-\drift\gauge(x)<0$. The Euclidean norm, with
+$\xi(x)=x/|x|$, gives the walk of Section~\ref{sec:introduction}, and then~\eqref{eq:ellipticity}
+reads $\drift<\nf1d$. Let
+\textit{$\Lambda_\gauge$ (line 336)}
+In Sections~\ref{sec:norm-setup}--\ref{sec:norms}, $\gauge$ is a norm, $\drift>0$
+satisfies~\eqref{eq:ellipticity}, $r_n$ is given by~\eqref{eq:radius-norm}, and $U_D$ is the
+potential~\eqref{eq:potential-norm} defined below; at a point~$v\in\R^d$, $\nabla\gauge(v)$ is the
+gradient, which exists for almost every~$v$. Let $\Lambda_\gauge\coloneqq\max_{|u|=1}\gauge(u)$ and
+$c_\gauge\coloneqq\min_{|u|=1}\gauge(u)$; every $\xi\in\partial\gauge(x)$ satisfies $\xi\cdot
+x=\gauge(x)$ and $|\xi|\leq\Lambda_\gauge$. In Sections~\ref{sec:contact}--\ref{sec:lower}, $\gauge$
+is the Euclidean norm, so that $\xi(x)=u_x$, $r_n$ is given by~\eqref{eq:radius}, and $U_D$ is the
+potential~\eqref{eq:potential-intro}.
+\textit{notation $u_x$ and $\xi(0)$, the constants, $I_j$ and $n\geq2$ (lines 303--308)}
+\item Let $u_x\coloneqq x/|x|$ for $x\in\R^d\setminus\{0\}$ and $u_0\coloneqq0$, and let
+$\xi(0)\coloneqq0$.
+\item The letters $c>0$ and $C>0$ denote constants depending only on $d$, $\drift$ and the
+exponent~$p$ of the failure probability under discussion, and in
+Sections~\ref{sec:norm-setup}--\ref{sec:norms} also on the norm~$\gauge$, but not on the choice of
+the subgradients~$\xi(x)$; they may change from line to line. Every further dependence is stated,
+and a subscript on~$O$, as in~$O_y$, means that the implied constant also depends on~$y$. We write
+$a_n\asymp b_n$ if $c\leq a_n/b_n\leq C$, and $O_{\P}(a_n)$ for random variables~$Y_n$ such that
+$Y_n/a_n$ is tight.
+\item The $\sigma$-field generated by $X_0,\ldots,X_j$ is~$\mathcal F_j$. For martingales $Z_1$
+and~$Z_2$, the brackets $\langle Z_1\rangle_n$ and~$\langle Z_1,Z_2\rangle_n$ are the predictable
+quadratic variation and covariation through time~$n$.
+\item The indicator that the step at time~$j$ is a first departure is $I_j\coloneqq\ind_{\{X_j\notin
+A_j\}}$, so that $\E(X_{j+1}-X_j\mid\mathcal F_j)=-\drift I_j\xi(X_j)$, where $\xi(x)=u_x$ for the
+Euclidean norm.
+\item The function~$\widetilde\ell_n$ on~$\R^d$ equals $\ell_n(x)$ on~$C_x$ for every $x\in\Z^d$; it
+vanishes off~$D_n$.
+\item All estimates concern integers~$n\geq2$, so that $\log n>0$. In a statement that holds with
+probability at least $1-Cn^{-p}$ for all sufficiently large~$n$, enlarging~$C$ makes it hold for
+every $n\geq2$.
 ```
 -/
 -- FROZEN-STATEMENT-BEGIN
-theorem CERW.Frozen.drift_crossing {d : ℕ} {ε : ℝ} (hε : 0 ≤ ε)
-    (ξ : Site d → EuclideanSpace ℝ (Fin d)) (x : ℕ → Site d) (n : ℕ) (C : ℝ) :
-    let Z : ℕ → EuclideanSpace ℝ (Fin d) := fun t => CERW.toSpace (x t) + ε •
-      ∑ j ∈ Finset.range t, if x j ∉ CERW.departureRange x j then ξ (x j) else 0
-    (∀ s t : ℕ, s < t → t ≤ n → ‖Z t - Z s‖ ≤ C * Real.sqrt ((t - s : ℝ) * Real.log n)) →
-    ∀ u : EuclideanSpace ℝ (Fin d), ‖u‖ = 1 → ∀ s t : ℕ, s < t → t ≤ n →
-      (∀ j : ℕ, s ≤ j → j < t → x j ∉ CERW.departureRange x j → 0 ≤ inner ℝ u (ξ (x j))) →
-      inner ℝ u (CERW.toSpace (x t) - CERW.toSpace (x s))
-        ≤ C * Real.sqrt ((t - s : ℝ) * Real.log n)
+theorem CERW.Frozen.drift_crossing {d : ℕ} (hd : 2 ≤ d) :
+    ∀ Ψ : EuclideanSpace ℝ (Fin d) → ℝ, CERW.IsNorm Ψ →
+    ∀ ε : ℝ, 0 < ε → (∀ i : Fin d, ε * Ψ (CERW.coordVec i) < 1 / (d : ℝ)) →
+    ∀ p : ℝ, 0 < p → ∃ C : ℝ, 0 < C ∧
+      ∀ ξ : Site d → EuclideanSpace ℝ (Fin d),
+        (∀ x : Site d, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)) → ξ 0 = 0 →
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsDriftCERW μ ε ξ X → ∀ n : ℕ, 2 ≤ n →
+        let Z : Ω → ℕ → EuclideanSpace ℝ (Fin d) := fun ω t => CERW.toSpace (X t ω) + ε •
+          ∑ j ∈ Finset.range t,
+            if X j ω ∉ CERW.departureRange (X · ω) j then ξ (X j ω) else 0
+        let E : Set Ω := {ω | ∀ s t : ℕ, s < t → t ≤ n →
+          ‖Z ω t - Z ω s‖ ≤ C * Real.sqrt ((t - s : ℝ) * Real.log n)}
+        μ Eᶜ ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p)) ∧
+        ∀ ω ∈ E, ∀ u : EuclideanSpace ℝ (Fin d), ‖u‖ = 1 → ∀ s t : ℕ, s < t → t ≤ n →
+          (∀ j : ℕ, s ≤ j → j < t → X j ω ∉ CERW.departureRange (X · ω) j →
+            0 ≤ inner ℝ u (ξ (X j ω))) →
+          inner ℝ u (CERW.toSpace (X t ω) - CERW.toSpace (X s ω))
+            ≤ C * Real.sqrt ((t - s : ℝ) * Real.log n)
 -- FROZEN-STATEMENT-END
 := by
-  revert C n x ξ hε ε d
-  exact @CERW.Support.Norm.drift_crossing
+  intro Ψ hΨ ε hε hell p hp
+  exact CERW.Support.RevisedPaper.crossing_on_vector_event hd hΨ hε hell hp

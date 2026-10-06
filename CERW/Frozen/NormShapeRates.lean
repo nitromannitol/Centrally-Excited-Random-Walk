@@ -11,7 +11,7 @@ import CERW.Support.Norm.ShapeRates
 /-!
 # prop:norm-shape
 
-`prop:norm-shape` of the revised paper (`limit-shapes.tex:746-762`). The bytes between the markers are the
+`prop:norm-shape` of the revised paper (`limit-shapes.tex:700-716`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
@@ -25,7 +25,7 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{proposition}\label{prop:norm-shape}
-Let $\gauge$ be a norm, let $\xi(x)\in\partial \gauge(x)$ be subgradients chosen at the sites $x\in\Z^d\setminus\{0\}$, and let $\drift>0$ satisfy~\eqref{eq:ellipticity}. For every $p>0$ there exists $C(d,\drift,\gauge,p)<\infty$, not depending on the choice of the subgradients, such that, for all integers~$n\geq2$, with probability at least $1-Cn^{-p}$ the following hold simultaneously.
+Let $\gauge$ be a norm, let $\xi(x)\in\partial \gauge(x)$ be subgradients chosen at the sites $x\in\Z^d\setminus\{0\}$, and let $\drift>0$ satisfy~\eqref{eq:ellipticity}. For every $p>0$ there exists $C(d,\drift,\gauge,p)<\infty$, not depending on the choice of the subgradients, such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$ the following hold simultaneously.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \underline{\emph{Radii}}:
 \begin{equation}\label{eq:norm-shape}
@@ -41,11 +41,11 @@ and
 \end{equation}
 \end{enumerate}
 \end{proposition}
-Definitions the statement relies on (verbatim): $r_n$ (lines 323--325), $D_n,\Rin,\Rout$ (lines 122--127).
+Definitions the statement relies on (verbatim): $r_n$ (lines 331--333), $D_n,\Rin,\Rout$ (lines 122--127).
 \begin{equation}\label{eq:radius-norm}
 r_n\coloneqq\left(\frac{(d+1)n}{2d\drift|B_\gauge|}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
-Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[-\nf12,\nf12)^d$. Let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
+Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[- \frac12, \frac12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
 \begin{equation}\label{eq:radii}
 \Rin(n)\coloneqq\inf_{y\notin D_n}|y|
 \qquad\text{and}\qquad

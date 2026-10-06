@@ -4,8 +4,12 @@ import CERW.Support.Norm.MoreauCap
 /-!
 # lem:cap
 
-`lem:cap` of the revised paper (`limit-shapes.tex:810-815`). The bytes between the markers are the
-frozen contract recorded in `ledger/manifest.yaml`.
+`lem:cap` of the previous pin of the paper (`limit-shapes.tex@04d3cbfa:810-815`). This module is
+preserved support, no longer a registered node: its statement and proof are those of
+`Frozen/MoreauCap.lean` of commit f7696856, with only the freeze markers removed.
+`limit-shapes.tex@04d3cbfa` is the paper of the previous pin (sha256
+04d3cbfad3cce1b373752f3cc2db3c7e2c34c155cea0727a3ddeb0b0e21c7f59); the pinned paper does not state
+`lem:cap`, and the proofs of `NormRates` consume it.
 -/
 
 universe u
@@ -38,7 +42,6 @@ Monotonicity of the subdifferential, $(p_x-p_w)\cdot(z_x-z_w)\geq0$, and $z_x=x-
 \end{quote}
 ```
 -/
--- FROZEN-STATEMENT-BEGIN
 theorem CERW.Frozen.moreau_cap {d : ℕ} (hd : 2 ≤ d)
     {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} (hΨ : CERW.IsNorm Ψ) {τ : ℝ} (hτ : 0 < τ)
     (x y : EuclideanSpace ℝ (Fin d)) :
@@ -49,7 +52,6 @@ theorem CERW.Frozen.moreau_cap {d : ℕ} (hd : 2 ≤ d)
     τ * CERW.normMax Ψ < ‖y‖ →
     ∀ ξ : EuclideanSpace ℝ (Fin d), CERW.IsSubgradient Ψ y ξ →
       CERW.normMin Ψ ^ 2 / 2 ≤ inner ℝ q ξ
--- FROZEN-STATEMENT-END
 := by
   revert y x hτ τ hΨ Ψ hd d
   exact @CERW.Support.Norm.moreau_cap

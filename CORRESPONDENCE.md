@@ -148,45 +148,114 @@ live in `CERW/Model/`.
 
 | id | Lean | paper | state |
 |---|---|---|---|
-| `local-time-potential` | `CERW.Frozen.local_time_potential` | paper/limit-shapes.tex:385-401 (lem:local, Euclidean case) | PROVED |
-| `coarse-bounds` | `CERW.Frozen.coarse_bounds` | paper/limit-shapes.tex:547-554 (prop:coarse, Euclidean case) | PROVED |
 | `thm-shape` | `CERW.Frozen.limit_shape` | `limit-shapes.tex:103-116`, `thm:shape` | PROVED |
 | `thm-fluctuations` | `CERW.Frozen.fluctuation_rates` | `limit-shapes.tex:130-152`, `thm:fluctuations` | PROVED |
 | `thm-sharp-radii` | `CERW.Frozen.sharp_radii` | `limit-shapes.tex:159-164`, `thm:sharp` | PROVED |
 | `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `limit-shapes.tex:165-170`, `thm:sharp` | PROVED |
 | `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `limit-shapes.tex:171-175`, `thm:sharp` | PROVED |
-| `thm-sharp-width` | `CERW.Frozen.sharp_width` | `limit-shapes.tex:176-187`, `thm:sharp` | PROVED |
-| `thm-norm-shape` | `CERW.Frozen.norm_shape` | `limit-shapes.tex:330-343`, `thm:norm-shape` | PROVED |
-| `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `limit-shapes.tex:361-366`, `lem:ballpotential` | PROVED |
-| `lem-local` | `CERW.Frozen.norm_local_time_potential` | `limit-shapes.tex:385-401`, `lem:local` | PROVED |
-| `lem-freedman` | `CERW.Frozen.freedman_bound` | `limit-shapes.tex:437-442`, `lem:freedman` | PROVED |
-| `lem-cell` | `CERW.Frozen.cell_gradient` | `limit-shapes.tex:455-460`, `lem:cell` | PROVED |
-| `lem-geometry` | `CERW.Frozen.norm_potential_geometry` | `limit-shapes.tex:510-528`, `lem:geometry` | PROVED |
-| `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `limit-shapes.tex:547-554`, `prop:coarse` | PROVED |
-| `lem-radial` | `CERW.Frozen.norm_radial_test` | `limit-shapes.tex:567-576`, `lem:radial` | PROVED |
-| `lem-crossing` | `CERW.Frozen.drift_crossing` | `limit-shapes.tex:662-667`, `lem:crossing` | PROVED |
-| `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `limit-shapes.tex:746-762`, `prop:norm-shape` | PROVED |
-| `lem-layer` | `CERW.Frozen.layer_potential` | `limit-shapes.tex:780-785`, `lem:layer` | PROVED |
-| `lem-cap` | `CERW.Frozen.moreau_cap` | `limit-shapes.tex:810-815`, `lem:cap` | PROVED |
-| `lem-contact` | `CERW.Frozen.contact_potential` | `limit-shapes.tex:892-897`, `lem:contact` | PROVED |
-| `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `limit-shapes.tex:989-994`, `lem:outer-crossing` | PROVED |
-| `prop-inner` | `CERW.Frozen.inner_radius` | `limit-shapes.tex:1060-1076`, `prop:inner` | PROVED |
-| `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `limit-shapes.tex:1172-1177`, `prop:stronger-outer` | PROVED |
-| `lem-near-far` | `CERW.Frozen.near_far` | `limit-shapes.tex:1203-1208`, `lem:near-far` | PROVED |
-| `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `limit-shapes.tex:1353-1374`, `thm:moment-fluctuations` | PROVED |
-| `lem-fixed-site-centering` | `CERW.Frozen.fixed_site_centering` | `limit-shapes.tex:1430-1436`, `lem:fixed-site-centering` | PROVED |
-| `thm-site-fluctuations` | `CERW.Frozen.site_fluctuations` | `limit-shapes.tex:1460-1485`, `thm:site-fluctuations` | PROVED |
-| `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `limit-shapes.tex:1537-1551`, `lem:exp-deviation` | PROVED |
-| `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `limit-shapes.tex:1655-1662`, `prop:bulk-profile` | PROVED |
-| `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `limit-shapes.tex:1689-1696`, `lem:separated-brackets` | PROVED |
-| `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `limit-shapes.tex:1759-1773`, `prop:log-lower` | PROVED |
+| `thm-sharp-width` | `CERW.Frozen.sharp_width` | `limit-shapes.tex:176-185`, `thm:sharp` | PROVED |
+| `thm-norm-shape` | `CERW.Frozen.norm_shape` | `limit-shapes.tex:338-351`, `thm:norm-shape` | PROVED |
+| `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `limit-shapes.tex:369-374`, `lem:ballpotential` | PROVED |
+| `lem-local` | `CERW.Frozen.norm_local_time_potential` | `limit-shapes.tex:393-409`, `lem:local` | PROVED |
+| `lem-freedman` | `CERW.Frozen.freedman_bound` | `limit-shapes.tex:445-450`, `lem:freedman` | PROVED |
+| `lem-cell` | `CERW.Frozen.cell_gradient` | `limit-shapes.tex:463-468`, `lem:cell` | PROVED |
+| `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `limit-shapes.tex:538-545`, `prop:coarse` | PROVED |
+| `lem-crossing` | `CERW.Frozen.drift_crossing` | `limit-shapes.tex:559-564`, `lem:crossing` | PROVED |
+| `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `limit-shapes.tex:700-716`, `prop:norm-shape` | PROVED |
+| `lem-layer` | `CERW.Frozen.layer_potential` | `limit-shapes.tex:519-524`, `lem:layer` | PROVED |
+| `lem-contact` | `CERW.Frozen.contact_potential` | `limit-shapes.tex:773-778`, `lem:contact` | PROVED |
+| `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `limit-shapes.tex:575-580`, `lem:outer-crossing` | PROVED |
+| `prop-inner` | `CERW.Frozen.inner_radius` | `limit-shapes.tex:902-918`, `prop:inner` | PROVED |
+| `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `limit-shapes.tex:1014-1019`, `prop:stronger-outer` | PROVED |
+| `lem-near-far` | `CERW.Frozen.near_far` | `limit-shapes.tex:1045-1050`, `lem:near-far` | PROVED |
+| `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `limit-shapes.tex:1195-1216`, `thm:moment-fluctuations` | PROVED |
+| `lem-fixed-site-centering` | `CERW.Frozen.fixed_site_centering` | `limit-shapes.tex:1272-1278`, `lem:fixed-site-centering` | PROVED |
+| `thm-site-fluctuations` | `CERW.Frozen.site_fluctuations` | `limit-shapes.tex:1302-1327`, `thm:site-fluctuations` | PROVED |
+| `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `limit-shapes.tex:1379-1393`, `lem:exp-deviation` | PROVED |
+| `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `limit-shapes.tex:1507-1514`, `prop:bulk-profile` | PROVED |
+| `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `limit-shapes.tex:1541-1548`, `lem:separated-brackets` | PROVED |
+| `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `limit-shapes.tex:1611-1625`, `prop:log-lower` | PROVED |
 
 <!-- FROZEN-SURFACE-END -->
 
 The four rows `thm-sharp-radii`, `thm-sharp-radii-lil`, `thm-sharp-bulk` and
-`thm-sharp-width` are the four parts (i), (ii), (iii) and (iv) of
-Theorem 1.3; the last contains both (a) and (b). Every labelled
-theorem-like environment of the pinned paper is claimed by a row.
+`thm-sharp-width` are parts (i), (ii), (iii) and (iv) of Theorem 1.3. Version 4 of the last
+contains all three clauses (a), (b) and (c), including the numerical small-ball bound for every
+`a ≥ 0` at lines 186–189. The 27 rows cover all 24 labelled theorem-like environments.
+
+The author approved the five successor interfaces on 2026-10-06. `lem:crossing` produces the
+vector event with a constant chosen before the subgradient field and law, and proves the
+crossing estimate on that event. `lem:outer-crossing` produces the simultaneous radial
+finite-family event and separately proves the deterministic implication for arbitrary `q`
+satisfying the displayed bounds. Its arbitrary-`q` implication is not a probability bound
+simultaneous over all real vectors. `lem:contact` supplies existence and uniqueness of the
+nearest projection, the literal seven-estimate event, its probability bound, and the contact
+conclusion almost surely on that event for an arbitrary realization. Legal paths and arbitrary
+probability laws are related almost surely; legality is not an eighth event clause.
+`lem:exp-deviation` requires adaptation and integrability through time `n`, the martingale
+conditional-expectation identity before `n`, and almost-sure start and increment bounds. Its
+constants precede the probability space, common filtration, family and finite horizon. Both
+signed tails and the many-site bound retain their original constants and admissible window.
+`lem:separated-brackets` retains its approved probability reading; its literal event implication
+is independently proved in `CERW/Support/Lower/SeparatedBracketsEvent.lean`.
+
+The complete source interfaces apply the proved support in `CERW/Support/RevisedPaper.lean`,
+`CERW/Support/RevisedPaperCarrier.lean`, `CERW/Support/RevisedPaperContact.lean`,
+`CERW/Support/RevisedPaperWidth.lean` and `CERW/Support/Lower/ExpDeviationAE.lean`.
+
+Five Lean modules of the earlier registration are preserved support and are no longer rows of the
+table: `CERW/Support/Legacy/{LocalTimePotential,CoarseBounds}.lean` are the Euclidean cases of
+`lem:local` and `prop:coarse` (the pinned paper states these two results for a norm, as the rows
+`lem-local` and `prop-coarse`), and `CERW/Support/Legacy/{NormPotentialGeometry,NormRadialTest,MoreauCap}.lean`
+carry the statements of `lem:geometry`, `lem:radial` and `lem:cap` of the previous pin of the paper,
+which the pinned paper does not state. Their declarations, types and proofs are those of commit f7696856
+(`CERW.Frozen.local_time_potential`, `CERW.Frozen.coarse_bounds`, `CERW.Frozen.norm_potential_geometry`,
+`CERW.Frozen.norm_radial_test`, `CERW.Frozen.moreau_cap`).
+
+These exports remain available as proved support. BulkProfile and SharpWidth consume the Euclidean legacy exports,
+and the NormPotential/NormRates guard modules consume the retired norm machinery. The registered norm coarse theorem
+applies CoarseVolume.norm_coarse_bounds_closed directly. The current frozen assemblies and source-event producers are
+recorded separately.
+
+## Revised-source support outside the registry
+
+The table above carries the labelled statements of the pinned paper. The paper also makes assertions that no label carries: the
+scope of Newton's theorem, displays inside proofs, and consequences stated in the introduction. The modules named below prove them for the
+actual objects of the paper. They are ordinary support: none is a registered node, none is a frozen statement, and the registered
+statements above are unchanged by them. The table and the dedicated-support list below describe the
+source assertions covered by these modules; limitations stated for one row concern that row's
+named exports.
+
+| lines of the pinned paper | assertion | declarations (module.name) | covered | not covered |
+|---|---|---|---|---|
+| l.759-762, `eq:radial-convolution` | Newton's theorem for a nonnegative integrable radial function: its Newton-field convolution equals the mass of the open ball of radius norm(y) times y/norm(y)^d, for almost every y. | `RadialNewtonAE.ae_integral_weight_smul_newtonField_eq_univ` | The vector identity, for almost every y, for a nonnegative radial profile chi that is Borel measurable and integrable on the spatial ball norm, in every dimension d >= 2; no bound, monotonicity or moment on chi. | The carrier is a Borel profile chi. A radial spatial function that is only integrable is reached through the next row. The `w != 0` guard is the null-singleton convention. |
+| l.763-767, `eq:newton-convolution` | For a bounded measurable D and every real point y, the convolution of the radial function with the potential U_D is the integral against the ball mass m(norm(v - y)), with coefficient 2 eps / omega_d. | `RadialNewtonConvolution.exists_borel_profile`<br>`RadialNewtonConvolution.ballMass_congr`<br>`RadialNewtonConvolution.normPotential_convolution_eq`<br>`RadialNewtonConvolution.normPotential_convolution_eq_radial`<br>`RadialNewtonConvolution.convolution_normPotential_eq_radial` | Every point y, any real eps, every norm, every pointwise radial nonnegative integrable function f on the Euclidean space; the Borel profile of f and the open-ball masses are produced and transported. | These named exports are norm-only; arbitrary compact convex origin-interior gauges are supplied separately by `GaugeRadialNewtonConvolution`. |
+| l.768-771, `eq:contact-convolution` | At a contact point y0 (Psi(y0) = b, {Psi < b} inside D) the convolution with U_E, E = D minus {Psi < b}, is at most (the integral of f) times H, H = U_D(y0). | `RadialNewtonConvolution.contact_convolution_le`<br>`RadialNewtonConvolution.contact_convolution_le_radial` | For every nonnegative integrable radial f, eps >= 0, any real b, bounded measurable D; integrability of the convolution and U_E(y0) = U_D(y0) are outputs. | Deterministic and abstract in D; the walk's own set D_n is in the next row. |
+| l.633-650 and 768-771: the visited-cell set D_n, inner threshold b, contact point | The contact comparison for the actual cell set D_n of the sites visited before time n, with b the infimum of Psi outside D_n, an attained contact point that is a limit of unvisited points, and the unvisited-cell geometry. | `RadialNewtonSourceContact.isGLB_normInnerRadius`<br>`RadialNewtonSourceContact.exists_contact_point`<br>`RadialNewtonSourceContact.exists_unvisited_cell_of_contact_point`<br>`RadialNewtonSourceContact.ae_contact_convexity`<br>`RadialNewtonSourceContact.contact_convolution_le_cellSet`<br>`RadialNewtonSourceContact.source_contact_convolution` | Every path and every n (including n = 0), every norm, d >= 1 for the geometry and d >= 2 for the convolution; one contact witness before all admissible f. | The full excess-integral estimate of l.633-655 and the downstream rates are separate producers and are not reproved here. No claim that H > 0: for the l-infinity norm a legal path can give H = 0. |
+| l.773-778, `lem:contact`, convolution form | The contact convolution bound on the event of the seven estimates, with the constants of the contact height. | `RadialNewtonSourceContact.contact_convolution_prob` | A law-level consequence of the registered `Frozen.contact_potential` (the probability reading of the lemma, unchanged): common constants chosen before the walk, for each admissible f. | It is not the literal deterministic statement on the event of the seven estimates, which is a different and stronger statement and is not registered. The printed theorem is for each admissible f, not one event for all f simultaneously. |
+| l.1166-1178, planar all-real-point displays and Borel-Cantelli with p > 1 | In the plane, almost surely and eventually: the real-point excess-potential bound, the two-region local-time estimates, the absorbed inner-radius error; also on the seven-estimate event and at the legal carrier. | `PlanarRealProfileAE.planar_real_displays_ae`<br>`PlanarRealProfileAE.planar_real_displays_ae_on_E7`<br>`PlanarRealProfileAE.planar_real_profile_ae_on_carrier`<br>`PlanarRealProfileAE.exists_realization_planar_real_ae`<br>`PlanarRealProfile.planar_real_profile_prob`<br>`PlanarRealProfile.planar_displays_on_E7`<br>`PlanarRealProfile.planar_newton_gradient_at_real_point` | d = 2, 0 < eps < 1/2, an arbitrary realization of the walk (`IsCERW`); one constant before the probability space, the walk, the sample point and the time; E7 and legality are separate almost-sure conclusions. | Original-`F_n` finite-prefix measurability is supplied separately by `CERW.Support.Outer.PlanarRealFiltration.measurableSet_planarRealDisplays_filtration_of_isCERW` and `CERW.Support.Outer.PlanarRealFiltration.measurableSet_E7_filtration_of_isCERW`; this planar row does not assert a general gauge profile. |
+| Sections 6-7 displays: `eq:potential-convolution`, `eq:envelopehigh`, `eq:global`, layer-cake identity, planar envelope, harmonicity | The displays of the inner- and outer-radius sections in their full form, at every point. | `SourceDisplays.potential_convolution`<br>`SourceDisplays.envelope_high_full`<br>`SourceDisplays.layer_cake_eq`<br>`SourceDisplays.global_approximation_scale`<br>`SourceDisplays.planar_envelope_all_points`<br>`SourceDisplays.planar_localtime_all_sites`<br>`SourceDisplays.harmonicOnNhd_planar_potential`<br>`SourceDisplays.harmonicAt_planar_newton_field` | The displays for the actual objects (U_D, U_D^+, the weight (1 + norm(z))^(2-2d), the cells of the range, the local time and the bracket); deterministic statements take only clauses of the good event. | `HarmonicAt U_E` as a consequence of the full planar profile is not an exported claim. |
+| l.118, 154, 194, 198: consequences stated after the theorems on fluctuations and sharpness | Fixed-site limits, the volume and count rates, recurrence, the log-scale alternative, the width window n^(1/6 +- eta), the dyadic sharp bulk, the correct order of the local times. | `SourceIntroductionConsequences.source_site_and_volume_limits`<br>`SourceIntroductionConsequences.fluctuation_count_rates`<br>`SourceProbabilityConsequences.log_lower_and_fluctuation_ae`<br>`SourceProbabilityConsequences.width_upper_ae`<br>`SourceProbabilityConsequences.width_upper_ae_every_eta`<br>`SourceProbabilityConsequences.bulk_upper_sqrt_ball`<br>`SourceProbabilityConsequences.sharp_bulk_dyadic_ae`<br>`SourceProbabilityConsequences.planar_width_fluctuation_bound`<br>`SourceProbabilityConsequences.planar_not_improvable`<br>`SourceProbabilityConsequences.planar_exponent_not_lowerable`<br>`SourceProbabilityConsequences.local_times_correct_order`<br>`SourceProbabilityFiniteTime.planar_width_fluctuation_bound_all` | Each with the quantifiers, constants and scales of the source, by applying the registered estimates; the width bound is stated for every n >= 2. | These consume the registered theorems at their registered readings; they are not new registered statements. |
+| l.353 and Theorem 2.1 remarks: norm = gauge of its unit ball; strict inclusion rates; volume limit; the explicit quadratic process | A norm is the Minkowski functional of its closed unit ball; sharp Laplacian growth; volume limit; inner-radius bound; the identity norm(X_n)^2 = n - 2 eps sum Psi + Q_n with Q a martingale; the inclusion form of the rates. | `NormGaugeConsequences.norm_shape_rates_inclusions`<br>`NormGaugeConsequences.gauge_shape_rates_inclusions`<br>`NormGaugeConsequences.norm_volume_limit`<br>`NormGaugeConsequences.norm_inner_radius_upper_bound`<br>`NormGaugeConsequences.exists_unique_isDistribLaplacian_norm_sharp`<br>`NormGaugeConsequences.norm_measure_ball_le_sharp`<br>`NormGaugeConsequences.sq_euclidNorm_eq_norm`<br>`NormGaugeConsequences.quadraticMartingale_ae_eq_driftDynkin`<br>`NormGaugeConsequences.martingale_driftDynkin_sq`<br>`QuadraticProcessMartingale.martingale_quadraticMartingale`<br>`QuadraticProcessMartingale.quadratic_identity_and_martingale`<br>`QuadraticProcessMartingale.quadraticMartingale_isCERW` | The norm instances of the gauge results, with the exact Laplacian coefficient; the explicit process is a martingale for the natural filtration (by transfer of the Dynkin martingale along the almost-sure equality). | Arbitrary asymmetric-gauge radial/contact identities are supplied separately by `GaugeRadialNewtonConvolution` and `GaugeSourceContactConsequences.gauge_source_contact`. |
+| l.1379-1393, `lem:exp-deviation`, almost-sure and finite-filtration forms | Exponential deviations for martingales with an almost-sure start and almost-sure increment bound, and for a finite filtration indexed by Fin (n + 1). | `ExpDeviationAE.exp_deviation_ae_upTo`<br>`ExpDeviationAE.exp_deviation_ae`<br>`FiniteHorizonExpDeviation.martingale_extendProcess`<br>`FiniteHorizonExpDeviation.martingale_restrict`<br>`FiniteHorizonExpDeviation.exp_deviation_finite` | The two sure hypotheses weakened to almost sure, the same constants and conclusions; the finite-filtration reading agrees with the N-indexed reading (extension and restriction proved). | `Frozen.exp_deviation` version 2 is the finite-horizon almost-sure form; the complete earlier sure form remains proved support in `CERW/Support/Lower/ExpDeviation.lean`. |
+
+Covered by dedicated support outside the registry (not paper nodes, not frozen statements):
+* The finite-prefix (`F_n`) measurability of the whole real-profile event is supplied by
+  `CERW/Support/Outer/PlanarRealProfileFiltration.lean`.
+* The unrestricted asymmetric-gauge radial Newton and contact inputs are supplied by
+  `CERW/Support/Norm/GaugeRadialNewtonConvolution.lean` and
+  `CERW/Support/Norm/GaugeSourceContactConsequences.lean`.
+* The in-probability width gap is supplied by
+  `CERW.Support.RevisedPaper.sharp_width_extended` and
+  `CERW.Support.Lower.PlanarGap.gap_limsup_le_smallBall`. The window consequences are supplied by
+  `SourceProbabilityConsequences.width_upper_ae`, `width_upper_ae_every_eta` and
+  `SourceProbabilityFiniteTime.planar_width_fluctuation_bound_all`.
+
+The unused whole-future carrier is not an original-`F_n`-consumed source obligation and is not
+claimed here. None of the modules above is a registered statement; the registered statements are
+unchanged by them.
+
+The registry gates check labelled environments only; the table above is maintained by hand and is not checked by a gate.
 
 ## Cited results
 
@@ -195,7 +264,10 @@ The revised paper cites two martingale limit theorems for its limit laws.
   `CERW.Generic.Martingale.CLT.martingaleCLT_proved`.
 - Stout's law of the iterated logarithm is proved in its two halves:
   `CERW.Generic.Martingale.Lil.stout_upper` and `CERW.Generic.Martingale.LilAssembly.stout_lower`.
-Nothing is assumed (`ASSUMPTIONS.md`); the table records the retired cited-result nodes.
+Nothing is assumed (`ASSUMPTIONS.md`); the table records the retired cited-result nodes. The
+conditional assembly lemmas keep the two cited results as **internal proof parameters** (`hCLT`,
+`hLIL`), and the final registered roots supply them **proved**; a fulfilled internal input is not
+an open assumption, and no binder is added back to any final statement.
 
 | node | cited result | Lean form | cited at | carried by |
 |---|---|---|---|---|
@@ -203,12 +275,12 @@ Nothing is assumed (`ASSUMPTIONS.md`); the table records the retired cited-resul
 | `ext-stout-lil` (retired) | Stout (1970), Theorem 2, the lower half of the martingale law of the iterated logarithm | `CERW.Generic.Martingale.Lil.StoutLower` (formerly `CERW.External.StoutLIL`): for one square-integrable martingale `S` with `S_0 = 0` and a predictable bound `B_{n+1}` (`ℱ_n`-measurable) on `\|ΔS_{n+1}\|` almost surely, if `⟨S⟩_n → ∞` and `B_n √(log log (⟨S⟩_n ∨ e^e))/√⟨S⟩_n → 0` almost surely, then almost surely, for every `δ > 0`, frequently `S_n ≥ (1 - δ) √(2⟨S⟩_n log log ⟨S⟩_n)`. The upper half, eventually `S_n ≤ (1 + δ) √(2⟨S⟩_n log log ⟨S⟩_n)` (Stout's Theorem 1), is proved under the same hypotheses: `CERW.Generic.Martingale.Lil.stout_upper` | `limit-shapes.tex:1410, 1519, 1644` | none: proved, as `CERW.Generic.Martingale.LilAssembly.stout_lower` (ruling D7) |
 
 The paper uses them at the following places:
-- line 1399, Theorem 8.1: the central limit theorem for the quadratic martingale `𝒬`;
-- line 1410, Theorem 8.1: the law of the iterated logarithm for `𝒬` and `-𝒬`, and through it
+- line 1241, Theorem 8.1: the central limit theorem for the quadratic martingale `𝒬`;
+- line 1252, Theorem 8.1: the law of the iterated logarithm for `𝒬` and `-𝒬`, and through it
   Theorem 1.3 (ii), `sharp_radii_lil`;
-- line 1519, Theorem 8.3: both results for the martingales `𝓜^y`, in the central limit theorem, the
+- line 1361, Theorem 8.3: both results for the martingales `𝓜^y`, in the central limit theorem, the
   joint limits and the law of the iterated logarithm;
-- line 1644, Theorem 1.3 (iv)(b): the law of the iterated logarithm for the first coordinate of the
+- line 1486, Theorem 1.3 (iv)(b): the law of the iterated logarithm for the first coordinate of the
   compensated position, `sharp_width` part (b).
 
 Both propositions are the special cases the paper uses, with `S_0 = 0` at every `ω` and the conclusion in

@@ -1,8 +1,8 @@
 import CERW.Frozen.NormShapeRates
 import CERW.Frozen.LayerPotential
-import CERW.Frozen.MoreauCap
-import CERW.Frozen.ContactPotential
-import CERW.Frozen.OuterCrossing
+import CERW.Support.Legacy.MoreauCap
+import CERW.Support.Guards.SourceEvents
+import CERW.Support.Norm.OuterCrossing
 import CERW.Support.Drift.Existence
 import CERW.Support.Drift.StepProb
 import CERW.Support.Drift.Bridge
@@ -259,8 +259,8 @@ theorem contact_potential_applies :
             y₀ ∈ closure (CERW.cellSet (X · ω) n)ᶜ →
             CERW.normPotential 2 ε Ψ (CERW.cellSet (X · ω) n) y₀ ≤ C * r n * q n}
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p)) :=
-  CERW.Frozen.contact_potential (d := 2) (by norm_num) _ isNorm_euclidean (1 / 4) (by norm_num)
-    plane_ellipticity
+  CERW.Support.Guards.SourceEvents.contact_potential_old_form (d := 2) (by norm_num) _
+    isNorm_euclidean (1 / 4) (by norm_num) plane_ellipticity
 
 /-- In the plane, for the Euclidean norm and `ε = 1/4`, there are a subgradient field `ξ` with
 `ξ 0 = 0` and a probability space carrying the walk driven by `ξ`. -/
@@ -402,7 +402,8 @@ theorem outer_crossing_applies :
     norm_num
     linarith
   have hlog := Real.log_two_gt_d9
-  obtain ⟨C, hC, hmain⟩ := CERW.Frozen.outer_crossing (d := 2) (by norm_num) _ isNorm_euclidean
+  obtain ⟨C, hC, hmain⟩ :=
+    CERW.Support.Norm.outer_crossing_holds (d := 2) (by norm_num) _ isNorm_euclidean
     (1 / 4) (by norm_num) plane_ellipticity (1 / 2) (by norm_num) 20 (by norm_num)
   refine ⟨C, hC, fun b hb => ?_⟩
   have hmain' := hmain (fun z => CERW.unitDir (CERW.toSpace z))
