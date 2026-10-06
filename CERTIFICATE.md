@@ -4,7 +4,7 @@ Formalizes statements pinned in `paper/limit-shapes.tex` as the Lean library `CE
 
 ## What is claimed
 
-Every node's state in `ledger/manifest.yaml` is `SEALED` or `PROVED` (0 SEALED, 32 PROVED, 32 total): all are proved with no added axiom and no `sorry`.
+Every node's state in `ledger/manifest.yaml` is `SEALED` or `PROVED` (0 SEALED, 27 PROVED, 27 total): all are proved with no added axiom and no `sorry`.
 
 ## Environment
 
@@ -12,10 +12,10 @@ Every node's state in `ledger/manifest.yaml` is `SEALED` or `PROVED` (0 SEALED, 
 |---|---|
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
-| Paper (`paper/limit-shapes.tex`) SHA-256 | `04d3cbfad3cce1b373752f3cc2db3c7e2c34c155cea0727a3ddeb0b0e21c7f59` |
-| Build | succeeded, 9141 jobs |
+| Paper (`paper/limit-shapes.tex`) SHA-256 | `c39feeaf71f83234fdd4b1e2fd6b4d6c739197b2c419c8ac1bb868ce8768c219` |
+| Build | succeeded, 9163 jobs |
 | Build warnings | 0 |
-| Generated | 2026-10-05 |
+| Generated | 2026-10-06 |
 
 ## Reproducing it
 
@@ -34,38 +34,33 @@ python3 -m leanform_tools.certificate . --check
 
 | # | node | Lean name(s) | state | axiom closure |
 |---|---|---|---|---|
-| 1 | `local-time-potential` | `CERW.Frozen.local_time_potential` | `PROVED` | classical only |
-| 2 | `coarse-bounds` | `CERW.Frozen.coarse_bounds` | `PROVED` | classical only |
-| 3 | `thm-shape` | `CERW.Frozen.limit_shape` | `PROVED` | classical only |
-| 4 | `thm-fluctuations` | `CERW.Frozen.fluctuation_rates` | `PROVED` | classical only |
-| 5 | `thm-sharp-radii` | `CERW.Frozen.sharp_radii` | `PROVED` | classical only |
-| 6 | `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `PROVED` | classical only |
-| 7 | `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `PROVED` | classical only |
-| 8 | `thm-sharp-width` | `CERW.Frozen.sharp_width` | `PROVED` | classical only |
-| 9 | `thm-norm-shape` | `CERW.Frozen.norm_shape` | `PROVED` | classical only |
-| 10 | `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `PROVED` | classical only |
-| 11 | `lem-local` | `CERW.Frozen.norm_local_time_potential` | `PROVED` | classical only |
-| 12 | `lem-freedman` | `CERW.Frozen.freedman_bound` | `PROVED` | classical only |
-| 13 | `lem-cell` | `CERW.Frozen.cell_gradient` | `PROVED` | classical only |
-| 14 | `lem-geometry` | `CERW.Frozen.norm_potential_geometry` | `PROVED` | classical only |
-| 15 | `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `PROVED` | classical only |
-| 16 | `lem-radial` | `CERW.Frozen.norm_radial_test` | `PROVED` | classical only |
-| 17 | `lem-crossing` | `CERW.Frozen.drift_crossing` | `PROVED` | classical only |
-| 18 | `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `PROVED` | classical only |
-| 19 | `lem-layer` | `CERW.Frozen.layer_potential` | `PROVED` | classical only |
-| 20 | `lem-cap` | `CERW.Frozen.moreau_cap` | `PROVED` | classical only |
-| 21 | `lem-contact` | `CERW.Frozen.contact_potential` | `PROVED` | classical only |
-| 22 | `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `PROVED` | classical only |
-| 23 | `prop-inner` | `CERW.Frozen.inner_radius` | `PROVED` | classical only |
-| 24 | `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `PROVED` | classical only |
-| 25 | `lem-near-far` | `CERW.Frozen.near_far` | `PROVED` | classical only |
-| 26 | `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `PROVED` | classical only |
-| 27 | `lem-fixed-site-centering` | `CERW.Frozen.fixed_site_centering` | `PROVED` | classical only |
-| 28 | `thm-site-fluctuations` | `CERW.Frozen.site_fluctuations` | `PROVED` | classical only |
-| 29 | `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `PROVED` | classical only |
-| 30 | `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `PROVED` | classical only |
-| 31 | `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `PROVED` | classical only |
-| 32 | `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `PROVED` | classical only |
+| 1 | `thm-shape` | `CERW.Frozen.limit_shape` | `PROVED` | classical only |
+| 2 | `thm-fluctuations` | `CERW.Frozen.fluctuation_rates` | `PROVED` | classical only |
+| 3 | `thm-sharp-radii` | `CERW.Frozen.sharp_radii` | `PROVED` | classical only |
+| 4 | `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `PROVED` | classical only |
+| 5 | `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `PROVED` | classical only |
+| 6 | `thm-sharp-width` | `CERW.Frozen.sharp_width` | `PROVED` | classical only |
+| 7 | `thm-norm-shape` | `CERW.Frozen.norm_shape` | `PROVED` | classical only |
+| 8 | `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `PROVED` | classical only |
+| 9 | `lem-local` | `CERW.Frozen.norm_local_time_potential` | `PROVED` | classical only |
+| 10 | `lem-freedman` | `CERW.Frozen.freedman_bound` | `PROVED` | classical only |
+| 11 | `lem-cell` | `CERW.Frozen.cell_gradient` | `PROVED` | classical only |
+| 12 | `prop-coarse` | `CERW.Frozen.norm_coarse_bounds` | `PROVED` | classical only |
+| 13 | `lem-crossing` | `CERW.Frozen.drift_crossing` | `PROVED` | classical only |
+| 14 | `prop-norm-shape` | `CERW.Frozen.norm_shape_rates` | `PROVED` | classical only |
+| 15 | `lem-layer` | `CERW.Frozen.layer_potential` | `PROVED` | classical only |
+| 16 | `lem-contact` | `CERW.Frozen.contact_potential` | `PROVED` | classical only |
+| 17 | `lem-outer-crossing` | `CERW.Frozen.outer_crossing` | `PROVED` | classical only |
+| 18 | `prop-inner` | `CERW.Frozen.inner_radius` | `PROVED` | classical only |
+| 19 | `prop-stronger-outer` | `CERW.Frozen.outer_radius` | `PROVED` | classical only |
+| 20 | `lem-near-far` | `CERW.Frozen.near_far` | `PROVED` | classical only |
+| 21 | `thm-moment-fluctuations` | `CERW.Frozen.moment_fluctuations` | `PROVED` | classical only |
+| 22 | `lem-fixed-site-centering` | `CERW.Frozen.fixed_site_centering` | `PROVED` | classical only |
+| 23 | `thm-site-fluctuations` | `CERW.Frozen.site_fluctuations` | `PROVED` | classical only |
+| 24 | `lem-exp-deviation` | `CERW.Frozen.exp_deviation` | `PROVED` | classical only |
+| 25 | `prop-bulk-profile` | `CERW.Frozen.bulk_profile` | `PROVED` | classical only |
+| 26 | `lem-separated-brackets` | `CERW.Frozen.separated_brackets` | `PROVED` | classical only |
+| 27 | `prop-log-lower` | `CERW.Frozen.log_lower_bounds` | `PROVED` | classical only |
 
 ## Frozen statements
 
@@ -73,35 +68,30 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 
 | node | SHA-256 of the frozen statement |
 |---|---|
-| `local-time-potential` | `c804956e1998b52392ff46288059b8d424f072a46a753112c24652bf078e6b55` |
-| `coarse-bounds` | `695b02b4055219568e89d469368885395be5c06e2a42645ce0c0d7afa33bbc15` |
 | `thm-shape` | `afe23ec124a7797b5a935f8d6c7c9d284e866118f2c4af2c98d04da9da6894e3` |
 | `thm-fluctuations` | `ec18ac337d2fb2ca751b815ad92dd51d844ed4a40d5189a740a641e0e09812a4` |
 | `thm-sharp-radii` | `72fbd89c684fe5947057fbbf5cfb00e6a2689b59aede6a5dfe1c5a74c4ce4c9c` |
 | `thm-sharp-radii-lil` | `02bf74c87e998ed87b8992806d085f7b87649b45355fb1c033f486b3a551d74e` |
 | `thm-sharp-bulk` | `9bab71e5d1b9792c8f8c11bfc783ad04d6eb135525693acdcd98b660959668e8` |
-| `thm-sharp-width` | `7654422573bbcdf512793dc39bc4b1ad143d87ac0abe8e945ac27c5b17988e14` |
+| `thm-sharp-width` | `61203b6c376231a12440a7cb8937c6099d52f77cd65166b7115c65ea32a3cdc0` |
 | `thm-norm-shape` | `2d3df99b7e7b2255c43fc0572eaaab84dd2b700427303abb9633798d13d3d3db` |
 | `lem-ballpotential` | `a1b46e20b7aa5a120584785042d8dac1ceb272e0d1513492f51dad5ea7cbe4c8` |
 | `lem-local` | `9c472ab635b0014c78ca5373c2288ed7181ee112a164c30ac614ec8c8752a3a7` |
 | `lem-freedman` | `cf4024fbf5336db798bcdf60c0710b003595a90f491d5a6bbbfaf4eac9774dfc` |
 | `lem-cell` | `714ade301bc1979807177f7ec5bd32758cdcf61b2e11398901589a5fd015e638` |
-| `lem-geometry` | `36f84b69b6bb20030cc8b8fbc58ab36459afae9b3d224ddbf4d1ee26898e2192` |
 | `prop-coarse` | `89c6dc199bee5ccc0681ec40288efb12f6e90289785f4bcdbf8cc5f46a0b9c98` |
-| `lem-radial` | `79c9161163689caa8ad03b7b419f3c53b436a51625bac098cb795ac0a44cf5e8` |
-| `lem-crossing` | `9cf28f703d6b7d3287e50bd21fd5ebba214375e9ce936ed72444f8705bf6e6e4` |
+| `lem-crossing` | `02ed2c8631e1ebacca4a11df2589a0fc5b379f0ffd8eb2f6801cc580ae6dfffe` |
 | `prop-norm-shape` | `957071d857eb59f201c69baced31da2dc3a17fc662e15b59f8f59ffb8eba3865` |
 | `lem-layer` | `168161bee795c953f19970049ce2b040961fbf0ed09f48ed27e9589e62d6d672` |
-| `lem-cap` | `14b391e12e2e542881212dca73d7d39fdab298ac65ff56bd6716d7a3aedd8211` |
-| `lem-contact` | `eb80fa4defc32bc2461e9cc0a270bca9e97e50b384ce75221dc9d0bac134acf2` |
-| `lem-outer-crossing` | `acd67ade6a88d8bc0fa901f9ae60e79283bfef0873c9fbd5cd7064d165909da0` |
+| `lem-contact` | `176d73b22647866bb6cbdd4b64d07062c56dac0e3312acbf2e6f5486ee876594` |
+| `lem-outer-crossing` | `d9a4cb2430a43675b7b7ba691fbd7338a186ff65c1da430c9005e425b9340555` |
 | `prop-inner` | `2d9401fb69c6e5346005b003eeff3a0e41b744489a8ffb0baef89864cb60a244` |
 | `prop-stronger-outer` | `6590555088155da416f44b0c49d47773a5ee72de758fc397ca5ef2755dc403de` |
 | `lem-near-far` | `1bd6626860ec14cd2e1cb1cbc4905ac3d8d5cb64c05f20a4479af337a5d7cabf` |
 | `thm-moment-fluctuations` | `06ccccaa3cbc9ff36d4593ff974c1072aaec54ed01617a3fcf5087e54e13fe5f` |
 | `lem-fixed-site-centering` | `0c4ecaed7602a58c804a769396308b5a346ff427b933958b983b38b6f99b033f` |
 | `thm-site-fluctuations` | `5dd4c40c63104a13a9388667d3a2574e8e90abfe53486acd60c7e7eb87292552` |
-| `lem-exp-deviation` | `0fb6a8e898e488c397a7ff3c6461b5680328f8472a3405de58677791f6b3168d` |
+| `lem-exp-deviation` | `998e8a6a9a39ee8b7b0789e8673b2a40c0a627730f156bf376b0706a2d6651c1` |
 | `prop-bulk-profile` | `34aa5668e98eaba6d8c37552c243e758e12c645e90f222ff30b20621630d0e34` |
 | `lem-separated-brackets` | `342581ac105e4d601df6d9e1d5fbf1238a798aa55c2213d3fbf733f1735a4b78` |
 | `prop-log-lower` | `201878321aa214c30fca342516f5666f47deed86c574046207f9383f9234b8b4` |
