@@ -1,4 +1,5 @@
 import CERW.Support.Statements
+import CERW.Support.Lower.ExpDeviationStatement
 import CERW.Support.LocalTime
 import CERW.Support.LocalTime.LatticeKernelFacts
 import CERW.Support.Law.Dynkin
@@ -205,7 +206,7 @@ private lemma maxDynkin_predBracket_congr {Ω : Type*} {m0 : MeasurableSpace Ω}
 /-- Lemma 9.1 (ii) for the normalized Dynkin martingales `-M^{f_i}/σ`: if the brackets are
 controlled outside an event of probability at most `α`, then with probability at least
 `1 - C (m⁻¹ e^{Cβ²} + β²δ + β³b + e^{Cβ²} √α)` some `-M^{f_i}_n/σ` is at least `c β`. -/
-private theorem exists_max_dynkin_large (hexp : exp_deviation.{u}) (hd : 1 ≤ d) {ε : ℝ}
+private theorem exists_max_dynkin_large (hexp : exp_deviation_upTo.{u}) (hd : 1 ≤ d) {ε : ℝ}
     (hε0 : 0 ≤ ε) (hε1 : ε < 1 / (d : ℝ)) {c₀ C₀ : ℝ} (hc₀ : 0 < c₀) (hcC : c₀ ≤ C₀) :
     ∃ c C : ℝ, 0 < c ∧ 0 < C ∧ ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω)
       [IsProbabilityMeasure μ] (X : ℕ → Ω → Site d), IsCERW μ ε X →
@@ -236,21 +237,14 @@ private theorem exists_max_dynkin_large (hexp : exp_deviation.{u}) (hd : 1 ≤ d
     simp only [Pi.smul_apply, smul_eq_mul]
     rw [← mul_sub, abs_mul, abs_neg, abs_of_pos (inv_pos.mpr hσ), ← div_eq_inv_mul]
     exact div_le_div_of_nonneg_right h1 hσ.le
-  have hex : ∀ i, ∃ M' : ℕ → Ω → ℝ, Martingale M' (pathFiltration hX.measurable) μ ∧
-      (∀ t ω, |M' (t + 1) ω - M' t ω| ≤ 2 * B / σ) ∧
-      (∀ ω, M' 0 ω = ((-σ⁻¹) • dynkin ε (f i) X) 0 ω) ∧
-      ∀ᵐ ω ∂μ, ∀ t, M' t ω = ((-σ⁻¹) • dynkin ε (f i) X) t ω :=
-    fun i => CERW.Generic.Martingale.exists_martingale_clamp (hS0m i) hb0.le (hS0inc i)
-  choose S hSm hSinc hS0 hSae using hex
+  set S : Fin m → ℕ → Ω → ℝ := fun i => (-σ⁻¹) • dynkin ε (f i) X with hSdef
   have hbr : ∀ i j, ∀ᵐ ω ∂μ, predBracket μ (pathFiltration hX.measurable) (S i) (S j) n ω =
       dynkinBracket (stepProb d ε) (f i) (f j) (fun t => X t ω) n / σ ^ 2 := by
     intro i j
-    filter_upwards [maxDynkin_predBracket_congr μ (pathFiltration hX.measurable)
-      (hSae i) (hSae j) n,
-      maxDynkin_predBracket_smul μ (pathFiltration hX.measurable) (dynkin ε (f i) X)
-        (dynkin ε (f j) X) (-σ⁻¹) n,
-      ae_predBracket_dynkin hd hε0 hε1 hX (f i) (f j) n] with ω h1 h2 h3
-    rw [h1, h2, h3]
+    filter_upwards [maxDynkin_predBracket_smul μ (pathFiltration hX.measurable)
+      (dynkin ε (f i) X) (dynkin ε (f j) X) (-σ⁻¹) n,
+      ae_predBracket_dynkin hd hε0 hε1 hX (f i) (f j) n] with ω h2 h3
+    rw [h2, h3]
     field_simp
   set E : Set Ω := {ω | ∀ i j : Fin m,
       (i = j → c₀ ≤ dynkinBracket (stepProb d ε) (f i) (f j) (fun t => X t ω) n / σ ^ 2 ∧
@@ -283,18 +277,20 @@ private theorem exists_max_dynkin_large (hexp : exp_deviation.{u}) (hd : 1 ≤ d
     filter_upwards [hbr i j] with ω h1 hω
     rw [h1]
     exact (hω i j).2 hij
-  have hmain := H μ (pathFiltration hX.measurable) m n hm hn (2 * B / σ) δ α hb0 hδ hα hα1 S hSm
-    (fun i ω => by rw [hS0 i ω]; simp) (fun i t _ ω => hSinc i t ω) E hEmeas hE1 hdiag β hCβ hβb
+  have hmain := H μ (pathFiltration hX.measurable) m n hm hn (2 * B / σ) δ α hb0 hδ hα hα1 S
+    (fun i t _ => (hS0m i).stronglyAdapted t) (fun i t _ => (hS0m i).integrable t)
+    (fun i t _ => (hS0m i).condExp_ae_eq (Nat.le_succ t))
+    (fun i => ae_of_all _ fun ω => by simp [hSdef]) (fun i t _ => hS0inc i t)
+    E hEmeas hE1 hdiag β hCβ hβb
   have hfinal := hmain.2 hoff hδβ
-  have hset : {ω | ∀ i : Fin m, -dynkin ε (f i) X n ω / σ < c * β} =ᵐ[μ]
+  have hset : {ω | ∀ i : Fin m, -dynkin ε (f i) X n ω / σ < c * β} =
       {ω | ∀ i : Fin m, S i n ω < c * β} := by
-    filter_upwards [ae_all_iff.mpr (fun i => hSae i)] with ω hω
-    refine propext (forall_congr' fun i => ?_)
-    rw [hω i n]
-    simp only [Pi.smul_apply, smul_eq_mul]
+    ext ω
+    refine forall_congr' fun i => ?_
+    simp only [hSdef, Pi.smul_apply, smul_eq_mul]
     have h : -σ⁻¹ * dynkin ε (f i) X n ω = -dynkin ε (f i) X n ω / σ := by ring
     rw [h]
-  rw [measure_congr hset]
+  rw [hset]
   exact hfinal
 
 /-- The scale `r n = (κ n)^{1/(d+1)}` tends to infinity. -/
@@ -1387,7 +1383,7 @@ private theorem le_one_of_lt_one_div {d : ℕ} {ε : ℝ} (hd1 : 1 ≤ d) (hε0 
     _ ≤ 1 := h1.le
 
 /-- **Theorem 1.3 (iii)** for fixed `d` and `ε`, in terms of the scale `r_n`. -/
-private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_deviation.{u})
+private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_deviation_upTo.{u})
     (hfluct : fluctuation_rates.{u}) (hd : 2 ≤ d) {ε : ℝ} (hε0 : 0 < ε)
     (hε1 : ε < 1 / (d : ℝ)) :
     ∃ c : ℝ, 0 < c ∧ ∃ n₀ : ℕ, ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω)
@@ -1558,7 +1554,7 @@ private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_devi
 (`d = 2`) or `c √(r_n log n)` (`d ≥ 3`). It follows from Lemma 9.1 (ii) for the martingales
 `-M^{f_i} / σ_n`, whose brackets Lemma 9.3 controls, and the pointwise decomposition of the local
 times with `eq:bulk-potential-only`. -/
-theorem sharp_bulk_of (hsep : separated_brackets.{u}) (hexp : exp_deviation.{u})
+theorem sharp_bulk_of (hsep : separated_brackets.{u}) (hexp : exp_deviation_upTo.{u})
     (hfluct : fluctuation_rates.{u}) : sharp_bulk.{u} := by
   intro d hd ωd ε hε0 hε1 r
   exact sharp_bulk_core hsep hexp hfluct hd hε0 hε1

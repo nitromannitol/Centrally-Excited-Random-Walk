@@ -185,7 +185,8 @@ theorem sharp_width_applies :
   intro d ε ωd r
   have hε : 0 < ε := by norm_num [ε]
   have hεd : ε < 1 / (d : ℝ) := by norm_num [ε, d]
-  exact CERW.Frozen.sharp_width rfl ε hε hεd
+  have h := CERW.Frozen.sharp_width rfl ε hε hεd
+  exact ⟨h.1, h.2.1⟩
 
 /-- In dimension two with `ε = 1/8`, there is a probability space carrying a centrally excited
 random walk, so the hypothesis of `sharp_width` is satisfiable. -/

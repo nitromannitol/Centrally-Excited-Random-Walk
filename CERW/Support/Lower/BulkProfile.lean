@@ -1,6 +1,6 @@
 import CERW.Support.Statements
-import CERW.Frozen.CoarseBounds
-import CERW.Frozen.LocalTimePotential
+import CERW.Support.Legacy.CoarseBounds
+import CERW.Support.Legacy.LocalTimePotential
 import CERW.Support.Geometry.Bound
 import CERW.Support.Geometry.BallCompare
 import CERW.Support.Geometry.Newton

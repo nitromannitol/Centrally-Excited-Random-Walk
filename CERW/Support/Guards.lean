@@ -2,12 +2,15 @@ import CERW.Model
 import CERW.Support.Law
 import CERW.Support.Guards.DriftCrossing
 import CERW.Support.Guards.ExpDeviation
+import CERW.Support.Guards.ExpDeviationConsumers
+import CERW.Support.Guards.ExpDeviationModel
 import CERW.Support.Guards.LimitLaws
 import CERW.Support.Guards.LowerBounds
 import CERW.Support.Guards.NormPotential
 import CERW.Support.Guards.NormRates
 import CERW.Support.Guards.NormShape
 import CERW.Support.Guards.Radii
+import CERW.Support.Guards.SourceEvents
 
 /-!
 # Guards: the vocabulary says what the paper says

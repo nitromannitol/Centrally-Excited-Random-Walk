@@ -3,8 +3,11 @@ import CERW.Support.Norm.EuclideanCoarse
 /-!
 # The occupation and radius bounds
 
-`prop:coarse` of the paper (`limit-shapes.tex:547-554`, Euclidean case). The bytes between
-the markers are the frozen contract recorded in `ledger/manifest.yaml`.
+`prop:coarse` of the paper (`limit-shapes.tex:538-545`, Euclidean case). This module is preserved
+support, no longer a registered node: its statement and proof are those of
+`Frozen/CoarseBounds.lean` of commit f7696856, with only the freeze markers removed. It is the
+Euclidean case that the proofs of `BulkProfile and SharpWidth` consume; the pinned paper states the
+corresponding result for a norm (`prop:coarse`, `limit-shapes.tex:538-545`).
 -/
 
 universe u
@@ -13,7 +16,7 @@ open MeasureTheory Filter Topology
 open scoped symmDiff Pointwise
 open LatticeProb (Site euclidNorm)
 
-/-- `prop:coarse` (`limit-shapes.tex:547-554`, Euclidean case):
+/-- `prop:coarse` (`limit-shapes.tex:538-545`, Euclidean case):
 
 ```latex
 \begin{proposition}\label{prop:coarse}
@@ -33,7 +36,6 @@ $H_n=\max_{j\leq n}|X_j|$.
 \end{proposition}
 ```
 -/
--- FROZEN-STATEMENT-BEGIN
 theorem CERW.Frozen.coarse_bounds {d : ℕ} (hd : 2 ≤ d) :
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) → ∀ p : ℝ, 0 < p → ∃ c C : ℝ, 0 < c ∧ 0 < C ∧
       ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -45,6 +47,5 @@ theorem CERW.Frozen.coarse_bounds {d : ℕ} (hd : 2 ≤ d) :
                   (CERW.maxLocalTime (X · ω) n : ℝ) ≤ C * N ∧
                   c * N ≤ CERW.maxRadius (X · ω) n ∧ CERW.maxRadius (X · ω) n ≤ C * N)}
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
--- FROZEN-STATEMENT-END
 := by
   exact CERW.Support.Norm.EuclideanCoarse.coarse_bounds_euclid hd

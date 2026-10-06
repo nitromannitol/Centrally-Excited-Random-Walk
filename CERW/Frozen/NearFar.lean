@@ -4,7 +4,7 @@ import CERW.Support.Outer.NearFar
 /-!
 # lem:near-far
 
-`lem:near-far` of the revised paper (`limit-shapes.tex:1203-1208`). The bytes between the markers are the
+`lem:near-far` of the revised paper (`limit-shapes.tex:1045-1050`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
@@ -18,13 +18,13 @@ open LatticeProb (Site euclidNorm)
 
 ```latex
 \begin{lemma}\label{lem:near-far}
-There exists $C(d,\drift)<\infty$ with the following property. Let $1\leq w\leq b$ and $\lambda\geq1$. Let $D$ be a measurable subset of $\{v\in\R^d:b\leq|v|\leq b+w\}$ such that $|D\cap B((b+w)u,t)|\leq\lambda t^{d-1}$ for every unit vector~$u$ and every $t\geq w$, and $\int_D|v-y|^{2-d}\dd v\leq\lambda b$ for all $y\in\R^d$. Then every $y\in\R^d$ with $b\leq|y|\leq b+w$ satisfies
+There exists $C(d,\drift)<\infty$ with the following property. Let $1\leq w\leq b$ and $\lambda\geq1$, and let $D$ be a measurable subset of $\{v\in\R^d:b\leq|v|\leq b+w\}$ such that $|D\cap B((b+w)u,t)|\leq\lambda t^{d-1}$ for every unit vector~$u$ and every $t\geq w$, and $\int_D|v-y|^{2-d}\dd v\leq\lambda b$ for every $y\in\R^d$. Then every $y\in\R^d$ with $b\leq|y|\leq b+w$ satisfies
 \begin{equation*}
 U_D^+(y)\leq C\bigl(\lambda w^{d-1}\bigr)^{\nf1d}+C\lambda\, .
 \end{equation*}
 \end{lemma}
 Definitions the statement relies on (verbatim):
-\textit{$U_D^+$ (lines 1122--1125)}
+\textit{$U_D^+$ (lines 964--967)}
 For a bounded measurable set~$D\subset\R^d$ and $y\in\R^d$, the potential of~$D$ with its negative contributions discarded is
 \begin{equation*}
 U_D^+(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\left[u_v\cdot\frac{v-y}{|v-y|^d}\right]_+\dd v\, .
