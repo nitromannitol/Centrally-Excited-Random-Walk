@@ -2,6 +2,7 @@ import CERW.Model
 import CERW.Support.Inner.InnerRadius
 import CERW.Support.Lower.ExpDeviation
 import CERW.Support.Lower.SeparatedBrackets
+import CERW.Support.Lower.SeparatedBracketsCarrier
 import CERW.Support.Main.LimitShape
 import CERW.Support.Norm.BallLayer
 import CERW.Support.Norm.CellGradient
@@ -87,5 +88,22 @@ theorem CERW.Frozen.separated_brackets {d : ℕ} (hd : 2 ≤ d) :
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-(10 : ℝ)))
 -- FROZEN-STATEMENT-END
 := by
-  revert hd d
-  exact (CERW.Support.Lower.separated_brackets_of (CERW.Support.Outer.fluctuation_rates_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.CoarseVolume.norm_coarse_bounds_closed @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) (CERW.Support.Outer.outer_radius_of (CERW.Support.Inner.inner_radius_of (CERW.Support.Norm.contact_potential_of (CERW.Support.Norm.norm_local_time_potential_of CERW.Support.Norm.cell_gradient_holds) CERW.Support.Norm.CoarseVolume.norm_coarse_bounds_closed @CERW.Support.Norm.norm_potential_geometry @CERW.Support.Norm.norm_ball_potential) @CERW.Support.Norm.norm_ball_potential @CERW.Support.Norm.norm_potential_geometry) CERW.Support.Outer.near_far_holds CERW.Support.Norm.outer_crossing_holds) CERW.Support.Outer.near_far_holds))
+  intro ωd ε hε0 hε1 r e₁ g σ k m y f
+  obtain ⟨E, c₀, C₀, C, Cp, n₀, -, -, hc₀, hcC, hC, hCp, h⟩ :=
+    CERW.Support.Lower.SeparatedBracketsCarrier.separated_brackets_on_source_event.{u} hd hε0 hε1
+  refine ⟨c₀, C₀, max C Cp, hc₀, hcC, lt_max_of_lt_left hC, n₀, ?_⟩
+  intro Ω _ μ _ X hX n hn
+  obtain ⟨-, -, -, -, -, ⟨-, -, -, hfail⟩, -⟩ := h μ X hX n hn
+  have hωd : 0 ≤ ωd := ENNReal.toReal_nonneg
+  have hr0 : 0 ≤ r n := by
+    show 0 ≤ (((d : ℝ) + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    refine Real.rpow_nonneg (div_nonneg (by positivity) (mul_nonneg ?_ hωd)) _
+    exact mul_nonneg (by positivity) hε0.le
+  refine le_trans (measure_mono ?_) (hfail.trans (ENNReal.ofReal_le_ofReal
+    (mul_le_mul_of_nonneg_right (le_max_right _ _) (Real.rpow_nonneg (Nat.cast_nonneg n) _))))
+  intro ω hω hbb
+  apply hω
+  intro i j hi1 him hj1 hjm
+  obtain ⟨h1, h2⟩ := hbb i j hi1 him hj1 hjm
+  refine ⟨h1, fun hij => (h2 hij).trans ?_⟩
+  exact mul_le_mul_of_nonneg_right (le_max_left _ _) (Real.rpow_nonneg hr0 _)

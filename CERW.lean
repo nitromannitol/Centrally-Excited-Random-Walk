@@ -7,7 +7,16 @@ import CERW.Support.Norm.CoarseVolume
 import CERW.Support.Norm.GradientIdentity
 import CERW.Support.Norm.MinkowskiGauge
 import CERW.Support.Norm.GaugeShapeEvents
+import CERW.Support.Norm.GaugeLaplacianSharp
+import CERW.Support.Norm.GaugeSection5Event
+import CERW.Support.Norm.GaugeResults
+import CERW.Support.Norm.Section5Localization
+import CERW.Support.RevisedPaperContact
+import CERW.Support.RevisedPaperWidth
+import CERW.Support.Lower.SeparatedBracketsCarrier
 import CERW.Support.Lower.PlanarGap.Annulus
 import CERW.Support.Lower.PlanarGap.Width
 import CERW.Support.Lower.PlanarGap.VectorClt
 import CERW.Support.Lower.PlanarGap.SharpWidthDiskMass
+import CERW.Support.Lower.PlanarGap.SmallBall
+import CERW.Support.Lower.PlanarGap.SmallBallCompose
