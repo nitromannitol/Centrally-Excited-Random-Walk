@@ -1,26 +1,6 @@
-% thm-sharp-width -- CERW.Frozen.sharp_width (draft). Source: limit-shapes.tex:176-187, label thm:sharp (part (iv), eq:planar-width-polynomial and eq:planar-width-lil)
-\paragraph{Paper (verbatim).} Theorem environment (lines 156--188); this node is part (iv)(a) and (b), lines 176--187:
+% thm-sharp-width -- CERW.Frozen.sharp_width, version 4. Source: limit-shapes.tex:176-189 (label thm:sharp, part (iv)(a), (iv)(b) and (iv)(c))
+\paragraph{Paper (verbatim).}
 \begin{verbatim}
-\begin{theorem}[Sharpness]\label{thm:sharp}
-Let $d\geq2$ and $0<\drift<\nf{1}{d}$, and consider the centrally excited random walk.
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item \underline{\emph{Radii in the plane}}: let $d=2$. For every $p>0$ there exists $c(\drift,p)>0$ such that, for all sufficiently large~$n$,
-\begin{equation}\label{eq:planar-polynomial-lower}
-\P\bigl(r_n-\Rin(n)\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}
-\qquad\text{and}\qquad
-\P\bigl(\Rout(n)-r_n\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}\, .
-\end{equation}
-\item \underline{\emph{Iterated logarithm for the radii in the plane}}: let $d=2$. Almost surely,
-\begin{equation}\label{eq:planar-lil-lower}
-\limsup_{n\to\infty}\frac{r_n-\Rin(n)}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}
-\qquad\text{and}\qquad
-\limsup_{n\to\infty}\frac{\Rout(n)-r_n}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}\, .
-\end{equation}
-\item \underline{\emph{Local times near the origin}}: there exists $c(d,\drift)>0$ such that, for all sufficiently large~$n$, with probability $\geq 1-n^{-c}$,
-\begin{equation}\label{eq:sharp-bulk}
-\max_{\substack{x\in\Z^d\\|x|\leq r_n^{\nf12}}}\bigl|\ell_n(x)-2d\drift(r_n-|x|)\bigr|
-\geq c\begin{cases}\sqrt{r_n}\log n,&d=2,\\\sqrt{r_n\log n},&d\geq3\end{cases}\, .
-\end{equation}
 \item \underline{\emph{Difference of the radii in the plane}}: let $d=2$.
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item For every $p>0$ there exists $c(\drift,p)>0$ such that, for all sufficiently large~$n$,
@@ -31,14 +11,33 @@ Let $d\geq2$ and $0<\drift<\nf{1}{d}$, and consider the centrally excited random
 \begin{equation}\label{eq:planar-width-lil}
 \limsup_{n\to\infty}\frac{\Rout(n)-\Rin(n)}{\sqrt{r_n\log\log n}}\geq\sqrt{\frac{\pi}{3\drift}}\, .
 \end{equation}
-\end{enumerate}
-\end{enumerate}
-\end{theorem}
+\item For every $a\geq0$,
+\begin{equation}\label{eq:planar-width-small}
+\limsup_{n\to\infty}\P\bigl(\Rout(n)-\Rin(n)\leq a\sqrt{r_n}\bigr)\leq1-\exp\Bigl(-\frac{3\drift a^2}{\pi}\Bigr)\, .
+\end{equation}
 \end{verbatim}
-\paragraph{Transcription.} $d=2$ is \texttt{hd : d = 2}; part (iv)(a) and (iv)(b) are the two conjuncts of one node (author ruling), and the
-external Stout law of the iterated logarithm is carried as \texttt{hLIL : CERW.External.StoutLIL.{u}} (it is used in (b), line 1644;
-(a) does not use it). (a): $\forall p>0,\exists c>0,\exists n_0,\forall(\Omega,\mu,X),\forall n\ge n_0$, the event
-$\{c\sqrt{r_n\log n}\le R_{\rm out}(n)-R_{\rm in}(n)\}$ is measurable and has probability at least $n^{-p}$. (b): ``almost surely
-$\limsup\ge\sqrt{\pi/(3\kappa)}$'' is written junk-free as \texttt{∀ᵐ ω, ∀ δ > 0, ∃ᶠ n, (√(π/(3ε)) - δ) * √(r n * log (log n)) ≤ maxRadius - innerRadius}.
-Both use \texttt{CERW.maxRadius} $=R_{\rm out}$ and \texttt{CERW.innerRadius} $=R_{\rm in}$.
-\paragraph{Version 3 (ruling D7).} The premise \verb!CERW.External.StoutLIL →! of part (b) is deleted: Stout's law of the iterated logarithm is proved.
+\paragraph{Exact Lean contract.}
+\begin{verbatim}
+theorem CERW.Frozen.sharp_width {d : ℕ} (hd : d = 2) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    (∀ p : ℝ, 0 < p → ∃ c : ℝ, 0 < c ∧ ∃ n₀ : ℕ,
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, n₀ ≤ n →
+        let E : Set Ω := {ω | c * Real.sqrt (r n * Real.log n)
+          ≤ CERW.maxRadius (X · ω) n - CERW.innerRadius (X · ω) n}
+        MeasurableSet E ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ E) ∧
+    (∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+      (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+      ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ → ∃ᶠ n : ℕ in atTop,
+        (Real.sqrt (Real.pi / (3 * ε)) - δ) * Real.sqrt (r n * Real.log (Real.log n))
+          ≤ CERW.maxRadius (X · ω) n - CERW.innerRadius (X · ω) n) ∧
+    (∀ a : ℝ, 0 ≤ a →
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+        limsup (fun n => μ {ω | CERW.maxRadius (X · ω) n - CERW.innerRadius (X · ω) n
+          ≤ a * Real.sqrt (r n)}) atTop ≤
+          ENNReal.ofReal (1 - Real.exp (-(3 * ε * a ^ 2 / Real.pi))))
+\end{verbatim}
+\paragraph{Approval.} The author approved this successor on 2026-10-06.

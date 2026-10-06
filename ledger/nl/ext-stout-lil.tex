@@ -1,4 +1,4 @@
-% ext-stout-lil -- CERW.External.StoutLIL (draft). Source: limit-shapes.tex:1404-1410, 1519, 1644 (citation of Stout 1970)
+% ext-stout-lil -- CERW.External.StoutLIL (draft). Source: limit-shapes.tex:1246-1252, 1361, 1486 (citation of Stout 1970)
 \paragraph{Paper (verbatim).} Lines 1404--1410 (Theorem~\ref{thm:moment-fluctuations}, Step 3):
 \begin{verbatim}
 \emph{Step 3: The law of the iterated logarithm.} The bound $C|X_{n-1}|$ on the increment $\mathcal Q_n-\mathcal Q_{n-1}$ is predictable, and
@@ -7,21 +7,21 @@
 =O\left(\sqrt{\frac{\log\log n}{n}}\right)\longrightarrow0
 \qquad\text{almost surely}\, .
 \end{equation*}
-So we may apply the martingale law of the iterated logarithm of \citet{Stout1970} to $\mathcal Q$ and to~$-\mathcal Q$, which gives both choices of sign in part~(ii). By~\eqref{eq:moment-bracket-limit}, $\log\log\langle\mathcal Q\rangle_n\sim\log\log n$.
+So the martingale law of the iterated logarithm of \citet{Stout1970} applies to $\mathcal Q$ and to~$-\mathcal Q$. By~\eqref{eq:moment-bracket-limit}, $\log\log\langle\mathcal Q\rangle_n\sim\log\log n$. From the resulting laws of the iterated logarithm for~$\mathcal Q$ and~$-\mathcal Q$, Step~4 deduces both choices of sign in part~(ii).
 \end{verbatim}
 Line 1519 (Theorem~\ref{thm:site-fluctuations}, Step 4, last sentences; the full line is quoted):
 \begin{verbatim}
-\emph{Step 4: Limit laws for the martingales.} For finitely many fixed sites~$y_i$ the increments of~$\mathcal M^{y_i}$ are bounded by a constant. From the limits of the brackets, the martingale central limit theorem of \citet[Corollary~3.1]{HallHeyde1980}, which allows a zero limiting variance, and the Cram\'er--Wold device, we conclude that the vector $(-\mathcal M_n^{y_i})_i$, divided by $\sqrt{r_n\log r_n}$ when $d=2$ and by $\sqrt{r_n}$ when $d\geq3$, converges in distribution to the centered Gaussian vector with covariance~\eqref{eq:site-covariance}. The increments are bounded, so the law of the iterated logarithm of \citet{Stout1970} applies to $\mathcal M^y$ and~$-\mathcal M^y$. Since $\log\log\langle\mathcal M^y\rangle_n\sim\log\log n$, it gives part~(ii) with $-\mathcal M^y_n$ in place of $\ell_n(y)-2d\drift(r_n-|y|)$.
+\emph{Step 4: Limit laws for the martingales.} For finitely many fixed sites~$y_i$ the increments of~$\mathcal M^{y_i}$ are bounded by a constant. The limits of the brackets, the martingale central limit theorem of \citet[Corollary~3.1]{HallHeyde1980}, which allows a zero limiting variance, and the Cram\'er--Wold device show that the vector $(-\mathcal M_n^{y_i})_i$, divided by $\sqrt{r_n\log r_n}$ when $d=2$ and by $\sqrt{r_n}$ when $d\geq3$, converges in distribution to the centered Gaussian vector with covariance~\eqref{eq:site-covariance}. The increments are bounded, so the law of the iterated logarithm of \citet{Stout1970} applies to $\mathcal M^y$ and~$-\mathcal M^y$; since $\log\log\langle\mathcal M^y\rangle_n\sim\log\log n$, this law gives part~(ii) with $-\mathcal M^y_n$ in place of $\ell_n(y)-2d\drift(r_n-|y|)$.
 \end{verbatim}
 Line 1644 (proof of Theorem~\ref{thm:sharp}(iv), Step 3):
 \begin{verbatim}
-\emph{Step 3: The iterated logarithm.} Fix $0<\eta<\nf12$. By Theorem~\ref{thm:shape}\,(i), almost surely, for all large~$n$, $|A_n|\leq Cr_n^2$, $\Rin(n)\geq(1-\eta)r_n-1$ and $\Rout(n)\leq(1+\eta)r_n+1$. So $\langle Y\rangle_n/n\to\nf12$ almost surely, and the law of the iterated logarithm of \citet{Stout1970}, which applies since the increments of~$Y$ are bounded, gives $\limsup_{n\to\infty}Y_n/\sqrt{n\log\log n}=1$ almost surely. Since $(X_n)_1=O(r_n)=o(\sqrt n)$, almost surely $\drift|V_n|\geq(1-\eta)\sqrt{n\log\log n}$ for infinitely many~$n$. For these~$n$, Step~1 gives
+\emph{Step 3: The iterated logarithm.} Fix $0<\eta<\nf12$. By Theorem~\ref{thm:shape}\,(i), almost surely, for all large~$n$, $|A_n|\leq Cr_n^2$, $\Rin(n)\geq(1-\eta)r_n-1$ and $\Rout(n)\leq(1+\eta)r_n+1$. So $\langle Y\rangle_n/n\to\nf12$ almost surely, and the law of the iterated logarithm of \citet{Stout1970}, which applies because the increments of~$Y$ are bounded, gives $\limsup_{n\to\infty}Y_n/\sqrt{n\log\log n}=1$ almost surely. Since $(X_n)_1=O(r_n)=o(\sqrt n)$, almost surely $\drift|V_n|\geq(1-\eta)\sqrt{n\log\log n}$ for infinitely many~$n$. For these~$n$, the bound~\eqref{eq:width-annulus} of Step~1 gives
 \end{verbatim}
 \paragraph{Transcription.} The cited result, as I read it (Stout, \emph{A martingale analogue of Kolmogorov's law of the iterated logarithm}, Z.~Wahrsch.\ verw.\ Gebiete 15 (1970), 279--290,
 Theorem~1; I recall the same statement as Theorem~4.8 of Hall--Heyde 1980, the number recalled from memory and not checked): for a zero-mean square-integrable martingale $S_n=\sum_{i\le n}X_i$ with conditional variance sums
 $s_n^2=\sum_{i\le n}E[X_i^2\mid\mathcal F_{i-1}]\to\infty$ a.s., if $|X_n|\le K_n$ with $K_n$ $\mathcal F_{n-1}$-measurable and
 $K_n=o\big(s_n/(\log\log s_n^2)^{1/2}\big)$ a.s., then $\limsup S_n/(2s_n^2\log\log s_n^2)^{1/2}=1$ a.s. I am not certain from memory of the exact hypothesis
-wording of the original theorem (in particular whether the paper's predictable bound or a weaker form is stated there); the Lean Prop is the form the paper itself verifies at lines 1404--1410.
+wording of the original theorem (in particular whether the paper's predictable bound or a weaker form is stated there); the Lean Prop is the form the paper itself verifies at lines 1246--1252.
 \texttt{S} is the martingale ($S_0=0$, \texttt{MemLp (S n) 2 μ}); \texttt{CERW.predBracket μ ℱ S S n} is $s_n^2=\langle S\rangle_n$; \texttt{B (n+1)} is the predictable bound on
 $S_{n+1}-S_n$ (\texttt{StronglyMeasurable[ℱ n] (B (n+1))}, and $|S_{n+1}-S_n|\le B_{n+1}$ a.s.); the growth condition is
 \texttt{B n * √(log (log (max ⟨S⟩ₙ (exp (exp 1))))) / √⟨S⟩ₙ → 0} a.s., and $\langle S\rangle_n\to\infty$ a.s. The conclusion is junk-free (repository convention): a.s.,

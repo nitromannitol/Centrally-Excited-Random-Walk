@@ -1,16 +1,16 @@
-% thm-site-fluctuations -- CERW.Frozen.site_fluctuations (draft). Source: limit-shapes.tex:1460-1485, label thm:site-fluctuations
+% thm-site-fluctuations -- CERW.Frozen.site_fluctuations (draft). Source: limit-shapes.tex:1302-1327, label thm:site-fluctuations
 \paragraph{Paper (verbatim).}
 \begin{theorem}[Local times at fixed sites]\label{thm:site-fluctuations}
-Let $\gauge$ be the Euclidean norm. Let $0<\drift<\nf1d$. Then the following hold.
+Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. Then the following hold.
 \begin{enumerate}[label=\textup{(\roman*)}]
-\item \underline{\emph{Central limit theorem}}: for all $y\in\Z^d$, as $n\to\infty$,
+\item \underline{\emph{Central limit theorem}}: for every $y\in\Z^d$, as $n\to\infty$,
 \begin{equation}\label{eq:site-clt}
 \begin{aligned}
 \frac{\ell_n(y)-2d\drift(r_n-|y|)}{\sqrt{r_n\log r_n}}&\xrightarrow{\mathrm d}\mathcal N\Bigl(0,\frac{16\drift}{\pi}\Bigr)&&\text{if } d=2\, ,\\
 \frac{\ell_n(y)-2d\drift(r_n-|y|)}{\sqrt{r_n}}&\xrightarrow{\mathrm d}\mathcal N\bigl(0,2d\drift(2G(0)-1)\bigr)&&\text{if } d\geq3\, .
 \end{aligned}
 \end{equation}
-\item \underline{\emph{Law of the iterated logarithm}}: for all $y\in\Z^d$ and each choice of sign, almost surely,
+\item \underline{\emph{Law of the iterated logarithm}}: for every $y\in\Z^d$ and each choice of sign, almost surely,
 \begin{equation*}
 \begin{aligned}
 \limsup_{n\to\infty}\frac{\pm(\ell_n(y)-2d\drift(r_n-|y|))}{\sqrt{2r_n\log r_n\log\log n}}&=\Bigl(\frac{16\drift}{\pi}\Bigr)^{\nf12}&&\text{if } d=2\, ,\\
@@ -29,10 +29,10 @@ Let $\gauge$ be the Euclidean norm. Let $0<\drift<\nf1d$. Then the following hol
 Definitions the statement relies on (verbatim):
 \textit{the radius $r_n$ (eq:radius, lines 98--100)}
 \begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
 \end{equation}
-\textit{$g$ and $G$ (line 407)}
-Let $\Delta f(x)\coloneqq(2d)^{-1}\sum_{|e|=1}(f(x+e)-f(x))$, summed over the unit vectors $e\in\Z^d$, be the discrete Laplacian. For $d=2$, let $g$ be the potential kernel of simple random walk, normalized by $g(0)=0$. For $d\geq3$, let $g\coloneqq-G$, where the Green function~$G(x)$ is the expected number of visits to~$x$ by simple random walk from the origin. In both cases $\Delta g=\ind_{\{0\}}$. For $d=2$ see \citet*[Proposition~4.4.2]{LawlerLimic2010}. By \citet[Theorems~4.3.1 and~4.4.4]{LawlerLimic2010}, as $|x|\to\infty$,
+\textit{$g$ and $G$ (line 415)}
+Let $\Delta f(x)\coloneqq(2d)^{-1}\sum_{|e|=1}(f(x+e)-f(x))$, summed over the unit vectors $e\in\Z^d$, be the discrete Laplacian. For $d=2$, let $g$ be the potential kernel of simple random walk, normalized by $g(0)=0$. For $d\geq3$, let $g\coloneqq-G$, where the Green function~$G(x)$ is the expected number of visits to~$x$ by simple random walk from the origin. In both cases $\Delta g=\ind_{\{0\}}$; for $d=2$ see \citet*[Proposition~4.4.2]{LawlerLimic2010}. By \citet[Theorems~4.3.1 and~4.4.4]{LawlerLimic2010}, as $|x|\to\infty$,
 \paragraph{Transcription.}
 \emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set.
 

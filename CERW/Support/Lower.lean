@@ -1,4 +1,7 @@
 import CERW.Support.Lower.ExpDeviation
+import CERW.Support.Lower.ExpDeviationAE
+import CERW.Support.Lower.ExpDeviationStatement
+import CERW.Support.Lower.FiniteHorizonExpDeviation
 import CERW.Support.Lower.SharpWidth
 import CERW.Support.Lower.LogLower
 import CERW.Support.Lower.SharpRadii

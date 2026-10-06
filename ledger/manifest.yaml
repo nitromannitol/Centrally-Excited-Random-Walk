@@ -16,30 +16,8 @@ version: 1
 library: CERW
 source_pin:
   file: paper/limit-shapes.tex
-  sha256: 04d3cbfad3cce1b373752f3cc2db3c7e2c34c155cea0727a3ddeb0b0e21c7f59
+  sha256: c39feeaf71f83234fdd4b1e2fd6b4d6c739197b2c419c8ac1bb868ce8768c219
 nodes:
-
-  - id: local-time-potential
-    version: 3
-    kind: theorem
-    source: paper/limit-shapes.tex:385-401 (lem:local, Euclidean case)
-    file: CERW/Frozen/LocalTimePotential.lean
-    export: CERW.Frozen.local_time_potential
-    state: PROVED
-    frozen_sha256: c804956e1998b52392ff46288059b8d424f072a46a753112c24652bf078e6b55
-    provider: CERW.Frozen.local_time_potential
-    approved: "2026-09-30"
-
-  - id: coarse-bounds
-    version: 3
-    kind: theorem
-    source: paper/limit-shapes.tex:547-554 (prop:coarse, Euclidean case)
-    file: CERW/Frozen/CoarseBounds.lean
-    export: CERW.Frozen.coarse_bounds
-    state: PROVED
-    frozen_sha256: 695b02b4055219568e89d469368885395be5c06e2a42645ce0c0d7afa33bbc15
-    provider: CERW.Frozen.coarse_bounds
-    approved: "2026-09-30"
 
   - id: thm-shape
     version: 1
@@ -97,20 +75,20 @@ nodes:
     approved: "2026-09-30"
 
   - id: thm-sharp-width
-    version: 3
+    version: 4
     kind: theorem
-    source: limit-shapes.tex:176-187 (label thm:sharp, part (iv))
+    source: limit-shapes.tex:176-189 (label thm:sharp, part (iv)(a), (iv)(b) and (iv)(c))
     file: CERW/Frozen/SharpWidth.lean
     export: CERW.Frozen.sharp_width
     state: PROVED
-    frozen_sha256: 7654422573bbcdf512793dc39bc4b1ad143d87ac0abe8e945ac27c5b17988e14
+    frozen_sha256: 61203b6c376231a12440a7cb8937c6099d52f77cd65166b7115c65ea32a3cdc0
     provider: CERW.Frozen.sharp_width
-    approved: "2026-10-02"
+    approved: "2026-10-06"
 
   - id: thm-norm-shape
     version: 1
     kind: theorem
-    source: limit-shapes.tex:330-343 (label thm:norm-shape)
+    source: limit-shapes.tex:338-351 (label thm:norm-shape)
     file: CERW/Frozen/NormShape.lean
     export: CERW.Frozen.norm_shape
     state: PROVED
@@ -121,7 +99,7 @@ nodes:
   - id: lem-ballpotential
     version: 1
     kind: theorem
-    source: limit-shapes.tex:361-366 (label lem:ballpotential)
+    source: limit-shapes.tex:369-374 (label lem:ballpotential)
     file: CERW/Frozen/NormBallPotential.lean
     export: CERW.Frozen.norm_ball_potential
     state: PROVED
@@ -132,7 +110,7 @@ nodes:
   - id: lem-local
     version: 1
     kind: theorem
-    source: limit-shapes.tex:385-401 (label lem:local)
+    source: limit-shapes.tex:393-409 (label lem:local)
     file: CERW/Frozen/NormLocalTime.lean
     export: CERW.Frozen.norm_local_time_potential
     state: PROVED
@@ -143,7 +121,7 @@ nodes:
   - id: lem-freedman
     version: 1
     kind: theorem
-    source: limit-shapes.tex:437-442 (label lem:freedman)
+    source: limit-shapes.tex:445-450 (label lem:freedman)
     file: CERW/Frozen/FreedmanBound.lean
     export: CERW.Frozen.freedman_bound
     state: PROVED
@@ -154,7 +132,7 @@ nodes:
   - id: lem-cell
     version: 1
     kind: theorem
-    source: limit-shapes.tex:455-460 (label lem:cell)
+    source: limit-shapes.tex:463-468 (label lem:cell)
     file: CERW/Frozen/CellGradient.lean
     export: CERW.Frozen.cell_gradient
     state: PROVED
@@ -162,21 +140,10 @@ nodes:
     provider: CERW.Frozen.cell_gradient
     approved: "2026-09-30"
 
-  - id: lem-geometry
-    version: 1
-    kind: theorem
-    source: limit-shapes.tex:510-528 (label lem:geometry)
-    file: CERW/Frozen/NormPotentialGeometry.lean
-    export: CERW.Frozen.norm_potential_geometry
-    state: PROVED
-    frozen_sha256: 36f84b69b6bb20030cc8b8fbc58ab36459afae9b3d224ddbf4d1ee26898e2192
-    provider: CERW.Frozen.norm_potential_geometry
-    approved: "2026-09-30"
-
   - id: prop-coarse
     version: 1
     kind: theorem
-    source: limit-shapes.tex:547-554 (label prop:coarse)
+    source: limit-shapes.tex:538-545 (label prop:coarse)
     file: CERW/Frozen/NormCoarseBounds.lean
     export: CERW.Frozen.norm_coarse_bounds
     state: PROVED
@@ -184,32 +151,21 @@ nodes:
     provider: CERW.Frozen.norm_coarse_bounds
     approved: "2026-09-30"
 
-  - id: lem-radial
-    version: 1
-    kind: theorem
-    source: limit-shapes.tex:567-576 (label lem:radial)
-    file: CERW/Frozen/NormRadialTest.lean
-    export: CERW.Frozen.norm_radial_test
-    state: PROVED
-    frozen_sha256: 79c9161163689caa8ad03b7b419f3c53b436a51625bac098cb795ac0a44cf5e8
-    provider: CERW.Frozen.norm_radial_test
-    approved: "2026-09-30"
-
   - id: lem-crossing
-    version: 1
+    version: 2
     kind: theorem
-    source: limit-shapes.tex:662-667 (label lem:crossing)
+    source: limit-shapes.tex:559-564 (label lem:crossing)
     file: CERW/Frozen/DriftCrossing.lean
     export: CERW.Frozen.drift_crossing
     state: PROVED
-    frozen_sha256: 9cf28f703d6b7d3287e50bd21fd5ebba214375e9ce936ed72444f8705bf6e6e4
+    frozen_sha256: 02ed2c8631e1ebacca4a11df2589a0fc5b379f0ffd8eb2f6801cc580ae6dfffe
     provider: CERW.Frozen.drift_crossing
-    approved: "2026-09-30"
+    approved: "2026-10-06"
 
   - id: prop-norm-shape
     version: 1
     kind: theorem
-    source: limit-shapes.tex:746-762 (label prop:norm-shape)
+    source: limit-shapes.tex:700-716 (label prop:norm-shape)
     file: CERW/Frozen/NormShapeRates.lean
     export: CERW.Frozen.norm_shape_rates
     state: PROVED
@@ -220,7 +176,7 @@ nodes:
   - id: lem-layer
     version: 1
     kind: theorem
-    source: limit-shapes.tex:780-785 (label lem:layer)
+    source: limit-shapes.tex:519-524 (label lem:layer)
     file: CERW/Frozen/LayerPotential.lean
     export: CERW.Frozen.layer_potential
     state: PROVED
@@ -228,43 +184,32 @@ nodes:
     provider: CERW.Frozen.layer_potential
     approved: "2026-09-30"
 
-  - id: lem-cap
-    version: 1
-    kind: theorem
-    source: limit-shapes.tex:810-815 (label lem:cap)
-    file: CERW/Frozen/MoreauCap.lean
-    export: CERW.Frozen.moreau_cap
-    state: PROVED
-    frozen_sha256: 14b391e12e2e542881212dca73d7d39fdab298ac65ff56bd6716d7a3aedd8211
-    provider: CERW.Frozen.moreau_cap
-    approved: "2026-09-30"
-
   - id: lem-contact
-    version: 1
+    version: 2
     kind: theorem
-    source: limit-shapes.tex:892-897 (label lem:contact)
+    source: limit-shapes.tex:773-778 (label lem:contact)
     file: CERW/Frozen/ContactPotential.lean
     export: CERW.Frozen.contact_potential
     state: PROVED
-    frozen_sha256: eb80fa4defc32bc2461e9cc0a270bca9e97e50b384ce75221dc9d0bac134acf2
+    frozen_sha256: 176d73b22647866bb6cbdd4b64d07062c56dac0e3312acbf2e6f5486ee876594
     provider: CERW.Frozen.contact_potential
-    approved: "2026-09-30"
+    approved: "2026-10-06"
 
   - id: lem-outer-crossing
-    version: 1
+    version: 2
     kind: theorem
-    source: limit-shapes.tex:989-994 (label lem:outer-crossing)
+    source: limit-shapes.tex:575-580 (label lem:outer-crossing)
     file: CERW/Frozen/OuterCrossing.lean
     export: CERW.Frozen.outer_crossing
     state: PROVED
-    frozen_sha256: acd67ade6a88d8bc0fa901f9ae60e79283bfef0873c9fbd5cd7064d165909da0
+    frozen_sha256: d9a4cb2430a43675b7b7ba691fbd7338a186ff65c1da430c9005e425b9340555
     provider: CERW.Frozen.outer_crossing
-    approved: "2026-09-30"
+    approved: "2026-10-06"
 
   - id: prop-inner
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1060-1076 (label prop:inner)
+    source: limit-shapes.tex:902-918 (label prop:inner)
     file: CERW/Frozen/InnerRadius.lean
     export: CERW.Frozen.inner_radius
     state: PROVED
@@ -275,7 +220,7 @@ nodes:
   - id: prop-stronger-outer
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1172-1177 (label prop:stronger-outer)
+    source: limit-shapes.tex:1014-1019 (label prop:stronger-outer)
     file: CERW/Frozen/OuterRadius.lean
     export: CERW.Frozen.outer_radius
     state: PROVED
@@ -286,7 +231,7 @@ nodes:
   - id: lem-near-far
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1203-1208 (label lem:near-far)
+    source: limit-shapes.tex:1045-1050 (label lem:near-far)
     file: CERW/Frozen/NearFar.lean
     export: CERW.Frozen.near_far
     state: PROVED
@@ -297,7 +242,7 @@ nodes:
   - id: thm-moment-fluctuations
     version: 3
     kind: theorem
-    source: limit-shapes.tex:1353-1374 (label thm:moment-fluctuations)
+    source: limit-shapes.tex:1195-1216 (label thm:moment-fluctuations)
     file: CERW/Frozen/MomentFluctuations.lean
     export: CERW.Frozen.moment_fluctuations
     state: PROVED
@@ -308,7 +253,7 @@ nodes:
   - id: lem-fixed-site-centering
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1430-1436 (label lem:fixed-site-centering)
+    source: limit-shapes.tex:1272-1278 (label lem:fixed-site-centering)
     file: CERW/Frozen/FixedSiteCentering.lean
     export: CERW.Frozen.fixed_site_centering
     state: PROVED
@@ -319,7 +264,7 @@ nodes:
   - id: thm-site-fluctuations
     version: 3
     kind: theorem
-    source: limit-shapes.tex:1460-1485 (label thm:site-fluctuations)
+    source: limit-shapes.tex:1302-1327 (label thm:site-fluctuations)
     file: CERW/Frozen/SiteFluctuations.lean
     export: CERW.Frozen.site_fluctuations
     state: PROVED
@@ -328,20 +273,20 @@ nodes:
     approved: "2026-10-02"
 
   - id: lem-exp-deviation
-    version: 1
+    version: 2
     kind: theorem
-    source: limit-shapes.tex:1537-1551 (label lem:exp-deviation)
+    source: limit-shapes.tex:1379-1393 (label lem:exp-deviation)
     file: CERW/Frozen/ExpDeviation.lean
     export: CERW.Frozen.exp_deviation
     state: PROVED
-    frozen_sha256: 0fb6a8e898e488c397a7ff3c6461b5680328f8472a3405de58677791f6b3168d
+    frozen_sha256: 998e8a6a9a39ee8b7b0789e8673b2a40c0a627730f156bf376b0706a2d6651c1
     provider: CERW.Frozen.exp_deviation
-    approved: "2026-09-30"
+    approved: "2026-10-06"
 
   - id: prop-bulk-profile
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1655-1662 (label prop:bulk-profile)
+    source: limit-shapes.tex:1507-1514 (label prop:bulk-profile)
     file: CERW/Frozen/BulkProfile.lean
     export: CERW.Frozen.bulk_profile
     state: PROVED
@@ -352,7 +297,7 @@ nodes:
   - id: lem-separated-brackets
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1689-1696 (label lem:separated-brackets)
+    source: limit-shapes.tex:1541-1548 (label lem:separated-brackets)
     file: CERW/Frozen/SeparatedBrackets.lean
     export: CERW.Frozen.separated_brackets
     state: PROVED
@@ -363,7 +308,7 @@ nodes:
   - id: prop-log-lower
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1759-1773 (label prop:log-lower)
+    source: limit-shapes.tex:1611-1625 (label prop:log-lower)
     file: CERW/Frozen/LogLowerBounds.lean
     export: CERW.Frozen.log_lower_bounds
     state: PROVED

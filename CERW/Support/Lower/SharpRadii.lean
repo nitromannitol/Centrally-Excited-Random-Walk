@@ -1,4 +1,5 @@
 import CERW.Support.Statements
+import CERW.Support.Lower.ExpDeviationStatement
 import CERW.Support.Occupation.CellNorm
 import CERW.Support.Occupation.Cells
 import CERW.Support.Occupation.CellVolume
@@ -594,7 +595,7 @@ private theorem condExp_weighted_sq (hd : 1 ≤ d) (hε : 0 ≤ ε) (hεd : ε <
 
 omit [MeasurableSpace Ω] in
 /-- Two processes that agree almost surely at all times have almost surely equal brackets. -/
-private theorem predBracket_congr_ae {m0 : MeasurableSpace Ω} {μ : Measure Ω}
+private theorem predBracket_congr_ae_all {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     {ℱ : Filtration ℕ m0} {S S' : ℕ → Ω → ℝ} (h : ∀ᵐ ω ∂μ, ∀ t, S t ω = S' t ω) (n : ℕ) :
     predBracket μ ℱ S S n =ᵐ[μ] predBracket μ ℱ S' S' n := by
   have hsq : ∀ t, (fun ω => (S (t + 1) ω - S t ω) * (S (t + 1) ω - S t ω)) =ᵐ[μ]
@@ -693,7 +694,7 @@ private theorem exists_truncated_martingale (hd : 1 ≤ d) (hε : 0 ≤ ε)
       simpa using hb
   obtain ⟨S, hSmart, hSinc, hS00, hSae⟩ := CERW.Generic.Martingale.exists_martingale_clamp
     hS0mart hb hinc_ae
-  have hcongr := predBracket_congr_ae (μ := μ) (ℱ := pathFiltration hX.measurable) hSae n
+  have hcongr := predBracket_congr_ae_all (μ := μ) (ℱ := pathFiltration hX.measurable) hSae n
   have hbrack := predBracket_weighted hd hε hεd hX f ξ hξabs κ S0 hincr n
   have h0 : ∀ᵐ ω ∂μ, X 0 ω = 0 := by
     rw [ae_iff]
@@ -1432,7 +1433,7 @@ private theorem event_of_good {Ω : Type u} [MeasurableSpace Ω] {μ : Measure �
     linarith [hl.2]
 
 /-- The exponential-deviation lemma for one martingale. -/
-private theorem deviation_single (hexp : exp_deviation.{u}) {c₀ C₀ : ℝ} (hc₀ : 0 < c₀)
+private theorem deviation_single (hexp : exp_deviation_upTo.{u}) {c₀ C₀ : ℝ} (hc₀ : 0 < c₀)
     (hcC : c₀ ≤ C₀) :
     ∃ c₁ C₁ : ℝ, 0 < c₁ ∧ 0 < C₁ ∧ ∀ {Ω : Type u} [m0 : MeasurableSpace Ω] (μ : Measure Ω)
       [IsProbabilityMeasure μ] (ℱ : Filtration ℕ m0) (n : ℕ), 0 < n →
@@ -1440,8 +1441,11 @@ private theorem deviation_single (hexp : exp_deviation.{u}) {c₀ C₀ : ℝ} (h
   obtain ⟨c₁, C₁, hc₁, hC₁, H⟩ := hexp c₀ C₀ hc₀ hcC
   refine ⟨c₁, C₁, hc₁, hC₁, fun {Ω} _ μ _ ℱ n hn b α S E hb hα0 hα1 hmart hS0 hinc hE hEα hbr
     β hβ hβb => ?_⟩
-  have h := H μ ℱ 1 n one_pos hn b 0 α hb le_rfl hα0 hα1 (fun _ => S) (fun _ => hmart)
-    (fun _ => hS0) (fun _ => hinc) E hE hEα (fun _ => hbr) β hβ hβb
+  have h := H μ ℱ 1 n one_pos hn b 0 α hb le_rfl hα0 hα1 (fun _ => S)
+    (fun _ t _ => hmart.stronglyAdapted t) (fun _ t _ => hmart.integrable t)
+    (fun _ t _ => hmart.condExp_ae_eq (Nat.le_succ t))
+    (fun _ => ae_of_all _ hS0) (fun _ t ht => ae_of_all _ (hinc t ht))
+    E hE hEα (fun _ => hbr) β hβ hβb
   exact ⟨(h.1 0).1, (h.1 0).2⟩
 
 /-- Two bounds on the probabilities of deviation events give the conclusions of `sharp_radii`
@@ -1590,7 +1594,7 @@ open CERW CERW.Support.Law CERW.Support.Occupation Finset
 
 /-- Theorem 1.3(i): polynomial lower bounds for the inner and outer radii in the plane. -/
 theorem sharp_radii_of (hfluct : fluctuation_rates.{u})
-    (hexp : exp_deviation.{u}) : sharp_radii.{u} := by
+    (hexp : exp_deviation_upTo.{u}) : sharp_radii.{u} := by
   intro d hd
   subst hd
   intro ωd ε hε hεd r p hp

@@ -1,7 +1,7 @@
 import CERW.Frozen.CellGradient
-import CERW.Frozen.NormPotentialGeometry
+import CERW.Support.Legacy.NormPotentialGeometry
 import CERW.Frozen.NormCoarseBounds
-import CERW.Frozen.NormRadialTest
+import CERW.Support.Legacy.NormRadialTest
 import CERW.Frozen.DriftCrossing
 
 /-!

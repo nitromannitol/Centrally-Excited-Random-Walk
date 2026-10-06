@@ -21,7 +21,7 @@ import CERW.Support.Outer.OuterRadius
 /-!
 # thm:moment-fluctuations
 
-`thm:moment-fluctuations` of the revised paper (`limit-shapes.tex:1353-1374`). The bytes between the markers are the
+`thm:moment-fluctuations` of the revised paper (`limit-shapes.tex:1195-1216`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
@@ -59,14 +59,14 @@ and
 Definitions the statement relies on (verbatim):
 \textit{the radius $r_n$ (eq:radius, lines 98--100)}
 \begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\nf{1}{(d+1)}}\, ,
+r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
 \end{equation}
-\textit{$\mathcal Q_n$ and $\Rmom$ (eq:moment-martingale, eq:radial-moment-def, lines 1344--1351)}
+\textit{$\mathcal Q_n$ and $\Rmom$ (eq:moment-martingale, eq:radial-moment-def, lines 1186--1193)}
 For the Euclidean norm, \eqref{eq:quadratic} reads
 \begin{equation}\label{eq:moment-martingale}
 \mathcal Q_n=2\drift\sum_{x\in A_n}|x|-n+|X_n|^2\, .
 \end{equation}
-Let $\Rmom(n)$ be the radius of the centered ball on which the integral of~$|v|$ equals $\sum_{x\in A_n}|x|$, that is,
+Let $\Rmom(n)$ be the radius of the ball about the origin on which the integral of~$|v|$ equals $\sum_{x\in A_n}|x|$, that is,
 \begin{equation}\label{eq:radial-moment-def}
 \Rmom(n)\coloneqq\left(\frac{d+1}{d\omega_d}\sum_{x\in A_n}|x|\right)^{\nf{1}{(d+1)}}\, .
 \end{equation}

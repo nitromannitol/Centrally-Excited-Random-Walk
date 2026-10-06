@@ -1,5 +1,6 @@
 import CERW.Support.Statements
-import CERW.Frozen.CoarseBounds
+import CERW.Support.Lower.ExpDeviationStatement
+import CERW.Support.Legacy.CoarseBounds
 import CERW.Support.Law.CoordinateDrift
 import CERW.Support.Occupation.Facts
 import CERW.Support.Occupation.Cells
@@ -811,7 +812,7 @@ private lemma bracket_rescaled_bounds {Ω : Type*} [MeasurableSpace Ω] {μ : Me
 /-- With probability at least `exp (-C₁ β²) / 4`, the first coordinate of the compensated position
 `X_n + ε Σ_{x ∈ A_n} u_x` exceeds `c₁ β √n`: Lemma 9.1 (i) for the martingale `Y / √n`, whose
 bracket lies between two positive constants on the whole probability space. -/
-private lemma coord_deviation (hexp : exp_deviation.{u}) {ε : ℝ} (hε0 : 0 < ε)
+private lemma coord_deviation (hexp : exp_deviation_upTo.{u}) {ε : ℝ} (hε0 : 0 < ε)
     (hεd : ε < 1 / ((2 : ℕ) : ℝ)) :
     ∃ c₁ C₁ : ℝ, 0 < c₁ ∧ 0 < C₁ ∧
       ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -836,9 +837,14 @@ private lemma coord_deviation (hexp : exp_deviation.{u}) {ε : ℝ} (hε0 : 0 < 
     rw [← mul_sub, abs_mul, abs_of_pos (inv_pos.mpr hs), ← div_eq_inv_mul]
     exact div_le_div_of_nonneg_right (hYinc t ω) hs.le
   have hbr := bracket_rescaled_bounds hX hYbr hn
+  have hSm : Martingale ((Real.sqrt n)⁻¹ • Y) (pathFiltration hX.measurable) μ :=
+    hYm.smul (Real.sqrt n)⁻¹
   have hmain := (H μ (pathFiltration hX.measurable) 1 n one_pos hn0 (2 / Real.sqrt n) 0 0
     (div_pos two_pos hs) le_rfl le_rfl zero_le_one (fun _ => (Real.sqrt n)⁻¹ • Y)
-    (fun _ => hYm.smul _) (fun _ ω => by simp [hY0]) (fun _ t _ ω => hinc t ω)
+    (fun _ t _ => hSm.stronglyAdapted t) (fun _ t _ => hSm.integrable t)
+    (fun _ t _ => hSm.condExp_ae_eq (Nat.le_succ t))
+    (fun _ => ae_of_all _ fun ω => by simp [hY0])
+    (fun _ t _ => ae_of_all _ fun ω => hinc t ω)
     Set.univ MeasurableSet.univ (by simp)
     (fun _ => by filter_upwards [hbr] with ω hω _ using hω) β hβ hβb).1 0
   have hF := hmain.1
@@ -1103,7 +1109,7 @@ private lemma rpow_arith {x p C : ℝ} (hx : 0 < x) (h : 4 * (C + 1) ≤ x ^ (p 
 /-! ### The polynomial lower bound -/
 
 /-- Theorem 1.3 (iv) (a): the polynomial lower bound for the difference of the radii. -/
-theorem sharp_width_poly_of (hexp : exp_deviation.{u}) :
+theorem sharp_width_poly_of (hexp : exp_deviation_upTo.{u}) :
     ∀ {d : ℕ} (_ : d = 2),
       let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
       ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
@@ -1607,7 +1613,7 @@ private theorem width_lil (hshape : limit_shape.{u}) :
 /-- The width of the range in the plane is at least `c √(r_n log n)` with polynomial probability,
 and at least `√(π/(3ε)) √(r_n log log n)` infinitely often. -/
 theorem sharp_width_of (hshape : limit_shape.{u})
-    (hexp : exp_deviation.{u}) : sharp_width.{u} := by
+    (hexp : exp_deviation_upTo.{u}) : sharp_width.{u} := by
   intro d hd hS ωd ε hε0 hε1 r
   exact ⟨sharp_width_poly_of hexp hd ε hε0 hε1, width_lil hshape hd hS ε hε0 hε1⟩
 
