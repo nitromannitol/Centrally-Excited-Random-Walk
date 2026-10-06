@@ -153,7 +153,7 @@ live in `CERW/Model/`.
 | `thm-sharp-radii` | `CERW.Frozen.sharp_radii` | `limit-shapes.tex:159-164`, `thm:sharp` | PROVED |
 | `thm-sharp-radii-lil` | `CERW.Frozen.sharp_radii_lil` | `limit-shapes.tex:165-170`, `thm:sharp` | PROVED |
 | `thm-sharp-bulk` | `CERW.Frozen.sharp_bulk` | `limit-shapes.tex:171-175`, `thm:sharp` | PROVED |
-| `thm-sharp-width` | `CERW.Frozen.sharp_width` | `limit-shapes.tex:176-185`, `thm:sharp` | PROVED |
+| `thm-sharp-width` | `CERW.Frozen.sharp_width` | `limit-shapes.tex:176-189`, `thm:sharp` | PROVED |
 | `thm-norm-shape` | `CERW.Frozen.norm_shape` | `limit-shapes.tex:338-351`, `thm:norm-shape` | PROVED |
 | `lem-ballpotential` | `CERW.Frozen.norm_ball_potential` | `limit-shapes.tex:369-374`, `lem:ballpotential` | PROVED |
 | `lem-local` | `CERW.Frozen.norm_local_time_potential` | `limit-shapes.tex:393-409`, `lem:local` | PROVED |
