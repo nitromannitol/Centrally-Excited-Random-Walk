@@ -1,5 +1,6 @@
-% prop-inner -- CERW.Frozen.inner_radius (draft). Source: limit-shapes.tex:900-916, label prop:inner
-\paragraph{Paper (verbatim).}
+% prop-inner: limit-shapes.tex:903-919 (label prop:inner)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
 \begin{proposition}[Inner radius]\label{prop:inner}
 Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$, the following hold simultaneously, where $q_n$ is defined in~\eqref{eq:qn}.
 \begin{enumerate}[label=\textup{(\roman*)}]
@@ -17,30 +18,27 @@ Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. For every $p>0$ th
 \end{equation*}
 \end{enumerate}
 \end{proposition}
-Definitions the statement relies on (verbatim):
-\textit{the radius $r_n$ (eq:radius, lines 98--100)}
-\begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
-\end{equation}
-\textit{$D_n$, $\Rin$, $\Rout$ (eq:radii, lines 122--127)}
-Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[- \frac12, \frac12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
-\begin{equation}\label{eq:radii}
-\Rin(n)\coloneqq\inf_{y\notin D_n}|y|
-\qquad\text{and}\qquad
-\Rout(n)\coloneqq\max_{0\leq j\leq n}|X_j|\, .
-\end{equation}
-\textit{$q_n$ (eq:qn, lines 718--721)}
-Throughout the rest of the paper let
-\begin{equation}\label{eq:qn}
-q_n\coloneqq\begin{dcases}\sqrt{\frac{\log n}{r_n}},&d=2,\\\frac{\log n}{r_n},&d\geq3\end{dcases}\, .
-\end{equation}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.Frozen.inner_radius {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    let q : ℕ → ℝ := fun n =>
+      if d = 2 then Real.sqrt (Real.log n / r n) else Real.log n / r n
+    ∀ p : ℝ, 0 < p → ∃ C : ℝ, 0 < C ∧
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, 2 ≤ n →
+        μ {ω | ¬ (|CERW.innerRadius (X · ω) n - r n| ≤ C * r n * q n ∧
+                  volume (((r n)⁻¹ • CERW.cellSet (X · ω) n) ∆
+                      Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)
+                    ≤ ENNReal.ofReal (C * q n) ∧
+                  ∀ y : EuclideanSpace ℝ (Fin d),
+                    |CERW.cellLocalTime (X · ω) n y - 2 * d * ε * max (r n - ‖y‖) 0|
+                      ≤ C * r n * q n ^ ((1 : ℝ) / d))}
+          ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
+--
+\end{verbatim}
 \paragraph{Transcription.}
-\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set.
-
-\emph{Quantifiers.} $\forall p>0\ \exists C>0\ \forall(\Omega,\mu,X)$ with \verb!IsCERW μ ε X!, $\forall n\ge2$. So $C=C(d,\varepsilon,p)$ precedes the probability space; the paper uses one $C$ for the three bounds and for the probability, and so does the Lean statement. ($0<C$ is added, harmless.) The bad event is $\neg(\text{(i)}\wedge\text{(ii)}\wedge\text{(iii)})$, so the items hold \emph{simultaneously}.
-
-\emph{Definitions.} $q_n$ (eq:qn) is \verb!q n = if d = 2 then √(log n / r n) else log n / r n!; for $n\ge2$, $\log n>0$ and $r_n>0$, so $q_n\ge0$ and \verb!q n ^ (1/d)! is the true power (no junk). $\Rin(n)$ is \verb!CERW.innerRadius! ($\inf\{|y|:y\notin D_n\}$, a nonempty set bounded below). $D_n$ is \verb!CERW.cellSet! (union of the half-open cells $C_x$, $x\in A_n=$ \verb!departureRange!). $\widetilde\ell_n$ is \verb!CERW.cellLocalTime! ($\ell_n(x)$ on $C_x$). Volumes are Lebesgue measure with values in \verb!ENNReal!.
-
-\emph{Items.} (i) \verb!|innerRadius (X · ω) n - r n| ≤ C * r n * q n!. (ii) \verb!volume (((r n)⁻¹ • cellSet (X · ω) n) ∆ ball 0 1) ≤ ofReal (C * q n)!. (iii) \verb!∀ y : EuclideanSpace ℝ (Fin d), |cellLocalTime (X · ω) n y - 2*d*ε*max (r n - ‖y‖) 0| ≤ C * r n * q n ^ (1/d)! (the supremum over $y\in\R^d$ is the universal quantifier; $(r_n-|y|)_+$ is \verb!max (r n - ‖y‖) 0!).
-
-\emph{Draft defect (see the audit).} The draft writes \verb!(r n)⁻¹ • CERW.cellSet (X · ω) n ∆ Metric.ball 0 1! without parentheses. The notation $\triangle$ is \verb!infixl:100! and scalar action is \verb!infixr:73!, so this elaborates to \verb!(r n)⁻¹ • (cellSet ∆ ball 0 1)!, i.e.\ $r_n^{-d}|D_n\triangle B(0,1)|$, not $|r_n^{-1}D_n\triangle B(0,1)|$. The former tends to $\omega_d$ while $Cq_n\to0$, so the draft statement is false; the intended reading is the parenthesized one in (ii) above.
+\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set. \emph{Quantifiers.} $\forall p>0\ \exists C>0\ \forall(\Omega,\mu,X)$ with \verb!IsCERW μ ε X!, $\forall n\ge2$. So $C=C(d,\varepsilon,p)$ precedes the probability space; the paper uses one $C$ for the three bounds and for the probability, and so does the Lean

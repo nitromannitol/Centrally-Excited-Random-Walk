@@ -1,5 +1,6 @@
-% prop-log-lower -- CERW.Frozen.log_lower_bounds (draft). Source: limit-shapes.tex:1599-1613, label prop:log-lower
-\paragraph{Paper (verbatim).}
+% prop-log-lower: limit-shapes.tex:1602-1616 (label prop:log-lower)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
 \begin{proposition}[Lower bounds for the radii]\label{prop:log-lower}
 Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. There exist $c(d,\drift)>0$, $C(d,\drift)<\infty$ and $h_0(d,\drift)>0$ such that the following hold.
 \begin{enumerate}[label=\textup{(\roman*)}]
@@ -15,21 +16,27 @@ Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. There exist $c(d,\
 and, if $d\geq3$, also $\Rout(n)-r_n>c\log n$.
 \end{enumerate}
 \end{proposition}
-Definitions the statement relies on (verbatim):
-\textit{the radius $r_n$ (eq:radius, lines 98--100)}
-\begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
-\end{equation}
-\textit{$D_n$, $\Rin$, $\Rout$ (eq:radii, lines 122--127)}
-Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[- \frac12, \frac12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
-\begin{equation}\label{eq:radii}
-\Rin(n)\coloneqq\inf_{y\notin D_n}|y|
-\qquad\text{and}\qquad
-\Rout(n)\coloneqq\max_{0\leq j\leq n}|X_j|\, .
-\end{equation}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.Frozen.log_lower_bounds {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∃ c C h₀ : ℝ, 0 < c ∧ 0 < C ∧ 0 < h₀ ∧ ∃ n₀ : ℕ,
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+        (∀ n : ℕ, n₀ ≤ n → ∀ h : ℝ, h₀ ≤ h → h ≤ r n / 8 →
+          μ {ω | r n - h ≤ CERW.innerRadius (X · ω) n ∧ CERW.maxRadius (X · ω) n ≤ r n + h}
+            ≤ ENNReal.ofReal (Real.exp (-(c * r n ^ (d - 1) * Real.exp (-(C * h))))) ∧
+          μ {ω | CERW.maxRadius (X · ω) n ≤ r n + h}
+            ≤ ENNReal.ofReal (Real.exp (-(c * r n ^ (d - 1) * Real.exp (-(C * h))))
+              + Real.exp (-(c * r n ^ ((d : ℝ) - 3) * h ^ 2)))) ∧
+        ∀ᵐ ω ∂μ, ∀ᶠ n : ℕ in atTop,
+          c * Real.log n < max (r n - CERW.innerRadius (X · ω) n)
+            (CERW.maxRadius (X · ω) n - r n) ∧
+          (3 ≤ d → c * Real.log n < CERW.maxRadius (X · ω) n - r n)
+--
+\end{verbatim}
 \paragraph{Transcription.}
-\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set.
-
-\emph{Quantifiers.} $\exists c,C,h_0>0\ \exists n_0\in\mathbb N\ \forall(\Omega,\mu,X)$ with \verb!IsCERW μ ε X!: (i) and (ii). The constants and $n_0$ depend on $(d,\varepsilon)$ only and precede the probability space. The same $c$ serves (i) and (ii), as in the paper (last sentence of Step~4: (i) stays true with the smaller constant).
-
-\emph{(i)} For $n\ge n_0$ and every real $h$ with $h_0\le h\le r_n/8$: \verb!μ {ω | r n - h ≤ innerRadius (X · ω) n ∧ maxRadius (X · ω) n ≤ r n + h} ≤ ofReal (exp (-(c * r n ^ (d - 1) * exp (-(C * h)))))! (eq:log-lower-tail) and \verb!μ {ω | maxRadius (X · ω) n ≤ r n + h} ≤ ofReal (exp (-(c * r n ^ (d - 1) * exp (-(C * h)))) + exp (-(c * r n ^ ((d:ℝ) - 3) * h ^ 2)))! (eq:outer-lower-tail). Here \verb!r n ^ (d - 1)! is a natural power ($d\ge2$, no truncation), \verb!r n ^ ((d:ℝ) - 3)! a real power ($r_n>0$; it is $r_n^{-1}$ for $d=2$, as in the paper) and \verb!h ^ 2! a natural power. \emph{(ii)} \verb!∀ᵐ ω ∂μ, ∀ᶠ n in atTop, c * log n < max (r n - innerRadius (X · ω) n) (maxRadius (X · ω) n - r n) ∧ (3 ≤ d → c * log n < maxRadius (X · ω) n - r n)!.
+\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set. \emph{Quantifiers.} $\exists c,C,h_0>0\ \exists n_0\in\mathbb N\ \forall(\Omega,\mu,X)$ with \verb!IsCERW μ ε X!: (i) and (ii). The constants and $n_0$ depend on $(d,\varepsilon)$ only and precede the probability space. The same $c$ serves (i) and (ii), as in the

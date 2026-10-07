@@ -1,8 +1,8 @@
 # CERWAudit Comparator Surface
 
 This directory contains a Mathlib-only comparator challenge for the limit shape theorem
-(`thm:shape`, `paper/limit-shapes.tex:103-116`), the headline result of the formalization of
-*Limit shapes of centrally excited random walks* (Ahmed Bou-Rabee and Yuval Peres).
+(`thm:shape`, `paper/limit-shapes.tex:106-119`), the headline result of the formalization of
+*Kozma's centrally excited walk converges to a Euclidean ball* (Ahmed Bou-Rabee and Yuval Peres).
 
 | Directory | Checked theorem |
 | --- | --- |

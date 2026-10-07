@@ -46,7 +46,7 @@ Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[- \frac12, \frac1
 Theorem (lines 130--152):
 \begin{verbatim}
 \begin{theorem}[Fluctuation bounds]\label{thm:fluctuations}
-Let $d\geq2$ and $0<\drift<1/d$, and consider the centrally excited random walk. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, the following bounds hold simultaneously with probability at least $1-Cn^{-p}$.
+Let $d\geq2$ and $0<\drift<1/d$. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, the following bounds hold simultaneously with probability at least $1-Cn^{-p}$.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \underline{\emph{Radii}}:
 \begin{equation*}
@@ -66,7 +66,7 @@ Let $d\geq2$ and $0<\drift<1/d$, and consider the centrally excited random walk.
 \leq C\begin{cases}\sqrt{r_n}(\log n)^{\nf32},&d=2,\\\sqrt{r_n\log n},&d\geq3\end{cases}\, .
 \end{equation*}
 \end{enumerate}
-Moreover, almost surely these bounds hold for all sufficiently large~$n$.
+In particular, these bounds hold for all sufficiently large~$n$ almost surely. 
 \end{theorem}
 \end{verbatim}
 ```

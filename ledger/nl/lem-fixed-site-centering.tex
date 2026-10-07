@@ -1,5 +1,6 @@
-% lem-fixed-site-centering -- CERW.Frozen.fixed_site_centering (draft). Source: limit-shapes.tex:1258-1264, label lem:fixed-site-centering
-\paragraph{Paper (verbatim).}
+% lem-fixed-site-centering: limit-shapes.tex:1261-1267 (label lem:fixed-site-centering)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
 \begin{lemma}\label{lem:fixed-site-centering}
 Let $\gauge$ be the Euclidean norm, let $0<\drift<\nf1d$, and let $y\in\Z^d$. There exists $C(d,\drift,y)<\infty$ such that, almost surely, for all sufficiently large~$n$,
 \begin{equation}\label{eq:fixed-site-centering}
@@ -7,25 +8,22 @@ Let $\gauge$ be the Euclidean norm, let $0<\drift<\nf1d$, and let $y\in\Z^d$. Th
 \end{equation}
 where $\mathcal Q$ is the martingale of~\eqref{eq:quadratic}.
 \end{lemma}
-Definitions the statement relies on (verbatim):
-\textit{the radius $r_n$ (eq:radius, lines 98--100)}
-\begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
-\end{equation}
-\textit{the potential (eq:potential-intro, lines 225--227)}
-\begin{equation}\label{eq:potential-intro}
-U_D(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\frac{v}{|v|}\cdot\frac{v-y}{|v-y|^d}\dd v
-\end{equation}
-\textit{$\mathcal Q_n$ (eq:moment-martingale, lines 1186--1189)}
-For the Euclidean norm, \eqref{eq:quadratic} reads
-\begin{equation}\label{eq:moment-martingale}
-\mathcal Q_n=2\drift\sum_{x\in A_n}|x|-n+|X_n|^2\, .
-\end{equation}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.Frozen.fixed_site_centering {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∀ y : Site d, ∃ C : ℝ, 0 < C ∧
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+        ∀ᵐ ω ∂μ, ∀ᶠ n : ℕ in atTop,
+          |CERW.potential d ε (CERW.cellSet (X · ω) n) (CERW.toSpace y)
+              - 2 * d * ε * (r n - euclidNorm y)
+              - CERW.quadraticMart ε (X · ω) n / (ωd * r n ^ d)|
+            ≤ C * if d = 2 then Real.log n ^ 3 else 1
+--
+\end{verbatim}
 \paragraph{Transcription.}
-\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set.
-
-\emph{Quantifiers.} $\forall y\in\Z^d\ \exists C>0\ \forall(\Omega,\mu,X)$ with \verb!IsCERW μ ε X!: almost surely, eventually in $n$. So $C=C(d,\varepsilon,y)$ is deterministic and precedes the probability space, while the threshold $n_0(\omega)$ is random (``almost surely, for all sufficiently large $n$''): \verb!∀ᵐ ω ∂μ, ∀ᶠ n in atTop, …!.
-
-\emph{Definitions.} $U_{D_n}(y)$ is \verb!CERW.potential d ε (CERW.cellSet (X · ω) n) (CERW.toSpace y)! (the site $y$ embedded in $\R^d$; a Bochner integral over the bounded measurable set $D_n$ of an integrable kernel, so no junk). $\mathcal Q_n$ is \verb!CERW.quadraticMart ε (X · ω) n! $=2\varepsilon\sum_{x\in A_n}|x|-n+|X_n|^2$, which is eq:moment-martingale (line 1187); the big operator binds only \verb!euclidNorm x!.
-
-\emph{Statement.} \verb!|U - 2 * d * ε * (r n - euclidNorm y) - Q / (ωd * r n ^ d)| ≤ C * (if d = 2 then (log n) ^ 3 else 1)! with \verb!r n ^ d! and \verb!(log n) ^ 3! natural powers; the case split $(\log n)^3$ for $d=2$ and $1$ for $d\ge3$ is the paper's.
+\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set. \emph{Quantifiers.} $\forall y\in\Z^d\ \exists C>0\ \forall(\Omega,\mu,X)$ with \verb!IsCERW μ ε X!: almost surely, eventually in $n$. So $C=C(d,\varepsilon,y)$ is deterministic and precedes the probability space, while the threshold $n_0(\omega)$ is random (``almost

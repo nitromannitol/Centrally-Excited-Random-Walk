@@ -1,5 +1,5 @@
-% lem-outer-crossing -- CERW.Frozen.outer_crossing, version 2. Source: limit-shapes.tex:577-582 (label lem:outer-crossing)
-\paragraph{Paper (verbatim).}
+% lem-outer-crossing: limit-shapes.tex:578-583 (label lem:outer-crossing)
+\paragraph{Paper excerpt.}
 \begin{verbatim}
 \begin{lemma}\label{lem:outer-crossing}
 Let $\alpha>0$. There exists $C(d,\drift,\gauge,\alpha,p)<\infty$ with the following property. Let $q\in\R^d$ satisfy $|q|\leq\Lambda_\gauge$, and consider a path of the walk that satisfies~\eqref{eq:vector}, and~\eqref{eq:linear-mart} for this~$q$ and every $a\in\Lambda_\gauge\Z\cap[0,\Lambda_\gauge n]$. Let $x_*$ be one of the sites $X_0,\ldots,X_n$ with $q\cdot X_j\leq T\coloneqq q\cdot x_*$ for $0\leq j\leq n$, and let $h>0$ be such that $q\cdot\xi(X_j)\geq\alpha$ for every $0\leq j\leq n$ with $q\cdot X_j>T-h$. For $b\geq0$ let $L_b\coloneqq1+\max\{\ell_n(x):x\in\Z^d,\ q\cdot x\geq b\}$. Then every $b\geq0$ satisfies
@@ -8,7 +8,7 @@ T\leq\max\{T-h,b\}+CL_b\log n\, .
 \end{equation}
 \end{lemma}
 \end{verbatim}
-\paragraph{Exact Lean contract.}
+\paragraph{Lean statement.}
 \begin{verbatim}
 theorem CERW.Frozen.outer_crossing {d : ℕ} (hd : 2 ≤ d) :
     ∀ Ψ : EuclideanSpace ℝ (Fin d) → ℝ, CERW.IsNorm Ψ →
@@ -58,5 +58,7 @@ theorem CERW.Frozen.outer_crossing {d : ℕ} (hd : 2 ≤ d) :
           T ≤ max (T - h) b + C * (1 + ((((CERW.departureRange x n).filter
               (fun z => b ≤ inner ℝ q (CERW.toSpace z))).sup (CERW.localTime x n) : ℕ) : ℝ))
             * Real.log n
+--
 \end{verbatim}
-\paragraph{Approval.} The author approved this successor on 2026-10-06.
+\paragraph{Transcription.}
+For d>=2, a norm, positive drift, coordinate ellipticity and p>0, the finite radial-vector/level family and vector event are produced with one event constant before all fields and laws. The separate deterministic implication quantifies every alpha>0 and chooses its bound before xi,n,q and the legal path; |q|<=normMax Psi, maximality, the vector bound, every source grid-level ramp bound and the drift-alpha condition are explicit. It concludes the original T bound for all b>=0. No simultaneous arbitrary-real-q probability event is claimed. The legal carrier is explicit; arbitrary IsDriftCERW paths are legal almost surely. Complete contract: ledger/nl/lem-outer-crossing.tex.

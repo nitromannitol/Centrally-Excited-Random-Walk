@@ -4,7 +4,7 @@ import CERW.Support.RevisedPaper
 /-!
 # lem-crossing
 
-The statement of `limit-shapes.tex:561-566 (label lem:crossing)`.
+The statement of `limit-shapes.tex:562-567 (label lem:crossing)`.
 -/ 
 
 universe u

@@ -4,7 +4,7 @@ import CERW.Support.Norm.Freedman
 /-!
 # lem:freedman
 
-`lem:freedman` of the revised paper (`limit-shapes.tex:447-452`). The bytes between the markers are the
+`lem:freedman` of the revised paper (`limit-shapes.tex:448-453`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

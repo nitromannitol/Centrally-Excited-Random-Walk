@@ -1,5 +1,5 @@
-% lem-contact -- CERW.Frozen.contact_potential, version 2. Source: limit-shapes.tex:771-776 (label lem:contact)
-\paragraph{Paper (verbatim).}
+% lem-contact: limit-shapes.tex:774-779 (label lem:contact)
+\paragraph{Paper excerpt.}
 \begin{verbatim}
 \begin{lemma}\label{lem:contact}
 There exists $C(d,\drift,\gauge,p)<\infty$ such that, on the event of Section~\ref{sec:norm-event}, for large~$n$,
@@ -8,7 +8,7 @@ H\leq Cr_nq_n=C\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\geq3\end{cases}\, 
 \end{equation*}
 \end{lemma}
 \end{verbatim}
-\paragraph{Exact Lean contract.}
+\paragraph{Lean statement.}
 \begin{verbatim}
 theorem CERW.Frozen.contact_potential {d : ℕ} (hd : 2 ≤ d) :
     ∀ Ψ : EuclideanSpace ℝ (Fin d) → ℝ, CERW.IsNorm Ψ →
@@ -84,5 +84,7 @@ theorem CERW.Frozen.contact_potential {d : ℕ} (hd : 2 ≤ d) :
           Ψ y₀ = CERW.normInnerRadius Ψ (X · ω) n →
           y₀ ∈ closure (CERW.cellSet (X · ω) n)ᶜ →
             CERW.normPotential d ε Ψ (CERW.cellSet (X · ω) n) y₀ ≤ C * r n * q n
+--
 \end{verbatim}
-\paragraph{Approval.} The author approved this successor on 2026-10-06.
+\paragraph{Transcription.}
+For d>=2, every norm and admissible positive drift, the actual nearest projection exists uniquely for each time before choice. Each p>0 determines seven positive source-event constants, a positive contact bound and n0>=2 before xi,law,time and projection. The event is the literal conjunction of coarse, local, vector, local-martingale, quadratic, radial and projected halfspace bounds. It contains no extra future-legality clause. Its complement has the stated polynomial measure bound; almost surely on it all contact points, defined by the genuine norm infimum and closure of the complement of the visited-cell set, satisfy the potential bound C*r_n*q_n. Law legality is separate and almost sure. The old probability statement is a proved consequence, not a substituted source event. Complete contract: ledger/nl/lem-contact.tex.

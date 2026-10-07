@@ -1,5 +1,6 @@
-% thm-moment-fluctuations -- CERW.Frozen.moment_fluctuations (draft). Source: limit-shapes.tex:1193-1214, label thm:moment-fluctuations
-\paragraph{Paper (verbatim).}
+% thm-moment-fluctuations: limit-shapes.tex:1196-1217 (label thm:moment-fluctuations)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
 \begin{theorem}[Sum of the distances from the origin]\label{thm:moment-fluctuations}
 Let $\gauge$ be the Euclidean norm, let $0<\drift<\nf1d$, and let $\Rmom(n)$ be as in~\eqref{eq:radial-moment-def}. Then the following hold.
 \begin{enumerate}[label=\textup{(\roman*)}]
@@ -22,31 +23,30 @@ and
 \end{align}
 \end{enumerate}
 \end{theorem}
-Definitions the statement relies on (verbatim):
-\textit{the radius $r_n$ (eq:radius, lines 98--100)}
-\begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
-\end{equation}
-\textit{$\mathcal Q_n$ and $\Rmom$ (eq:moment-martingale, eq:radial-moment-def, lines 1186--1193)}
-For the Euclidean norm, \eqref{eq:quadratic} reads
-\begin{equation}\label{eq:moment-martingale}
-\mathcal Q_n=2\drift\sum_{x\in A_n}|x|-n+|X_n|^2\, .
-\end{equation}
-Let $\Rmom(n)$ be the radius of the ball about the origin on which the integral of~$|v|$ equals $\sum_{x\in A_n}|x|$, that is,
-\begin{equation}\label{eq:radial-moment-def}
-\Rmom(n)\coloneqq\left(\frac{d+1}{d\omega_d}\sum_{x\in A_n}|x|\right)^{\nf{1}{(d+1)}}\, .
-\end{equation}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.Frozen.moment_fluctuations {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    let v₁ : ℝ := 2 * d * ωd / (ε * (d + 2) * (d + 3))
+    let v₂ : ℝ := 2 / (ε * d * ωd * (d + 2) * (d + 3))
+    ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+      (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+      let S : ℕ → Ω → ℝ := fun n ω =>
+        (∑ x ∈ CERW.departureRange (X · ω) n, euclidNorm x - n / (2 * ε)) /
+          r n ^ (((d : ℝ) + 3) / 2)
+      let R : ℕ → Ω → ℝ := fun n ω =>
+        (CERW.momentRadius (X · ω) n - r n) / r n ^ ((3 - (d : ℝ)) / 2)
+      TendstoInDistribution S atTop id (fun _ => μ) (gaussianReal 0 v₁.toNNReal) ∧
+      TendstoInDistribution R atTop id (fun _ => μ) (gaussianReal 0 v₂.toNNReal) ∧
+      ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ → ∀ σ : ℝ, σ = 1 ∨ σ = -1 →
+        (∀ᶠ n : ℕ in atTop, σ * S n ω ≤ (Real.sqrt v₁ + δ) * Real.sqrt (2 * Real.log (Real.log n))) ∧
+        (∃ᶠ n : ℕ in atTop, (Real.sqrt v₁ - δ) * Real.sqrt (2 * Real.log (Real.log n)) ≤ σ * S n ω) ∧
+        (∀ᶠ n : ℕ in atTop, σ * R n ω ≤ (Real.sqrt v₂ + δ) * Real.sqrt (2 * Real.log (Real.log n))) ∧
+        (∃ᶠ n : ℕ in atTop, (Real.sqrt v₂ - δ) * Real.sqrt (2 * Real.log (Real.log n)) ≤ σ * R n ω)
+--
+\end{verbatim}
 \paragraph{Transcription.}
-\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set.
-
-\emph{Externals.} By the author's ruling the theorem carries both cited results as hypotheses \verb!hCLT : CERW.External.MartingaleCLT.{u}! (Hall--Heyde Cor.~3.1, deterministic normalization) and \verb!hLIL : CERW.External.StoutLIL.{u}! (Stout 1970); Steps 2 and 3 of the proof use them.
-
-\emph{Definitions.} \verb!S n ω = (∑ x ∈ departureRange (X · ω) n, euclidNorm x - n / (2 * ε)) / r n ^ (((d:ℝ) + 3) / 2)!: the big operator takes \verb!term:67! as body, so it binds only \verb!euclidNorm x! and the following \verb!-! is outside it (checked with \verb!pp.parens!). \verb!R n ω = (momentRadius (X · ω) n - r n) / r n ^ ((3 - (d:ℝ)) / 2)! with \verb!CERW.momentRadius! $=\big(\frac{d+1}{d\omega_d}\sum_{x\in A_n}|x|\big)^{1/(d+1)}$ (eq:radial-moment-def, line 1192). The martingale $\mathcal Q_n$ (\verb!CERW.quadraticMart! $=2\varepsilon\sum_{x\in A_n}|x|-n+|X_n|^2$, eq:moment-martingale, line 1187) does not occur in the statement.
-
-\emph{Variances.} \verb!v₁ = 2 * d * ωd / (ε * (d + 2) * (d + 3))! $=\frac{2d\omega_d}{\drift(d+2)(d+3)}$ and \verb!v₂ = 2 / (ε * d * ωd * (d + 2) * (d + 3))! $=\frac{2}{\drift d\omega_d(d+2)(d+3)}$. Both are positive, so \verb!v.toNNReal! has no junk.
-
-\emph{(i)} Convergence in distribution is Mathlib's \verb!TendstoInDistribution S atTop id (fun _ => μ) (gaussianReal 0 v₁.toNNReal)! (limit variable \verb!id! on $\R$, limit law $N(0,v_1)$), and likewise for $R$ with $v_2$; the two convergences are separate, as in the paper.
-
-\emph{(ii)} ``For each choice of sign, almost surely, $\limsup=L$'' is written junk-free: $\forall^{\rm ae}\omega\ \forall\delta>0\ \forall\sigma\in\{\pm1\}$: eventually \verb!σ * S n ω ≤ (√v₁ + δ) * √(2 * log (log n))! and frequently \verb!(√v₁ - δ) * √(2 * log (log n)) ≤ σ * S n ω!, and the same two statements for $R$ with $v_2$. This multiplies the paper's ratio by $\sqrt{2\log\log n}>0$ (true for $n\ge3$; smaller $n$ do not affect eventually/frequently statements). The \verb!∀ᵐ! is outside \verb!∀ δ!, the correct reading of ``$\limsup=L$ almost surely''.
-\paragraph{Version 2.} Version 2 (ruling D6, 2026-10-01): the binder \verb!hCLT! is deleted, because the martingale central limit theorem is proved (\verb!CERW.Generic.Martingale.CLT.martingaleCLT_proved!); only \verb!hLIL! remains.
-\paragraph{Version 3 (ruling D7).} The binder \verb!hLIL! is deleted: Stout's law of the iterated logarithm is proved.
+\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set. \emph{Internal inputs.} The conditional assembly lemma takes both cited results as parameters \verb!hCLT : MartingaleCLT.{u}! (Hall--Heyde Cor.~3.1, deterministic normalization) and \verb!hLIL : StoutLIL.{u}! (Stout 1970); these are internal proof parameters and the **final registered root supplies both proved** ($\verb!martingaleCLT_proved!$, $\verb!stoutLIL_full!$), so no cited hypothesis remains open.

@@ -129,7 +129,7 @@ def status_block(cfg: RepoConfig) -> str:
         if proved:
             parts.append(f"{proved} proved")
         sentences.append(
-            "The " + " and ".join(parts) + " node(s) are machine-checked: "
+            "The " + " and ".join(parts) + " statements are machine-checked: "
             "complete proofs whose axiom closure contains no `sorryAx`."
         )
     if conditional:
@@ -160,13 +160,7 @@ def status_block(cfg: RepoConfig) -> str:
             )
 
     body = "  ".join(sentences)
-    return (
-        f"Status: **{total} registered statements — {tally}.**  {body}  Run\n"
-        "`python3 -m leanform_tools.check_manifest` to confirm. Counts here\n"
-        "are generated from `ledger/manifest.yaml` by\n"
-        "`python3 -m leanform_tools.sync_docs`; do not edit them by hand — a\n"
-        "hand-edited number inside this block is a failure, not a correction."
-    )
+    return f"Status: **{total} registered statements — {tally}.**  {body}"
 
 
 # ---- generic marker splice --------------------------------------------------

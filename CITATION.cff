@@ -7,7 +7,8 @@ abstract: >-
   and proposition of the paper's Sections 2 to 9 and the limit shape for a walk whose drift is a
   subgradient of a norm. The production library contains no sorry and no custom axiom; the
   Mathlib-only comparator challenge contains one intentional statement-level sorry whose
-  completed solution is checked separately. type: software
+  completed solution is checked separately.
+type: software
 authors:
   - family-names: Bou-Rabee
     given-names: Ahmed
@@ -21,13 +22,13 @@ keywords:
   - limit shape
   - local time
 license: Apache-2.0
-repository-code: "TODO(author): repository URL"
+repository-code: "https://github.com/nitromannitol/Centrally-Excited-Random-Walk"
 references:
   - type: article
-    title: "Limit shapes of centrally excited random walks"
+    title: "Kozma's centrally excited walk converges to a Euclidean ball"
     authors:
       - family-names: Bou-Rabee
         given-names: Ahmed
       - family-names: Peres
         given-names: Yuval
-    notes: "The paper formalized by this repository; pinned at paper/limit-shapes.tex. TODO(author): arXiv identifier."
+    notes: "The paper formalized by this repository; pinned at paper/limit-shapes.tex."

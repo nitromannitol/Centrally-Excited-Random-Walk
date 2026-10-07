@@ -1,49 +1,29 @@
-% thm-sharp-radii -- CERW.Frozen.sharp_radii (draft). Source: limit-shapes.tex:159-164, label thm:sharp (part (i), eq:planar-polynomial-lower)
-\paragraph{Paper (verbatim).} Theorem environment (lines 156--192); this node is part (i), lines 159--164:
+% thm-sharp-radii: limit-shapes.tex:159-164 (label thm:sharp, part (i))
+\paragraph{Paper excerpt.}
 \begin{verbatim}
-\begin{theorem}[Sharpness]\label{thm:sharp}
-Let $d\geq2$ and $0<\drift<\nf{1}{d}$, and consider the centrally excited random walk.
-\begin{enumerate}[label=\textup{(\roman*)}]
 \item \underline{\emph{Radii in the plane}}: let $d=2$. For every $p>0$ there exists $c(\drift,p)>0$ such that, for all sufficiently large~$n$,
 \begin{equation}\label{eq:planar-polynomial-lower}
 \P\bigl(r_n-\Rin(n)\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}
 \qquad\text{and}\qquad
 \P\bigl(\Rout(n)-r_n\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}\, .
 \end{equation}
-\item \underline{\emph{Iterated logarithm for the radii in the plane}}: let $d=2$. Almost surely,
-\begin{equation}\label{eq:planar-lil-lower}
-\limsup_{n\to\infty}\frac{r_n-\Rin(n)}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}
-\qquad\text{and}\qquad
-\limsup_{n\to\infty}\frac{\Rout(n)-r_n}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}\, .
-\end{equation}
-\item \underline{\emph{Local times near the origin}}: there exists $c(d,\drift)>0$ such that, for all sufficiently large~$n$, with probability at least $1-n^{-c}$,
-\begin{equation}\label{eq:sharp-bulk}
-\max_{\substack{x\in\Z^d\\|x|\leq r_n^{\nf12}}}\bigl|\ell_n(x)-2d\drift(r_n-|x|)\bigr|
-\geq c\begin{cases}\sqrt{r_n}\log n,&d=2,\\\sqrt{r_n\log n},&d\geq3\end{cases}\, .
-\end{equation}
-\item \underline{\emph{Difference of the radii in the plane}}: let $d=2$.
-\begin{enumerate}[label=\textup{(\alph*)}]
-\item For every $p>0$ there exists $c(\drift,p)>0$ such that, for all sufficiently large~$n$,
-\begin{equation}\label{eq:planar-width-polynomial}
-\P\bigl(\Rout(n)-\Rin(n)\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}\, .
-\end{equation}
-\item Almost surely,
-\begin{equation}\label{eq:planar-width-lil}
-\limsup_{n\to\infty}\frac{\Rout(n)-\Rin(n)}{\sqrt{r_n\log\log n}}\geq\sqrt{\frac{\pi}{3\drift}}\, .
-\end{equation}
-\item For every $a\geq0$,
-\begin{equation}\label{eq:planar-width-small}
-\limsup_{n\to\infty}\P\bigl(\Rout(n)-\Rin(n)\leq a\sqrt{r_n}\bigr)\leq1-\exp\Bigl(-\frac{3\drift a^2}{\pi}\Bigr)\, .
-\end{equation}
-\end{enumerate}
-\end{enumerate}
-\end{theorem}
 \end{verbatim}
-\paragraph{Transcription.} $d=2$ is \texttt{hd : d = 2}; $\kappa\in(0,1/d)$ is \texttt{ε}; $r_n$, $\omega_d$ as in thm-shape. The order
-is $\forall p>0,\ \exists c>0,\ \exists n_0,\ \forall(\Omega,\mu,X)$ with \texttt{IsCERW}, $\forall n\ge n_0$, which reads
-``for every $p$ there is $c(\kappa,p)>0$ such that for all sufficiently large $n$'': $c$ and $n_0$ are fixed before the probability
-space (they may be taken so, because the events depend only on the path and the law of the path is determined by \texttt{IsCERW}).
-$r_n-R_{\rm in}(n)\ge c\sqrt{r_n\log n}$ is \texttt{c * √(r n * log n) ≤ r n - innerRadius (X · ω) n}, and
-$R_{\rm out}(n)-r_n\ge\dots$ is the analogous set with \texttt{maxRadius}. A lower bound on a probability is written with
-\texttt{MeasurableSet E} and $\mathrm{ofReal}(n^{-p})\le\mu E$ (repository convention). Both displays of \eqref{eq:planar-polynomial-lower} are
-conjuncts of the same node. No external is used (the proof uses Lemma~\ref{lem:exp-deviation}, which is proved).
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.Frozen.sharp_radii {d : ℕ} (hd : d = 2) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∀ p : ℝ, 0 < p → ∃ c : ℝ, 0 < c ∧ ∃ n₀ : ℕ,
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, n₀ ≤ n →
+        let Ein : Set Ω :=
+          {ω | c * Real.sqrt (r n * Real.log n) ≤ r n - CERW.innerRadius (X · ω) n}
+        let Eout : Set Ω :=
+          {ω | c * Real.sqrt (r n * Real.log n) ≤ CERW.maxRadius (X · ω) n - r n}
+        MeasurableSet Ein ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ Ein ∧
+          MeasurableSet Eout ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ Eout
+--
+\end{verbatim}
+\paragraph{Transcription.}
+$d=2$ is \texttt{hd : d = 2}; $\kappa\in(0,1/d)$ is \texttt{ε}; $r_n$, $\omega_d$ as in thm-shape. The order is $\forall p>0,\ \exists c>0,\ \exists n_0,\ \forall(\Omega,\mu,X)$ with \texttt{IsCERW}, $\forall n\ge n_0$, which reads ``for every $p$ there is $c(\kappa,p)>0$ such that for all sufficiently large $n$'': $c$ and $n_0$ are fixed before the probability space (they may be taken so, because the events depend only on the path and the law of the path is determined by \texttt{IsCERW}). $r_n-R_{\rm in}(n)\ge c\sqrt{r_n\log n}$ is \texttt{c * √(r n * log n) ≤ r n - innerRadius (X · ω) n}, and $R_{\rm out}(n)-r_n\ge\dots$ is the analogous set with \texttt{maxRadius}. A lower bound on a probability is written with \texttt{MeasurableSet E} and $\mathrm{ofReal}(n^{-p})\le\mu E$ (repository convention). Both displays of \eqref{eq:planar-polynomial-lower} are conjuncts of the same node. No

@@ -1,5 +1,5 @@
-% lem-crossing -- CERW.Frozen.drift_crossing, version 2. Source: limit-shapes.tex:561-566 (label lem:crossing)
-\paragraph{Paper (verbatim).}
+% lem-crossing: limit-shapes.tex:562-567 (label lem:crossing)
+\paragraph{Paper excerpt.}
 \begin{verbatim}
 \begin{lemma}\label{lem:crossing}
 On the event in~\eqref{eq:vector}, with the constant~$C$ of~\eqref{eq:vector}, the following holds for every unit vector~$u$ and all integers $0\leq s<t\leq n$. If $u\cdot\xi(X_j)\geq0$ at every first departure time~$j$ with $s\leq j<t$, then
@@ -8,7 +8,7 @@ u\cdot(X_t-X_s)\leq C\sqrt{(t-s)\log n}\, .
 \end{equation*}
 \end{lemma}
 \end{verbatim}
-\paragraph{Exact Lean contract.}
+\paragraph{Lean statement.}
 \begin{verbatim}
 theorem CERW.Frozen.drift_crossing {d : ℕ} (hd : 2 ≤ d) :
     ∀ Ψ : EuclideanSpace ℝ (Fin d) → ℝ, CERW.IsNorm Ψ →
@@ -29,5 +29,7 @@ theorem CERW.Frozen.drift_crossing {d : ℕ} (hd : 2 ≤ d) :
             0 ≤ inner ℝ u (ξ (X j ω))) →
           inner ℝ u (CERW.toSpace (X t ω) - CERW.toSpace (X s ω))
             ≤ C * Real.sqrt ((t - s : ℝ) * Real.log n)
+--
 \end{verbatim}
-\paragraph{Approval.} The author approved this successor on 2026-10-06.
+\paragraph{Transcription.}
+For d>=2, every norm Psi, positive drift and the coordinate ellipticity condition, each p>0 determines C>0 before all subgradient fields and laws. The vector event uses the literal Z_t=X_t+eps sum I_j xi(X_j), contains all s<t<=n bounds, and has complement measure at most C*n^(-p). On it, for every unit u and interval whose first- departure drift projections are nonnegative, the crossing is bounded by the same C*sqrt((t-s)*log n). Actual IsDriftCERW laws are supplied by existing existence proofs. Complete contract: ledger/nl/lem-crossing.tex.
