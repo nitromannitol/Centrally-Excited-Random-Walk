@@ -1,5 +1,6 @@
-% thm-site-fluctuations -- CERW.Frozen.site_fluctuations (draft). Source: limit-shapes.tex:1288-1313, label thm:site-fluctuations
-\paragraph{Paper (verbatim).}
+% thm-site-fluctuations: limit-shapes.tex:1291-1316 (label thm:site-fluctuations)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
 \begin{theorem}[Local times at fixed sites]\label{thm:site-fluctuations}
 Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. Then the following hold.
 \begin{enumerate}[label=\textup{(\roman*)}]
@@ -26,20 +27,38 @@ Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. Then the following
 \end{equation}
 \end{enumerate}
 \end{theorem}
-Definitions the statement relies on (verbatim):
-\textit{the radius $r_n$ (eq:radius, lines 98--100)}
-\begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
-\end{equation}
-\textit{$g$ and $G$ (line 415)}
-Let $\Delta f(x)\coloneqq(2d)^{-1}\sum_{|e|=1}(f(x+e)-f(x))$, summed over the unit vectors $e\in\Z^d$, be the discrete Laplacian. For $d=2$, let $g$ be the potential kernel of simple random walk, normalized by $g(0)=0$. For $d\geq3$, let $g\coloneqq-G$, where the Green function~$G(x)$ is the expected number of visits to~$x$ by simple random walk from the origin. In both cases $\Delta g=\ind_{\{0\}}$; for $d=2$ see \citet*[Proposition~4.4.2]{LawlerLimic2010}. By \citet[Theorems~4.3.1 and~4.4.4]{LawlerLimic2010}, as $|x|\to\infty$,
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.Frozen.site_fluctuations {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    let G : Site d → ℝ := LatticeProb.srwGreenInf d
+    let σ : ℕ → ℝ := fun n =>
+      if d = 2 then Real.sqrt (r n * Real.log (r n)) else Real.sqrt (r n)
+    let lil : ℕ → ℝ := fun n =>
+      if d = 2 then Real.sqrt (2 * r n * Real.log (r n) * Real.log (Real.log n))
+      else Real.sqrt (2 * r n * Real.log (Real.log n))
+    let v : ℝ := if d = 2 then 16 * ε / Real.pi else 2 * d * ε * (2 * G 0 - 1)
+    let cov : Site d → Site d → ℝ := fun y z =>
+      if d = 2 then 16 * ε / Real.pi else 2 * d * ε * (2 * G (y - z) - if y = z then 1 else 0)
+    ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+      (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+      let dev : Site d → ℕ → Ω → ℝ := fun y n ω =>
+        (CERW.localTime (X · ω) n y : ℝ) - 2 * d * ε * (r n - euclidNorm y)
+      (∀ y : Site d,
+        TendstoInDistribution (fun n ω => dev y n ω / σ n) atTop id (fun _ => μ)
+          (gaussianReal 0 v.toNNReal)) ∧
+      (∀ y : Site d, ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ → ∀ s : ℝ, s = 1 ∨ s = -1 →
+        (∀ᶠ n : ℕ in atTop, s * dev y n ω ≤ (Real.sqrt v + δ) * lil n) ∧
+        (∃ᶠ n : ℕ in atTop, (Real.sqrt v - δ) * lil n ≤ s * dev y n ω)) ∧
+      (∀ (k : ℕ) (y : Fin k → Site d),
+        TendstoInDistribution
+          (fun n ω => (WithLp.toLp 2 (fun i => dev (y i) n ω / σ n) : EuclideanSpace ℝ (Fin k)))
+          atTop id (fun _ => μ)
+          (multivariateGaussian 0 (Matrix.of fun i j => cov (y i) (y j))))
+--
+\end{verbatim}
 \paragraph{Transcription.}
-\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set.
-
-\emph{Externals.} Both cited results are hypotheses \verb!hCLT!, \verb!hLIL! by the author's ruling.
-
-\emph{Definitions.} \verb!G = LatticeProb.srwGreenInf d!, $G(x)=\sum_{j\ge0}P^j(0,x)$ (the $j=0$ term is included, so $G(0)\ge1$), the expected number of visits; it is only used when $d\ge3$, where the series converges (for $d=2$ it would be a divergent \verb!tsum!, but that branch does not use $G$). \verb!σ n = if d = 2 then √(r n * log (r n)) else √(r n)!. \verb!lil n = if d = 2 then √(2 * r n * log (r n) * log (log n)) else √(2 * r n * log (log n))!. \verb!v = if d = 2 then 16 * ε / Real.pi else 2 * d * ε * (2 * G 0 - 1)!, positive in both cases ($G(0)\ge1$), so \verb!v.toNNReal! has no junk. \verb!cov y z = if d = 2 then 16 * ε / Real.pi else 2 * d * ε * (2 * G (y - z) - if y = z then 1 else 0)! is eq:site-covariance, the indicator being on the \emph{sites}. \verb!dev y n ω = (localTime (X · ω) n y : ℝ) - 2 * d * ε * (r n - euclidNorm y)! is $\ell_n(y)-2d\drift(r_n-|y|)$ (no positive part).
-
-\emph{(i)} $\forall y$: \verb!TendstoInDistribution (fun n ω => dev y n ω / σ n) atTop id (fun _ => μ) (gaussianReal 0 v.toNNReal)!. \emph{(ii)} $\forall y$, $\forall^{\rm ae}\omega$, $\forall\delta>0$, $\forall s\in\{\pm1\}$: eventually \verb!s * dev y n ω ≤ (√v + δ) * lil n! and frequently \verb!(√v - δ) * lil n ≤ s * dev y n ω! (junk-free form of $\limsup=\sqrt v$). \emph{(iii)} $\forall k\ \forall y:\mathrm{Fin}\,k\to\Z^d$: the vector \verb!WithLp.toLp 2 (fun i => dev (y i) n ω / σ n)! in \verb!EuclideanSpace ℝ (Fin k)! converges in distribution to \verb!multivariateGaussian 0 (Matrix.of fun i j => cov (y i) (y j))!. Mathlib's \verb!multivariateGaussian! is \verb!dirac! for a matrix that is not positive semidefinite, but this matrix is the limit of Gram matrices of conditional covariances (for $d=2$ the constant matrix $\frac{16\varepsilon}{\pi}\mathbf 1\mathbf 1^{\top}$), hence positive semidefinite.
-\paragraph{Version 2.} Version 2 (ruling D6, 2026-10-01): the binder \verb!hCLT! is deleted, because the martingale central limit theorem is proved (\verb!CERW.Generic.Martingale.CLT.martingaleCLT_proved!); only \verb!hLIL! remains.
-\paragraph{Version 3 (ruling D7).} The binder \verb!hLIL! is deleted: Stout's law of the iterated logarithm is proved.
+\emph{Conventions.} \verb!ε! is the paper's $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The walk is \verb!CERW.IsCERW μ ε X! on an arbitrary probability space (universe $u$); \verb!X · ω! is the path $n\mapsto X_n(\omega)$. ``With probability at least $1-Cn^{-p}$'' is an upper bound on the outer measure of the exceptional set. \emph{Internal inputs.} The conditional assembly lemma takes both cited results as internal proof parameters \verb!hCLT!, \verb!hLIL!; the **final registered root supplies them proved**, so neither is an open hypothesis. \emph{Definitions.} \verb!G = LatticeProb.srwGreenInf d!, $G(x)=\sum_{j\ge0}P^j(0,x)$ (the $j=0$ term is included, so $G(0)\ge1$), the expected number of visits; it is

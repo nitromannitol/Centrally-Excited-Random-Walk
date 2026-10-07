@@ -1,5 +1,5 @@
-% lem-exp-deviation -- CERW.Frozen.exp_deviation, version 2. Source: limit-shapes.tex:1363-1377 (label lem:exp-deviation)
-\paragraph{Paper (verbatim).}
+% lem-exp-deviation: limit-shapes.tex:1366-1380 (label lem:exp-deviation)
+\paragraph{Paper excerpt.}
 \begin{verbatim}
 \begin{lemma}\label{lem:exp-deviation}
 Let $0<c_0\leq C_0$. There exist $c(c_0,C_0)>0$ and $C(c_0,C_0)<\infty$ with the following property. Let $m$ and~$n$ be positive integers, let $b>0$, $\delta\geq0$ and $0\leq\alpha\leq1$, and let $S^1,\ldots,S^m$ be real martingales with respect to a common filtration, with $S^i_0=0$ and $|S^i_{t+1}-S^i_t|\leq b$ for $0\leq t<n$. Let $\Omega$ be an event with $\P(\Omega)\geq1-\alpha$ on which $c_0\leq\langle S^i\rangle_n\leq C_0$ for $1\leq i\leq m$. Then, for every real $\beta\geq C$ with $\beta b\leq c$, the following hold.
@@ -17,7 +17,7 @@ Let $0<c_0\leq C_0$. There exist $c(c_0,C_0)>0$ and $C(c_0,C_0)<\infty$ with the
 \end{enumerate}
 \end{lemma}
 \end{verbatim}
-\paragraph{Exact Lean contract.}
+\paragraph{Lean statement.}
 \begin{verbatim}
 theorem CERW.Frozen.exp_deviation :
     ∀ c₀ C₀ : ℝ, 0 < c₀ → c₀ ≤ C₀ → ∃ c C : ℝ, 0 < c ∧ 0 < C ∧
@@ -42,5 +42,7 @@ theorem CERW.Frozen.exp_deviation :
           (μ {ω | ∀ i, S i n ω < c * β}).toReal
             ≤ C * ((m : ℝ)⁻¹ * Real.exp (C * β ^ 2) + β ^ 2 * δ + β ^ 3 * b
               + Real.exp (C * β ^ 2) * Real.sqrt α))
+--
 \end{verbatim}
-\paragraph{Approval.} The author approved this successor on 2026-10-06.
+\paragraph{Transcription.}
+For 0<c0<=C0 choose c,C>0 before the probability space, common filtration, m,n>0, b>0, delta>=0, 0<=alpha<=1 and family S. Each S_i is strongly measurable and integrable through n and satisfies the conditional martingale identity before n. Its start and increment bounds are almost sure. PredBracket is the actual predictable covariation; diagonal bounds and off-diagonal bounds on the measurable event are almost sure. For every beta>=C with beta*b<=c, both signed tail lower bounds hold; with off-diagonal control and beta^2*delta+beta^3*b<=1 the original many-site bound holds. No law, tail, summability or ultimate conclusion is assumed. The nonempty-window fair-coin model supplies a real many-site consumer. Finite-filtration extension and restriction remain proved support. Complete contract: ledger/nl/lem-exp-deviation.tex.

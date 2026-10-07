@@ -4,11 +4,11 @@ import CERW.Support.LocalTime.LocalAssembly
 /-!
 # The local-time potential
 
-`lem:local` of the paper (`limit-shapes.tex:395-411`, Euclidean case). This module is preserved
+`lem:local` of the paper (`limit-shapes.tex:396-412`, Euclidean case). This module is preserved
 support, no longer a registered node: its statement and proof are those of
 `Frozen/LocalTimePotential.lean` of commit f7696856, with only the freeze markers removed. It is the
 Euclidean case that the proofs of `BulkProfile` consume; the pinned paper states the corresponding
-result for a norm (`lem:local`, `limit-shapes.tex:395-411`).
+result for a norm (`lem:local`, `limit-shapes.tex:396-412`).
 -/
 
 universe u
@@ -17,7 +17,7 @@ open MeasureTheory Filter Topology
 open scoped symmDiff Pointwise
 open LatticeProb (Site euclidNorm)
 
-/-- `lem:local` (`limit-shapes.tex:395-411`, Euclidean case):
+/-- `lem:local` (`limit-shapes.tex:396-412`, Euclidean case):
 
 ```latex
 \begin{lemma}\label{lem:local}

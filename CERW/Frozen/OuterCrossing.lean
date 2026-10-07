@@ -4,7 +4,7 @@ import CERW.Support.RevisedPaperCarrier
 /-!
 # lem-outer-crossing
 
-The statement of `limit-shapes.tex:577-582 (label lem:outer-crossing)`.
+The statement of `limit-shapes.tex:578-583 (label lem:outer-crossing)`.
 -/ 
 
 universe u

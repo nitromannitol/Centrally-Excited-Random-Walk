@@ -16,19 +16,18 @@ version: 1
 library: CERW
 source_pin:
   file: paper/limit-shapes.tex
-  sha256: 4cc024b65b889cb782bb0da41fef1c496813f6b367a1c1c668130cd810bc62e6
+  sha256: 0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396
 nodes:
 
   - id: thm-shape
     version: 1
     kind: theorem
-    source: limit-shapes.tex:103-116 (label thm:shape)
+    source: limit-shapes.tex:106-119 (label thm:shape)
     file: CERW/Frozen/LimitShape.lean
     export: CERW.Frozen.limit_shape
     state: PROVED
     frozen_sha256: afe23ec124a7797b5a935f8d6c7c9d284e866118f2c4af2c98d04da9da6894e3
     provider: CERW.Frozen.limit_shape
-    approved: "2026-09-30"
 
   - id: thm-fluctuations
     version: 1
@@ -39,7 +38,6 @@ nodes:
     state: PROVED
     frozen_sha256: ec18ac337d2fb2ca751b815ad92dd51d844ed4a40d5189a740a641e0e09812a4
     provider: CERW.Frozen.fluctuation_rates
-    approved: "2026-09-30"
 
   - id: thm-sharp-radii
     version: 1
@@ -50,7 +48,6 @@ nodes:
     state: PROVED
     frozen_sha256: 72fbd89c684fe5947057fbbf5cfb00e6a2689b59aede6a5dfe1c5a74c4ce4c9c
     provider: CERW.Frozen.sharp_radii
-    approved: "2026-09-30"
 
   - id: thm-sharp-radii-lil
     version: 2
@@ -61,7 +58,6 @@ nodes:
     state: PROVED
     frozen_sha256: 02bf74c87e998ed87b8992806d085f7b87649b45355fb1c033f486b3a551d74e
     provider: CERW.Frozen.sharp_radii_lil
-    approved: "2026-10-02"
 
   - id: thm-sharp-bulk
     version: 1
@@ -72,7 +68,6 @@ nodes:
     state: PROVED
     frozen_sha256: 9bab71e5d1b9792c8f8c11bfc783ad04d6eb135525693acdcd98b660959668e8
     provider: CERW.Frozen.sharp_bulk
-    approved: "2026-09-30"
 
   - id: thm-sharp-width
     version: 4
@@ -83,236 +78,214 @@ nodes:
     state: PROVED
     frozen_sha256: 61203b6c376231a12440a7cb8937c6099d52f77cd65166b7115c65ea32a3cdc0
     provider: CERW.Frozen.sharp_width
-    approved: "2026-10-06"
 
   - id: thm-norm-shape
     version: 1
     kind: theorem
-    source: limit-shapes.tex:340-353 (label thm:norm-shape)
+    source: limit-shapes.tex:341-354 (label thm:norm-shape)
     file: CERW/Frozen/NormShape.lean
     export: CERW.Frozen.norm_shape
     state: PROVED
     frozen_sha256: 2d3df99b7e7b2255c43fc0572eaaab84dd2b700427303abb9633798d13d3d3db
     provider: CERW.Frozen.norm_shape
-    approved: "2026-09-30"
 
   - id: lem-ballpotential
     version: 1
     kind: theorem
-    source: limit-shapes.tex:371-376 (label lem:ballpotential)
+    source: limit-shapes.tex:372-377 (label lem:ballpotential)
     file: CERW/Frozen/NormBallPotential.lean
     export: CERW.Frozen.norm_ball_potential
     state: PROVED
     frozen_sha256: a1b46e20b7aa5a120584785042d8dac1ceb272e0d1513492f51dad5ea7cbe4c8
     provider: CERW.Frozen.norm_ball_potential
-    approved: "2026-09-30"
 
   - id: lem-local
     version: 1
     kind: theorem
-    source: limit-shapes.tex:395-411 (label lem:local)
+    source: limit-shapes.tex:396-412 (label lem:local)
     file: CERW/Frozen/NormLocalTime.lean
     export: CERW.Frozen.norm_local_time_potential
     state: PROVED
     frozen_sha256: 9c472ab635b0014c78ca5373c2288ed7181ee112a164c30ac614ec8c8752a3a7
     provider: CERW.Frozen.norm_local_time_potential
-    approved: "2026-09-30"
 
   - id: lem-freedman
     version: 1
     kind: theorem
-    source: limit-shapes.tex:447-452 (label lem:freedman)
+    source: limit-shapes.tex:448-453 (label lem:freedman)
     file: CERW/Frozen/FreedmanBound.lean
     export: CERW.Frozen.freedman_bound
     state: PROVED
     frozen_sha256: cf4024fbf5336db798bcdf60c0710b003595a90f491d5a6bbbfaf4eac9774dfc
     provider: CERW.Frozen.freedman_bound
-    approved: "2026-09-30"
 
   - id: lem-cell
     version: 1
     kind: theorem
-    source: limit-shapes.tex:465-470 (label lem:cell)
+    source: limit-shapes.tex:466-471 (label lem:cell)
     file: CERW/Frozen/CellGradient.lean
     export: CERW.Frozen.cell_gradient
     state: PROVED
     frozen_sha256: 714ade301bc1979807177f7ec5bd32758cdcf61b2e11398901589a5fd015e638
     provider: CERW.Frozen.cell_gradient
-    approved: "2026-09-30"
 
   - id: prop-coarse
     version: 1
     kind: theorem
-    source: limit-shapes.tex:540-547 (label prop:coarse)
+    source: limit-shapes.tex:541-548 (label prop:coarse)
     file: CERW/Frozen/NormCoarseBounds.lean
     export: CERW.Frozen.norm_coarse_bounds
     state: PROVED
     frozen_sha256: 89c6dc199bee5ccc0681ec40288efb12f6e90289785f4bcdbf8cc5f46a0b9c98
     provider: CERW.Frozen.norm_coarse_bounds
-    approved: "2026-09-30"
 
   - id: lem-crossing
     version: 2
     kind: theorem
-    source: limit-shapes.tex:561-566 (label lem:crossing)
+    source: limit-shapes.tex:562-567 (label lem:crossing)
     file: CERW/Frozen/DriftCrossing.lean
     export: CERW.Frozen.drift_crossing
     state: PROVED
     frozen_sha256: 02ed2c8631e1ebacca4a11df2589a0fc5b379f0ffd8eb2f6801cc580ae6dfffe
     provider: CERW.Frozen.drift_crossing
-    approved: "2026-10-06"
 
   - id: prop-norm-shape
     version: 1
     kind: theorem
-    source: limit-shapes.tex:698-714 (label prop:norm-shape)
+    source: limit-shapes.tex:701-717 (label prop:norm-shape)
     file: CERW/Frozen/NormShapeRates.lean
     export: CERW.Frozen.norm_shape_rates
     state: PROVED
     frozen_sha256: 957071d857eb59f201c69baced31da2dc3a17fc662e15b59f8f59ffb8eba3865
     provider: CERW.Frozen.norm_shape_rates
-    approved: "2026-09-30"
 
   - id: lem-layer
     version: 1
     kind: theorem
-    source: limit-shapes.tex:521-526 (label lem:layer)
+    source: limit-shapes.tex:522-527 (label lem:layer)
     file: CERW/Frozen/LayerPotential.lean
     export: CERW.Frozen.layer_potential
     state: PROVED
     frozen_sha256: 168161bee795c953f19970049ce2b040961fbf0ed09f48ed27e9589e62d6d672
     provider: CERW.Frozen.layer_potential
-    approved: "2026-09-30"
 
   - id: lem-contact
     version: 2
     kind: theorem
-    source: limit-shapes.tex:771-776 (label lem:contact)
+    source: limit-shapes.tex:774-779 (label lem:contact)
     file: CERW/Frozen/ContactPotential.lean
     export: CERW.Frozen.contact_potential
     state: PROVED
     frozen_sha256: 176d73b22647866bb6cbdd4b64d07062c56dac0e3312acbf2e6f5486ee876594
     provider: CERW.Frozen.contact_potential
-    approved: "2026-10-06"
 
   - id: lem-outer-crossing
     version: 2
     kind: theorem
-    source: limit-shapes.tex:577-582 (label lem:outer-crossing)
+    source: limit-shapes.tex:578-583 (label lem:outer-crossing)
     file: CERW/Frozen/OuterCrossing.lean
     export: CERW.Frozen.outer_crossing
     state: PROVED
     frozen_sha256: d9a4cb2430a43675b7b7ba691fbd7338a186ff65c1da430c9005e425b9340555
     provider: CERW.Frozen.outer_crossing
-    approved: "2026-10-06"
 
   - id: prop-inner
     version: 1
     kind: theorem
-    source: limit-shapes.tex:900-916 (label prop:inner)
+    source: limit-shapes.tex:903-919 (label prop:inner)
     file: CERW/Frozen/InnerRadius.lean
     export: CERW.Frozen.inner_radius
     state: PROVED
     frozen_sha256: 2d9401fb69c6e5346005b003eeff3a0e41b744489a8ffb0baef89864cb60a244
     provider: CERW.Frozen.inner_radius
-    approved: "2026-09-30"
 
   - id: prop-stronger-outer
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1012-1017 (label prop:stronger-outer)
+    source: limit-shapes.tex:1015-1020 (label prop:stronger-outer)
     file: CERW/Frozen/OuterRadius.lean
     export: CERW.Frozen.outer_radius
     state: PROVED
     frozen_sha256: 6590555088155da416f44b0c49d47773a5ee72de758fc397ca5ef2755dc403de
     provider: CERW.Frozen.outer_radius
-    approved: "2026-09-30"
 
   - id: lem-near-far
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1043-1048 (label lem:near-far)
+    source: limit-shapes.tex:1046-1051 (label lem:near-far)
     file: CERW/Frozen/NearFar.lean
     export: CERW.Frozen.near_far
     state: PROVED
     frozen_sha256: 1bd6626860ec14cd2e1cb1cbc4905ac3d8d5cb64c05f20a4479af337a5d7cabf
     provider: CERW.Frozen.near_far
-    approved: "2026-09-30"
 
   - id: thm-moment-fluctuations
     version: 3
     kind: theorem
-    source: limit-shapes.tex:1193-1214 (label thm:moment-fluctuations)
+    source: limit-shapes.tex:1196-1217 (label thm:moment-fluctuations)
     file: CERW/Frozen/MomentFluctuations.lean
     export: CERW.Frozen.moment_fluctuations
     state: PROVED
     frozen_sha256: 06ccccaa3cbc9ff36d4593ff974c1072aaec54ed01617a3fcf5087e54e13fe5f
     provider: CERW.Frozen.moment_fluctuations
-    approved: "2026-10-02"
 
   - id: lem-fixed-site-centering
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1258-1264 (label lem:fixed-site-centering)
+    source: limit-shapes.tex:1261-1267 (label lem:fixed-site-centering)
     file: CERW/Frozen/FixedSiteCentering.lean
     export: CERW.Frozen.fixed_site_centering
     state: PROVED
     frozen_sha256: 0c4ecaed7602a58c804a769396308b5a346ff427b933958b983b38b6f99b033f
     provider: CERW.Frozen.fixed_site_centering
-    approved: "2026-09-30"
 
   - id: thm-site-fluctuations
     version: 3
     kind: theorem
-    source: limit-shapes.tex:1288-1313 (label thm:site-fluctuations)
+    source: limit-shapes.tex:1291-1316 (label thm:site-fluctuations)
     file: CERW/Frozen/SiteFluctuations.lean
     export: CERW.Frozen.site_fluctuations
     state: PROVED
     frozen_sha256: 5dd4c40c63104a13a9388667d3a2574e8e90abfe53486acd60c7e7eb87292552
     provider: CERW.Frozen.site_fluctuations
-    approved: "2026-10-02"
 
   - id: lem-exp-deviation
     version: 2
     kind: theorem
-    source: limit-shapes.tex:1363-1377 (label lem:exp-deviation)
+    source: limit-shapes.tex:1366-1380 (label lem:exp-deviation)
     file: CERW/Frozen/ExpDeviation.lean
     export: CERW.Frozen.exp_deviation
     state: PROVED
     frozen_sha256: 998e8a6a9a39ee8b7b0789e8673b2a40c0a627730f156bf376b0706a2d6651c1
     provider: CERW.Frozen.exp_deviation
-    approved: "2026-10-06"
 
   - id: prop-bulk-profile
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1495-1502 (label prop:bulk-profile)
+    source: limit-shapes.tex:1498-1505 (label prop:bulk-profile)
     file: CERW/Frozen/BulkProfile.lean
     export: CERW.Frozen.bulk_profile
     state: PROVED
     frozen_sha256: 34aa5668e98eaba6d8c37552c243e758e12c645e90f222ff30b20621630d0e34
     provider: CERW.Frozen.bulk_profile
-    approved: "2026-09-30"
 
   - id: lem-separated-brackets
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1529-1536 (label lem:separated-brackets)
+    source: limit-shapes.tex:1532-1539 (label lem:separated-brackets)
     file: CERW/Frozen/SeparatedBrackets.lean
     export: CERW.Frozen.separated_brackets
     state: PROVED
     frozen_sha256: 342581ac105e4d601df6d9e1d5fbf1238a798aa55c2213d3fbf733f1735a4b78
     provider: CERW.Frozen.separated_brackets
-    approved: "2026-09-30"
 
   - id: prop-log-lower
     version: 1
     kind: theorem
-    source: limit-shapes.tex:1599-1613 (label prop:log-lower)
+    source: limit-shapes.tex:1602-1616 (label prop:log-lower)
     file: CERW/Frozen/LogLowerBounds.lean
     export: CERW.Frozen.log_lower_bounds
     state: PROVED
     frozen_sha256: 201878321aa214c30fca342516f5666f47deed86c574046207f9383f9234b8b4
     provider: CERW.Frozen.log_lower_bounds
-    approved: "2026-09-30"
 

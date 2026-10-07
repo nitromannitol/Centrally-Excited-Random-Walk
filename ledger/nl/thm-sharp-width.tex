@@ -1,5 +1,5 @@
-% thm-sharp-width -- CERW.Frozen.sharp_width, version 4. Source: limit-shapes.tex:176-189 (label thm:sharp, part (iv)(a), (iv)(b) and (iv)(c))
-\paragraph{Paper (verbatim).}
+% thm-sharp-width: limit-shapes.tex:176-189 (label thm:sharp, part (iv)(a), (iv)(b) and (iv)(c))
+\paragraph{Paper excerpt.}
 \begin{verbatim}
 \item \underline{\emph{Difference of the radii in the plane}}: let $d=2$.
 \begin{enumerate}[label=\textup{(\alph*)}]
@@ -16,7 +16,7 @@
 \limsup_{n\to\infty}\P\bigl(\Rout(n)-\Rin(n)\leq a\sqrt{r_n}\bigr)\leq1-\exp\Bigl(-\frac{3\drift a^2}{\pi}\Bigr)\, .
 \end{equation}
 \end{verbatim}
-\paragraph{Exact Lean contract.}
+\paragraph{Lean statement.}
 \begin{verbatim}
 theorem CERW.Frozen.sharp_width {d : ℕ} (hd : d = 2) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
@@ -39,5 +39,7 @@ theorem CERW.Frozen.sharp_width {d : ℕ} (hd : d = 2) :
         limsup (fun n => μ {ω | CERW.maxRadius (X · ω) n - CERW.innerRadius (X · ω) n
           ≤ a * Real.sqrt (r n)}) atTop ≤
           ENNReal.ofReal (1 - Real.exp (-(3 * ε * a ^ 2 / Real.pi))))
+--
 \end{verbatim}
-\paragraph{Approval.} The author approved this successor on 2026-10-06.
+\paragraph{Transcription.}
+The statement covers all (iv)(a), (iv)(b) and (iv)(c). The dimension is d=2; 0<eps<1/d is explicit. The polynomial lower bound chooses c>0 and n0 after p>0 and before all probability spaces and walks. The iterated-logarithm lower bound is the junk-free almost- sure frequent-time assertion with every positive slack. The third conjunct is the ENNReal limsup of the actual width-event probability for every a>=0, bounded by ofReal(1-exp(-(3*eps*a^2/pi))). No CLT, LIL or output premise is assumed. 

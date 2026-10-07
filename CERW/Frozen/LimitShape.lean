@@ -4,7 +4,7 @@ import CERW.Support.Main.LimitShape
 /-!
 # thm:shape
 
-`thm:shape` of the revised paper (`limit-shapes.tex:103-116`). The bytes between the markers are the
+`thm:shape` of the revised paper (`limit-shapes.tex:106-119`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

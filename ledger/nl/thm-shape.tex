@@ -1,20 +1,5 @@
-% thm-shape -- CERW.Frozen.limit_shape (draft). Source: limit-shapes.tex:103-116, label thm:shape
-\paragraph{Paper (verbatim).} Definitions used (lines 90--101):
-\begin{verbatim}
-
-For an integer~$n\geq0$ let
-\begin{equation*}
-\ell_n(x)\coloneqq\sum_{j=0}^{n-1}\ind_{\{X_j=x\}}
-\qquad\text{and}\qquad
-A_n\coloneqq\{x:\ell_n(x)>0\}\, .
-\end{equation*}
-The \defn{local time}~$\ell_n(x)$ is the number of departures from~$x$ before time~$n$, and $A_n$ is the \defn{range}; the set of sites visited by time~$n$ is~$A_{n+1}$. Write $B(y,\rho)$ for the open Euclidean ball of radius~$\rho$ about~$y$ and $\omega_d$ for the volume of~$B(0,1)$, and let
-\begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
-\end{equation}
-so that the cone $2d\drift(r_n-|v|)_+$ has integral~$n$ over~$\R^d$. Informally, after $n$~steps the range contains essentially every site~$x$ with $|x|<r_n$ and essentially no site with $|x|>r_n$, and the local time at each site~$x$ is about $2d\drift(r_n-|x|)_+$. This profile determines~$r_n$: the local times sum to~$n$, and the slope~$2d\drift$ of the cone is the slope of the potential of a ball, computed in~\eqref{eq:ballpotential-euclid} below.
-\end{verbatim}
-Theorem (lines 103--116):
+% thm-shape: limit-shapes.tex:106-119 (label thm:shape)
+\paragraph{Paper excerpt.}
 \begin{verbatim}
 \begin{theorem}[Limit shape]\label{thm:shape}
 Let $d\geq2$ and $0<\drift< \frac1d$. Then, almost surely, the centrally excited random walk has the following properties.
@@ -31,12 +16,24 @@ Let $d\geq2$ and $0<\drift< \frac1d$. Then, almost surely, the centrally excited
 \end{enumerate}
 \end{theorem}
 \end{verbatim}
-\paragraph{Transcription.} The walk is any process \texttt{X} on any probability space $(\Omega,\mu)$
-with \texttt{CERW.IsCERW μ ε X} ($\varepsilon=\kappa$); $d\ge2$ is \texttt{hd : 2 ≤ d} and $0<\kappa<1/d$ is
-\texttt{hε, hεd}. $\omega_d$ is \texttt{(volume (ball 0 1)).toReal} and $r_n$ is the \texttt{let}
-\texttt{r}, with the natural-number casts taken in $\mathbb R$. $\ell_n$ is \texttt{CERW.localTime} and $A_n$ is
-\texttt{CERW.departureRange} (coerced to a \texttt{Set}), so $A_n=\{X_0,\dots,X_{n-1}\}$ as in the paper.
-``Almost surely'' is a single \texttt{∀ᵐ ω ∂μ} over the conjunction of (i)--(iii), with the quantifier over $\eta$
-inside it. (i) is ``for every $0<\eta<1$, eventually'' with the two inclusions. (ii) ``$\frac1{r_n}\max_x|\cdot|\to0$''
-is read as $\forall\eta>0$, eventually in $n$, $\forall x$, $|\ell_n(x)-2d\kappa\max(r_n-|x|,0)|\le\eta r_n$ (for $|x|\ge r_n$ outside the range both $\ell_n(x)$ and $(r_n-|x|)_+$ vanish, so the maximum is over finitely many $x$ and the two forms are equivalent). (iii) is
-$\forall x,\ \exists^{f} j,\ X_j=x$. No constants occur, so there is no binder-order issue; the hypotheses precede the space.
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.Frozen.limit_shape {d : ℕ} (hd : 2 ≤ d)
+    {ε : ℝ} (hε : 0 < ε) (hεd : ε < 1 / (d : ℝ))
+    {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (X : ℕ → Ω → Site d) (hX : CERW.IsCERW μ ε X) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∀ᵐ ω ∂μ,
+      (∀ η : ℝ, 0 < η → η < 1 → ∀ᶠ n : ℕ in atTop,
+        {x : Site d | euclidNorm x < (1 - η) * r n} ⊆ ↑(CERW.departureRange (X · ω) n) ∧
+        (↑(CERW.departureRange (X · ω) n) : Set (Site d)) ⊆
+          {x | euclidNorm x < (1 + η) * r n}) ∧
+      (∀ η : ℝ, 0 < η → ∀ᶠ n : ℕ in atTop, ∀ x : Site d,
+        |(CERW.localTime (X · ω) n x : ℝ) - 2 * d * ε * max (r n - euclidNorm x) 0|
+          ≤ η * r n) ∧
+      (∀ x : Site d, ∃ᶠ j in atTop, X j ω = x)
+--
+\end{verbatim}
+\paragraph{Transcription.}
+The walk is any process \texttt{X} on any probability space $(\Omega,\mu)$ with \texttt{CERW.IsCERW μ ε X} ($\varepsilon=\kappa$); $d\ge2$ is \texttt{hd : 2 ≤ d} and $0<\kappa<1/d$ is \texttt{hε, hεd}. $\omega_d$ is \texttt{(volume (ball 0 1)).toReal} and $r_n$ is the \texttt{let} \texttt{r}, with the natural-number casts taken in $\mathbb R$. $\ell_n$ is \texttt{CERW.localTime} and $A_n$ is \texttt{CERW.departureRange} (coerced to a \texttt{Set}), so $A_n=\{X_0,\dots,X_{n-1}\}$ as in the paper. ``Almost surely'' is a single \texttt{∀ᵐ ω ∂μ} over the conjunction of (i)--(iii), with the quantifier over $\eta$ inside it. (i) is ``for every $0<\eta<1$, eventually'' with the two inclusions. (ii) ``$\frac1{r_n}\max_x|\cdot|\to0$'' is read as $\forall\eta>0$, eventually in $n$, $\forall x$, $|\ell_n(x)-2d\kappa\max(r_n-|x|,0)|\le\eta r_n$ (for $|x|\ge r_n$ outside the range both $\ell_n(x)$

@@ -4,7 +4,7 @@ import CERW.Support.RevisedPaperContact
 /-!
 # lem-contact
 
-The statement of `limit-shapes.tex:771-776 (label lem:contact)`.
+The statement of `limit-shapes.tex:774-779 (label lem:contact)`.
 -/ 
 
 universe u

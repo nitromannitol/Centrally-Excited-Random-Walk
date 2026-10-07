@@ -4,7 +4,7 @@ import CERW.Support.Norm.BallLayer
 /-!
 # lem:ballpotential
 
-`lem:ballpotential` of the revised paper (`limit-shapes.tex:371-376`). The bytes between the markers are the
+`lem:ballpotential` of the revised paper (`limit-shapes.tex:372-377`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

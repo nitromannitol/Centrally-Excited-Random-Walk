@@ -1,49 +1,29 @@
-% thm-sharp-radii-lil -- CERW.Frozen.sharp_radii_lil (draft). Source: limit-shapes.tex:165-170, label thm:sharp (part (ii), eq:planar-lil-lower)
-\paragraph{Paper (verbatim).} Theorem environment (lines 156--192); this node is part (ii), lines 165--170:
+% thm-sharp-radii-lil: limit-shapes.tex:165-170 (label thm:sharp, part (ii))
+\paragraph{Paper excerpt.}
 \begin{verbatim}
-\begin{theorem}[Sharpness]\label{thm:sharp}
-Let $d\geq2$ and $0<\drift<\nf{1}{d}$, and consider the centrally excited random walk.
-\begin{enumerate}[label=\textup{(\roman*)}]
-\item \underline{\emph{Radii in the plane}}: let $d=2$. For every $p>0$ there exists $c(\drift,p)>0$ such that, for all sufficiently large~$n$,
-\begin{equation}\label{eq:planar-polynomial-lower}
-\P\bigl(r_n-\Rin(n)\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}
-\qquad\text{and}\qquad
-\P\bigl(\Rout(n)-r_n\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}\, .
-\end{equation}
 \item \underline{\emph{Iterated logarithm for the radii in the plane}}: let $d=2$. Almost surely,
 \begin{equation}\label{eq:planar-lil-lower}
 \limsup_{n\to\infty}\frac{r_n-\Rin(n)}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}
 \qquad\text{and}\qquad
 \limsup_{n\to\infty}\frac{\Rout(n)-r_n}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}\, .
 \end{equation}
-\item \underline{\emph{Local times near the origin}}: there exists $c(d,\drift)>0$ such that, for all sufficiently large~$n$, with probability at least $1-n^{-c}$,
-\begin{equation}\label{eq:sharp-bulk}
-\max_{\substack{x\in\Z^d\\|x|\leq r_n^{\nf12}}}\bigl|\ell_n(x)-2d\drift(r_n-|x|)\bigr|
-\geq c\begin{cases}\sqrt{r_n}\log n,&d=2,\\\sqrt{r_n\log n},&d\geq3\end{cases}\, .
-\end{equation}
-\item \underline{\emph{Difference of the radii in the plane}}: let $d=2$.
-\begin{enumerate}[label=\textup{(\alph*)}]
-\item For every $p>0$ there exists $c(\drift,p)>0$ such that, for all sufficiently large~$n$,
-\begin{equation}\label{eq:planar-width-polynomial}
-\P\bigl(\Rout(n)-\Rin(n)\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}\, .
-\end{equation}
-\item Almost surely,
-\begin{equation}\label{eq:planar-width-lil}
-\limsup_{n\to\infty}\frac{\Rout(n)-\Rin(n)}{\sqrt{r_n\log\log n}}\geq\sqrt{\frac{\pi}{3\drift}}\, .
-\end{equation}
-\item For every $a\geq0$,
-\begin{equation}\label{eq:planar-width-small}
-\limsup_{n\to\infty}\P\bigl(\Rout(n)-\Rin(n)\leq a\sqrt{r_n}\bigr)\leq1-\exp\Bigl(-\frac{3\drift a^2}{\pi}\Bigr)\, .
-\end{equation}
-\end{enumerate}
-\end{enumerate}
-\end{theorem}
 \end{verbatim}
-\paragraph{Transcription.} $d=2$ is \texttt{hd : d = 2}; the external Stout law of the iterated logarithm is carried as the hypothesis
-\texttt{hLIL : CERW.External.StoutLIL.{u}} (author ruling: the proof reaches Stout's theorem through
-Theorem~\ref{thm:moment-fluctuations}(ii), line 1252). ``Almost surely $\limsup_n a_n\ge L$'' is written junk-free
-(repository convention) as \texttt{∀ᵐ ω, ∀ δ > 0, ∃ᶠ n, (L - δ) * √(r n * log (log n)) ≤ a n} with
-$L=1/\sqrt{10\pi\kappa}$, $a_n=r_n-R_{\rm in}(n)$ for the first display and $a_n=R_{\rm out}(n)-r_n$ for the second; both
-displays are conjuncts under the same \texttt{∀ δ} inside one \texttt{∀ᵐ}. Dividing by $\sqrt{r_n\log\log n}>0$ (true for $n\ge3$)
-recovers the ratio form, and the finitely many $n$ with $\log\log n\le0$ do not affect a ``frequently'' statement.
-\paragraph{Version 2 (ruling D7).} The binder \verb!hLIL! is deleted: Stout's law of the iterated logarithm is proved.
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.Frozen.sharp_radii_lil {d : ℕ} (hd : d = 2) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+      (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+      ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ →
+        (∃ᶠ n : ℕ in atTop,
+          (1 / Real.sqrt (10 * Real.pi * ε) - δ) * Real.sqrt (r n * Real.log (Real.log n))
+            ≤ r n - CERW.innerRadius (X · ω) n) ∧
+        (∃ᶠ n : ℕ in atTop,
+          (1 / Real.sqrt (10 * Real.pi * ε) - δ) * Real.sqrt (r n * Real.log (Real.log n))
+            ≤ CERW.maxRadius (X · ω) n - r n)
+--
+\end{verbatim}
+\paragraph{Transcription.}
+The statement assumes d = 2 and 0 < ε < 1/d. Both lower bounds are under one almost-sure quantifier. For each δ > 0, each radius deviation is at least (1/√(10πε) − δ)√(r_n log log n) infinitely often. This is equivalent to the two displayed limsup bounds because the normalizer is positive for n ≥ 3. Stout's law is proved by CERW.Generic.Martingale.LilAssembly.stout_lower and supplied in the proof; it is not a hypothesis of the registered theorem.

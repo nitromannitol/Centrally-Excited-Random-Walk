@@ -1,23 +1,8 @@
-% thm-fluctuations -- CERW.Frozen.fluctuation_rates (draft). Source: limit-shapes.tex:130-152, label thm:fluctuations
-\paragraph{Paper (verbatim).} Definitions used (lines 98--101--127):
-\begin{verbatim}
-\begin{equation}\label{eq:radius}
-r_n\coloneqq\left(\frac{(d+1)n}{2d\drift\omega_d}\right)^{\frac{1}{d+1}}\, ,
-\end{equation}
-so that the cone $2d\drift(r_n-|v|)_+$ has integral~$n$ over~$\R^d$. Informally, after $n$~steps the range contains essentially every site~$x$ with $|x|<r_n$ and essentially no site with $|x|>r_n$, and the local time at each site~$x$ is about $2d\drift(r_n-|x|)_+$. This profile determines~$r_n$: the local times sum to~$n$, and the slope~$2d\drift$ of the cone is the slope of the potential of a ball, computed in~\eqref{eq:ballpotential-euclid} below.
-...
-
-Replace each site~$x\in A_n$ by the unit cell~$C_x\coloneqq x+[- \frac12, \frac12)^d$, and let $D_n\coloneqq\bigcup_{x\in A_n}C_x$. The \defn{inner radius} and the \defn{outer radius} are
-\begin{equation}\label{eq:radii}
-\Rin(n)\coloneqq\inf_{y\notin D_n}|y|
-\qquad\text{and}\qquad
-\Rout(n)\coloneqq\max_{0\leq j\leq n}|X_j|\, .
-\end{equation}
-\end{verbatim}
-Theorem (lines 130--152):
+% thm-fluctuations: limit-shapes.tex:130-152 (label thm:fluctuations)
+\paragraph{Paper excerpt.}
 \begin{verbatim}
 \begin{theorem}[Fluctuation bounds]\label{thm:fluctuations}
-Let $d\geq2$ and $0<\drift<1/d$, and consider the centrally excited random walk. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, the following bounds hold simultaneously with probability at least $1-Cn^{-p}$.
+Let $d\geq2$ and $0<\drift<1/d$. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, the following bounds hold simultaneously with probability at least $1-Cn^{-p}$.
 \begin{enumerate}[label=\textup{(\roman*)}]
 \item \underline{\emph{Radii}}:
 \begin{equation*}
@@ -37,18 +22,36 @@ Let $d\geq2$ and $0<\drift<1/d$, and consider the centrally excited random walk.
 \leq C\begin{cases}\sqrt{r_n}(\log n)^{\nf32},&d=2,\\\sqrt{r_n\log n},&d\geq3\end{cases}\, .
 \end{equation*}
 \end{enumerate}
-Moreover, almost surely these bounds hold for all sufficiently large~$n$.
+In particular, these bounds hold for all sufficiently large~$n$ almost surely. 
 \end{theorem}
 \end{verbatim}
-\paragraph{Transcription.} Parameters $d,\kappa,p$ precede the constant, which precedes the probability space: the
-Lean order is \texttt{hd, ε, p, ∃ C > 0, ∀ Ω μ X}, matching $C(d,\kappa,p)$. \texttt{Good C Y n} is the conjunction of the
-three parts (i)--(iii) for the path $Y$ at time $n$, with the $d=2$ / $d\ge3$ split written as \texttt{if d = 2 then … else …}
-(so the \texttt{else} branch is $d\ge3$ under \texttt{hd}); \texttt{CERW.innerRadius} is $\inf_{y\notin D_n}|y|$,
-\texttt{CERW.maxRadius} is $\max_{0\le j\le n}|X_j|$, \texttt{CERW.cellSet} is $D_n=\bigcup_{x\in A_n}C_x$, and the maximum over
-$x\in\mathbb Z^d$ in (iii) is a universally quantified bound. The volume $|r_n^{-1}D_n\mathbin\triangle B(0,1)|$ is
-\texttt{volume (((r n)⁻¹ • cellSet Y n) ∆ ball 0 1)}: the scaling applies to $D_n$ only (the audit found that the draft
-omits the inner parentheses, and then Lean parses \texttt{•} below \texttt{∆}, scaling the symmetric difference). ``With probability at
-least $1-Cn^{-p}$, for every integer $n\ge2$'' is $\mu\{\omega:\neg\,\mathrm{Good}\}\le\mathrm{ofReal}(Cn^{-p})$ for all realizations and
-all $n\ge2$ (outer measure of the exceptional event). ``Moreover, almost surely these bounds hold for all sufficiently large $n$'' is
-\texttt{∀ᵐ ω, ∀ᶠ n, Good C (X · ω) n} with the same $C$ as the probability bound for that $p$ (author ruling). The constant is
-taken positive, which loses nothing since enlarging $C$ weakens both clauses.
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.Frozen.fluctuation_rates {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    let Good : ℝ → (ℕ → Site d) → ℕ → Prop := fun C Y n =>
+      (if d = 2 then
+          |CERW.innerRadius Y n - r n| ≤ C * Real.sqrt (r n * Real.log n) ∧
+            CERW.maxRadius Y n - r n ≤ C * Real.sqrt (r n) * Real.log n ^ ((5 : ℝ) / 2)
+        else
+          |CERW.innerRadius Y n - r n| ≤ C * Real.log n ∧
+            CERW.maxRadius Y n - r n ≤ C * Real.log n ^ ((d : ℝ) + 1)) ∧
+      volume (((r n)⁻¹ • CERW.cellSet Y n) ∆ Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)
+          ≤ ENNReal.ofReal
+            (C * if d = 2 then Real.sqrt (Real.log n / r n) else Real.log n / r n) ∧
+      ∀ x : Site d,
+        |(CERW.localTime Y n x : ℝ) - 2 * d * ε * max (r n - euclidNorm x) 0|
+          ≤ C * if d = 2 then Real.sqrt (r n) * Real.log n ^ ((3 : ℝ) / 2)
+            else Real.sqrt (r n * Real.log n)
+    ∀ p : ℝ, 0 < p → ∃ C : ℝ, 0 < C ∧
+      (∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, 2 ≤ n →
+        μ {ω | ¬ Good C (X · ω) n} ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))) ∧
+      (∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ᵐ ω ∂μ, ∀ᶠ n : ℕ in atTop, Good C (X · ω) n)
+--
+\end{verbatim}
+\paragraph{Transcription.}
+Parameters $d,\kappa,p$ precede the constant, which precedes the probability space: the Lean order is \texttt{hd, ε, p, ∃ C > 0, ∀ Ω μ X}, matching $C(d,\kappa,p)$. \texttt{Good C Y n} is the conjunction of the three parts (i)--(iii) for the path $Y$ at time $n$, with the $d=2$ / $d\ge3$ split written as \texttt{if d = 2 then … else …} (so the \texttt{else} branch is $d\ge3$ under \texttt{hd}); \texttt{CERW.innerRadius} is $\inf_{y\notin D_n}|y|$, \texttt{CERW.maxRadius} is $\max_{0\le j\le n}|X_j|$, \texttt{CERW.cellSet} is $D_n=\bigcup_{x\in A_n}C_x$, and the maximum over $x\in\mathbb Z^d$ in (iii) is a universally quantified bound. The volume $|r_n^{-1}D_n\mathbin\triangle B(0,1)|$ is \texttt{volume (((r n)⁻¹ • cellSet Y n) ∆ ball 0 1)}: the scaling applies to $D_n$ only .
