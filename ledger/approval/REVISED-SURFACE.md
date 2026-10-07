@@ -24,7 +24,7 @@ cited-result binder.
 ## Revised registry
 
 - **The pin.** `source_pin` is `paper/limit-shapes.tex`, sha256
-  `c39feeaf71f83234fdd4b1e2fd6b4d6c739197b2c419c8ac1bb868ce8768c219`. Every one of its 24 labelled
+  `4cc024b65b889cb782bb0da41fef1c496813f6b367a1c1c668130cd810bc62e6`. Every one of its 24 labelled
   theorem-like environments is claimed by a node (`check_coverage`).
 - **Theorem nodes.** There are **27**, one file each under `CERW/Frozen/`:
   - one per environment;
@@ -128,3 +128,17 @@ proof evidence remain historical evidence for that scope. The current certificat
 by editing those old receipts.
 
 
+
+## Editorial source update, 2026-10-07
+
+The current paper corrects the Lean disclosure, adds the concurrent-work note and citation, and
+shortens Figures 2 and 3's captions. The ellipse parameters and the first-departure time
+convention are retained in the introduction. No mathematical statement or frozen block changes.
+The paper is synchronized with the Dropbox project and the Overleaf folder; its current hash is
+recorded in the manifest. The dated manuscript evidence is in
+`ledger/manuscript-provenance-2026-10-07.json`.
+
+The author additionally requested a substantially crisper introduction and omission of routine
+limiting arguments. Eighteen proof passages are shortened; all 24 theorem-like environments
+are byte-identical to the preceding manuscript, and every existing equation label is retained.
+The arguments at contact points, martingale brackets, and the projection inequality are preserved.

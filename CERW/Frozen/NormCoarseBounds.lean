@@ -6,7 +6,7 @@ import CERW.Support.Norm.LocalTime
 /-!
 # prop:coarse
 
-`prop:coarse` of the revised paper (`limit-shapes.tex:538-545`). The bytes between the markers are the
+`prop:coarse` of the revised paper (`limit-shapes.tex:540-547`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

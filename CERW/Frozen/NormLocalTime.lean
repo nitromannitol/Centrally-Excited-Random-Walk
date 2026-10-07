@@ -5,7 +5,7 @@ import CERW.Support.Norm.LocalTime
 /-!
 # lem:local
 
-`lem:local` of the revised paper (`limit-shapes.tex:393-409`). The bytes between the markers are the
+`lem:local` of the revised paper (`limit-shapes.tex:395-411`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

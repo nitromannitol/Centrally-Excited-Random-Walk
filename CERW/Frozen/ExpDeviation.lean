@@ -4,7 +4,7 @@ import CERW.Support.Lower.ExpDeviationAE
 /-!
 # lem-exp-deviation
 
-The statement of `limit-shapes.tex:1379-1393 (label lem:exp-deviation)`.
+The statement of `limit-shapes.tex:1363-1377 (label lem:exp-deviation)`.
 -/ 
 
 universe u

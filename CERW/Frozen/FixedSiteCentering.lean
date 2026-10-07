@@ -16,7 +16,7 @@ import CERW.Support.Outer.OuterRadius
 /-!
 # lem:fixed-site-centering
 
-`lem:fixed-site-centering` of the revised paper (`limit-shapes.tex:1272-1278`). The bytes between the markers are the
+`lem:fixed-site-centering` of the revised paper (`limit-shapes.tex:1258-1264`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
