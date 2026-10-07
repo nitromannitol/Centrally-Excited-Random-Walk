@@ -3,11 +3,11 @@ import CERW.Support.Norm.EuclideanCoarse
 /-!
 # The occupation and radius bounds
 
-`prop:coarse` of the paper (`limit-shapes.tex:538-545`, Euclidean case). This module is preserved
+`prop:coarse` of the paper (`limit-shapes.tex:540-547`, Euclidean case). This module is preserved
 support, no longer a registered node: its statement and proof are those of
 `Frozen/CoarseBounds.lean` of commit f7696856, with only the freeze markers removed. It is the
 Euclidean case that the proofs of `BulkProfile and SharpWidth` consume; the pinned paper states the
-corresponding result for a norm (`prop:coarse`, `limit-shapes.tex:538-545`).
+corresponding result for a norm (`prop:coarse`, `limit-shapes.tex:540-547`).
 -/
 
 universe u
@@ -16,7 +16,7 @@ open MeasureTheory Filter Topology
 open scoped symmDiff Pointwise
 open LatticeProb (Site euclidNorm)
 
-/-- `prop:coarse` (`limit-shapes.tex:538-545`, Euclidean case):
+/-- `prop:coarse` (`limit-shapes.tex:540-547`, Euclidean case):
 
 ```latex
 \begin{proposition}\label{prop:coarse}

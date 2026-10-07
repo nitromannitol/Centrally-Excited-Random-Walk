@@ -6,6 +6,10 @@ A machine-checked **Lean 4** formalization of the paper
 > *Limit shapes of centrally excited random walks*,
 > pinned at [`paper/limit-shapes.tex`](paper/limit-shapes.tex).
 
+The [current manuscript PDF](paper/limit-shapes.pdf), its
+[bibliography](paper/references.bib), and figure assets accompany the source.
+The manuscript records the concurrent work and the corrected Lean disclosure.
+
 The formalization covers the whole revised paper: Theorem 1.1, Theorem 1.2, Theorem 1.3 (in
 four parts), Theorem 2.1, every lemma and proposition of Sections 2 to 9, and the assertions
 inside their proofs and in the introduction.
@@ -124,4 +128,4 @@ Lattice-Probability library.
 
 ## License
 
-Apache License 2.0; see [`LICENSE`](LICENSE). 
+Apache License 2.0; see [`LICENSE`](LICENSE).

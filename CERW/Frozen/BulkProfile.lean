@@ -16,7 +16,7 @@ import CERW.Support.Outer.OuterRadius
 /-!
 # prop:bulk-profile
 
-`prop:bulk-profile` of the revised paper (`limit-shapes.tex:1507-1514`). The bytes between the markers are the
+`prop:bulk-profile` of the revised paper (`limit-shapes.tex:1495-1502`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 

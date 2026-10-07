@@ -11,7 +11,7 @@ import CERW.Support.Norm.ShapeRates
 /-!
 # thm:norm-shape
 
-`thm:norm-shape` of the revised paper (`limit-shapes.tex:338-351`). The bytes between the markers are the
+`thm:norm-shape` of the revised paper (`limit-shapes.tex:340-353`). The bytes between the markers are the
 frozen contract recorded in `ledger/manifest.yaml`.
 -/
 
