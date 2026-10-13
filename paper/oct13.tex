@@ -1,0 +1,2141 @@
+% !TeX program = pdflatex
+\documentclass[11pt]{amsart}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amssymb,graphicx,mathtools,microtype,enumitem,booktabs}
+\usepackage[square,numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage{placeins}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Kozma's centrally excited walk converges to a Euclidean ball},
+pdfauthor={Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres, Arvind Singh}}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\E}{\mathbb E}
+\renewcommand{\P}{\mathbb P}
+\newcommand{\ind}{\mathbf1}
+\newcommand{\Rin}{R_{\mathrm{in}}}
+\newcommand{\Rout}{R_{\mathrm{out}}}
+\newcommand{\Rmom}{R_{\mathrm{mom}}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Var}{Var}
+\title[Kozma's centrally excited walk converges to a Euclidean ball]{Kozma's centrally excited walk converges to a Euclidean ball}
+\author{Ahmed Bou-Rabee}
+\author{Tuan-Minh Nguyen}
+\author{Yuval Peres}
+\author{Arvind Singh}
+\date{Four-author working draft, 13 October 2026}
+\subjclass[2020]{Primary 60K35; Secondary 60G42, 60G50, 31C20}
+\keywords{Excited random walk, convex limit shape, local times, martingale,
+calibration, fluctuations}
+\begin{document}
+\begin{abstract}
+We study nearest-neighbor walks whose first departure from each site has
+an inward mean prescribed by a convex gauge, and whose later departures
+are simple random walk. The first-departure laws may depend on the past,
+and the drift strength may have spatial defects of codimension one.
+One potential argument gives an almost-sure filled limit shape, uniform
+conical local times, and recurrence. In the Euclidean case it retains
+the sharp planar fluctuation exponent, polylogarithmic radius bounds
+in higher dimensions, and the local-time limit laws. A quadratic
+martingale gives Gaussian and iterated-logarithm laws for a weighted
+radial moment for every convex body. An energy identity additionally
+controls the number of sites with small local time. The proof combines
+exit-time stopping, contact-point positivity, and a finite-scale
+calibration, and includes the three previously studied models. A squared-Green
+identity makes the variance estimates local, and Green differences give
+bulk oscillation lower bounds for every convex gauge. A sharp anisotropic
+cone inequality also strengthens the Sobolev estimate used in the
+calibration approach.
+\end{abstract}
+\maketitle
+
+\section{Introduction}\label{sec:introduction}
+
+An inward-excited walk is attracted toward a prescribed center only when
+it leaves a site for the first time. After that departure the site has
+no remaining bias. In the Euclidean example, the first step from
+$x\ne0$ has mean $-\kappa x/|x|$, while every later step is uniform
+among the $2d$ neighbors. The path therefore remembers where it has
+been, even though its motion at a previously departed site is simple
+random walk. Figure~\ref{fig:mechanism} illustrates this rule.
+
+Kozma asked whether this attraction produces a ball of radius of order
+$n^{1/(d+1)}$ after $n$ steps \citep{Oberwolfach2007,Kozma2013}.
+The three papers considered here establish shape theorems for related
+inward drifts. The present aim is to give one proof that explains both
+the common behavior and the different limiting shapes, while retaining
+the fluctuation and sharpness results.
+
+The local times provide the useful description of the growth. A site
+deep inside the range has been visited many times, whereas a site near
+the boundary has only recently supplied its inward step. The limiting
+profile is a cone: its height is proportional to the distance from the
+boundary measured in the appropriate gauge. Integrating a cone of
+height $r$ over a body of diameter $r$ gives a mass of order $r^{d+1}$.
+Since the sum of the local times is exactly $n$, this identifies the
+scale $r\asymp n^{1/(d+1)}$. The potential identity below determines
+both the cone and its multiplicative constant.
+
+
+The range of an inward-excited walk is determined at first order by its
+mean excitation. The probabilities realizing that mean, and spatial
+changes confined to sufficiently thin sets, affect only lower-order
+terms. We make this principle quantitative. The argument unifies
+\citet{Singh2026}, \citet{BouRabeePeres2026CERW}, and
+\citet{Nguyen2026}; all three models are special cases of the same
+assumptions below.
+
+\begin{figure}[!b]
+\centering
+\includegraphics[width=0.5\textwidth]{Figures/first_departure_norms.pdf}
+\caption{The walk after $120$~steps, for $d=2$ and $\kappa=0.4$: its path (gray), the origin (open circle) and its position (red dot). At each site~$x\neq0$ that it has not yet left, an arrow shows the mean $-\kappa x/|x|$ of its first step from~$x$.}
+\label{fig:mechanism}
+\end{figure}
+
+\subsection{The model and its geometry}\label{sec:model}
+
+A convex gauge records the shape toward which the drift points. Its
+subgradient at $x$ is a normal to a supporting hyperplane of the level
+set through $x$; it need not be parallel to $x$. For a Euclidean ball
+it is $x/|x|$, for an $\ell^1$ ball one may take the coordinate signs,
+and for a body with corners there can be several choices. The argument
+will be uniform over those choices. This is why the model is stated
+using subgradients rather than a smooth boundary.
+
+Fix $d\ge2$. Let $K\subset\R^d$ be compact and convex, with $0$ in its
+interior, and let $\rho(x)=\inf\{t>0:x\in tK\}$ be its gauge.
+Write $V=|K|$ and $\omega_d=|B(0,1)|$. Symmetry and smoothness of $K$
+are not required. Fix $\kappa>0$, subgradients
+$\xi(x)\in\partial\rho(x)$ for $x\in\Z^d\setminus\{0\}$, and weights
+$\lambda(x)\ge\lambda_->0$. Assume that, for a
+constant $A<\infty$,
+\begin{equation}\label{eq:model-defect}
+ \sum_{x\in\Z^d\cap B(y,s)}|\lambda(x)-1|
+ \le A s^{d-1}\qquad(y\in\R^d,\ s\ge1).
+\end{equation}
+Set $\xi(0)=0$ and $\lambda(0)=1$. Taking $s=1$ above gives
+$\lambda(x)\le1+A$, so no separate upper bound is needed.
+
+The walk starts at $X_0=0$. On its first departure from $x$, its
+conditional step distribution, given the entire past, can be any
+distribution on $\{\pm e_1,\ldots,\pm e_d\}$ with mean
+\begin{equation}\label{eq:model-mean}
+ -\kappa\lambda(x)\xi(x).
+\end{equation}
+On every later departure it chooses its neighbor uniformly. The
+first departure from zero may have any mean-zero nearest-neighbor law.
+Only existence of the distributions in \eqref{eq:model-mean} is
+assumed; in particular no lower bound on individual probabilities is
+required. The fields $\lambda$ and $\xi$ are deterministic. Allowing
+the realizing distributions to depend on the past is useful because
+every estimate below uses their conditional means and bounded steps.
+
+Condition~\eqref{eq:model-defect} allows the drift strength to differ
+from its nominal value on a thin set. The sum in any ball grows like
+its surface area, rather than its volume. Coordinate hyperplanes are
+an important example: they are precisely where Nguyen's transition
+rule differs from a constant multiple of the $\ell^1$ subgradient.
+The condition is local in the center $y$ because the potential estimates
+must hold near every possible unvisited site. The particular
+probabilities realizing the mean can vary with the past; their effect
+on the Green representation is a lower-order error.
+
+\subsection{Shape, occupation, and fluctuations}\label{sec:statements}
+
+Put
+\begin{gather}
+ \ell_n(x)=\sum_{j=0}^{n-1}\ind_{\{X_j=x\}},\qquad
+ A_n=\{x:\ell_n(x)>0\},\qquad
+ D_n=\bigcup_{x\in A_n}\bigl(x+[-1/2,1/2)^d\bigr),\label{eq:range-def}\\
+ r_n=\left(\frac{(d+1)n}{2d\kappa V}\right)^{1/(d+1)},\quad
+ b_n=\inf_{y\notin D_n}\rho(y),\quad
+ B_n=\max_{j\le n}\rho(X_j).\label{eq:radius-def}
+\end{gather}
+Thus $\int 2d\kappa(r_n-\rho)_+=n$. Tildes denote constant extension
+of lattice functions to the unit cells. All probability estimates
+below concern integers $n\ge2$. Constants may depend on
+$d,K,\kappa,\lambda_-,A$ and a specified probability exponent $p$,
+but are uniform over the allowed first-departure laws.
+
+\begin{theorem}[Shape, occupation, and moment universality]\label{thm:main}
+Under \eqref{eq:model-defect}--\eqref{eq:model-mean}, the following hold.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item Almost surely, for every $\varepsilon>0$ and all sufficiently
+large $n$,
+\[
+ \{x\in\Z^d:\rho(x)<(1-\varepsilon)r_n\}
+ \subset A_n\subset
+ \{x\in\Z^d:\rho(x)<(1+\varepsilon)r_n\},
+\]
+and $r_n^{-1}\max_x|\ell_n(x)-2d\kappa(r_n-\rho(x))_+|\to0$.
+In particular every site is visited infinitely often.
+
+\item Define
+\[
+ h_n=\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\ge3,
+ \end{cases}\qquad q_n=h_n/r_n.
+\]
+For every $p>0$, with probability at least $1-C_pn^{-p}$,
+\begin{align}
+ |b_n-r_n|&\le C_pr_n\sqrt{q_n},\label{eq:main-inner}\\
+ B_n-r_n&\le C_pr_nq_n^{1/(d+1)}\log n,\label{eq:main-outer}\\
+ \max_x|\ell_n(x)-2d\kappa(r_n-\rho(x))_+|
+ &\le C_pr_nq_n^{1/(d+1)}.\label{eq:main-profile}
+\end{align}
+
+\item With $h_n$ as in part \textup{(ii)}, on an event of probability at least $1-C_pn^{-p}$, simultaneously
+for every real $t\ge0$,
+\begin{equation}\label{eq:main-occupation}
+ \#\{x\in A_n:\ell_n(x)\le t\}
+ \le C_p(t+h_n)r_n^{d-1}.
+\end{equation}
+
+\item Let
+\[
+ S_n=\sum_{x\in A_n}\lambda(x)\rho(x),\qquad
+ J_K=\int_K|z|^2\,dz,\qquad
+ \sigma_K^2=\frac{2J_K}{\kappa(d+3)}.
+\]
+Then
+\begin{equation}\label{eq:main-moment-clt}
+ \frac{S_n-n/(2\kappa)}{r_n^{(d+3)/2}}
+ \Longrightarrow N(0,\sigma_K^2),
+\end{equation}
+and, for either sign, almost surely,
+\begin{equation}\label{eq:main-moment-lil}
+ \limsup_{n\to\infty}
+ \frac{\pm(S_n-n/(2\kappa))}
+ {r_n^{(d+3)/2}\sqrt{2\log\log n}}=\sigma_K.
+\end{equation}
+For $\Rmom(n)=((d+1)S_n/(dV))^{1/(d+1)}$, the same assertions
+hold with $S_n-n/(2\kappa)$ replaced by $\Rmom(n)-r_n$,
+the exponent $(d+3)/2$ replaced by $(3-d)/2$, and
+$\sigma_K$ replaced by $\sigma_K/(dV)$.
+
+\item For some $c>0$ and all sufficiently large $n$, with probability
+at least $1-n^{-c}$,
+\begin{equation}\label{eq:main-bulk-oscillation}
+ \operatorname{osc}_{|x|\le\sqrt{r_n}}
+       \bigl(\ell_n(x)+2d\kappa\rho(x)\bigr)
+ \ge c\begin{cases}\sqrt{r_n}\log n,&d=2,\\
+                    \sqrt{r_n\log n},&d\ge3.
+       \end{cases}
+\end{equation}
+The oscillation is the maximum minus the minimum over lattice sites.
+The same orders therefore lower-bound the maximum absolute deviation
+from the deterministic cone in this window.
+\end{enumerate}
+\end{theorem}
+
+The weights in the moment statistic are essential: condition
+\eqref{eq:model-defect} allows an $O(r_n^d)$ change in
+$\sum_{A_n}\rho(x)$, which can exceed its Gaussian normalization.
+They disappear when $\lambda\equiv1$.
+
+The filled inclusion in part \textup{(i)} is stronger than convergence
+of the outer boundary: it rules out holes throughout every smaller
+dilate of $K$. The uniform local-time statement then implies recurrence,
+since the cone tends to infinity at each fixed site. The occupation
+bound quantifies a complementary fact: few departed sites can have
+very small local time. The moment statistic in part \textup{(iv)} is
+chosen so that its drift is compensated by the squared distance of
+the walk; this is why its fluctuations have an especially direct proof.
+Part \textup{(v)} shows that the bulk local times fluctuate on the same
+orders for every convex gauge, including gauges with corners. The
+occupation bound uses the smaller error $h_n$ at lightly occupied
+sites, rather than the larger uniform error in the bulk.
+
+For the Euclidean case put $\Rin=b_n$, $\Rout=B_n$, and
+$W_n=\Rout-\Rin$. These definitions use cells for the inner radius
+and include $X_n$ in the outer radius.
+
+\begin{theorem}[Euclidean refinement]\label{thm:radial}
+Under the assumptions of Theorem~\ref{thm:main}, with $K=\{|x|\le1\}$,
+all the following conclusions hold for the same class of cookie laws.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item For every $p>0$, with probability at least $1-C_pn^{-p}$,
+\begin{align}
+ |\Rin-r_n|&\le C_ph_n,\qquad
+ |D_n\mathbin\triangle B(0,r_n)|\le C_pr_n^{d-1}h_n,
+ \label{eq:radial-inner}\\
+ \Rout-r_n&\le C_p\begin{cases}
+ \sqrt{r_n}(\log n)^{5/2},&d=2,\\
+ (\log n)^{d+1},&d\ge3,
+ \end{cases}\label{eq:radial-outer}\\
+ \max_x|\ell_n(x)-2d\kappa(r_n-|x|)_+|
+ &\le C_p\begin{cases}
+ \sqrt{r_n}(\log n)^{3/2},&d=2,\\
+ \sqrt{r_n\log n},&d\ge3.
+ \end{cases}\label{eq:radial-profile}
+\end{align}
+For each fixed $\theta<1$, restricting the maximum to
+$|x|\le\theta r_n$ improves the planar bound to
+$C_{p,\theta}\sqrt{r_n}\log n$.
+
+\item Let $G$ be the simple-random-walk Green function when $d\ge3$,
+and put
+\[
+ a_n=\begin{cases}\sqrt{r_n\log r_n},&d=2,\\
+ \sqrt{r_n},&d\ge3,
+ \end{cases}\quad
+ \Sigma(y,z)=\begin{cases}16\kappa/\pi,&d=2,\\
+ 2d\kappa(2G(y-z)-\ind_{\{y=z\}}),&d\ge3.
+ \end{cases}
+\]
+For any finite set of fixed sites, the vector
+$a_n^{-1}(\ell_n(y)-2d\kappa(r_n-|y|))$ converges in distribution
+to a centered Gaussian vector with covariance $\Sigma$.
+At each fixed site and for either sign, almost surely,
+\begin{equation}\label{eq:radial-site-lil}
+ \limsup_n\frac{\pm(\ell_n(y)-2d\kappa(r_n-|y|))}
+ {a_n\sqrt{2\log\log n}}=\sqrt{\Sigma(y,y)}.
+\end{equation}
+
+\item In dimension two, for every $p>0$ there is $c_p>0$ such that
+each of
+\begin{equation}\label{eq:radial-poly-lower}
+ \P\{r_n-\Rin\ge c_p\sqrt{r_n\log n}\},\quad
+ \P\{\Rout-r_n\ge c_p\sqrt{r_n\log n}\},\quad
+ \P\{W_n\ge c_p\sqrt{r_n\log n}\}
+\end{equation}
+is at least $n^{-p}$ for all large $n$. Almost surely,
+\begin{align}
+ \limsup_n\frac{r_n-\Rin}{\sqrt{r_n\log\log n}},\quad
+ \limsup_n\frac{\Rout-r_n}{\sqrt{r_n\log\log n}}
+ &\ \ge\frac1{\sqrt{10\pi\kappa}},\label{eq:radial-lil-lower}\\
+ \limsup_n\frac{W_n}{\sqrt{r_n\log\log n}}
+ &\ge\sqrt{\frac\pi{3\kappa}}.\label{eq:radial-width-lil}
+\end{align}
+For every $a\ge0$,
+\begin{equation}\label{eq:radial-smallball}
+ \limsup_n\P\{W_n\le a\sqrt{r_n}\}
+ \le1-\exp(-3\kappa a^2/\pi).
+\end{equation}
+
+\item In every dimension, for some $c>0$ and all large $n$,
+\begin{equation}\label{eq:radial-local-lower}
+ \P\left\{\max_{|x|\le\sqrt{r_n}}
+ |\ell_n(x)-2d\kappa(r_n-|x|)|\ge
+ c\begin{cases}\sqrt{r_n}\log n,&d=2,\\
+ \sqrt{r_n\log n},&d\ge3
+ \end{cases}\right\}\ge1-n^{-c}.
+\end{equation}
+\end{enumerate}
+The bounds in part \textup{(i)} hold eventually almost surely.
+\end{theorem}
+
+We also retain the logarithmic radial lower bounds under the additional
+assumption of a uniform positive lower bound on all first-departure
+probabilities; their full tail forms are
+\eqref{eq:lower-log-joint}--\eqref{eq:lower-log-outer} below.
+The proof yields two additional boundary estimates. Write
+$R=\Rout(n)+2\sqrt d$ and $E_n=D_n\setminus B(0,\Rin(n))$.
+With the same probability as in Theorem~\ref{thm:radial}, uniformly
+over unit vectors $u$ and $t\ge1$,
+\begin{equation}\label{eq:new-caps}
+ |E_n\cap B(Ru,t)|\le C_ph_n t^{d-1}.
+\end{equation}
+For lattice sites with $\Rin\le|y|\le R$, put $s=R-|y|+1$.
+Then
+\begin{equation}\label{eq:new-boundary}
+ \ell_n(y)\le C_p\begin{cases}
+ h_n+\sqrt{h_ns},&d=2,\\
+ \log n+((\log n)s^{d-1})^{1/d},&d\ge3.
+ \end{cases}
+\end{equation}
+
+A separate analytic consequence, Proposition~\ref{prop:gauge-sobolev},
+extends Nguyen's Sobolev cone inequality to every convex gauge and
+improves its error coefficient. Its short proof uses the same rank
+estimate twice; it is independent of the probabilistic estimates.
+
+\subsection{The three models and the figures}\label{sec:specializations}
+For the radial model of \citet{Singh2026}, take $K=\{|x|\le1\}$,
+$\lambda\equiv1$, and $\kappa=\beta$. His prescribed-mean assumption
+is exactly \eqref{eq:model-mean}. For the norm model of
+\citet{BouRabeePeres2026CERW}, take $\lambda\equiv1$ and the particular
+law $q_x(\pm e_i)=1/(2d)\mp\kappa\xi_i(x)/2$. Their strict parameter
+restriction guarantees existence and, for the logarithmic lower
+bounds, uniform ellipticity. Theorem~\ref{thm:radial} retains the
+Euclidean constants and exponents, and
+$J_{B(0,1)}=d\omega_d/(d+2)$ recovers their moment variances.
+
+For \citet{Nguyen2026}, let $K=\{\|x\|_1\le1\}$,
+$\xi(x)=\operatorname{sgn}(x)$, $\kappa=\theta/d$, and
+$\lambda(x)=d/m(x)$ at $x\ne0$, where $m(x)$ is the number of its
+nonzero coordinates. Use his first-departure kernel. The weights
+differ from one only on the union of the coordinate hyperplanes,
+which contains at most $Cs^{d-1}$ lattice points in any ball of radius
+$s\ge1$. Thus \eqref{eq:model-defect} holds, including at $\theta=1$.
+Theorem~\ref{thm:main} strengthens Hausdorff convergence in probability
+to almost-sure filled inclusions and uniform local-time convergence.
+Since $|K|=2^d/d!$, its radius is
+$r_n=\tfrac12((d+1)!n/\theta)^{1/(d+1)}$, with the original
+normalization. This verifies model containment at the transition-rule
+level, including the exceptional coordinate hyperplanes.
+
+Figures~\ref{fig:ranges} and~\ref{fig:profiles} retain the simulations
+from the norm model of Bou-Rabee and Peres. They illustrate the
+canonical kernel $q_x(\pm e_i)=1/(2d)\mp\kappa\xi_i(x)/2$ with
+$\lambda\equiv1$, a special case of the present assumptions. The
+same body controls both the support of the range and the level sets of
+the occupation profile. These pictures also show why the question of
+holes is distinct from the question of long, thin extensions.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{Figures/shapes_ranges.pdf}
+\caption{Ranges $r_n^{-1}A_n$ for the Euclidean, $\ell^{3/2}$, $\ell^4$ and elliptical norms (left to right), at $n=10^9$. Top: $d=2$, $\kappa=0.4$; bottom: $x_3=0$ sections for $d=3$, $\kappa=0.25$. The unit balls are outlined and the blue-to-red colors show $(t_x/n)^{\frac{1}{(d+1)}}$, with $t_x$ the first-departure time.}
+\label{fig:ranges}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{Figures/shapes_localtimes.pdf}
+\caption{Local times $\ell_n(x)/(2d\kappa r_n)$ over $x/r_n$ for the Euclidean norm (left) and $\ell^\infty$ (right): $d=2$, $n=10^{10}$, $\kappa=0.4$. }
+\label{fig:profiles}
+\end{figure}
+
+
+\subsection{How the proof works}\label{sec:strategy}
+
+The starting point is an explicit potential. If $D\subset\R^d$ is the
+set of departed cells, define
+\[
+ U_D(y)=\frac{2\kappa}{\omega_d}
+     \int_D\nabla\rho(v)\cdot\frac{v-y}{|v-y|^d}\,dv.
+\]
+Integration along rays from $y$ gives the exact identity
+$U_{rK}(y)=2d\kappa(r-\rho(y))_+$. Dynkin's formula for the lattice
+Green function gives a corresponding identity for the walk:
+\[
+ \ell_n(y)=U_{D_n}(y)-M_n^y+O(\log n),
+\]
+where $M^y$ is a martingale. The proof compares an unknown occupied
+set with the one body whose potential is already known.
+
+\paragraph{First obtain the scale.}
+Stopping at exit from a prescribed ball, as in Singh's argument,
+avoids estimating the range and the largest local time separately
+before their scale is known. If the Green martingales have not reached
+size $R$, the potential identity bounds every local time by $CR$.
+There are at most $CR^d$ available sites, so the stopped clock is at
+most $CR^{d+1}$. The resulting variance bound makes a martingale
+excursion of size $R$ unlikely. This closes the stopping argument.
+
+\paragraph{Why the walk cannot make a long thin extension.}
+An upper bound on the number of occupied sites does not by itself
+control the farthest point of the path. The crossing estimate uses the
+inward cookie at every new site to oppose such an excursion. Testing
+an exponential of the distance to $kK$, and grouping the compensator
+by site, lets one inward first departure pay for the at most $L$
+revisits to that site. The resulting crossing probability decays as
+$\exp\{-ch/(L+1)\}$ over a distance $h$. Thus small exterior local
+times imply a small exterior radius. The distance function also
+handles corners of $K$ without choosing a supporting direction after
+seeing the path.
+
+\paragraph{Why an unvisited site reveals the shape.}
+Let $bK$ be the largest centered gauge ball contained in $D_n$ and
+let $y_0$ be a contact point adjacent to an empty cell. The cone
+potential vanishes at $y_0$. More importantly, convexity gives
+\[
+ \nabla\rho(v)\cdot(v-y_0)\ge\rho(v)-b\ge0
+ \qquad(v\in D_n\setminus bK).
+\]
+There is no cancellation among the excess contributions at this point.
+The small local time at the neighboring empty site therefore forces
+the excess potential to be small. This gives the conical occupation
+profile, and the crossing estimate excludes distant extensions.
+The identity $\sum_x\ell_n(x)=n$, or equivalently the quadratic
+martingale used below, fixes $b$ at the deterministic radius $r_n$.
+
+\paragraph{Why the variance estimate can be local.}
+Apply Dynkin's formula to the square of the Green function as well as
+to the Green function itself. The discrete product rule expresses its
+edge energy in terms of the local time at the pole and a single
+first-departure correction per occupied site. A martingale inequality
+then bounds the Green noise by the local time at that same site.
+In particular the potential is almost nonnegative everywhere and is
+small at every empty site. This avoids estimating a spatial convolution
+of the unknown local times, and gives the smaller error needed by both
+the contact argument and the occupation-layer estimate.
+
+\paragraph{Where the Euclidean improvement enters.}
+For a Euclidean ball, the contact kernel has the stronger lower bound
+$c|v-y_0|^{2-d}/r_n$. It controls excess volume more efficiently than
+convexity alone. To bound the outer radius we look at an empty point
+beyond the enclosing sphere: nearby excess points contribute
+negatively there, while curvature controls the positive contribution.
+The positive curvature term itself is controlled by one backward radial
+integration of the almost-nonnegative potential. This bounds the
+amount of excess in a cap and hence the local times near the boundary. Figure~\ref{fig:contact} shows the two observation
+points. The same geometric calculation serves every dimension.
+
+\paragraph{What the energy identity adds.}
+Nguyen's calibration mechanism has a direct finite-scale form.
+The potential solves
+$\operatorname{div}(\nabla U_D+2d\kappa\mathbf1_D\nabla\rho)=0$.
+Testing this equation against a truncated potential and a cutoff of
+$\rho$ bounds a nonnegative square. With zero error the square forces
+the cone exactly; with a small error it bounds the portion of $D$ with
+small occupation. This estimate supplies an additional quantitative
+conclusion. The filled shape and sharp boundary bounds still use the
+contact and crossing arguments just described.
+
+\paragraph{Why the limiting variances are universal.}
+Once the cone is known, each typical interior site has order $r_n$
+departures, and only the first has a nonuniform law. Later departures
+therefore determine the leading quadratic variations. The quadratic
+martingale controls the weighted radial moment; Green martingales
+control local times. Their brackets are sums against the cone, so the
+martingale central limit theorem and iterated-logarithm law give the
+limit laws. Radius and local-time lower bounds require one additional
+ingredient: exponential martingales detect deviations larger than the
+central-limit scale. One covariance identity handles all these martingales, with only one
+error per first departure. The vector martingale controls planar width,
+and separated Green differences detect a large local-time fluctuation
+for every gauge. The latter lower bounds need only the coarse filled
+shape, while deterministic fixed-site centering needs the inner-volume
+estimate and qualitative outer convergence. Neither uses the final
+sharp outer-radius estimate.
+
+The organization below keeps these dependencies visible.
+Figure~\ref{fig:dependence} records the main routes through the proof.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm,
+ box/.style={draw,rounded corners=2pt,align=center,font=\small,
+ text width=3.25cm,inner sep=5pt,minimum height=1.05cm},
+ arr/.style={-{Stealth[length=5pt]},thin}]
+\node[box] (green) at (0,0) {Green representation\\and drift errors};
+\node[box] (scale) at (4.15,0) {Exit bootstrap\\and distance crossing};
+\node[box] (shape) at (8.3,0) {Convex shape\\and uniform cone};
+\node[box] (noise) at (0,-2.3) {Squared Green function\\and noise at empty sites};
+\node[box] (inner) at (4.15,-2.3) {Euclidean contact:\\inner radius and volume};
+\node[box] (outer) at (8.3,-2.3) {Exterior probes:\\outer radius and profile};
+\node[box] (energy) at (0,-4.6) {Energy calibration\\and occupation layers};
+\node[box] (limits) at (8.3,-4.6) {Moment laws\\and fluctuation lower bounds};
+\node[box] (site) at (4.15,-4.6) {Fixed-site centering:\\Gaussian and LIL laws};
+\draw[arr] (green) -- (scale);
+\draw[arr] (scale) -- (shape);
+\draw[arr] (green) -- (noise);
+\draw[arr] (noise) -- (inner);
+\draw[arr] (inner) -- (outer);
+\draw[arr] (noise) -- (energy);
+\draw[arr] (inner) -- (site);
+\draw[arr] (limits) -- (site);
+\draw[arr] (shape.east) to[out=0,in=0,looseness=1.0] (limits.east);
+\draw[arr] (noise.north east) to[out=45,in=225] (shape.south west);
+\end{tikzpicture}
+\caption{The principal estimates and their uses. The contact estimate gives
+both the general shape and the sharper Euclidean inner bound. The final
+exterior-probe argument is needed for the sharp outer-radius and uniform
+profile estimates. The moment laws and fluctuation lower bounds can be
+proved earlier, and fixed-site centering needs the inner-volume estimate
+but only the qualitative outer shape.}
+\label{fig:dependence}
+\end{figure}
+
+
+\subsection{Related work}\label{sec:related}
+
+\citet{Kozma2013} reported recurrence of the walk excited to the center, citing unpublished work from 2006. \citet*{DemboHuangSidoravicius2014} described the manuscript of~\citet{Kozma2006CentrallyExcited} for a related walk in $d\geq3$, with drift~$-\kappa x/\|x\|_1$ at the first visit to a site having an unvisited neighbor; \citet*{DemboHuangSidoravicius2014Growing} cited it for recurrence in every dimension. We take the name centrally excited random walk from its title. Its direction-dependent drift magnitude differs from the constant Euclidean drift in the radial special case. \citet*{BenjaminiDuminilCopinKozmaLucas2020} also recorded the predicted radius~$t^{\frac{1}{(d+1)}}$.
+
+For the excited random walk with first-visit drift in a fixed direction, \citet*{BenjaminiWilson2003} proved transience in $d\geq2$ and positive lower speed in $d\geq4$. \citet{Kozma2003Speed,Kozma2005Speed} obtained positive lower speed in $d=3$ and $d=2$, and \citet{BerardRamirez2007} proved laws of large numbers and central limit theorems. \citet*{MenshikovPopovRamirezVachkovskaia2012} extended positive-speed results to uniformly elliptic walks with bounded jumps and uniformly positive first-visit drift in a fixed direction and zero drift at later visits. \citet{Zerner2005,Zerner2006} gave recurrence/transience criteria on~$\Z$ and strips for walks with multiple cookies. \citet*{AmirBenjaminiKozma2008} proved recurrence for a walk in the upper half of~$\Z^3$ that steps down at new sites. See~\citet{KosyginaZerner2013} for a survey.
+
+The radius~$n^{\frac{1}{(d+1)}}$ and range size~$n^{\frac{d}{(d+1)}}$ are also predicted for once-reinforced walks with strong reinforcement~\citep{Beffara2011,ElboimKozma2026}, and supported by simulations~\citep{FosterGrassbergerPaczuski2009}; related predictions for self-attracting walks appear in~\citet{OrdemannBerkolaikoHavlinBunde2000,OrdemannEtAl2001}. For once-reinforced random walk on~$\Z^d$, $d\geq2$, \citet{BouRabeePeres2026ORRW} proved the lower bound~$cn^{\frac{d}{(d+1)}}$ on the expected range for every reinforcement parameter. The matching upper bound and limit shape remain conjectural. See~\citet{Pemantle2007} for reinforced processes.
+
+\citet{DemboGroismanHuangSidoravicius2021} proved an averaging principle and shape theorem for growth models motivated by origin-excited and once-reinforced walks. Their simulations with inward first steps along a coordinate of largest absolute value or along all coordinates produced squares and diamonds. The gauge theorem proves these shapes for first-departure drifts opposite to subgradients of~$\|\cdot\|_\infty$ and~$\|\cdot\|_1$. For related continuum growth models, \citet*{DemboYang2025Flow,DemboYang2025KPZ} obtained limits described by geometric flow and regularized Kardar--Parisi--Zhang equations.
+
+Internal diffusion-limited aggregation~\citep{LawlerBramsonGriffeath1992} and rotor-router aggregation~\citep{LevinePeres2009} have Euclidean ball limit shapes. The former has radius fluctuations of order at most $\log r$ in the plane and $(\log r)^{\frac12}$ in higher dimensions~\citep{JerisonLevineSheffield2012,JerisonLevineSheffield2013,AsselahGaudilliere2013,AsselahGaudilliere2013Polynomial}, and its rescaled fluctuations approach a variant of the Gaussian free field~\citep{JerisonLevineSheffield2014}. For the centrally excited walk, Theorem~\ref{thm:radial} gives much larger planar radius and width fluctuations; the fixed-site covariance in Theorem~\ref{thm:radial} is again expressed through the Green function. See~\citet*{LevinePeres2017} for aggregation models.
+
+For Eulerian walkers~\citep{PriezzhevDharDharKrishnamurthy1996}, simulations suggested a circular planar range of radius of order~$t^{\frac13}$~\citep{KapriDhar2009}. \citet*{FlorescuLevinePeres2016} proved that every simple rotor walk on~$\Z^d$ visits at least $cn^{\frac{d}{(d+1)}}$ sites in $n$~steps. For clockwise planar rotors with independent uniform initial states, \citet*{BouRabeePeres2026} proved convergence of the rescaled range to a deterministic compact convex set; whether it is a disk remains open.
+
+
+
+\subsection{Notation and conventions}\label{sec:notation}
+
+The symbol $|\cdot|$ denotes Euclidean norm for vectors, cardinality
+for lattice sets, and Lebesgue measure for subsets of $\R^d$.
+We use $B(y,s)$ for the open Euclidean ball, $t_+=\max(t,0)$,
+and $D\mathbin\triangle E$ for symmetric difference. The filtration
+$\mathcal F_j$ contains the history through time $j$, and
+$I_j=\mathbf1_{\{X_j\notin A_j\}}$ records a first departure.
+A bracket $\langle M,N\rangle$ is predictable covariation;
+$\langle M\rangle=\langle M,M\rangle$. The notation $M^f$ means
+the Dynkin martingale for the test function $f$ and is linear in $f$.
+
+The unit cell at $x$ is $C_x=x+[-1/2,1/2)^d$. A tilde denotes
+constant extension from lattice sites to their cells. Constants $c,C$
+may change from line to line, with the dependencies stated after
+\eqref{eq:radius-def}; a subscript records additional dependencies.
+We write $a_n\asymp b_n$ when their ratio is bounded above and below
+by positive constants. Enlarging a constant extends an estimate valid
+for all sufficiently large $n$ to every integer $n\ge2$.
+
+% ----- core -----
+\section{A common potential argument}
+
+We use the assumptions and notation of Section~1. Put
+$c=\min_{|u|=1}\rho(u)>0$, $\Lambda=\max_{|u|=1}\rho(u)$,
+and $C_x=x+[-1/2,1/2)^d$. Write $q_x$ for the conditional law
+used at the first departure from $x$; this law can be random,
+but its prescribed mean is fixed. Every estimate below is pathwise
+uniform over its possible values. Set $\Delta=P-I$ for the
+simple-random-walk generator and
+$\bar\nabla_i f(x)=(f(x+e_i)-f(x-e_i))/2$.
+For a bounded measurable $D$, define
+\begin{equation}\label{eq:core-potential}
+ U_D(y)=\frac{2\kappa}{\omega_d}
+ \int_D\nabla\rho(v)\cdot\frac{v-y}{|v-y|^d}\,dv.
+\end{equation}
+
+\begin{lemma}[Cone, layers, and contact]\label{lem:core-geometry}
+For $b\geq0$,
+$U_{bK}(y)=2d\kappa(b-\rho(y))_+$.
+If $E\subset\{b\leq\rho\leq b+a\}$ then
+$\|U_E\|_\infty\leq2d\kappa a$; for arbitrary $E$,
+$\|U_E\|_\infty\leq C|E|^{1/d}$.
+Suppose $bK\subset D\subset B(0,R)$ up to null sets, $y_0\in\partial(bK)$ lies in
+$\overline{D^c}$, and $E=D\setminus bK$. Put
+$H=U_D(y_0)$ and $I=\int_E(\rho-b)$.
+Then
+\begin{equation}\label{eq:core-contact}
+ H\geq0,\qquad I\leq CR^d H,\qquad
+ \|U_E\|_\infty\leq C I^{1/(d+1)}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For a compactly supported Lipschitz $f$, polar coordinates about $y$ give
+$\int\nabla f(v)\cdot(v-y)|v-y|^{-d}\,dv=-d\omega_df(y)$.
+Apply this to $f=(b-\rho)_+$. On each ray $y+tu$, convexity makes
+$t\mapsto\rho(y+tu)$ decrease and then increase. On either part, its total
+variation while $b\leq\rho\leq b+a$ is at most $a$; the two signed parts
+therefore give an integral between $-a$ and $a$. Integrating over directions
+proves the layer bound. Rearrangement of $|v-y|^{1-d}$ proves the volume
+bound. Finally
+$\nabla\rho(v)\cdot(v-y_0)\geq\rho(v)-\rho(y_0)=\rho(v)-b$
+on $E$, proving the first two assertions in \eqref{eq:core-contact}.
+Split $E$ at $\rho=b+a$: the layer contributes at most $Ca$ and the rest,
+of volume at most $I/a$, contributes at most $C(I/a)^{1/d}$.
+Take $a=I^{1/(d+1)}$; the case $I=0$ follows directly.
+\end{proof}
+
+The next lemma is the bridge from the walk to the continuum potential.
+A first departure contributes its prescribed inward mean; its remaining
+covariance contributes only a second difference of the Green kernel.
+The only geometric approximation needed at a corner of $K$ is a
+one-dimensional telescoping estimate.
+
+\begin{lemma}[Discrete potential representation]\label{lem:core-green}
+Let $g$ be the potential kernel in dimension two and minus the Green
+function in dimensions at least three, normalized by
+$\Delta g=\mathbf1_{\{0\}}$, where $\Delta=P-I$ for simple random walk.
+For any lattice function $f$, write $M^f$ for its Dynkin martingale;
+this notation is linear in $f$. Set $g_y(x)=g(x-y)$ and $M^y=M^{g_y}$.
+The Green martingales have bounded increments. Whenever
+$\max_{j\leq t}|X_j|\leq R$, $R\geq2$, simultaneously for all
+$y\in\Z^d$,
+\begin{equation}\label{eq:core-green}
+ \ell_t(y)=U_{D_t}(y)-M_t^y+O(\log R),\qquad
+ \langle M^y\rangle_t\leq C W_t(y),\quad
+ W_t(y)=\sum_x\ell_t(x)(1+|x-y|)^{2-2d}.
+\end{equation}
+Moreover, for $|z-y|\leq\sqrt d$,
+$|U_{D_t}(z)-U_{D_t}(y)|\leq C\log R$.
+\end{lemma}
+\begin{proof}
+Standard Green estimates \citep{LawlerLimic2010} give, for a coordinate
+unit vector $e$,
+\begin{align*}
+ \bar\nabla g(z)&=\frac2{\omega_d}\frac z{|z|^d}
+                  +O((1+|z|)^{-d})\quad(z\ne0),\\
+ |g(z+e)-g(z)|&\leq C(1+|z|)^{1-d},\\
+ |g(z+e_i)+g(z-e_i)-2g(z)|&\leq C(1+|z|)^{-d}.
+\end{align*}
+At the first departure from $x$, put
+$s_i(x)=q_x(e_i)+q_x(-e_i)$. The exact decomposition is
+\[
+ (Q_x-P)g_y(x)=-\kappa\lambda(x)\xi(x)\cdot\bar\nabla g(x-y)
+ +\frac12\sum_i(s_i(x)-1/d)
+ [g(x+e_i-y)+g(x-e_i-y)-2g(x-y)].
+\]
+Thus the arbitrary first-departure covariance has coefficients bounded
+by one and appears only in the second line. Dynkin's formula, grouping
+first departures by site, reads
+\[
+ \ell_t(y)=g(X_t-y)-g(-y)-M_t^y
+                  -\sum_{x\in A_t}(Q_x-P)g_y(x).
+\]
+The endpoint term is $O(\log R)$ uniformly in $y$: in dimension two
+use $g(z)=(2/\pi)\log(1+|z|)+O(1)$, and in higher dimensions $g$ is
+bounded. Summing the second differences over the occupied sites costs
+$O(\log R)$. The same estimate replaces $\bar\nabla g$ by its leading
+term; define that term to be zero at the origin.
+
+The defects also cost only $O(\log R)$. Indeed, the hypothesis on
+$\lambda$ and a decomposition into dyadic annuli give
+\begin{equation}\label{eq:core-defect-potential}
+ \sup_y\sum_{x\in B(0,CR)}
+ |\lambda(x)-1|(1+|x-y|)^{1-d}\leq C\log R.
+\end{equation}
+For $|y|\leq2CR$, each annulus contributes at most a constant. For
+$|y|>2CR$, the total defect mass is at most $CR^{d-1}$ and the kernel
+is at most $C|y|^{1-d}$, so the bound is constant. The estimate applies
+to any subset of the defect sites.
+
+Here is an elementary substitute for a smoothness assumption on
+$\rho$. Define its nonnegative lattice curvature by
+\[
+ \eta(x)=\sum_{i=1}^d
+ [\rho(x+de_i)+\rho(x-de_i)-2\rho(x)].
+\]
+Then, for every choice $\xi(x)\in\partial\rho(x)$, including
+$\xi(0)=0$,
+\begin{equation}\label{eq:core-cell}
+ \int_{C_x}|\nabla\rho(v)-\xi(x)|\,dv\leq C\eta(x),
+ \qquad
+ \sum_{x\in B(y,s)\cap\Z^d}\eta(x)\leq Cs^{d-1}\quad(s\geq1).
+\end{equation}
+To prove the first assertion, subtract the supporting plane and put
+$h(v)=\rho(v)-\rho(x)-\xi(x)\cdot(v-x)$. This is convex,
+nonnegative, and zero at $x$. For $v\in C_x$, the points $v\pm e_i$
+lie in the convex hull of $x\pm de_j$, because their $\ell^1$
+distance from $x$ is at most $d/2+1\leq d$. Their $h$-values are
+therefore at most $\eta(x)$. At every differentiability point,
+convexity on a coordinate line gives
+\[
+ |\partial_i h(v)|\leq h(v+e_i)+h(v-e_i)\leq2\eta(x),
+\]
+which proves the cell estimate. For the second assertion, sum each
+coordinate second difference along the lattice lines meeting the ball.
+The points on each line form an interval, and the sum telescopes to
+at most $2d$ first differences at its endpoints. Each first difference
+has absolute value at most $d\Lambda$, and there are
+$O(s^{d-1})$ such lines. This proves the claimed bound.
+
+Write $F_y(v)=(v-y)|v-y|^{-d}$. Cells at bounded distance from $y$
+have a uniformly bounded total contribution. On the other cells,
+$|F_y(v)-F_y(x)|\leq C(1+|x-y|)^{-d}$, whose sum is $O(\log R)$.
+The remaining error, from replacing $\xi(x)$ by $\nabla\rho(v)$,
+is at most
+\[
+ C\sum_{x\in B(0,CR)}\eta(x)(1+|x-y|)^{1-d}=O(\log R).
+\]
+This follows from \eqref{eq:core-cell} by exactly the near-pole and
+far-pole annulus argument used for \eqref{eq:core-defect-potential}.
+We have now obtained $U_{D_t}$ and the first identity in
+\eqref{eq:core-green}, uniformly over all poles.
+
+Finally a martingale increment is a centered nearest-neighbor
+increment of $g_y$. Its conditional variance is at most
+$C(1+|X_j-y|)^{2-2d}$, for every allowed conditional step law.
+Summing gives the bracket bound. To obtain the cell modulus, integrate
+the kernel directly within distance $2\sqrt d$ of either pole and
+use $|\nabla F_y(v)|\leq C|v-y|^{-d}$ elsewhere. The same near-pole
+and far-pole split gives $C\log R$.
+\end{proof}
+
+\begin{lemma}[Exit bootstrap]\label{lem:core-bootstrap}
+Put $\tau_R=\inf\{t:\rho(X_t)\geq R\}$. For every $p>0$, outside an event
+of probability $CR^{-p}$, simultaneously for $t\leq\tau_R$,
+\begin{equation}\label{eq:core-bootstrap}
+ \max_x\ell_t(x)\leq CR,\qquad
+ \tau_R\leq CR^{d+1},\qquad
+ \sup_{y\in\Z^d}|M_t^y|\leq C\sqrt R\log R.
+\end{equation}
+Consequently
+$\|\widetilde\ell_t-U_{D_t}\|_\infty\leq C\sqrt R\log R$.
+\end{lemma}
+\begin{proof}
+The point of the extra stop below is to obtain a deterministic clock
+bound before applying a martingale inequality. No prior estimate of
+$\tau_R$, or even of its finiteness, is needed.
+For $t\leq\tau_R$, every departed site lies in $B(0,C_1R)$.
+The exact Dynkin identity and the Green increment bound give
+\[
+ \ell_t(y)\leq |M_t^y|+CR
+\]
+uniformly in $y$: the sum of $(1+|x-y|)^{1-d}$ over a ball of radius
+$C_1R$ is at most $CR$, and the endpoint costs at most $C\log R$.
+Choose $C_2$ large and set
+\[
+ \mathcal Y_R=\{y\in\Z^d:|y|\leq C_2R^2\},\qquad
+ \gamma_R=\inf\{t:\max_{y\in\mathcal Y_R}|M_t^y|\geq R\},
+ \qquad \sigma_R=\tau_R\wedge\gamma_R.
+\]
+At every integer $t<\sigma_R$, all occupied sites belong to
+$\mathcal Y_R$ and have local time at most $CR$. Since there are at
+most $CR^d$ such sites,
+$t=\sum_x\ell_t(x)\leq CR^{d+1}$. Thus $\sigma_R\leq CR^{d+1}+1$
+deterministically, even if $\tau_R$ was initially allowed to be infinite.
+The bounded martingale overshoot and the single final departure
+preserve $\max_x\ell_{\sigma_R}(x)\leq CR$. Consequently
+\[
+ \langle M^y\rangle_{\sigma_R}
+ \leq CR\sum_{x\in B(0,C_1R)}(1+|x-y|)^{2-2d}
+ \leq CR\log R.
+\]
+Freedman's maximal inequality \citep[Theorem~1.6]{Freedman1975},
+applied to the stopped martingales, and a union bound over
+$|\mathcal Y_R|=O(R^{2d})$ poles show that
+\[
+ \max_{y\in\mathcal Y_R}\max_{t\leq\sigma_R}|M_t^y|
+ \leq C_p\sqrt R\log R
+\]
+except with probability $CR^{-p}$. For sufficiently large $R$ this
+is less than $R$. Hence $\gamma_R\leq\tau_R$ is impossible on that
+event, and $\sigma_R=\tau_R$ gives both the clock and the local-time
+bounds. Bounded values of $R$ are absorbed by increasing the constants.
+
+There is no infinite union of exceptional events hidden in the stated
+supremum. For $|y|>C_2R^2$, the pole is unvisited before exit and the
+exact Dynkin identity gives, pathwise for $t\leq\tau_R$,
+\[
+ |M_t^y|\leq C(R+|A_t|)|y|^{1-d}
+             \leq CR^d|y|^{1-d}\leq C.
+\]
+Here the endpoint uses the Green increment bound along a lattice path
+of length $O(R)$, and each first departure contributes at most
+$C|y|^{1-d}$. This proves the assertion for every pole.
+The representation and cell modulus complete the proof.
+\end{proof}
+
+The next estimate converts small exterior local times into a spatial
+bound. We use the distance to the whole convex body, so the argument
+needs no choice or discretization of supporting directions.
+
+\begin{lemma}[Distance crossing]\label{lem:core-crossing}
+For every $p>0$ and integer $N\geq2$, outside an event of probability
+$CN^{-p}$, simultaneously for $t\leq N$ and every real $k\geq0$,
+\begin{equation}\label{eq:core-crossing}
+ \max_{j\leq t}\operatorname{dist}(X_j,kK)
+ \leq C\left(1+\max_{\rho(x)\geq k}\ell_t(x)\right)\log N.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Fix $k\geq0$ and write $D(x)=\operatorname{dist}(x,kK)$.
+If $D(x)>2$, let $\pi(x)$ be the Euclidean projection onto $kK$
+and $\nu(x)=(x-\pi(x))/D(x)$. For any nearest-neighbor step $e$,
+\[
+ D(x+e)\leq|x+e-\pi(x)|
+          \leq D(x)+\nu(x)\cdot e+C/D(x).
+\]
+Moreover, the subgradient inequality and the competitor
+$kx/\rho(x)\in kK$ imply
+\[
+ \xi(x)\cdot\nu(x)
+ \geq\frac{\rho(x)-k}{D(x)}\geq c.
+\]
+For $f(x)=\exp(\theta D(x))$, $0<\theta\leq1$, use the preceding
+distance bound and $|D(x+e)-D(x)|\leq1$. If $I_j$ indicates a first
+departure, then, whenever $D(X_j)>2$,
+\begin{equation}\label{eq:core-distance-drift}
+ \E[f(X_{j+1})-f(X_j)\mid\mathcal F_j]
+ \leq\theta f(X_j)
+ \left[C\left(\theta+\frac1{D(X_j)}\right)
+                   -\kappa\lambda_-c I_j\right].
+\end{equation}
+This uses only the conditional mean; all second-order terms are
+bounded by the unit step size.
+
+Fix an integer $L\geq0$ and $H>0$. Stop at time $N$, at the first
+arrival with $D(X_j)\geq H$, or as soon as some site with
+$\rho(x)\geq k$ has local time $L+1$, whichever comes first; call this
+time $T$. Every exterior site has at most $L+1$ departures before $T$.
+Choose
+$\theta=c_0/(L+1)$ and a fixed $A_0>2$, with $c_0$ sufficiently
+small and $A_0$ sufficiently large that
+\[
+ C(c_0+A_0^{-1})\leq\kappa\lambda_-c.
+\]
+For a departed site $x$ with $D(x)>A_0(L+1)$, sum the right-hand
+side of \eqref{eq:core-distance-drift} over all its departures
+before $T$. Its cookie occurs exactly once, so that sum is at most
+\[
+ \theta f(x)\left[(L+1)C\left(\theta+D(x)^{-1}\right)
+                        -\kappa\lambda_-c\right]\leq0.
+\]
+In the remaining tube, $f(X_j)$ and $f(X_{j+1})$ are bounded by the
+fixed constant $\exp(c_0(A_0+1))$, so each compensator term is bounded
+above by a fixed constant. There are at most $N$ terms. Optional
+stopping of the bounded-time Dynkin martingale therefore gives
+$\E f(X_T)\leq1+CN$. In particular,
+\begin{equation}\label{eq:core-exp-crossing}
+ \P\left\{\begin{array}{c}
+ \text{for some }t\leq N,\quad
+ \max_{j\leq t}D(X_j)\geq H,\\
+ \max_{\rho(x)\geq k}\ell_t(x)\leq L
+ \end{array}\right\}
+ \leq CN\exp\{-c_0H/(L+1)\}.
+\end{equation}
+Indeed, on this event the first arrival at distance $H$ precedes the
+local-time stop, so $f(X_T)\geq e^{\theta H}$. The argument has not
+conditioned on the event whose probability is being estimated.
+
+Apply \eqref{eq:core-exp-crossing} with
+$H=C_p(L+1)\log N$, and take a union bound over the integers
+$0\leq L\leq N$ and $0\leq k\leq\lceil\Lambda N\rceil+1$.
+There are $O(N^2)$ choices; increasing $C_p$ makes their total failure
+probability at most $CN^{-p}$. At every time $t\leq N$, substitute
+$L=\max_{\rho(x)\geq k}\ell_t(x)$ to get
+\eqref{eq:core-crossing} for these integer levels. Larger levels
+contain the whole path, since $\rho(X_j)\leq\Lambda N$.
+Finally, for real $k\geq0$, set $m=\lceil k\rceil$. Radial scaling
+inside $K\subset B(0,1/c)$ gives
+\[
+ D_k(x)\leq D_m(x)+1/c,\qquad
+ \max_{\rho(x)\geq m}\ell_t(x)
+ \leq\max_{\rho(x)\geq k}\ell_t(x).
+\]
+The integer estimate, with the fixed additive constant absorbed,
+proves the result for all real levels simultaneously.
+\end{proof}
+
+\begin{proposition}[Coarse scale, with polynomial tails]\label{prop:core-coarse}
+For every $p>0$ there are $c_p,C_p>0$ such that, with probability at least
+$1-C_pR^{-p}$,
+\begin{equation}\label{eq:core-clock}
+ c_pR^{d+1}\leq\tau_R\leq C_pR^{d+1}.
+\end{equation}
+Consequently, with $r_n=((d+1)n/(2d\kappa|K|))^{1/(d+1)}$, with probability
+at least $1-C_p n^{-p}$,
+\begin{equation}\label{eq:core-coarse}
+ \begin{gathered}
+ \max_{j\leq n}|X_j|\leq C_pr_n,\qquad
+ c_pr_n\leq\max_x\ell_n(x)\leq C_pr_n,\qquad
+ c_pr_n^d\leq|A_n|\leq C_pr_n^d,\\
+ c_pr_nK\subset D_n,\qquad
+ \min_{\substack{x\in\Z^d\\\rho(x)\leq c_pr_n}}\ell_n(x)
+ \geq c_pr_n.
+ \end{gathered}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Work on the events of the preceding two lemmas with a deterministic
+horizon $N=\lceil CR^{d+1}\rceil$. At time $\tau_R$, let
+$b=\inf_{y\notin D_{\tau_R}}\rho(y)$, and choose a contact point
+$y_0\in\partial(bK)\cap\overline{D_{\tau_R}^c}$ in the closure of an
+unoccupied cell. Continuity and the cell estimate imply
+$0\leq H=U_{D_{\tau_R}}(y_0)\leq\delta_R=C\sqrt R\log R$.
+Lemma~\ref{lem:core-geometry} therefore gives
+\[
+ \|\widetilde\ell_{\tau_R}-2d\kappa(b-\rho)_+\|_\infty
+ \leq\delta_R+C(R^d\delta_R)^{1/(d+1)}
+ =:\varepsilon_R=o(R/\log R).
+\]
+Use \eqref{eq:core-crossing} with $k=b$; at sites outside $bK$ the
+local times are at most $\varepsilon_R$. Since
+$\rho(X_{\tau_R})\geq R$ and $\rho$ is $\Lambda$-Lipschitz,
+\[
+ R-b\leq C+C(\varepsilon_R+1)\log R=o(R).
+\]
+The cone is supported on $\{\rho<b\}\subset D_{\tau_R}$.
+Integrating its approximation over $D_{\tau_R}\subset B(0,CR)$ gives
+\[
+ \tau_R=\frac{2d\kappa|K|}{d+1}b^{d+1}
+ +O(R^d\varepsilon_R)\asymp R^{d+1},
+\]
+proving \eqref{eq:core-clock}. To obtain \eqref{eq:core-coarse}, choose
+$R=\lceil C n^{1/(d+1)}\rceil$ so that the lower clock bound exceeds $n$,
+and apply the exit event with exponent $(d+1)(p+1)$. Then $n<\tau_R$,
+so the spatial and local-time upper bounds follow. For the inner bounds, also choose $R'=\lfloor c n^{1/(d+1)}\rfloor$
+with $c$ sufficiently small that the upper clock bound gives
+$\tau_{R'}\leq n$. The contact argument just proved gives
+$b_{\tau_{R'}}\geq3R'/4$ for large $n$, and its cone approximation
+has error $o(R')$. Hence every lattice site with
+$\rho(x)\leq R'/2$ has local time at least $c'R'$ at $\tau_{R'}$.
+These local times only increase before time $n$. The occupied cells
+therefore contain $(R'/4)K$, after absorbing their fixed diameter.
+Reducing $c_p$ gives both final assertions in
+\eqref{eq:core-coarse}, as well as the lower bounds for maximum local
+time and volume. A union bound for the two exit events retains
+probability $1-C_pn^{-p}$.
+\end{proof}
+
+% ----- quantitative -----
+% Proposed replacement: quantitative.tex, through first-hole noise.
+% The exact squared-Green identity replaces Newton convolution and the resolvent.
+\section{Local noise from a squared Green function}
+
+Fix $p>0$, write $r=r_n$ and $a=\log n$, and let $g$ be the planar
+potential kernel or minus the Green function in dimensions at least three,
+normalized by $\Delta g=\mathbf1_{\{0\}}$.
+On the coarse event of Proposition~\ref{prop:core-coarse},
+\begin{equation}\label{eq:rate-event}
+ D_n\subset B(0,Cr),\qquad |A_n|\le Cr^d,\qquad
+ \max_x\ell_n(x)\le Cr.
+\end{equation}
+The useful noise estimate is local: when a site has little occupation,
+the martingale in its Green representation has little variation. This
+follows by applying Dynkin's formula a second time, to a square.
+
+\begin{lemma}[Squared-Green estimate]\label{lem:rate-square}
+There is an event of probability at least $1-Cn^{-p}$ on which
+\eqref{eq:rate-event} holds and, simultaneously for all lattice sites
+$|y|\le3n$,
+\begin{equation}\label{eq:rate-self-noise}
+ |\ell_n(y)-U_{D_n}(y)|\le
+ \begin{cases}
+ C\bigl(\sqrt{ra}+a\sqrt{\ell_n(y)}\bigr),&d=2,\\
+ C\bigl(a+\sqrt{a\ell_n(y)}\bigr),&d\ge3.
+ \end{cases}
+\end{equation}
+In particular, writing
+\begin{equation}\label{eq:rate-hq}
+ h=\begin{cases}\sqrt{ra},&d=2,\\a,&d\ge3,\end{cases}
+ \qquad q=h/r,
+\end{equation}
+we have, after constant extension of the local times to cells,
+\begin{equation}\label{eq:rate-one-sided}
+ U_{D_n}\ge\tfrac12\widetilde\ell_n-Ch,
+ \qquad |U_{D_n}|\le Ch\quad\hbox{on }D_n^c.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For a lattice function $f$, let $M^f$ denote its Dynkin martingale.
+Define the edge energy
+\[
+ e(z)=\frac1{2d}\sum_{|v|=1}(g(z+v)-g(z))^2,
+ \qquad \mathcal E_n(y)=\sum_x\ell_n(x)e(x-y).
+\]
+Since every conditional step law is supported on the $2d$ neighbors,
+$\langle M^{g_y}\rangle_n\le2d\mathcal E_n(y)$.
+For any constant $c$, the exact product identity is
+\begin{equation}\label{eq:rate-square-identity}
+ \Delta(g-c)^2=2(g(0)-c)\mathbf1_{\{0\}}+e.
+\end{equation}
+Let $f_y(x)=(g(x-y)-c)^2$ and $N^y=M^{f_y}$. Applying Dynkin's
+formula and collecting the first-departure corrections gives
+\begin{align*}
+ \mathcal E_n(y)
+ &=2(c-g(0))\ell_n(y)+f_y(X_n)-f_y(0)-N_n^y\\
+ &\quad-\sum_{x\in A_n}\sum_{|v|=1}
+       \left(q_x(v)-\frac1{2d}\right)
+                       (f_y(x+v)-f_y(x)).
+\end{align*}
+Each site contributes to the last sum only once.
+
+If $d\ge3$, take $c=0$. The function $g=-G$ is bounded, and the
+Green gradient estimate gives
+\[
+ \max_{|v|=1}|g(z+v)^2-g(z)^2|
+       \le C(1+|z|)^{3-2d}.
+\]
+The sum of these bounds over any $Cr^d$ sites is $O(\log r)$ when
+$d=3$ and $O(1)$ when $d\ge4$, uniformly in the pole $y$.
+The endpoint terms are bounded. Also
+$\langle N^y\rangle_n\le C\mathcal E_n(y)$ and $N^y$ has bounded
+increments, since $|\Delta_v(g^2)|\le C|\Delta_vg|$.
+Freedman's inequality and the displayed identity therefore give
+\[
+ \mathcal E_n(y)\le C\ell_n(y)+Ca+C\sqrt{a\mathcal E_n(y)},
+ \qquad\hbox{hence}\qquad
+ \mathcal E_n(y)\le C(\ell_n(y)+a).
+\]
+
+In the plane choose a deterministic $R_0\asymp r$, sufficiently large,
+and $c=(2/\pi)\log R_0$. The Green estimates imply
+\[
+ \max_{|v|=1}|(g(z+v)-c)^2-(g(z)-c)^2|
+ \le C\frac{1+|\log((1+|z|)/R_0)|}{1+|z|}.
+\]
+The radial majorant decreases with $|z|$. Its sum over the $Cr^2$
+lattice points nearest to the pole is at most $Cr$: in polar coordinates
+the relevant integral is bounded by
+$C\int_1^{Cr}(1+|\log(s/R_0)|)\,ds\le Cr$.
+Thus the first-departure correction is $O(r)$ uniformly even for poles
+far from the range. Equivalently, for $|y|\gg r$ its direct bound is
+$Cr^2(1+\log(|y|/r))/|y|\le Cr$.
+For all poles $|y|\le3n$ and times up to $n$, the endpoint terms are
+$O(a^2)$, the increments of $N^y$ are $O(a)$, and
+$\langle N^y\rangle_n\le Ca^2\mathcal E_n(y)$.
+Consequently
+\[
+ \mathcal E_n(y)\le Ca\ell_n(y)+Cr+Ca^2
+                         +Ca\sqrt{a\mathcal E_n(y)}
+ \le\tfrac12\mathcal E_n(y)+C(a\ell_n(y)+r+a^3).
+\]
+Since $a^3=o(r)$, this gives
+$\mathcal E_n(y)\le C(a\ell_n(y)+r)$.
+
+The random-bracket forms of Freedman used here follow by splitting
+$\mathcal E_n(y)\le Cn$ into dyadic bins. Their $O(\log n)$ cost and
+a union bound over the $O(n^d)$ poles are absorbed by increasing the
+constant multiplying $a$. Applying Freedman to $M^{g_y}$, whose
+increments are bounded and whose bracket is at most
+$2d\mathcal E_n(y)$, and then using Lemma~\ref{lem:core-green},
+proves \eqref{eq:rate-self-noise}.
+Young's inequality absorbs half the local time in its lower bound
+for $U_{D_n}$. In the plane the additional $O(a^2)$ is absorbed by $h$.
+At an empty site set $\ell_n(y)=0$. The cell modulus extends these
+conclusions to the continuum; outside the pole region use the decay
+of the potential. This proves \eqref{eq:rate-one-sided}.
+\end{proof}
+
+The same estimate and $\max\ell_n\le Cr$ give the familiar two-sided
+uniform error
+\begin{equation}\label{eq:rate-crude}
+ \|\widetilde\ell_n-U_{D_n}\|_\infty\le\delta,
+ \qquad \delta=
+ \begin{cases}C\sqrt r\,a,&d=2,\\C\sqrt{ra},&d\ge3.
+ \end{cases}
+\end{equation}
+Define
+\[
+ b=\inf_{y\notin D_n}\rho(y),\quad E=D_n\setminus bK,
+ \quad H=U_{D_n}(y_0),\quad I=\int_E(\rho(v)-b)\,dv,
+\]
+where $y_0\in\partial(bK)$ lies in the closure of an empty cell $C_z$.
+Convexity gives $H=U_E(y_0)\ge0$.
+
+\begin{lemma}[Noise at the first hole]\label{lem:rate-contact}
+On the preceding event, $H\le Ch$.
+\end{lemma}
+\begin{proof}
+This is \eqref{eq:rate-one-sided} at $y_0$, by continuity from the empty
+cell. No geometric estimate of a martingale bracket is needed.
+\end{proof}
+
+\paragraph{Rates for every convex body.}
+Lemma~\ref{lem:core-geometry} and the contact bound give
+$I\le Cr^d h=Cr^{d+1}q$. Split $E$ into the layer
+$b\le\rho<b+s$, whose volume is at most $Cr^{d-1}s$, and the remainder,
+whose volume is at most $I/s$. With $s=r\sqrt q$ this proves
+\begin{equation}\label{eq:rate-general-mass}
+ |E|\le Cr^d\sqrt q,\qquad
+ \|U_E\|_\infty\le Crq^{1/(d+1)}.
+\end{equation}
+The quadratic martingale is
+\[
+ Q_n=|X_n|^2-n+2\kappa\sum_{x\in A_n}\lambda(x)\rho(x).
+\]
+Stopping on leaving $B(0,Cr)$ and applying Azuma gives
+$|Q_n|\le Cr\sqrt{na}$. The sparse-weight condition and cell quadrature
+each cost $O(r^d)$ in replacing the weighted sum by $\int_{D_n}\rho$.
+Since $\int_{bK}\rho=d|K|b^{d+1}/(d+1)$ and
+$n=2d\kappa|K|r^{d+1}/(d+1)$, we obtain
+\begin{equation}\label{eq:rate-clock-comparison}
+ \left|1-(b/r)^{d+1}\right|
+ \le C\left(r^{(1-d)/2}\sqrt a+r^{-1}+|E|r^{-d}\right).
+\end{equation}
+The first two terms are at most $C\sqrt q$; hence
+\begin{equation}\label{eq:rate-general-conclusion}
+ |b-r|\le Cr\sqrt q,\qquad
+ \max_x|\ell_n(x)-2d\kappa(r-\rho(x))_+|
+ \le Crq^{1/(d+1)}.
+\end{equation}
+Here we used the cone identity, \eqref{eq:rate-crude} and
+\eqref{eq:rate-general-mass}; their errors are bounded by the right side.
+Apply the distance crossing estimate \eqref{eq:core-crossing} with
+$k=r$. Outside $rK$ the local time is at most
+$Crq^{1/(d+1)}$. Since $\rho$ is Lipschitz, it follows that
+\begin{equation}\label{eq:rate-general-outer}
+ \max_{j\le n}\rho(X_j)\le r+Crq^{1/(d+1)}a.
+\end{equation}
+These prove Theorem~\ref{thm:main}\textup{(ii)}. Taking $p>1$ and
+applying Borel--Cantelli gives the filled inclusions and uniform cone
+law in part \textup{(i)}; at each fixed site the cone grows linearly in
+$r_n$, proving recurrence.
+
+\section{Euclidean geometry and exterior probes}
+\begin{figure}[b]
+\centering
+\begin{tikzpicture}[scale=0.8]
+\fill[black!45] plot[smooth cycle,tension=0.6] coordinates {(1.790,0.000) (1.792,0.078) (1.787,0.156) (1.775,0.234) (1.759,0.310) (1.737,0.385) (1.718,0.460) (1.725,0.544) (1.795,0.653) (1.909,0.791) (1.941,0.905) (1.811,0.943) (1.612,0.931) (1.466,0.934) (1.383,0.968) (1.327,1.018) (1.276,1.070) (1.225,1.122) (1.173,1.173) (1.120,1.223) (1.066,1.271) (1.011,1.317) (0.954,1.362) (0.895,1.405) (0.835,1.446) (0.772,1.484) (0.708,1.519) (0.642,1.550) (0.574,1.578) (0.505,1.602) (0.435,1.623) (0.363,1.639) (0.291,1.652) (0.219,1.661) (0.146,1.666) (0.073,1.668) (0.000,1.668) (-0.073,1.664) (-0.145,1.659) (-0.217,1.651) (-0.289,1.641) (-0.361,1.630) (-0.433,1.617) (-0.505,1.603) (-0.577,1.586) (-0.650,1.568) (-0.722,1.548) (-0.794,1.525) (-0.865,1.499) (-0.936,1.469) (-1.006,1.437) (-1.074,1.400) (-1.140,1.359) (-1.203,1.313) (-1.264,1.264) (-1.320,1.209) (-1.372,1.151) (-1.419,1.089) (-1.462,1.023) (-1.499,0.955) (-1.530,0.884) (-1.557,0.810) (-1.578,0.736) (-1.595,0.660) (-1.607,0.585) (-1.615,0.509) (-1.620,0.434) (-1.622,0.360) (-1.622,0.286) (-1.620,0.213) (-1.617,0.141) (-1.614,0.070) (-1.607,0.000) (-1.594,-0.070) (-1.581,-0.138) (-1.567,-0.206) (-1.552,-0.274) (-1.535,-0.340) (-1.516,-0.406) (-1.493,-0.471) (-1.468,-0.534) (-1.439,-0.596) (-1.406,-0.656) (-1.370,-0.713) (-1.332,-0.769) (-1.291,-0.822) (-1.247,-0.873) (-1.202,-0.922) (-1.156,-0.970) (-1.108,-1.015) (-1.061,-1.061) (-1.015,-1.108) (-0.970,-1.156) (-0.923,-1.203) (-0.874,-1.249) (-0.824,-1.293) (-0.772,-1.336) (-0.717,-1.378) (-0.661,-1.418) (-0.603,-1.456) (-0.543,-1.493) (-0.482,-1.528) (-0.418,-1.561) (-0.353,-1.593) (-0.286,-1.624) (-0.218,-1.652) (-0.147,-1.679) (-0.074,-1.704) (-0.000,-1.726) (0.076,-1.733) (0.151,-1.729) (0.226,-1.720) (0.301,-1.707) (0.375,-1.689) (0.447,-1.667) (0.517,-1.640) (0.585,-1.609) (0.652,-1.573) (0.715,-1.534) (0.776,-1.491) (0.835,-1.446) (0.891,-1.398) (0.944,-1.349) (0.996,-1.298) (1.045,-1.246) (1.094,-1.193) (1.141,-1.141) (1.187,-1.088) (1.233,-1.034) (1.278,-0.981) (1.324,-0.927) (1.369,-0.872) (1.414,-0.816) (1.459,-0.760) (1.503,-0.701) (1.547,-0.641) (1.588,-0.578) (1.628,-0.513) (1.664,-0.446) (1.698,-0.376) (1.727,-0.304) (1.751,-0.231) (1.770,-0.155) (1.783,-0.078)};
+\fill[black!12] (0,0) circle (1.500);
+\draw[dashed] (0,0) circle (2.191);
+\draw[densely dotted] (1.986,0.926) circle (0.700);
+\draw[thin,black!60] (0,0) -- (4.524,2.109);
+\filldraw[fill=white,draw=black] (-1.301,-1.301) rectangle (-1.061,-1.061);
+\fill (-1.061,-1.061) circle (2.2pt);
+\fill (0,0) circle (0.8pt);
+\filldraw[fill=white,draw=black] (4.524,2.109) circle (2.2pt);
+\end{tikzpicture}
+\caption{The light disk is $B(0,b)$, the largest ball about the origin in~$D_n$, the dark region is $E=D_n\setminus B(0,b)$, and the dashed circle, of radius~$b+w$, contains~$D_n$. The square is a cell disjoint from~$D_n$ whose closure contains the point~$y_0$ (black dot) of the circle $\{|v|=b\}$, and every point of~$E$ contributes nonnegatively to~$U_E(y_0)$. The segment joins the origin (small dot) to $y_t=(b+w+4t)u$ (open dot) for a unit vector~$u$, and the points of~$E$ in the dotted ball $B((b+w)u,t)$ contribute negatively to~$U_E(y_t)$.}
+\label{fig:contact}
+\end{figure}
+
+
+Now let $\rho(v)=|v|$. We retain $r,a,b,E,h,q$ above, so $b=R_{\rm in}(n)$.
+For $|v|\ge b=|y_0|$ the exact identity
+\[
+ 2(|v|^2-v\cdot y_0)=|v-y_0|^2+|v|^2-b^2
+\]
+gives
+\[
+ u_v\cdot\frac{v-y_0}{|v-y_0|^d}
+ \ge\frac{|v-y_0|^{2-d}}{2|v|}\ge c r^{1-d}
+ \qquad(v\in E).
+\]
+Thus the contact estimate improves the volume and inner radius bounds to
+\begin{equation}\label{eq:rate-euclidean-inner}
+ |E|\le Cr^{d-1}h=Cr^dq,\quad |b-r|\le Crq,
+ \quad |D_n\mathbin\triangle B(0,r)|\le Cr^dq.
+\end{equation}
+The radius assertion follows from \eqref{eq:rate-clock-comparison} since
+its first two terms are at most $Cq$.
+
+Write $U_E^+$ for the radial potential with its negative integrand
+replaced by zero, and put
+\[
+ L=1+\max_{|x|\ge b}\ell_n(x),\qquad
+ w=R_{\rm out}(n)-b+2\sqrt d,\qquad R=b+w.
+\]
+Then $w\ge1$ and $E\subset\{b\le|v|\le R\}$.
+The one-sided squared-Green bound gives directly, in every dimension,
+\begin{equation}\label{eq:rate-envelope}
+ \ell_n(y)\le C\bigl((b-|y|)_++\|U_E\|_\infty+h\bigr),
+ \qquad
+ \ell_n(y)\le C(U_E^+(y)+h)\quad(|y|\ge b).
+\end{equation}
+\paragraph{Direct control of the curvature term.}
+In every dimension,
+\begin{equation}\label{eq:rate-curvature}
+ \sup_y\int_E|v-y|^{2-d}\,dv\le Crh.
+\end{equation}
+For $d=2$ this is the volume bound. For $d\ge3$, put
+$F(y)=\int_E|v-y|^{2-d}/|v|\,dv$. The coarse bounds give
+$b\asymp r$ and $R\asymp r$, so
+$F(2Ru)\le Cr^{1-d}|E|\le Ca$ for every unit vector $u$.
+Direct differentiation yields
+\begin{equation}\label{eq:rate-radial-antiderivative}
+ \frac{d}{dt}\bigl(t^{d-2}F(tu)\bigr)
+ =\frac{\omega_d(d-2)}{2\kappa}t^{d-3}U_E(tu).
+\end{equation}
+For $t\ge b$ the cone vanishes, so
+$U_E(tu)=U_{D_n}(tu)\ge-Ca$ by \eqref{eq:rate-one-sided}.
+Integrating backward from $2R$ gives, for $b\le t\le2R$,
+\[
+ t^{d-2}F(tu)
+ \le (2R)^{d-2}F(2Ru)+Ca\int_t^{2R}s^{d-3}\,ds
+ \le Cr^{d-2}a.
+\]
+Thus $F\le Ca$ throughout this annulus. The same bound holds inside
+$B(0,b)$ and outside $B(0,2R)$ by the maximum principle, because $F$
+is harmonic there and tends to zero at infinity. Finally $|v|\le Cr$
+on $E$, proving \eqref{eq:rate-curvature}.
+
+\paragraph{One exterior estimate in all dimensions.}
+For $|y|\ge R$, the Euclidean identity and \eqref{eq:rate-curvature}
+give $U_E^+(y)\le Cr^{-1}\int_E|v-y|^{2-d}\,dv\le Ch$.
+
+We now use the same exterior probe in every dimension. Given a unit
+vector $u$ and $\sqrt d\le t\le r/4$, put $y_t=(R+4t)u$.
+This point lies outside $D_n$, and the cone vanishes there. Therefore
+\eqref{eq:rate-one-sided} gives the stronger estimate
+\begin{equation}\label{eq:rate-probe}
+ |U_E(y_t)|=|U_{D_n}(y_t)|\le Ch.
+\end{equation}
+For $v\in E\cap B(Ru,t)$ we have $u_v\cdot u\ge1-t/R$ and
+\[
+ u_v\cdot(v-y_t)\le R-(R+4t)(1-t/R)\le-t,
+ \qquad |v-y_t|\le5t,
+\]
+because $t\le R/2$ for large $n$. Such points contribute at most
+$-ct^{1-d}$ each, whereas all positive contributions total at most
+$Ch$. Hence \eqref{eq:rate-probe} implies
+\begin{equation}\label{eq:rate-cap}
+ |E\cap B(Ru,t)|\le Ch t^{d-1}\qquad(|u|=1,\ t\ge1).
+\end{equation}
+For $t>r/4$ use $|E|\le Cr^{d-1}h$;
+for $1\le t<\sqrt d$ use the ball-volume bound. Thus the estimate
+holds down to a fixed spatial scale, independently of the shell width.
+
+\begin{lemma}[Cap volume controls the boundary profile]\label{lem:rate-near-far}
+For every $y$ with $b\le|y|\le R$, put $s=R-|y|+1$. Then
+\[
+ U_E^+(y)\le C(h s^{d-1})^{1/d}+Ch.
+\]
+The same bound holds for $\ell_n(y)$ at lattice sites.
+\end{lemma}
+\begin{proof}
+For $t\ge s$, $B(y,t)\subset B(Ru_y,2t)$, so
+\eqref{eq:rate-cap} gives $|E\cap B(y,t)|\le Ch t^{d-1}$.
+The part $|v-y|\le s$ has volume at most $Ch s^{d-1}$ and
+therefore potential at most $C(h s^{d-1})^{1/d}$.
+For the rest, $|v|^2-|y|^2\le2Rs$ and $|v|\ge b\asymp r$ give
+\[
+ \left[u_v\cdot\frac{v-y}{|v-y|^d}\right]_+
+ \le\frac{Cs}{|v-y|^d}+\frac{C}{r|v-y|^{d-2}}.
+\]
+The cap bound makes the first integral at most
+$Cs\int_s^\infty h t^{d-1}t^{-d-1}\,dt\le Ch$;
+\eqref{eq:rate-curvature} bounds the second by $Ch$.
+The exterior local-time bound proves the last assertion.
+\end{proof}
+
+Since $s\le w+1\le2w$, the lemma and distance crossing with
+$k=b$ give
+\begin{equation}\label{eq:rate-L}
+ L\le C\bigl((h w^{d-1})^{1/d}+h\bigr),
+ \qquad w\le CLa\le\tfrac12w+Ch a^d.
+\end{equation}
+Thus $w\le Ch a^d$ in every dimension. In the plane the lemma yields
+\begin{equation}\label{eq:rate-planar-final}
+ w\le C\sqrt r\,a^{5/2},\qquad
+ \sup_{b\le|y|\le R}U_E^+(y)\le C\sqrt r\,a^{3/2}.
+\end{equation}
+
+For $d\ge3$, $h=a$, and the same inequality immediately gives
+\begin{equation}\label{eq:rate-higher-final}
+ w\le Ca^{d+1}.
+\end{equation}
+The all-scale cap estimates are already contained in \eqref{eq:rate-cap}.
+Lemma~\ref{lem:rate-near-far} now also gives
+\begin{equation}\label{eq:rate-boundary-profile}
+ \ell_n(y)\le
+ \begin{cases}
+ C\bigl(h+\sqrt{hs}\bigr),&d=2,\\
+ C\bigl(a+(as^{d-1})^{1/d}\bigr),&d\ge3,
+ \end{cases}
+ \qquad b\le|y|\le R,\quad s=R-|y|+1.
+\end{equation}
+In particular, for $d\ge3$ the outermost radial layer of width
+$C_0\log n$ has local times $O(\log n)$. If this layer reaches inside
+$B(0,b)$, then $w=O(a)$. The continuum boundary bound from the lemma
+and the maximum principle give $U_E\le Ca$ inside that ball.
+The first inequality in \eqref{eq:rate-one-sided}, together with the
+cone depth $O(a)$, gives the same local-time bound there.
+
+\paragraph{Uniform and interior local times.}
+For $d\ge3$, the layer bound and \eqref{eq:rate-higher-final} give
+$\|U_E\|_\infty\le Ca^{d+1}$. Together with the cone identity,
+\eqref{eq:rate-crude} and \eqref{eq:rate-euclidean-inner}, this gives
+\[
+ \max_x|\ell_n(x)-2d\kappa(r-|x|)_+|\le C\sqrt{ra}.
+\]
+In the plane $U_E$ is nonnegative and harmonic on $B(0,b)$, and continuous
+on its closure. The maximum principle and \eqref{eq:rate-planar-final}
+therefore bound it throughout that ball by $C\sqrt r\,a^{3/2}$.
+On the outer annulus use \eqref{eq:rate-envelope}; beyond the range
+both the local time and, except for a radial error $C|b-r|$, the target
+cone vanish. Consequently the uniform planar error is
+$C\sqrt r\,a^{3/2}$.
+
+Finally, for any fixed $\theta<1$ and $|y|\le\theta r$, the excess set
+is at distance at least $c_\theta r$ for large $n$. Thus
+\begin{equation}\label{eq:rate-bulk-potential}
+ |U_{D_n}(y)-2d\kappa(r-|y|)|
+ \le C_\theta(r^{1-d}|E|+|b-r|)\le C_\theta rq.
+\end{equation}
+The corresponding local-time error is at most $C_\theta\sqrt r\,a$
+in the plane and $C_\theta\sqrt{ra}$ in higher dimensions.
+All assertions hold simultaneously with probability $1-Cn^{-p}$ and,
+by Borel--Cantelli, eventually almost surely. The all-scale cap bounds
+\eqref{eq:rate-cap} and boundary profile \eqref{eq:rate-boundary-profile}
+are additional quantitative conclusions of the same proof.
+
+
+
+\section{Calibration and small occupation layers}
+% ----- calibration -----
+\begin{lemma}[Finite-scale calibration]\label{lem:finite-calibration}
+Let $a=2d\kappa$, $b=\nabla\rho$, and let $D\subset B(0,R)$ be measurable,
+$R\geq1$. Put $u=U_D$ and suppose
+\[
+ u\geq-\delta\quad\hbox{on }B(0,2R),\qquad
+ |u|\leq\delta\quad\hbox{on }B(0,2R)\setminus D.
+\]
+Then $w=(u-\delta)_+$ vanishes off $D$, belongs to $H^1(\mathbb R^d)$,
+and, with $A=\{u>\delta\}$,
+\begin{equation}\label{eq:finite-calibration}
+ \int_{\mathbb R^d}|\nabla w+a\mathbf1_A b|^2
+ +a^2\int_{D\setminus A}|b|^2
+ \leq C\delta R^{d-1}.
+\end{equation}
+In particular $|D\setminus A|\leq C\delta R^{d-1}$.
+\end{lemma}
+\begin{proof}
+The potential is continuous, tends to zero at infinity, and is harmonic
+off $\overline D$. The maximum principle extends $|u|\leq\delta$ from the
+annulus to the exterior of $B(0,R)$. The potential equation is
+$\operatorname{div}(\nabla u+a\mathbf1_D b)=0$.
+Since $\mathbf1_D b\in L^2$, the usual Fourier multiplier estimate gives
+$\nabla u\in L^2$; hence the compactly supported truncation $w$ is in $H^1$.
+Testing the equation with $w$, using $A\subset D$, gives
+\begin{equation}\label{eq:calibration-test-w}
+ \int|\nabla w|^2=-a\int b\cdot\nabla w.
+\end{equation}
+Choose a smooth $\chi$ equal to one on $B(0,R)$, zero off $B(0,2R)$,
+with $|\nabla\chi|\leq C/R$ and $|\Delta\chi|\leq C/R^2$.
+Put $v=u-w$, so $|v|\leq\delta$. The equation tested with $\chi\rho$,
+together with \eqref{eq:calibration-test-w}, gives the exact identity
+\[
+ \int|\nabla w+a\mathbf1_D b|^2
+ =a\int b\cdot\nabla w+a^2\int_D|b|^2
+ =-a\int\nabla v\cdot\nabla(\chi\rho)
+ =a\int v\,d\Delta(\chi\rho).
+\]
+The convexity measure $\mu=\Delta\rho$ has
+$\mu(B(0,2R))\leq CR^{d-1}$. Since
+$\Delta(\chi\rho)=\chi\mu+2b\cdot\nabla\chi+\rho\Delta\chi$,
+its total variation is at most $CR^{d-1}$. Integration by parts is
+justified by uniform and local $H^1$ mollification of the continuous
+function $v$. Bounding the right side by $C\delta R^{d-1}$ and splitting
+the square over $A$ and $D\setminus A$ proves the estimate.
+Finally $|b|\geq c$ almost everywhere, by Euler's identity and
+$\rho(x)\geq c|x|$.
+\end{proof}
+
+\begin{corollary}[Exact rigidity]\label{cor:calibration-rigidity}
+For bounded $D$, if $U_D\geq0$ and $U_D=0$ on $D^c$, then, up to null sets, $D=rK$ for
+some $r\geq0$ and $U_D=2d\kappa(r-\rho)_+$.
+\end{corollary}
+\begin{proof}
+If $|D|=0$, take $r=0$. Otherwise take $\delta=0$. Then $D=\{u>0\}$ up to null sets and
+$\nabla u=-a\mathbf1_{\{u>0\}}\nabla\rho$.
+Thus $u$ is Lipschitz and $u+a\rho$ is constant on each connected
+component of its positivity set. On such a component write
+$u=a(r-\rho)$. The segment from any point of the component toward the
+origin cannot leave it: at a first exit its value would still be
+strictly positive. Every component therefore contains the origin, so
+there is only one. Its boundary lies in $\{\rho=r\}$; following each
+radial segment now shows that the component is $rK$.
+\end{proof}
+
+\begin{corollary}[Few sites have small local time]\label{cor:low-occupation}
+On the same event, simultaneously for every $t\ge0$,
+\[
+ \#\{x\in A_n:\ell_n(x)\le t\}
+       \le C(t+h)r^{d-1},
+ \qquad
+ h=\begin{cases}\sqrt{r\log n},&d=2,\\ \log n,&d\ge3.\end{cases}
+\]
+\end{corollary}
+\begin{proof}
+The one-sided estimate gives $U_{D_n}\ge-Ch$ everywhere and
+$|U_{D_n}|\le Ch$ off $D_n$. At a site with $\ell_n(x)\le t$,
+\eqref{eq:rate-self-noise} and Young's inequality give
+$U_{D_n}(x)\le C(t+h)$; in the plane use $(\log n)^2\le Ch$.
+The same bound holds on its cell by the cell modulus. Apply
+Lemma~\ref{lem:finite-calibration} with $R=Cr$ and truncation threshold
+$C(t+h)$. All the indicated cells belong to its discarded set
+$D_n\setminus\{U_{D_n}>C(t+h)\}$, whose volume is at most
+$C(t+h)r^{d-1}$. This proves the assertion without assuming a uniform
+error of order $h$ at highly occupied sites.
+\end{proof}
+
+\subsection{A sharp Sobolev cone inequality}
+The calibration controls the defect $\nabla w+a\nabla\rho$ on the
+positivity set of $w$. Nguyen's integral inequality bounds the mass of
+$w$ in terms of this defect and the volume of that set. The following
+form allows every convex gauge and retains the directional information
+in the defect. For the $\ell^1$ ball, $a=2\theta$ and $R_K=1$, even
+its Euclidean-energy version improves the error coefficient by the
+factor $\sqrt{d/(d+2)}$.
+
+\begin{proposition}[A sharp cone inequality for every gauge]
+\label{prop:gauge-sobolev}
+Let $K$ be as above, $V=|K|$, and let
+$h_K(z)=\sup_{x\in K}x\cdot z$ be its support function. If
+$w\in H^1(\mathbb R^d)$ is nonnegative and
+$M=|\Omega|<\infty$, where $\Omega=\{w>0\}$, then for every $a>0$,
+\begin{align}
+ \int w
+ &\le \frac{aV^{-1/d}}{d+1}M^{1+1/d}
+ +\frac{V^{-1/d}}{\sqrt{d(d+2)}}M^{1/2+1/d}
+ \bigl\|h_K(-\nabla w-a\nabla\rho)\bigr\|_{L^2(\Omega)}.
+ \label{eq:gauge-sobolev}
+\end{align}
+The coefficients in \eqref{eq:gauge-sobolev} are sharp: equality holds for every $r>0$ and $c\ge0$
+when
+$w=a(r-\rho)_++\frac c2(r^2-\rho^2)_+$.
+Writing $R_K=\max_{x\in K}|x|$, the last norm can be replaced by
+$R_K\|\nabla w+a\nabla\rho\|_{L^2(\Omega)}$.
+\end{proposition}
+\begin{proof}
+Assume $M>0$ and put $\mu(t)=|\{w>t\}|$.
+For $0<s<M$, the rank bound
+$|\{x\in\Omega:\mu(w(x))>s\}|\le M-s$ gives, by layer cake,
+\begin{equation}\label{eq:sobolev-rank}
+ \int_\Omega\mu(w)^q\le\frac{M^{q+1}}{q+1}\qquad(q>0).
+\end{equation}
+Indeed, the set in the rank bound is the increasing union of
+$\{0<w\le t\}$ over levels with $\mu(t)>s$.
+The anisotropic isoperimetric inequality and weighted coarea formula
+\citep[(1.4), (2.22)]{FigalliMaggiPratelli2010} give
+\[
+ dV^{1/d}\int w
+ \le\int_0^\infty\mu(t)^{1/d}P_K(\{w>t\})\,dt
+ =\int_\Omega\mu(w)^{1/d}h_K(-\nabla w).
+\]
+Here $P_K$ uses the outward normal, accounting for the minus sign;
+the argument therefore does not require $K=-K$.
+The Sobolev and coarea statements apply since $w,\nabla w\in L^1$,
+by Cauchy--Schwarz on $\Omega$ and $\nabla w=0$ almost everywhere
+on its complement. Since $h_K(\nabla\rho)=1$ almost everywhere,
+subadditivity gives
+\[
+ h_K(-\nabla w)\le a+h_K(-\nabla w-a\nabla\rho).
+\]
+Use \eqref{eq:sobolev-rank} with $q=1/d$ for the first term and,
+after Cauchy--Schwarz, with $q=2/d$ for the second. Division by
+$dV^{1/d}$ proves \eqref{eq:gauge-sobolev}.
+For the displayed equality family the defect is $c\rho$ on $rK$;
+the identities $\int_{rK}\rho^j=dVr^{d+j}/(d+j)$ verify equality
+directly. Finally $h_K(z)\le R_K|z|$ proves the Euclidean-energy form.
+\end{proof}
+
+
+\section{Limit laws}
+% ----- limit-laws -----
+\begin{lemma}[One covariance identity]\label{lem:universal-bracket}
+For a lattice function $f$, let
+\[
+ M_n^f=f(X_n)-f(0)-\sum_{j<n}\mathbb E[
+ f(X_{j+1})-f(X_j)\mid\mathcal F_j].
+\]
+Write
+\begin{align*}
+ \Gamma(f,h)(x)&=\frac1{2d}\sum_{|e|=1}
+ [f(x+e)-f(x)][h(x+e)-h(x)]-\Delta f(x)\Delta h(x),\\
+ o_f(x)&=\max_{|e|=|e'|=1}|f(x+e)-f(x+e')|.
+\end{align*}
+Then
+\begin{equation}\label{eq:universal-bracket}
+ \langle M^f,M^h\rangle_n
+ =\sum_x\ell_n(x)\Gamma(f,h)(x)+R_n(f,h),\qquad
+ |R_n(f,h)|\le C\sum_{x\in A_n}o_f(x)o_h(x).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Repeated departures contribute exactly $\Gamma(f,h)(x)$. At a first
+departure, covariance under the conditional cookie law differs from
+covariance under the uniform law by at most $Co_f(x)o_h(x)$: subtract
+one neighboring value from each variable, and bound the two product
+expectations and the two products of means. Each site contributes at
+most once. The argument is conditional on the past, so adaptive cookie
+laws require no change.
+\end{proof}
+
+\begin{proposition}[Joint polynomial fluctuations]\label{prop:joint-polynomial}
+Set $b(x)=\kappa\lambda(x)\xi(x)$ and
+\[
+ Z_n=X_n+\sum_{x\in A_n}b(x),\qquad
+ Q_n=|X_n|^2-n+2\kappa S_n.
+\]
+These are martingales. With $c_K=2d\kappa V/(d+1)$ and
+$m_K=\int_K z\,dz$, their joint limit is
+\begin{equation}\label{eq:joint-polynomial}
+ \left(\frac{Z_n}{\sqrt n},\frac{Q_n}{r_n^{(d+3)/2}}\right)
+ \Longrightarrow N\!\left(0,
+ \begin{pmatrix}
+ I_d/d & \displaystyle\frac{4\kappa m_K}{(d+2)\sqrt{c_K}}\\[2mm]
+ \displaystyle\frac{4\kappa m_K^{\mathsf T}}{(d+2)\sqrt{c_K}}
+ &\displaystyle\frac{8\kappa J_K}{d+3}
+ \end{pmatrix}\right).
+\end{equation}
+For either sign, almost surely,
+\[
+ \limsup_n\frac{\pm Q_n}{r_n^{(d+3)/2}\sqrt{2\log\log n}}
+ =\sqrt{\frac{8\kappa J_K}{d+3}},\qquad
+ \limsup_n\frac{\pm v\cdot Z_n}{\sqrt{2n\log\log n}}
+ =\frac{|v|}{\sqrt d}\quad(v\in\mathbb R^d).
+\]
+For symmetric $K$ the two components of the Gaussian limit are
+independent.
+\end{proposition}
+\begin{proof}
+Euler's identity gives $x\cdot b(x)=\kappa\lambda(x)\rho(x)$;
+thus $Z=M^x$ and $Q=M^{|x|^2}$. Since
+\[
+ \Gamma(x_i,x_j)=\delta_{ij}/d,\qquad
+ \Gamma(x_i,|x|^2)=2x_i/d,\qquad
+ \Gamma(|x|^2,|x|^2)=4|x|^2/d,
+\]
+Lemma~\ref{lem:universal-bracket} gives
+\begin{align}
+ \langle Z\rangle_n&=\frac nd I_d+O(|A_n|),\label{eq:Z-bracket}\\
+ \langle Z,Q\rangle_n&=\frac2d\sum_x\ell_n(x)x
+                      +O\!\left(\sum_{x\in A_n}|x|\right),
+                      \label{eq:ZQ-bracket}\\
+ \langle Q\rangle_n&=\frac4d\sum_x\ell_n(x)|x|^2
+                      +O\!\left(\sum_{x\in A_n}|x|^2\right).
+                      \label{eq:Q-bracket}
+\end{align}
+The neighbor oscillations are $O(1)$ and $O(|x|)$, respectively;
+in particular the quadratic correction vanishes at $x=0$.
+The qualitative shape theorem and cone profile turn these sums into
+Riemann integrals. Homogeneity gives
+\[
+ \int_K(1-\rho(z))z\,dz=\frac{m_K}{d+2},\qquad
+ \int_K(1-\rho(z))|z|^2\,dz=\frac{J_K}{d+3}.
+\]
+The covariance errors are smaller by a factor $r_n^{-1}$. Dividing
+the three brackets by $n$, $\sqrt n\,r_n^{(d+3)/2}$ and
+$r_n^{d+3}$ proves their almost-sure limits in
+\eqref{eq:joint-polynomial}. The increment bounds
+$|\Delta Z_j|\le2$ and $|\Delta Q_j|\le4|X_j|$, together with
+$\max_{j\le n}|X_j|=O(r_n)$ eventually almost surely, imply
+Lindeberg after stopping at a deterministic multiple of $r_n$.
+The stopping has probability tending to zero by the coarse estimate.
+The multivariate martingale CLT gives \eqref{eq:joint-polynomial}
+\citep[Corollary~3.1]{HallHeyde1980}. The same increment bounds verify
+Stout's condition, because their ratios to the respective
+$\sqrt{\langle M\rangle_n/\log\log\langle M\rangle_n}$ are
+$O(\sqrt{\log\log n/n})$. This gives both LILs \citep{Stout1970}.
+If $K=-K$, then $m_K=0$, proving the independence assertion.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}\textup{(iv)}]
+In the identity $2\kappa(S_n-n/(2\kappa))=Q_n-|X_n|^2$, the
+endpoint is $O(r_n^2)$ and hence negligible on the CLT and LIL
+scales for $d\ge2$. Proposition~\ref{prop:joint-polynomial} gives
+both asserted laws for $S_n$. They also give
+$S_n\sim n/(2\kappa)$ almost surely. The derivative of
+$((d+1)s/(dV))^{1/(d+1)}$ at $s=n/(2\kappa)$ is
+$1/(dVr_n^d)$, which gives the stated laws for $\Rmom(n)$.
+\end{proof}
+
+\begin{theorem}[Local times centered by the cookie potential]
+\label{thm:general-local-clt}
+Under the assumptions of Theorem~\ref{thm:main}, use the Green
+kernel $g$ of Lemma~\ref{lem:core-green}.
+Define the range-dependent potential and normalization by
+\[
+ P_n(y)=\sum_{x\in A_n}\sum_{|e|=1}
+       \left(\frac1{2d}-q_x(e)\right)g(x+e-y),\qquad
+ s_n=\begin{cases}\sqrt{r_n\log r_n},&d=2,\\
+                         \sqrt{r_n},&d\geq3.
+             \end{cases}
+\]
+For every finite list $y_1,\ldots,y_k$,
+$((\ell_n(y_i)-P_n(y_i))/s_n)_i$ tends to a centered Gaussian
+vector of covariance
+\[
+ \Sigma_{ij}=\begin{cases}16\kappa/\pi,&d=2,\\
+ 2d\kappa(2G(y_i-y_j)-\mathbf1_{\{y_i=y_j\}}),&d\geq3.
+ \end{cases}
+\]
+Write $\Sigma(y,y)$ for the corresponding diagonal variance.
+At each fixed site, for either sign, almost surely,
+\[
+ \limsup_n\frac{\pm(\ell_n(y)-P_n(y))}
+                   {s_n\sqrt{2\log\log n}}=\sqrt{\Sigma(y,y)}.
+\]
+Both assertions also hold with $U_{D_n}(y)$ in place of $P_n(y)$.
+A deterministic cone requires the centering estimate below.
+\end{theorem}
+\begin{proof}
+The Dynkin martingale $M^y$ for $g_y(x)=g(x-y)$ satisfies
+\[
+ \ell_n(y)-P_n(y)=-M_n^y+g(X_n-y)-g(-y).
+\]
+The endpoint is $O(\log n)$ in $d=2$ and $O(1)$ in $d\geq3$.
+Apply Lemma~\ref{lem:universal-bracket} with $f=g_y$ and $h=g_z$.
+The bound $|g(x+e)-g(x)|\leq C(1+|x|)^{1-d}$ makes the
+first-cookie correction $O_{y,z}(\log r_n)$ in the plane and
+$O_{y,z}(1)$ in higher dimensions. Thus
+\[
+ \langle M^y,M^z\rangle_n
+ =\sum_x\ell_n(x)\Gamma(g_y,g_z)(x)+O_{y,z}(1+\log r_n).
+\]
+For $d\geq3$, summability, the cone profile and summation by parts
+give $r_n^{-1}\langle M^y,M^z\rangle_n\to
+2d\kappa(2G(y-z)-\mathbf1_{\{y=z\}})$.
+In $d=2$, the covariance kernel is
+$2/(\pi^2|x|^2)+O_{y,z}(|x|^{-3})$, whose sum over a ball of
+radius $r$ is $(4/\pi)\log r+O(1)$.
+The constant $4\kappa r_n$ of the cone gives
+$(16\kappa/\pi)r_n\log r_n$; the term involving $\rho(x)$ and
+the change from a Euclidean ball to a gauge ball cost only $O(r_n)$.
+The profile error costs $o(r_n\log r_n)$. These are the bracket
+limits. Bounded increments allow the multivariate martingale CLT
+and the scalar LIL. The potential representation gives
+$P_n(y)=U_{D_n}(y)+O(\log n)$ eventually almost surely,
+which proves the assertion about continuum centering.
+\end{proof}
+
+% ----- centering -----
+\begin{lemma}[Centering at a fixed site]\label{lem:local-centering}
+Assume the Euclidean inner-radius and volume estimates
+\eqref{eq:radial-inner}, and put
+\[
+ q_n=\begin{cases}\sqrt{\log n/r_n},&d=2,\\\log n/r_n,&d\ge3,
+ \end{cases}\qquad
+ w_n=\max\{|\Rin(n)-r_n|,|\Rout(n)-r_n|\}+2\sqrt d.
+\]
+For every fixed $y$, almost surely for all sufficiently large $n$,
+\begin{equation}\label{eq:local-centering}
+ U_{D_n}(y)-2d\kappa(r_n-|y|)-\frac{Q_n}{\omega_dr_n^d}
+ =O_y(1+q_nw_n).
+\end{equation}
+Consequently the qualitative outer shape $w_n=o(r_n)$ already
+suffices for every deterministic fixed-site limit law.
+\end{lemma}
+\begin{proof}
+Write $\nu=\mathbf1_{D_n}-\mathbf1_{B(0,r_n)}$. It is supported
+on $\{v:||v|-r_n|\le w_n\}$, and the inner-volume estimate gives
+$\|\nu\|_1\le Cr_n^dq_n$. On this annulus, eventually,
+\[
+ \left||v|^{1-d}-r_n^{-d}|v|\right|
+ \le Cr_n^{-d}||v|-r_n|.
+\]
+The radial kernel at zero is $(2\kappa/\omega_d)|v|^{1-d}$.
+Integration against $\nu$ therefore gives
+\[
+ U_{D_n}(0)-2d\kappa r_n
+ =\frac{2\kappa}{\omega_dr_n^d}
+ \left(\int_{D_n}|v|\,dv-\frac n{2\kappa}\right)+O(q_nw_n).
+\]
+Cell replacement costs $O(r_n^d)$, as does the weighted correction:
+\[
+ \left|S_n-\sum_{x\in A_n}|x|\right|
+ \le Cr_n\sum_{|x|\le Cr_n}|\lambda(x)-1|=O(r_n^d).
+\]
+The parenthesis is therefore
+$(Q_n-|X_n|^2)/(2\kappa)+O(r_n^d)$. Since
+$|X_n|^2/r_n^d=O(1)$, this proves the claim at zero. For fixed $y$,
+the difference between the kernels at $y$ and zero is
+$O_y(r_n^{-d})$ on the support of $\nu$; its integral is $O_y(1)$.
+The ball potential changes by exactly $-2d\kappa|y|$, proving
+\eqref{eq:local-centering}.
+\end{proof}
+
+\begin{proof}[Deterministic centering in Theorem~\ref{thm:radial}\textup{(ii)}]
+The qualitative shape gives $w_n=o(r_n)$, hence
+$q_nw_n=o(\sqrt{r_n\log n})$ in the plane and
+$q_nw_n=o(\log n)=o(\sqrt{r_n})$ in higher dimensions.
+The moment LIL gives, almost surely,
+\[
+ Q_n/r_n^d=O\!\left(r_n^{(3-d)/2}\sqrt{\log\log n}\right).
+\]
+Thus both terms in \eqref{eq:local-centering} are negligible on the
+fixed-site CLT scale, and therefore also on its LIL scale.
+Theorem~\ref{thm:general-local-clt} proves the claimed joint Gaussian
+and signed LIL laws. No rate for the outer shape is needed here.
+\end{proof}
+
+% ----- lower -----
+\section{Sharpness and fluctuation lower bounds}
+
+The lower bounds use a coarse filled shape and the covariance identity,
+not the sharp Euclidean radius estimates. We first record the coarse
+input for every convex gauge. Write $r=r_n$ and $L=\log n$. For every
+fixed $p>0$, there is an event $\Omega_n$ with
+$\mathbb P(\Omega_n^c)\le C_pn^{-p}$ on which
+\begin{equation}\label{eq:lower-coarse-input}
+ crK\subset D_n\subset B(0,C_0r),\qquad
+ \max_x\ell_n(x)\le Cr,\qquad
+ \|\widetilde\ell_n-U_{D_n}\|_\infty\le\delta,
+ \quad \delta=C\sqrt r\log n.
+\end{equation}
+The filled inclusion and local-time bound are part of
+Proposition~\ref{prop:core-coarse}; the Green-martingale estimate gives
+the uniform error. Below take $p=10$.
+
+\begin{lemma}[One common bulk height]\label{lem:lower-common-height}
+On $\Omega_n$, let $a=2d\kappa$ and $v_n=U_{D_n}(0)$. Then
+\begin{equation}\label{eq:lower-common-height}
+ cr\le v_n\le Cr,\qquad
+ |\ell_n(x)-v_n|\le C\min\{|x|,r\}+C\delta
+ \quad(x\in\mathbb Z^d).
+\end{equation}
+For all $y,z$ in a sufficiently small fixed multiple of $B(0,r)$,
+\begin{equation}\label{eq:lower-bulk-increment}
+ |U_{D_n}(z)-U_{D_n}(y)+a(\rho(z)-\rho(y))|
+ \le C|z-y|.
+\end{equation}
+Also $\ell_n(x)\ge cr$ on a sufficiently small fixed multiple of
+$B(0,r)$ for large $n$.
+\end{lemma}
+\begin{proof}
+Write $D_n=bK\cup E$ with $b\ge cr$. Inside $bK$, convexity
+makes the integrand of $U_E$ nonnegative, while
+$U_{bK}=a(b-\rho)_+$. This gives the lower bounds for $v_n$ and,
+using $\delta=o(r)$, for $\ell_n$ on a smaller ball. The
+potential-volume bound gives $v_n\le Cr$. The excess set is a
+distance of order $r$ from this smaller ball and has volume $O(r^d)$;
+the differentiated potential kernel is $O(r^{-d})$ there. Hence
+$|\nabla U_E|\le C$, proving \eqref{eq:lower-bulk-increment} and
+$|U_{D_n}(x)-v_n|\le C|x|$ near zero. Outside the smaller ball,
+$\min\{|x|,r\}\ge cr$, and both $\ell_n$ and $v_n$ are at most
+$Cr$. This proves \eqref{eq:lower-common-height} globally.
+\end{proof}
+
+\subsection{One exponential-martingale lemma}
+
+\begin{lemma}\label{lem:lower-exp}
+Fix $0<c_0\leq C_0$.  Let $S^1,\ldots,S^m$ be real
+martingales starting at zero with increments bounded by $b$.
+Suppose an event $\Omega$, of probability at least $1-\alpha$,
+satisfies $c_0\leq\langle S^i\rangle_n\leq C_0$ for every $i$.
+There are $c,C>0$, depending only on $c_0,C_0$, such that if
+$\beta\geq C$ and $\beta b\leq c$, then
+\[
+ \mathbb P(\pm S_n^i\geq c\beta)
+       \geq\tfrac14e^{-C\beta^2}-\alpha.
+\]
+If additionally
+$|\langle S^i,S^j\rangle_n|\leq\delta$ on $\Omega$ for $i\ne j$
+and $\beta^2\delta+\beta^3b\leq1$, then
+\[
+ \mathbb P\{\max_i S_n^i<c\beta\}
+ \leq C\left(m^{-1}e^{C\beta^2}+\beta^2\delta+
+                    \beta^3b+e^{C\beta^2}\sqrt\alpha\right).
+\]
+\end{lemma}
+\begin{proof}
+Stop all martingales just before any bracket would exceed $2C_0$;
+this changes none of them on $\Omega$.  For a martingale $S$ whose
+increments are at most $b_1$ and whose bracket is bounded by $8C_0$,
+put
+\[
+ K_S(s)=\sum_{j<n}\log\mathbb E(e^{s\Delta S_j}\mid\mathcal F_j),
+ \qquad Z_S(s)=e^{sS_n-K_S(s)}.
+\]
+Conditional Taylor expansion, for $|s|b_1\leq1/2$, gives
+\[
+ K_S(s)=\tfrac12s^2\langle S\rangle_n+O(|s|^3b_1),
+ \quad \mathbb E Z_S(s)=1,
+ \quad \mathbb E Z_S(s)^2\leq e^{Cs^2}.
+\]
+For the last bound use
+$Z_S(s)^2=Z_S(2s)e^{K_S(2s)-2K_S(s)}$.
+Apply these formulas to $S^i$ and $S^i+S^j$, with $s=\beta$,
+and abbreviate $Z_i=Z_{S^i}(\beta)$.
+On $\Omega$, $Z_i\geq1/2$ implies $S_n^i\geq c\beta$,
+since $K_{S^i}(\beta)\geq c_0\beta^2/4$.
+Paley--Zygmund therefore gives the first assertion; use $-S^i$
+for the opposite sign.
+For $i\ne j$,
+\[
+ Z_iZ_j=Z_{S^i+S^j}(\beta)
+       \exp\{\beta^2\langle S^i,S^j\rangle_n+O(\beta^3b)\}.
+\]
+On $\Omega$ the exponential is at most
+$1+C(\beta^2\delta+\beta^3b)$; on its complement apply
+Cauchy--Schwarz and the second-moment bound.  Consequently
+\[
+ \mathbb E Z_iZ_j\leq1+C(\beta^2\delta+\beta^3b)
+                              +e^{C\beta^2}\sqrt\alpha.
+\]
+The average $\overline Z=m^{-1}\sum_i Z_i$ has mean one and
+variance bounded by the right side of the asserted probability
+estimate.  If $\overline Z\geq1/2$ on $\Omega$, some
+$S_n^i\geq c\beta$.  Chebyshev, with the additional error $\alpha$,
+finishes the proof.
+\end{proof}
+
+\subsection{Planar radii and width}
+
+In this subsection only, let $d=2$ and $K=B(0,1)$; put
+$R_-=\Rin(n)$, $R_+=\Rout(n)$, and $u_x=x/|x|$ for $x\ne0$,
+with $u_0=0$. The polynomial martingales from
+Proposition~\ref{prop:joint-polynomial} are
+\[
+ Q_n=|X_n|^2-n+2\kappa\sum_{x\in A_n}\lambda(x)|x|,
+ \qquad Z_n=X_n+\kappa\sum_{x\in A_n}\lambda(x)u_x.
+\]
+On $\Omega_n$ the sparse-weight condition gives
+\begin{equation}\label{eq:lower-defect-scores}
+ \left|S_n-\sum_{x\in A_n}|x|\right|\le Cr^2,
+ \qquad
+ \left|\sum_{x\in A_n}(\lambda(x)-1)u_x\right|\le Cr.
+\end{equation}
+The coarse filled ball and positivity of the excess potential imply
+$\ell_n(x)\ge cr$ on a smaller ball. Equations
+\eqref{eq:Z-bracket}--\eqref{eq:Q-bracket} consequently give, on
+$\Omega_n$,
+\begin{equation}\label{eq:lower-QZ-brackets}
+ cr^5\le\langle Q\rangle_n\le Cr^5,
+ \qquad
+ \langle v\cdot Z\rangle_n=|v|^2n/2+O(|v|^2r^2).
+\end{equation}
+The first-cookie errors are $O(r^4)$ and $O(r^2)$, respectively.
+These coarse estimates suffice for every polynomial lower tail below;
+the exact almost-sure bracket limits and LIL constants were already
+proved in Proposition~\ref{prop:joint-polynomial}.
+
+The unweighted moment radius
+\[
+ T_n=\left(\frac3{2\pi}\sum_{x\in A_n}|x|\right)^{1/3}
+\]
+satisfies $R_-\leq T_n+C$ and $R_+\geq T_n-C$ by comparison
+with unit cells.  The weighted moment radius differs from $T_n$
+by $O(1)$ on $\Omega_n$ and eventually almost surely, by
+\eqref{eq:lower-defect-scores} and the shape theorem.
+The moment LIL in Theorem~\ref{thm:main} therefore proves
+\begin{equation}\label{eq:lower-radii-lil}
+ \limsup_n\frac{r-R_-}{\sqrt{r\log\log n}},\quad
+ \limsup_n\frac{R_+-r}{\sqrt{r\log\log n}}
+ \ \geq\frac1{\sqrt{10\pi\kappa}}\quad\hbox{almost surely}.
+\end{equation}
+To obtain polynomial lower tails, stop $Q$ on exiting $B_{C_0r}$
+and apply Lemma~\ref{lem:lower-exp} to $Q/r^{5/2}$.
+Its increments are bounded by $4C_0r^{-3/2}$, and its bracket lies
+between positive constants on $\Omega_n$ by
+\eqref{eq:lower-QZ-brackets}.
+Choose $\beta=a_p\sqrt{\log n}$, with $a_p>0$ small enough that
+$Ca_p^2<\min(p,10)/2$.  Each sign then has probability exceeding
+$n^{-p}$ after intersecting with $\Omega_n$ and subtracting its
+failure probability once more, for large $n$.
+Since $|X_n|^2$ and the defect in \eqref{eq:lower-defect-scores}
+are $O(r^2)=o(r^{5/2}\sqrt{\log n})$, the identity for $Q$ and
+factoring $T_n^3-r^3$ yield, with a suitable $c_p>0$,
+\begin{equation}\label{eq:lower-radii-tails}
+ \mathbb P\{r-R_-\geq c_p\sqrt{r\log n}\}\geq n^{-p},
+ \qquad
+ \mathbb P\{R_+-r\geq c_p\sqrt{r\log n}\}\geq n^{-p}.
+\end{equation}
+
+For the width set $V_n=\sum_{x\in A_n}u_x$.
+The sum over the lattice disk $\{|x|<R_-\}$ vanishes by symmetry.
+When $R_-,R_+\asymp r$, integration of the positive part of any
+directional component over the remaining annulus gives
+\begin{equation}\label{eq:lower-width-geometry}
+ |V_n|\leq R_+^2-R_-^2+Cr,
+ \qquad |Z_n|\leq\kappa(R_+^2-R_-^2)+Cr.
+\end{equation}
+Indeed, $\int_0^{2\pi}(\cos\theta)_+\,d\theta=2$; replacing
+each unit vector by its values in the corresponding cell costs
+$O(r)$, as does the weighted correction.
+The martingale $e_1\cdot Z$ has increments at most two.
+Apply Lemma~\ref{lem:lower-exp} to $(e_1\cdot Z)/\sqrt n$,
+using its bracket bounds on $\Omega_n$ from
+\eqref{eq:lower-QZ-brackets}.  Equation
+\eqref{eq:lower-width-geometry} and $n=(4\pi\kappa/3)r^3$ give
+\begin{equation}\label{eq:lower-width-tail}
+ \mathbb P\{R_+-R_-\geq c_p\sqrt{r\log n}\}\geq n^{-p}.
+\end{equation}
+The same bracket limit, the bounded-increment martingale LIL,
+and $R_-+R_+\sim2r$ give
+\begin{equation}\label{eq:lower-width-lil}
+ \limsup_n\frac{R_+-R_-}{\sqrt{r\log\log n}}
+       \geq\sqrt{\frac\pi{3\kappa}}\quad\hbox{almost surely}.
+\end{equation}
+Finally the vector martingale CLT yields
+$Z_n/\sqrt n\Longrightarrow N(0,I_2/2)$.
+On $\{R_+-R_-\leq a\sqrt r\}$,
+\eqref{eq:lower-width-geometry} gives
+$|Z_n|/\sqrt n\leq\sqrt{3\kappa/\pi}\,a+o(1)$ almost surely.
+Since $\mathbb P\{|N(0,I_2/2)|\leq t\}=1-e^{-t^2}$,
+\begin{equation}\label{eq:lower-width-small}
+ \limsup_n\mathbb P\{R_+-R_-\leq a\sqrt r\}
+       \leq1-e^{-3\kappa a^2/\pi}\qquad(a\geq0).
+\end{equation}
+
+\begin{corollary}[A joint planar small-ball bound]\label{cor:joint-smallball}
+In dimension two with $K=B(0,1)$, let
+$\sigma^2=1/(20\pi\kappa)$ and let $\Phi$ be the standard
+Gaussian distribution function. For every $\alpha,\beta\ge0$,
+\begin{align}
+ &\limsup_n\mathbb P\{\Rin(n)\ge r_n-\alpha\sqrt{r_n},\
+                 \Rout(n)\le r_n+\beta\sqrt{r_n}\}\notag\\
+ &\hspace{8mm}\le
+ [\Phi(\beta/\sigma)-\Phi(-\alpha/\sigma)]
+ [1-e^{-3\kappa(\alpha+\beta)^2/\pi}].
+ \label{eq:lower-joint-smallball}
+\end{align}
+\end{corollary}
+\begin{proof}
+Proposition~\ref{prop:joint-polynomial} and the delta method give
+independent Gaussian limits for $(\Rmom(n)-r_n)/\sqrt{r_n}$ and
+$Z_n/\sqrt n$, of laws $N(0,\sigma^2)$ and $N(0,I_2/2)$.
+The cell comparison above and the $O(1)$ weighted correction show
+that the event in the assertion forces the first quantity into
+$[-\alpha,\beta]+o(1)$. Equation~\eqref{eq:lower-width-geometry}
+forces $|Z_n|/\sqrt n\le\sqrt{3\kappa/\pi}(\alpha+\beta)+o(1)$.
+The Gaussian boundaries have probability zero. The joint CLT gives
+the product bound.
+\end{proof}
+
+\subsection{The maximum of the bulk local times}
+
+\begin{theorem}[Bulk oscillations for every convex gauge]\label{thm:bulk-oscillation}
+Under the general model assumptions, there is $c>0$ such that for all
+sufficiently large $n$, with probability at least $1-n^{-c}$,
+\begin{equation}\label{eq:lower-bulk-oscillation}
+ \operatorname{osc}_{|x|\le\sqrt{r_n}}
+       \bigl(\ell_n(x)+2d\kappa\rho(x)\bigr)
+ \ge c\begin{cases}
+          \sqrt{r_n}\log n,&d=2,\\
+          \sqrt{r_n\log n},&d\ge3.
+       \end{cases}
+\end{equation}
+Here the oscillation is the maximum minus the minimum over lattice sites.
+In particular the same orders, with a different constant, lower-bound
+\begin{equation}\label{eq:lower-bulk-max}
+ \max_{|x|\le\sqrt{r_n}}
+       |\ell_n(x)-2d\kappa(r_n-\rho(x))|
+\end{equation}
+with the same probability. This proves Theorem~\ref{thm:main}\textup{(v)} and includes the
+Euclidean bulk maximum assertion.
+\end{theorem}
+\begin{proof}
+Put $a=2d\kappa$ and work on the coarse event \eqref{eq:lower-coarse-input} with failure
+probability $O(n^{-10})$. Put
+\[
+ k=m=\lfloor r^{1/8}\rfloor,\qquad
+ y_i=i\lceil r^{1/4}\rceil e_1\ (1\le i\le m),\qquad
+ h=ke_1,\qquad f_i=g_{y_i+h}-g_{y_i}.
+\]
+The same dipoles are used in every dimension.
+All poles lie in $B(0,\sqrt r)$, and in fact in $B(0,Cr^{3/8})$.
+Set $\alpha_r=\log r$ in dimension two and $\alpha_r=1$ in higher
+dimensions, $s_r^2=r\alpha_r$, and $S^i=-M^{f_i}/s_r$.
+
+We claim that on the coarse event
+\begin{equation}\label{eq:lower-separated}
+ c_0\le\langle S^i\rangle_n\le C_0,
+ \qquad |\langle S^i,S^j\rangle_n|\le Cr^{-1/4}\quad(i\ne j).
+\end{equation}
+For clarity, the leading height in this calculation is the random
+$v_n=U_{D_n}(0)$; a deterministic cone approximation is unnecessary.
+Let $\mathcal E_{ij}=\sum_x\Gamma(f_i,f_j)(x)$.
+Green-kernel estimates and $2ab\le a^2+b^2$ give
+\begin{align*}
+ \sum_x|\Gamma(f_i,f_j)(x)|&\le C\alpha_r,\\
+ \sum_x\min\{|x|,r\}|\Gamma(f_i,f_j)(x)|
+      &\le C\sqrt r\,\alpha_r.
+\end{align*}
+Here are the details behind these summations. In dimensions at least
+three it suffices to dominate each dipole by its two monopoles, whose
+squared increments are bounded by $C(1+|x-y|)^{2-2d}$. Their total mass
+is bounded and their first truncated moment is $O(\log r)$ in dimension
+three and $O(1)$ above it. In the plane, within distance $3k$ of a pole,
+use the sum of its two reciprocal-distance bounds. Outside this region,
+cancellation gives an increment bound $Ck(1+|x-y_i|)^{-2}$.
+The squared sum is $O(\log r)$, and its first moment about $y_i$ is
+$O(k\log r)$. Translating by $|y_i|\le Cr^{3/8}$ proves the assertions.
+The finitely supported Laplacian terms obey the same bounds.
+
+By \eqref{eq:universal-bracket} and
+\eqref{eq:lower-common-height},
+\[
+ \left|\langle S^i,S^j\rangle_n-
+              \frac{v_n\mathcal E_{ij}}{r\alpha_r}\right|
+ \le C\left(\frac\delta r+r^{-1/2}+r^{-1}\right)
+ \le Cr^{-1/2}\log n=o(r^{-1/4}).
+\]
+The first-cookie term is $O(\alpha_r)$ before normalization, by the same
+increment-square estimates. Summation by parts now gives an exact formula:
+if $z=y_i-y_j$, then
+\begin{equation}\label{eq:lower-dipole-energy}
+ \mathcal E_{ij}
+ =2\{g(z+h)+g(z-h)-2g(z)\}-2\mathbf1_{\{i=j\}}.
+\end{equation}
+For the diagonal this equals $4(g(h)-g(0))-2$.
+In the plane it is asymptotic to $(8/\pi)\log k$, hence to
+$(1/\pi)\log r$; in higher dimensions it tends to $4G(0)-2>0$.
+For $i\ne j$, the supports of the two Laplacians are disjoint, and
+the Green asymptotics in the second difference give
+\[
+ |\mathcal E_{ij}|\le C k^2|y_i-y_j|^{-d}
+       \le Cr^{-(d-1)/4}.
+\]
+Together with $cr\le v_n\le Cr$, this proves
+\eqref{eq:lower-separated}.
+
+The increments of $S^i$ are bounded by $Cr^{-1/2}$.
+Apply Lemma~\ref{lem:lower-exp} with
+$\beta=\varepsilon\sqrt{\log r}$, taking $\varepsilon>0$ sufficiently
+small. Since $m\asymp r^{1/8}$ and the cross brackets are $O(r^{-1/4})$,
+its failure bound is at most $Cr^{-1/16}$.
+Thus for some $i$, except with this probability,
+$-M_n^{f_i}\ge c s_r\sqrt{\log r}$.
+
+Finally the Green representation and
+\eqref{eq:lower-bulk-increment} give
+\[
+ \ell_n(y_i+h)-\ell_n(y_i)
+      +a\bigl(\rho(y_i+h)-\rho(y_i)\bigr)
+ =-M_n^{f_i}+O(k+\log n).
+\]
+The error is $o(s_r\sqrt{\log r})$. The left side is the difference
+of two values whose oscillation appears in
+\eqref{eq:lower-bulk-oscillation}. Absorb the polynomial failure
+probability and use $r\asymp n^{1/(d+1)}$ to finish the proof.
+\end{proof}
+
+\begin{remark}
+The window $\sqrt{r_n}$ can be replaced by $r_n^\eta$ for any
+fixed $\eta>0$, with constants depending on $\eta$.
+For $0<\eta\le1/2$, take $k=m=\lfloor r^{\eta/4}\rfloor$ and
+pole spacing $\lceil r^{\eta/2}\rceil$. The poles are then within
+$Cr^{3\eta/4}<r^\eta$, the planar diagonal energy is
+$\asymp\eta\log r$, and the off-diagonal energies are
+$O(r^{-(d-1)\eta/2})$. The common-height error is still
+$O(r^{-1/2}\log n)$. A sufficiently small multiple of
+$\sqrt{\log r}$ in Lemma~\ref{lem:lower-exp} gives the same lower
+orders and a polynomial failure probability. For $\eta>1/2$ use
+inclusion of windows.
+\end{remark}
+
+\subsection{Logarithmic radii under ellipticity}
+
+Return to $K=B(0,1)$, with $R_-=\Rin(n)$ and $R_+=\Rout(n)$.
+For this paragraph assume additionally $q_x(e)\geq p_0>0$
+for every $x,e$; later departures already have probability $1/(2d)$.
+There are $c,C,h_0>0$ such that, for $h_0\leq h\leq r/8$,
+\begin{align}
+ \mathbb P\{R_-\geq r-h,\ R_+\leq r+h\}
+   &\leq e^{-cr^{d-1}e^{-Ch}},\label{eq:lower-log-joint}\\
+ \mathbb P\{R_+\leq r+h\}
+   &\leq e^{-cr^{d-1}e^{-Ch}}+e^{-cr^{d-3}h^2}.
+       \label{eq:lower-log-outer}
+\end{align}
+To prove these estimates, from any $x$ with $|x|>r-2h$ take
+$T=\lceil4h\sqrt d\rceil$ steps in the signed coordinate of
+largest $|x_i|$.  The Euclidean distance increases at speed at least
+$1/\sqrt d$, so this path exits $B_{r+h}$; its conditional
+probability is at least $p_0^T$ after decreasing $p_0$ if necessary.
+Among $k$ distinct arrivals at sites of any fixed
+$\Lambda\subset\{|x|>r-2h\}$ by time $n$, at least
+$\lfloor(k-T)/(T+1)\rfloor$ disjoint such trials can be started
+and completed by time $n$.  Successive conditioning bounds their
+joint failure probability by
+$(1-p_0^T)^{\lfloor(k-T)/(T+1)\rfloor}$.
+If $R_-\geq r-h$, the annulus
+$r-2h<|x|<r-h-1$ supplies $k\geq cr^{d-1}h$ sites, proving
+\eqref{eq:lower-log-joint}.
+
+For \eqref{eq:lower-log-outer}, let
+$\Lambda=\{r-2h<|x|\leq r+h\}$.
+The same trials apply if $|A_n\cap\Lambda|\geq c_1r^{d-1}h$.
+Otherwise, on $R_+\leq r+h$, cell comparison and the defect bound
+give
+\[
+ \sum_{x\in A_n}\lambda_x|x|
+ \leq\frac{n}{2\kappa}-c_2r^dh
+                     +2r|A_n\cap\Lambda|+Cr^d.
+\]
+Choose $c_1$ small and then $h_0$ large.  The identity
+$Q_n=|X_n|^2-n+2\kappa\sum\lambda_x|x|$
+forces $Q_n\leq-cr^dh$; the endpoint $|X_n|^2$ is absorbed
+by $h_0$ in $d=2$ and by large $r$ in higher dimensions.
+Stop $Q$ on leaving $B_{r+h}$.  Its increments are bounded by
+$4(r+h)$, so Azuma's inequality gives
+$\mathbb P\{Q_n\leq-cr^dh,\ R_+\leq r+h\}
+\leq e^{-cr^{d-3}h^2}$, proving the second estimate.
+Taking $h=c\log n$ with $c>0$ sufficiently small and applying
+Borel--Cantelli gives, almost surely for all sufficiently large $n$,
+\[
+ \max(r-R_-,R_+-r)>c\log n;
+ \qquad R_+-r>c\log n\quad\hbox{if }d\geq3.
+\]
+The ellipticity assumption is used only in the prescribed-path
+trials and is not needed for any preceding lower bound.
+
+
+\paragraph{Draft and verification scope.}
+This is a new mathematical draft. The Lean certificate accompanying
+\cite{BouRabeePeres2026CERW} is pinned to that paper and does not certify
+the generalized statements here.
+\raggedbottom
+\bibliographystyle{plainnat}
+\bibliography{oct13-references}
+\end{document}
