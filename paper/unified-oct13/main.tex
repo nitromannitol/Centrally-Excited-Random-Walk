@@ -1,0 +1,327 @@
+% !TeX program = pdflatex
+\documentclass[11pt]{amsart}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amssymb,mathtools,microtype,enumitem,booktabs}
+\usepackage[square,numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={A general shape and fluctuation theorem for inward-excited walks},
+pdfauthor={Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres, Arvind Singh}}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\E}{\mathbb E}
+\renewcommand{\P}{\mathbb P}
+\newcommand{\ind}{\mathbf1}
+\newcommand{\Rin}{R_{\mathrm{in}}}
+\newcommand{\Rout}{R_{\mathrm{out}}}
+\newcommand{\Rmom}{R_{\mathrm{mom}}}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Var}{Var}
+\title[Inward-excited walks]{A general shape and fluctuation theorem for inward-excited walks}
+\author{Ahmed Bou-Rabee}
+\author{Tuan-Minh Nguyen}
+\author{Yuval Peres}
+\author{Arvind Singh}
+\date{Four-author working draft, 13 October 2026}
+\subjclass[2020]{Primary 60K35; Secondary 60G42, 60G50, 31C20}
+\keywords{Excited random walk, convex limit shape, local times, martingale,
+calibration, fluctuations}
+\begin{document}
+\begin{abstract}
+We study nearest-neighbor walks whose first departure from each site has
+an inward mean prescribed by a convex gauge, and whose later departures
+are simple random walk. The first-departure laws may depend on the past,
+and the drift strength may have spatial defects of codimension one.
+One potential argument gives an almost-sure filled limit shape, uniform
+conical local times, and recurrence. In the Euclidean case it retains
+the sharp planar fluctuation exponent, polylogarithmic radius bounds
+in higher dimensions, and the local-time limit laws. A quadratic
+martingale gives Gaussian and iterated-logarithm laws for a weighted
+radial moment for every convex body. An energy identity additionally
+controls the number of sites with small local time. The proof combines
+exit-time stopping, contact-point positivity, and a finite-scale
+calibration, and includes the three previously studied models.
+\end{abstract}
+\maketitle
+
+\section{The theorem and its specializations}
+
+The range of an inward-excited walk is determined at first order by its
+mean excitation. The probabilities realizing that mean, and spatial
+changes confined to sufficiently thin sets, affect only lower-order
+terms. We make this principle quantitative. The argument unifies
+\citet{Singh2026}, \citet{BouRabeePeres2026CERW}, and
+\citet{Nguyen2026}; all three models are special cases of the same
+assumptions below.
+
+Fix $d\ge2$. Let $K\subset\R^d$ be compact and convex, with $0$ in its
+interior, and let $\rho(x)=\inf\{t>0:x\in tK\}$ be its gauge.
+Write $V=|K|$ and $\omega_d=|B(0,1)|$. Symmetry and smoothness of $K$
+are not required. Fix $\kappa>0$, subgradients
+$\xi(x)\in\partial\rho(x)$ for $x\in\Z^d\setminus\{0\}$, and weights
+$\lambda(x)\ge\lambda_->0$. Assume that, for a
+constant $A<\infty$,
+\begin{equation}\label{eq:model-defect}
+ \sum_{x\in\Z^d\cap B(y,s)}|\lambda(x)-1|
+ \le A s^{d-1}\qquad(y\in\R^d,\ s\ge1).
+\end{equation}
+Set $\xi(0)=0$ and $\lambda(0)=1$. Taking $s=1$ above gives
+$\lambda(x)\le1+A$, so no separate upper bound is needed.
+
+The walk starts at $X_0=0$. On its first departure from $x$, its
+conditional step distribution, given the entire past, can be any
+distribution on $\{\pm e_1,\ldots,\pm e_d\}$ with mean
+\begin{equation}\label{eq:model-mean}
+ -\kappa\lambda(x)\xi(x).
+\end{equation}
+On every later departure it chooses its neighbor uniformly. The
+first departure from zero may have any mean-zero nearest-neighbor law.
+Only existence of the distributions in \eqref{eq:model-mean} is
+assumed; in particular no lower bound on individual probabilities is
+required. The fields $\lambda$ and $\xi$ are deterministic. Allowing
+the realizing distributions to depend on the past is useful because
+every estimate below uses their conditional means and bounded steps.
+
+Put
+\begin{gather}
+ \ell_n(x)=\sum_{j=0}^{n-1}\ind_{\{X_j=x\}},\qquad
+ A_n=\{x:\ell_n(x)>0\},\qquad
+ D_n=\bigcup_{x\in A_n}\bigl(x+[-1/2,1/2)^d\bigr),\label{eq:range-def}\\
+ r_n=\left(\frac{(d+1)n}{2d\kappa V}\right)^{1/(d+1)},\quad
+ b_n=\inf_{y\notin D_n}\rho(y),\quad
+ B_n=\max_{j\le n}\rho(X_j).\label{eq:radius-def}
+\end{gather}
+Thus $\int 2d\kappa(r_n-\rho)_+=n$. Tildes denote constant extension
+of lattice functions to the unit cells. All probability estimates
+below concern integers $n\ge2$. Constants may depend on
+$d,K,\kappa,\lambda_-,A$ and a specified probability exponent $p$,
+but are uniform over the allowed first-departure laws.
+
+\begin{theorem}[Shape, occupation, and moment universality]\label{thm:main}
+Under \eqref{eq:model-defect}--\eqref{eq:model-mean}, the following hold.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item Almost surely, for every $\varepsilon>0$ and all sufficiently
+large $n$,
+\[
+ \{x\in\Z^d:\rho(x)<(1-\varepsilon)r_n\}
+ \subset A_n\subset
+ \{x\in\Z^d:\rho(x)<(1+\varepsilon)r_n\},
+\]
+and $r_n^{-1}\max_x|\ell_n(x)-2d\kappa(r_n-\rho(x))_+|\to0$.
+In particular every site is visited infinitely often.
+
+\item Define
+\[
+ h_n=\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\ge3,
+ \end{cases}\qquad q_n=h_n/r_n.
+\]
+For every $p>0$, with probability at least $1-C_pn^{-p}$,
+\begin{align}
+ |b_n-r_n|&\le C_pr_n\sqrt{q_n},\label{eq:main-inner}\\
+ B_n-r_n&\le C_pr_nq_n^{1/(d+1)}\log n,\label{eq:main-outer}\\
+ \max_x|\ell_n(x)-2d\kappa(r_n-\rho(x))_+|
+ &\le C_pr_nq_n^{1/(d+1)}.\label{eq:main-profile}
+\end{align}
+
+\item Set
+\[
+ \delta_n=\begin{cases}\sqrt{r_n}\log n,&d=2,\\
+ \sqrt{r_n\log n},&d\ge3.
+ \end{cases}
+\]
+On an event of probability at least $1-C_pn^{-p}$, simultaneously
+for every real $t\ge0$,
+\begin{equation}\label{eq:main-occupation}
+ \#\{x\in A_n:\ell_n(x)\le t\}
+ \le C_p(t+\delta_n)r_n^{d-1}.
+\end{equation}
+
+\item Let
+\[
+ S_n=\sum_{x\in A_n}\lambda(x)\rho(x),\qquad
+ J_K=\int_K|z|^2\,dz,\qquad
+ \sigma_K^2=\frac{2J_K}{\kappa(d+3)}.
+\]
+Then
+\begin{equation}\label{eq:main-moment-clt}
+ \frac{S_n-n/(2\kappa)}{r_n^{(d+3)/2}}
+ \Longrightarrow N(0,\sigma_K^2),
+\end{equation}
+and, for either sign, almost surely,
+\begin{equation}\label{eq:main-moment-lil}
+ \limsup_{n\to\infty}
+ \frac{\pm(S_n-n/(2\kappa))}
+ {r_n^{(d+3)/2}\sqrt{2\log\log n}}=\sigma_K.
+\end{equation}
+For $\Rmom(n)=((d+1)S_n/(dV))^{1/(d+1)}$, the same assertions
+hold with $S_n-n/(2\kappa)$ replaced by $\Rmom(n)-r_n$,
+the exponent $(d+3)/2$ replaced by $(3-d)/2$, and
+$\sigma_K$ replaced by $\sigma_K/(dV)$.
+\end{enumerate}
+\end{theorem}
+
+The weights in the moment statistic are essential: condition
+\eqref{eq:model-defect} allows an $O(r_n^d)$ change in
+$\sum_{A_n}\rho(x)$, which can exceed its Gaussian normalization.
+They disappear when $\lambda\equiv1$.
+
+For the Euclidean case put $\Rin=b_n$, $\Rout=B_n$, and
+$W_n=\Rout-\Rin$. These definitions use cells for the inner radius
+and include $X_n$ in the outer radius.
+
+\begin{theorem}[Euclidean refinement]\label{thm:radial}
+Under the assumptions of Theorem~\ref{thm:main}, with $K=\{|x|\le1\}$,
+all the following conclusions hold for the same class of cookie laws.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item For every $p>0$, with probability at least $1-C_pn^{-p}$,
+\begin{align}
+ |\Rin-r_n|&\le C_ph_n,\qquad
+ |D_n\mathbin\triangle B(0,r_n)|\le C_pr_n^{d-1}h_n,
+ \label{eq:radial-inner}\\
+ \Rout-r_n&\le C_p\begin{cases}
+ \sqrt{r_n}(\log n)^{5/2},&d=2,\\
+ (\log n)^{d+1},&d\ge3,
+ \end{cases}\label{eq:radial-outer}\\
+ \max_x|\ell_n(x)-2d\kappa(r_n-|x|)_+|
+ &\le C_p\begin{cases}
+ \sqrt{r_n}(\log n)^{3/2},&d=2,\\
+ \sqrt{r_n\log n},&d\ge3.
+ \end{cases}\label{eq:radial-profile}
+\end{align}
+For each fixed $\theta<1$, restricting the maximum to
+$|x|\le\theta r_n$ improves the planar bound to
+$C_{p,\theta}\sqrt{r_n}\log n$.
+
+\item Let $G$ be the simple-random-walk Green function when $d\ge3$,
+and put
+\[
+ a_n=\begin{cases}\sqrt{r_n\log r_n},&d=2,\\
+ \sqrt{r_n},&d\ge3,
+ \end{cases}\quad
+ \Sigma(y,z)=\begin{cases}16\kappa/\pi,&d=2,\\
+ 2d\kappa(2G(y-z)-\ind_{\{y=z\}}),&d\ge3.
+ \end{cases}
+\]
+For any finite set of fixed sites, the vector
+$a_n^{-1}(\ell_n(y)-2d\kappa(r_n-|y|))$ converges in distribution
+to a centered Gaussian vector with covariance $\Sigma$.
+At each fixed site and for either sign, almost surely,
+\begin{equation}\label{eq:radial-site-lil}
+ \limsup_n\frac{\pm(\ell_n(y)-2d\kappa(r_n-|y|))}
+ {a_n\sqrt{2\log\log n}}=\sqrt{\Sigma(y,y)}.
+\end{equation}
+
+\item In dimension two, for every $p>0$ there is $c_p>0$ such that
+each of
+\begin{equation}\label{eq:radial-poly-lower}
+ \P\{r_n-\Rin\ge c_p\sqrt{r_n\log n}\},\quad
+ \P\{\Rout-r_n\ge c_p\sqrt{r_n\log n}\},\quad
+ \P\{W_n\ge c_p\sqrt{r_n\log n}\}
+\end{equation}
+is at least $n^{-p}$ for all large $n$. Almost surely,
+\begin{align}
+ \limsup_n\frac{r_n-\Rin}{\sqrt{r_n\log\log n}},\quad
+ \limsup_n\frac{\Rout-r_n}{\sqrt{r_n\log\log n}}
+ &\ \ge\frac1{\sqrt{10\pi\kappa}},\label{eq:radial-lil-lower}\\
+ \limsup_n\frac{W_n}{\sqrt{r_n\log\log n}}
+ &\ge\sqrt{\frac\pi{3\kappa}}.\label{eq:radial-width-lil}
+\end{align}
+For every $a\ge0$,
+\begin{equation}\label{eq:radial-smallball}
+ \limsup_n\P\{W_n\le a\sqrt{r_n}\}
+ \le1-\exp(-3\kappa a^2/\pi).
+\end{equation}
+
+\item In every dimension, for some $c>0$ and all large $n$,
+\begin{equation}\label{eq:radial-local-lower}
+ \P\left\{\max_{|x|\le\sqrt{r_n}}
+ |\ell_n(x)-2d\kappa(r_n-|x|)|\ge
+ c\begin{cases}\sqrt{r_n}\log n,&d=2,\\
+ \sqrt{r_n\log n},&d\ge3
+ \end{cases}\right\}\ge1-n^{-c}.
+\end{equation}
+\end{enumerate}
+The bounds in part \textup{(i)} hold eventually almost surely.
+\end{theorem}
+
+We also retain the logarithmic radial lower bounds under the additional
+assumption of a uniform positive lower bound on all first-departure
+probabilities; their full tail forms are
+\eqref{eq:lower-log-joint}--\eqref{eq:lower-log-outer} below.
+The proof yields two additional boundary estimates. Write
+$R=\Rout(n)+2\sqrt d$ and $E_n=D_n\setminus B(0,\Rin(n))$.
+With the same probability as in Theorem~\ref{thm:radial}, uniformly
+over unit vectors $u$ and $t\ge1$,
+\begin{equation}\label{eq:new-caps}
+ |E_n\cap B(Ru,t)|\le C_ph_n t^{d-1}.
+\end{equation}
+For lattice sites with $\Rin\le|y|\le R$, put $s=R-|y|+1$.
+Then
+\begin{equation}\label{eq:new-boundary}
+ \ell_n(y)\le C_p\begin{cases}
+ h_n+\sqrt{h_ns},&d=2,\\
+ \log n+((\log n)s^{d-1})^{1/d},&d\ge3.
+ \end{cases}
+\end{equation}
+
+\paragraph{Recovery of the three models.}
+For the radial model of \citet{Singh2026}, take $K=\{|x|\le1\}$,
+$\lambda\equiv1$, and $\kappa=\beta$. His prescribed-mean assumption
+is exactly \eqref{eq:model-mean}. For the norm model of
+\citet{BouRabeePeres2026CERW}, take $\lambda\equiv1$ and the particular
+law $q_x(\pm e_i)=1/(2d)\mp\kappa\xi_i(x)/2$. Their strict parameter
+restriction guarantees existence and, for the logarithmic lower
+bounds, uniform ellipticity. Theorem~\ref{thm:radial} retains the
+Euclidean constants and exponents, and
+$J_{B(0,1)}=d\omega_d/(d+2)$ recovers their moment variances.
+
+For \citet{Nguyen2026}, let $K=\{\|x\|_1\le1\}$,
+$\xi(x)=\operatorname{sgn}(x)$, $\kappa=\theta/d$, and
+$\lambda(x)=d/m(x)$ at $x\ne0$, where $m(x)$ is the number of its
+nonzero coordinates. Use his first-departure kernel. The weights
+differ from one only on the union of the coordinate hyperplanes,
+which contains at most $Cs^{d-1}$ lattice points in any ball of radius
+$s\ge1$. Thus \eqref{eq:model-defect} holds, including at $\theta=1$.
+Theorem~\ref{thm:main} strengthens Hausdorff convergence in probability
+to almost-sure filled inclusions and uniform local-time convergence.
+Since $|K|=2^d/d!$, its radius is
+$r_n=\tfrac12((d+1)!n/\theta)^{1/(d+1)}$, with the original
+normalization. This verifies model containment at the transition-rule
+level, including the exceptional coordinate hyperplanes.
+
+\paragraph{The proof.}
+Green martingales express local times as the potential of the occupied
+set with a small error. Singh's exit-time stopping gives the initial occupation bound. At the first hole, convexity makes every excess contribution
+nonnegative. This contact estimate and a single exponential crossing
+bound give the shape. Bou-Rabee and Peres's contact and exterior-probe method gives the
+fluctuation bounds. A finite-scale form of Nguyen's energy calibration supplies
+\eqref{eq:main-occupation} directly. Once the cone is known, later departures dominate
+all relevant quadratic variations, explaining the universality of the
+Gaussian constants. We give the moderate-deviation argument separately
+because a central limit theorem alone does not imply the lower tails.
+
+\input{core}
+\input{quantitative}
+\section{Calibration and small occupation layers}
+\input{calibration}
+\section{Limit laws}
+\input{limit-laws}
+\input{centering}
+\input{lower}
+
+\paragraph{Draft and verification scope.}
+This is a new mathematical draft. The Lean certificate accompanying
+\cite{BouRabeePeres2026CERW} is pinned to that paper and does not certify
+the generalized statements here.
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

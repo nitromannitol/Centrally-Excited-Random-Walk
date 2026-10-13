@@ -1,0 +1,76 @@
+\begin{lemma}[Finite-scale calibration]\label{lem:finite-calibration}
+Let $a=2d\kappa$, $b=\nabla\rho$, and let $D\subset B(0,R)$ be measurable,
+$R\geq1$. Put $u=U_D$ and suppose
+\[
+ u\geq-\delta\quad\hbox{on }B(0,2R),\qquad
+ |u|\leq\delta\quad\hbox{on }B(0,2R)\setminus D.
+\]
+Then $w=(u-\delta)_+$ vanishes off $D$, belongs to $H^1(\mathbb R^d)$,
+and, with $A=\{u>\delta\}$,
+\begin{equation}\label{eq:finite-calibration}
+ \int_{\mathbb R^d}|\nabla w+a\mathbf1_A b|^2
+ +a^2\int_{D\setminus A}|b|^2
+ \leq C\delta R^{d-1}.
+\end{equation}
+In particular $|D\setminus A|\leq C\delta R^{d-1}$.
+\end{lemma}
+\begin{proof}
+The potential is continuous, tends to zero at infinity, and is harmonic
+off $\overline D$. The maximum principle extends $|u|\leq\delta$ from the
+annulus to the exterior of $B(0,R)$. The potential equation is
+$\operatorname{div}(\nabla u+a\mathbf1_D b)=0$.
+Since $\mathbf1_D b\in L^2$, the usual Fourier multiplier estimate gives
+$\nabla u\in L^2$; hence the compactly supported truncation $w$ is in $H^1$.
+Testing the equation with $w$, using $A\subset D$, gives
+\begin{equation}\label{eq:calibration-test-w}
+ \int|\nabla w|^2=-a\int b\cdot\nabla w.
+\end{equation}
+Choose a smooth $\chi$ equal to one on $B(0,R)$, zero off $B(0,2R)$,
+with $|\nabla\chi|\leq C/R$ and $|\Delta\chi|\leq C/R^2$.
+Put $v=u-w$, so $|v|\leq\delta$. The equation tested with $\chi\rho$,
+together with \eqref{eq:calibration-test-w}, gives the exact identity
+\[
+ \int|\nabla w+a\mathbf1_D b|^2
+ =a\int b\cdot\nabla w+a^2\int_D|b|^2
+ =-a\int\nabla v\cdot\nabla(\chi\rho)
+ =a\int v\,d\Delta(\chi\rho).
+\]
+The convexity measure $\mu=\Delta\rho$ has
+$\mu(B(0,2R))\leq CR^{d-1}$. Since
+$\Delta(\chi\rho)=\chi\mu+2b\cdot\nabla\chi+\rho\Delta\chi$,
+its total variation is at most $CR^{d-1}$. Integration by parts is
+justified by uniform and local $H^1$ mollification of the continuous
+function $v$. Bounding the right side by $C\delta R^{d-1}$ and splitting
+the square over $A$ and $D\setminus A$ proves the estimate.
+Finally $|b|\geq c$ almost everywhere, by Euler's identity and
+$\rho(x)\geq c|x|$.
+\end{proof}
+
+\begin{corollary}[Exact rigidity]\label{cor:calibration-rigidity}
+If $U_D\geq0$ and $U_D=0$ on $D^c$, then, up to null sets, $D=rK$ for
+some $r\geq0$ and $U_D=2d\kappa(r-\rho)_+$.
+\end{corollary}
+\begin{proof}
+If $|D|=0$, take $r=0$. Otherwise take $\delta=0$. Then $D=\{u>0\}$ up to null sets and
+$\nabla u=-a\mathbf1_{\{u>0\}}\nabla\rho$.
+Thus $u$ is Lipschitz and $u+a\rho$ is constant on each connected
+component of its positivity set. On such a component write
+$u=a(r-\rho)$. The segment from any point of the component toward the
+origin cannot leave it: at a first exit its value would still be
+strictly positive. Every component therefore contains the origin, so
+there is only one. Its boundary lies in $\{\rho=r\}$; following each
+radial segment now shows that the component is $rK$.
+\end{proof}
+
+\begin{corollary}[Few sites have small local time]\label{cor:low-occupation}
+On the coarse event, let $\delta_n$ be a uniform bound for
+$|\widetilde\ell_n-U_{D_n}|$. Then simultaneously for every $t\geq0$,
+\[
+ \#\{x\in A_n:\ell_n(x)\leq t\}
+ \leq C(t+\delta_n)r_n^{d-1}.
+\]
+\end{corollary}
+\begin{proof}
+Apply the lemma with truncation threshold $t+\delta_n$ and $R=Cr_n$.
+Every cell with $\ell_n(x)\leq t$ lies in $\{U_{D_n}\leq t+\delta_n\}$.
+\end{proof}

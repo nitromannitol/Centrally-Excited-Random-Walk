@@ -1,0 +1,62 @@
+\begin{lemma}[Centering at a fixed site with sparse weights]
+Assume the Euclidean radius and volume estimates. Let $U_D$ denote the
+\emph{unweighted} radial continuum potential, and set
+\[
+ q_n=\begin{cases}(\log n/r_n)^{1/2},&d=2,\\\log n/r_n,&d\ge3,
+ \end{cases}\qquad
+ w_n=\begin{cases}\sqrt{r_n}(\log n)^{5/2},&d=2,\\(\log n)^{d+1},&d\ge3.
+ \end{cases}
+\]
+For every fixed $y$, almost surely for all large $n$,
+\[
+ U_{D_n}(y)-2d\kappa(r_n-|y|)-\frac{Q_n}{\omega_dr_n^d}
+ =O_y(1+q_nw_n)
+ =\begin{cases}O_y((\log n)^3),&d=2,\\O_y(1),&d\ge3.
+ \end{cases}
+\]
+Consequently the actual local time satisfies
+\[
+ \ell_n(y)-2d\kappa(r_n-|y|)
+ =-M_n^{g_y}+\frac{Q_n}{\omega_dr_n^d}
+   +\begin{cases}O_y((\log n)^3),&d=2,\\O_y(\log n),&d\ge3.
+   \end{cases}
+\]
+\end{lemma}
+\begin{proof}
+Write $\nu=1_{D_n}-1_{B(0,r_n)}$. Its support lies in
+$\{v:||v|-r_n|\le Cw_n\}$ and $\|\nu\|_1\le Cr_n^dq_n$.
+On this annulus,
+\[
+ \left||v|^{1-d}-r_n^{-d}|v|\right|
+ \le Cr_n^{-d}||v|-r_n|.
+\]
+Integration against $\nu$ gives
+\[
+ U_{D_n}(0)-2d\kappa r_n
+ =\frac{2\kappa}{\omega_dr_n^d}
+   \left(\int_{D_n}|v|\,dv-\frac n{2\kappa}\right)+O(q_nw_n).
+\]
+Cell replacement costs $O(r_n^d)$. The sparse-weight condition gives
+\[
+ \left|S_n-\sum_{x\in A_n}|x|\right|
+ \le Cr_n\sum_{|x|\le Cr_n}|\lambda_x-1|=O(r_n^d).
+\]
+Thus the parenthesis is $(Q_n-|X_n|^2)/(2\kappa)+O(r_n^d)$.
+Since $|X_n|^2/r_n^d=O(1)$, this proves the assertion at the origin.
+For fixed $y$ the difference between the kernels at $y$ and at zero
+is $O_y(r_n^{-d})$ on the support of $\nu$, so its integral is $O_y(1)$.
+The ball potential changes by exactly $-2d\kappa|y|$.
+The local-time assertion follows from the Green-martingale
+representation with its uniform $O(\log n)$ error.
+\end{proof}
+
+\paragraph{Deterministic centering in the Euclidean case.}
+The preceding lemma completes Theorem~\ref{thm:radial}\textup{(ii)}
+from Theorem~\ref{thm:general-local-clt}. Indeed, the moment LIL gives
+\[
+ Q_n/r_n^d=O\bigl(r_n^{(3-d)/2}\sqrt{\log\log n}\bigr)
+ \quad\hbox{almost surely},
+\]
+which, together with the centering error, is negligible on both the
+fixed-site CLT and LIL scales. The same Green martingales therefore
+give the asserted joint Gaussian law and signed iterated-logarithm laws.
