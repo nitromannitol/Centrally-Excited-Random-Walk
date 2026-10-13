@@ -1,0 +1,265 @@
+{
+  "title": "A general shape and fluctuation theorem for inward-excited walks",
+  "date": "2026-10-13",
+  "status": "Working mathematical draft; internal agent audits and conventional proof review completed. Not a formal proof certificate or external peer review.",
+  "authors": [
+    "Ahmed Bou-Rabee",
+    "Tuan-Minh Nguyen",
+    "Yuval Peres",
+    "Arvind Singh"
+  ],
+  "build": {
+    "command": "latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex",
+    "pdf_pages": 17,
+    "undefined_references": 0,
+    "undefined_citations": 0,
+    "layout_warnings": 0,
+    "figure_assets": []
+  },
+  "length": {
+    "format": "amsart 11pt, letter paper, one-inch margins, matching Bou-Rabee-Peres v1",
+    "new_pages": 17,
+    "BouRabee_Peres_v1_pages": 39,
+    "comparison_caveat": "Whole-document counts; the original includes five figures, whereas this draft has none.",
+    "new_texcount_text_words": 4286,
+    "BouRabee_Peres_v1_texcount_text_words": 10179,
+    "new_display_count": 124,
+    "BouRabee_Peres_v1_display_count": 204
+  },
+  "simplifications": [
+    "One exit-time bootstrap supplies all initial scale bounds.",
+    "One exponential crossing lemma replaces repeated level-counting estimates.",
+    "One exterior probe and depth-dependent potential lemma handles all dimensions.",
+    "Finite-scale energy calibration gives occupation layers directly.",
+    "Quadratic and Green martingale calculations are performed once, then reused."
+  ],
+  "strengthenings": [
+    "Adaptive first-cookie laws constrained only by their means.",
+    "Codimension-one weighted drift defects, including all Nguyen excitation parameters.",
+    "Almost-sure filled shape and uniform local-time profile for Nguyen model.",
+    "Moment CLT and signed LIL for every convex gauge.",
+    "Finite-scale calibration and uniform bounds on small occupation layers.",
+    "All-scale boundary cap volumes and depth-dependent boundary local times."
+  ],
+  "limits": [
+    "No claim of improved Euclidean outer-radius exponents.",
+    "Deterministic cone centering for fixed-site CLT/LIL is proved only in the Euclidean case.",
+    "Prescribed-path logarithmic lower bounds require uniform ellipticity.",
+    "No claim of optimal proof length or external verification."
+  ],
+  "principal_result_correspondence": [
+    {
+      "arxiv": "2610.12138v1",
+      "source_label": "thm:main",
+      "draft_labels": [
+        "thm:main",
+        "thm:radial"
+      ],
+      "scope": "Prescribed-mean radial cookies; almost-sure filled shape, uniform local times, recurrence.",
+      "draft_locations": {
+        "thm:main": {
+          "file": "main.tex",
+          "line": 109
+        },
+        "thm:radial": {
+          "file": "main.tex",
+          "line": 181
+        }
+      }
+    },
+    {
+      "arxiv": "2610.07724v1",
+      "source_label": "thm:shape",
+      "draft_labels": [
+        "thm:main"
+      ],
+      "scope": "All theta in (0,1], with kappa=theta/d and lambda(x)=d/m(x). Filled almost-sure shape and uniform cone imply Hausdorff, measure and L2 conclusions.",
+      "draft_locations": {
+        "thm:main": {
+          "file": "main.tex",
+          "line": 109
+        }
+      }
+    },
+    {
+      "arxiv": "2610.10162v1",
+      "source_label": "thm:shape",
+      "draft_labels": [
+        "thm:main"
+      ],
+      "scope": "All three conclusions.",
+      "draft_locations": {
+        "thm:main": {
+          "file": "main.tex",
+          "line": 109
+        }
+      }
+    },
+    {
+      "arxiv": "2610.10162v1",
+      "source_label": "thm:fluctuations",
+      "draft_labels": [
+        "thm:radial"
+      ],
+      "scope": "Part (i): all Euclidean radius, volume and uniform-local-time bounds, with original exponents.",
+      "draft_locations": {
+        "thm:radial": {
+          "file": "main.tex",
+          "line": 181
+        }
+      }
+    },
+    {
+      "arxiv": "2610.10162v1",
+      "source_label": "thm:sharp",
+      "draft_labels": [
+        "thm:radial"
+      ],
+      "scope": "Parts (iii)-(iv): both planar radial polynomial tails and LIL constants, bulk maximum, and width polynomial tail, LIL and small-ball bound.",
+      "draft_locations": {
+        "thm:radial": {
+          "file": "main.tex",
+          "line": 181
+        }
+      }
+    },
+    {
+      "arxiv": "2610.10162v1",
+      "source_label": "thm:norm-shape",
+      "draft_labels": [
+        "thm:main"
+      ],
+      "scope": "All norm and convex-gauge qualitative conclusions.",
+      "draft_locations": {
+        "thm:main": {
+          "file": "main.tex",
+          "line": 109
+        }
+      }
+    },
+    {
+      "arxiv": "2610.10162v1",
+      "source_label": "prop:norm-shape",
+      "draft_labels": [
+        "eq:main-inner",
+        "eq:main-outer",
+        "eq:main-profile"
+      ],
+      "scope": "All quantitative gauge rates.",
+      "draft_locations": {
+        "eq:main-inner": {
+          "file": "main.tex",
+          "line": 129
+        },
+        "eq:main-outer": {
+          "file": "main.tex",
+          "line": 130
+        },
+        "eq:main-profile": {
+          "file": "main.tex",
+          "line": 132
+        }
+      }
+    },
+    {
+      "arxiv": "2610.10162v1",
+      "source_label": "thm:moment-fluctuations",
+      "draft_labels": [
+        "eq:main-moment-clt",
+        "eq:main-moment-lil"
+      ],
+      "scope": "Sum and moment-radius CLT and signed LIL; generalized to every convex body with weighted statistic.",
+      "draft_locations": {
+        "eq:main-moment-clt": {
+          "file": "main.tex",
+          "line": 155
+        },
+        "eq:main-moment-lil": {
+          "file": "main.tex",
+          "line": 160
+        }
+      }
+    },
+    {
+      "arxiv": "2610.10162v1",
+      "source_label": "thm:site-fluctuations",
+      "draft_labels": [
+        "thm:radial",
+        "thm:general-local-clt"
+      ],
+      "scope": "Joint fixed-site CLT and signed LIL with original constants; additional potential-centered version for every convex body.",
+      "draft_locations": {
+        "thm:radial": {
+          "file": "main.tex",
+          "line": 181
+        },
+        "thm:general-local-clt": {
+          "file": "limit-laws.tex",
+          "line": 34
+        }
+      }
+    },
+    {
+      "arxiv": "2610.10162v1",
+      "source_label": "prop:bulk-profile",
+      "draft_labels": [
+        "eq:rate-bulk-potential",
+        "eq:radial-local-lower"
+      ],
+      "scope": "Bulk upper and lower orders.",
+      "draft_locations": {
+        "eq:rate-bulk-potential": {
+          "file": "quantitative.tex",
+          "line": 325
+        },
+        "eq:radial-local-lower": {
+          "file": "main.tex",
+          "line": 245
+        }
+      }
+    },
+    {
+      "arxiv": "2610.10162v1",
+      "source_label": "prop:log-lower",
+      "draft_labels": [
+        "eq:lower-log-joint",
+        "eq:lower-log-outer"
+      ],
+      "scope": "Full logarithmic radius tails and eventual almost-sure consequences, with explicit uniform ellipticity.",
+      "draft_locations": {
+        "eq:lower-log-joint": {
+          "file": "lower.tex",
+          "line": 279
+        },
+        "eq:lower-log-outer": {
+          "file": "lower.tex",
+          "line": 282
+        }
+      }
+    }
+  ],
+  "lean_scope": {
+    "generalized_draft_formalized": false,
+    "existing_certificate": "CERTIFICATE.md in the GitHub repository / lean-snapshot/CERTIFICATE.md in Dropbox",
+    "existing_paper": "paper/limit-shapes.tex",
+    "existing_paper_sha256": "0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396",
+    "checks": "Paper hash, 27 frozen-statement hashes, and all 27 source ranges verified; legacy source and certificate unchanged. No new Lean build was run.",
+    "frozen_blocks_verified": 27
+  },
+  "source_locations": {
+    "dropbox": "drafts/unified-oct13",
+    "overleaf": "unified-oct13",
+    "github": "paper/unified-oct13"
+  },
+  "sha256": {
+    "main.tex": "082c9c715f5207859f53e90fa24b1969fb66b5a45f5ffc4ea6a785a06aae9f6e",
+    "core.tex": "9d900b4d528d5eb84d25ccfb4206c3ae97e97d11fedfff8df403407359a617ab",
+    "quantitative.tex": "b1203fa0d467c0280d4634aa3ea519fc4240e12fc8a98016bd02705859efbc9a",
+    "calibration.tex": "1d96d82d25103d2229e04eda7a5975095f318b694287523dca13aa39bf254cc5",
+    "limit-laws.tex": "cf8ce650ba352ed17fae47fc2ebf61df2123e9f48bf268b0d5b55d1f0f4a6680",
+    "centering.tex": "72e8394e624f2481695835635921dee0971a4581ec1011f121d1797b07c2fd8b",
+    "lower.tex": "1e2e152c53c694d21d071e0d408ad6aabe5f641e9a56d4d415c783d84944e0c2",
+    "references.bib": "4171974679627747db15d8f9c2da97642998594f51aac63dfc1a92ea18eb02f4",
+    "main.pdf": "c034c59a59339451c68a8198848b293180a1c366c494ea384e9ce583a062b410"
+  }
+}

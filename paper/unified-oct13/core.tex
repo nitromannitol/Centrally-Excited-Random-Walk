@@ -1,0 +1,255 @@
+\section{A common potential argument}
+
+We use the assumptions and notation of Section~1. Put
+$c=\min_{|u|=1}\rho(u)>0$, $\Lambda=\max_{|u|=1}\rho(u)$,
+and $C_x=x+[-1/2,1/2)^d$. Write $q_x$ for the conditional law
+used at the first departure from $x$; this law can be random,
+but its prescribed mean is fixed. Every estimate below is pathwise
+uniform over its possible values. Set $\Delta=P-I$ for the
+simple-random-walk generator and
+$\bar\nabla_i f(x)=(f(x+e_i)-f(x-e_i))/2$.
+For a bounded measurable $D$, define
+\begin{equation}\label{eq:core-potential}
+ U_D(y)=\frac{2\kappa}{\omega_d}
+ \int_D\nabla\rho(v)\cdot\frac{v-y}{|v-y|^d}\,dv.
+\end{equation}
+
+\begin{lemma}[Cone, layers, and contact]\label{lem:core-geometry}
+For $b\geq0$,
+$U_{bK}(y)=2d\kappa(b-\rho(y))_+$.
+If $E\subset\{b\leq\rho\leq b+a\}$ then
+$\|U_E\|_\infty\leq2d\kappa a$; for arbitrary $E$,
+$\|U_E\|_\infty\leq C|E|^{1/d}$.
+Suppose $bK\subset D\subset B(0,R)$ up to null sets, $y_0\in\partial(bK)$ lies in
+$\overline{D^c}$, and $E=D\setminus bK$. Put
+$H=U_D(y_0)$ and $I=\int_E(\rho-b)$.
+Then
+\begin{equation}\label{eq:core-contact}
+ H\geq0,\qquad I\leq CR^d H,\qquad
+ \|U_E\|_\infty\leq C I^{1/(d+1)}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For a compactly supported Lipschitz $f$, polar coordinates about $y$ give
+$\int\nabla f(v)\cdot(v-y)|v-y|^{-d}\,dv=-d\omega_df(y)$.
+Apply this to $f=(b-\rho)_+$. On each ray $y+tu$, convexity makes
+$t\mapsto\rho(y+tu)$ decrease and then increase. On either part, its total
+variation while $b\leq\rho\leq b+a$ is at most $a$; the two signed parts
+therefore give an integral between $-a$ and $a$. Integrating over directions
+proves the layer bound. Rearrangement of $|v-y|^{1-d}$ proves the volume
+bound. Finally
+$\nabla\rho(v)\cdot(v-y_0)\geq\rho(v)-\rho(y_0)=\rho(v)-b$
+on $E$, proving the first two assertions in \eqref{eq:core-contact}.
+Split $E$ at $\rho=b+a$: the layer contributes at most $Ca$ and the rest,
+of volume at most $I/a$, contributes at most $C(I/a)^{1/d}$.
+Take $a=I^{1/(d+1)}$; the case $I=0$ follows directly.
+\end{proof}
+
+\begin{lemma}[Discrete potential representation]\label{lem:core-green}
+Let $g$ be the potential kernel in dimension two and minus the Green
+function in dimensions at least three, normalized by
+$\Delta g=\mathbf1_{\{0\}}$, where $\Delta=P-I$ for simple random walk.
+Write $g_y(x)=g(x-y)$ and $M^y=M^{g_y}$ for its Dynkin martingale;
+for finite combinations of these kernels, extend $M^f$ linearly.
+These martingales have bounded increments. Whenever
+$\max_{j\leq t}|X_j|\leq R$, $R\geq2$, and $y\in\Z^d$ satisfies $|y|\leq R^{d+2}$,
+\begin{equation}\label{eq:core-green}
+ \ell_t(y)=U_{D_t}(y)-M_t^y+O(\log R),\qquad
+ \langle M^y\rangle_t\leq C W_t(y),\quad
+ W_t(y)=\sum_x\ell_t(x)(1+|x-y|)^{2-2d}.
+\end{equation}
+Moreover, for $|z-y|\leq\sqrt d$,
+$|U_{D_t}(z)-U_{D_t}(y)|\leq C\log R$.
+\end{lemma}
+\begin{proof}
+Standard Green estimates \citep{LawlerLimic2010} give
+\begin{align*}
+ \bar\nabla g(z)&=\frac2{\omega_d}\frac z{|z|^d}+O((1+|z|)^{-d})
+ \quad(z\ne0),\\
+ |g(z+e)-g(z)|&\leq C(1+|z|)^{1-d},\\
+ |g(z+e_i)+g(z-e_i)-2g(z)|&\leq C(1+|z|)^{-d}.
+\end{align*}
+Write $s_i(x)=q_x(e_i)+q_x(-e_i)$. Exactly,
+\[
+ (Q_x-P)g_y(x)=-\kappa\lambda(x)\xi(x)\cdot\bar\nabla g(x-y)
+ +\frac12\sum_i(s_i(x)-1/d)
+ [g(x+e_i-y)+g(x-e_i-y)-2g(x-y)].
+\]
+Dynkin's formula, grouping first departures by site, gives the first
+identity in \eqref{eq:core-green} with the discrete drift potential.
+The displayed second differences sum to $O(\log R)$. The endpoint
+$g(X_t-y)-g(-y)$ has this bound too. By dyadic annuli,
+\begin{equation}\label{eq:core-defect-potential}
+ \sup_y\sum_{x\in B(0,CR)}
+ |\lambda(x)-1|(1+|x-y|)^{1-d}\leq C\log R.
+\end{equation}
+Thus replacing $\lambda$ by one costs $O(\log R)$, even for an arbitrary
+subset of visited defect sites. Replacing the Green gradient by its
+leading term, and then by cell averages, has the same cost.
+
+For completeness the subgradient replacement also costs only $O(\log R)$,
+including at corners of $K$. The positive measure $\mu=\Delta_{\rm cont}\rho$
+satisfies $\mu(B(y,s))\leq Cs^{d-1}$, by testing against a cutoff and using
+$|\nabla\rho|\leq\Lambda$. The convex-cell estimate is
+\begin{equation}\label{eq:core-cell}
+ \int_{C_x}|\nabla\rho(v)-\xi(x)|\,dv
+ \leq C\mu(B(x,6\sqrt d)).
+\end{equation}
+Indeed, $h(v)=\rho(v)-\rho(x)-\xi(x)\cdot(v-x)$ is nonnegative, convex,
+and zero at $x$. Convexity along coordinate lines gives
+$|\partial_i h(v)|\leq h(v+e_i)+h(v-e_i)$, so the left side is at most
+$C\int_{B(x,2\sqrt d)}h$. Mollify $h$ and put $A=2\sqrt d$. Convexity gives
+\[
+ h_\varepsilon(x+tu)\le h_\varepsilon(x)
+       +t\,\partial_r h_\varepsilon(x+2Au)
+       \qquad(0\le t\le A,\ |u|=1).
+\]
+Integration in $t,u$ and the divergence theorem bound the integral by
+$C h_\varepsilon(x)+C\mu(B(x,6\sqrt d))$.
+Letting $\varepsilon\downarrow0$ proves \eqref{eq:core-cell}.
+Bound the cells close to $y$ directly; bounded overlap and dyadic annuli
+bound the remaining error by
+$C\int_{1\leq|z-y|\leq CR^{d+2}}(1+|z-y|)^{1-d}\,d\mu(z)=O(\log R)$.
+The increment estimate gives the bracket bound. Splitting the integral
+at distance $2\sqrt d$ and differentiating the far kernel gives the
+cell modulus.
+\end{proof}
+
+\begin{lemma}[Exit bootstrap]\label{lem:core-bootstrap}
+Put $\tau_R=\inf\{t:\rho(X_t)\geq R\}$. For every $p>0$, outside an event
+of probability $CR^{-p}$, simultaneously for $t\leq\tau_R$,
+\begin{equation}\label{eq:core-bootstrap}
+ \max_x\ell_t(x)\leq CR,\qquad
+ \tau_R\leq CR^{d+1},\qquad
+ \sup_{|y|\leq R^{d+2}}|M_t^y|\leq C\sqrt R\log R.
+\end{equation}
+Consequently
+$\|\widetilde\ell_t-U_{D_t}\|_\infty\leq C\sqrt R\log R$ on
+$B(0,CR)$.
+\end{lemma}
+\begin{proof}
+To see that the exit time is finite, stop the compensated coordinate
+martingale $Z_t^i=X_t^i+\kappa\sum_{x\in A_t}\lambda(x)\xi_i(x)$
+at $\tau_R$. It is bounded by a deterministic constant $C_R$.
+There are at most $m_R=O(R^d)$ first departures before exit, so its
+bracket is at least $((t\wedge\tau_R)-m_R)/d$. Consequently
+$\E(t\wedge\tau_R)\le m_R+dC_R^2$, and $\tau_R<\infty$ almost surely. Before exit, all departed sites lie in $B(0,CR)$.
+The exact discrete Dynkin identity and the first Green increment bound
+give $\ell_t(y)\leq |M_t^y|+CR$ without any preliminary clock estimate.
+Stop also when one of the displayed martingales first reaches $R$ in
+absolute value. Up to this stopping time, $\max_x\ell(x)\leq C'R$,
+and hence the clock is at most $C'R^{d+1}$ and every bracket at most
+$C'R\log R$. Freedman's maximal inequality \citep[Theorem~1.6]{Freedman1975} and a union bound over the
+polynomially many poles give
+$\sup|M^y|\leq C_p\sqrt R\log R$ with probability $1-CR^{-p}$.
+This is smaller than $R$ for large $R$, so the additional stop is never
+reached before $\tau_R$. The representation and cell modulus finish.
+\end{proof}
+
+\begin{lemma}[Exponential crossing and projection]\label{lem:core-crossing}
+For every $p>0$ and integer $N\geq2$, outside an event of probability
+$CN^{-p}$, simultaneously for $t\leq N$ and integers $0\leq k\leq C_0N$,
+\begin{equation}\label{eq:core-crossing}
+ \max_{j\leq t}\operatorname{dist}(X_j,kK)
+ \leq C\left(1+\max_{\rho(x)\geq k}\ell_t(x)\right)\log N.
+\end{equation}
+Here $C_0$ is any fixed constant.
+\end{lemma}
+\begin{proof}
+We first record the short crossing estimate. Fix a unit vector $u$, $a\geq0$,
+and suppose all departed sites in the cap $u\cdot x>a$ have
+$u\cdot\lambda(x)\xi(x)\geq\alpha>0$. With
+$f(x)=e^{\theta u\cdot x}$, conditional increments satisfy
+\[
+ \mathbb E[f(X_{j+1})-f(X_j)\mid\mathcal F_j]
+ \leq f(X_j)(C\theta^2-\kappa\alpha\theta I_j)
+ \quad (u\cdot X_j>a),
+\]
+where $I_j$ indicates a first departure. Stop at time $N$, on entering
+a cap site violating the drift condition, when a cap local time exceeds
+$L$, or when $u\cdot X$ reaches $a+h$. Choose $\theta=c/(L+1)$.
+Summing by site makes the total contribution from the cap nonpositive:
+each departed site supplies its cookie once and at most $L+1$ visits.
+The other at most $N$ increments contribute at most
+$CN e^{\theta(a+1)}$. Optional stopping of the Dynkin martingale gives
+\begin{equation}\label{eq:core-exp-crossing}
+ \mathbb P\left(\begin{array}{c}
+  \text{the level }a+h\text{ is reached by }N,\text{ all previously visited}\\
+  \text{cap sites satisfy the drift condition, and cap local times}\leq L
+ \end{array}\right)
+ \leq CN\exp\{-ch/(L+1)\}.
+\end{equation}
+The stopping argument does not condition on the event in this display.
+
+Let $w=\max_{j\leq t}\operatorname{dist}(X_j,kK)$ and choose $x_*=X_j$
+attaining it. When $w>0$, let $\pi$ denote Euclidean projection onto $kK$,
+$u=(x_*-\pi(x_*))/w$, and $\beta=u\cdot\pi(x_*)$.
+Then $u\cdot X_j\leq T:=\beta+w$ for all $j\leq t$ and $\beta\geq0$.
+Put $\eta=c^2/(8\Lambda^2)$. If $x$ is a site visited by time $t$
+and $u\cdot x>T-\eta w$, write $v=(x-\pi(x))/|x-\pi(x)|$.
+The projection inequalities give $u\cdot v>1-\eta$; moreover
+\[
+ \xi(x)\cdot v\geq
+ \frac{\rho(x)-k}{\operatorname{dist}(x,kK)}\geq c,
+\]
+where the last inequality follows by comparing $\pi(x)$ with
+$kx/\rho(x)$. Thus $u\cdot\lambda(x)\xi(x)\geq\lambda_-c/2$.
+All these cap sites satisfy $\rho(x)>k$.
+Use \eqref{eq:core-exp-crossing} with $a$ the least integer at least
+$T-\eta w$, and with $L$ the integer above the largest relevant local time.
+The directions $u$ belong to the deterministic list formed by projecting
+the lattice sites $|x|\leq N$ onto $kK$, for integer $k\leq C_0N$.
+This list, the integer levels $a\leq CN$, and $1\leq L\leq N+1$ have
+polynomial total size. For each triple choose the deterministic length
+$C_p(L+1)\log N$ in \eqref{eq:core-exp-crossing}. A union bound excludes
+all these crossings. The drift condition is needed only at visited
+sites, since the stopped estimate ends on entering any violating site. Since $T-a\geq\eta w-1$, this proves
+\eqref{eq:core-crossing}; bounded $w$ is absorbed into the constant.
+\end{proof}
+
+\begin{proposition}[Coarse scale, with polynomial tails]\label{prop:core-coarse}
+For every $p>0$ there are $c_p,C_p>0$ such that, with probability at least
+$1-C_pR^{-p}$,
+\begin{equation}\label{eq:core-clock}
+ c_pR^{d+1}\leq\tau_R\leq C_pR^{d+1}.
+\end{equation}
+Consequently, with $r_n=((d+1)n/(2d\kappa|K|))^{1/(d+1)}$, with probability
+at least $1-C_p n^{-p}$,
+\begin{equation}\label{eq:core-coarse}
+ \max_{j\leq n}|X_j|\leq C_pr_n,\quad
+ c_pr_n\leq\max_x\ell_n(x)\leq C_pr_n,\quad
+ c_pr_n^d\leq|A_n|\leq C_pr_n^d.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Work on the events of the preceding two lemmas with a deterministic
+horizon $N=\lceil CR^{d+1}\rceil$. At time $\tau_R$, let
+$b=\inf_{y\notin D_{\tau_R}}\rho(y)$, and choose a contact point
+$y_0\in\partial(bK)\cap\overline{D_{\tau_R}^c}$ in the closure of an
+unoccupied cell. Continuity and the cell estimate imply
+$0\leq H=U_{D_{\tau_R}}(y_0)\leq\delta_R=C\sqrt R\log R$.
+Lemma~\ref{lem:core-geometry} therefore gives
+\[
+ \|\widetilde\ell_{\tau_R}-2d\kappa(b-\rho)_+\|_\infty
+ \leq\delta_R+C(R^d\delta_R)^{1/(d+1)}
+ =:\varepsilon_R=o(R/\log R).
+\]
+Use \eqref{eq:core-crossing} with $k=\lfloor b\rfloor$; outside $kK$ the
+local times are at most $C+\varepsilon_R$. Since
+$\rho(X_{\tau_R})\geq R$ and $\rho$ is $\Lambda$-Lipschitz,
+\[
+ R-b\leq C+C(\varepsilon_R+1)\log R=o(R).
+\]
+The cone is supported on $\{\rho<b\}\subset D_{\tau_R}$.
+Integrating its approximation over $D_{\tau_R}\subset B(0,CR)$ gives
+\[
+ \tau_R=\frac{2d\kappa|K|}{d+1}b^{d+1}
+ +O(R^d\varepsilon_R)\asymp R^{d+1},
+\]
+proving \eqref{eq:core-clock}. To obtain \eqref{eq:core-coarse}, choose
+$R=\lceil C n^{1/(d+1)}\rceil$ so that the lower clock bound exceeds $n$,
+and apply the exit event with exponent $(d+1)(p+1)$. Then $n<\tau_R$,
+so the spatial and local-time upper bounds follow. The remaining bounds
+follow from $n=\sum_x\ell_n(x)\leq|A_n|\max_x\ell_n(x)$ and
+$|A_n|\leq C(1+\max_{j\leq n}|X_j|)^d$.
+\end{proof}
