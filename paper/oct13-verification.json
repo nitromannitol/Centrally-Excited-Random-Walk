@@ -6,7 +6,7 @@
     "Yuval Peres",
     "Arvind Singh"
   ],
-  "status": "Most of three Opus full-paper rewrites incorporated; statements preserved, compatibility review and LaTeX checks passed; fresh Opus review running.",
+  "status": "Direct proof revision checked and compiled; author-approved removal of unused auxiliary conclusions; all principal statements and figures preserved.",
   "scope": "Original Bou-Rabee\u2013Peres theorem statements and order. No additional generalized model or additional theorem.",
   "original_statement_blocks": [
     {
@@ -158,106 +158,106 @@
     },
     "lem:local": {
       "file": "oct13.tex",
-      "line": 398,
-      "end_line": 414
+      "line": 391,
+      "end_line": 396
     },
     "lem:freedman": {
       "file": "oct13.tex",
-      "line": 449,
-      "end_line": 454
+      "line": 431,
+      "end_line": 436
     },
     "lem:cell": {
       "file": "oct13.tex",
-      "line": 467,
-      "end_line": 472
+      "line": 452,
+      "end_line": 457
     },
     "lem:layer": {
       "file": "oct13.tex",
-      "line": 527,
-      "end_line": 532
+      "line": 500,
+      "end_line": 505
     },
     "prop:coarse": {
       "file": "oct13.tex",
-      "line": 546,
-      "end_line": 553
+      "line": 519,
+      "end_line": 526
     },
     "lem:crossing": {
       "file": "oct13.tex",
-      "line": 567,
-      "end_line": 572
+      "line": 540,
+      "end_line": 545
     },
     "lem:outer-crossing": {
       "file": "oct13.tex",
-      "line": 583,
-      "end_line": 588
+      "line": 556,
+      "end_line": 561
     },
     "prop:norm-shape": {
       "file": "oct13.tex",
-      "line": 714,
-      "end_line": 730
+      "line": 664,
+      "end_line": 680
     },
     "lem:contact": {
       "file": "oct13.tex",
-      "line": 772,
-      "end_line": 777
+      "line": 716,
+      "end_line": 721
     },
     "prop:inner": {
       "file": "oct13.tex",
-      "line": 894,
-      "end_line": 910
+      "line": 808,
+      "end_line": 824
     },
     "prop:stronger-outer": {
       "file": "oct13.tex",
-      "line": 988,
-      "end_line": 993
+      "line": 878,
+      "end_line": 883
     },
     "lem:near-far": {
       "file": "oct13.tex",
-      "line": 1019,
-      "end_line": 1024
+      "line": 938,
+      "end_line": 943
     },
     "thm:moment-fluctuations": {
       "file": "oct13.tex",
-      "line": 1146,
-      "end_line": 1167
+      "line": 1018,
+      "end_line": 1039
     },
     "lem:fixed-site-centering": {
       "file": "oct13.tex",
-      "line": 1207,
-      "end_line": 1213
+      "line": 1075,
+      "end_line": 1081
     },
     "thm:site-fluctuations": {
       "file": "oct13.tex",
-      "line": 1236,
-      "end_line": 1261
+      "line": 1110,
+      "end_line": 1135
     },
     "lem:exp-deviation": {
       "file": "oct13.tex",
-      "line": 1319,
-      "end_line": 1333
+      "line": 1193,
+      "end_line": 1207
     },
     "prop:bulk-profile": {
       "file": "oct13.tex",
-      "line": 1446,
-      "end_line": 1453
+      "line": 1320,
+      "end_line": 1327
     },
     "lem:separated-brackets": {
       "file": "oct13.tex",
-      "line": 1480,
-      "end_line": 1487
+      "line": 1354,
+      "end_line": 1361
     },
     "prop:log-lower": {
       "file": "oct13.tex",
-      "line": 1538,
-      "end_line": 1552
+      "line": 1403,
+      "end_line": 1417
     }
   },
   "build": {
-    "command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=build build/oct13.tex",
-    "pdf_pages": 38,
+    "command": "latexmk -pdf -interaction=nonstopmode -halt-on-error oct13.tex (in isolated build directory)",
+    "pdf_pages": 35,
     "undefined_references_or_citations": 0,
     "overfull_boxes": 0,
-    "underfull_vboxes": 1,
+    "underfull_vboxes": 0,
     "figure_count": 5,
     "figure_assets": [
       "Figures/first_departure_norms.pdf",
@@ -274,300 +274,108 @@
     "Shared covariance calculations and a single geometric comparison shorten the limit-law and lower-bound proofs.",
     "Exponential-deviation proof rewritten by external Opus with the original statement retained.",
     "The deterministic pointwise comparison and cell estimate precede probability bounds.",
-    "One all-dimensional exterior local-time estimate and one shared cap/near-far/crossing proof replace the separate outer-radius arguments."
+    "One all-dimensional exterior local-time estimate and one shared cap/near-far/crossing proof replace the separate outer-radius arguments.",
+    "Authorized removal of unused interval conclusions in Lemma 3.1; the former potential approximation is retained verbatim.",
+    "Convexity and one quadratic test function replace mollification and the radial comparison in the cell estimate.",
+    "The coarse lower bound integrates over an inner ball rather than deriving and integrating a uniform exit profile.",
+    "One projection estimate at integer radii replaces two separate supporting-plane crossing arguments.",
+    "The outer-radius proof bounds the Newtonian integral first, then uses one cap bound and one width estimate in all dimensions.",
+    "One maximum-principle argument gives the uniform potential bound in both the plane and higher dimensions.",
+    "Coarse occupation alone supplies the variance bounds needed for polynomial radius tails.",
+    "One spatial split replaces dimension-specific weighted-moment estimates for separated-site covariances.",
+    "One annulus supplies both logarithmic radius lower bounds.",
+    "One Taylor expansion at the fixed site replaces the origin calculation followed by translation.",
+    "One precise martingale CLT/LIL statement replaces repeated verifications in the three applications."
   ],
   "length": {
-    "previous_pages": 38,
-    "revised_pages": 38
+    "oct5_pages": 39,
+    "previous_oct13_pages": 38,
+    "revised_pages": 35
   },
   "mathematical_review": {
-    "base_source": "overleaf-pending/oct5.tex",
-    "base_sha256": "0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396",
-    "scope": "Original Bou-Rabee\u2013Peres claims and order; proof simplification only.",
-    "audits": [
+    "status": "pass",
+    "checked_utc": "2026-10-13T18:59:13.230369+00:00",
+    "source_sha256": "629cae5b4e7bf49d097196581f48e37bfbabfff9b76d0ed476a03d661f4fd6ff",
+    "pdf_sha256": "5ba1feda28b67290ffba3002346393f6cef1b7d2f167839f80fc4e72cc361254",
+    "rendered_pages_inspected": true,
+    "rendered_page_count": 35,
+    "rendered_review": "All35pages inspected as rendered images for missing figures, collisions, overflow and stranded mathematical terms; no layout repair needed.",
+    "editorial_review": {
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "host": "work-comp",
+      "sessions": [
+        {
+          "id": "85ccf48f-bd91-46c0-bebb-fbc4ea6b8c9e",
+          "scope": "Whole-paper direct-proof revision using the author/Peres exemplars and master writing guide",
+          "completed": {
+            "exit_code": 0,
+            "finished_utc": "2026-10-13T18:44:09.452714+00:00"
+          }
+        },
+        {
+          "id": "d4f698c6-ec6f-4bfb-918f-b335f5210c10",
+          "scope": "Whole integrated manuscript reviewed and rewritten for directness, mathematical dependencies and writing standards",
+          "completed": {
+            "exit_code": 0,
+            "finished_utc": "2026-10-13T18:56:17.814945+00:00"
+          }
+        }
+      ],
+      "report_sha256": "66660a318b25863d720ad758595bf8a8a1a26e1f76f4b5598dd2060809b7c64c",
+      "proposal_sha256": "f338777b93e6e010be5ec7a442799017878860c08a6b5badbeae2ec57067ba94",
+      "adopted": "Full final proposal, with four independently checked precision/punctuation edits in final-parent-edits.json."
+    },
+    "independent_reviews": [
       {
-        "proofs": "Coarse bounds and directional crossing",
-        "author": "core_rewrite",
-        "independent_reviewer": "quantitative_proof",
-        "outcome": "Pass",
-        "checked": [
-          "Stopping time is deterministically bounded before probability estimates",
-          "Stopped Green brackets and final-step overshoot",
-          "Empty-cell potential at exit and filled ball of radius cR",
-          "Union over deterministic horizons containing the random exit time",
-          "Transfer to every original fixed-time coarse bound"
-        ]
+        "file": "final-candidate-core.txt",
+        "sha256": "a39059c9f126da49daa6fb7c4231dc38cb038a705092822dd6a7527248487bed",
+        "source_sha256": "629cae5b4e7bf49d097196581f48e37bfbabfff9b76d0ed476a03d661f4fd6ff",
+        "status": "pass"
       },
       {
-        "proofs": "Contact estimate and outer-radius bounds",
-        "author": "quantitative_proof",
-        "independent_reviewer": "core_rewrite",
-        "outcome": "Pass",
-        "checked": [
-          "Squared-Green Dynkin identity and signs",
-          "Planar site-sum bound and martingale bracket",
-          "Common probability event and polynomial pole union",
-          "Backward radial derivative and harmonic extension",
-          "Exterior cap sign and original radius exponents"
-        ]
+        "file": "final-candidate-quant.txt",
+        "sha256": "0dd6a0a8fe67271d80cc3b9ac228cb28fce1bb3fbfb1918b677ce5e2244ab4e6",
+        "source_sha256": "629cae5b4e7bf49d097196581f48e37bfbabfff9b76d0ed476a03d661f4fd6ff",
+        "status": "pass"
       },
       {
-        "proofs": "Limit laws and fluctuation lower bounds",
-        "author": "proof_audit",
-        "independent_reviewer": "quantitative_proof",
-        "outcome": "Pass",
-        "checked": [
-          "Moment and fixed-site covariance constants",
-          "Lindeberg, Stout and degenerate joint directions",
-          "Centering at fixed sites",
-          "Truncated covariance moments and dipole constants",
-          "Planar width LIL and small-ball constants",
-          "Greedy trial count, conditional multiplication and stopped Azuma"
-        ]
+        "file": "final-candidate-limits.txt",
+        "sha256": "e3421c80f2166fdc9dcc03eb6511b7f808d64ce550e876cda6f8d11fa5a19dce",
+        "source_sha256": "629cae5b4e7bf49d097196581f48e37bfbabfff9b76d0ed476a03d661f4fd6ff",
+        "status": "pass"
       }
     ],
-    "limitations": "Independent mathematical reading by agents, not external peer review or a new Lean proof build. Original formalized source and frozen Lean declarations are unchanged.",
-    "final_source_review": {
-      "review_type": "Final combined mathematical compatibility review",
-      "reviewer": "core_rewrite",
-      "reviewed_at_utc": "2026-10-13T17:55:40.384814+00:00",
-      "source": "/Users/ahmedbou-rabee/.cache/cerw-oct13-opus-incorporation-20261013/build/oct13.tex",
-      "source_sha256": "7de664f9a3d689f8ebd69309da3e03043b59d5b702f7f00999a6c7dec9d855ed",
-      "status": "pass",
-      "unresolved_issues": [],
-      "scope": "Read-only mathematical compatibility audit of the assembled Opus revision and its source contracts, including the imported deterministic comparison, all-dimensional exterior estimate, shared outer-radius proof, and their downstream uses. This is a human-readable mathematical audit, not a formal proof certificate or a compilation report.",
-      "candidate_mutated_by_reviewer": false,
-      "source_contracts": {
-        "manifest": "/Users/ahmedbou-rabee/.cache/cerw-oct13-opus-incorporation-20261013/statement-contracts.json",
-        "manifest_sha256": "cb8ac1374b5423b306d4ab0cffab14b8e5b0104ba2541ede64705a807576f4e6",
-        "statement_count": 24,
-        "all_statement_blocks_byte_identical": true,
-        "statement_order_preserved": true,
-        "statement_labels": [
-          "thm:shape",
-          "thm:fluctuations",
-          "thm:sharp",
-          "thm:norm-shape",
-          "lem:ballpotential",
-          "lem:local",
-          "lem:freedman",
-          "lem:cell",
-          "lem:layer",
-          "prop:coarse",
-          "lem:crossing",
-          "lem:outer-crossing",
-          "prop:norm-shape",
-          "lem:contact",
-          "prop:inner",
-          "prop:stronger-outer",
-          "lem:near-far",
-          "thm:moment-fluctuations",
-          "lem:fixed-site-centering",
-          "thm:site-fluctuations",
-          "lem:exp-deviation",
-          "prop:bulk-profile",
-          "lem:separated-brackets",
-          "prop:log-lower"
-        ],
-        "figure_count": 5,
-        "missing_refs": [],
-        "duplicate_labels": [],
-        "principal_section_order": [
-          "Introduction",
-          "Drifts given by a norm",
-          "Local times and the potential",
-          "Coarse bounds on the range and the local times",
-          "The limit shape",
-          "The inner radius for the Euclidean norm",
-          "The outer radius and the local times",
-          "Limit laws",
-          "Lower bounds on the fluctuations"
-        ]
-      },
-      "mathematical_checks": [
-        {
-          "area": "Section 3 deterministic comparison and cell modulus",
-          "result": "pass",
-          "details": "The three deterministic replacements give O(log n); the subgradient replacement follows from the retained cell lemma and local Laplacian growth. The interval martingale estimate then gives the frozen local-time approximation. The pointwise identity and cell modulus remain available independently of the probability event, as required by the exit-time and squared-Green arguments."
-        },
-        {
-          "area": "Coarse exit bootstrap and downstream contact input",
-          "result": "pass",
-          "details": "Stopping at exit or the first Green-martingale threshold gives a deterministic bound on the stopping time without first assuming exit finiteness. Local-time and bracket bounds hold through the stopped time, so Freedman excludes the threshold event. The subsequently used exit comparison and deterministic geometry retain their hypotheses."
-        },
-        {
-          "area": "Squared-Green local noise and contact",
-          "result": "pass",
-          "details": "The Dynkin identity has the correct signs. The bracket of the squared-Green martingale is bounded by the same weighted energy, allowing self-normalized Freedman followed by Young absorption. The planar shift yields a first-departure sum of order r_n, while higher dimensions give O(log n). The resulting bounds extend from lattice sites to cells and then to all space, supplying the all-dimensional one-sided estimate used later."
-        },
-        {
-          "area": "Restored one-sided norm bound",
-          "result": "pass",
-          "details": "Dropping the nonpositive endpoint contribution and the nonnegative excess moment gives (b-r_n)_+ <= C(r_n^((3-d)/2) sqrt(log n)+1), independently of the excess-volume estimate. This is a valid stronger byproduct and does not change a frozen statement."
-        },
-        {
-          "area": "Section 6 exterior occupation bound",
-          "result": "pass",
-          "details": "Outside the inner ball its potential vanishes. The all-dimensional estimate ell_tilde <= 2 min(U_E^+,sup|U_E|)+C r_n q_n is valid and provides L <= C r_n q_n^(1/d), which is the input required by the imported shared outer-radius proof."
-        },
-        {
-          "area": "Shared cap estimate and near/far reduction in Section 7",
-          "result": "pass",
-          "details": "The probe lies outside D_n; the cap contributes negatively by at least c t^(1-d) per unit volume, and dropping other negative contributions is correctly written as an inequality. The cap bound and the weighted potential F imply both hypotheses of the frozen near/far lemma with C lambda. Crossing and Young absorption then give w <= C lambda (log n)^d in every dimension."
-        },
-        {
-          "area": "Backward radial integration and harmonic extension",
-          "result": "pass",
-          "details": "For d>=3 the derivative of t^(d-2)F(tu) has the positive coefficient (d-2)omega_d/(2 drift) times t^(d-3)U_E(tu). Integrating the lower bound U_E>=-C log n backward from 2(b+w) gives the claimed upper bound on F. Local integrability of the kernel and its first derivative justifies differentiation of the bounded compactly supported density; continuity and harmonicity off the support give the interior and exterior extensions. In d=2 F is constant and the mass bound suffices."
-        },
-        {
-          "area": "Uniform and interior local-time conclusions",
-          "result": "pass",
-          "details": "The shared positive-potential bound gives the planar global error with logarithmic exponent 3/2. The dimension-specific global martingale bound remains explicit, so the interior proposition retains sqrt(r_n) log n in the plane and sqrt(r_n log n) in higher dimensions. No dropped delta notation or missing auxiliary envelope is needed downstream."
-        },
-        {
-          "area": "Limit laws and lower-fluctuation compatibility",
-          "result": "pass",
-          "details": "The moment and fixed-site normalizations, bracket constants, finite-dimensional covariance, radial comparisons, separated dipole identities, and lower-tail stopping arguments remain compatible with the assembled potential estimates. The final bulk-deviation sign now agrees with S=-M/sigma in d>=3 and with the stated dipole orientation in d=2."
-        }
-      ],
-      "resolved_issues": [
-        {
-          "id": "bulk-deviation-sign",
-          "found_in_sha256": "519f8b620c26505ba1cae0d28dad71121e2d9a37c08e50029045ea95f73a4758",
-          "location": "Proof of Theorem thm:sharp (iii), final paragraph",
-          "issue": "The parent correction to the agent2 proposal incorrectly changed the higher-dimensional conclusion to an upper negative deviation, although S^i=-M^{f_i}/sigma_n and the local-time deviation equals -M^{y_i} plus a smaller error.",
-          "resolution": "Parent restored the original Opus positive conclusion: the deviation at y_i is at least c sqrt(r_n log n). The corrected exact phrase and negative S definition were checked in the final source.",
-          "resolved_in_sha256": "7de664f9a3d689f8ebd69309da3e03043b59d5b702f7f00999a6c7dec9d855ed",
-          "frozen_statement_changed": false
-        }
-      ],
-      "conclusion": "All 24 frozen statement blocks and their order match the contract manifest. The combined mathematical route is compatible, the detected sign regression is resolved, and no substantive issue remains from this review.",
-      "layout_check": {
-        "checked_at_utc": "2026-10-13T18:02:05.208070+00:00",
-        "status": "pass",
-        "previously_reviewed_source": "/Users/ahmedbou-rabee/.cache/cerw-oct13-opus-incorporation-20261013/fresh-review/oct13-input.tex",
-        "previously_reviewed_sha256": "7de664f9a3d689f8ebd69309da3e03043b59d5b702f7f00999a6c7dec9d855ed",
-        "final_source": "/Users/ahmedbou-rabee/.cache/cerw-oct13-opus-incorporation-20261013/build/oct13.tex",
-        "final_source_sha256": "58ae6ae21977731e242d8ed8c43156335ae9d61c08713de5cfc8c2398cf583c2",
-        "sole_replacements": [
-          {
-            "before": "If $d\\geq3$, it follows that the deviation",
-            "after": "If~\\mbox{$d\\geq3$}, it follows that the deviation"
-          },
-          {
-            "before": "Suppose that $S^i_n\\geq ca\\sqrt{\\log r_n}$.",
-            "after": "Suppose that~\\mbox{$S^i_n\\geq ca\\sqrt{\\log r_n}$}."
-          }
-        ],
-        "verification": "Exact byte comparison: applying these two unique replacements to the fresh-review input produces the entire final source byte for byte.",
-        "mathematical_effect": "None. The no-break spaces and mbox wrappers preserve the dimension condition, martingale threshold, positive-deviation conclusion, and every mathematical statement.",
-        "fresh_opus_review_input_sha256": "7de664f9a3d689f8ebd69309da3e03043b59d5b702f7f00999a6c7dec9d855ed",
-        "fresh_opus_input_difference": "Only the two explicit no-break formatting replacements recorded above.",
-        "candidate_mutated_by_reviewer": false
-      },
-      "final_source_sha256": "58ae6ae21977731e242d8ed8c43156335ae9d61c08713de5cfc8c2398cf583c2"
-    }
+    "statement_integrity": "23 statements unchanged byte-for-byte; lem:local retains exactly former (iii), with author approval to remove unused (i) and (ii).",
+    "formalization_scope": "Legacy27frozen Lean declarations and oct5 pin remain unchanged. Current correspondence records reduced lemma as a consequence of the old third conjunct; no new Lean build or certification of changed proof mechanisms is claimed.",
+    "remaining_mathematical_objections": [],
+    "iteration_stop": "Whole-paper Opus pass and three independent section audits found no further checked substantive shortcut; remaining mechanisms each have a needed role."
   },
   "editorial_review": {
-    "host": "work-comp",
     "model": "claude-opus-5-5",
     "effort": "xhigh",
-    "prior_sessions": [
-      "9cc6c705-f992-4157-967b-f21b5b3bd913",
-      "e07a1445-cc40-4363-b524-7c7f4cfc5a96",
-      "619cad7c-c026-42dd-ab74-dd00cd80b233"
+    "host": "work-comp",
+    "sessions": [
+      {
+        "id": "85ccf48f-bd91-46c0-bebb-fbc4ea6b8c9e",
+        "scope": "Whole-paper direct-proof revision using the author/Peres exemplars and master writing guide",
+        "completed": {
+          "exit_code": 0,
+          "finished_utc": "2026-10-13T18:44:09.452714+00:00"
+        }
+      },
+      {
+        "id": "d4f698c6-ec6f-4bfb-918f-b335f5210c10",
+        "scope": "Whole integrated manuscript reviewed and rewritten for directness, mathematical dependencies and writing standards",
+        "completed": {
+          "exit_code": 0,
+          "finished_utc": "2026-10-13T18:56:17.814945+00:00"
+        }
+      }
     ],
-    "state": "Most prior Opus recommendations incorporated; fresh independent whole-paper Opus review running.",
-    "incorporation": {
-      "started_utc": "2026-10-13T17:48:51.859343+00:00",
-      "base": "agent2 original as-returned full proposal",
-      "base_sha256": "14bf6dcc0c0e5d4f66e03b518b8e68af4fee87876bc0e8a30aae25e8ba450879",
-      "policy": "Incorporate most of Opus reviewers recommendations as instructed; prefer Opus prose, changing only for mathematical correctness, compatibility, or explicit author constraints.",
-      "planned_imports": [
-        "agent1 deterministic comparison placement in Section3",
-        "agent1 full shared outer-radius proof in Section7"
-      ],
-      "operations": [
-        {
-          "start": "\\emph{Step 3: Comparison with the potential.}",
-          "end": "\\subsection{Bounds on the potential}\\label{sec:potential-bounds}",
-          "provenance": "Exact contiguous agent1 source; no prose edits."
-        },
-        {
-          "old": "Near the boundary of the range, both the local times and the potential are smaller than the martingale error, so this comparison alone does not locate the boundary.",
-          "new": "Near the boundary of the range, the martingale error bound can be larger than the local times and the potential, so this comparison alone need not locate the boundary.",
-          "reason": "Corrects a categorical comparison not established by the proof; distinguishes the available error bound from the actual martingale value. All other Opus wording in the paragraph is unchanged."
-        },
-        {
-          "start": "\\subsection{Upper bounds on the local times}",
-          "end": "\\subsection{The inner radius}",
-          "provenance": "Exact agent1 Section6.2; common bound in every dimension, needed for the shared Section7 argument."
-        },
-        {
-          "start": "\\begin{proposition}[Outer radius]\\label{prop:stronger-outer}",
-          "end": "\\section{Limit laws}",
-          "provenance": "Exact agent1 Section7 after its opening; retain agent2 opening and original statements."
-        },
-        {
-          "old": "We split $U_E(y_t)$ into the contributions",
-          "new": "We bound $U_E(y_t)$ by the contributions",
-          "reason": "Dropping other negative contributions gives an inequality, not an equality."
-        },
-        {
-          "old": "control the largest local time near the origin.",
-          "new": "control the largest deviation of the local times near the origin.",
-          "reason": "Agent1 wording: the theorem bounds deviations, not the uncentered local times."
-        },
-        {
-          "preserved": "Agent2 original positive-deviation sentence",
-          "reason": "The previous parent audit overlooked S^i=-M^{f_i}/sigma and wrongly reversed this sign. Use the correct as-returned Opus source."
-        },
-        {
-          "old": "If $d\\geq3$, it follows that the deviation",
-          "new": "If~\\mbox{$d\\geq3$}, it follows that the deviation",
-          "reason": "Layout only: keep the dimensional condition together; it was split across pages34/35."
-        },
-        {
-          "old": "Suppose that $S^i_n\\geq ca\\sqrt{\\log r_n}$.",
-          "new": "Suppose that~\\mbox{$S^i_n\\geq ca\\sqrt{\\log r_n}$}.",
-          "reason": "Layout only: keep the adjacent normalized-martingale condition together across the page break."
-        },
-        {
-          "old": "a dashed arrow means that only Lemma~\\ref{lem:contact} and estimates from the proof of Proposition~\\ref{prop:norm-shape} are used.",
-          "new": "a dashed arrow means that estimates from Section~\\ref{sec:norms} are used.",
-          "reason": "The required estimates include consequences in that section outside the named proposition proof."
-        },
-        {
-          "restored": "Discarding $-|X_n|^2$ in~\\eqref{eq:quadratic} and $\\int_E\\gauge(v)\\dd v\\geq0$ before taking absolute values gives, without~\\eqref{eq:norm-volume}, the one-sided bound $(b-r_n)_+\\leq C(r_n^{\\nf{(3-d)}{2}}(\\log n)^{\\nf12}+1)$.",
-          "reason": "Retain the useful stronger one-sided consequence; original one-sentence argument."
-        }
-      ],
-      "source_sha256": "58ae6ae21977731e242d8ed8c43156335ae9d61c08713de5cfc8c2398cf583c2",
-      "statement_blocks_preserved": 24,
-      "adoption": "Most of agent2 complete rewrite, including its introduction, explanations, terminology, notation, coarse and general-norm proofs, and Sections8/9; agent1 deterministic comparison, all-dimensional exterior estimate, and shared Section7 proof. All departures are listed above."
-    },
-    "fresh_review": {
-      "session_id": "9a2a42a7-7e12-48a6-a6dc-56b5bb724ce9",
-      "worker_pid": 193980,
-      "started_utc": "2026-10-13T17:55:11.057965+00:00",
-      "state": "running",
-      "input_sha256": "7de664f9a3d689f8ebd69309da3e03043b59d5b702f7f00999a6c7dec9d855ed",
-      "published_source_difference": [
-        {
-          "before": "If $d\\geq3$, it follows that the deviation",
-          "after": "If~\\mbox{$d\\geq3$}, it follows that the deviation"
-        },
-        {
-          "before": "Suppose that $S^i_n\\geq ca\\sqrt{\\log r_n}$.",
-          "after": "Suppose that~\\mbox{$S^i_n\\geq ca\\sqrt{\\log r_n}$}."
-        }
-      ],
-      "difference_scope": "Only no-break formatting of two adjacent inline conditions; mathematical content and prose identical.",
-      "local_directory": "/Users/ahmedbou-rabee/.cache/cerw-oct13-opus-incorporation-20261013/fresh-review",
-      "remote_directory": "/home/bourabbe/.cache/cerw-oct13-opus-incorporation-20261013/fresh-review",
-      "brief": "Full paper, current writing guide, original Bou-Rabee\u2013Peres paper and three additional papers with Yuval; preserve all frozen statements and figures."
-    }
+    "report_sha256": "66660a318b25863d720ad758595bf8a8a1a26e1f76f4b5598dd2060809b7c64c",
+    "proposal_sha256": "f338777b93e6e010be5ec7a442799017878860c08a6b5badbeae2ec57067ba94",
+    "adopted": "Full final proposal, with four independently checked precision/punctuation edits in final-parent-edits.json."
   },
   "lean_scope": {
     "pinned_source": "paper/limit-shapes.tex (oct5)",
@@ -586,7 +394,8 @@
           "file": "oct13.tex",
           "line": 108,
           "end_line": 121
-        }
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "thm-fluctuations",
@@ -600,7 +409,8 @@
           "file": "oct13.tex",
           "line": 132,
           "end_line": 154
-        }
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "thm-sharp-radii",
@@ -614,7 +424,8 @@
           "file": "oct13.tex",
           "line": 158,
           "end_line": 194
-        }
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "thm-sharp-radii-lil",
@@ -628,7 +439,8 @@
           "file": "oct13.tex",
           "line": 158,
           "end_line": 194
-        }
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "thm-sharp-bulk",
@@ -642,7 +454,8 @@
           "file": "oct13.tex",
           "line": 158,
           "end_line": 194
-        }
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "thm-sharp-width",
@@ -656,7 +469,8 @@
           "file": "oct13.tex",
           "line": 158,
           "end_line": 194
-        }
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "thm-norm-shape",
@@ -670,7 +484,8 @@
           "file": "oct13.tex",
           "line": 343,
           "end_line": 356
-        }
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-ballpotential",
@@ -684,7 +499,8 @@
           "file": "oct13.tex",
           "line": 374,
           "end_line": 379
-        }
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-local",
@@ -696,9 +512,10 @@
         "source_label": "lem:local",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 398,
-          "end_line": 414
-        }
+          "line": 391,
+          "end_line": 396
+        },
+        "oct13_relation": "Only former part (iii), approximation by the potential. Its bad event is a subset of the old three-part bad event; the old formal bound implies this reduced conclusion by measure monotonicity. Former parts (i) and (ii) are no longer manuscript claims."
       },
       {
         "id": "lem-freedman",
@@ -710,9 +527,10 @@
         "source_label": "lem:freedman",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 449,
-          "end_line": 454
-        }
+          "line": 431,
+          "end_line": 436
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-cell",
@@ -724,9 +542,10 @@
         "source_label": "lem:cell",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 467,
-          "end_line": 472
-        }
+          "line": 452,
+          "end_line": 457
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "prop-coarse",
@@ -738,9 +557,10 @@
         "source_label": "prop:coarse",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 546,
-          "end_line": 553
-        }
+          "line": 519,
+          "end_line": 526
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-crossing",
@@ -752,9 +572,10 @@
         "source_label": "lem:crossing",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 567,
-          "end_line": 572
-        }
+          "line": 540,
+          "end_line": 545
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "prop-norm-shape",
@@ -766,9 +587,10 @@
         "source_label": "prop:norm-shape",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 714,
-          "end_line": 730
-        }
+          "line": 664,
+          "end_line": 680
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-layer",
@@ -780,9 +602,10 @@
         "source_label": "lem:layer",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 527,
-          "end_line": 532
-        }
+          "line": 500,
+          "end_line": 505
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-contact",
@@ -794,9 +617,10 @@
         "source_label": "lem:contact",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 772,
-          "end_line": 777
-        }
+          "line": 716,
+          "end_line": 721
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-outer-crossing",
@@ -808,9 +632,10 @@
         "source_label": "lem:outer-crossing",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 583,
-          "end_line": 588
-        }
+          "line": 556,
+          "end_line": 561
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "prop-inner",
@@ -822,9 +647,10 @@
         "source_label": "prop:inner",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 894,
-          "end_line": 910
-        }
+          "line": 808,
+          "end_line": 824
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "prop-stronger-outer",
@@ -836,9 +662,10 @@
         "source_label": "prop:stronger-outer",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 988,
-          "end_line": 993
-        }
+          "line": 878,
+          "end_line": 883
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-near-far",
@@ -850,9 +677,10 @@
         "source_label": "lem:near-far",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1019,
-          "end_line": 1024
-        }
+          "line": 938,
+          "end_line": 943
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "thm-moment-fluctuations",
@@ -864,9 +692,10 @@
         "source_label": "thm:moment-fluctuations",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1146,
-          "end_line": 1167
-        }
+          "line": 1018,
+          "end_line": 1039
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-fixed-site-centering",
@@ -878,9 +707,10 @@
         "source_label": "lem:fixed-site-centering",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1207,
-          "end_line": 1213
-        }
+          "line": 1075,
+          "end_line": 1081
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "thm-site-fluctuations",
@@ -892,9 +722,10 @@
         "source_label": "thm:site-fluctuations",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1236,
-          "end_line": 1261
-        }
+          "line": 1110,
+          "end_line": 1135
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-exp-deviation",
@@ -906,9 +737,10 @@
         "source_label": "lem:exp-deviation",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1319,
-          "end_line": 1333
-        }
+          "line": 1193,
+          "end_line": 1207
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "prop-bulk-profile",
@@ -920,9 +752,10 @@
         "source_label": "prop:bulk-profile",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1446,
-          "end_line": 1453
-        }
+          "line": 1320,
+          "end_line": 1327
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "lem-separated-brackets",
@@ -934,9 +767,10 @@
         "source_label": "lem:separated-brackets",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1480,
-          "end_line": 1487
-        }
+          "line": 1354,
+          "end_line": 1361
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       },
       {
         "id": "prop-log-lower",
@@ -948,20 +782,157 @@
         "source_label": "prop:log-lower",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1538,
-          "end_line": 1552
-        }
+          "line": 1403,
+          "end_line": 1417
+        },
+        "oct13_relation": "Unchanged mathematical statement."
       }
     ],
-    "checks": "Original source pin, all 27 frozen hashes and their registered source ranges verified. All 24 LaTeX statement blocks match oct5 verbatim and in order. New proof passages have not been checked by a new Lean build. This JSON is a synchronization and correspondence record, not a new formal proof certificate."
+    "checks": "Legacy oct5 source pin, all 27 frozen hashes, and registered source ranges verified unchanged. Twenty-three current LaTeX blocks are unchanged; the reduced lem:local retains exactly the former potential approximation, covered by the original formal theorem via event inclusion and measure monotonicity. Current manuscript source locations and correspondence are recorded here. No new Lean build verifies the revised proof mechanisms; this is a synchronization and statement-correspondence record, not a new formal proof certificate."
   },
   "sha256": {
-    "oct13.tex": "58ae6ae21977731e242d8ed8c43156335ae9d61c08713de5cfc8c2398cf583c2",
-    "oct13.pdf": "b71147a23923834927dc10c21992faaad6d77a22c9f3854d20f4fd38c5b0ff7c",
+    "oct13.tex": "629cae5b4e7bf49d097196581f48e37bfbabfff9b76d0ed476a03d661f4fd6ff",
+    "oct13.pdf": "5ba1feda28b67290ffba3002346393f6cef1b7d2f167839f80fc4e72cc361254",
     "oct13-references.bib": "3916892792848888800385f4c4d1a72c65f092d679c56d20453e2563b4ecbd63",
     "Figures/first_departure_norms.pdf": "216795864cf1730face7ce0da3aa2d42d38b949186f45be96e4779a678d517aa",
     "Figures/shapes_ranges.pdf": "c2e143d3735eb3cf3afc8a34f55ef8d9fcc14afb1c43919300a40c52a281093a",
     "Figures/shapes_localtimes.pdf": "32db8f903af46db18e88059a5c13ba50235ff7dd02772c8ffb57e006401e1001"
   },
-  "updated_utc": "2026-10-13T18:02:35.078341+00:00"
+  "updated_utc": "2026-10-13T18:59:13.349080+00:00",
+  "current_statement_blocks": [
+    {
+      "environment": "theorem",
+      "label": "thm:shape",
+      "sha256": "cdd1ed428d6eeb2be5f5f82025d477b6c28c4db5375b56a4fda9dd9dfb31f63e"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:fluctuations",
+      "sha256": "5b517547c02cd7eaf14d48368efc13444e245b396951708a09f6603ea8519522"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:sharp",
+      "sha256": "67aa4b3d2886bbaa509b8aff4abb0450bff476a81023e77ff04988feae6e159e"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:norm-shape",
+      "sha256": "32b2bc21e152e8eb2e6d5bbd014e3b327ee557f8b33ff7efe8dc972cc6c74701"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:ballpotential",
+      "sha256": "91c7dc32c806b2cbd2d854b3120f44be02d8a3d2705f62d9d9854ee9dbf13697"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:local",
+      "sha256": "2cd5bfaddabe4fb8a48661c5a8be8d49fdf4842e14627fa210fc8cd5e6b76b31"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:freedman",
+      "sha256": "5189e56417f162fa21f93ef82169f4a4dcdfc07e8d153726d83eecedb7a2e90a"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:cell",
+      "sha256": "0385f0e70a2e11684073dd4b4d64d01f57c0f392c320ea750b55da134f34e400"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:layer",
+      "sha256": "9be5d6667303506c59e06668f1e36b819ac0a202857d83f3174815d14be5ac57"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:coarse",
+      "sha256": "cb346148efa9df08b3c620f99b9dfa1ccf027180d6ae0abeb11e85e92dd75e3d"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:crossing",
+      "sha256": "20581bc7ac8d6cfbf0d0b4a812bed7e841d89fdc8ccf541d89a80bc8e35f22fc"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:outer-crossing",
+      "sha256": "aa56505154f1f59ee05433abdc2b8a1d49833d86be028329c5cec1bbb08f34e2"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:norm-shape",
+      "sha256": "fb273d2d27dc2fd87a3f23bec066d77614770f3ee75ebcddae0f435a3caee7dc"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:contact",
+      "sha256": "e234ae1aaae2b18ee67105861c81304f0f0bb88f7b19852f1eb1a40f424b13e3"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:inner",
+      "sha256": "23c6a744ab72b3b51d84484d0b178ac13de5ddbd3832a2cc72635691c0419c83"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:stronger-outer",
+      "sha256": "ac9565c92243c3dc24e58a9264522d1c6d32b1f77771c7bb4dd593532028b750"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:near-far",
+      "sha256": "a30bc9b912aac7de26875703e1b675b4ac3b9697abc09a5b8adfe5150f69eae7"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:moment-fluctuations",
+      "sha256": "243594a2a506e4e06edeb5fa6deab00a2cb3157dd4637d7a6d8602d1cd79d2ba"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:fixed-site-centering",
+      "sha256": "e13e3c0825c31d63b9e625ccef1b03518c6ae050146f1e1cdfcf49e7c4c55cfc"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:site-fluctuations",
+      "sha256": "b1cd9f329fc97b65b7b209450e129fc405e44c83e2b2233b1c04eda706ba7bdf"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:exp-deviation",
+      "sha256": "cbc623047ef6705d8e64af844dd282237b5008a2beaa451d041c96415b3c9709"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:bulk-profile",
+      "sha256": "e2a9d8c4513eb7562c68dda4309ad47e340dcce67272ac7f613b7579a541f21e"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:separated-brackets",
+      "sha256": "4d341ad5b6b0c3e6b36479e13f5057e07c93a7a92004fa712d92af8777d0dd76"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:log-lower",
+      "sha256": "663339efa77737bfe186dec474733ae21fb4e0653841aa6e5b1f4fd9bd3cc8a4"
+    }
+  ],
+  "statement_changes": [
+    {
+      "label": "lem:local",
+      "change": "Retain former part (iii) only; remove unused former (i) and (ii) and their proof.",
+      "authorization": {
+        "recorded_utc": "2026-10-13T18:23:55.473109+00:00",
+        "question": "May I remove Lemma3.1(i)-(ii) and proof, retaining iii and all principal theorems/order? AGENTS freezes statements.",
+        "answer": "yes!",
+        "latest_instruction": "Keep iterating until the arguments in the paper are as direct as possible"
+      },
+      "original_sha256": "9a064c5c60767ac8ed6993d2dc15ecc9a5271675268dafce6dae182e9ebe3dba",
+      "current_sha256": "2cd5bfaddabe4fb8a48661c5a8be8d49fdf4842e14627fa210fc8cd5e6b76b31"
+    }
+  ]
 }
