@@ -72,6 +72,6 @@ To build the paper, run `latexmk -pdf limit-shapes.tex` from `paper/`.
 
 ## Citation and license
 
-The Lean formalization is by Ahmed Bou-Rabee. The paper it formalizes is by Ahmed Bou-Rabee and Yuval Peres.
+The formalization is by Ahmed Bou-Rabee and Yuval Peres.
 Citation metadata is in [CITATION.cff](CITATION.cff).
 The code is licensed under [Apache 2.0](LICENSE).

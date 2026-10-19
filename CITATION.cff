@@ -12,6 +12,8 @@ type: software
 authors:
   - family-names: Bou-Rabee
     given-names: Ahmed
+  - family-names: Peres
+    given-names: Yuval
 keywords:
   - Lean
   - mathlib
