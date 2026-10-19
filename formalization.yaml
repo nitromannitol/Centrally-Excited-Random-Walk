@@ -9,7 +9,6 @@ project:
     kernel asymptotics quoted from the literature are proved in the shared Lattice-Probability library.'
   authors:
   - Ahmed Bou-Rabee
-  - Yuval Peres
   license: Apache-2.0
 classification:
   arxiv:
