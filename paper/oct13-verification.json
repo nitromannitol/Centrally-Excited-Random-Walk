@@ -6,7 +6,7 @@
     "Yuval Peres",
     "Arvind Singh"
   ],
-  "status": "Seven corrections from an independent gpt-6.1-sol xhigh review applied (sign in the Dynkin outline sentence, abstract drift at the origin, exact hypotheses of Le-Nguyen, Kosygina-Mountford-Peterson and Berard-Ramirez, two referents). Statement blocks unchanged.",
+  "status": "Six corrections from two independent gpt-6.1-sol xhigh reviews applied (Jerison-Levine-Sheffield martingales, Campos et al. continuum model, x=0 in the outline sum, two open-ball inclusions, two repeated openings). Statement blocks unchanged.",
   "scope": "Original Bou-Rabee–Peres theorem statements and order. No additional generalized model or additional theorem.",
   "original_statement_blocks": [
     {
@@ -208,38 +208,38 @@
     },
     "thm:moment-fluctuations": {
       "file": "oct13.tex",
-      "line": 867,
-      "end_line": 888
+      "line": 865,
+      "end_line": 886
     },
     "lem:fixed-site-centering": {
       "file": "oct13.tex",
-      "line": 911,
-      "end_line": 917
+      "line": 909,
+      "end_line": 915
     },
     "thm:site-fluctuations": {
       "file": "oct13.tex",
-      "line": 938,
-      "end_line": 963
+      "line": 936,
+      "end_line": 961
     },
     "lem:exp-deviation": {
       "file": "oct13.tex",
-      "line": 990,
-      "end_line": 1004
+      "line": 988,
+      "end_line": 1002
     },
     "prop:bulk-profile": {
       "file": "oct13.tex",
-      "line": 1058,
-      "end_line": 1065
+      "line": 1054,
+      "end_line": 1061
     },
     "lem:separated-brackets": {
       "file": "oct13.tex",
-      "line": 1088,
-      "end_line": 1095
+      "line": 1084,
+      "end_line": 1091
     },
     "prop:log-lower": {
       "file": "oct13.tex",
-      "line": 1129,
-      "end_line": 1143
+      "line": 1125,
+      "end_line": 1139
     }
   },
   "build": {
@@ -730,8 +730,8 @@
         "source_label": "thm:moment-fluctuations",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 867,
-          "end_line": 888
+          "line": 865,
+          "end_line": 886
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -745,8 +745,8 @@
         "source_label": "lem:fixed-site-centering",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 911,
-          "end_line": 917
+          "line": 909,
+          "end_line": 915
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -760,8 +760,8 @@
         "source_label": "thm:site-fluctuations",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 938,
-          "end_line": 963
+          "line": 936,
+          "end_line": 961
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -775,8 +775,8 @@
         "source_label": "lem:exp-deviation",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 990,
-          "end_line": 1004
+          "line": 988,
+          "end_line": 1002
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -790,8 +790,8 @@
         "source_label": "prop:bulk-profile",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1058,
-          "end_line": 1065
+          "line": 1054,
+          "end_line": 1061
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -805,8 +805,8 @@
         "source_label": "lem:separated-brackets",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1088,
-          "end_line": 1095
+          "line": 1084,
+          "end_line": 1091
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -820,8 +820,8 @@
         "source_label": "prop:log-lower",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1129,
-          "end_line": 1143
+          "line": 1125,
+          "end_line": 1139
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       }
@@ -829,14 +829,14 @@
     "checks": "Legacy oct5 pin, all 27 frozen hashes, and registered source ranges verified unchanged. All surviving oct13 statement blocks match the preceding published version, including the previously authorized reduction of lem:local, covered by the original formal theorem via event inclusion. Two auxiliary crossing statements were removed with explicit author approval; their legacy declarations remain intact. Current source locations and statement correspondence are recorded here. The contact lemma retains its displayed statement but uses a revised common event; its legacy Lean declaration remains tied to the original oct5 event. No new Lean build verifies the revised proof mechanisms; this is a synchronization and statement-correspondence record, not a new formal proof certificate."
   },
   "sha256": {
-    "oct13.tex": "3d38567be6a49ad6434971762ad9dc2b921bfe4e2e6a3abbc6bc8990bc5487d5",
-    "oct13.pdf": "8ec537fa153a89e852eeb3c205506d309f78353778f625f939e18980dc683aaa",
+    "oct13.tex": "e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617",
+    "oct13.pdf": "0b5c26f3d203106a7cc80bb117b5af1c13ce316398b296cb5319747fc3854484",
     "oct13-references.bib": "4bfb500c019abbfdb96c26fdc91ee19f065d1c805eba15d16d4f09be611e4f03",
     "Figures/first_departure_norms.pdf": "216795864cf1730face7ce0da3aa2d42d38b949186f45be96e4779a678d517aa",
     "Figures/shapes_ranges.pdf": "c2e143d3735eb3cf3afc8a34f55ef8d9fcc14afb1c43919300a40c52a281093a",
     "Figures/shapes_localtimes.pdf": "32db8f903af46db18e88059a5c13ba50235ff7dd02772c8ffb57e006401e1001"
   },
-  "updated_utc": "2026-10-22T18:25:08.791911+00:00",
+  "updated_utc": "2026-10-22T19:11:11.154906+00:00",
   "current_statement_blocks": [
     {
       "environment": "theorem",
@@ -1000,9 +1000,9 @@
     }
   ],
   "last_prose_only_revision": {
-    "created_utc": "2026-10-22T18:25:08.791911+00:00",
-    "source_base_sha256": "4410e3f1f8a2642ec95bc2e1060fae3c4c9ffe6c50b1aea12b715cac8862e574",
+    "created_utc": "2026-10-22T19:11:11.154906+00:00",
+    "source_base_sha256": "3d38567be6a49ad6434971762ad9dc2b921bfe4e2e6a3abbc6bc8990bc5487d5",
     "statement_blocks_unchanged": true,
-    "scope": "Author-approved items 1-7 of the gpt-6.1-sol xhigh review of 22 Oct 2026."
+    "scope": "Author-approved items 1,2,4,5,6,7 of the second gpt-6.1-sol review round (item 3, the once-reinforced sentence, declined)."
   }
 }
