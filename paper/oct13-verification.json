@@ -6,7 +6,7 @@
     "Yuval Peres",
     "Arvind Singh"
   ],
-  "status": "Prose and proof-wording pass (comma rule, one name for the crossing estimate, repeated or clashing symbols removed, two unclear sentences repaired, Figure 5 caption shortened). Statement blocks and their line numbers unchanged.",
+  "status": "Lean subsection now states the actual coverage (formalized for the oct5 version; Lemma 3.1 reduced; Section 5.1 event redefined; proofs differ). Repetition between the strategy list and the openings of Sections 4 and 5 removed; Asselah-Gaudilliere sentence rewritten from their paper. Statement blocks unchanged.",
   "scope": "Original Bou-Rabee–Peres theorem statements and order. No additional generalized model or additional theorem.",
   "original_statement_blocks": [
     {
@@ -183,63 +183,63 @@
     },
     "prop:norm-shape": {
       "file": "oct13.tex",
-      "line": 595,
-      "end_line": 611
+      "line": 593,
+      "end_line": 609
     },
     "lem:contact": {
       "file": "oct13.tex",
-      "line": 647,
-      "end_line": 652
+      "line": 645,
+      "end_line": 650
     },
     "prop:inner": {
       "file": "oct13.tex",
-      "line": 699,
-      "end_line": 715
+      "line": 697,
+      "end_line": 713
     },
     "prop:stronger-outer": {
       "file": "oct13.tex",
-      "line": 761,
-      "end_line": 766
+      "line": 759,
+      "end_line": 764
     },
     "lem:near-far": {
       "file": "oct13.tex",
-      "line": 810,
-      "end_line": 815
+      "line": 808,
+      "end_line": 813
     },
     "thm:moment-fluctuations": {
       "file": "oct13.tex",
-      "line": 870,
-      "end_line": 891
+      "line": 868,
+      "end_line": 889
     },
     "lem:fixed-site-centering": {
       "file": "oct13.tex",
-      "line": 916,
-      "end_line": 922
+      "line": 914,
+      "end_line": 920
     },
     "thm:site-fluctuations": {
       "file": "oct13.tex",
-      "line": 945,
-      "end_line": 970
+      "line": 943,
+      "end_line": 968
     },
     "lem:exp-deviation": {
       "file": "oct13.tex",
-      "line": 999,
-      "end_line": 1013
+      "line": 997,
+      "end_line": 1011
     },
     "prop:bulk-profile": {
       "file": "oct13.tex",
-      "line": 1067,
-      "end_line": 1074
+      "line": 1065,
+      "end_line": 1072
     },
     "lem:separated-brackets": {
       "file": "oct13.tex",
-      "line": 1097,
-      "end_line": 1104
+      "line": 1095,
+      "end_line": 1102
     },
     "prop:log-lower": {
       "file": "oct13.tex",
-      "line": 1138,
-      "end_line": 1152
+      "line": 1136,
+      "end_line": 1150
     }
   },
   "build": {
@@ -629,8 +629,8 @@
         "source_label": "prop:norm-shape",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 595,
-          "end_line": 611
+          "line": 593,
+          "end_line": 609
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -659,8 +659,8 @@
         "source_label": "lem:contact",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 647,
-          "end_line": 652
+          "line": 645,
+          "end_line": 650
         },
         "oct13_relation": "Displayed statement block unchanged, but its referenced common event has been redefined. The legacy Lean theorem uses the original oct5 event, including the old local-time, vector, and linear-martingale bounds; it does not directly formalize the conclusion on the revised oct13 event, which includes squared-potential and distance-crossing bounds."
       },
@@ -685,8 +685,8 @@
         "source_label": "prop:inner",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 699,
-          "end_line": 715
+          "line": 697,
+          "end_line": 713
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -700,8 +700,8 @@
         "source_label": "prop:stronger-outer",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 761,
-          "end_line": 766
+          "line": 759,
+          "end_line": 764
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -715,8 +715,8 @@
         "source_label": "lem:near-far",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 810,
-          "end_line": 815
+          "line": 808,
+          "end_line": 813
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -730,8 +730,8 @@
         "source_label": "thm:moment-fluctuations",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 870,
-          "end_line": 891
+          "line": 868,
+          "end_line": 889
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -745,8 +745,8 @@
         "source_label": "lem:fixed-site-centering",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 916,
-          "end_line": 922
+          "line": 914,
+          "end_line": 920
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -760,8 +760,8 @@
         "source_label": "thm:site-fluctuations",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 945,
-          "end_line": 970
+          "line": 943,
+          "end_line": 968
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -775,8 +775,8 @@
         "source_label": "lem:exp-deviation",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 999,
-          "end_line": 1013
+          "line": 997,
+          "end_line": 1011
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -790,8 +790,8 @@
         "source_label": "prop:bulk-profile",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1067,
-          "end_line": 1074
+          "line": 1065,
+          "end_line": 1072
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -805,8 +805,8 @@
         "source_label": "lem:separated-brackets",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1097,
-          "end_line": 1104
+          "line": 1095,
+          "end_line": 1102
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -820,8 +820,8 @@
         "source_label": "prop:log-lower",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1138,
-          "end_line": 1152
+          "line": 1136,
+          "end_line": 1150
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       }
@@ -829,14 +829,14 @@
     "checks": "Legacy oct5 pin, all 27 frozen hashes, and registered source ranges verified unchanged. All surviving oct13 statement blocks match the preceding published version, including the previously authorized reduction of lem:local, covered by the original formal theorem via event inclusion. Two auxiliary crossing statements were removed with explicit author approval; their legacy declarations remain intact. Current source locations and statement correspondence are recorded here. The contact lemma retains its displayed statement but uses a revised common event; its legacy Lean declaration remains tied to the original oct5 event. No new Lean build verifies the revised proof mechanisms; this is a synchronization and statement-correspondence record, not a new formal proof certificate."
   },
   "sha256": {
-    "oct13.tex": "cf0d36eea7713dfe65a60c09cba645530af38a70682b85582c41c9f6f66aa672",
-    "oct13.pdf": "948d31d9006a4afe8a93c6969c5b4b6acb1bff21001e48ab1fb7305dbf7fe075",
+    "oct13.tex": "d064cf7e0f8812ecaae8aced065ae99c19cc1144c950b03e2f8e97782f2c5fd7",
+    "oct13.pdf": "6523dfc6bef4ebdde18ab73b10734ab53a3796b31811b6fb8b351a34adc16b57",
     "oct13-references.bib": "4bfb500c019abbfdb96c26fdc91ee19f065d1c805eba15d16d4f09be611e4f03",
     "Figures/first_departure_norms.pdf": "216795864cf1730face7ce0da3aa2d42d38b949186f45be96e4779a678d517aa",
     "Figures/shapes_ranges.pdf": "c2e143d3735eb3cf3afc8a34f55ef8d9fcc14afb1c43919300a40c52a281093a",
     "Figures/shapes_localtimes.pdf": "32db8f903af46db18e88059a5c13ba50235ff7dd02772c8ffb57e006401e1001"
   },
-  "updated_utc": "2026-10-22T16:00:46.073104+00:00",
+  "updated_utc": "2026-10-22T16:07:28.082944+00:00",
   "current_statement_blocks": [
     {
       "environment": "theorem",
@@ -1000,9 +1000,9 @@
     }
   ],
   "last_prose_only_revision": {
-    "created_utc": "2026-10-22T16:00:46.073104+00:00",
-    "source_base_sha256": "619b6a242778a87b94da4ff43015c116e22a432681516436c1ffaf70a6875608",
+    "created_utc": "2026-10-22T16:07:28.082944+00:00",
+    "source_base_sha256": "cf0d36eea7713dfe65a60c09cba645530af38a70682b85582c41c9f6f66aa672",
     "statement_blocks_unchanged": true,
-    "scope": "Author-approved items from the 22 Oct whole-paper read: comma rule in 19 places; 'crossing argument/bound' -> 'crossing estimate'; 'ball potential' -> U_{B(0,b)}; 'profile' -> 'cone'; 'outer sphere' not used before its definition; 'costs' -> 'changes ... by'; repeated opening of the strategy paragraph cut; Part (iv) remark restated; garbled sentence in the proof of (7.3) and two-reading sentence in the proof of Theorem 1.3(iv) repaired; in proofs, k merged into m, L replaced by sigma_n^2/r, A=2 sqrt d written out, C_1 removed and C_0 made explicit, w->a in Lemma 8.3's proof, T->k in Proposition 9.4's proof; 'any' removed twice; Figure 5 caption shortened."
+    "scope": "Items 1, 6, 13 of the 22 Oct read, approved by the author: Lean coverage sentence; strategy step 2 last sentence cut, step 5 shortened, Section 4 and Section 5 openings reduced to their goal; Asselah-Gaudilliere 2014 credited for the no-deep-holes/long-tentacles argument without locator."
   }
 }
