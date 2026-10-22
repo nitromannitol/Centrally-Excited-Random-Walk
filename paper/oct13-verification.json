@@ -6,7 +6,7 @@
     "Yuval Peres",
     "Arvind Singh"
   ],
-  "status": "Second independent slop round applied (about 55 checked edits). Statement blocks unchanged.",
+  "status": "Third independent slop round applied (about 50 checked edits). Statement blocks unchanged.",
   "scope": "Original Bou-Rabee–Peres theorem statements and order. No additional generalized model or additional theorem.",
   "original_statement_blocks": [
     {
@@ -163,83 +163,83 @@
     },
     "lem:freedman": {
       "file": "oct13.tex",
-      "line": 437,
-      "end_line": 442
+      "line": 435,
+      "end_line": 440
     },
     "lem:cell": {
       "file": "oct13.tex",
-      "line": 458,
-      "end_line": 463
+      "line": 456,
+      "end_line": 461
     },
     "lem:layer": {
       "file": "oct13.tex",
-      "line": 495,
-      "end_line": 500
+      "line": 493,
+      "end_line": 498
     },
     "prop:coarse": {
       "file": "oct13.tex",
-      "line": 510,
-      "end_line": 517
+      "line": 508,
+      "end_line": 515
     },
     "prop:norm-shape": {
       "file": "oct13.tex",
-      "line": 594,
-      "end_line": 610
+      "line": 592,
+      "end_line": 608
     },
     "lem:contact": {
       "file": "oct13.tex",
-      "line": 646,
-      "end_line": 651
+      "line": 644,
+      "end_line": 649
     },
     "prop:inner": {
       "file": "oct13.tex",
-      "line": 698,
-      "end_line": 714
+      "line": 696,
+      "end_line": 712
     },
     "prop:stronger-outer": {
       "file": "oct13.tex",
-      "line": 760,
-      "end_line": 765
+      "line": 758,
+      "end_line": 763
     },
     "lem:near-far": {
       "file": "oct13.tex",
-      "line": 809,
-      "end_line": 814
+      "line": 807,
+      "end_line": 812
     },
     "thm:moment-fluctuations": {
       "file": "oct13.tex",
-      "line": 869,
-      "end_line": 890
+      "line": 867,
+      "end_line": 888
     },
     "lem:fixed-site-centering": {
       "file": "oct13.tex",
-      "line": 913,
-      "end_line": 919
+      "line": 911,
+      "end_line": 917
     },
     "thm:site-fluctuations": {
       "file": "oct13.tex",
-      "line": 940,
-      "end_line": 965
+      "line": 938,
+      "end_line": 963
     },
     "lem:exp-deviation": {
       "file": "oct13.tex",
-      "line": 992,
-      "end_line": 1006
+      "line": 990,
+      "end_line": 1004
     },
     "prop:bulk-profile": {
       "file": "oct13.tex",
-      "line": 1060,
-      "end_line": 1067
+      "line": 1058,
+      "end_line": 1065
     },
     "lem:separated-brackets": {
       "file": "oct13.tex",
-      "line": 1090,
-      "end_line": 1097
+      "line": 1088,
+      "end_line": 1095
     },
     "prop:log-lower": {
       "file": "oct13.tex",
-      "line": 1131,
-      "end_line": 1145
+      "line": 1129,
+      "end_line": 1143
     }
   },
   "build": {
@@ -573,8 +573,8 @@
         "source_label": "lem:freedman",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 437,
-          "end_line": 442
+          "line": 435,
+          "end_line": 440
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -588,8 +588,8 @@
         "source_label": "lem:cell",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 458,
-          "end_line": 463
+          "line": 456,
+          "end_line": 461
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -603,8 +603,8 @@
         "source_label": "prop:coarse",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 510,
-          "end_line": 517
+          "line": 508,
+          "end_line": 515
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -629,8 +629,8 @@
         "source_label": "prop:norm-shape",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 594,
-          "end_line": 610
+          "line": 592,
+          "end_line": 608
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -644,8 +644,8 @@
         "source_label": "lem:layer",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 495,
-          "end_line": 500
+          "line": 493,
+          "end_line": 498
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -659,8 +659,8 @@
         "source_label": "lem:contact",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 646,
-          "end_line": 651
+          "line": 644,
+          "end_line": 649
         },
         "oct13_relation": "Displayed statement block unchanged, but its referenced common event has been redefined. The legacy Lean theorem uses the original oct5 event, including the old local-time, vector, and linear-martingale bounds; it does not directly formalize the conclusion on the revised oct13 event, which includes squared-potential and distance-crossing bounds."
       },
@@ -685,8 +685,8 @@
         "source_label": "prop:inner",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 698,
-          "end_line": 714
+          "line": 696,
+          "end_line": 712
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -700,8 +700,8 @@
         "source_label": "prop:stronger-outer",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 760,
-          "end_line": 765
+          "line": 758,
+          "end_line": 763
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -715,8 +715,8 @@
         "source_label": "lem:near-far",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 809,
-          "end_line": 814
+          "line": 807,
+          "end_line": 812
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -730,8 +730,8 @@
         "source_label": "thm:moment-fluctuations",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 869,
-          "end_line": 890
+          "line": 867,
+          "end_line": 888
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -745,8 +745,8 @@
         "source_label": "lem:fixed-site-centering",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 913,
-          "end_line": 919
+          "line": 911,
+          "end_line": 917
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -760,8 +760,8 @@
         "source_label": "thm:site-fluctuations",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 940,
-          "end_line": 965
+          "line": 938,
+          "end_line": 963
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -775,8 +775,8 @@
         "source_label": "lem:exp-deviation",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 992,
-          "end_line": 1006
+          "line": 990,
+          "end_line": 1004
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -790,8 +790,8 @@
         "source_label": "prop:bulk-profile",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1060,
-          "end_line": 1067
+          "line": 1058,
+          "end_line": 1065
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -805,8 +805,8 @@
         "source_label": "lem:separated-brackets",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1090,
-          "end_line": 1097
+          "line": 1088,
+          "end_line": 1095
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       },
@@ -820,8 +820,8 @@
         "source_label": "prop:log-lower",
         "oct13_source": {
           "file": "oct13.tex",
-          "line": 1131,
-          "end_line": 1145
+          "line": 1129,
+          "end_line": 1143
         },
         "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
       }
@@ -829,14 +829,14 @@
     "checks": "Legacy oct5 pin, all 27 frozen hashes, and registered source ranges verified unchanged. All surviving oct13 statement blocks match the preceding published version, including the previously authorized reduction of lem:local, covered by the original formal theorem via event inclusion. Two auxiliary crossing statements were removed with explicit author approval; their legacy declarations remain intact. Current source locations and statement correspondence are recorded here. The contact lemma retains its displayed statement but uses a revised common event; its legacy Lean declaration remains tied to the original oct5 event. No new Lean build verifies the revised proof mechanisms; this is a synchronization and statement-correspondence record, not a new formal proof certificate."
   },
   "sha256": {
-    "oct13.tex": "f567c4c81011a3ae639188e969c76ee7b29d3dc918c08e8a7b19fc545db9aa27",
-    "oct13.pdf": "27621ff73e48d9d98fef7aec5f8dfc0c90fbc9a2d5f46bf1c161ce1827c110be",
+    "oct13.tex": "4410e3f1f8a2642ec95bc2e1060fae3c4c9ffe6c50b1aea12b715cac8862e574",
+    "oct13.pdf": "f4f47db262059fe9217a6193cf45e12727da6d9e14bcfb3f8834bac062baf9cb",
     "oct13-references.bib": "4bfb500c019abbfdb96c26fdc91ee19f065d1c805eba15d16d4f09be611e4f03",
     "Figures/first_departure_norms.pdf": "216795864cf1730face7ce0da3aa2d42d38b949186f45be96e4779a678d517aa",
     "Figures/shapes_ranges.pdf": "c2e143d3735eb3cf3afc8a34f55ef8d9fcc14afb1c43919300a40c52a281093a",
     "Figures/shapes_localtimes.pdf": "32db8f903af46db18e88059a5c13ba50235ff7dd02772c8ffb57e006401e1001"
   },
-  "updated_utc": "2026-10-22T17:30:25.766380+00:00",
+  "updated_utc": "2026-10-22T17:47:11.144019+00:00",
   "current_statement_blocks": [
     {
       "environment": "theorem",
@@ -1000,9 +1000,9 @@
     }
   ],
   "last_prose_only_revision": {
-    "created_utc": "2026-10-22T17:30:25.766380+00:00",
-    "source_base_sha256": "72f88c39f5c99a0ed996466d556dc0b8f32c65d422bc3ba8d4e332d9d5520d6c",
+    "created_utc": "2026-10-22T17:47:11.144019+00:00",
+    "source_base_sha256": "f567c4c81011a3ae639188e969c76ee7b29d3dc918c08e8a7b19fc545db9aa27",
     "statement_blocks_unchanged": true,
-    "scope": "Round-2 independent review: previews repeated by proofs cut (Sections 7, 8, 9), purpose sentences added (f_y, mu, proof of Lemma 5.2), exact statements for Zerner 2005, Asselah-Gaudilliere, Campos et al., Basdevant-Singh 2009, symbol fixes (a, V_n, y_t, Gamma arguments, s, ell^q), if/then, Figure 5 cited in Section 6."
+    "scope": "Round-3 independent review: referents in the outline, two-reading sentences, section openings pointing to the outline, symbol fixes (a in Section 4.2, c_Psi -> lambda_Psi, z -> y_1, f_i -> varphi_i in 9.3), exact descriptions of Berard-Ramirez and Dembo-Yang, Figure 5 caption, subsection titles naming deviations."
   }
 }
