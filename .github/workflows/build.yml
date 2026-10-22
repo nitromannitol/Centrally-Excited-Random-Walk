@@ -1,10 +1,21 @@
 name: CI
 
 # Builds the project and the Mathlib-only comparator surface on GitHub-hosted runners
-# (`ubuntu-latest`).  No `pull_request` trigger: the cached `.lake` trees are the artifacts
-# every later gate trusts.  Manual dispatch only until the public release, so that pushes to the
-# private repository do not start multi-hour runs; the release adds `push: branches: [main]`.
+# (`ubuntu-latest`) on each main-branch change to the Lean sources or the build configuration.
+# No `pull_request` trigger: the cached `.lake` trees are the artifacts every later gate trusts.
 on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.lean'
+      - 'CERWAudit/**'
+      - 'tools/**'
+      - 'ledger/**'
+      - 'lakefile.lean'
+      - 'lake-manifest.json'
+      - 'lean-toolchain'
+      - 'formalization.yaml'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 concurrency:

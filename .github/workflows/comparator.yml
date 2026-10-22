@@ -3,9 +3,17 @@ name: Comparator audit
 # Runs the official leanprover/comparator on every CERWAudit/<X> pair: for each pair it checks
 # that Solution proves a statement whose full dependency closure matches Challenge's, uses only
 # the permitted axioms, and is accepted by BOTH the Lean kernel (replay) and the independent
-# nanoda kernel.  Manual dispatch only until the public release; the release adds
-# `push: branches: [main]`.
+# nanoda kernel.  Runs on each main-branch change to the Lean sources or the build configuration.
 on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.lean'
+      - 'CERWAudit/**'
+      - 'lakefile.lean'
+      - 'lake-manifest.json'
+      - 'lean-toolchain'
+      - '.github/workflows/comparator.yml'
   workflow_dispatch:
 
 concurrency:

@@ -1,5 +1,8 @@
 # Centrally-Excited-Random-Walk
 
+[![CI](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/build.yml/badge.svg)](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/build.yml)
+[![Comparator audit](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/comparator.yml/badge.svg)](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/comparator.yml)
+
 A Lean 4 formalization of
 
 > Ahmed Bou-Rabee and Yuval Peres,
