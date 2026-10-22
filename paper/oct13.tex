@@ -196,7 +196,7 @@ Let $d\geq2$ and $0<\drift<\nf{1}{d}$, and consider the centrally excited random
 \end{enumerate}
 \end{theorem}
 
-Part~(i) shows that the bound on $|\Rin(n)-r_n|$ in Theorem~\ref{thm:fluctuations}\,(i) is attained, up to the constant, with probability at least~$n^{-p}$. Part~(iv) shows that the planar radii also differ from each other on the scale~$\sqrt{r_n}$: by~(c), the outer and inner radii differ by more than $a\sqrt{r_n}$ with probability at least $e^{-3\drift a^2/\pi}-o(1)$. Part~(iii) matches the local-time bound of Theorem~\ref{thm:fluctuations}\,(iii) when $d\geq3$; in the plane Proposition~\ref{prop:bulk-profile} shows that, at the sites~$x$ with $|x|\leq\theta r_n$ for a fixed $\theta<1$, the local times deviate from the cone by at most $C\sqrt{r_n}\log n$, so part~(iii) is sharp there as well.
+Part~(i) shows that the planar bound on $|\Rin(n)-r_n|$ in Theorem~\ref{thm:fluctuations}\,(i) is attained, up to the constant, with probability at least~$n^{-p}$. Part~(iv) shows that the planar radii also differ from each other on the scale~$\sqrt{r_n}$. In the plane, Proposition~\ref{prop:bulk-profile} shows that, at the sites~$x$ with $|x|\leq\theta r_n$ for a fixed $\theta<1$, the local times deviate from the cone by at most $C\sqrt{r_n}\log n$, so part~(iii) is sharp there as well.
 
 \subsection{Limit shapes for other norms}\label{sec:norms-intro}
 Let $\gauge$ be a norm with unit ball~$B_\gauge$. Replace $x/|x|$ in the first-departure probabilities by a subgradient~$\xi(x)$ of~$\gauge$ at~$x$, chosen in advance at each site, and assume $\drift\max_i\gauge(e_i)<1/d$. Then the range approximates~$\{\gauge<r_n\}$ and the local times approximate~$2d\drift(r_n-\gauge)_+$, with $|B_\gauge|$ replacing~$\omega_d$ in~\eqref{eq:radius} (Theorem~\ref{thm:norm-shape}).
@@ -220,7 +220,7 @@ The theorem applies to norms with corners, such as $\|\cdot\|_1$ and~$\|\cdot\|_
 
 \subsection{Outline of the proofs}\label{sec:strategy}
 
-The proof compares the local times with an explicit potential. Dynkin's formula for the Green function with pole~$y$, or for the potential kernel if $d=2$, writes~$\ell_n(y)$ as a sum over the first departures, each weighted by the inner product of its drift with the gradient of this function, plus a martingale and a smaller error. The continuum version of this sum is a potential: for a bounded measurable set~$D\subset\R^d$ and $y\in\R^d$, let
+The proof compares the local times with an explicit potential. Dynkin's formula for the Green function with pole~$y$, or for the potential kernel if $d=2$, writes~$\ell_n(y)$ as the sum, over the first departures, of the inner product of the drift with the gradient of this function, plus a martingale and a smaller error. The continuum version of this sum is a potential: for a bounded measurable set~$D\subset\R^d$ and $y\in\R^d$, let
 \begin{equation}\label{eq:potential-intro}
 U_D(y)\coloneqq\frac{2\drift}{\omega_d}\int_D\frac{v}{|v|}\cdot\frac{v-y}{|v-y|^d}\dd v
 \end{equation}
@@ -230,15 +230,15 @@ U_{B(0,\rho)}(y)=2d\drift(\rho-|y|)_+\, .
 \end{equation}
 Replacing $v/|v|$ by~$\nabla\gauge(v)$ gives the cone $2d\drift(\rho-\gauge(y))_+$ for a ball of the norm (Lemma~\ref{lem:ballpotential}).
 
-Near the boundary of the range, the martingale error bound can be larger than the local times and the potential, so the comparison of~$\ell_n$ with~$U_{D_n}$ alone need not locate the boundary. Two facts locate it: the local times vanish outside the range, and, with high probability, if the local times outside a ball of the norm are at most~$L$, then up to time~$N$ the walk stays within distance $C(L+1)\log N$ of that ball, because every first-departure drift outside the ball points toward it (the \defn{crossing estimate}, Section~\ref{sec:crossing}). We compare at a contact point: a point~$y_0$ that lies both on the boundary of the largest ball of the norm about the origin contained in~$D_n$ and in the closure of a cell disjoint from~$D_n$. The local time vanishes on that cell, so the potential at~$y_0$ is small, while every point of~$D_n$ outside the ball contributes nonnegatively to it.
+Near the boundary of the range, the martingale error bound can be larger than the local times and the potential, so the comparison of~$\ell_n$ with~$U_{D_n}$ alone need not locate the boundary. The \defn{crossing estimate} of Section~\ref{sec:crossing} locates it: with high probability, if the local times outside a ball of the norm are at most~$L$, then up to time~$N$ the walk stays within distance $C(L+1)\log N$ of that ball, because every first-departure drift outside the ball points toward it. We compare at a contact point: a point~$y_0$ that lies both on the boundary of the largest ball of the norm about the origin contained in~$D_n$ and in the closure of a cell disjoint from~$D_n$. The local time vanishes on that cell, so the potential at~$y_0$ is small, while every point of~$D_n$ outside the ball contributes nonnegatively to it.
 \begin{enumerate}[label=\arabic*.,leftmargin=*]
-\item \emph{Local times and the potential} (Section~\ref{sec:local}). Freedman's inequality bounds the martingales in Dynkin's formula uniformly over sites. Replacing the sum over first departures by~$U_{D_n}$ changes it by $O(\log n)$, also for norms with corners; convexity bounds the variation of the subgradients across a cell (Lemma~\ref{lem:cell}).
-\item \emph{Crossing and coarse bounds} (Section~\ref{sec:coarse}). Let $\tau_R$ be the time at which the walk leaves the ball of the norm with radius~$R$. Until~$\tau_R$, and until one of the martingales in Dynkin's formula exceeds~$R$ in absolute value, Dynkin's formula bounds each local time by~$CR$, and hence the elapsed time by~$CR^{d+1}$; Freedman's inequality then shows that the martingales are unlikely to exceed~$R$ before~$\tau_R$. At time~$\tau_R$, the comparison at the contact point and the crossing estimate show that the range contains all sites of a ball of radius~$cR$, and that the local times have order~$R$ on the concentric ball of half this radius; so $\tau_R\geq cR^{d+1}$. Hence $|A_n|$ has order~$r_n^d$, and $\Rout(n)$ and the largest local time have order~$r_n$ (Proposition~\ref{prop:coarse}).
-\item \emph{The limit shape} (Section~\ref{sec:norms}). Let $b$ be the radius of the largest ball of the norm about the origin contained in~$D_n$. By convexity, every point~$v$ of~$D_n$ outside this ball contributes at least $c(\gauge(v)-b)r_n^{-d}$ to the potential at the contact point. Dynkin's formula at the center of the adjacent cell bounds this potential by the martingale there, and Dynkin's formula for the square of the Green function or potential kernel bounds the bracket of that martingale in terms of the local time at its pole, which vanishes (Lemma~\ref{lem:contact}). So the part of~$D_n$ outside the ball has small potential, which gives the cone for the local times, and the martingale obtained from~$|X_n|^2$ gives $b\approx r_n$. The local times outside $\{\gauge<r_n\}$ are then small, and the crossing estimate shows that no visited site lies far from $\{\gauge\leq r_n\}$.
+\item \emph{Local times and the potential} (Section~\ref{sec:local}). Once the local times are $O(r_n)$, they differ from~$U_{D_n}$ by at most $C\sqrt{r_n}\log n$ (Lemma~\ref{lem:local}). Freedman's inequality bounds the martingales in Dynkin's formula uniformly over sites. Replacing the sum over first departures by~$U_{D_n}$ changes it by $O(\log n)$, also for norms with corners; convexity bounds the variation of the subgradients across a cell (Lemma~\ref{lem:cell}).
+\item \emph{Crossing and coarse bounds} (Section~\ref{sec:coarse}). Let $\tau_R$ be the first time at which the walk leaves the ball of the norm with radius~$R$. Until~$\tau_R$, and until one of the martingales in Dynkin's formula exceeds~$R$ in absolute value, Dynkin's formula bounds each local time by~$CR$, and hence the elapsed time by~$CR^{d+1}$; Freedman's inequality then shows that the martingales are unlikely to exceed~$R$ before~$\tau_R$. At time~$\tau_R$, the comparison at the contact point and the crossing estimate show that the range contains all sites of a ball of radius~$cR$, and that the local times have order~$R$ on the concentric ball of half this radius; so $\tau_R\geq cR^{d+1}$. Hence $|A_n|$ has order~$r_n^d$, and $\Rout(n)$ and the largest local time have order~$r_n$ (Proposition~\ref{prop:coarse}).
+\item \emph{The limit shape} (Section~\ref{sec:norms}). Let $b$ be the radius of the largest ball of the norm about the origin contained in~$D_n$. By convexity, every point~$v$ of~$D_n$ outside this ball contributes at least $c(\gauge(v)-b)r_n^{-d}$ to the potential at the contact point. Dynkin's formula at the center of the adjacent cell bounds this potential by the martingale there, and Dynkin's formula for the square of the Green function or potential kernel bounds the bracket of that martingale in terms of the local time at its pole, which vanishes (Lemma~\ref{lem:contact}). So the part of~$D_n$ outside the ball has small potential, which gives the cone for the local times, and the martingale $|X_n|^2-n+2\drift\sum_{x\in A_n}\gauge(x)$ gives $b\approx r_n$. The local times outside $\{\gauge<r_n\}$ are then small, and the crossing estimate shows that no visited site lies far from $\{\gauge\leq r_n\}$.
 \item \emph{The inner radius} (Section~\ref{sec:contact}). For the Euclidean norm, every point~$v$ of~$D_n$ outside~$B(0,\Rin(n))$ contributes at least $c|v-y_0|^{2-d}/r_n$ to the potential at the contact point~$y_0$, a bound that does not vanish near the boundary of the ball. With Lemma~\ref{lem:contact}, this bounds the volume of~$D_n$ outside the ball and sharpens the inner-radius estimate (Proposition~\ref{prop:inner}).
 \item \emph{The outer radius} (Section~\ref{sec:outer}). At points beyond the outer radius the local time vanishes, and the points of~$D_n$ near the sphere of radius~$\Rout(n)$ contribute negatively to the potential. So a bound on the positive contributions, which uses the curvature of the sphere, shows that little of~$D_n$ lies near this sphere. This bounds the local times outside~$B(0,\Rin(n))$; the crossing estimate then gives the outer-radius bound (Proposition~\ref{prop:stronger-outer}), and the maximum principle gives the uniform local-time bound.
 \end{enumerate}
-The cone determines the limits of the brackets of the martingales in Dynkin's formula and of the martingale obtained from~$|X_n|^2$, so the martingale limit theorems give central limit theorems and laws of the iterated logarithm for $\sum_{x\in A_n}|x|$ and for the local times at fixed sites (Section~\ref{sec:sharp}). The lower bounds need deviations of about $(\log n)^{\nf12}$ standard deviations, which we obtain from exponential martingales: the martingale obtained from~$|X_n|^2$ gives the lower bounds on the planar radii, and many weakly correlated martingales in Dynkin's formula give the lower bound on the largest deviation of the local times near the origin. The lower bounds on the difference of the radii come from the vector martingale $X_n+\drift\sum_{x\in A_n}x/|x|$: the vectors $x/|x|$ cancel inside~$B(0,\Rin(n))$, so fluctuations of order~$\sqrt n$ of this martingale force fluctuations of order~$\sqrt{r_n}$ of the difference of the radii, and its two-dimensional Gaussian limit gives the bound in Theorem~\ref{thm:sharp}\,(iv)(c). Figure~\ref{fig:dependence} records the dependencies.
+The cone determines the limits of the brackets of the martingales in Dynkin's formula and of the martingale $|X_n|^2-n+2\drift\sum_{x\in A_n}|x|$, so the martingale limit theorems give central limit theorems and laws of the iterated logarithm for $\sum_{x\in A_n}|x|$ and for the local times at fixed sites (Section~\ref{sec:sharp}). The lower bounds in Theorem~\ref{thm:sharp}\,(i), (iii) and~(iv)(a) need martingale deviations of about $(\log n)^{\nf12}$ standard deviations, which come from exponential martingales: this martingale gives the lower bounds on the planar radii, and many weakly correlated martingales in Dynkin's formula give the lower bound on the largest deviation of the local times near the origin. The lower bounds on the difference of the radii come from the vector martingale $X_n+\drift\sum_{x\in A_n}x/|x|$: the vectors $x/|x|$ cancel inside~$B(0,\Rin(n))$, so fluctuations of order~$\sqrt n$ of this martingale force fluctuations of order~$\sqrt{r_n}$ of the difference of the radii, and its two-dimensional Gaussian limit gives the bound in Theorem~\ref{thm:sharp}\,(iv)(c). Figure~\ref{fig:dependence} records the dependencies.
 
 \begin{figure}[t]
 \centering
@@ -255,7 +255,7 @@ The cone determines the limits of the brackets of the martingales in Dynkin's fo
 \node[box] (P6) at (6,-2.1) {Proposition~\ref{prop:stronger-outer}\\ outer radius};
 \node[box] (TB) at (9,-2.1) {Theorem~\ref{thm:fluctuations}};
 \node[box] (S8) at (12,-2.1) {Theorems~\ref{thm:moment-fluctuations}\\ and~\ref{thm:site-fluctuations}\\ limit laws};
-\node[box] (S9) at (8,-4.2) {Lemmas~\ref{lem:exp-deviation} and~\ref{lem:separated-brackets},\\ Proposition~\ref{prop:bulk-profile}\\ Section~\ref{sec:lower}};
+\node[box] (S9) at (8,-4.2) {Lemmas~\ref{lem:exp-deviation} and~\ref{lem:separated-brackets},\\ Proposition~\ref{prop:bulk-profile}\\ lower bounds};
 \node[box] (TC) at (12,-4.2) {Theorem~\ref{thm:sharp}};
 \draw[arr] (L) -- (P3);
 \draw[arr] (P3) -- (P4);
@@ -278,7 +278,7 @@ The cone determines the limits of the brackets of the martingales in Dynkin's fo
 \label{fig:dependence}
 \end{figure}
 
-The local times play the role of the odometer of the divisible sandpile, which \citet{LevinePeres2009} compared with an explicit potential. Martingales with a pole at an unvisited site, and separate estimates that rule out thin tentacles, also appear in the bounds of~\citet*{JerisonLevineSheffield2012,JerisonLevineSheffield2013} for internal diffusion-limited aggregation. Proposition~\ref{prop:log-lower}, which bounds $\max\{r_n-\Rin(n),\Rout(n)-r_n\}$ below by $c\log n$, adapts the argument of \citet{AsselahGaudilliere2014}. For internal diffusion-limited aggregation in $d\geq3$, they proved that for some $\alpha>0$, if the inner radius of the cluster of $|B(0,n)|$~particles exceeds $n-\alpha\sqrt{\log n}$, then with probability tending to one there is a later~$k$ at which the outer radius of the cluster of $|B(0,k)|$~particles exceeds $k+\alpha\sqrt{\log k}$.
+The local times play the role of the odometer of the divisible sandpile, which \citet{LevinePeres2009} compared with an explicit potential. Martingales with a pole at an unvisited site, and separate estimates that rule out thin tentacles, also appear in the bounds of~\citet*{JerisonLevineSheffield2012,JerisonLevineSheffield2013} for internal diffusion-limited aggregation. Proposition~\ref{prop:log-lower}, which bounds $\max\{r_n-\Rin(n),\Rout(n)-r_n\}$ below by $c\log n$, adapts the argument of \citet{AsselahGaudilliere2014}. For internal diffusion-limited aggregation in $d\geq3$, they proved that for some $\alpha>0$, conditionally on the inner radius of the cluster of $|B(0,r)|$~particles exceeding $r-\alpha\sqrt{\log r}$, the probability that the outer radius of the cluster of $|B(0,s)|$~particles exceeds $s+\alpha\sqrt{\log s}$ for some $s>r$ tends to one as $r\to\infty$.
 
 \subsection{Related work}\label{sec:related}
 
@@ -286,22 +286,22 @@ The local times play the role of the odometer of the divisible sandpile, which \
 
 For the excited random walk with first-visit drift in a fixed direction, \citet*{BenjaminiWilson2003} proved transience in $d\geq2$ and positive lower speed in $d\geq4$. \citet{Kozma2003Speed,Kozma2005Speed} obtained positive lower speed in $d=3$ and $d=2$, and \citet{BerardRamirez2007} proved laws of large numbers and central limit theorems. \citet*{vanderHofstadHolmes2010} proved that in $d\geq9$ the speed is strictly increasing in the size of the drift. \citet*{MenshikovPopovRamirezVachkovskaia2012} proved positive lower speed in every $d\geq2$ for uniformly elliptic walks with bounded jumps, a uniformly positive drift in a fixed direction at first visits and zero drift at later visits. \citet*{AmirBenjaminiKozma2008} proved recurrence for a walk in the upper half of~$\Z^3$ that steps down at new sites. The balanced excited random walk on~$\Z^2$ steps vertically on its first departure from each site and horizontally on later departures. \citet*{AngelHolmesRamirez2023} proved that, with probability tending to one, it visits at least $n^{\nf47}/(\log n)^2$ and at most $na_n/\sqrt{\log\log n}$ sites in $n$~steps, for every sequence $a_n\to\infty$; so the diffusively rescaled walk converges to a Brownian motion on the horizontal axis.
 
-\citet{Zerner2005,Zerner2006} gave criteria for recurrence and transience on~$\Z$ and on strips for multi-excited, or cookie, walks, in which the $i$th departure from a site follows a law prescribed by the $i$th cookie at that site. If the $i$th departure from every site of~$\Z$ is to the right with probability~$p_i\in[\nf12,1)$ for $i\leq M$, and symmetric for $i>M$, \citet*{BasdevantSingh2008} proved that the speed is positive if and only if $\sum_{i=1}^M(2p_i-1)>2$. \citet*{KosyginaMountfordPeterson2022} proved that walks on~$\Z$ whose sequences of cookies at different sites are independent copies of one Markov chain, in the recurrent regime excluding its boundary, converge under diffusive scaling to a multiple of Brownian motion perturbed at its extrema. Excited random walks also model foraging in a medium that the walker depletes: \citet*{CamposCristinMendez2021} studied a walker on~$\Z$ that eats the food at each site it reaches and steps on to the neighboring site with food with probability~$p>\nf12$, and computed, for searches that start near the walker and later become ballistic, the mean time to reach food again and the growth of the depleted interval.
+\citet{Zerner2005,Zerner2006} gave criteria for recurrence and transience on~$\Z$ and on strips for multi-excited, or cookie, walks, in which the $i$th departure from a site follows a law prescribed by the $i$th cookie at that site. For the walk on~$\Z$ whose $i$th departure from every site is to the right with probability~$p_i\in[\nf12,1)$ for $i\leq M$ and~$\nf12$ for $i>M$, \citet{Zerner2005} proved transience if and only if $\sum_{i=1}^M(2p_i-1)>1$, and \citet*{BasdevantSingh2008} proved that the speed is positive if and only if this sum exceeds~$2$. \citet*{KosyginaMountfordPeterson2022} proved that walks on~$\Z$ whose sequences of cookies at different sites are independent copies of one Markov chain, in the recurrent regime excluding its boundary, converge under diffusive scaling to a multiple of Brownian motion perturbed at its extrema. Excited random walks also model foraging in a medium that the walker depletes: \citet*{CamposCristinMendez2021} studied a walker on~$\Z$ that eats the food at each site it reaches and, with probability~$p>\nf12$, steps to the neighboring site that still has food. For escapes from the depleted interval that begin with an area-restricted search and later become ballistic, they computed the mean escape time and the asymptotic growth of the depleted interval.
 
-On a tree in which every vertex other than the root has at least three neighbors, \citet{Volkov2003} proved that the walk that steps toward the root with a fixed probability at each first visit, and moves like simple random walk at later visits, is transient for every value of that probability. \citet*{BasdevantSingh2009} gave a recurrence and transience criterion on regular trees for cookie walks whose cookies may push toward or away from the root, and showed that the order of the cookies at a vertex matters. \citet*{LeNguyen2026} proved that the once-excited walk on a tree with independent random biases toward the root is, under the annealed law, transient or recurrent according as the branching-ruin number of the tree is above or below an explicit threshold. See~\citet{KosyginaZerner2013} for a survey.
+On a tree in which every vertex other than the root has at least three neighbors, \citet{Volkov2003} proved that the walk that steps toward the root with a fixed probability at each first visit, and moves like simple random walk at later visits, is transient for every value of that probability. \citet*{BasdevantSingh2009} gave a recurrence and transience criterion on regular trees for cookie walks whose cookies may push toward or away from the root, and showed that, unlike on~$\Z$, whether the walk is recurrent can depend on the order of the cookies at a vertex. \citet*{LeNguyen2026} proved that the once-excited walk on a tree with independent random biases toward the root is, under the annealed law, transient or recurrent according as the branching-ruin number of the tree is above or below an explicit threshold. See~\citet{KosyginaZerner2013} for a survey.
 
-The radius~$n^{\nf{1}{(d+1)}}$ and range size~$n^{\nf{d}{(d+1)}}$ are also predicted for once-reinforced walks with strong reinforcement~\citep{Beffara2011,ElboimKozma2026}, and supported by simulations~\citep{FosterGrassbergerPaczuski2009}; \citet*{OrdemannBerkolaikoHavlinBunde2000,OrdemannEtAl2001} found, by scaling arguments and simulations, the exponents $\nf{1}{(d+1)}$ for the displacement and $\nf{d}{(d+1)}$ for the number of visited sites of self-attracting walks above a critical attraction. For once-reinforced random walk on~$\Z^d$ with $d\geq2$, \citet{BouRabeePeres2026ORRW} proved the lower bound~$cn^{\nf{d}{(d+1)}}$ on the expected range for every reinforcement parameter. The matching upper bound and limit shape remain conjectural. See~\citet{Pemantle2007} for reinforced processes.
+The radius~$n^{\nf{1}{(d+1)}}$ and range size~$n^{\nf{d}{(d+1)}}$ are also predicted for once-reinforced walks with strong reinforcement~\citep{Beffara2011,ElboimKozma2026}, and supported by simulations~\citep{FosterGrassbergerPaczuski2009}. \citet*{OrdemannBerkolaikoHavlinBunde2000,OrdemannEtAl2001} found, by scaling arguments and simulations, the exponents $\nf{1}{(d+1)}$ for the displacement and $\nf{d}{(d+1)}$ for the number of visited sites of self-attracting walks above a critical attraction. For once-reinforced random walk on~$\Z^d$ with $d\geq2$, \citet{BouRabeePeres2026ORRW} proved the lower bound~$cn^{\nf{d}{(d+1)}}$ on the expected range for every reinforcement parameter. The matching upper bound and limit shape remain conjectural. See~\citet{Pemantle2007} for reinforced processes.
 
-\citet{DemboGroismanHuangSidoravicius2021} proved an averaging principle and shape theorem for growth models motivated by centrally excited and once-reinforced walks. Their simulations with inward first steps along a coordinate of largest absolute value or along all coordinates produced squares and diamonds. Theorem~\ref{thm:norm-shape} proves these shapes for first-departure drifts opposite to subgradients of~$\|\cdot\|_\infty$ and~$\|\cdot\|_1$. For related continuum growth models, \citet*{DemboYang2025Flow,DemboYang2025KPZ} obtained limits described by geometric flow and regularized Kardar--Parisi--Zhang equations.
+\citet{DemboGroismanHuangSidoravicius2021} proved an averaging principle and shape theorem for growth models motivated by centrally excited and once-reinforced walks. Their simulations with inward first steps along a coordinate of largest absolute value or along all coordinates produced squares and diamonds, respectively. Theorem~\ref{thm:norm-shape} proves these shapes for first-departure drifts opposite to subgradients of~$\|\cdot\|_\infty$ and~$\|\cdot\|_1$. For related continuum growth models, \citet*{DemboYang2025Flow,DemboYang2025KPZ} obtained limits described by geometric flow and regularized Kardar--Parisi--Zhang equations.
 
-Internal diffusion-limited aggregation~\citep{LawlerBramsonGriffeath1992} and rotor-router aggregation~\citep{LevinePeres2009} have Euclidean ball limit shapes. For clusters of radius~$r$, the former has radius fluctuations of order at most $\log r$ in the plane and $(\log r)^{\nf12}$ in higher dimensions~\citep{JerisonLevineSheffield2012,JerisonLevineSheffield2013,AsselahGaudilliere2013,AsselahGaudilliere2013Polynomial}, and its rescaled fluctuations approach a variant of the Gaussian free field~\citep{JerisonLevineSheffield2014}. For the centrally excited walk, Theorem~\ref{thm:sharp} gives much larger planar fluctuations of the radii and of their difference; when $d\geq3$, the limiting covariance of the local times at fixed sites in Theorem~\ref{thm:site-fluctuations} is expressed through the Green function of simple random walk. See~\citet*{LevinePeres2017} for aggregation models.
+Internal diffusion-limited aggregation~\citep{LawlerBramsonGriffeath1992} and rotor-router aggregation~\citep{LevinePeres2009} have Euclidean ball limit shapes. For clusters of radius~$r$, internal diffusion-limited aggregation has radius fluctuations of order at most $\log r$ in the plane and $(\log r)^{\nf12}$ in higher dimensions~\citep{JerisonLevineSheffield2012,JerisonLevineSheffield2013,AsselahGaudilliere2013,AsselahGaudilliere2013Polynomial}, and its rescaled fluctuations approach a variant of the Gaussian free field~\citep{JerisonLevineSheffield2014}. For the centrally excited walk in the plane, Theorems~\ref{thm:fluctuations} and~\ref{thm:sharp} show that the radii and their difference fluctuate on the scale~$\sqrt{r_n}$ up to logarithmic factors; when $d\geq3$, the limiting covariance of the local times at fixed sites in Theorem~\ref{thm:site-fluctuations} is expressed through the Green function of simple random walk. See~\citet*{LevinePeres2017} for aggregation models.
 
-For Eulerian walkers~\citep{PriezzhevDharDharKrishnamurthy1996}, simulations suggested a circular planar range of radius of order~$n^{\nf13}$ after $n$~steps~\citep{KapriDhar2009}. \citet*{FlorescuLevinePeres2016} proved that every simple rotor walk on~$\Z^d$ visits at least $cn^{\nf{d}{(d+1)}}$ sites in $n$~steps. For clockwise planar rotors with independent uniform initial states, \citet*{BouRabeePeres2026} proved convergence of the rescaled range to a deterministic compact convex set; whether it is a disk remains open.
+For Eulerian walkers, also called rotor walks~\citep{PriezzhevDharDharKrishnamurthy1996}, simulations suggested a circular planar range of radius of order~$n^{\nf13}$ after $n$~steps~\citep{KapriDhar2009}. \citet*{FlorescuLevinePeres2016} proved that every simple rotor walk on~$\Z^d$ visits at least $cn^{\nf{d}{(d+1)}}$ sites in $n$~steps. For clockwise planar rotors with independent uniform initial states, \citet*{BouRabeePeres2026} proved convergence of the rescaled range to a deterministic compact convex set; whether it is a disk remains open.
 
 \subsection{Notation and conventions}\label{sec:notation}
 
 \begin{itemize}
-\item The Euclidean norm is $|x|$, and $\|x\|_p$ is the $\ell^p$~norm for $1\leq p\leq\infty$. The cardinality of a set~$A\subset\Z^d$ is~$|A|$, and the Lebesgue measure of a set~$D\subset\R^d$ is~$|D|$. The symmetric difference is~$\triangle$, and $t_+\coloneqq\max\{t,0\}$.
+\item The Euclidean norm is $|x|$, and $\|x\|_q$ is the $\ell^q$~norm for $1\leq q\leq\infty$. The cardinality of a set~$A\subset\Z^d$ is~$|A|$, and the Lebesgue measure of a set~$D\subset\R^d$ is~$|D|$. The symmetric difference is~$\triangle$, and $t_+\coloneqq\max\{t,0\}$.
 \item Let $u_x\coloneqq x/|x|$ for $x\in\R^d\setminus\{0\}$ and $u_0\coloneqq0$, and let $\xi(0)\coloneqq0$.
 \item The letters $c>0$ and $C>0$ denote constants depending only on $d$, $\drift$ and the exponent~$p$ of the failure probability under discussion, and in Sections~\ref{sec:norm-setup}--\ref{sec:norms} also on the norm~$\gauge$, but not on the choice of the subgradients~$\xi(x)$; they may change from line to line. Every further dependence is stated, and a subscript on~$O$, as in~$O_y$, means that the implied constant also depends on~$y$.
 \item The $\sigma$-field generated by $X_0,\ldots,X_j$ is~$\mathcal F_j$. For martingales $Y$ and~$Z$, the brackets $\langle Y\rangle_n$ and~$\langle Y,Z\rangle_n$ are the predictable quadratic variation and covariation through time~$n$.
@@ -311,7 +311,7 @@ For Eulerian walkers~\citep{PriezzhevDharDharKrishnamurthy1996}, simulations sug
 \end{itemize}
 
 \subsection{Lean formalization}\label{ssec:formalization}
-The theorems, lemmas and propositions of the version of this work by \citet{BouRabeePeres2026CERW} were formalized in Lean~4, building on Mathlib. Their statements are those of this paper, except that Lemma~\ref{lem:local} there has two further parts and the event of Section~\ref{sec:norm-event}, on which Lemma~\ref{lem:contact} holds, is defined differently; several proofs differ. No formal proof uses \texttt{sorry} or an axiom beyond the three standard axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The development is at \url{https://github.com/nitromannitol/Centrally-Excited-Random-Walk}.
+The theorems, lemmas and propositions of the version of this work by \citet{BouRabeePeres2026CERW} were formalized in Lean~4, building on Mathlib. Their statements are those of this paper, except that the counterpart of Lemma~\ref{lem:local} there has two further parts and the event of Section~\ref{sec:norm-event}, on which Lemma~\ref{lem:contact} holds, is defined differently; several proofs differ. No formal proof uses \texttt{sorry} or an axiom beyond the three standard axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. The development is at \url{https://github.com/nitromannitol/Centrally-Excited-Random-Walk}.
 
 \subsection*{Use of artificial intelligence}
 The authors developed the main ideas of this work and directed its mathematical development. Throughout the project, the authors used large language models as research assistants: to explore specific questions arising in the proofs, to check the arguments and the cited results, and to audit drafts of the paper. The exposition, the simulations and the figures were produced with AI agents, primarily Claude (Anthropic), under the close supervision of the authors. The authors take responsibility for the mathematical content and presentation of the paper.
@@ -325,7 +325,7 @@ Earlier versions of this work appeared in three drafts by \citet{Nguyen2026},
 
 \section{Drifts given by a norm}\label{sec:norm-setup}
 
-In this section we give the precise setting for a drift opposite to a subgradient of a norm and state the limit shape theorem in this setting, Theorem~\ref{thm:norm-shape}, of which Theorem~\ref{thm:shape} is the Euclidean case. We also prove the identity for the potential of a ball of the norm used in the proof of Theorem~\ref{thm:norm-shape} (Lemma~\ref{lem:ballpotential}).
+In this section we give the precise setting for a drift opposite to a subgradient of a norm and state the limit shape theorem in this setting, Theorem~\ref{thm:norm-shape}, of which Theorem~\ref{thm:shape} is the Euclidean case. We also prove that the potential of a ball of the norm is a cone (Lemma~\ref{lem:ballpotential}).
 
 Let $\gauge$ be a norm on~$\R^d$ and let $B_\gauge$ be its unit ball. A \defn{subgradient} of~$\gauge$ at~$x\in\R^d$ is a vector $\xi\in\R^d$ such that $\gauge(y)\geq\gauge(x)+\xi\cdot(y-x)$ for every $y\in\R^d$, and $\partial\gauge(x)$ is the set of subgradients at~$x$; if $\gauge$ is differentiable at~$x$, then $\partial\gauge(x)=\{\nabla\gauge(x)\}$. At each site~$x\neq0$ fix $\xi(x)\in\partial\gauge(x)$, with coordinates~$\xi_i(x)$. The \defn{centrally excited random walk with norm~$\gauge$} moves like simple random walk, except that on its first departure from each site~$x\neq0$ it moves to $x\pm e_i$ with probability
 \begin{equation}\label{eq:kernel}
@@ -340,7 +340,7 @@ Every $\xi\in\partial\gauge(x)$ satisfies Euler's relation $\xi\cdot x=\gauge(x)
 \begin{equation}\label{eq:convexity}
 \xi\cdot y\leq\gauge(y)\qquad\text{for every }y\in\R^d\, ,
 \end{equation}
-with equality at $y=x$. Hence $|\xi_i(x)|\leq\gauge(e_i)$, and~\eqref{eq:ellipticity} makes the probabilities~\eqref{eq:kernel} positive. The step at the first departure from~$x$ has conditional mean~$-\drift\xi(x)$, whose inner product with~$x$ is $-\drift\gauge(x)<0$. The Euclidean norm, with $\xi(x)=x/|x|$, gives the walk of Section~\ref{sec:introduction}, and then~\eqref{eq:ellipticity} reads $\drift<\nf1d$. Let
+with equality at $y=x$. Hence $|\xi_i(x)|\leq\gauge(e_i)$, and~\eqref{eq:ellipticity} makes the probabilities~\eqref{eq:kernel} positive. The step at the first departure from~$x$ has conditional mean~$-\drift\xi(x)$, whose inner product with~$x$ is $-\drift\gauge(x)<0$. The Euclidean norm, with $\xi(x)=u_x$, gives the walk of Section~\ref{sec:introduction}, and then~\eqref{eq:ellipticity} reads $\drift<\nf1d$. Let
 \begin{equation}\label{eq:radius-norm}
 r_n\coloneqq\left(\frac{(d+1)n}{2d\drift|B_\gauge|}\right)^{\nf{1}{(d+1)}}\, ,
 \end{equation}
@@ -363,7 +363,7 @@ Let $d\geq2$, let $\gauge$ be a norm on~$\R^d$, let $\xi(x)\in\partial \gauge(x)
 \end{enumerate}
 \end{theorem}
 
-Proposition~\ref{prop:norm-shape} gives explicit rates for both parts, uniform in the choice of~$\xi$. Part~(i) gives $|A_n|/r_n^d\to|B_\gauge|$, and for the Euclidean norm Theorem~\ref{thm:fluctuations} gives smaller error bounds.
+Proposition~\ref{prop:norm-shape} gives rates for parts~(i) and~(ii). Part~(i) gives $|A_n|/r_n^d\to|B_\gauge|$, and for the Euclidean norm Theorem~\ref{thm:fluctuations} gives smaller error bounds.
 
 \subsection{The potential of a norm ball}\label{sec:ballpotential}
 
@@ -377,7 +377,7 @@ For every Lipschitz function~$f$ with compact support and every $y\in\R^d$,
 \begin{equation}\label{eq:gradient-identity}
 \int_{\R^d}\nabla f(v)\cdot\frac{v-y}{|v-y|^d}\dd v=-d\omega_df(y)\, ,
 \end{equation}
-because in polar coordinates $v=y+tu$ about~$y$ the integrand times~$\dd v$ is $\partial_tf(y+tu)\dd t\dd S(u)$, where $S$ is the surface measure on the unit sphere; by Rademacher's theorem this holds for almost every~$u$, and $S$ has total mass~$d\omega_d$.
+because, by Rademacher's theorem, for almost every unit vector~$u$ the integrand times~$\dd v$ is $\partial_tf(y+tu)\dd t\dd S(u)$ in polar coordinates $v=y+tu$ about~$y$, where $S$ is the surface measure on the unit sphere, which has total mass~$d\omega_d$.
 
 \begin{lemma}[The potential of a norm ball]\label{lem:ballpotential}
 Let $\gauge$ be a norm, let $\rho>0$, and let $y\in\R^d$. Then
@@ -390,11 +390,9 @@ U_{\{\gauge<\rho\}}(y)=2d\drift(\rho-\gauge(y))_+\, .
 Apply~\eqref{eq:gradient-identity} to $f=(\rho-\gauge)_+$, whose gradient is $-\ind_{\{\gauge<\rho\}}\nabla\gauge$ almost everywhere.
 \end{proof}
 
-For the Euclidean norm, Lemma~\ref{lem:ballpotential} is the identity~\eqref{eq:ballpotential-euclid}.
-
 \section{Local times and the potential}\label{sec:local}
 
-In this section we prove Lemma~\ref{lem:local}, which compares the local times with the potential~$U_{D_n}$, following step~1 in Section~\ref{sec:strategy}.
+In this section we prove Lemma~\ref{lem:local}, which compares the local times with the potential~$U_{D_n}$, as outlined in step~1 of Section~\ref{sec:strategy}.
 
 \begin{lemma}\label{lem:local}
 Let $p>0$. There exists $C(d,\drift,\gauge,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$, every $y\in\R^d$ with $|y|\leq2n$ satisfies
@@ -452,7 +450,7 @@ We apply Lemma~\ref{lem:freedman} to constant multiples of possibly stopped mart
 |\mathcal M_n^y|\leq C\bigl(\sqrt{\langle\mathcal M^y\rangle_n\log n}+\log n\bigr)\, .
 \end{equation}
 
-Let $\mu$ be the distributional Laplacian of~$\gauge$. Since $\gauge$ is convex, $\mu$ is a positive Radon measure, and $\int\phi\dd\mu=-\int\nabla\gauge\cdot\nabla\phi$ for every Lipschitz function~$\phi$ with compact support. Taking $\phi(v)\coloneqq\min\{1,(2-|v-y|/R)_+\}$ and using $|\nabla \gauge|\leq\Lambda_\gauge$ gives, for $y\in\R^d$ and $R>0$,
+To replace $\xi(x)$ by~$\nabla\gauge$ on~$C_x$ in~\eqref{eq:dynkin}, we bound the variation of~$\nabla\gauge$ by the distributional Laplacian~$\mu$ of~$\gauge$. Since $\gauge$ is convex, $\mu$ is a positive Radon measure, and $\int\phi\dd\mu=-\int\nabla\gauge\cdot\nabla\phi$ for every Lipschitz function~$\phi$ with compact support. Taking $\phi(v)\coloneqq\min\{1,(2-|v-y|/R)_+\}$ and using $|\nabla \gauge|\leq\Lambda_\gauge$ gives, for $y\in\R^d$ and $R>0$,
 \begin{equation}\label{eq:hessian-growth}
 \mu(B(y,R))\leq2^d\omega_d\Lambda_\gauge R^{d-1}\, .
 \end{equation}
@@ -477,16 +475,16 @@ Let $y\in\Z^d$ with $|y|\leq3n$. We first show the deterministic estimate
 \begin{equation}\label{eq:pointwise}
 \ell_n(y)=U_{D_n}(y)-\mathcal M_n^y+O(\log n)\, .
 \end{equation}
-In~\eqref{eq:dynkin}, the summand at $x=y$ vanishes. For $x\neq y$, replacing $\bar\nabla g(x-y)$ by $(\nf{2}{\omega_d})(x-y)|x-y|^{-d}$, and then by its average over~$C_x$, changes the sum by $O\bigl(\sum_{|x|\leq n}(1+|x-y|)^{-d}\bigr)=O(\log n)$ by~\eqref{eq:gradient}. Replacing $\xi(x)$ by $\nabla\gauge$ on~$C_x$ changes it by $O(1)$ for the~$x$ with $|x-y|\leq8\sqrt d$ and, by Lemma~\ref{lem:cell} and the bounded overlap of the balls $B(x,6\sqrt d)$, by at most $C\int_{\{1\leq|v-y|\leq8n\}}|v-y|^{1-d}\dd\mu(v)$ for the others; by~\eqref{eq:hessian-growth} each of the $O(\log n)$ dyadic annuli about~$y$ contributes $O(1)$. This proves~\eqref{eq:pointwise}. Splitting the integrals defining $U_{D_n}(y)$ and $U_{D_n}(z)$ at distance~$2\sqrt d$ from~$y$ gives similarly, for $y,z\in\R^d$ with $|y-z|\leq\sqrt d$ and $|y|,|z|\leq3n$,
+In~\eqref{eq:dynkin}, the summand at $x=y$ vanishes. For $x\neq y$, replacing $\bar\nabla g(x-y)$ by $(\nf{2}{\omega_d})(x-y)|x-y|^{-d}$, and then by its average over~$C_x$, changes the sum by $O\bigl(\sum_{|x|\leq n}(1+|x-y|)^{-d}\bigr)=O(\log n)$ by~\eqref{eq:gradient}. Replacing $\xi(x)$ by $\nabla\gauge$ on~$C_x$ changes it by $O(1)$ for the~$x$ with $|x-y|\leq8\sqrt d$ and, by Lemma~\ref{lem:cell} and the bounded overlap of the balls $B(x,6\sqrt d)$, by at most $C\int_{\{1\leq|v-y|\leq8n\}}|v-y|^{1-d}\dd\mu(v)$ for the others; by~\eqref{eq:hessian-growth} each of the $O(\log n)$ dyadic annuli about~$y$ contributes $O(1)$. This proves~\eqref{eq:pointwise}. Splitting the integrals defining $U_{D_n}(v)$ and $U_{D_n}(v')$ at distance~$2\sqrt d$ from~$v$ gives similarly, for $v,v'\in\R^d$ with $|v-v'|\leq\sqrt d$ and $|v|,|v'|\leq3n$,
 \begin{equation}\label{eq:cellmodulus}
-|U_{D_n}(y)-U_{D_n}(z)|\leq C\log n\, .
+|U_{D_n}(v)-U_{D_n}(v')|\leq C\log n\, .
 \end{equation}
 Every site visited before time~$n$ lies within distance~$4n$ of~$y$, and the weights $(1+|x-y|)^{2-2d}$ over $|x-y|\leq4n$ sum to $O(\log n)$ for $d=2$ and $O(1)$ for $d\geq3$. So~\eqref{eq:bracket} bounds $\langle\mathcal M^y\rangle_n$ by $C\max_x\ell_n(x)$ times this sum, and on the event of~\eqref{eq:localmart}, $|\mathcal M^y_n|$ is at most the right side of~\eqref{eq:approx}. For $y\in\R^d$ with $|y|\leq2n$, apply this and~\eqref{eq:pointwise} at the site~$z$ with $y\in C_z$, and use~\eqref{eq:cellmodulus}.
 \end{proof}
 
 \subsection{Bounds on the potential}\label{sec:potential-bounds}
 
-The potential of a set is bounded by its volume, and by the width of a region between two balls of~$\gauge$ about the origin that contains it. Let $D\subset\R^d$ be a bounded measurable set. For every $y\in\R^d$, the integral of $|v-y|^{1-d}$ over~$D$ is at most its integral over the ball of volume~$|D|$ centered at~$y$, which is $C|D|^{\nf{1}{d}}$; since $|\nabla \gauge|\leq\Lambda_\gauge$, there exists $C(d,\gauge)<\infty$ such that
+The potential of a set is bounded by a power of its volume, and by a multiple of the width of every region between two balls of~$\gauge$ about the origin that contains the set. Let $D\subset\R^d$ be a bounded measurable set. For every $y\in\R^d$, the integral of $|v-y|^{1-d}$ over~$D$ is at most its integral over the ball of volume~$|D|$ centered at~$y$, which is $C|D|^{\nf{1}{d}}$; since $|\nabla \gauge|\leq\Lambda_\gauge$, there exists $C(d,\gauge)<\infty$ such that
 \begin{equation}\label{eq:potential-bound}
 \sup_{y\in\R^d}|U_D(y)|\leq C\drift|D|^{\nf{1}{d}}\, .
 \end{equation}
@@ -502,12 +500,12 @@ Let $b\geq0$ and $a>0$, and let $D$ be a measurable subset of $\{v\in\R^d:b\leq 
 \end{lemma}
 
 \begin{proof}
-In polar coordinates $v=y+tu$ about~$y$, as for~\eqref{eq:gradient-identity}, $U_D(y)$ is $2\drift/\omega_d$ times the integral over unit vectors~$u$ of $\int_0^\infty\ind_D(y+tu)h_u'(t)\dd t$, where $h_u(t)\coloneqq\gauge(y+tu)$. The convex function~$h_u$ is monotone on each of two intervals, on each of which the substitution $s=h_u(t)$ bounds the integral of $\ind_{[b,b+a]}(h_u(t))|h_u'(t)|$ by~$a$. So the inner integral lies in~$[-a,a]$, and the unit sphere has area~$d\omega_d$.
+In polar coordinates $v=y+tu$ about~$y$, as for~\eqref{eq:gradient-identity}, $U_D(y)$ is $2\drift/\omega_d$ times the integral over unit vectors~$u$ of $\int_0^\infty\ind_D(y+tu)h_u'(t)\dd t$, where $h_u(t)\coloneqq\gauge(y+tu)$. The convex function~$h_u$ is monotone on each of two intervals; on each, the substitution $s=h_u(t)$ bounds the integral of $\ind_{[b,b+a]}(h_u(t))|h_u'(t)|$ by~$a$. So the inner integral lies in~$[-a,a]$, and the unit sphere has area~$d\omega_d$.
 \end{proof}
 
 \section{Coarse bounds on the range and the local times}\label{sec:coarse}
 
-We prove that, with high probability, $|A_n|$ has order~$r_n^d$, and $\Rout(n)=\max_{j\leq n}|X_j|$ and the largest local time have order~$r_n$ (Proposition~\ref{prop:coarse}), following step~2 in Section~\ref{sec:strategy}.
+We prove that, with high probability, $|A_n|$ has order~$r_n^d$, and $\Rout(n)=\max_{j\leq n}|X_j|$ and the largest local time have order~$r_n$ (Proposition~\ref{prop:coarse}), as outlined in step~2 of Section~\ref{sec:strategy}.
 
 \begin{proposition}\label{prop:coarse}
 Let $p>0$. There exist $c(d,\drift,\gauge,p)>0$ and $C(d,\drift,\gauge,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$,
@@ -520,15 +518,15 @@ cr_n\leq\Rout(n)\leq Cr_n\, .
 
 \subsection{Crossing a region with small local times}\label{sec:crossing}
 
-Outside a ball $\{\gauge\leq a\}$, the drift at every first departure points toward the ball, by convexity. If the local times outside the ball are at most~$L$, then each site there with positive local time has at most $L$ departures, exactly one of them a first departure. We use the exponential of the distance to the ball, with rate of order $1/(L+1)$, and group its conditional increments by site: far from the ball, the drift of the first departure from a site outweighs the second-order terms of all the departures from it. So the walk is unlikely to get farther than order $(L+1)\log N$ from the ball by time~$N$.
+Outside a ball $\{\gauge\leq a\}$, the drift at every first departure points toward the ball, by convexity. If the local times outside the ball are at most~$L$, we use the exponential of the distance to the ball, with rate of order $1/(L+1)$, and group its conditional increments by site: far from the ball, the drift of the first departure from a site outweighs the second-order terms of its at most~$L$ departures. So the walk is unlikely to get farther than order $(L+1)\log N$ from the ball by time~$N$.
 
-For every $p>0$ there exists $C(d,\drift,\gauge,p)<\infty$ such that, for every integer $N\geq2$, with probability at least $1-CN^{-p}$, simultaneously for all integers $0\leq t\leq N$ and all real $a\geq0$,
+The crossing estimate states that, for every $p>0$, there exists $C(d,\drift,\gauge,p)<\infty$ such that, for every integer $N\geq2$, with probability at least $1-CN^{-p}$, simultaneously for all integers $0\leq t\leq N$ and all real $a\geq0$,
 \begin{equation}\label{eq:distance-crossing}
 \max_{0\leq j\leq t}\operatorname{dist}(X_j,\{\gauge\leq a\})
 \leq C\Bigl(1+\max_{x\in\Z^d,\gauge(x)\geq a}\ell_t(x)\Bigr)\log N\, .
 \end{equation}
 \begin{proof}[Proof of~\eqref{eq:distance-crossing}]
-Fix $a\geq0$, and let $\delta(x)$ be the Euclidean distance from~$x$ to $\{\gauge\leq a\}$. If $\delta(x)\geq1$, let $\bar x$ be the point of $\{\gauge\leq a\}$ nearest to~$x$, and let $\nu(x)\coloneqq(x-\bar x)/\delta(x)$. Bounding $\delta(x+e)$ by $|x+e-\bar x|$ gives $\delta(x+e)\leq\delta(x)+\nu(x)\cdot e+1/(2\delta(x))$ for every unit vector $e\in\Z^d$. The subgradient inequality gives $\xi(x)\cdot(x-\bar x)\geq\gauge(x)-a$, and the point $ax/\gauge(x)$ of the ball gives $\delta(x)\leq(\gauge(x)-a)/c_\gauge$; so $\xi(x)\cdot\nu(x)\geq c_\gauge$. Let $0<\theta\leq1$ and $f\coloneqq e^{\theta\delta}$. Since $\delta$ is $1$-Lipschitz and $e^u\leq1+u+u^2$ for $|u|\leq1$, at every time~$j$ with $\delta(X_j)\geq1$,
+Fix $a\geq0$, and let $\delta(x)$ be the Euclidean distance from~$x$ to $\{\gauge\leq a\}$. If $\delta(x)\geq1$, let $\bar x$ be the point of $\{\gauge\leq a\}$ nearest to~$x$, and let $\nu(x)\coloneqq(x-\bar x)/\delta(x)$. Bounding $\delta(x+e)$ by $|x+e-\bar x|$ gives $\delta(x+e)\leq\delta(x)+\nu(x)\cdot e+1/(2\delta(x))$ for every unit vector $e\in\Z^d$. The definition of a subgradient gives $\xi(x)\cdot(x-\bar x)\geq\gauge(x)-a$, and the point $ax/\gauge(x)$ of the ball gives $\delta(x)\leq(\gauge(x)-a)/c_\gauge$; so $\xi(x)\cdot\nu(x)\geq c_\gauge$. Let $0<\theta\leq1$ and $f\coloneqq e^{\theta\delta}$. Since $\delta$ is $1$-Lipschitz and $e^u\leq1+u+u^2$ for $|u|\leq1$, at every time~$j$ with $\delta(X_j)\geq1$,
 \begin{equation*}
 \E\bigl(f(X_{j+1})-f(X_j)\bigm|\mathcal F_j\bigr)
 \leq\theta f(X_j)\Bigl(\theta+\frac1{2\delta(X_j)}-\drift c_\gauge I_j\Bigr)\, .
@@ -591,7 +589,7 @@ For the lower bound we work on this event and take $R$ large. Let $N\coloneqq\lc
 
 \section{The limit shape}\label{sec:norms}
 
-We prove Theorem~\ref{thm:norm-shape} with rates (Proposition~\ref{prop:norm-shape}), following step~3 in Section~\ref{sec:strategy}.
+We prove Theorem~\ref{thm:norm-shape} with rates (Proposition~\ref{prop:norm-shape}), as outlined in step~3 of Section~\ref{sec:strategy}.
 
 \begin{proposition}\label{prop:norm-shape}
 Let $\gauge$ be a norm, let $\xi(x)\in\partial \gauge(x)$ be subgradients chosen at the sites $x\in\Z^d\setminus\{0\}$, and let $\drift>0$ satisfy~\eqref{eq:ellipticity}. For every $p>0$ there exists $C(d,\drift,\gauge,p)<\infty$, not depending on the choice of the subgradients, such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$ the following hold simultaneously.
@@ -632,7 +630,7 @@ Let $\widehat{\mathcal Q}$ be~$\mathcal Q$ stopped when the walk leaves~$B(0,Kr_
 |\mathcal Q_n|\leq Cr_n\sqrt{n\log n}\, .
 \end{equation}
 
-For $y\in\Z^d$ let $f_y\coloneqq(g_y-\gamma)^2$, where $\gamma\coloneqq0$ if $d\geq3$ and $\gamma\coloneqq(\nf2\pi)\log r_n$ if $d=2$. If $|y|\leq3n$, the increments of~$\mathcal M^{f_y}$ through time~$n$ are at most~$C\bar g$, where $\bar g\coloneqq1$ if $d\geq3$ and $\bar g\coloneqq\log n$ if $d=2$, and Lemma~\ref{lem:freedman} applies to $\mathcal M^{f_y}/(C\bar g)$; we take a union bound over these~$y$.
+To bound the brackets~$\langle\mathcal M^y\rangle_n$ in terms of~$\ell_n(y)$, for $y\in\Z^d$ let $f_y\coloneqq(g_y-\gamma)^2$, where $\gamma\coloneqq0$ if $d\geq3$ and $\gamma\coloneqq(\nf2\pi)\log r_n$ if $d=2$. If $|y|\leq3n$, the increments of~$\mathcal M^{f_y}$ through time~$n$ are at most~$C\bar g$, where $\bar g\coloneqq1$ if $d\geq3$ and $\bar g\coloneqq\log n$ if $d=2$, and Lemma~\ref{lem:freedman} applies to $\mathcal M^{f_y}/(C\bar g)$; we take a union bound over these~$y$.
 
 The event of Section~\ref{sec:norm-event} is the intersection of the events of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} with those on which these bounds on~$\widehat{\mathcal Q}_n$ and~$\mathcal M^{f_y}_n$, \eqref{eq:localmart}, and~\eqref{eq:distance-crossing} with $N=n$ hold. Its complement has probability at most $Cn^{-p}$, and the arguments of Sections~\ref{sec:norms}--\ref{sec:outer} are deterministic on it. On it, $\max_x\ell_n(x)\leq Cr_n$, so~\eqref{eq:approx} gives, for $y\in\R^d$ with $|y|\leq2n$,
 \begin{equation}\label{eq:norm-approx}
@@ -643,7 +641,7 @@ The event of Section~\ref{sec:norm-event} is the intersection of the events of P
 
 Let $b$, $E$, $y_0$, $z$, $H$ and~$\mathcal I$ be as in Section~\ref{sec:largest-ball}. Then $|v-y_0|\leq Cr_n$ for $v\in E$, because $D_n\subset B(0,Kr_n)$ and $\gauge(y_0)=b\leq Cr_n$, so~\eqref{eq:norm-excess} gives $\mathcal I\leq Cr_n^dH$. By~\eqref{eq:contact-error} and~\eqref{eq:norm-approx}, $H\leq Cr_n^{\nf12}\log n$.
 
-Lemma~\ref{lem:contact} improves this bound, because the walk has not departed from~$z$: up to $C\log n$, Dynkin's formula at~$z$ bounds~$H$ by~$|\mathcal M^z_n|$. Dynkin's formula for $(g_z-\gamma)^2$ bounds the bracket of~$\mathcal M^z$ through $\ell_n(z)=0$. The same argument at every site~$y$ bounds $|\ell_n(y)-U_{D_n}(y)|$ in terms of~$\ell_n(y)$; we use this bound again in Sections~\ref{sec:contact} and~\ref{sec:outer}.
+Lemma~\ref{lem:contact} improves this bound, because the walk has not departed from~$z$: up to $C\log n$, Dynkin's formula at~$z$ bounds~$H$ by~$|\mathcal M^z_n|$. Dynkin's formula for~$f_z$ bounds the bracket of~$\mathcal M^z$ in terms of~$\ell_n(z)$, which vanishes. The same argument at every site~$y$ bounds $|\ell_n(y)-U_{D_n}(y)|$ in terms of~$\ell_n(y)$, which gives~\eqref{eq:square-one-sided}, used again in Sections~\ref{sec:contact} and~\ref{sec:outer}.
 
 \begin{lemma}\label{lem:contact}
 There exists $C(d,\drift,\gauge,p)<\infty$ such that, on the event of Section~\ref{sec:norm-event}, for large~$n$,
@@ -653,7 +651,7 @@ H\leq Cr_nq_n=C\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\geq3\end{cases}\, 
 \end{lemma}
 
 \begin{proof}
-Let $y\in\Z^d$ with $|y|\leq3n$, and let
+We first bound $|\ell_n(y)-U_{D_n}(y)|$ in terms of~$\ell_n(y)$ for every $y\in\Z^d$ with $|y|\leq3n$. For such~$y$, let
 \begin{equation*}
 \mathcal E_y\coloneqq\frac1{2d}\sum_{x\in\Z^d}\ell_n(x)\sum_{|e|=1}\bigl(g_y(x+e)-g_y(x)\bigr)^2\geq\frac{\langle\mathcal M^y\rangle_n}{2d}\, .
 \end{equation*}
@@ -666,9 +664,9 @@ Since $|g_y-\gamma|\leq C\bar g$ within distance~$4n$ of~$y$, it follows that $\
 \mathcal E_y\leq C\begin{cases}\ell_n(y)\log n+r_n,&d=2,\\\ell_n(y)+\log n,&d\geq3\end{cases}\, ,
 \end{equation*}
 and with~\eqref{eq:localmart} and~\eqref{eq:pointwise}, simultaneously for all $y\in\Z^d$ with $|y|\leq3n$,
-\begin{equation}\label{eq:square-local-noise}
+\begin{equation*}
 |\ell_n(y)-U_{D_n}(y)|\leq C\begin{cases}\sqrt{r_n\log n}+(\log n)\sqrt{\ell_n(y)},&d=2,\\\log n+\sqrt{\ell_n(y)\log n},&d\geq3\end{cases}\, .
-\end{equation}
+\end{equation*}
 Young's inequality absorbs half of~$\ell_n(y)$ on the right side, because $(\log n)^2=o(\sqrt{r_n\log n})$ when $d=2$; so $U_{D_n}(y)\geq\ell_n(y)/2-Cr_nq_n$, and $|U_{D_n}(y)|\leq Cr_nq_n$ if $y\notin A_n$. By~\eqref{eq:cellmodulus}, and since $\widetilde\ell_n$ vanishes and $|U_{D_n}|\leq C$ outside~$B(0,2n)$, it follows that
 \begin{equation}\label{eq:square-one-sided}
 U_{D_n}\geq\frac12\widetilde\ell_n-Cr_nq_n\quad\text{on }\R^d
@@ -679,7 +677,7 @@ Then \eqref{eq:contact-error} and~\eqref{eq:square-one-sided} give $H\leq Cr_nq_
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop:norm-shape}]
-We work on the event of Section~\ref{sec:norm-event} and take $n$ large. By Lemma~\ref{lem:contact}, $\mathcal I\leq Cr_n^dH\leq Cr_n^{d+1}q_n$. Splitting~$E$ at the level $\gauge=b+a$ with $a\coloneqq r_nq_n^{\nf12}$, into a shell of volume $O(r_n^{d-1}a)$ and a set of volume at most~$\mathcal I/a$, gives $|E|\leq Cr_n^dq_n^{\nf12}$. By~\eqref{eq:quadratic}, \eqref{eq:quadraticerror} and $|X_n|\leq Cr_n$, we have $n-2\drift\sum_{x\in A_n}\gauge(x)=O(r_n^{\nf{(d+3)}{2}}(\log n)^{\nf12})$; the sum differs from $\int_{D_n}\gauge$ by $O(r_n^d)$, and $\int_{D_n}\gauge=d|B_\gauge|b^{d+1}/(d+1)+O(r_n|E|)$. Dividing by $n=2d\drift|B_\gauge|r_n^{d+1}/(d+1)$ gives
+We work on the event of Section~\ref{sec:norm-event} and take $n$ large. By Lemma~\ref{lem:contact}, $\mathcal I\leq Cr_n^dH\leq Cr_n^{d+1}q_n$. Splitting~$E$ at the level $\gauge=b+r_nq_n^{\nf12}$, into a shell of volume $O(r_n^dq_n^{\nf12})$ and a set of volume at most~$\mathcal I/(r_nq_n^{\nf12})$, gives $|E|\leq Cr_n^dq_n^{\nf12}$. By~\eqref{eq:quadratic}, \eqref{eq:quadraticerror} and $|X_n|\leq Cr_n$, we have $n-2\drift\sum_{x\in A_n}\gauge(x)=O(r_n^{\nf{(d+3)}{2}}(\log n)^{\nf12})$; the sum differs from $\int_{D_n}\gauge$ by $O(r_n^d)$, and $\int_{D_n}\gauge=d|B_\gauge|b^{d+1}/(d+1)+O(r_n|E|)$. Dividing by $n=2d\drift|B_\gauge|r_n^{d+1}/(d+1)$ gives
 \begin{equation}\label{eq:radius-volume}
 \left|1-\left(\frac b{r_n}\right)^{d+1}\right|
 \leq C\bigl(r_n^{\nf{(1-d)}{2}}(\log n)^{\nf12}+r_n^{-1}+|E|r_n^{-d}\bigr)\, ,
@@ -688,14 +686,14 @@ which is at most $Cq_n^{\nf12}$; so $|b-r_n|\leq Cr_nq_n^{\nf12}$, which is~\eqr
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:norm-shape}]
-Apply Proposition~\ref{prop:norm-shape} with $p>1$ and the Borel--Cantelli lemma. Its errors are $o(r_n)$, so the inner- and outer-radius bounds give~(i), and the local-time bound gives~(ii). At every fixed site~$x$, part~(ii) gives $\ell_n(x)/r_n\to2d\drift>0$, proving~(iii). Taking the Euclidean norm gives Theorem~\ref{thm:shape}.
+Apply Proposition~\ref{prop:norm-shape} with $p>1$ and the Borel--Cantelli lemma. Its bounds are $o(r_n)$, so~\eqref{eq:norm-shape} and~\eqref{eq:norm-outer} give~(i), and~\eqref{eq:norm-local} gives~(ii). At every fixed site~$x$, part~(ii) gives $\ell_n(x)/r_n\to2d\drift>0$, proving~(iii). Taking the Euclidean norm gives Theorem~\ref{thm:shape}.
 \end{proof}
 
 The proofs in Sections~\ref{sec:norm-setup}--\ref{sec:norms} use the symmetry $\gauge(-x)=\gauge(x)$ only to bound the coordinates of the subgradients. Let $B\subset\R^d$ be a compact convex set with the origin in its interior, and let $\gauge_B(x)\coloneqq\inf\{t>0:x\in tB\}$ be its Minkowski functional, which is convex and positively homogeneous and satisfies $c|x|\leq\gauge_B(x)\leq C|x|$. Every $\xi\in\partial\gauge_B(x)$ satisfies $-\gauge_B(-e_i)\leq\xi_i\leq\gauge_B(e_i)$; so, if $\drift\max\{\gauge_B(e_i),\gauge_B(-e_i)\}<\nf1d$ for $1\leq i\leq d$, then the probabilities~\eqref{eq:kernel} are positive, and the proofs of Theorem~\ref{thm:norm-shape} and Proposition~\ref{prop:norm-shape} apply without change to~$\gauge_B$, with $|B|$ in place of~$|B_\gauge|$. Thus every such set~$B$ is the limit shape of the centrally excited random walk with $\gauge_B$ in place of~$\gauge$.
 
 \section{The inner radius for the Euclidean norm}\label{sec:contact}
 
-We prove the bounds on $|\Rin(n)-r_n|$ and on the volume in Theorem~\ref{thm:fluctuations}\,(i) and~(ii), and a first uniform bound on the local times (Proposition~\ref{prop:inner}), following step~4 in Section~\ref{sec:strategy}.
+We prove the bounds on $|\Rin(n)-r_n|$ and on the volume in Theorem~\ref{thm:fluctuations}\,(i) and~(ii), and a first uniform bound on the local times (Proposition~\ref{prop:inner}), as outlined in step~4 of Section~\ref{sec:strategy}.
 
 \begin{proposition}[Inner radius]\label{prop:inner}
 Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$, the following hold simultaneously, where $q_n$ is defined in~\eqref{eq:qn}.
@@ -728,11 +726,11 @@ Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. For every $p>0$ th
 \fill (0,0) circle (0.8pt);
 \filldraw[fill=white,draw=black] (4.524,2.109) circle (2.2pt);
 \end{tikzpicture}
-\caption{The ball $B(0,b)$ (light) and $E=D_n\setminus B(0,b)$ (dark). Points of~$E$ contribute nonnegatively to~$U_E$ at the contact point~$y_0$ (black dot), next to a cell disjoint from~$D_n$ (square), and those in the dotted ball contribute negatively to~$U_E$ at the open dot, outside the dashed circle of radius $\Rout(n)+2\sqrt d$.}
+\caption{The ball $B(0,b)$ (light) and $E=D_n\setminus B(0,b)$ (dark). Points of~$E$ contribute nonnegatively to~$U_E$ at the contact point~$y_0$ (black dot), next to a cell disjoint from~$D_n$ (square). Points of~$E$ in the dotted ball contribute negatively to~$U_E$ at the open dot, outside the dashed circle of radius $\Rout(n)+2\sqrt d$.}
 \label{fig:contact}
 \end{figure}
 
-Fix $p>0$. In this section and the next we take $n$ large and work on the event of Section~\ref{sec:norm-event}; its complement has probability at most $Cn^{-p}$, and on it $D_n\subset B(0,Kr_n)$, with $K$ as in Section~\ref{sec:norm-event}. Let $b\coloneqq\Rin(n)$ and $E\coloneqq D_n\setminus B(0,b)$, and let $y_0$ and~$H$ be as in Section~\ref{sec:largest-ball} for the Euclidean norm, so that $|y_0|=b$ and $H=U_{D_n}(y_0)=U_E(y_0)$.
+Fix $p>0$. In this section and the next we take $n$ large and work on the event of Section~\ref{sec:norm-event}; its complement has probability at most $Cn^{-p}$, and on it $D_n\subset B(0,Kr_n)$, with $K$ as in Section~\ref{sec:norm-event}. Let $b\coloneqq\Rin(n)$ and $E\coloneqq D_n\setminus B(0,b)$, and let $y_0$ and~$H$ be as in Section~\ref{sec:largest-ball} for the Euclidean norm, so that $|y_0|=b$ and $H=U_{D_n}(y_0)=U_E(y_0)$ (Figure~\ref{fig:contact}).
 
 If $s=|v|\geq b=|y_0|$, then
 \begin{equation}\label{eq:contact-sign}
@@ -741,13 +739,13 @@ If $s=|v|\geq b=|y_0|$, then
 \geq\frac1{2s}|v-y_0|^{2-d}
 \geq2^{1-d}s^{1-d}\, .
 \end{equation}
-The first inequality uses $2(s^2-v\cdot y_0)=|v-y_0|^2+s^2-b^2$, and the second $|v-y_0|\leq2s$ and $d\geq2$. Since $|v|\leq Cr_n$ on~$E$, integrating~\eqref{eq:contact-sign} over~$E$ gives $H\geq c|E|r_n^{1-d}$, and Lemma~\ref{lem:contact} gives
+The first inequality uses $2(s^2-v\cdot y_0)=|v-y_0|^2+s^2-b^2$, and the second $|v-y_0|\leq2s$ and $d\geq2$. Since $|v|\leq Cr_n$ on~$E$, integrating~\eqref{eq:contact-sign} over~$E$ and Lemma~\ref{lem:contact} give
 \begin{equation}\label{eq:mass}
 |E|\leq Cr_n^{d-1}H\leq Cr_n^dq_n\, .
 \end{equation}
 
 \begin{proof}[Proof of Proposition~\ref{prop:inner}]
-Substituting~\eqref{eq:mass} into~\eqref{eq:radius-volume} gives $|b-r_n|\leq Cr_nq_n$, which is~(i), and with~\eqref{eq:mass} also~(ii). On~$B(0,Kr_n)$, the decomposition $U_{D_n}(y)=2d\drift(b-|y|)_++U_E(y)$, the bound~\eqref{eq:potential-bound}, \eqref{eq:norm-approx} and~(i) give
+Substituting~\eqref{eq:mass} into~\eqref{eq:radius-volume} gives $|b-r_n|\leq Cr_nq_n$, which is~(i); with~\eqref{eq:mass}, (i) gives~(ii). On~$B(0,Kr_n)$, the decomposition $U_{D_n}(y)=2d\drift(b-|y|)_++U_E(y)$, the bound~\eqref{eq:potential-bound}, \eqref{eq:norm-approx} and~(i) give
 \begin{equation*}
 \bigl|\widetilde\ell_n(y)-2d\drift(r_n-|y|)_+\bigr|
 \leq C\bigl(\sqrt{r_n}\log n+r_nq_n+|E|^{\nf1d}\bigr)\leq Cr_nq_n^{\nf1d}\, ,
@@ -757,7 +755,7 @@ and outside this ball both terms on the left vanish; this proves~(iii).
 
 \section{The outer radius and the local times}\label{sec:outer}
 
-We prove the outer-radius and local-time bounds in Theorem~\ref{thm:fluctuations}. The crossing estimate~\eqref{eq:euclid-crossing} bounds the difference of the radii by $C\log n$ times one plus the largest local time outside~$B(0,\Rin(n))$. To bound these local times, we bound the volume of the set~$E=D_n\setminus B(0,\Rin(n))$ near the sphere $\{|v|=\Rout(n)+2\sqrt d\}$. At a point beyond this sphere the potential is small, because the local time vanishes there. The points of~$E$ near that point contribute negatively to the potential, so a bound on the positive contributions bounds their volume (Figure~\ref{fig:contact}). Because this sphere is curved, the positive contributions are bounded by the integral of $|v-y|^{2-d}/|v|$ over~$E$. We first bound this integral by $Cr_nq_n$, using~\eqref{eq:mass} in the plane and integrating the potential along rays in higher dimensions.
+We prove the outer-radius and local-time bounds in Theorem~\ref{thm:fluctuations}, as outlined in step~5 of Section~\ref{sec:strategy} (Figure~\ref{fig:contact}). Because the sphere of radius $\Rout(n)+2\sqrt d$ is curved, the positive contributions to the potential at a point beyond it are bounded by the integral of $|v-y|^{2-d}/|v|$ over~$E$; we first bound this integral by $Cr_nq_n$, using~\eqref{eq:mass} in the plane and integrating the potential along rays in higher dimensions.
 
 \begin{proposition}[Outer radius]\label{prop:stronger-outer}
 Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf{1}{d}$. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$,
@@ -766,7 +764,7 @@ Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf{1}{d}$. For every $p>0
 \end{equation*}
 \end{proposition}
 
-With $b=\Rin(n)$ and $E=D_n\setminus B(0,b)$, let
+Let
 \begin{equation*}
 w\coloneqq\Rout(n)-b+2\sqrt d
 \qquad\text{and}\qquad
@@ -797,7 +795,7 @@ We prove that
 \end{equation}
 
 \begin{proof}[Proof of~\eqref{eq:curvature-improved}]
-If $d=2$, then $F\leq|E|/b$, and~\eqref{eq:mass} gives the bound. If $d\geq3$, differentiating $t^{d-2}|v-tu|^{2-d}$ in~$t$ gives, for every unit vector~$u$,
+If $d=2$, then $F\leq|E|/b$, and~\eqref{eq:mass} gives the bound. If $d\geq3$, then differentiating $t^{d-2}|v-tu|^{2-d}$ in~$t$ gives, for every unit vector~$u$,
 \begin{equation*}
 \frac{\dd}{\dd t}\bigl(t^{d-2}F(tu)\bigr)=\frac{(d-2)\omega_d}{2\drift}t^{d-3}U_E(tu)\, .
 \end{equation*}
@@ -806,7 +804,7 @@ If $t\geq b$, then \eqref{eq:square-one-sided} gives $U_E(tu)=U_{D_n}(tu)\geq-Cr
 
 \subsection{The outer radius}
 
-The following deterministic lemma bounds the positive contributions to the potential on the annulus $\{b\leq|y|\leq b+w\}$ in terms of the volume of a set near the sphere of radius~$b+w$ and the integrals of $|v-y|^{2-d}$ over it.
+By~\eqref{eq:square-one-sided}, a bound on~$U_E^+$ on the annulus $\{b\leq|y|\leq b+w\}$ bounds~$L$; the following deterministic lemma gives such a bound.
 
 \begin{lemma}\label{lem:near-far}
 There exists $C(d,\drift)<\infty$ with the following property. Let $1\leq w\leq b$ and $\lambda\geq1$, and let $D$ be a measurable subset of $\{v\in\R^d:b\leq|v|\leq b+w\}$ such that $|D\cap B((b+w)u,t)|\leq\lambda t^{d-1}$ for every unit vector~$u$ and every $t\geq w$, and $\int_D|v-y|^{2-d}\dd v\leq\lambda b$ for every $y\in\R^d$. Then every $y\in\R^d$ with $b\leq|y|\leq b+w$ satisfies
@@ -824,7 +822,7 @@ We first show that, for every unit vector~$u$ and every $t\geq w$,
 \begin{equation}\label{eq:outer-cap-mass}
 |E\cap B((b+w)u,t)|\leq Cr_nq_n t^{d-1}\, .
 \end{equation}
-For $t>\nf{r_n}4$ this follows from~\eqref{eq:mass}. For $w\leq t\leq\nf{r_n}4$, let $y_t\coloneqq(b+w+4t)u$ (Figure~\ref{fig:contact}). Then $y_t\notin D_n$, because $\Rout(n)=b+w-2\sqrt d$, and $U_{B(0,b)}(y_t)=0$, so~\eqref{eq:square-one-sided} gives $U_E(y_t)\geq-Cr_nq_n$. If $v\in E\cap B((b+w)u,t)$, then $u_v\cdot u\geq1-t/(b+w)$ and $t\leq(b+w)/2$, so $u_v\cdot(v-y_t)\leq(b+w)-(b+w+4t)(1-t/(b+w))\leq-t$, while $|v-y_t|\leq5t$; so these points contribute at most $-ct^{1-d}$ each to the kernel of~$U_E(y_t)$. By~\eqref{eq:curvature-size} and~\eqref{eq:curvature-improved}, the other points contribute at most $Cr_nq_n$, which proves~\eqref{eq:outer-cap-mass}.
+For $t>\nf{r_n}4$ this follows from~\eqref{eq:mass}. For $w\leq t\leq\nf{r_n}4$, let $z\coloneqq(b+w+4t)u$ (Figure~\ref{fig:contact}). Then $z\notin D_n$, because $\Rout(n)=b+w-2\sqrt d$, and $U_{B(0,b)}(z)=0$, so~\eqref{eq:square-one-sided} gives $U_E(z)\geq-Cr_nq_n$. If $v\in E\cap B((b+w)u,t)$, then $u_v\cdot u\geq1-t/(b+w)$ and $t\leq(b+w)/2$, so $u_v\cdot(v-z)\leq(b+w)-(b+w+4t)(1-t/(b+w))\leq-t$, while $|v-z|\leq5t$; so the kernel of~$U_E(z)$ is at most $-ct^{1-d}$ at these points. By~\eqref{eq:curvature-size} and~\eqref{eq:curvature-improved}, the other points contribute at most $Cr_nq_n$, which proves~\eqref{eq:outer-cap-mass}.
 
 Since $|v|\leq2b$ on~$E$, inequality~\eqref{eq:curvature-improved} gives $\int_E|v-y|^{2-d}\dd v\leq2bF(y)\leq Cbr_nq_n$. With~\eqref{eq:outer-cap-mass}, Lemma~\ref{lem:near-far} applies to $D=E$ and $\lambda=Cr_nq_n$, and gives, for $b\leq|y|\leq b+w$,
 \begin{equation}\label{eq:positive-bound}
@@ -845,7 +843,7 @@ We prove Theorem~\ref{thm:fluctuations}\,(iii) on the event of Section~\ref{sec:
 \leq Cr_nq_n(\log n)^{d-1}
 =C\begin{cases}\sqrt{r_n}(\log n)^{\nf32},&d=2,\\(\log n)^d,&d\geq3\end{cases}\, .
 \end{equation*}
-On $B(0,Kr_n)$, combine this with~\eqref{eq:norm-approx}, $U_{D_n}(y)=2d\drift(b-|y|)_++U_E(y)$ and $|b-r_n|\leq Cr_nq_n$ to obtain the claimed bound. Outside this ball both the local time and $2d\drift(r_n-|y|)_+$ vanish.
+As in the proof of Proposition~\ref{prop:inner}\,(iii), with this bound in place of~\eqref{eq:potential-bound}, this gives the claimed bound.
 
 \begin{proof}[Proof of Theorem~\ref{thm:fluctuations}]
 On the event of Section~\ref{sec:norm-event}, for large~$n$, Proposition~\ref{prop:inner} gives the bounds on~$\Rin(n)$ and on the volume, Proposition~\ref{prop:stronger-outer} the bound on~$\Rout(n)$, and Section~\ref{sec:global-profile} the bound on the local times. The Borel--Cantelli lemma with $p>1$ gives the almost-sure statement.
@@ -891,8 +889,6 @@ and
 \end{enumerate}
 \end{theorem}
 
-In the plane, comparing $\Rmom(n)$ with the inner and outer radii gives Theorem~\ref{thm:sharp}\,(ii) and, with a lower bound on the probability that~$\mathcal Q_n$ deviates by about $(\log n)^{\nf12}$ standard deviations (Lemma~\ref{lem:exp-deviation}), Theorem~\ref{thm:sharp}\,(i).
-
 \begin{proof}[Proof of Theorem~\ref{thm:moment-fluctuations}]
 We first compute the limit of $\langle\mathcal Q\rangle_n/r_n^{d+3}$. Under both~\eqref{eq:kernel} and the simple random walk transition probabilities, the conditional second-moment matrix of $X_{j+1}-X_j$ is $d^{-1}$ times the identity, so the conditional variance of $\zeta\cdot(X_{j+1}-X_j)$ is $|\zeta|^2/d-\drift^2I_j(\zeta\cdot u_{X_j})^2$ for $\mathcal F_j$-measurable~$\zeta$. With $\zeta=2X_j$ this gives
 \begin{equation}\label{eq:moment-exact-bracket}
@@ -903,7 +899,7 @@ By Theorem~\ref{thm:shape}, the second sum is $O(r_n^{d+2})$ and the first is $r
 \frac{\langle\mathcal Q\rangle_n}{r_n^{d+3}}\longrightarrow\frac{8d\drift\omega_d}{(d+2)(d+3)}
 \qquad\text{almost surely}\, .
 \end{equation*}
-Since $|\mathcal Q_{j+1}-\mathcal Q_j|\leq4|X_j|=O(r_n)$, the limit theorems stated at the beginning of this section apply to~$\mathcal Q$ with $s_n=r_n^{\nf{(d+3)}2}$, and the endpoint term $|X_n|^2=O(r_n^2)$ in~\eqref{eq:moment-martingale} is negligible; this gives the assertions for the sum. The derivative of $((d+1)s/(d\omega_d))^{\nf{1}{(d+1)}}$ at $s=n/(2\drift)$ is $1/(d\omega_dr_n^d)$, which gives the assertions for~$\Rmom(n)$.
+Since $|\mathcal Q_{j+1}-\mathcal Q_j|\leq4|X_j|=O(r_n)$, the limit theorems stated at the beginning of this section apply to~$\mathcal Q$ with $s_n=r_n^{\nf{(d+3)}2}$, and the endpoint term $|X_n|^2=O(r_n^2)$ in~\eqref{eq:moment-martingale} is negligible; this gives the assertions for the sum. The derivative of $((d+1)t/(d\omega_d))^{\nf{1}{(d+1)}}$ at $t=n/(2\drift)$ is $1/(d\omega_dr_n^d)$, which gives the assertions for~$\Rmom(n)$.
 \end{proof}
 
 \subsection{The potential at a fixed site}
@@ -968,8 +964,6 @@ Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. Then the following
 \end{enumerate}
 \end{theorem}
 
-In the plane the limits at different sites are equal; this statement concerns finitely many fixed sites, whereas the maximum in Theorem~\ref{thm:sharp}\,(iii) is over the sites~$x$ with $|x|\leq r_n^{\nf12}$, a set that grows with~$n$.
-
 \begin{proof}[Proof of Theorem~\ref{thm:site-fluctuations}]
 We first compute the limits of the brackets $\langle\mathcal M^y,\mathcal M^z\rangle_n$. A first departure from~$x$ changes the conditional covariance from $\Gamma(g_y,g_z)(x)$ by $O_{y,z}((1+|x|)^{2-2d})$, by~\eqref{eq:gradient}, and $A_n\subset B(0,Cr_n)$ eventually almost surely; thus
 \begin{equation}\label{eq:site-bracket}
@@ -977,11 +971,11 @@ We first compute the limits of the brackets $\langle\mathcal M^y,\mathcal M^z\ra
 =\sum_{x\in\Z^d}\ell_n(x)\Gamma(g_y,g_z)(x)
 +\begin{cases}O_{y,z}(\log r_n),&d=2,\\O_{y,z}(1),&d\geq3\end{cases}\, .
 \end{equation}
-The identity $\Gamma(f,h)=\Delta(fh)-f\Delta h-h\Delta f-\Delta f\Delta h$ and summation by parts give
+The identity $\Gamma(f_1,f_2)=\Delta(f_1f_2)-f_1\Delta f_2-f_2\Delta f_1-\Delta f_1\Delta f_2$ and summation by parts give
 \begin{equation}\label{eq:gamma-parts}
-\sum_x\Gamma(f,h)(x)=-\sum_x\bigl(f\Delta h+h\Delta f+\Delta f\Delta h\bigr)(x)
+\sum_x\Gamma(f_1,f_2)(x)=-\sum_x\bigl(f_1\Delta f_2+f_2\Delta f_1+\Delta f_1\Delta f_2\bigr)(x)
 \end{equation}
-when the boundary terms vanish. If $d\geq3$, they vanish for $f=g_y$ and $h=g_z$ by~\eqref{eq:kernel-asymptotics} and~\eqref{eq:gradient}, and since $\Delta g_y=\ind_{\{y\}}$ the sum is $2G(y-z)-\ind_{\{y=z\}}$. The weights are summable, so Theorem~\ref{thm:shape}\,(ii) and dominated convergence give $\langle\mathcal M^y,\mathcal M^z\rangle_n/r_n\to2d\drift(2G(y-z)-\ind_{\{y=z\}})$ almost surely. If $d=2$, then $\Gamma(g_y,g_z)(x)=2/(\pi^2|x|^2)+O_{y,z}(|x|^{-3})$, so $\sum_{|x|\leq r}\Gamma(g_y,g_z)(x)=(4/\pi)\log r+O_{y,z}(1)$. In~\eqref{eq:site-bracket} the term $4\drift r_n$ of the cone $4\drift(r_n-|x|)_+$ contributes $(16\drift/\pi)r_n\log r_n+O(r_n)$, the term $-4\drift|x|$ contributes $O(r_n)$, and the error $o(r_n)$ of Theorem~\ref{thm:shape}\,(ii) contributes $o(r_n\log r_n)$; so $\langle\mathcal M^y,\mathcal M^z\rangle_n/(r_n\log r_n)\to16\drift/\pi$ almost surely.
+when the boundary terms vanish. If $d\geq3$, then they vanish for $f_1=g_y$ and $f_2=g_z$ by~\eqref{eq:kernel-asymptotics} and~\eqref{eq:gradient}, and since $\Delta g_y=\ind_{\{y\}}$ the sum is $2G(y-z)-\ind_{\{y=z\}}$. The weights are summable, so Theorem~\ref{thm:shape}\,(ii) and dominated convergence give $\langle\mathcal M^y,\mathcal M^z\rangle_n/r_n\to2d\drift(2G(y-z)-\ind_{\{y=z\}})$ almost surely. If $d=2$, then $\Gamma(g_y,g_z)(x)=2/(\pi^2|x|^2)+O_{y,z}(|x|^{-3})$, so $\sum_{|x|\leq r}\Gamma(g_y,g_z)(x)=(4/\pi)\log r+O_{y,z}(1)$. In~\eqref{eq:site-bracket} the term $4\drift r_n$ of the cone $4\drift(r_n-|x|)_+$ contributes $(16\drift/\pi)r_n\log r_n+O(r_n)$, the term $-4\drift|x|$ contributes $O(r_n)$, and the error $o(r_n)$ of Theorem~\ref{thm:shape}\,(ii) contributes $o(r_n\log r_n)$; so $\langle\mathcal M^y,\mathcal M^z\rangle_n/(r_n\log r_n)\to16\drift/\pi$ almost surely.
 
 The martingales~$\mathcal M^y$ have bounded increments, so the limit theorems stated at the beginning of this section apply to $(-\mathcal M^{y_i})_{i\leq k}$, with $s_n=\sqrt{r_n\log r_n}$ if $d=2$ and $s_n=\sqrt{r_n}$ if $d\geq3$. By~\eqref{eq:pointwise} and Lemma~\ref{lem:fixed-site-centering}, $\ell_n(y)-2d\drift(r_n-|y|)=-\mathcal M_n^y+\mathcal Q_n/(\omega_dr_n^d)+O_y((\log n)^3)$, and Theorem~\ref{thm:moment-fluctuations} makes the last two terms negligible.
 \end{proof}
@@ -1012,7 +1006,7 @@ Let $0<c_0\leq C_0$. There exist $c(c_0,C_0)>0$ and $C(c_0,C_0)<\infty$ with the
 \end{lemma}
 
 \begin{proof}
-We take $c\leq\nf18$ small and $C$ large, depending only on $c_0$ and~$C_0$. Stop all the martingales just before one of the brackets would exceed~$2C_0$. Brackets are predictable, so this is a stopping time, and on~$\Omega$ it does not stop before~$n$; so we may assume that $\langle S^i\rangle_n\leq2C_0$, and then $V_{ij}\coloneqq\langle S^i,S^j\rangle_n$ satisfies $|V_{ij}|\leq2C_0$. For a martingale~$S$ with respect to the common filtration~$(\mathcal G_t)$, with $S_0=0$ and increments at most~$b_1$, and for real~$s$, let $\psi(s)$ be the sum over $t<n$ of the logarithms of the conditional moment generating functions $\E(e^{s(S_{t+1}-S_t)}\mid\mathcal G_t)$, and let $W(s)\coloneqq\exp\{sS_n-\psi(s)\}$, so that $\E W(s)=1$. If $\langle S\rangle_n\leq8C_0$ and $|s|b_1\leq\nf14$, a conditional Taylor expansion gives $\psi(s)=s^2\langle S\rangle_n/2+O(|s|^3b_1)$, and the same at~$2s$; so $W(s)^2=W(2s)\exp\{\psi(2s)-2\psi(s)\}$ gives $\E W(s)^2\leq e^{Cs^2}$. Apply these bounds to~$S^i$ and $S^i+S^j$, and write $W_i$ and~$\psi_i$, and $W_{ij}$ and~$\psi_{ij}$, for the corresponding values at $s=\beta$. Then
+We take $c\leq\nf18$ small and $C$ large, depending only on $c_0$ and~$C_0$. Stop all the martingales just before one of the brackets would exceed~$2C_0$. Brackets are predictable, so this is a stopping time, and on~$\Omega$ it does not stop before~$n$; so we may assume that $\langle S^i\rangle_n\leq2C_0$, and then $V_{ij}\coloneqq\langle S^i,S^j\rangle_n$ satisfies $|V_{ij}|\leq2C_0$. For a martingale~$S$ with respect to the common filtration~$(\mathcal G_t)$, with $S_0=0$ and increments at most~$b_1$, and for real~$s$, let $\psi(s)$ be the sum over $t<n$ of the logarithms of the conditional moment generating functions $\E(e^{s(S_{t+1}-S_t)}\mid\mathcal G_t)$, and let $W(s)\coloneqq\exp\{sS_n-\psi(s)\}$, so that $\E W(s)=1$. If $\langle S\rangle_n\leq8C_0$ and $|s|b_1\leq\nf14$, then a conditional Taylor expansion gives $\psi(s)=s^2\langle S\rangle_n/2+O(|s|^3b_1)$, and the same at~$2s$; so $W(s)^2=W(2s)\exp\{\psi(2s)-2\psi(s)\}$ gives $\E W(s)^2\leq e^{Cs^2}$. Apply these bounds to~$S^i$ and $S^i+S^j$, and write $W_i$ and~$\psi_i$, and $W_{ij}$ and~$\psi_{ij}$, for the corresponding values at $s=\beta$. Then
 \begin{equation*}
 \psi_i=\frac{\beta^2}2V_{ii}+O(\beta^3b)
 \qquad\text{and}\qquad
@@ -1026,7 +1020,7 @@ We take $c\leq\nf18$ small and $C$ large, depending only on $c_0$ and~$C_0$. Sto
 
 \subsection{Lower bounds on the radii and their difference in the plane}
 
-Up to additive constants, $\Rin(n)\leq\Rmom(n)\leq\Rout(n)$, and by~\eqref{eq:moment-martingale} the difference $\Rmom(n)-r_n$ is, to first order, proportional to~$\mathcal Q_n$. So Theorem~\ref{thm:sharp}\,(i) follows from Lemma~\ref{lem:exp-deviation}\,(i) for~$\mathcal Q$, once its bracket is bounded below: the upper bound on each local time forces a positive fraction of the steps to occur at distance comparable to~$r_n$. For part~(iv) we use $Z_n=X_n+\drift\sum_{x\in A_n}u_x$, which is a martingale because the step from~$X_j$ has conditional mean $-\drift I_ju_{X_j}$. The vectors~$u_x$ cancel over the sites inside~$B(0,\Rin(n))$, so $|Z_n-X_n|$ is at most $\drift(\Rout(n)^2-\Rin(n)^2)+Cr_n$ when both radii lie between $r_n/2$ and~$2r_n$. Lemma~\ref{lem:exp-deviation}\,(i) for the first coordinate of~$Z$, whose bracket lies between two constant multiples of~$n$ on every path, gives part~(iv)(a); the martingale law of the iterated logarithm for the same coordinate gives part~(iv)(b), and the martingale central limit theorem for~$Z$ gives part~(iv)(c).
+Up to additive constants, $\Rin(n)\leq\Rmom(n)\leq\Rout(n)$, and by~\eqref{eq:moment-martingale} the difference $\Rmom(n)-r_n$ is, to first order, proportional to~$\mathcal Q_n$.
 
 \begin{proof}[Proof of Theorem~\ref{thm:sharp}\,\textup{(i)} and~\textup{(ii)}]
 Comparison with unit cells gives $\sum_{|x|<\rho}|x|=d\omega_d\rho^{d+1}/(d+1)+O(\rho^d)$. Since every lattice site in $B(0,\Rin(n))$ belongs to~$A_n$ and $A_n\subset B(0,\Rout(n)+1)$, taking $(d+1)$st roots gives, for every path,
@@ -1037,17 +1031,17 @@ Comparison with unit cells gives $\sum_{|x|<\rho}|x|=d\omega_d\rho^{d+1}/(d+1)+O
 \end{equation}
 For $d=2$, the two signs in~\eqref{eq:moment-radius-lil} therefore give~\eqref{eq:planar-lil-lower}, with constant $\sqrt2/\sqrt{20\pi\drift}=1/\sqrt{10\pi\drift}$.
 
-For the polynomial lower bounds, let $r=r_n$. On~$\Omega_n$ the stopped martingale~$\widehat{\mathcal Q}$ of Section~\ref{sec:norm-event}, whose increments are at most $4Kr$, agrees with~$\mathcal Q$ through time~$n$, and the coarse bounds force at least $n/2$ departures outside $B(0,cr)$; since $\drift<\nf12$, the identity~\eqref{eq:moment-exact-bracket} gives $c_0r^5\leq\langle\widehat{\mathcal Q}\rangle_n\leq C_0r^5$ on~$\Omega_n$. Lemma~\ref{lem:exp-deviation}\,(i) for $\widehat{\mathcal Q}/r^{\nf52}$, with $b=4Kr^{-\nf32}$, $\alpha=\P(\Omega_n^c)$ and $\beta=a_p\sqrt{\log n}$ for a small $a_p>0$, shows that the events $\{\pm\mathcal Q_n\geq ca_pr^{\nf52}\sqrt{\log n}\}\cap\Omega_n$ have probability at least~$n^{-p}$. On~$\Omega_n$, $|X_n|^2=O(r^2)$ and $\Rmom(n)=O(r)$, so~\eqref{eq:moment-martingale} and $\Rmom(n)^3-r^3=(3/(2\pi))(\sum_{x\in A_n}|x|-n/(2\drift))$ turn these events into $\pm(\Rmom(n)-r)\geq c\sqrt{r\log n}$, and~\eqref{eq:moment-radius-comparison} proves~\eqref{eq:planar-polynomial-lower}.
+For the polynomial lower bounds, let $r=r_n$. On~$\Omega_n$ the stopped martingale~$\widehat{\mathcal Q}$ of Section~\ref{sec:norm-event}, whose increments are at most $4Kr$, agrees with~$\mathcal Q$ through time~$n$, and the coarse bounds force at least $n/2$ departures outside $B(0,cr)$; since $\drift<\nf12$, the identity~\eqref{eq:moment-exact-bracket} gives $c_0r^5\leq\langle\widehat{\mathcal Q}\rangle_n\leq C_0r^5$ on~$\Omega_n$. Lemma~\ref{lem:exp-deviation}\,(i) for $\widehat{\mathcal Q}/r^{\nf52}$, with $b=4Kr^{-\nf32}$, $\alpha=\P(\Omega_n^c)$ and $\beta=a_p\sqrt{\log n}$ for a small $a_p>0$, shows that the events $\{\pm\mathcal Q_n\geq ca_pr^{\nf52}\sqrt{\log n}\}\cap\Omega_n$ have probability at least~$n^{-p}$. On~$\Omega_n$ we have $|X_n|^2=O(r^2)$ and $\Rmom(n)=O(r)$, so~\eqref{eq:moment-martingale} and $\Rmom(n)^3-r^3=(3/(2\pi))(\sum_{x\in A_n}|x|-n/(2\drift))$ turn these events into $\pm(\Rmom(n)-r)\geq c\sqrt{r\log n}$, and~\eqref{eq:moment-radius-comparison} proves~\eqref{eq:planar-polynomial-lower}.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:sharp}\,\textup{(iv)}]
-Let $d=2$, $V_n\coloneqq\sum_{x\in A_n}u_x$ and $Z_n\coloneqq X_n+\drift V_n$. This martingale has increments bounded by~$2$, and the conditional variance computed for~\eqref{eq:moment-exact-bracket} gives, for every unit vector~$e\in\R^2$,
+Let $d=2$ and $Z_n\coloneqq X_n+\drift\sum_{x\in A_n}u_x$, which is a martingale because the step from~$X_j$ has conditional mean $-\drift I_ju_{X_j}$. Its increments are bounded by~$2$, and the conditional variance computed for~\eqref{eq:moment-exact-bracket} gives, for every unit vector~$e\in\R^2$,
 \begin{equation}\label{eq:width-bracket}
 \langle e\cdot Z\rangle_n=\frac n2-\drift^2\sum_{x\in A_n}(e\cdot u_x)^2\, ,
 \end{equation}
 so $Y\coloneqq e_1\cdot Z$ satisfies $(\nf12-\drift^2)n\leq\langle Y\rangle_n\leq\nf n2$ on every path. Suppose that $\nf{r_n}2\leq\Rin(n)\leq\Rout(n)\leq2r_n$. The vectors $u_x$ at the lattice sites with $|x|<\Rin(n)$ sum to zero, and comparing the cells of the other sites of~$A_n$ with the annulus $\{\Rin(n)-1\leq|v|\leq\Rout(n)+1\}$, on which $\int(e\cdot u_v)_+\dd v=\Rout(n)^2-\Rin(n)^2+O(r_n)$ for every unit vector~$e$, gives
 \begin{equation}\label{eq:width-annulus}
-|V_n|\leq\Rout(n)^2-\Rin(n)^2+Cr_n\, .
+\Bigl|\sum_{x\in A_n}u_x\Bigr|\leq\Rout(n)^2-\Rin(n)^2+Cr_n\, .
 \end{equation}
 
 Lemma~\ref{lem:exp-deviation}\,(i) for $Y/\sqrt n$, with $\alpha=0$ and $\beta=a_p\sqrt{\log n}$ for a small $a_p>0$, shows that $\{Y_n\geq ca_p\sqrt{n\log n}\}\cap\Omega_n$ has probability at least~$n^{-p}$. On this event, for large~$n$, both radii lie in $[\nf{r_n}2,2r_n]$. Then $|X_n|=O(r_n)$, inequality~\eqref{eq:width-annulus} and the identity $n=(4\pi\drift/3)r_n^3$ give $\Rout(n)-\Rin(n)\geq c\sqrt{n\log n}/r_n-C\geq c\sqrt{r_n\log n}$, which proves~\eqref{eq:planar-width-polynomial}.
@@ -1082,9 +1076,9 @@ and $r_nq_n$ is at most the right side of~\eqref{eq:norm-approx}, which proves~\
 
 \subsection{Lower bounds on the local times near the origin}\label{sec:sharp-bulk}
 
-By~\eqref{eq:pointwise} and~\eqref{eq:bulk-potential-only}, it suffices to find, among about~$r_n^{\nf18}$ sites at mutual distances at least~$r_n^{\nf14}$, one at which $-\mathcal M_n^y$ exceeds a multiple of $(\log r_n)^{\nf12}$ standard deviations. In the plane the martingales at nearby sites are strongly correlated (see the proof of Theorem~\ref{thm:site-fluctuations}), so we use differences of martingales at two sites at distance about~$r_n^{\nf18}$. The normalized martingales then have brackets bounded above and below and cross brackets of order at most~$r_n^{-\nf14}$ (Lemma~\ref{lem:separated-brackets}), and Lemma~\ref{lem:exp-deviation}\,(ii) applies.
+By~\eqref{eq:pointwise} and~\eqref{eq:bulk-potential-only}, it suffices to find, among about~$r_n^{\nf18}$ sites at mutual distances at least~$r_n^{\nf14}$, one at which $-\mathcal M_n^y$ exceeds a multiple of $(\log r_n)^{\nf12}$ standard deviations. In the plane the limits in Theorem~\ref{thm:site-fluctuations} at different sites are equal, so we use differences of martingales at two sites at distance about~$r_n^{\nf18}$. The normalized martingales then have brackets bounded above and below and cross brackets of order at most~$r_n^{-\nf14}$ (Lemma~\ref{lem:separated-brackets}), and Lemma~\ref{lem:exp-deviation}\,(ii) applies.
 
-Recall the martingales~$\mathcal M^f$ of Section~\ref{sec:dynkin} and the function~$\Gamma(f_1,f_2)$ of~\eqref{eq:site-gamma}. Let $m\coloneqq\lfloor r_n^{\nf18}\rfloor$, let $s_n\coloneqq(r_n\log r_n)^{\nf12}$ if $d=2$ and $s_n\coloneqq r_n^{\nf12}$ if $d\geq3$, as in the proof of Theorem~\ref{thm:site-fluctuations}, and for $1\leq i\leq m$ let
+Recall the martingales~$\mathcal M^f$ of Section~\ref{sec:dynkin} and the function~$\Gamma$ of~\eqref{eq:site-gamma}. Let $m\coloneqq\lfloor r_n^{\nf18}\rfloor$, let $s_n\coloneqq(r_n\log r_n)^{\nf12}$ if $d=2$ and $s_n\coloneqq r_n^{\nf12}$ if $d\geq3$, as in the proof of Theorem~\ref{thm:site-fluctuations}, and for $1\leq i\leq m$ let
 \begin{equation*}
 y_i\coloneqq i\lceil r_n^{\nf14}\rceil e_1\, ,\qquad
 f_i\coloneqq\begin{cases}g_{y_i+me_1}-g_{y_i},&d=2,\\g_{y_i},&d\geq3\end{cases}
@@ -1132,7 +1126,7 @@ On~$\Omega_n$, by~\eqref{eq:pointwise} and~\eqref{eq:bulk-potential-only} with $
 
 \subsection{Logarithmic lower bounds for the radii}
 
-If $D_n$ contains~$B(0,r_n-h)$, then the walk has visited every site of an annulus of width of order~$h$ inside the sphere of radius~$r_n$. If $\Rout(n)\leq r_n+h$, then the martingale~$\mathcal Q$ of~\eqref{eq:moment-martingale} shows that, except with probability at most $\exp\{-cr_n^{d-3}h^2\}$, the walk has visited at least $cr_n^{d-1}h$ sites of an annulus of width of order~$h$ near this sphere; this probability is small when $d\geq3$ and $h$ has order~$\log n$. From each such site the walk leaves $B(0,r_n+h)$ along a straight path with conditional probability at least~$e^{-Ch}$, so the probability that it follows none of these paths from $cr_n^{d-1}$ first visits on disjoint time intervals is at most $\exp\{-cr_n^{d-1}e^{-Ch}\}$.
+The next proposition adapts the argument of \citet[Section~3]{AsselahGaudilliere2014}: from each of many sites visited near the sphere of radius~$r_n$, the walk leaves $B(0,r_n+h)$ along a straight path with probability at least~$e^{-Ch}$.
 
 \begin{proposition}[Lower bounds for the radii]\label{prop:log-lower}
 Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. There exist $c(d,\drift)>0$, $C(d,\drift)<\infty$ and $h_0(d,\drift)>0$ such that the following hold.
@@ -1156,7 +1150,7 @@ Write $r=r_n$ and $\Lambda\coloneqq\{x\in\Z^d:r-2h<|x|\leq r+h\}$. Every transit
 \P\bigl(\Rout(n)\leq r+h\text{ and }|A_n\cap\Lambda|\geq c_1r^{d-1}h\bigr)
 \leq\exp\{-cr^{d-1}e^{-Ch}\}\, .
 \end{equation}
-For $c_1$ small and $h_0$ large, the sites with $r-2h<|x|<r-h-1$, which are in~$A_n$ when $\Rin(n)\geq r-h$, number at least $c_1r^{d-1}h$; this proves~\eqref{eq:log-lower-tail}. If instead $\Rout(n)\leq r+h$ and $|A_n\cap\Lambda|<c_1r^{d-1}h$, then $|x|\leq\int_{C_x}|v|\dd v$ and the inclusion of the cells with $|x|\leq r-2h$ in $B(0,r-h)$ give $\sum_{x\in A_n}|x|\leq n/(2\drift)-c_2r^dh+2c_1r^dh$. If $c_1\leq c_2/4$, then \eqref{eq:moment-martingale} gives $\mathcal Q_n\leq-cr^dh$, and Azuma's inequality for~$\mathcal Q$ stopped on leaving $B(0,r+h)$, with increments at most~$5r$, bounds the probability of this event by $\exp\{-cr^{2d}h^2/(nr^2)\}=\exp\{-cr^{d-3}h^2\}$. With~\eqref{eq:outer-lower-trials}, this proves~\eqref{eq:outer-lower-tail}. Taking $h=c\log n$ with $c$ small makes the first tail summable in every dimension and the second for $d\geq3$, and the Borel--Cantelli lemma proves~(ii).
+For $c_1$ small and $h_0$ large, the sites with $r-2h<|x|<r-h-1$, which are in~$A_n$ when $\Rin(n)\geq r-h$, number at least $c_1r^{d-1}h$; this proves~\eqref{eq:log-lower-tail}. If instead $\Rout(n)\leq r+h$ and $|A_n\cap\Lambda|<c_1r^{d-1}h$, then $|x|\leq\int_{C_x}|v|\dd v$ and the inclusion of the cells with $|x|\leq r-2h$ in $B(0,r-h)$ give $\sum_{x\in A_n}|x|\leq n/(2\drift)-c_2r^dh+2c_1r^dh$ for some $c_2(d)>0$ that does not depend on~$c_1$. If $c_1\leq c_2/4$, then \eqref{eq:moment-martingale} gives $\mathcal Q_n\leq-cr^dh$, and Azuma's inequality for~$\mathcal Q$ stopped on leaving $B(0,r+h)$, with increments at most~$5r$, bounds the probability of this event by $\exp\{-cr^{2d}h^2/(nr^2)\}=\exp\{-cr^{d-3}h^2\}$. With~\eqref{eq:outer-lower-trials}, this proves~\eqref{eq:outer-lower-tail}. Taking $h=c\log n$ with $c$ small makes the first tail summable in every dimension and the second for $d\geq3$, and the Borel--Cantelli lemma proves~(ii).
 \end{proof}
 
 \bibliographystyle{plainnat}
