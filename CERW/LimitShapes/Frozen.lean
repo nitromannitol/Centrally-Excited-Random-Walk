@@ -4,6 +4,7 @@ import CERW.LimitShapes.Frozen.CommonEvent
 import CERW.LimitShapes.Frozen.ContactEvent
 import CERW.LimitShapes.Frozen.ContactPotential
 import CERW.LimitShapes.Frozen.DistanceCrossing
+import CERW.LimitShapes.Frozen.EuclideanSeparatedBrackets
 import CERW.LimitShapes.Frozen.ExpDeviation
 import CERW.LimitShapes.Frozen.FixedSiteCentering
 import CERW.LimitShapes.Frozen.FluctuationRates

@@ -4,11 +4,11 @@ Formalizes statements pinned in `paper/oct13.tex` as the Lean library `CERW`. Th
 
 ## What is claimed
 
-**28 checked declarations on 22 paper labels.** The literal common-event probability bound is proved. 1 source closure still requires the produced event constants.
+**All 22 labeled results are proved in 29 checked declarations.** The literal Section 5.1 event has polynomial exceptional probability, and both contact and separated brackets use its produced uniform constants.
 
 The following tally certifies the registered Lean types, including the common-event probability producer and its source consumers.
 
-Every node's state in `ledger/oct13.yaml` is `SEALED`: all 28 are proved with no added axiom and no `sorry`.
+Every node's state in `ledger/oct13.yaml` is `SEALED`: all 29 are proved with no added axiom and no `sorry`.
 
 ## Environment
 
@@ -17,7 +17,7 @@ Every node's state in `ledger/oct13.yaml` is `SEALED`: all 28 are proved with no
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/oct13.tex`) SHA-256 | `e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617` |
-| Build | succeeded, 9220 jobs |
+| Build | succeeded, 9265 jobs |
 | Build warnings | 0 |
 | Generated | 2026-10-22 |
 
@@ -63,6 +63,7 @@ python3 tools/verify_oct13.py
 | 26 | `eq-distance-crossing` | `CERW.LimitShapes.distance_crossing_bound` | `SEALED` | classical only |
 | 27 | `sec-common-event` | `CERW.LimitShapes.exists_common_event` | `SEALED` | classical only |
 | 28 | `lem-contact-common-event` | `CERW.LimitShapes.contact_potential_on_common_event` | `SEALED` | classical only |
+| 29 | `lem-separated-brackets-common-event` | `CERW.LimitShapes.separated_brackets_on_euclidean_event` | `SEALED` | classical only |
 
 ## Frozen statements
 
@@ -98,6 +99,7 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 | `eq-distance-crossing` | `58936ce042c9d5fa8ad53774b3187f1601f2b7a64ac54c5025168b37521950a6` |
 | `sec-common-event` | `086cfc9e3fcf27d782119438ee511e10a715731e036093a01c5fd79596e7cc53` |
 | `lem-contact-common-event` | `44a594bed2bdca46525c08c39c718a8aef06461cdfc702ea0c67e01a92c5a30a` |
+| `lem-separated-brackets-common-event` | `ce4c11bf0ce9110fec3e92966ac4d19281afec54a0b6f5eabea42c4040bab2fb` |
 
 ## What is not claimed
 

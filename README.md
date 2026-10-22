@@ -8,7 +8,7 @@ A Lean 4 formalization of
 > Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh,
 > *Limit shapes for centrally excited walks*.
 
-[LaTeX source](paper/oct13.tex) · [Bibliography](paper/references.bib)
+[LaTeX source](paper/oct13.tex) · [Bibliography](paper/oct13-references.bib)
 
 The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml). Its unchanged
 statements reuse the existing proofs; `lem:local` retains only the local-time
@@ -16,13 +16,14 @@ approximation. Every introduction theorem is restated in `CERW/MainTheorems.lean
 
 The redefined event of Section 5.1 is stated literally in
 [CERW/LimitShapes/Event.lean](CERW/LimitShapes/Event.lean), and its polynomial
-exceptional probability is proved in `CommonEvent.lean`. The contact source closure
-uses these produced constants. The separated-bracket deterministic implication is
-proved; its full probability-and-event wrapper is being finalized.
+exceptional probability is proved in `CommonEvent.lean`. Both the contact and
+separated-bracket source theorems use these produced uniform constants, with
+legality derived almost surely from the walk law. The common-event proof uses a
+direct tail bound for the actual first-exit stopped quadratic martingale.
 
 <!-- LIMIT-SHAPES-STATUS-BEGIN -->
 
-**28 checked declarations on 22 paper labels.** The literal common-event probability bound is proved. 1 source closure still requires the produced event constants.
+**All 22 labeled results are proved in 29 checked declarations.** The literal Section 5.1 event has polynomial exceptional probability, and both contact and separated brackets use its produced uniform constants.
 
 <!-- LIMIT-SHAPES-STATUS-END -->
 

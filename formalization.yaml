@@ -2,12 +2,14 @@ version: v0.4
 project:
   name: Centrally-Excited-Random-Walk
   description: A Lean 4 formalization of Limit shapes for centrally excited walks (Bou-Rabee, Nguyen,
-    Peres, Singh), retaining the earlier two-author source pin and proofs. The current surface has 28
-    compiled declarations on 22 paper labels, including the simultaneous crossing estimate,
-    the literal Section 5.1 event probability and its full contact source closure.
+    Peres, Singh), retaining the earlier two-author source pin and proofs. Every labeled result is proved,
+    including the simultaneous crossing estimate, the literal Section 5.1 event probability, and both
+    full event source closures.
   authors:
   - Ahmed Bou-Rabee
+  - Tuan-Minh Nguyen
   - Yuval Peres
+  - Arvind Singh
   license: Apache-2.0
 classification:
   arxiv:
@@ -28,9 +30,9 @@ sources:
   location: paper/oct13.tex
   sha256: e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617
   relationship: formalizes (current source)
-  note: The literal common event and its polynomial exceptional probability are proved.
-    Contact is closed with produced constants; the separated-bracket deterministic implication
-    awaits its final probability-and-event wrapper.
+  note: Every labeled theorem, lemma and proposition is proved. The literal common event has polynomial
+    exceptional probability, and both contact and separated brackets use its produced constants. Unchanged
+    statements reuse certified earlier proofs; selective revised proof steps are formalized separately.
 - title: Kozma's centrally excited walk converges to a Euclidean ball
   authors:
   - Ahmed Bou-Rabee
@@ -41,12 +43,10 @@ sources:
   note: Theorems 1.1, 1.2, 1.3 and 2.1 and every lemma and proposition of Sections 2-9 are formalized.
   sha256: 0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396
 status:
-  scope: The preserved ledger/manifest.yaml certifies 27 earlier statements. The separate ledger/oct13.yaml
-    registers 28 checked current-paper declarations on 22 labels. The common-event probability
-    producer and full contact source closure are proved. The separated-bracket deterministic
-    implication awaits its final source wrapper.
-    All seven introduction headline parts have Mathlib-only comparator challenges and built solutions
-    in CERWAudit/.
+  scope: The preserved ledger/manifest.yaml certifies the earlier source statements. The separate ledger/oct13.yaml
+    certifies every labeled current-paper result, the simultaneous crossing and common-event probability
+    producers, and full contact and separated-bracket source closures. All introduction headline parts
+    have Mathlib-only comparator challenges and built solutions in CERWAudit/.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
@@ -54,16 +54,15 @@ status:
   - Classical.choice
   - Quot.sound
   main_results:
-  - declaration: CERW.Frozen.limit_shape
-    file: CERW/Frozen/LimitShape.lean
+  - declaration: CERW.LimitShapes.limit_shape
+    file: CERW/LimitShapes/Frozen/LimitShape.lean
     sorry_count: 0
     axioms:
     - propext
     - Classical.choice
     - Quot.sound
     comparator_config: CERWAudit/LimitShape/comparator.json
-  open_mathematics:
-  - Complete the separated-bracket probability-and-event source wrapper.
+  open_mathematics: []
   comparator_configs:
   - CERWAudit/LimitShape/comparator.json
   - CERWAudit/FluctuationRates/comparator.json

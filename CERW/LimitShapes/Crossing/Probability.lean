@@ -16,6 +16,19 @@ open MeasureTheory Filter LatticeProb
 open CERW CERW.LimitShapes CERW.LimitShapes.Crossing
 open CERW.LimitShapes.Crossing.Directions CERW.Support.Norm.VectorBound
 
+/-- Enlarging the constant preserves the distance crossing estimate, since the
+exterior local time and the logarithm of a natural horizon are nonnegative. -/
+theorem CERW.LimitShapes.Crossing.Probability.distanceCrossingBound_mono
+    {d : ℕ} {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} {X : ℕ → LatticeProb.Site d}
+    {N : ℕ} {C D : ℝ} (hCD : C ≤ D)
+    (h : CERW.LimitShapes.DistanceCrossingBound Ψ C X N) :
+    CERW.LimitShapes.DistanceCrossingBound Ψ D X N := by
+  intro t ht a ha j hj
+  exact (h t ht a ha j hj).trans
+    (mul_le_mul_of_nonneg_right
+      (mul_le_mul_of_nonneg_right hCD (by positivity))
+      (Real.log_natCast_nonneg N))
+
 /-- The simultaneous distance crossing estimate, with constants independent of the
 subgradient choice, probability space and realization. -/
 theorem CERW.LimitShapes.Crossing.Probability.distance_crossing_bound {d : ℕ} (hd : 2 ≤ d)
@@ -104,12 +117,8 @@ theorem CERW.LimitShapes.Crossing.Probability.distance_crossing_bound {d : ℕ} 
           (mul_le_mul_of_nonneg_right (by dsimp [C₁]; linarith)
             (add_nonneg (Real.sqrt_nonneg _) (Real.log_natCast_nonneg N)))
     exfalso
-    apply hbad
-    intro t ht a ha j hj
-    exact (hcross t ht a ha j hj).trans
-      (mul_le_mul_of_nonneg_right
-        (mul_le_mul_of_nonneg_right (by linarith : Cd ≤ Cd + Cv + Cf) (by positivity))
-        (Real.log_natCast_nonneg N))
+    exact hbad (CERW.LimitShapes.Crossing.Probability.distanceCrossingBound_mono
+      (by linarith : Cd ≤ Cd + Cv + Cf) hcross)
   calc μ {ω | ¬ DistanceCrossingBound Ψ (Cd + Cv + Cf) (X · ω) N}
       ≤ μ (Ev ∪ Er) := measure_mono_ae hsub
     _ ≤ μ Ev + μ Er := measure_union_le _ _

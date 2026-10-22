@@ -4,7 +4,7 @@ import CERW.LimitShapes.ContactPotential
 # lem:contact
 
 The statement at `lem:contact`, on the event defined in
-Section 5.1 of the same source. The deterministic formulation applies to every
+`sec:norm-event` of the same source. The deterministic formulation applies to every
 legal path and every choice of nonnegative event constants.
 -/
 

@@ -38,14 +38,22 @@ Lean citations use paper labels; source line numbers occur in the ledger and thi
 | `eq-distance-crossing` | `CERW.LimitShapes.distance_crossing_bound` | `oct13.tex:522-525`, `eq:distance-crossing` | SEALED | section probability estimate |
 | `sec-common-event` | `CERW.LimitShapes.exists_common_event` | `oct13.tex:616-636`, `sec:norm-event` | SEALED | section probability estimate |
 | `lem-contact-common-event` | `CERW.LimitShapes.contact_potential_on_common_event` | `oct13.tex:644-649`, `lem:contact` | SEALED | full common-event source closure |
+| `lem-separated-brackets-common-event` | `CERW.LimitShapes.separated_brackets_on_euclidean_event` | `oct13.tex:1084-1091`, `lem:separated-brackets` | SEALED | full common-event source closure |
 
 <!-- LIMIT-SHAPES-SURFACE-END -->
 
 `SEALED` records a checked proof of the exact registered Lean type. The two
 original event rows are deterministic implications for fixed constants. The new
 section probability rows produce these constants uniformly over the field and law.
-The contact closure combines them with its deterministic implication; the analogous
-separated-bracket probability-and-event closure remains pending.
+The contact and separated-bracket source closures combine them with their respective
+deterministic implications, deriving almost-sure legal paths from the cylinder law.
+The latter uses the Euclidean lattice field `x ↦ unitDir(toSpace x)` and exponent ten;
+its diagonal constants, off-diagonal exponent and normalization are unchanged.
+
+The new stopped-quadratic tail is proved directly for the entire-prefix stopped
+process and consumed by `CommonEvent.lean`. The shifted-square Dynkin and exit-time
+identities are additional proved helpers. They are recorded as partial proof-route
+extensions; the complete new contact and coarse-bound arguments are not claimed.
 
 The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
 a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256

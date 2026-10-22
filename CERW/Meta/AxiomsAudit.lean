@@ -47,3 +47,24 @@ and each main theorem restatement. The statement gates check the allowed closure
 #print axioms CERW.LimitShapes.distance_crossing_bound
 #print axioms CERW.LimitShapes.exists_common_event
 #print axioms CERW.LimitShapes.contact_potential_on_common_event
+#print axioms CERW.LimitShapes.Crossing.Probability.distanceCrossingBound_mono
+#print axioms CERW.LimitShapes.CommonEvent.stopped_quadratic_bound_of_coarse
+#print axioms CERW.LimitShapes.ContactEvent.contactRate_nonneg
+#print axioms CERW.LimitShapes.ExitStopping.exit_norm_le
+#print axioms CERW.LimitShapes.ExitStopping.stoppedQuadratic_eq_sum_range_min
+#print axioms CERW.LimitShapes.QuadraticStopping.stoppedQuadratic_succ_sub
+#print axioms CERW.LimitShapes.QuadraticStopping.abs_stoppedQuadratic_increment_le
+#print axioms CERW.LimitShapes.RadiusEvents.outer_on_event
+#print axioms CERW.LimitShapes.QuadraticDynkin.stronglyAdapted_quadratic
+#print axioms CERW.LimitShapes.QuadraticDynkin.martingale_quadratic
+#print axioms CERW.LimitShapes.StoppedQuadraticMartingale.stoppedQuadratic_congr
+#print axioms CERW.LimitShapes.StoppedQuadraticMartingale.stronglyAdapted_stoppedQuadratic
+#print axioms CERW.LimitShapes.StoppedQuadraticMartingale.martingale_stoppedQuadratic
+#print axioms CERW.LimitShapes.QuadraticStopping.abs_stoppedQuadratic_increment_le_normMax
+#print axioms CERW.LimitShapes.SquareDynkin.squareKernel_stepMean
+#print axioms CERW.LimitShapes.SquareDynkin.squareKernel_dynkin_identity
+#print axioms CERW.LimitShapes.EuclideanEvent.exists_euclidean_event
+#print axioms CERW.LimitShapes.RadiusEvents.radius_bounds_on_event
+
+#print axioms CERW.LimitShapes.QuadraticProbability.exists_stopped_quadratic_tail
+#print axioms CERW.LimitShapes.separated_brackets_on_euclidean_event

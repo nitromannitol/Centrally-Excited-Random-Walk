@@ -173,10 +173,10 @@ def _probe_axioms(cfg: RepoConfig) -> dict[str, set[str]]:
     finally:
         probe.unlink(missing_ok=True)
 
-    if proc.returncode != 0 and "depends on axioms" not in proc.stdout:
+    if proc.returncode != 0:
         raise CertificateError(
-            "the axiom probe did not elaborate; a certificate cannot be "
-            f"generated.\nstderr:\n{proc.stderr[-2000:]}"
+            f"the axiom probe exited with code {proc.returncode}; a certificate cannot be "
+            f"generated.\nstdout:\n{proc.stdout[-2000:]}\nstderr:\n{proc.stderr[-2000:]}"
         )
     try:
         return parse_axiom_report(proc.stdout)

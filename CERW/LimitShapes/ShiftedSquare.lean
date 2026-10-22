@@ -6,7 +6,7 @@ import CERW.Support.LocalTime.LatticeKernelFacts
 
 The gradient decay and logarithmic growth of the lattice kernel bound increments
 of `(g - γ)²` by a constant times `1 + |γ|`. This gives the increment scale in
-Section 5.1 without restricting the spatial target.
+`sec:norm-event` without restricting the spatial target.
 -/
 
 open LatticeProb

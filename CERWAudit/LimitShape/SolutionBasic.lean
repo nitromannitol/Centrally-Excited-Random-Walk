@@ -27,7 +27,8 @@ namespace LimitShape
 abbrev Site (d : ℕ) : Type := Fin d → ℤ
 
 /-- The Euclidean norm `|x|` of a lattice site. -/
-noncomputable def euclidNorm {d : ℕ} (x : Site d) : ℝ := Real.sqrt (∑ i : Fin d, ((x i : ℤ) : ℝ) ^ 2)
+noncomputable def euclidNorm {d : ℕ} (x : Site d) : ℝ :=
+    Real.sqrt (∑ i : Fin d, ((x i : ℤ) : ℝ) ^ 2)
 
 /-- The unit vector in direction `i`. -/
 def unit {d : ℕ} (i : Fin d) : Site d := Pi.single i 1

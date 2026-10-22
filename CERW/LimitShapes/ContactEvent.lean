@@ -13,6 +13,16 @@ universe u
 open MeasureTheory Topology
 open LatticeProb (Site)
 
+/-- The contact rate is nonnegative at positive scale for every positive time. -/
+theorem CERW.LimitShapes.ContactEvent.contactRate_nonneg {d : ℕ}
+    {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} {ε : ℝ} {n : ℕ}
+    (hr : 0 < CERW.Support.Norm.ContactEvent.scale d Ψ ε n) (hn : 1 ≤ n) :
+    0 ≤ CERW.Support.Norm.ContactEvent.contactRate d Ψ ε n := by
+  unfold CERW.Support.Norm.ContactEvent.contactRate
+  split
+  · exact Real.sqrt_nonneg _
+  · exact div_nonneg (Real.log_nonneg (by exact_mod_cast hn)) hr.le
+
 /-- The contact conclusion together with the actual common-event probability bound,
 with every event and contact constant chosen before the subgradient field and law. -/
 theorem CERW.LimitShapes.ContactEvent.contact_potential_on_common_event {d : ℕ} (hd : 2 ≤ d)
@@ -45,11 +55,7 @@ theorem CERW.LimitShapes.ContactEvent.contact_potential_on_common_event {d : ℕ
   intro ξ hξ hξ0 Ω _ μ _ X hX n hn
   have hn2 : 2 ≤ n := hnp.trans ((le_max_left _ _).trans hn)
   have hr := CERW.LimitShapes.scale_pos (by omega : 1 ≤ d) hΨ hε (by omega : 0 < n)
-  have hrate : 0 ≤ CERW.Support.Norm.ContactEvent.contactRate d Ψ ε n := by
-    unfold CERW.Support.Norm.ContactEvent.contactRate
-    split
-    · exact Real.sqrt_nonneg _
-    · exact div_nonneg (Real.log_nonneg (by exact_mod_cast (by omega : 1 ≤ n))) hr.le
+  have hrate := CERW.LimitShapes.ContactEvent.contactRate_nonneg hr (by omega : 1 ≤ n)
   refine ⟨(hprob ξ hξ hξ0 μ X hX n ((le_max_left _ _).trans hn)).trans ?_, ?_⟩
   · apply ENNReal.ofReal_le_ofReal
     exact mul_le_mul_of_nonneg_right (by linarith) (Real.rpow_nonneg (Nat.cast_nonneg n) _)

@@ -9,9 +9,12 @@ for the new declarations, without changing that earlier source surface.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib
 import re
+import subprocess
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 import yaml
@@ -20,9 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools" / "leanform"))
 
 from leanform_tools.config import Node, RepoConfig  # noqa: E402
-from leanform_tools.gate import run  # noqa: E402
+from leanform_tools.gate import Result, run  # noqa: E402
 from leanform_tools.verify import run_unit_tests  # noqa: E402
-from leanform_tools import certificate, sync_docs  # noqa: E402
+from leanform_tools import certificate, check_coverage, sync_docs  # noqa: E402
 from leanform_tools import lean_source  # noqa: E402
 
 
@@ -43,31 +46,67 @@ SOURCE_CLOSURES = {
     "lem-contact-common-event": "oct13-lem-contact",
     "lem-separated-brackets-common-event": "oct13-lem-separated-brackets",
 }
+PROVED_STATES = {"SEALED", "PROVED"}
+PROBABILITY_PRODUCERS = {
+    "eq-distance-crossing": "CERW.LimitShapes.distance_crossing_bound",
+    "sec-common-event": "CERW.LimitShapes.exists_common_event",
+}
+SOURCE_CONSUMERS = {
+    "lem-contact-common-event": "CERW.LimitShapes.contact_potential_on_common_event",
+    "lem-separated-brackets-common-event":
+        "CERW.LimitShapes.separated_brackets_on_euclidean_event",
+}
 
 
 def status_text(cfg: PaperConfig) -> str:
-    """Count source closures separately from their deterministic event consumers."""
-    present = {node.id for node in cfg.nodes}
-    remaining = EVENT_NODES - {
-        target for closure, target in SOURCE_CLOSURES.items() if closure in present
+    """Report manifest completion only with pinned coverage and completed producers/consumers."""
+    proved = [node for node in cfg.nodes if node.state in PROVED_STATES]
+    coverage = Result("status_coverage")
+    check_coverage.check(coverage, replace(cfg, nodes=proved))
+    pinned = cfg.paper_sha256 is not None and hashlib.sha256(
+        cfg.paper_path.read_bytes()
+    ).hexdigest() == cfg.paper_sha256
+
+    def completed(required: dict[str, str]) -> int:
+        return sum(any(node.id == ident and node.kind == "theorem" and node.decls == [export]
+                       for node in proved)
+                   for ident, export in required.items())
+
+    producers = completed(PROBABILITY_PRODUCERS)
+    consumers = completed(SOURCE_CONSUMERS)
+    owners: dict[Path, int] = {}
+    for node in proved:
+        if node.file:
+            path = (cfg.root / node.file).resolve()
+            owners[path] = owners.get(path, 0) + 1
+    unowned = {
+        path.resolve() for directory in cfg.frozen_dirs for path in directory.rglob("*.lean")
+        if owners.get(path.resolve(), 0) != 1
     }
-    if not remaining:
+    if (cfg.nodes and len(proved) == len(cfg.nodes) and pinned and coverage.processed > 0
+            and not coverage.failures and not unowned
+            and producers == len(PROBABILITY_PRODUCERS)
+            and consumers == len(SOURCE_CONSUMERS)):
         return (
-            f"**All 22 labeled results are proved in {len(cfg.nodes)} checked declarations.** "
+            f"**All {coverage.total} labeled results are proved in "
+            f"{len(cfg.nodes)} checked declarations.** "
             "The literal Section 5.1 event has polynomial exceptional probability, "
             "and both contact and separated brackets use its produced uniform constants."
         )
-    probability = (
-        "The literal common-event probability bound is proved. "
-        if "sec-common-event" in present else
-        "The common-event probability bound and its uniform constants remain open. "
-    )
+    drafts = sum(node.state == "DRAFT_SORRY" for node in cfg.nodes)
+    conditional = sum(node.state == "CONDITIONAL" for node in cfg.nodes)
+    other = len(cfg.nodes) - len(proved) - drafts - conditional
+    represented = coverage.total - len(coverage.failures)
     return (
-        f"**{len(cfg.nodes)} checked declarations on 22 paper labels.** "
-        + probability
-        + f"{len(remaining)} source closure{'s' if len(remaining) != 1 else ''} "
-        + f"{'still require' if len(remaining) != 1 else 'still requires'} "
-        + "the produced event constants."
+        f"**{len(cfg.nodes)} manifest declarations: {len(proved)} sealed/proved, "
+        f"{drafts} draft, {conditional} conditional, {other} other.** "
+        f"{represented}/{coverage.total} source result blocks have sealed/proved label coverage; "
+        f"{len(coverage.failures)} unresolved. "
+        + ("" if pinned else "Source pin is unverified; source coverage remains unresolved. ")
+        + ("" if coverage.processed else "No source result blocks were found. ")
+        + f"{len(unowned)} frozen files lack a unique sealed/proved owner. "
+        + f"Probability producers: {producers}/{len(PROBABILITY_PRODUCERS)} sealed/proved. "
+        + f"Source consumers: {consumers}/{len(SOURCE_CONSUMERS)} sealed/proved."
     )
 
 
@@ -175,8 +214,27 @@ def check_nl_twins(res, cfg: PaperConfig) -> None:
         for description, body in [("paper excerpt", source), ("Lean statement", statement)]:
             if f"\\begin{{verbatim}}\n{body}\n\\end{{verbatim}}" not in text:
                 res.fail(f"{node.id}: stale {description}")
-        if "\\paragraph{Proof of the registered statement.}" not in text:
+        marker = "\\paragraph{Proof of the registered statement.}"
+        if marker not in text:
             res.fail(f"{node.id}: missing proof record")
+            continue
+        proof = text.split(marker, 1)[1]
+        proof = re.split(r"\\(?:paragraph|section|subsection)\*?\s*\{", proof, maxsplit=1)[0]
+        if re.search(r"\bSKETCH\b", proof, re.IGNORECASE):
+            res.fail(f"{node.id}: SKETCH proof record")
+        if not check_coverage._strip_comments(proof).strip():
+            res.fail(f"{node.id}: empty proof record")
+
+
+def run_current_source_tests() -> int:
+    """Run the project-specific regressions outside the reusable tools package."""
+    print("=== current-source unit tests", flush=True)
+    proc = subprocess.run(
+        [sys.executable, "-m", "unittest", "discover",
+         "-s", str(ROOT / "tools" / "tests"), "-p", "test_current_source.py"],
+        cwd=ROOT,
+    )
+    return proc.returncode
 
 
 def main() -> int:
@@ -187,6 +245,9 @@ def main() -> int:
     args = parser.parse_args()
     if args.skip_lake and args.write_certificate:
         parser.error("--write-certificate requires the build and axiom probes")
+    rc = run_current_source_tests()
+    if rc:
+        return rc
     rc = run_unit_tests(ROOT / "tools" / "leanform")
     if rc:
         return rc

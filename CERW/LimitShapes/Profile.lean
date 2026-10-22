@@ -2,10 +2,13 @@ import CERW.LimitShapes.EventConsequences
 import CERW.Support.Lower.SeparatedBracketsEvent
 
 /-!
-# Local-time inputs on the six-estimate event
+# Outer radius and local-time profiles on the common event
 
-Only the coarse bounds, the potential approximation, and the local martingale
-bounds enter these inputs. The distance crossing bound is consumed separately.
+The coarse bounds, potential approximation and local martingale estimate on the
+common event of Section `sec:norm-event` give the local-time inputs. Combining
+these with the inner-radius and crossing estimates gives the outer-radius bound
+of Proposition `prop:stronger-outer` and the uniform local-time profile of
+Theorem `thm:fluctuations` (iii), as proved in Section `sec:global-profile`.
 -/
 
 open MeasureTheory Filter Topology

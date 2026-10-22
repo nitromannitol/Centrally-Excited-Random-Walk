@@ -3,13 +3,14 @@ import CERW.LimitShapes.Frozen.NormCoarseBounds
 import CERW.LimitShapes.Frozen.NormLocalTime
 import CERW.LimitShapes.KernelEvents
 import CERW.LimitShapes.EventConsequences
+import CERW.LimitShapes.QuadraticProbability
 
 /-!
 # Probability of the common martingale event
 
 All six estimates at `sec:norm-event` hold together outside a polynomially
-small exceptional event. On the coarse event the first-exit stopping does
-not change the quadratic process, whose existing bound gives the required scale.
+small exceptional event. The actual first-exit stopped quadratic process is
+controlled directly at the deterministic radius prescribed by the coarse constants.
 -/
 
 universe u
@@ -19,6 +20,41 @@ open CERW CERW.LimitShapes
 open CERW.Support.Norm.ContactEvent (scale CoarseBounds QuadraticEstimate quadraticMartingale)
 open private tendsto_scale from CERW.Support.Norm.ShapeRates
 open private measure_le_of_subset_union_six from CERW.Support.Norm.ContactEvent
+
+namespace CERW.LimitShapes.CommonEvent
+
+/-- On the coarse event of `sec:norm-event`, stopping leaves the quadratic process unchanged.
+The radius bound and `1 ≤ scale d Ψ ε n` convert its unstopped estimate to the scale bound. -/
+theorem stopped_quadratic_bound_of_coarse {d : ℕ}
+    {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} {ε : ℝ}
+    {ξ : LatticeProb.Site d → EuclideanSpace ℝ (Fin d)}
+    {X : ℕ → LatticeProb.Site d} {n : ℕ} {cCo CCo CQuad : ℝ}
+    (hQ : 0 ≤ CQuad)
+    (hr : 1 ≤ CERW.Support.Norm.ContactEvent.scale d Ψ ε n)
+    (hco : CERW.Support.Norm.ContactEvent.CoarseBounds d Ψ ε cCo CCo X n)
+    (hquad : CERW.Support.Norm.ContactEvent.QuadraticEstimate d ε ξ CQuad X n) :
+    |CERW.LimitShapes.stoppedQuadratic ε ξ
+        ((CCo + 1) * CERW.Support.Norm.ContactEvent.scale d Ψ ε n) X n| ≤
+      CQuad * (CCo + 1) * CERW.Support.Norm.ContactEvent.scale d Ψ ε n *
+        Real.sqrt (n * Real.log n) := by
+  obtain ⟨_, _, _, _, _, hR⟩ := hco
+  have hstop : stoppedQuadratic ε ξ ((CCo + 1) * scale d Ψ ε n) X n =
+      quadraticMartingale d ε ξ X n := by
+    apply stoppedQuadratic_eq
+    intro j hj
+    have h := euclidNorm_le_maxRadius X (Nat.le_of_lt hj)
+    nlinarith
+  rw [hstop]
+  change |quadraticMartingale d ε ξ X n| ≤
+    CQuad * (maxRadius X n + 1) * Real.sqrt (n * Real.log n) at hquad
+  calc |quadraticMartingale d ε ξ X n|
+      ≤ CQuad * (maxRadius X n + 1) * Real.sqrt (n * Real.log n) := hquad
+    _ ≤ CQuad * ((CCo + 1) * scale d Ψ ε n) * Real.sqrt (n * Real.log n) :=
+      mul_le_mul_of_nonneg_right
+        (mul_le_mul_of_nonneg_left (by nlinarith) hQ) (Real.sqrt_nonneg _)
+    _ = CQuad * (CCo + 1) * scale d Ψ ε n * Real.sqrt (n * Real.log n) := by ring
+
+end CERW.LimitShapes.CommonEvent
 
 /-- The exact sixfold common event has polynomial exceptional probability with
 all constants chosen before the field and realization. -/
@@ -44,8 +80,11 @@ theorem CERW.LimitShapes.CommonEvent.exists_common_event {d : ℕ} (hd : 2 ≤ d
   obtain ⟨CMart, hCMart, hmart⟩ := KernelEvents.exists_localMartingaleBound.{u} hd p hp
   obtain ⟨CSquare, hCSquare, hsquare⟩ :=
     KernelEvents.exists_squareMartingaleBound.{u} hd hΨ hε p hp
+  obtain ⟨hmin, _⟩ := CERW.Generic.Norm.normMin_pos_mul_le hΨ hd1
+  have hΛ : 0 ≤ normMax Ψ := hmin.le.trans
+    (CERW.Support.Norm.ProjectionGeometry.normMin_le_normMax hΨ hd1)
   obtain ⟨CQuad, hCQuad, hquad⟩ :=
-    CERW.Support.Norm.ContactEvent.exists_quadratic_producer.{u} hd hε hp
+    QuadraticProbability.exists_stopped_quadratic_tail.{u} hd1 hε.le hΛ p hp
   obtain ⟨CCross, hCCross, hcross⟩ :=
     CERW.LimitShapes.distance_crossing_bound hd hΨ hε hell p hp
   have hV := CERW.Support.Norm.ContactAssembly.normBallVolume_pos' hd1 hΨ
@@ -63,9 +102,16 @@ theorem CERW.LimitShapes.CommonEvent.exists_common_event {d : ℕ} (hd : 2 ≤ d
   have hn2 : 2 ≤ n := (le_max_right _ _).trans hn
   have hr : 1 ≤ scale d Ψ ε n := hns n ((le_max_left _ _).trans hn)
   have hcoord := CERW.Support.Norm.ContactAssembly.drift_coord_le hΨ hε hell hξ hξ0
+  have hnorm : ∀ x, ‖ξ x‖ ≤ normMax Ψ := by
+    intro x
+    by_cases hx : x = 0
+    · simpa only [hx, hξ0, norm_zero] using hΛ
+    · exact CERW.Support.Norm.ProjectionGeometry.norm_subgradient_le_normMax hΨ (hξ x hx)
   let ECo : Set Ω := {ω | ¬ CoarseBounds d Ψ ε cCo CCo (X · ω) n}
   let ELoc : Set Ω := {ω | ¬ LocalApproximation Ψ ε CLoc (X · ω) n}
-  let EQuad : Set Ω := {ω | ¬ QuadraticEstimate d ε ξ CQuad (X · ω) n}
+  let EQuad : Set Ω := {ω | ¬
+    |stoppedQuadratic ε ξ ((CCo + 1) * scale d Ψ ε n) (X · ω) n| ≤
+      CQuad * (CCo + 1) * scale d Ψ ε n * Real.sqrt (n * Real.log n)}
   let ESquare : Set Ω := {ω | ¬ SquareMartingaleBound Ψ ε ξ CSquare (X · ω) n}
   let EMart : Set Ω := {ω | ¬ LocalMartingaleBound ε ξ CMart (X · ω) n}
   let ECross : Set Ω := {ω | ¬ DistanceCrossingBound Ψ CCross (X · ω) n}
@@ -73,8 +119,12 @@ theorem CERW.LimitShapes.CommonEvent.exists_common_event {d : ℕ} (hd : 2 ≤ d
     hco ξ hξ hξ0 μ X hX n hn2
   have hLoc : μ ELoc ≤ ENNReal.ofReal (CLoc * (n : ℝ) ^ (-p)) :=
     hloc ξ hξ hξ0 μ X hX n hn2
-  have hQuad : μ EQuad ≤ ENNReal.ofReal (CQuad * (n : ℝ) ^ (-p)) :=
-    hquad hcoord hξ0 hX n hn2
+  have hQuad : μ EQuad ≤ ENNReal.ofReal (CQuad * (n : ℝ) ^ (-p)) := by
+    have hR : 0 < (CCo + 1) * scale d Ψ ε n := mul_pos (by linarith) (by linarith)
+    have htail := hquad ξ hcoord hξ0 hnorm μ X hX ((CCo + 1) * scale d Ψ ε n) hR n hn2
+    have heq : CQuad * ((CCo + 1) * scale d Ψ ε n) * Real.sqrt (n * Real.log n) =
+        CQuad * (CCo + 1) * scale d Ψ ε n * Real.sqrt (n * Real.log n) := by ring
+    simpa only [heq, EQuad, not_le] using htail
   have hSquare : μ ESquare ≤ ENNReal.ofReal (CSquare * (n : ℝ) ^ (-p)) :=
     hsquare ξ hcoord μ X hX n hn2
   have hMart : μ EMart ≤ ENNReal.ofReal (CMart * (n : ℝ) ^ (-p)) :=
@@ -91,25 +141,7 @@ theorem CERW.LimitShapes.CommonEvent.exists_common_event {d : ℕ} (hd : 2 ≤ d
       Set.mem_empty_iff_false, not_false_eq_true, and_true] at hnot
     obtain ⟨⟨⟨⟨⟨hco, hloc⟩, hquad⟩, hsquare⟩, hmart⟩, hcross⟩ := hnot
     apply hbad
-    refine ⟨hco, hloc, ?_, hsquare, hmart, hcross⟩
-    obtain ⟨_, _, _, _, _, hR⟩ := hco
-    have hstop : stoppedQuadratic ε ξ ((CCo + 1) * scale d Ψ ε n) (X · ω) n =
-        quadraticMartingale d ε ξ (X · ω) n := by
-      apply stoppedQuadratic_eq
-      intro j hj
-      have h := euclidNorm_le_maxRadius (X · ω) (Nat.le_of_lt hj)
-      nlinarith
-    change |stoppedQuadratic ε ξ ((CCo + 1) * scale d Ψ ε n) (X · ω) n| ≤
-      CQuad * (CCo + 1) * scale d Ψ ε n * Real.sqrt (n * Real.log n)
-    rw [hstop]
-    change |quadraticMartingale d ε ξ (X · ω) n| ≤
-      CQuad * (maxRadius (X · ω) n + 1) * Real.sqrt (n * Real.log n) at hquad
-    calc |quadraticMartingale d ε ξ (X · ω) n|
-        ≤ CQuad * (maxRadius (X · ω) n + 1) * Real.sqrt (n * Real.log n) := hquad
-      _ ≤ CQuad * ((CCo + 1) * scale d Ψ ε n) * Real.sqrt (n * Real.log n) :=
-        mul_le_mul_of_nonneg_right
-          (mul_le_mul_of_nonneg_left (by nlinarith) hCQuad.le) (Real.sqrt_nonneg _)
-      _ = CQuad * (CCo + 1) * scale d Ψ ε n * Real.sqrt (n * Real.log n) := by ring
+    exact ⟨hco, hloc, hquad, hsquare, hmart, hcross⟩
   exact measure_le_of_subset_union_six hsub hCo hLoc hQuad hSquare hMart hCross
     (by simp only [measure_empty]) (by positivity) (by positivity) (by positivity) (by positivity)
     (by positivity) (by positivity) (le_of_eq (by dsimp [C]; ring))

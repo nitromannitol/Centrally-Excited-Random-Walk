@@ -34,13 +34,16 @@ record the identifications the solution relies on. -/
 theorem euclidNorm_eq (d : ℕ) (x : CERW.StatementAudit.LimitShape.Site d) :
     CERW.StatementAudit.LimitShape.euclidNorm x = LatticeProb.euclidNorm x := rfl
 
+/-- The comparator and repository count the same departures from each site before time `n`. -/
 theorem localTime_eq {d : ℕ} (X : ℕ → CERW.StatementAudit.LimitShape.Site d) (n : ℕ)
     (x : CERW.StatementAudit.LimitShape.Site d) :
     CERW.StatementAudit.LimitShape.localTime X n x = CERW.localTime X n x := rfl
 
+/-- The comparator and repository have the same departure range before time `n`. -/
 theorem departureRange_eq {d : ℕ} (X : ℕ → CERW.StatementAudit.LimitShape.Site d) (n : ℕ) :
     CERW.StatementAudit.LimitShape.departureRange X n = CERW.departureRange X n := rfl
 
+/-- The comparator and repository have the same visited range through time `n`. -/
 theorem visitedRange_eq {d : ℕ} (X : ℕ → CERW.StatementAudit.LimitShape.Site d) (n : ℕ) :
     CERW.StatementAudit.LimitShape.visitedRange X n = CERW.visitedRange X n := rfl
 

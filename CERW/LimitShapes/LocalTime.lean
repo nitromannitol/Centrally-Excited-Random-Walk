@@ -14,7 +14,7 @@ open LatticeProb (Site)
 
 namespace CERW.LimitShapes
 
-/-- The approximation estimate of Lemma 3.1, for a deterministic path. -/
+/-- The approximation estimate of `lem:local`, for a deterministic path. -/
 def LocalApproximation {d : ℕ} (Ψ : EuclideanSpace ℝ (Fin d) → ℝ) (ε C : ℝ)
     (X : ℕ → Site d) (n : ℕ) : Prop :=
   ∀ y : EuclideanSpace ℝ (Fin d), ‖y‖ ≤ 2 * n →

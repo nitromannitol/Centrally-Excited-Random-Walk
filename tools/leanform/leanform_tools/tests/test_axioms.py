@@ -5,13 +5,20 @@ secretly clean, a seal that secretly depends on an open proof, an export the
 probe never covered, and an added axiom.
 """
 
+import subprocess
+import tempfile
 import unittest
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from leanform_tools.check_axioms import (
     ProbeError,
     audit_closures,
+    check,
     parse_axiom_report,
 )
+from leanform_tools.gate import Result
 
 
 class FakeNode:
@@ -45,6 +52,70 @@ class TestParse(unittest.TestCase):
                 f"'Foo.bar' depends on axioms: [{STD}]\n"
                 f"'Foo.bar' depends on axioms: [propext]"
             )
+
+    def test_duplicate_reports_including_no_axioms_are_probe_errors(self):
+        reports = [
+            f"'Foo.bar' depends on axioms: [{STD}]",
+            "'Foo.bar' does not depend on any axioms",
+        ]
+        message = "Foo.bar: two axiom reports for one export; cannot attribute a verdict"
+        for first in reports:
+            for second in reports:
+                with self.subTest(first=first, second=second):
+                    with self.assertRaises(ProbeError) as caught:
+                        parse_axiom_report(first + "\n" + second)
+                    self.assertEqual(str(caught.exception), message)
+
+
+class TestProbe(unittest.TestCase):
+    def run_probe(self, root, returncode, stdout, stderr=""):
+        node = SimpleNamespace(id="main", state="SEALED", decls=["Foo.bar"], file="Foo.lean")
+        cfg = SimpleNamespace(root=Path(root), nodes=[node])
+        result = Result("check_axioms")
+        process = subprocess.CompletedProcess([], returncode, stdout, stderr)
+        with patch("leanform_tools.check_axioms.subprocess.run", return_value=process):
+            check(result, cfg)
+        return result
+
+    def test_nonzero_exit_rejects_complete_clean_reports(self):
+        reports = [
+            f"'Foo.bar' depends on axioms: [{STD}]",
+            "'Foo.bar' does not depend on any axioms",
+        ]
+        for code in (1, 2, -9):
+            for report in reports:
+                with self.subTest(code=code, report=report):
+                    with tempfile.TemporaryDirectory() as root:
+                        with self.assertRaises(ProbeError) as caught:
+                            self.run_probe(root, code, report + "\nerror: later failure",
+                                           "stderr context")
+                        message = str(caught.exception)
+                        self.assertIn(f"code {code}", message)
+                        self.assertIn(report, message)
+                        self.assertIn("error: later failure", message)
+                        self.assertIn("stderr context", message)
+                        self.assertEqual(list((Path(root) / "scratch").iterdir()), [])
+
+    def test_failure_context_keeps_only_output_tails(self):
+        stdout = "stdout prefix" + "x" * 2100 + "stdout tail"
+        stderr = "stderr prefix" + "y" * 2100 + "stderr tail"
+        with tempfile.TemporaryDirectory() as root:
+            with self.assertRaises(ProbeError) as caught:
+                self.run_probe(root, 1, stdout, stderr)
+        message = str(caught.exception)
+        self.assertIn("stdout tail", message)
+        self.assertIn("stderr tail", message)
+        self.assertNotIn("stdout prefix", message)
+        self.assertNotIn("stderr prefix", message)
+
+    def test_successful_probe_accepts_standard_and_empty_closures(self):
+        for report in (f"'Foo.bar' depends on axioms: [{STD}]",
+                       "'Foo.bar' does not depend on any axioms"):
+            with self.subTest(report=report):
+                with tempfile.TemporaryDirectory() as root:
+                    result = self.run_probe(root, 0, report)
+                self.assertEqual(result.failures, [])
+                self.assertEqual(result.processed, 1)
 
 
 class TestAcceptance(unittest.TestCase):

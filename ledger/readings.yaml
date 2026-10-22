@@ -462,6 +462,13 @@ clauses:
     for every contact point in the closure of the cell-set complement. The same enlarged
     positive C bounds the exceptional probability and the potential by C r_n q_n.
 
+  lem-separated-brackets-common-event: The full separated-bracket source closure produces seven positive
+    common-event constants at exponent ten before the Euclidean walk and law. On that actual sixfold
+    event, almost surely, all diagonal brackets are between c0 and C0 and every off-diagonal bracket
+    is bounded by C r_n^(-1/4), with the same C bounding the exceptional probability by C n^(-10). The
+    lattice field is x ↦ unitDir(toSpace x); sigma, poles, planar differences and all index ranges are
+    literal.
+
 constants:
   eq-distance-crossing: The paper fixes the drift kappa as a structural parameter before
     the crossing constant (the paragraph preceding eq:distance-crossing). Lean ε is that
@@ -472,6 +479,10 @@ constants:
   lem-contact-common-event: The contact constant may depend on the fixed drift κ
     (Lean ε), the dimension, norm and exponent. Its uniformity is over ξ, law, time
     and contact point, all quantified after the existential constants.
+  lem-separated-brackets-common-event: The fixed drift kappa (Lean ε) is a structural parameter, not
+    an error tolerance. K, c0, C0, C and n0 may depend on d and ε and are chosen before the sample space,
+    measure, walk realization, horizon and indices; exponent ten is fixed as in sec:lower.
+
 exponents:
   sec-common-event:
   - kind: notation
@@ -588,5 +599,11 @@ exponents:
   oct13-lem-separated-brackets:
   - kind: notation
     detail: The exponent -nf14 in the source is Lean's real exponent -(1:ℝ)/4.
+  lem-separated-brackets-common-event:
+  - kind: notation
+    detail: The source exponent -nf14 is Lean's real exponent -(1:ℝ)/4. Powers one half defining sigma
+      are Real.sqrt; sigma squared is the martingale bracket normalization. These are notation readings,
+      not omitted exponents.
+
 hazards: null
 noise: []

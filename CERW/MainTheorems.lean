@@ -15,7 +15,9 @@ open MeasureTheory Filter Topology ProbabilityTheory
 open scoped symmDiff Pointwise NNReal
 open LatticeProb (Site euclidNorm)
 
-/-- The introduction's `limit_shape` conclusion, with all clauses and uniform constants. -/
+/-- Almost surely, the rescaled range approaches the Euclidean unit ball, the local times
+approach the cone uniformly with error `o(r_n)`, and every site is visited infinitely often
+(Theorem `thm:shape`). -/
 theorem limit_shape {d : ℕ} (hd : 2 ≤ d)
     {ε : ℝ} (hε : 0 < ε) (hεd : ε < 1 / (d : ℝ))
     {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
@@ -34,7 +36,9 @@ theorem limit_shape {d : ℕ} (hd : 2 ≤ d)
 := by
   exact CERW.LimitShapes.limit_shape hd hε hεd μ X hX
 
-/-- The introduction's `fluctuation_rates` conclusion, with all clauses and uniform constants. -/
+/-- The radii, rescaled volume and uniform local-time errors satisfy the dimension-dependent
+bounds of Theorem `thm:fluctuations`, simultaneously with exceptional probability at most
+`C n⁻ᵖ` and eventually almost surely, with `C` depending only on `d`, `ε` and `p`. -/
 theorem fluctuation_rates {d : ℕ} (hd : 2 ≤ d) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
@@ -62,7 +66,10 @@ theorem fluctuation_rates {d : ℕ} (hd : 2 ≤ d) :
 := by
   exact CERW.LimitShapes.fluctuation_rates hd
 
-/-- The introduction's `sharp_radii` conclusion, with all clauses and uniform constants. -/
+/-- The planar inner deficit and outer excess relative to `r_n` are each at least
+`c √(r_n log n)` with probability at least `n⁻ᵖ` for all sufficiently large `n`,
+with `c` depending only on `ε` and `p`
+(Theorem `thm:sharp` (i), equation `eq:planar-polynomial-lower`). -/
 theorem sharp_radii {d : ℕ} (hd : d = 2) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
@@ -79,7 +86,9 @@ theorem sharp_radii {d : ℕ} (hd : d = 2) :
 := by
   exact CERW.LimitShapes.sharp_radii hd
 
-/-- The introduction's `sharp_radii_lil` conclusion, with all clauses and uniform constants. -/
+/-- Almost surely, each planar radius has infinitely many deviations of size at least
+`(1 / √(10πε) - δ) √(r_n log log n)` for every `δ > 0`
+(Theorem `thm:sharp` (ii), equation `eq:planar-lil-lower`). -/
 theorem sharp_radii_lil {d : ℕ} (hd : d = 2) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
@@ -96,7 +105,9 @@ theorem sharp_radii_lil {d : ℕ} (hd : d = 2) :
 := by
   exact CERW.LimitShapes.sharp_radii_lil hd
 
-/-- The introduction's `sharp_bulk` conclusion, with all clauses and uniform constants. -/
+/-- With probability at least `1 - n⁻ᶜ`, some site within `√r_n` of the origin has local-time
+error at least `c √r_n log n` in the plane or `c √(r_n log n)` in higher dimensions,
+where `c` depends only on `d` and `ε` (Theorem `thm:sharp` (iii), equation `eq:sharp-bulk`). -/
 theorem sharp_bulk {d : ℕ} (hd : 2 ≤ d) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
@@ -111,7 +122,10 @@ theorem sharp_bulk {d : ℕ} (hd : 2 ≤ d) :
 := by
   exact CERW.LimitShapes.sharp_bulk hd
 
-/-- The introduction's `sharp_width` conclusion, with all clauses and uniform constants. -/
+/-- The planar difference of the radii satisfies the polynomial-probability lower bound,
+almost-sure iterated-logarithm lower bound and small-width probability bound of
+Theorem `thm:sharp` (iv), equations `eq:planar-width-polynomial`, `eq:planar-width-lil`
+and `eq:planar-width-small`. -/
 theorem sharp_width {d : ℕ} (hd : d = 2) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
     ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
@@ -136,7 +150,9 @@ theorem sharp_width {d : ℕ} (hd : d = 2) :
 := by
   exact CERW.LimitShapes.sharp_width hd
 
-/-- The introduction's `norm_shape` conclusion, with all clauses and uniform constants. -/
+/-- For a fixed norm and a chosen subgradient drift, almost surely the rescaled range
+approaches the norm ball, the local times approach its cone uniformly with error `o(r_n)`,
+and every site is visited infinitely often (Theorem `thm:norm-shape`). -/
 theorem norm_shape {d : ℕ} (hd : 2 ≤ d)
     {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} (hΨ : CERW.IsNorm Ψ)
     {ξ : Site d → EuclideanSpace ℝ (Fin d)}

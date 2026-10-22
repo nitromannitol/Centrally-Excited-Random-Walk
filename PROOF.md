@@ -4,8 +4,8 @@ The current source is *Limit shapes for centrally excited walks* by Ahmed Bou-Ra
 Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/oct13.tex` by
 `ledger/oct13.yaml`. The paper writes the drift as `κ`; Lean writes it as `ε`.
 
-The current statements live in `CERW/LimitShapes/Frozen/`. Twenty-two declarations
-reuse identical earlier statements; `lem:local` is proved by projecting the uniform
+The current statements live in `CERW/LimitShapes/Frozen/`. Unchanged declarations
+reuse their certified earlier counterparts; `lem:local` is proved by projecting the uniform
 approximation clause from the earlier local-time lemma. Full introduction statements
 are restated in `CERW/MainTheorems.lean`, and their axiom closures are printed in
 `CERW/Meta/AxiomsAudit.lean`.
@@ -21,6 +21,9 @@ the inner estimate using only the reduced approximation. `Profile.lean` obtains 
 outer estimate from the distance crossing bound and then the global local-time
 profile; `SeparatedBrackets.lean` applies the existing bracket core to that profile.
 No vector estimate is an assumption of these new deterministic implications.
+The retained deterministic outer-radius core is organized into mathematical modules
+under `CERW/Support/Outer/Radius/`; `OuterRadius.lean` preserves its existing public
+exports and private source interfaces.
 
 `DynkinBounds.lean` proves the horizon form of the actual-bracket Freedman estimate.
 `ShiftedSquare.lean` derives the square-kernel increment scale from the kernel facts,
@@ -32,18 +35,32 @@ argument uses horizon `N` at every prefix, a finite family of directions and int
 norm levels, and a radial contraction to handle every real level. The probability proof
 unions Freedman bounds over directions, levels and prefixes, together with the vector
 martingale bound. All constants precede the subgradient field and realization.
-`CommonEvent.lean` then produces the literal sixfold event: the coarse estimate removes
-the quadratic stopping, and a union bound combines the six exceptional probabilities.
-`ContactEvent.lean` specializes the deterministic contact estimate to the produced
-constants. The final probability-and-event separated-bracket wrapper is pending.
+`StoppedQuadraticMartingale.lean` proves that the actual full-prefix stopped sum is
+adapted and a martingale. `QuadraticStopping.lean` bounds its increments by
+`2 R (1 + ε normMax Ψ)`. `QuadraticProbability.lean` normalizes this process, constructs
+a surely bounded representative equal to it almost surely, and applies the existing
+logarithmic interval estimate. Its tail constant precedes the field, law, stopping
+radius and terminal horizon. `CommonEvent.lean` consumes this direct tail at the
+prescribed deterministic radius and combines the six exceptional probabilities.
 
-The contact estimate retains the existing convolution proof. The square-Dynkin contact
-argument, exit-time proof of the coarse bounds, and revised Sections 6 and 7 proofs
-have not been substituted for the existing proof routes.
+`ContactEvent.lean` specializes the deterministic contact estimate to these produced
+constants. `EuclideanEvent.lean` specializes the same event to the Euclidean walk;
+`EuclideanSeparatedBrackets.lean` combines its exponent-ten probability estimate with
+the deterministic separated-bracket bounds. The law supplies legal paths almost
+surely in both closures. Event membership carries exactly the six stated estimates.
+
+The contact estimate retains the existing convolution proof. `SquareDynkin.lean`
+proves the shifted-square one-step and time-summed algebraic identities, and
+`ExitStopping.lean` proves the exit overshoot and the exact stopped-sum identity.
+These helpers do not complete the paper's new square-Dynkin contact or exit-time
+coarse-bound arguments. The retained coarse-bound and fluctuation proofs remain
+valid routes to the unchanged statements. `RadiusEvents.lean` additionally derives
+joint inner and outer estimates on the literal event from the contact, quadratic,
+local approximation and distance-crossing consequences.
 
 <!-- LIMIT-SHAPES-STATUS-BEGIN -->
 
-**28 checked declarations on 22 paper labels.** The literal common-event probability bound is proved. 1 source closure still requires the produced event constants.
+**All 22 labeled results are proved in 29 checked declarations.** The literal Section 5.1 event has polynomial exceptional probability, and both contact and separated brackets use its produced uniform constants.
 
 <!-- LIMIT-SHAPES-STATUS-END -->
 

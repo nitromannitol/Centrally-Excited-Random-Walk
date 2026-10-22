@@ -256,4 +256,13 @@ nodes:
   state: SEALED
   frozen_sha256: 44a594bed2bdca46525c08c39c718a8aef06461cdfc702ea0c67e01a92c5a30a
   provider: CERW.LimitShapes.ContactEvent.contact_potential_on_common_event
+- id: lem-separated-brackets-common-event
+  version: 2
+  kind: theorem
+  source: oct13.tex:1084-1091 (label lem:separated-brackets)
+  file: CERW/LimitShapes/Frozen/EuclideanSeparatedBrackets.lean
+  export: CERW.LimitShapes.separated_brackets_on_euclidean_event
+  state: SEALED
+  frozen_sha256: ce4c11bf0ce9110fec3e92966ac4d19281afec54a0b6f5eabea42c4040bab2fb
+  provider: CERW.LimitShapes.EuclideanSeparatedBrackets.separated_brackets_on_euclidean_event
 citation_style: labels

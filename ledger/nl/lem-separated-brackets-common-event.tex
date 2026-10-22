@@ -1,0 +1,66 @@
+% lem-separated-brackets-common-event: oct13.tex:1084-1091
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}\label{lem:separated-brackets}
+Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. There exist $0<c_0(d,\drift)\leq C_0(d,\drift)$ and $C(d,\drift)<\infty$ such that, for all sufficiently large~$n$, on~$\Omega_n$, for $1\leq i\leq m$ and $1\leq j\leq m$ with $j\neq i$,
+\begin{equation*}
+c_0\leq\langle S^i\rangle_n\leq C_0
+\qquad\text{and}\qquad
+|\langle S^i,S^j\rangle_n|\leq Cr_n^{-\nf14}\, .
+\end{equation*}
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.separated_brackets_on_euclidean_event {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    let e₁ : Site d := LatticeProb.unit ⟨0, by omega⟩
+    let g : Site d → ℝ := CERW.latticeKernel d
+    let σ : ℕ → ℝ := fun n =>
+      if d = 2 then Real.sqrt (r n * Real.log (r n)) else Real.sqrt (r n)
+    let k : ℕ → ℕ := fun n => ⌊r n ^ ((1 : ℝ) / 8)⌋₊
+    let m : ℕ → ℕ := fun n => ⌊r n ^ ((1 : ℝ) / 8)⌋₊
+    let y : ℕ → ℕ → Site d := fun n i => ((i * ⌈r n ^ ((1 : ℝ) / 4)⌉₊ : ℕ) : ℤ) • e₁
+    let f : ℕ → ℕ → Site d → ℝ := fun n i z =>
+      if d = 2 then g (z - (y n i + (k n : ℤ) • e₁)) - g (z - y n i) else g (z - y n i)
+    ∃ K : CERW.LimitShapes.EventConstants,
+      0 < K.cCo ∧ 0 < K.CCo ∧ 0 < K.CLoc ∧ 0 < K.CQuad ∧
+      0 < K.CSquare ∧ 0 < K.CMart ∧ 0 < K.CCross ∧
+    ∃ c₀ C₀ C : ℝ, 0 < c₀ ∧ c₀ ≤ C₀ ∧ 0 < C ∧ ∃ n₀ : ℕ, 2 ≤ n₀ ∧
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, n₀ ≤ n →
+        μ (CERW.LimitShapes.section5Event (fun v : EuclideanSpace ℝ (Fin d) => ‖v‖)
+            ε (fun x => CERW.unitDir (CERW.toSpace x)) K X n)ᶜ ≤
+              ENNReal.ofReal (C * (n : ℝ) ^ (-(10 : ℝ))) ∧
+        ∀ᵐ ω ∂μ, ω ∈ CERW.LimitShapes.section5Event
+            (fun v : EuclideanSpace ℝ (Fin d) => ‖v‖) ε
+            (fun x => CERW.unitDir (CERW.toSpace x)) K X n →
+          ∀ i j : ℕ, 1 ≤ i → i ≤ m n → 1 ≤ j → j ≤ m n →
+            let B : ℝ := CERW.dynkinBracket (CERW.stepProb d ε) (f n i) (f n j)
+              (X · ω) n / σ n ^ 2
+            (i = j → c₀ ≤ B ∧ B ≤ C₀) ∧ (i ≠ j → |B| ≤ C * r n ^ (-(1 : ℝ) / 4))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+Fix the dimension and drift. Specialize the certified common-event producer
+\texttt{sec-common-event} to the Euclidean norm, the lattice field
+$x\mapsto u_x$, and exponent ten, obtaining seven positive event constants,
+a probability coefficient $C_p>0$, and a deterministic threshold $n_p$.
+Apply the deterministic bracket theorem \texttt{oct13-lem-separated-brackets}
+to the same constants, obtaining $c_0,C_0,C_b,n_b$.
+Set $C=C_p+C_b$ and $n_0=\max(n_p,\max(n_b,2))$ before choosing any
+probability space or realization.
+
+For every Euclidean walk, the produced event has exceptional probability
+at most $C_p n^{-10}\leq Cn^{-10}$. The proved Euclidean-to-drift law
+bridge supplies the radial drift law. The cylinder law gives, almost surely,
+a path starting at the origin with every increment a unit step.
+For such a path in the same sixfold event, apply the deterministic bracket
+estimate at every stated pair of indices. Retain its diagonal bounds and
+increase the off-diagonal coefficient from $C_b$ to $C$, using
+$r_n^{-1/4}\geq0$. The lattice poles, planar differences and $\sigma_n^2$
+normalization are unchanged. All constants precede the law, realization and
+time; neither an event bound nor a bracket estimate is an extra hypothesis.
+\paragraph{Lean status.}
+The registered statement is sealed by applying its proved Euclidean separated-bracket provider.

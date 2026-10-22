@@ -80,7 +80,7 @@ def DistanceCrossingBound {d : ℕ} (Ψ : EuclideanSpace ℝ (Fin d) → ℝ) (C
     Metric.infDist (toSpace (X j)) {v | Ψ v ≤ a} ≤
       C * (1 + (exteriorLocalTime Ψ X t a : ℝ)) * Real.log N
 
-/-- The six estimates whose intersection defines the event in Section 5.1.
+/-- The six estimates whose intersection defines the event in `sec:norm-event`.
 The stopping radius is `(C_co + 1) r_n`, as permitted by the coarse outer bound. -/
 def EventEstimates {d : ℕ} (Ψ : EuclideanSpace ℝ (Fin d) → ℝ) (ε : ℝ)
     (ξ : Site d → EuclideanSpace ℝ (Fin d)) (K : EventConstants)
@@ -93,7 +93,7 @@ def EventEstimates {d : ℕ} (Ψ : EuclideanSpace ℝ (Fin d) → ℝ) (ε : ℝ
     LocalMartingaleBound ε ξ K.CMart X n ∧
     DistanceCrossingBound Ψ K.CCross X n
 
-/-- The literal event of Section 5.1. Path legality belongs to the model assumptions. -/
+/-- The literal event of `sec:norm-event`. Path legality belongs to the model assumptions. -/
 def section5Event {d : ℕ} {Ω : Type*} (Ψ : EuclideanSpace ℝ (Fin d) → ℝ) (ε : ℝ)
     (ξ : Site d → EuclideanSpace ℝ (Fin d)) (K : EventConstants)
     (X : ℕ → Ω → Site d) (n : ℕ) : Set Ω :=

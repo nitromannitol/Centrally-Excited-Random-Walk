@@ -31,7 +31,7 @@ namespace LimitShape
 
 open CERWAudit.Support.LimitShapeBridge
 
-/-- **Limit shape** (`thm:shape`, `limit-shapes.tex:103-116`): for `d ≥ 2` and `0 < ε < 1/d`,
+/-- **Limit shape** (`thm:shape`): for `d ≥ 2` and `0 < ε < 1/d`,
 almost surely, with `r_n = ((d+1) n / (2 d ε ω_d))^{1/(d+1)}`: for every `0 < η < 1` and all
 sufficiently large `n` the departure range contains the Euclidean ball of radius
 `(1 - η) r_n` and is contained in the ball of radius `(1 + η) r_n`; the departure local times

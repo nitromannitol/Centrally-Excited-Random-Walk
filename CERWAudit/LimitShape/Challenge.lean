@@ -3,10 +3,11 @@ import Mathlib
 /-!
 # Limit shape — comparator challenge
 
-Mathlib-only comparator challenge for the limit shape theorem `thm:shape`
-(`paper/limit-shapes.tex:103-116`), the headline theorem of *Limit shapes of centrally excited
-random walks* (Ahmed Bou-Rabee and Yuval Peres).  The library's frozen statement is
-`CERW.Frozen.limit_shape` in `CERW/Frozen/LimitShape.lean`.
+Mathlib-only comparator challenge for Theorem `thm:shape` of *Limit shapes for centrally
+excited walks* (Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh), in
+`paper/oct13.tex`. Its statement is textually identical to Theorem `thm:shape` in the earlier
+two-author source `paper/limit-shapes.tex`, so this comparator reuses that statement.
+The library's frozen statement is `CERW.Frozen.limit_shape` in `CERW/Frozen/LimitShape.lean`.
 
 This file imports only `Mathlib` — no repository module — and rebuilds from Mathlib
 primitives every definition needed to read the theorem: the lattice `Site d = Fin d → ℤ`,
@@ -37,7 +38,8 @@ namespace LimitShape
 abbrev Site (d : ℕ) : Type := Fin d → ℤ
 
 /-- The Euclidean norm `|x|` of a lattice site. -/
-noncomputable def euclidNorm {d : ℕ} (x : Site d) : ℝ := Real.sqrt (∑ i : Fin d, ((x i : ℤ) : ℝ) ^ 2)
+noncomputable def euclidNorm {d : ℕ} (x : Site d) : ℝ :=
+    Real.sqrt (∑ i : Fin d, ((x i : ℤ) : ℝ) ^ 2)
 
 /-- The unit vector in direction `i`. -/
 def unit {d : ℕ} (i : Fin d) : Site d := Pi.single i 1
@@ -100,7 +102,7 @@ def visitedRange (X : ℕ → Site d) (n : ℕ) : Finset (Site d) :=
 
 /-! ## The theorem -/
 
-/-- **Limit shape** (`thm:shape`, `limit-shapes.tex:103-116`): for `d ≥ 2` and `0 < ε < 1/d`,
+/-- **Limit shape** (Theorem `thm:shape`): for `d ≥ 2` and `0 < ε < 1/d`,
 almost surely, with `r_n = ((d+1) n / (2 d ε ω_d))^{1/(d+1)}`: for every `0 < η < 1` and all
 sufficiently large `n` the departure range contains the Euclidean ball of radius
 `(1 - η) r_n` and is contained in the ball of radius `(1 + η) r_n`; the departure local times

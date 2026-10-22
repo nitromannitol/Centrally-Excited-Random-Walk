@@ -68,7 +68,12 @@ def parse_axiom_report(stdout: str) -> dict[str, set[str]]:
             continue
         m = _NO_AXIOMS.match(line)
         if m:
-            out[m.group("decl")] = set()
+            decl = m.group("decl")
+            if decl in out:
+                raise ProbeError(
+                    f"{decl}: two axiom reports for one export; cannot attribute a verdict"
+                )
+            out[decl] = set()
     return out
 
 
@@ -152,10 +157,10 @@ def check(res: Result, cfg: RepoConfig) -> None:
     finally:
         probe.unlink(missing_ok=True)
 
-    if proc.returncode != 0 and "depends on axioms" not in proc.stdout:
+    if proc.returncode != 0:
         raise ProbeError(
-            "the probe did not elaborate; this is a failure, not a clean "
-            f"closure.\nstderr:\n{proc.stderr[-2000:]}"
+            f"the probe exited with code {proc.returncode}; this is a failure, not a clean "
+            f"closure.\nstdout:\n{proc.stdout[-2000:]}\nstderr:\n{proc.stderr[-2000:]}"
         )
 
     reports = parse_axiom_report(proc.stdout)

@@ -48,15 +48,21 @@ Fix $d,\kappa,\Psi,p$. Obtain the positive coarse constants from node
 crossing constant from node \texttt{eq-distance-crossing}. These choices
 are made before the subgradient field or law.
 
-The previously proved quadratic producer bounds the unstopped quadratic
-martingale by $C_Q(R_{\rm out}+1)\sqrt{n\log n}$ with failure at most
-$C_Q n^{-p}$. Choose a deterministic threshold after which $r_n\geq1$.
-On the coarse event $R_{\rm out}\leq C_{\rm co}r_n$, so every visited point
-is strictly inside the ball of radius $(C_{\rm co}+1)r_n$. The stopped
-quadratic process in the event equals the unstopped process there, and its
-absolute value is at most
-$C_Q(C_{\rm co}+1)r_n\sqrt{n\log n}$.
-Choose this positive product as the quadratic event constant.
+For the quadratic constituent, subgradient duality bounds every drift vector by
+$\Lambda=\operatorname{normMax}(\Psi)$, uniformly over the subgradient field.
+The actual full-prefix stopped process is a martingale, with increments bounded
+almost surely by $2R(1+\kappa\Lambda)$. Normalize by this positive bound and use
+the proved martingale clamp to obtain a surely bounded, almost surely equal
+representative. The existing logarithmic interval estimate at $[0,n]$, with
+exponent $p+1$, gives failure at most $4n^{-p}$; transferring through the
+almost-sure equality and enlarging the constant proves the direct stopped tail.
+Its constant is chosen before the field, law, radius and horizon.
+
+Choose $R=(C_{\rm co}+1)r_n>0$ at the deterministic coarse scale and take
+$K.C_{\rm Quad}=C_Q(C_{\rm co}+1)$. This makes the direct tail threshold
+exactly the quadratic threshold in the literal event. No unstopped estimate
+is assumed to produce this constituent. A deterministic threshold $r_n\geq1$
+is retained, and the final threshold is at least two.
 
 Take the sixfold intersection in the literal definition of
 \texttt{section5Event}. Failure of

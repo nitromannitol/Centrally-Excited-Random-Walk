@@ -4,7 +4,7 @@ import CERW.LimitShapes.Event
 # The contact estimate from the local approximation
 
 The convolution proof of the contact estimate needs the approximation clause of
-Lemma 3.1, the coarse upper bounds, and the local martingale bound. This form does
+`lem:local`, the coarse upper bounds, and the local martingale bound. This form does
 not require bounds on interval local times.
 -/
 
@@ -21,7 +21,7 @@ open private abs_le_add_of_abs_add_le cell_modulus_of_path
 
 variable {d : ℕ}
 
-/-- The deterministic contact estimate using only the local approximation from Lemma 3.1. -/
+/-- The deterministic contact estimate using only the local approximation from `lem:local`. -/
 theorem contact_bound_of_approximation_inputs (hd : 2 ≤ d) {Ψ : EuclideanSpace ℝ (Fin d) → ℝ}
     (hΨ : IsNorm Ψ) {ε : ℝ} (hε : 0 < ε) (c_co C_co C_loc C_B : ℝ) (hC_co : 0 ≤ C_co)
     (hC_loc : 0 ≤ C_loc) (hC_B : 0 ≤ C_B) :
