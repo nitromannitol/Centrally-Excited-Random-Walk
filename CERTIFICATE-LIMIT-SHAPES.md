@@ -4,11 +4,11 @@ Formalizes statements pinned in `paper/oct13.tex` as the Lean library `CERW`. Th
 
 ## What is claimed
 
-**25 checked declarations on 22 paper labels: 23 with direct source coverage; 2 deterministic common-event implications.** The common-event probability bound and its uniform constants remain open.
+**28 checked declarations on 22 paper labels.** The literal common-event probability bound is proved. 1 source closure still requires the produced event constants.
 
-The following tally certifies the registered Lean types. It does not certify the missing probability producer.
+The following tally certifies the registered Lean types, including the common-event probability producer and its source consumers.
 
-Every node's state in `ledger/oct13.yaml` is `SEALED`: all 25 are proved with no added axiom and no `sorry`.
+Every node's state in `ledger/oct13.yaml` is `SEALED`: all 28 are proved with no added axiom and no `sorry`.
 
 ## Environment
 
@@ -17,7 +17,7 @@ Every node's state in `ledger/oct13.yaml` is `SEALED`: all 25 are proved with no
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/oct13.tex`) SHA-256 | `e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617` |
-| Build | succeeded, 9206 jobs |
+| Build | succeeded, 9220 jobs |
 | Build warnings | 0 |
 | Generated | 2026-10-22 |
 
@@ -60,6 +60,9 @@ python3 tools/verify_oct13.py
 | 23 | `oct13-lem-local` | `CERW.LimitShapes.norm_local_time_potential` | `SEALED` | classical only |
 | 24 | `oct13-lem-contact` | `CERW.LimitShapes.contact_potential` | `SEALED` | classical only |
 | 25 | `oct13-lem-separated-brackets` | `CERW.LimitShapes.separated_brackets` | `SEALED` | classical only |
+| 26 | `eq-distance-crossing` | `CERW.LimitShapes.distance_crossing_bound` | `SEALED` | classical only |
+| 27 | `sec-common-event` | `CERW.LimitShapes.exists_common_event` | `SEALED` | classical only |
+| 28 | `lem-contact-common-event` | `CERW.LimitShapes.contact_potential_on_common_event` | `SEALED` | classical only |
 
 ## Frozen statements
 
@@ -92,6 +95,9 @@ The bytes of each statement are pinned, so a statement cannot be weakened after 
 | `oct13-lem-local` | `395e09b8f59b3aca6911b0bb7f26ed3464d4664f689eb2ad7ca4dae71e1ec4d9` |
 | `oct13-lem-contact` | `e348bf112a79b3bab515476f510160c3632ef2ef5e445154d94858f93d9a3981` |
 | `oct13-lem-separated-brackets` | `63490bd50b4f2b5f50c7874c24f0c0e46f23e89c2c9c5e4d3a465532ba31932b` |
+| `eq-distance-crossing` | `58936ce042c9d5fa8ad53774b3187f1601f2b7a64ac54c5025168b37521950a6` |
+| `sec-common-event` | `086cfc9e3fcf27d782119438ee511e10a715731e036093a01c5fd79596e7cc53` |
+| `lem-contact-common-event` | `44a594bed2bdca46525c08c39c718a8aef06461cdfc702ea0c67e01a92c5a30a` |
 
 ## What is not claimed
 

@@ -45,7 +45,7 @@ import sys
 
 from .config import ConfigError, RepoConfig, load
 from .gate import Result, run
-from .paper_anchors import extract_label, span_of_label
+from .paper_anchors import _SECTION_LABEL_RE, extract_label, span_of_label
 
 # A frozen file opens with a header docstring naming the paper statement it
 # transcribes: its LaTeX label and its line range. Three wordings are in use
@@ -89,11 +89,21 @@ def check_label_citations(res: Result, cfg: RepoConfig, lines: list[str]) -> Non
         if not label:
             res.fail(f"{node.id}: no paper label in source")
             continue
-        try:
-            span_of_label(lines, label)
-        except LookupError as exc:
-            res.fail(f"{node.id}: unresolved paper label {label}: {exc}")
-            continue
+        if _SECTION_LABEL_RE.match(label):
+            locations = [i for i, line in enumerate(lines, 1) if f"\\label{{{label}}}" in line]
+            source = cfg.source_re.match(node.source or "")
+            if len(locations) != 1 or source is None:
+                res.fail(f"{node.id}: unresolved or nonunique section label {label}")
+                continue
+            if not int(source.group("a")) <= locations[0] <= int(source.group("b")):
+                res.fail(f"{node.id}: section label {label} lies outside its source range")
+                continue
+        else:
+            try:
+                span_of_label(lines, label)
+            except LookupError as exc:
+                res.fail(f"{node.id}: unresolved paper label {label}: {exc}")
+                continue
         if not node.file or not (cfg.root / node.file).exists():
             res.fail(f"{node.id}: missing Lean source")
             continue

@@ -444,8 +444,41 @@ clauses:
     pair indices. Both diagonal bounds and the off-diagonal quarter-power decay are present with the actual
     normalized Dynkin bracket. The two equal floor(r^(1/8)) parameters preserve the source family and the
     planar difference of translates.
-constants: {}
+  eq-distance-crossing: For every p>0 the crossing constant is selected after d, the norm and
+    drift, before the subgradient field, probability space and horizon. DistanceCrossingBound
+    quantifies over every t<=N, real a>=0 and j<=t, using the infimum distance to the closed
+    norm sublevel set and the maximum departure local time in the exterior norm region.
+    The common logarithm is log N, not log t. The proof includes the finite union over
+    prefixes and integer norm levels, then extends by radial contraction to all real levels.
+  sec-common-event: The literal event at Section 5.1 consists of coarse bounds, the reduced
+    local approximation, the quadratic martingale stopped at (CCo+1)r_n, actual-bracket
+    Freedman bounds for the shifted-square and kernel martingales, and the simultaneous
+    distance crossing estimate with N=n. Seven positive event constants, the exceptional
+    probability coefficient and threshold precede every field and realization. The complement
+    is bounded by C n^(-p). No event or estimate is assumed as an input to this producer.
+  lem-contact-common-event: The full contact source closure chooses the seven positive
+    common-event constants before the subgradient field and law. Its conclusion combines
+    the actual common-event probability bound with the almost sure contact implication
+    for every contact point in the closure of the cell-set complement. The same enlarged
+    positive C bounds the exceptional probability and the potential by C r_n q_n.
+
+constants:
+  eq-distance-crossing: The paper fixes the drift kappa as a structural parameter before
+    the crossing constant (the paragraph preceding eq:distance-crossing). Lean ε is that
+    drift, not an error tolerance. Dependence on d, the norm, ε and p is intended; the
+    constant precedes every subgradient field, realization, N, t, a and j.
+  sec-common-event: Section 5.1 fixes the norm and drift before selecting the event
+    constants. Lean ε denotes this drift. All constants precede ξ, the law and n.
+  lem-contact-common-event: The contact constant may depend on the fixed drift κ
+    (Lean ε), the dimension, norm and exponent. Its uniformity is over ξ, law, time
+    and contact point, all quantified after the existential constants.
 exponents:
+  sec-common-event:
+  - kind: notation
+    detail: Superscripts f_y and y on the Dynkin martingales label their test functions,
+      rather than raising a martingale to a power. SquareMartingaleBound and
+      LocalMartingaleBound contain the actual test functions and bracket scales.
+      The probability exponent -p is literal in the registered conclusion.
   thm-fluctuations:
   - detail: '\nf32, \nf52: notation: the paper writes fractional exponents with its macro \nf (\nf{a}{b}
       and \nf ab are a/b); Lean writes each as a real quotient, for example ((1 : ℝ) / 2), so the spellings

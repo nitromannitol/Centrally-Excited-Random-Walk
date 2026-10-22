@@ -4,8 +4,8 @@ title: 'Centrally-Excited-Random-Walk: a Lean 4 formalization of limit shapes of
   walks'
 abstract: A Lean 4 / mathlib formalization of Limit shapes for centrally excited walks by Bou-Rabee, Nguyen,
   Peres and Singh, with the earlier two-author source pin preserved. The current surface covers 22 labels
-  with 25 checked declarations. The contact and separated-bracket implications are proved on the redefined
-  common event; its probability producer remains open. The production library has no sorry or custom axiom.
+  with 28 checked declarations. The redefined common event, its polynomial probability estimate
+  and the full contact source closure are proved; the separated-bracket source wrapper is pending. The production library has no sorry or custom axiom.
   Separate Mathlib-only comparator challenges contain seven intentional statement-level proof holes and
   have completed solutions.
 type: software

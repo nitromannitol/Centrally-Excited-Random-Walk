@@ -22,20 +22,28 @@ outer estimate from the distance crossing bound and then the global local-time
 profile; `SeparatedBrackets.lean` applies the existing bracket core to that profile.
 No vector estimate is an assumption of these new deterministic implications.
 
-The new conditional statements quantify over fixed event constants. Producing these
-constants with the polynomial exceptional probability required in `sec:norm-event`
-remains open, chiefly the simultaneous distance crossing probability bound.
 `DynkinBounds.lean` proves the horizon form of the actual-bracket Freedman estimate.
 `ShiftedSquare.lean` derives the square-kernel increment scale from the kernel facts,
 and `KernelEvents.lean` proves both simultaneous kernel and square-kernel Freedman
-constituents by a union bound over the lattice ball of radius `3n`. Consequently the contact and separated-bracket source nodes are
-not yet closed. The other 23 registered declarations have direct source coverage.
-The new square-Dynkin argument, exit-time proof of the coarse bounds, and revised
-Sections 6 and 7 proofs have not been substituted for the existing proof routes.
+constituents by a union bound over the lattice ball of radius `3n`.
+
+`Crossing/` proves the new simultaneous distance estimate. Its deterministic projection
+argument uses horizon `N` at every prefix, a finite family of directions and integer
+norm levels, and a radial contraction to handle every real level. The probability proof
+unions Freedman bounds over directions, levels and prefixes, together with the vector
+martingale bound. All constants precede the subgradient field and realization.
+`CommonEvent.lean` then produces the literal sixfold event: the coarse estimate removes
+the quadratic stopping, and a union bound combines the six exceptional probabilities.
+`ContactEvent.lean` specializes the deterministic contact estimate to the produced
+constants. The final probability-and-event separated-bracket wrapper is pending.
+
+The contact estimate retains the existing convolution proof. The square-Dynkin contact
+argument, exit-time proof of the coarse bounds, and revised Sections 6 and 7 proofs
+have not been substituted for the existing proof routes.
 
 <!-- LIMIT-SHAPES-STATUS-BEGIN -->
 
-**25 checked declarations on 22 paper labels: 23 with direct source coverage; 2 deterministic common-event implications.** The common-event probability bound and its uniform constants remain open.
+**28 checked declarations on 22 paper labels.** The literal common-event probability bound is proved. 1 source closure still requires the produced event constants.
 
 <!-- LIMIT-SHAPES-STATUS-END -->
 

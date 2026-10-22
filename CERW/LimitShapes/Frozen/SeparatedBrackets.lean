@@ -12,7 +12,8 @@ open MeasureTheory Filter Topology
 open LatticeProb (Site)
 
 
-/-- The deterministic conclusion of `lem:separated-brackets` for the fixed constants of the common event. -/
+/-- The deterministic conclusion of `lem:separated-brackets` for the fixed constants
+of the common event. -/
 -- FROZEN-STATEMENT-BEGIN
 theorem CERW.LimitShapes.separated_brackets {d : ℕ} (hd : 2 ≤ d) :
     let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal

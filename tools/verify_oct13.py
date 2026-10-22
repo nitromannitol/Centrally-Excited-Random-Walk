@@ -39,17 +39,35 @@ class PaperConfig(RepoConfig):
 
 
 EVENT_NODES = {"oct13-lem-contact", "oct13-lem-separated-brackets"}
+SOURCE_CLOSURES = {
+    "lem-contact-common-event": "oct13-lem-contact",
+    "lem-separated-brackets-common-event": "oct13-lem-separated-brackets",
+}
 
 
 def status_text(cfg: PaperConfig) -> str:
-    """Distinguish checked declaration types from the unclosed event producer."""
-    closed = sum(n.id not in EVENT_NODES for n in cfg.nodes)
-    conditional = len(cfg.nodes) - closed
+    """Count source closures separately from their deterministic event consumers."""
+    present = {node.id for node in cfg.nodes}
+    remaining = EVENT_NODES - {
+        target for closure, target in SOURCE_CLOSURES.items() if closure in present
+    }
+    if not remaining:
+        return (
+            f"**All 22 labeled results are proved in {len(cfg.nodes)} checked declarations.** "
+            "The literal Section 5.1 event has polynomial exceptional probability, "
+            "and both contact and separated brackets use its produced uniform constants."
+        )
+    probability = (
+        "The literal common-event probability bound is proved. "
+        if "sec-common-event" in present else
+        "The common-event probability bound and its uniform constants remain open. "
+    )
     return (
-        f"**{len(cfg.nodes)} checked declarations on 22 paper labels: "
-        f"{closed} with direct source coverage; {conditional} deterministic "
-        "common-event implications.** The common-event probability bound "
-        "and its uniform constants remain open."
+        f"**{len(cfg.nodes)} checked declarations on 22 paper labels.** "
+        + probability
+        + f"{len(remaining)} source closure{'s' if len(remaining) != 1 else ''} "
+        + f"{'still require' if len(remaining) != 1 else 'still requires'} "
+        + "the produced event constants."
     )
 
 
@@ -60,7 +78,13 @@ def surface_text(cfg: PaperConfig) -> str:
         "|---|---|---|---|---|",
     ]
     for node in cfg.nodes:
-        coverage = "conditional on event constants" if node.id in EVENT_NODES else "direct"
+        coverage = "direct"
+        if node.id in EVENT_NODES:
+            coverage = "deterministic event implication"
+        elif node.id in SOURCE_CLOSURES:
+            coverage = "full common-event source closure"
+        elif node.id in {"eq-distance-crossing", "sec-common-event"}:
+            coverage = "section probability estimate"
         decls = ", ".join(f"`{d}`" for d in node.decls)
         paper = sync_docs.paper_cell(node, cfg)
         lines.append(f"| `{node.id}` | {decls} | {paper} | {node.state} | {coverage} |")
@@ -109,8 +133,8 @@ def certificate_text(cfg: PaperConfig) -> str:
     text = text.replace(
         "## What is claimed\n\n",
         "## What is claimed\n\n" + status_text(cfg) + "\n\n"
-        "The following tally certifies the registered Lean types. It does not "
-        "certify the missing probability producer.\n\n",
+        "The following tally certifies the registered Lean types, including the "
+        "common-event probability producer and its source consumers.\n\n",
     )
     return text.rstrip() + "\n"
 

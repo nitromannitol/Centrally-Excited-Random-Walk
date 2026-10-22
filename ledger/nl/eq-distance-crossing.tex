@@ -1,0 +1,58 @@
+% eq-distance-crossing: oct13.tex:522-525 (label eq:distance-crossing)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{equation}\label{eq:distance-crossing}
+\max_{0\leq j\leq t}\operatorname{dist}(X_j,\{\gauge\leq a\})
+\leq C\Bigl(1+\max_{x\in\Z^d,\gauge(x)\geq a}\ell_t(x)\Bigr)\log N\, .
+\end{equation}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.distance_crossing_bound {d : ℕ} (hd : 2 ≤ d)
+    {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} (hΨ : CERW.IsNorm Ψ) {ε : ℝ} (hε : 0 < ε)
+    (hell : ∀ i : Fin d, ε * Ψ (CERW.coordVec i) < 1 / (d : ℝ)) (p : ℝ) (hp : 0 < p) :
+    ∃ C : ℝ, 0 < C ∧ ∀ ξ : Site d → EuclideanSpace ℝ (Fin d),
+      (∀ x : Site d, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)) → ξ 0 = 0 →
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsDriftCERW μ ε ξ X → ∀ N : ℕ, 2 ≤ N →
+        μ {ω | ¬ CERW.LimitShapes.DistanceCrossingBound Ψ C (X · ω) N} ≤
+          ENNReal.ofReal (C * (N : ℝ) ^ (-p))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+Fix $d,\kappa,\Psi,p$. Write $\Lambda=\Lambda_\Psi$ and
+$c=\lambda_\Psi>0$. The already proved projection cap estimate gives positive
+constants $\theta$ and $\alpha$ such that, at a path point of maximal distance
+$w$ from a norm ball, all subgradients in the cap of height $\theta\Lambda w$
+pair at least $\alpha$ with the outward projection direction.
+The proved directional level-count contraction is applied with logarithm
+$\log N$, retaining departure counts only through the current time $t\leq N$.
+It bounds the cap height by $C(1+L)\log N$, using the compensated vector
+estimate and the ramp Dynkin estimates at levels $k\Lambda$, $k\leq t$.
+Hence the maximum distance from this fixed ball is at most $C(1+L)\log N$.
+
+For the probabilistic estimates, take the vector estimate at horizon $N$.
+For every integer ball radius $m$ with $1\leq m\leq\lceil\Lambda N\rceil$,
+choose its nearest-point projection, independently of the walk. Directions
+arising from sites in the lattice ball of radius $N$ form a deterministic
+finite family of size at most $(2N+1)^d$, and each has norm at most $\Lambda$.
+Every ramp has increments at most $\Lambda$ and actual bracket at time $t$
+at most $\Lambda^2$ times the occupation mass above its lower ramp level.
+The actual-bracket horizon Freedman theorem therefore gives its required
+estimate with failure $C N^{-q}$ for each fixed time, direction and level.
+Union over the radii, lattice sites, times $t\leq N$ and levels $k\leq N$.
+There are at most $C N^{d+3}$ choices, so choose $q=p+d+3$ (or any larger
+exponent). The union failure is then at most $C N^{-p}$, after also adding
+the vector exceptional event. Path legality holds almost surely by the law.
+
+This proves the distance bound simultaneously at the positive integer radii.
+For a real $a\geq0$ with $a<\Lambda N$, put $m=\max(1,\lceil a\rceil)$.
+Then $a\leq m\leq a+1$ and the largest local time outside the $m$-ball is
+at most that outside the $a$-ball. Radial contraction maps a point of the
+$m$-ball to the $a$-ball by a displacement at most $(m-a)/c\leq1/c$.
+Thus distance to the $a$-ball is at most distance to the $m$-ball plus $1/c$.
+Absorb this error using $\log N\geq\log2$. If $a\geq\Lambda N$, every
+path point through $N$ already lies in the $a$-ball, so its distance is zero.
+All constants precede the field and realization, yielding the registered
+statement including $t=0$, $a=0$ and $N=2$.
+\paragraph{Lean status.}
+The registered statement is sealed with the one-line application of its proved probability provider. The full production axiom audit is recorded with the build.

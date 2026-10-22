@@ -1,0 +1,71 @@
+% sec-common-event: oct13.tex:616-636 (label sec:norm-event)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\subsection{Martingale estimates}\label{sec:norm-event}
+
+We collect on one event the martingale bounds used in Sections~\ref{sec:norms}--\ref{sec:outer}. Fix $p>0$, and let $K$ be a constant with $\Rout(n)\leq(K-1)r_n$ on the event of Proposition~\ref{prop:coarse}, so that $D_n\subset B(0,Kr_n)$ there for large~$n$. The process
+\begin{equation*}
+\mathcal Q_t\coloneqq\sum_{j<t}2X_j\cdot\bigl(X_{j+1}-X_j+\drift I_j\xi(X_j)\bigr)
+\end{equation*}
+is a martingale. Since every step has squared length one, Euler's relation gives
+\begin{equation}\label{eq:quadratic}
+|X_n|^2=n-2\drift\sum_{x\in A_n}\gauge(x)+\mathcal Q_n\, .
+\end{equation}
+Let $\widehat{\mathcal Q}$ be~$\mathcal Q$ stopped when the walk leaves~$B(0,Kr_n)$. Its increments are at most~$Cr_n$, so by Azuma's inequality $|\widehat{\mathcal Q}_n|\leq Cr_n\sqrt{n\log n}$ with probability at least $1-Cn^{-p}$, and on the event of Proposition~\ref{prop:coarse} we have $\widehat{\mathcal Q}_n=\mathcal Q_n$, so that
+\begin{equation}\label{eq:quadraticerror}
+|\mathcal Q_n|\leq Cr_n\sqrt{n\log n}\, .
+\end{equation}
+
+To bound the brackets~$\langle\mathcal M^y\rangle_n$ in terms of~$\ell_n(y)$, for $y\in\Z^d$ let $f_y\coloneqq(g_y-\gamma)^2$, where $\gamma\coloneqq0$ if $d\geq3$ and $\gamma\coloneqq(\nf2\pi)\log r_n$ if $d=2$. If $|y|\leq3n$, the increments of~$\mathcal M^{f_y}$ through time~$n$ are at most~$C\bar g$, where $\bar g\coloneqq1$ if $d\geq3$ and $\bar g\coloneqq\log n$ if $d=2$, and Lemma~\ref{lem:freedman} applies to $\mathcal M^{f_y}/(C\bar g)$; we take a union bound over these~$y$.
+
+The event of Section~\ref{sec:norm-event} is the intersection of the events of Proposition~\ref{prop:coarse} and Lemma~\ref{lem:local} with those on which these bounds on~$\widehat{\mathcal Q}_n$ and~$\mathcal M^{f_y}_n$, \eqref{eq:localmart}, and~\eqref{eq:distance-crossing} with $N=n$ hold. The complement of this event has probability at most $Cn^{-p}$, and on the event the arguments of Sections~\ref{sec:norms}--\ref{sec:outer} are deterministic. On the event, $\max_x\ell_n(x)\leq Cr_n$, so~\eqref{eq:approx} gives, for $y\in\R^d$ with $|y|\leq2n$,
+\begin{equation}\label{eq:norm-approx}
+|\widetilde\ell_n(y)-U_{D_n}(y)|\leq C\begin{cases}\sqrt{r_n}\log n,&d=2,\\\sqrt{r_n\log n},&d\geq3\end{cases}\, .
+\end{equation}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.exists_common_event {d : ℕ} (hd : 2 ≤ d)
+    {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} (hΨ : CERW.IsNorm Ψ) {ε : ℝ} (hε : 0 < ε)
+    (hell : ∀ i : Fin d, ε * Ψ (CERW.coordVec i) < 1 / (d : ℝ)) (p : ℝ) (hp : 0 < p) :
+    ∃ K : CERW.LimitShapes.EventConstants,
+      0 < K.cCo ∧ 0 < K.CCo ∧ 0 < K.CLoc ∧ 0 < K.CQuad ∧
+      0 < K.CSquare ∧ 0 < K.CMart ∧ 0 < K.CCross ∧
+      ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, 2 ≤ n₀ ∧
+        ∀ ξ : Site d → EuclideanSpace ℝ (Fin d),
+          (∀ x : Site d, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)) → ξ 0 = 0 →
+        ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+          (X : ℕ → Ω → Site d), CERW.IsDriftCERW μ ε ξ X → ∀ n : ℕ, n₀ ≤ n →
+          μ (CERW.LimitShapes.section5Event Ψ ε ξ K X n)ᶜ ≤
+            ENNReal.ofReal (C * (n : ℝ) ^ (-p))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+Fix $d,\kappa,\Psi,p$. Obtain the positive coarse constants from node
+\texttt{oct13-prop-coarse}, the reduced approximation constant from node
+\texttt{oct13-lem-local}, and the two actual-bracket Freedman constants from
+\texttt{KernelEvents.exists\_localMartingaleBound} and
+\texttt{KernelEvents.exists\_squareMartingaleBound}. Obtain the positive
+crossing constant from node \texttt{eq-distance-crossing}. These choices
+are made before the subgradient field or law.
+
+The previously proved quadratic producer bounds the unstopped quadratic
+martingale by $C_Q(R_{\rm out}+1)\sqrt{n\log n}$ with failure at most
+$C_Q n^{-p}$. Choose a deterministic threshold after which $r_n\geq1$.
+On the coarse event $R_{\rm out}\leq C_{\rm co}r_n$, so every visited point
+is strictly inside the ball of radius $(C_{\rm co}+1)r_n$. The stopped
+quadratic process in the event equals the unstopped process there, and its
+absolute value is at most
+$C_Q(C_{\rm co}+1)r_n\sqrt{n\log n}$.
+Choose this positive product as the quadratic event constant.
+
+Take the sixfold intersection in the literal definition of
+\texttt{section5Event}. Failure of
+any constituent is contained in the union of the coarse, reduced-local,
+quadratic, two kernel-Freedman, or crossing exceptional events. The union
+bound gives a coefficient equal to the sum of their positive coefficients.
+Enlarge the common time threshold to at least two. This gives positive
+constants in every field of the existential witness and the asserted
+polynomial measure bound, uniformly in every subgradient selection and
+realization. No older seven-constituent event is substituted.
+\paragraph{Lean status.}
+The registered statement is sealed by applying its proved common-event provider.

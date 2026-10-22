@@ -1,5 +1,8 @@
+import CERW.LimitShapes.CommonEvent
 import CERW.LimitShapes.ContactApproximation
+import CERW.LimitShapes.ContactEvent
 import CERW.LimitShapes.ContactPotential
+import CERW.LimitShapes.Crossing
 import CERW.LimitShapes.DynkinBounds
 import CERW.LimitShapes.DynkinFreedman
 import CERW.LimitShapes.Event

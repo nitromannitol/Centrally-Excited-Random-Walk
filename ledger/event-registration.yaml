@@ -1,0 +1,19 @@
+version: 1
+library: CERW
+source_pin:
+  file: paper/oct13.tex
+  sha256: e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617
+registrations:
+- id: eq-distance-crossing
+  registered_file: wip/LimitShapes/DistanceCrossing.lean
+  frozen_sha256: 58936ce042c9d5fa8ad53774b3187f1601f2b7a64ac54c5025168b37521950a6
+  promoted_to: ledger/oct13.yaml
+- id: sec-common-event
+  registered_file: wip/LimitShapes/CommonEvent.lean
+  frozen_sha256: 086cfc9e3fcf27d782119438ee511e10a715731e036093a01c5fd79596e7cc53
+  promoted_to: ledger/oct13.yaml
+- id: lem-contact-common-event
+  registered_file: wip/LimitShapes/ContactEvent.lean
+  frozen_sha256: 44a594bed2bdca46525c08c39c718a8aef06461cdfc702ea0c67e01a92c5a30a
+  promoted_to: ledger/oct13.yaml
+note: The registered blocks were sealed unchanged; current ownership is ledger/oct13.yaml.

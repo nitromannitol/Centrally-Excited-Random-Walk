@@ -44,6 +44,20 @@ class LabelCitations(unittest.TestCase):
         cfg.nodes = []
         self.assertEqual(run("paper_citations", paper_citations.check, cfg), 2)
 
+    def test_section_label_resolves_in_recorded_range(self):
+        cfg = self.make_config("/- `sec:event`. -/\n", label="sec:event")
+        cfg.paper_path.write_text("\\subsection{Estimates}\\label{sec:event}\nEvent.\n")
+        self.assertEqual(run("paper_citations", paper_citations.check, cfg), 0)
+
+    def test_missing_section_label_fails(self):
+        cfg = self.make_config("/- `sec:event`. -/\n", label="sec:event")
+        self.assertEqual(run("paper_citations", paper_citations.check, cfg), 1)
+
+    def test_section_label_outside_recorded_range_fails(self):
+        cfg = self.make_config("/- `sec:event`. -/\n", label="sec:event")
+        cfg.paper_path.write_text("\n\n\n\\subsection{Estimates}\\label{sec:event}\n")
+        self.assertEqual(run("paper_citations", paper_citations.check, cfg), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

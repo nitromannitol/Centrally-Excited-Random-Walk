@@ -229,4 +229,31 @@ nodes:
   state: SEALED
   frozen_sha256: 63490bd50b4f2b5f50c7874c24f0c0e46f23e89c2c9c5e4d3a465532ba31932b
   provider: CERW.LimitShapes.separated_bracket_bounds
+- id: eq-distance-crossing
+  version: 1
+  kind: theorem
+  source: oct13.tex:522-525 (label eq:distance-crossing)
+  file: CERW/LimitShapes/Frozen/DistanceCrossing.lean
+  export: CERW.LimitShapes.distance_crossing_bound
+  state: SEALED
+  frozen_sha256: 58936ce042c9d5fa8ad53774b3187f1601f2b7a64ac54c5025168b37521950a6
+  provider: CERW.LimitShapes.Crossing.Probability.distance_crossing_bound
+- id: sec-common-event
+  version: 1
+  kind: theorem
+  source: oct13.tex:616-636 (label sec:norm-event)
+  file: CERW/LimitShapes/Frozen/CommonEvent.lean
+  export: CERW.LimitShapes.exists_common_event
+  state: SEALED
+  frozen_sha256: 086cfc9e3fcf27d782119438ee511e10a715731e036093a01c5fd79596e7cc53
+  provider: CERW.LimitShapes.CommonEvent.exists_common_event
+- id: lem-contact-common-event
+  version: 1
+  kind: theorem
+  source: oct13.tex:644-649 (label lem:contact)
+  file: CERW/LimitShapes/Frozen/ContactEvent.lean
+  export: CERW.LimitShapes.contact_potential_on_common_event
+  state: SEALED
+  frozen_sha256: 44a594bed2bdca46525c08c39c718a8aef06461cdfc702ea0c67e01a92c5a30a
+  provider: CERW.LimitShapes.ContactEvent.contact_potential_on_common_event
 citation_style: labels

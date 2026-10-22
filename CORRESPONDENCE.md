@@ -33,16 +33,19 @@ Lean citations use paper labels; source line numbers occur in the ledger and thi
 | `oct13-prop-bulk-profile` | `CERW.LimitShapes.bulk_profile` | `oct13.tex:1054-1061`, `prop:bulk-profile` | SEALED | direct |
 | `oct13-prop-log-lower` | `CERW.LimitShapes.log_lower_bounds` | `oct13.tex:1125-1139`, `prop:log-lower` | SEALED | direct |
 | `oct13-lem-local` | `CERW.LimitShapes.norm_local_time_potential` | `oct13.tex:397-402`, `lem:local` | SEALED | direct |
-| `oct13-lem-contact` | `CERW.LimitShapes.contact_potential` | `oct13.tex:644-649`, `lem:contact` | SEALED | conditional on event constants |
-| `oct13-lem-separated-brackets` | `CERW.LimitShapes.separated_brackets` | `oct13.tex:1084-1091`, `lem:separated-brackets` | SEALED | conditional on event constants |
+| `oct13-lem-contact` | `CERW.LimitShapes.contact_potential` | `oct13.tex:644-649`, `lem:contact` | SEALED | deterministic event implication |
+| `oct13-lem-separated-brackets` | `CERW.LimitShapes.separated_brackets` | `oct13.tex:1084-1091`, `lem:separated-brackets` | SEALED | deterministic event implication |
+| `eq-distance-crossing` | `CERW.LimitShapes.distance_crossing_bound` | `oct13.tex:522-525`, `eq:distance-crossing` | SEALED | section probability estimate |
+| `sec-common-event` | `CERW.LimitShapes.exists_common_event` | `oct13.tex:616-636`, `sec:norm-event` | SEALED | section probability estimate |
+| `lem-contact-common-event` | `CERW.LimitShapes.contact_potential_on_common_event` | `oct13.tex:644-649`, `lem:contact` | SEALED | full common-event source closure |
 
 <!-- LIMIT-SHAPES-SURFACE-END -->
 
-`SEALED` records a checked proof of the exact registered Lean type. For the two rows
-marked conditional, that type is the deterministic implication on the new common
-event with fixed constants. The common-event probability producer is still required
-to recover the source's constant dependence on `d, ε, Ψ, p`; for separated brackets
-it is required at `p = 10`. These rows do not assert that missing source closure.
+`SEALED` records a checked proof of the exact registered Lean type. The two
+original event rows are deterministic implications for fixed constants. The new
+section probability rows produce these constants uniformly over the field and law.
+The contact closure combines them with its deterministic implication; the analogous
+separated-bracket probability-and-event closure remains pending.
 
 The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
 a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256

@@ -10,20 +10,19 @@ A Lean 4 formalization of
 
 [LaTeX source](paper/oct13.tex) · [Bibliography](paper/references.bib)
 
-The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml). Its 22 labeled
-results have 25 compiled declarations in `CERW.LimitShapes`, with the four parts of
-`thm:sharp` registered separately. The unchanged statements reuse the existing proofs;
-`lem:local` retains only the local-time approximation.
+The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml). Its unchanged
+statements reuse the existing proofs; `lem:local` retains only the local-time
+approximation. Every introduction theorem is restated in `CERW/MainTheorems.lean`.
 
 The redefined event of Section 5.1 is stated literally in
-[CERW/LimitShapes/Event.lean](CERW/LimitShapes/Event.lean). The contact and separated-bracket
-estimates are proved deterministically on this event for fixed event constants.
-**The simultaneous probability bound producing those constants remains open.** Until
-that bound is proved, these two source results have conditional coverage.
+[CERW/LimitShapes/Event.lean](CERW/LimitShapes/Event.lean), and its polynomial
+exceptional probability is proved in `CommonEvent.lean`. The contact source closure
+uses these produced constants. The separated-bracket deterministic implication is
+proved; its full probability-and-event wrapper is being finalized.
 
 <!-- LIMIT-SHAPES-STATUS-BEGIN -->
 
-**25 checked declarations on 22 paper labels: 23 with direct source coverage; 2 deterministic common-event implications.** The common-event probability bound and its uniform constants remain open.
+**28 checked declarations on 22 paper labels.** The literal common-event probability bound is proved. 1 source closure still requires the produced event constants.
 
 <!-- LIMIT-SHAPES-STATUS-END -->
 
@@ -84,7 +83,7 @@ To build the current paper, run `latexmk -pdf oct13.tex` from `paper/`.
 
 ## Layout
 
-- `CERW/LimitShapes/`: current statements, literal common event and deterministic proofs.
+- `CERW/LimitShapes/`: current statements, common-event probability and deterministic proofs.
 - `CERW/MainTheorems.lean`: full introduction theorem restatements.
 - `CERW/Frozen/`: preserved statements for the earlier source pin.
 - `CERW/Model/`: the walk, its law, local times and ranges.

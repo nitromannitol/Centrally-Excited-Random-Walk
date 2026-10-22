@@ -44,3 +44,6 @@ and each main theorem restatement. The statement gates check the allowed closure
 #print axioms CERW.LimitShapes.ShiftedSquare.exists_squareKernel_step_bound
 #print axioms CERW.LimitShapes.KernelEvents.exists_localMartingaleBound
 #print axioms CERW.LimitShapes.KernelEvents.exists_squareMartingaleBound
+#print axioms CERW.LimitShapes.distance_crossing_bound
+#print axioms CERW.LimitShapes.exists_common_event
+#print axioms CERW.LimitShapes.contact_potential_on_common_event

@@ -1,0 +1,51 @@
+% lem-contact-common-event: oct13.tex:644-649
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}\label{lem:contact}
+There exists $C(d,\drift,\gauge,p)<\infty$ such that, on the event of Section~\ref{sec:norm-event}, for large~$n$,
+\begin{equation*}
+H\leq Cr_nq_n=C\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\geq3\end{cases}\, .
+\end{equation*}
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.contact_potential_on_common_event {d : ℕ} (hd : 2 ≤ d)
+    {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} (hΨ : CERW.IsNorm Ψ) {ε : ℝ} (hε : 0 < ε)
+    (hell : ∀ i : Fin d, ε * Ψ (CERW.coordVec i) < 1 / (d : ℝ)) (p : ℝ) (hp : 0 < p) :
+    ∃ K : CERW.LimitShapes.EventConstants,
+      0 < K.cCo ∧ 0 < K.CCo ∧ 0 < K.CLoc ∧ 0 < K.CQuad ∧
+      0 < K.CSquare ∧ 0 < K.CMart ∧ 0 < K.CCross ∧
+      ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, 2 ≤ n₀ ∧
+        ∀ ξ : Site d → EuclideanSpace ℝ (Fin d),
+          (∀ x : Site d, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)) → ξ 0 = 0 →
+        ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+          (X : ℕ → Ω → Site d), CERW.IsDriftCERW μ ε ξ X → ∀ n : ℕ, n₀ ≤ n →
+          μ (CERW.LimitShapes.section5Event Ψ ε ξ K X n)ᶜ ≤
+              ENNReal.ofReal (C * (n : ℝ) ^ (-p)) ∧
+          ∀ᵐ ω ∂μ, ω ∈ CERW.LimitShapes.section5Event Ψ ε ξ K X n →
+            ∀ y₀ : EuclideanSpace ℝ (Fin d),
+              Ψ y₀ = CERW.normInnerRadius Ψ (X · ω) n →
+              y₀ ∈ closure (CERW.cellSet (X · ω) n)ᶜ →
+              CERW.normPotential d ε Ψ (CERW.cellSet (X · ω) n) y₀ ≤
+                C * CERW.Support.Norm.ContactEvent.scale d Ψ ε n *
+                  CERW.Support.Norm.ContactEvent.contactRate d Ψ ε n
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+Fix the source parameters and $p>0$. Apply the certified common-event theorem
+\texttt{sec-common-event} to obtain seven positive constants, an exceptional
+probability coefficient $C_p$, and a deterministic threshold $n_p$.
+These constants precede the subgradient field and realization.
+Apply the deterministic contact theorem \texttt{oct13-lem-contact}
+to these constants to obtain $C_t>0$ and a threshold $n_t$.
+Choose $C=C_p+C_t$ and $n_0=\max(n_p,n_t)$.
+
+For any realization, the probability bound follows by monotonicity from
+$C_p\leq C$. The cylinder law implies almost surely that the path starts
+at zero and every increment is a unit step. On each such path in the
+literal sixfold event, apply the deterministic contact estimate. Since
+$r_n>0$ and $q_n\geq0$, increasing $C_t$ to $C$ preserves its bound.
+This proves the probability and contact assertions together, with no
+unproduced event constants or additional estimates.
+\paragraph{Lean status.}
+The registered statement is sealed by applying its proved contact-event provider.

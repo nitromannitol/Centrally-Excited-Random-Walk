@@ -20,9 +20,10 @@ field by field and applies the certified theorem. Each `comparator.json` permits
 
 The four challenges contain seven intentional statement-level `sorry` declarations,
 one per target. They are outside the default production import closure. All four
-challenges elaborate standalone; all four vocabulary comparisons pass. The three new
-solutions build. The official comparator replay for the additional pairs is pending
-CI; the earlier successful replay described below concerns `LimitShape/` only.
+challenges elaborate standalone; all four vocabulary comparisons pass. All seven
+solutions build. The official comparator replay passed for all four pairs in
+[run 39848181597](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/runs/39848181597)
+on commit `000dd42024cc335378dad65c840a577e33eda811`, including nanoda replay.
 
 `LimitShape/Challenge.lean` imports only `Mathlib`, rebuilds from scratch every definition
 needed to read the theorem — the lattice `Site d = Fin d → ℤ` and the Euclidean norm
