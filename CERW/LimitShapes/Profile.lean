@@ -143,6 +143,8 @@ theorem localFacts_of_event (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) (hεd : ε 
     refine mul_le_mul_of_nonneg_right ?_ (add_nonneg hS hL2)
     linarith
 
+/-- The local-time, inner-radius and crossing estimates give the outer-radius bound
+in each dimension. -/
 theorem outer_bound (hd : 2 ≤ d) {ε : ℝ} (hε : 0 < ε) (hεd : ε < 1 / (d : ℝ))
     (C₀ C₁ Cin Ccr : ℝ) (hCin : 0 < Cin) (hCcr : 0 < Ccr) :
     ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, ∀ (Y : ℕ → Site d) (n : ℕ), n₀ ≤ n →
