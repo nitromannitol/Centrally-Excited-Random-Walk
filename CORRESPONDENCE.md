@@ -1,6 +1,54 @@
 # Correspondence between the paper and the formalization
 
-`paper/limit-shapes.tex` is the pinned source of *Kozma's centrally excited walk converges to a Euclidean ball* (Ahmed Bou-Rabee and Yuval Peres). Each registered theorem has one declaration under `CERW/Frozen/`, with a paper label and source location. The paper writes the drift as `κ`; Lean writes it as `ε`.
+The current pinned source is `paper/oct13.tex`: *Limit shapes for centrally excited walks*
+by Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh. The current manifest
+is `ledger/oct13.yaml`; its source ranges are checked against the pinned SHA-256
+`e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617`.
+Lean citations use paper labels; source line numbers occur in the ledger and this table.
+
+<!-- LIMIT-SHAPES-SURFACE-BEGIN -->
+
+| id | Lean | paper | checked type | source coverage |
+|---|---|---|---|---|
+| `oct13-thm-shape` | `CERW.LimitShapes.limit_shape` | `oct13.tex:111-124`, `thm:shape` | SEALED | direct |
+| `oct13-thm-fluctuations` | `CERW.LimitShapes.fluctuation_rates` | `oct13.tex:135-157`, `thm:fluctuations` | SEALED | direct |
+| `oct13-thm-sharp-radii` | `CERW.LimitShapes.sharp_radii` | `oct13.tex:164-169`, `thm:sharp` | SEALED | direct |
+| `oct13-thm-sharp-radii-lil` | `CERW.LimitShapes.sharp_radii_lil` | `oct13.tex:170-175`, `thm:sharp` | SEALED | direct |
+| `oct13-thm-sharp-bulk` | `CERW.LimitShapes.sharp_bulk` | `oct13.tex:176-180`, `thm:sharp` | SEALED | direct |
+| `oct13-thm-sharp-width` | `CERW.LimitShapes.sharp_width` | `oct13.tex:181-195`, `thm:sharp` | SEALED | direct |
+| `oct13-thm-norm-shape` | `CERW.LimitShapes.norm_shape` | `oct13.tex:351-364`, `thm:norm-shape` | SEALED | direct |
+| `oct13-lem-ballpotential` | `CERW.LimitShapes.norm_ball_potential` | `oct13.tex:382-387`, `lem:ballpotential` | SEALED | direct |
+| `oct13-lem-freedman` | `CERW.LimitShapes.freedman_bound` | `oct13.tex:435-440`, `lem:freedman` | SEALED | direct |
+| `oct13-lem-cell` | `CERW.LimitShapes.cell_gradient` | `oct13.tex:456-461`, `lem:cell` | SEALED | direct |
+| `oct13-prop-coarse` | `CERW.LimitShapes.norm_coarse_bounds` | `oct13.tex:508-515`, `prop:coarse` | SEALED | direct |
+| `oct13-prop-norm-shape` | `CERW.LimitShapes.norm_shape_rates` | `oct13.tex:592-608`, `prop:norm-shape` | SEALED | direct |
+| `oct13-lem-layer` | `CERW.LimitShapes.layer_potential` | `oct13.tex:493-498`, `lem:layer` | SEALED | direct |
+| `oct13-prop-inner` | `CERW.LimitShapes.inner_radius` | `oct13.tex:696-712`, `prop:inner` | SEALED | direct |
+| `oct13-prop-stronger-outer` | `CERW.LimitShapes.outer_radius` | `oct13.tex:758-763`, `prop:stronger-outer` | SEALED | direct |
+| `oct13-lem-near-far` | `CERW.LimitShapes.near_far` | `oct13.tex:807-812`, `lem:near-far` | SEALED | direct |
+| `oct13-thm-moment-fluctuations` | `CERW.LimitShapes.moment_fluctuations` | `oct13.tex:865-886`, `thm:moment-fluctuations` | SEALED | direct |
+| `oct13-lem-fixed-site-centering` | `CERW.LimitShapes.fixed_site_centering` | `oct13.tex:909-915`, `lem:fixed-site-centering` | SEALED | direct |
+| `oct13-thm-site-fluctuations` | `CERW.LimitShapes.site_fluctuations` | `oct13.tex:936-961`, `thm:site-fluctuations` | SEALED | direct |
+| `oct13-lem-exp-deviation` | `CERW.LimitShapes.exp_deviation` | `oct13.tex:988-1002`, `lem:exp-deviation` | SEALED | direct |
+| `oct13-prop-bulk-profile` | `CERW.LimitShapes.bulk_profile` | `oct13.tex:1054-1061`, `prop:bulk-profile` | SEALED | direct |
+| `oct13-prop-log-lower` | `CERW.LimitShapes.log_lower_bounds` | `oct13.tex:1125-1139`, `prop:log-lower` | SEALED | direct |
+| `oct13-lem-local` | `CERW.LimitShapes.norm_local_time_potential` | `oct13.tex:397-402`, `lem:local` | SEALED | direct |
+| `oct13-lem-contact` | `CERW.LimitShapes.contact_potential` | `oct13.tex:644-649`, `lem:contact` | SEALED | conditional on event constants |
+| `oct13-lem-separated-brackets` | `CERW.LimitShapes.separated_brackets` | `oct13.tex:1084-1091`, `lem:separated-brackets` | SEALED | conditional on event constants |
+
+<!-- LIMIT-SHAPES-SURFACE-END -->
+
+`SEALED` records a checked proof of the exact registered Lean type. For the two rows
+marked conditional, that type is the deterministic implication on the new common
+event with fixed constants. The common-event probability producer is still required
+to recover the source's constant dependence on `d, ε, Ψ, p`; for separated brackets
+it is required at `p = 10`. These rows do not assert that missing source closure.
+
+The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
+a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256
+`0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396` and the separate
+`ledger/manifest.yaml`. The table and conventions below describe its preserved
+`CERW/Frozen/` declarations. The drift is `κ` in the papers and `ε` in Lean.
 
 The bytes strictly between `FROZEN-STATEMENT-BEGIN` and
 `FROZEN-STATEMENT-END`, with one leading newline dropped and the trailing

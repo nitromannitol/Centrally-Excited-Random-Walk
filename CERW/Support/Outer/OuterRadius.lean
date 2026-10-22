@@ -92,6 +92,25 @@ private structure PathFacts (d : ℕ) (ε C₀ C₁ : ℝ) (Y : ℕ → Site d) 
   vec : ∀ s t : ℕ, s < t → t ≤ n →
     ‖compPath d ε Y t - compPath d ε Y s‖ ≤ C₁ * Real.sqrt (((t : ℝ) - s) * Real.log ((n : ℝ) + 2))
 
+/-- The local-time inputs to the outer-radius and profile estimates. The crossing estimate
+is supplied separately, so these inputs do not include the vector martingale bound. -/
+private structure LocalPathFacts (d : ℕ) (ε C₀ C₁ : ℝ) (Y : ℕ → Site d) (n : ℕ) : Prop where
+  start : Y 0 = 0
+  step : ∀ j, Y (j + 1) - Y j ∈ unitSteps d
+  maxLoc : (maxLocalTime Y n : ℝ) ≤ C₀ * (n : ℝ) ^ ((1 : ℝ) / (d + 1))
+  maxRad : maxRadius Y n ≤ C₀ * (n : ℝ) ^ ((1 : ℝ) / (d + 1))
+  glob : ∀ y : EuclideanSpace ℝ (Fin d), ‖y‖ ≤ 2 * n →
+    |cellLocalTime Y n y - potential d ε (cellSet Y n) y| ≤ C₁ *
+      (if d = 2 then Real.sqrt (maxLocalTime Y n) * Real.log ((n : ℝ) + 2) + Real.log ((n : ℝ) + 2)
+        else Real.sqrt (maxLocalTime Y n * Real.log ((n : ℝ) + 2)) + Real.log ((n : ℝ) + 2))
+  point : ∀ x : Site d, euclidNorm x ≤ 3 * n →
+    |(localTime Y n x : ℝ) - potential d ε (cellSet Y n) (toSpace x)| ≤
+      C₁ * (Real.sqrt (braSum Y n x * Real.log ((n : ℝ) + 2)) + Real.log ((n : ℝ) + 2))
+
+private instance {ε C₀ C₁ : ℝ} {Y : ℕ → Site d} {n : ℕ} :
+    Coe (PathFacts d ε C₀ C₁ Y n) (LocalPathFacts d ε C₀ C₁ Y n) where
+  coe h := ⟨h.start, h.step, h.maxLoc, h.maxRad, h.glob, h.point⟩
+
 /-- The clauses of Proposition 6.1 for a path. -/
 private def InnerOK (d : ℕ) (ε C : ℝ) (Y : ℕ → Site d) (n : ℕ) : Prop :=
   |innerRadius Y n - radius d ε n| ≤ C * radius d ε n * qrate d ε n ∧
@@ -2947,7 +2966,7 @@ the inner ball is at most `C ((Θ w^{d-1})^{1/d} + Θ)`. -/
 private theorem high_exterior (hd : 3 ≤ d) (hN : NewtonConv d) (hnear : near_far) {ε : ℝ}
     (hε : 0 < ε) (hεd : ε < 1 / (d : ℝ)) (C₀ C₁ Cin Cm : ℝ) :
     ∃ K : ℝ, 0 < K ∧ ∃ n₀ : ℕ, ∀ (Y : ℕ → Site d) (n : ℕ), n₀ ≤ n →
-      PathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n → MassOK d ε Cm Y n →
+      LocalPathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n → MassOK d ε Cm Y n →
       maxRadius Y n - innerRadius Y n + 2 * Real.sqrt d ≤ radius d ε n / 8 →
       ∃ Θ : ℝ, Real.log n ≤ Θ ∧
         Θ ≤ K * ((maxRadius Y n - innerRadius Y n + 2 * Real.sqrt d) ^ 2 / radius d ε n +
@@ -3431,7 +3450,7 @@ private lemma pl_split {ε : ℝ} (Y : ℕ → Site 2) (n : ℕ) {b : ℝ} (hb :
 is `O(r)`, so `|ℓ_n(x) - U_{D_n}(x)| ≤ K √(r lg)` for `b ≤ |x| ≤ 3n`. -/
 private lemma pl_first {ε : ℝ} (hε : 0 < ε) (C₀ C₁ : ℝ) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ (Y : ℕ → Site 2) (n : ℕ) (b r lg σ θ Ci : ℝ),
-      PathFacts 2 ε C₀ C₁ Y n → 0 < r → 0 ≤ Ci → 0 ≤ σ → σ ≤ 1 → σ * lg ≤ θ →
+      LocalPathFacts 2 ε C₀ C₁ Y n → 0 < r → 0 ≤ Ci → 0 ≤ σ → σ ≤ 1 → σ * lg ≤ θ →
       2 * Ci * (4 * ε + 1) * θ ≤ 1 → 16 ≤ (n : ℝ) → r ≤ n / 8 → 4 ≤ r →
       maxRadius Y n ≤ 3 * r / 2 → Real.log n = lg → lg ≤ Real.sqrt (r * lg) →
       Real.sqrt (r * lg) = r * σ ^ 2 → |b - r| ≤ Ci * Real.sqrt (r * lg) →
@@ -3660,7 +3679,7 @@ positive potential of `E` in the annulus is at most `C ((r log n)^{1/4} √w + �
 private theorem planar_exterior (hd : d = 2) (hnear : near_far) {ε : ℝ} (hε : 0 < ε)
     (hεd : ε < 1 / (d : ℝ)) (C₀ C₁ Cin Cm : ℝ) :
     ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, ∀ (Y : ℕ → Site d) (n : ℕ), n₀ ≤ n →
-      PathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n → MassOK d ε Cm Y n →
+      LocalPathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n → MassOK d ε Cm Y n →
       maxRadius Y n - innerRadius Y n + 2 * Real.sqrt d ≤ radius d ε n / Real.log n →
       (∀ x : Site d, innerRadius Y n ≤ euclidNorm x → euclidNorm x ≤ 3 * n →
         |(localTime Y n x : ℝ) - potential d ε (cellSet Y n \
@@ -4752,7 +4771,7 @@ private theorem outer_core_high (hd : 3 ≤ d) (hN : NewtonConv d) (hnear : near
     (hε : 0 < ε) (hεd : ε < 1 / (d : ℝ)) (C₀ C₁ Cin Ccr : ℝ) (hCin : 0 < Cin)
     (hCcr : 0 < Ccr) :
     ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, ∀ (Y : ℕ → Site d) (n : ℕ), n₀ ≤ n →
-      PathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n → CrossOK d Ccr Y n →
+      LocalPathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n → CrossOK d Ccr Y n →
       maxRadius Y n ≤ radius d ε n + C * Real.log n ^ ((d : ℝ) + 1) := by
   have hd2 : 2 ≤ d := by omega
   have hd1 : 1 ≤ d := by omega
@@ -4974,7 +4993,7 @@ private theorem outer_core_planar (hd : d = 2) (hnear : near_far) {ε : ℝ}
     (hε : 0 < ε) (hεd : ε < 1 / (d : ℝ)) (C₀ C₁ Cin Ccr : ℝ) (hCin : 0 < Cin)
     (hCcr : 0 < Ccr) :
     ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, ∀ (Y : ℕ → Site d) (n : ℕ), n₀ ≤ n →
-      PathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n → CrossOK d Ccr Y n →
+      LocalPathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n → CrossOK d Ccr Y n →
       maxRadius Y n ≤
         radius d ε n + C * (Real.sqrt (radius d ε n) * Real.log n ^ ((5 : ℝ) / 2)) := by
   have hd2 : 2 ≤ d := by omega
@@ -5124,7 +5143,7 @@ private theorem local_core_high (hd : 3 ≤ d) {ε : ℝ} (hε : 0 < ε)
     (C₀ C₁ Cin Cout : ℝ) (hC₀ : 0 < C₀) (hC₁ : 0 < C₁)
     (hCin : 0 < Cin) :
     ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, ∀ (Y : ℕ → Site d) (n : ℕ), n₀ ≤ n →
-      PathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n →
+      LocalPathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n →
       maxRadius Y n ≤ radius d ε n + Cout * Real.log n ^ ((d : ℝ) + 1) →
       ∀ x : Site d, |(localTime Y n x : ℝ) - 2 * d * ε * max (radius d ε n - euclidNorm x) 0| ≤
         C * Real.sqrt (radius d ε n * Real.log n) := by
@@ -5494,7 +5513,7 @@ private theorem local_core_planar (hd : d = 2) (hnear : near_far) {ε : ℝ} (h�
     (hεd : ε < 1 / (d : ℝ)) (C₀ C₁ Cin Cout : ℝ) (hC₀ : 0 < C₀) (hC₁ : 0 < C₁)
     (hCin : 0 < Cin) :
     ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, ∀ (Y : ℕ → Site d) (n : ℕ), n₀ ≤ n →
-      PathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n →
+      LocalPathFacts d ε C₀ C₁ Y n → InnerOK d ε Cin Y n →
       maxRadius Y n ≤
         radius d ε n + Cout * (Real.sqrt (radius d ε n) * Real.log n ^ ((5 : ℝ) / 2)) →
       ∀ x : Site d, |(localTime Y n x : ℝ) - 2 * d * ε * max (radius d ε n - euclidNorm x) 0| ≤

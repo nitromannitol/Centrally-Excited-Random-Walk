@@ -1,0 +1,69 @@
+% oct13-lem-separated-brackets: oct13.tex:1084-1091 (label lem:separated-brackets)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}\label{lem:separated-brackets}
+Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. There exist $0<c_0(d,\drift)\leq C_0(d,\drift)$ and $C(d,\drift)<\infty$ such that, for all sufficiently large~$n$, on~$\Omega_n$, for $1\leq i\leq m$ and $1\leq j\leq m$ with $j\neq i$,
+\begin{equation*}
+c_0\leq\langle S^i\rangle_n\leq C_0
+\qquad\text{and}\qquad
+|\langle S^i,S^j\rangle_n|\leq Cr_n^{-\nf14}\, .
+\end{equation*}
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.separated_brackets {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    let e₁ : Site d := LatticeProb.unit ⟨0, by omega⟩
+    let g : Site d → ℝ := CERW.latticeKernel d
+    let σ : ℕ → ℝ := fun n =>
+      if d = 2 then Real.sqrt (r n * Real.log (r n)) else Real.sqrt (r n)
+    let k : ℕ → ℕ := fun n => ⌊r n ^ ((1 : ℝ) / 8)⌋₊
+    let m : ℕ → ℕ := fun n => ⌊r n ^ ((1 : ℝ) / 8)⌋₊
+    let y : ℕ → ℕ → Site d := fun n i => ((i * ⌈r n ^ ((1 : ℝ) / 4)⌉₊ : ℕ) : ℤ) • e₁
+    let f : ℕ → ℕ → Site d → ℝ := fun n i z =>
+      if d = 2 then g (z - (y n i + (k n : ℤ) • e₁)) - g (z - y n i) else g (z - y n i)
+    ∀ K : CERW.LimitShapes.EventConstants,
+      0 < K.cCo → 0 ≤ K.CCo → 0 ≤ K.CLoc → 0 ≤ K.CQuad → 0 ≤ K.CMart → 0 < K.CCross →
+    ∃ c₀ C₀ C : ℝ, 0 < c₀ ∧ c₀ ≤ C₀ ∧ 0 < C ∧ ∃ n₀ : ℕ,
+      ∀ ξ : Site d → EuclideanSpace ℝ (Fin d),
+        (∀ x : Site d, x ≠ 0 →
+          CERW.IsSubgradient (fun v : EuclideanSpace ℝ (Fin d) => ‖v‖) (CERW.toSpace x) (ξ x)) →
+        ξ 0 = 0 → ∀ (X : ℕ → Site d) (n : ℕ), n₀ ≤ n →
+        CERW.Support.Norm.ContactEvent.PathTyping d X →
+        CERW.LimitShapes.EventEstimates (fun v : EuclideanSpace ℝ (Fin d) => ‖v‖) ε ξ K X n →
+        ∀ i j : ℕ, 1 ≤ i → i ≤ m n → 1 ≤ j → j ≤ m n →
+            let B : ℝ := CERW.dynkinBracket (CERW.stepProb d ε) (f n i) (f n j) X n /
+              σ n ^ 2
+            (i = j → c₀ ≤ B ∧ B ≤ C₀) ∧ (i ≠ j → |B| ≤ C * r n ^ (-(1 : ℝ) / 4))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+Fix the event constants in the registered type and specialize the norm to
+the Euclidean norm. On a legal path satisfying the event, the coarse upper
+radius bound places the whole path strictly inside the stopping radius.
+Thus the stopped quadratic process equals the quadratic martingale.
+The coarse lower radius bound converts its error estimate to the quadratic
+input with constant $K.\mathrm{CQuad}/K.\mathrm{cCo}$.
+The contact implication (node \texttt{oct13-lem-contact}), the coarse bounds
+and the reduced local approximation give the deterministic inner estimate
+through \texttt{InnerApproximation.lean}.
+
+The actual-bracket local martingale estimate gives the weighted pointwise
+estimate as in the contact proof. The distance crossing constituent gives
+the Euclidean crossing bound: for each level $b\geq0$, apply the inequality
+to a point of maximum radius and use that its radius minus $b$ is at most
+its distance to the closed ball. These inputs, the inner estimate, and the existing
+outer-radius and local-profile arguments give a uniform profile error
+$C\sqrt{r_n}(\log n)^{3/2}$; the higher-dimensional bound is stronger.
+Apply the proved deterministic bracket calculation
+\texttt{brackets\_core} in \texttt{CERW/Support/Lower/SeparatedBrackets.lean} to this profile.
+Its specified translated kernels, spacing, normalization $\sigma_n^2$,
+diagonal bounds and off-diagonal error are exactly those in the registered
+conclusion. All time thresholds and constants are chosen before the field
+and path, so taking their maximum gives the required uniform threshold.
+
+Producing the common-event constants at $p=10$ remains open. This proof
+establishes the deterministic implication, not that missing probability
+assertion or its specialization of the constant dependence.

@@ -1,0 +1,46 @@
+% oct13-lem-contact: oct13.tex:644-649 (label lem:contact)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}\label{lem:contact}
+There exists $C(d,\drift,\gauge,p)<\infty$ such that, on the event of Section~\ref{sec:norm-event}, for large~$n$,
+\begin{equation*}
+H\leq Cr_nq_n=C\begin{cases}\sqrt{r_n\log n},&d=2,\\\log n,&d\geq3\end{cases}\, .
+\end{equation*}
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.contact_potential {d : ℕ} (hd : 2 ≤ d) :
+    ∀ Ψ : EuclideanSpace ℝ (Fin d) → ℝ, CERW.IsNorm Ψ →
+    ∀ ε : ℝ, 0 < ε → (∀ i : Fin d, ε * Ψ (CERW.coordVec i) < 1 / (d : ℝ)) →
+    ∀ K : CERW.LimitShapes.EventConstants, 0 ≤ K.CCo → 0 ≤ K.CLoc → 0 ≤ K.CMart →
+    ∃ C : ℝ, 0 < C ∧ ∃ n₀ : ℕ, 2 ≤ n₀ ∧
+      ∀ ξ : Site d → EuclideanSpace ℝ (Fin d),
+        (∀ x : Site d, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)) → ξ 0 = 0 →
+      ∀ (X : ℕ → Site d) (n : ℕ), n₀ ≤ n →
+        CERW.Support.Norm.ContactEvent.PathTyping d X →
+        CERW.LimitShapes.EventEstimates Ψ ε ξ K X n →
+        ∀ y₀ : EuclideanSpace ℝ (Fin d), Ψ y₀ = CERW.normInnerRadius Ψ X n →
+          y₀ ∈ closure (CERW.cellSet X n)ᶜ →
+          CERW.normPotential d ε Ψ (CERW.cellSet X n) y₀ ≤
+            C * CERW.Support.Norm.ContactEvent.scale d Ψ ε n *
+              CERW.Support.Norm.ContactEvent.contactRate d Ψ ε n
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+Fix the norm, drift and nonnegative event constants in the registered type.
+The kernel gradient estimate bounds the actual predictable bracket of the
+translated kernel by $C_g^2$ times its occupation-weighted sum; subtracting
+the square of the conditional mean can only decrease this bracket.
+Consequently the local actual-bracket constituent implies the weighted local
+martingale estimate, with constant $K.\mathrm{CMart}(C_g+1)$.
+The coarse constituent and the reduced local approximation are the other
+inputs of the proved deterministic convolution estimate in
+\texttt{ContactApproximation.lean}. Apply that estimate with these constants.
+It yields a positive contact constant and a time threshold independent of
+the subgradient field, path and contact point. Enlarge the threshold to at
+least two and take the indicated three constituents of the sixfold event.
+This proves the registered deterministic implication at every contact point.
+
+This proof does not produce the event constants as functions of
+$d,\kappa,\Psi,p$. The source's common-event probability assertion remains open,
+so this node has conditional source coverage.

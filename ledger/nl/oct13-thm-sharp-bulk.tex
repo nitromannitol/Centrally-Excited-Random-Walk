@@ -1,0 +1,32 @@
+% oct13-thm-sharp-bulk: oct13.tex:176-180 (label thm:sharp, part (iii))
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\item \underline{\emph{Local times near the origin}}: there exists $c(d,\drift)>0$ such that, for all sufficiently large~$n$, with probability at least $1-n^{-c}$,
+\begin{equation}\label{eq:sharp-bulk}
+\max_{\substack{x\in\Z^d\\|x|\leq r_n^{\nf12}}}\bigl|\ell_n(x)-2d\drift(r_n-|x|)\bigr|
+\geq c\begin{cases}\sqrt{r_n}\log n,&d=2,\\\sqrt{r_n\log n},&d\geq3\end{cases}\, .
+\end{equation}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.sharp_bulk {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∃ c : ℝ, 0 < c ∧ ∃ n₀ : ℕ,
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, n₀ ≤ n →
+        μ {ω | ¬ ∃ x : Site d, euclidNorm x ≤ Real.sqrt (r n) ∧
+            c * (if d = 2 then Real.sqrt (r n) * Real.log n else Real.sqrt (r n * Real.log n))
+              ≤ |(CERW.localTime (X · ω) n x : ℝ) - 2 * d * ε * (r n - euclidNorm x)|}
+          ≤ ENNReal.ofReal ((n : ℝ) ^ (-c))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.sharp\_bulk}
+(node \texttt{thm-sharp-bulk} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/thm-sharp-bulk.tex}; no new argument or premise is needed.

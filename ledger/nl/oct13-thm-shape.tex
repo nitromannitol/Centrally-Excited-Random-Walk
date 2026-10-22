@@ -1,0 +1,45 @@
+% oct13-thm-shape: oct13.tex:111-124 (label thm:shape)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{theorem}[Limit shape]\label{thm:shape}
+Let $d\geq2$ and $0<\drift< \frac1d$. Then, almost surely, the centrally excited random walk has the following properties.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \underline{\emph{Shape}}: for every $0<\eta<1$ and all sufficiently large~$n$,
+\begin{equation*}
+\{x\in\Z^d:|x|<(1-\eta)r_n\}\subset A_n\subset\{x\in\Z^d:|x|<(1+\eta)r_n\}\, .
+\end{equation*}
+\item \underline{\emph{Local times}}: as $n\to\infty$,
+\begin{equation*}
+\frac1{r_n}\max_{x\in\Z^d}\bigl|\ell_n(x)-2d\drift(r_n-|x|)_+\bigr|\longrightarrow0\, .
+\end{equation*}
+\item \underline{\emph{Recurrence}}: the walk visits every site of~$\Z^d$ infinitely often.
+\end{enumerate}
+\end{theorem}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.limit_shape {d : ℕ} (hd : 2 ≤ d)
+    {ε : ℝ} (hε : 0 < ε) (hεd : ε < 1 / (d : ℝ))
+    {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (X : ℕ → Ω → Site d) (hX : CERW.IsCERW μ ε X) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∀ᵐ ω ∂μ,
+      (∀ η : ℝ, 0 < η → η < 1 → ∀ᶠ n : ℕ in atTop,
+        {x : Site d | euclidNorm x < (1 - η) * r n} ⊆ ↑(CERW.departureRange (X · ω) n) ∧
+        (↑(CERW.departureRange (X · ω) n) : Set (Site d)) ⊆
+          {x | euclidNorm x < (1 + η) * r n}) ∧
+      (∀ η : ℝ, 0 < η → ∀ᶠ n : ℕ in atTop, ∀ x : Site d,
+        |(CERW.localTime (X · ω) n x : ℝ) - 2 * d * ε * max (r n - euclidNorm x) 0|
+          ≤ η * r n) ∧
+      (∀ x : Site d, ∃ᶠ j in atTop, X j ω = x)
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.limit\_shape}
+(node \texttt{thm-shape} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/thm-shape.tex}; no new argument or premise is needed.

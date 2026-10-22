@@ -1,0 +1,14 @@
+{
+  "challenge_module": "CERWAudit.NormShape.Challenge",
+  "solution_module": "CERWAudit.NormShape.Solution",
+  "theorem_names": [
+    "CERW.StatementAudit.NormShape.norm_shape"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

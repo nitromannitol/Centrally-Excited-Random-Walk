@@ -5,19 +5,35 @@
 
 A Lean 4 formalization of
 
-> Ahmed Bou-Rabee and Yuval Peres,
-> *Kozma's centrally excited walk converges to a Euclidean ball*.
+> Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh,
+> *Limit shapes for centrally excited walks*.
 
-[Paper (PDF)](paper/limit-shapes.pdf) · [LaTeX source](paper/limit-shapes.tex) · [Bibliography](paper/references.bib)
+[LaTeX source](paper/oct13.tex) · [Bibliography](paper/references.bib)
 
-Every labeled theorem, lemma, proposition and corollary of the paper is formalized.
-The 27 registered Lean statements cover its 24 labeled theorem-like environments;
-Theorem 1.3 is split into four parts. The development proves the Euclidean and norm
-limit shapes, the local-time profiles, the fluctuation bounds and their sharpness.
-The martingale central limit theorem and Stout's law of the iterated logarithm used
-in the proofs are also formalized.
+The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml). Its 22 labeled
+results have 25 compiled declarations in `CERW.LimitShapes`, with the four parts of
+`thm:sharp` registered separately. The unchanged statements reuse the existing proofs;
+`lem:local` retains only the local-time approximation.
 
-The library contains no `sorry`. Every registered proof uses only the standard axioms
+The redefined event of Section 5.1 is stated literally in
+[CERW/LimitShapes/Event.lean](CERW/LimitShapes/Event.lean). The contact and separated-bracket
+estimates are proved deterministically on this event for fixed event constants.
+**The simultaneous probability bound producing those constants remains open.** Until
+that bound is proved, these two source results have conditional coverage.
+
+<!-- LIMIT-SHAPES-STATUS-BEGIN -->
+
+**25 checked declarations on 22 paper labels: 23 with direct source coverage; 2 deterministic common-event implications.** The common-event probability bound and its uniform constants remain open.
+
+<!-- LIMIT-SHAPES-STATUS-END -->
+
+The earlier two-author manuscript,
+[*Kozma's centrally excited walk converges to a Euclidean ball*](paper/limit-shapes.tex),
+remains pinned in [ledger/manifest.yaml](ledger/manifest.yaml), with all 27 registered
+statements proved. Its frozen declarations and manuscript are preserved. The following
+legacy tally refers to that manifest.
+
+The production library contains no `sorry`. Every registered proof uses only
 `propext`, `Classical.choice` and `Quot.sound`. The formalization builds on
 [Mathlib](https://github.com/leanprover-community/mathlib4) and
 [Lattice-Probability](https://github.com/nitromannitol/Lattice-Probability).
@@ -33,11 +49,13 @@ Status: **27 registered statements — 27 proved.**  The 27 proved statements ar
 
 - [Paper-to-Lean correspondence](CORRESPONDENCE.md)
 - [Proofs and formalization conventions](PROOF.md)
-- [Build and axiom certificate](CERTIFICATE.md)
+- [Current build and axiom certificate](CERTIFICATE-LIMIT-SHAPES.md)
+- [Earlier build and axiom certificate](CERTIFICATE.md)
 - [Independent statement comparison](CERWAudit/README.md)
 
-The statement comparison restates the limit shape theorem using only Mathlib.
-Its challenge contains one intentional `sorry`; the solution proves that statement.
+The independent comparison restates the introduction headline theorems using only
+Mathlib: limit shape, fluctuations, sharpness and norm shape. Each challenge target
+has an intentional statement-level `sorry`; the solutions prove all seven targets.
 
 ## Build
 
@@ -59,13 +77,16 @@ python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install ./tools/leanform
 python -m leanform_tools.verify .
+python tools/verify_oct13.py
 ```
 
-To build the paper, run `latexmk -pdf limit-shapes.tex` from `paper/`.
+To build the current paper, run `latexmk -pdf oct13.tex` from `paper/`.
 
 ## Layout
 
-- `CERW/Frozen/`: statements corresponding to the paper's labels.
+- `CERW/LimitShapes/`: current statements, literal common event and deterministic proofs.
+- `CERW/MainTheorems.lean`: full introduction theorem restatements.
+- `CERW/Frozen/`: preserved statements for the earlier source pin.
 - `CERW/Model/`: the walk, its law, local times and ranges.
 - `CERW/Support/`: proofs of the paper's results.
 - `CERW/Generic/`: general mathematical results used in the proofs.
@@ -75,6 +96,6 @@ To build the paper, run `latexmk -pdf limit-shapes.tex` from `paper/`.
 
 ## Citation and license
 
-The formalization is by Ahmed Bou-Rabee and Yuval Peres.
+The current paper is by Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh.
 Citation metadata is in [CITATION.cff](CITATION.cff).
 The code is licensed under [Apache 2.0](LICENSE).

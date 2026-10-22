@@ -1,0 +1,14 @@
+{
+  "challenge_module": "CERWAudit.FluctuationRates.Challenge",
+  "solution_module": "CERWAudit.FluctuationRates.Solution",
+  "theorem_names": [
+    "CERW.StatementAudit.FluctuationRates.fluctuation_rates"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

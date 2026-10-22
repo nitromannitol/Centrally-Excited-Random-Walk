@@ -1,12 +1,28 @@
 # CERWAudit Comparator Surface
 
-This directory contains a Mathlib-only comparator challenge for the limit shape theorem
-(`thm:shape`, `paper/limit-shapes.tex:106-119`), the headline result of the formalization of
-*Kozma's centrally excited walk converges to a Euclidean ball* (Ahmed Bou-Rabee and Yuval Peres).
+This directory contains Mathlib-only comparator challenges for the introduction of
+*Limit shapes for centrally excited walks* (Ahmed Bou-Rabee, Tuan-Minh Nguyen,
+Yuval Peres and Arvind Singh), pinned at `paper/oct13.tex`.
 
-| Directory | Checked theorem |
-| --- | --- |
-| `LimitShape/` | `CERW.StatementAudit.LimitShape.limit_shape` |
+| Directory | Paper label | Challenge targets |
+| --- | --- | --- |
+| `LimitShape/` | `thm:shape` | `limit_shape` |
+| `FluctuationRates/` | `thm:fluctuations` | `fluctuation_rates` |
+| `Sharpness/` | `thm:sharp` | `sharp_radii`, `sharp_radii_lil`, `sharp_bulk`, `sharp_width` |
+| `NormShape/` | `thm:norm-shape` | `norm_shape` |
+
+The `thm:shape` block is textually unchanged from the earlier two-author source
+`paper/limit-shapes.tex`, so its existing comparator is reused. Every other pair copies
+its statement vocabulary into both `Challenge.lean` and `SolutionBasic.lean`, importing
+only Mathlib there. The corresponding `Solution.lean` translates the law predicates
+field by field and applies the certified theorem. Each `comparator.json` permits only
+`propext`, `Classical.choice` and `Quot.sound`, with nanoda replay enabled.
+
+The four challenges contain seven intentional statement-level `sorry` declarations,
+one per target. They are outside the default production import closure. All four
+challenges elaborate standalone; all four vocabulary comparisons pass. The three new
+solutions build. The official comparator replay for the additional pairs is pending
+CI; the earlier successful replay described below concerns `LimitShape/` only.
 
 `LimitShape/Challenge.lean` imports only `Mathlib`, rebuilds from scratch every definition
 needed to read the theorem — the lattice `Site d = Fin d → ℤ` and the Euclidean norm
@@ -64,7 +80,7 @@ bash CERWAudit/check_standalone.sh CERWAudit/LimitShape/Challenge.lean
 bash CERWAudit/check_standalone.sh --vocabulary   # Challenge vs SolutionBasic
 ```
 
-with expected outcome `rc=0` and exactly one `declaration uses 'sorry'` warning.  The solution
+with expected outcome `rc=0` and one intentional warning per target (four in `Sharpness/`).  The solution
 builds with `lake build CERWAudit`.  Then, with `leanprover/comparator`, `lean4export` (at
 the toolchain's tag) and `landrun` built at the pins below, from the repository root:
 

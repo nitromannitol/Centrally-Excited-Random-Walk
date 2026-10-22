@@ -1,0 +1,32 @@
+% oct13-lem-cell: oct13.tex:456-461 (label lem:cell)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}\label{lem:cell}
+There exists $C(d)<\infty$ such that, for every $x\in\Z^d$,
+\begin{equation*}
+\int_{C_x}|\nabla \gauge(v)-\xi(x)|\dd v\leq C\mu\bigl(B(x,6\sqrt d)\bigr)\, .
+\end{equation*}
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.cell_gradient {d : ℕ} (hd : 2 ≤ d) :
+    ∃ C : ℝ, 0 < C ∧
+      ∀ Ψ : EuclideanSpace ℝ (Fin d) → ℝ, CERW.IsNorm Ψ →
+      ∀ ξ : Site d → EuclideanSpace ℝ (Fin d),
+        (∀ x : Site d, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)) → ξ 0 = 0 →
+      ∀ m : Measure (EuclideanSpace ℝ (Fin d)), IsLocallyFiniteMeasure m →
+        CERW.IsDistribLaplacian Ψ m →
+      ∀ x : Site d,
+        ENNReal.ofReal (∫ v in CERW.cell x, ‖gradient Ψ v - ξ x‖)
+          ≤ ENNReal.ofReal C * m (Metric.ball (CERW.toSpace x) (6 * Real.sqrt d))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.cell\_gradient}
+(node \texttt{lem-cell} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/lem-cell.tex}; no new argument or premise is needed.

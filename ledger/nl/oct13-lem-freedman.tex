@@ -1,0 +1,31 @@
+% oct13-lem-freedman: oct13.tex:435-440 (label lem:freedman)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}\label{lem:freedman}
+Let $p>0$. There exists $C(p)<\infty$ such that the following holds for every integer~$n\geq2$ and every real martingale~$Z$ whose increments have absolute value at most~$1$: with probability at least $1-Cn^{-p}$,
+\begin{equation}\label{eq:freedman}
+|Z_n-Z_0|\leq C\bigl(\sqrt{\langle Z\rangle_n\log n}+\log n\bigr)\, .
+\end{equation}
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.freedman_bound :
+    ∀ p : ℝ, 0 < p → ∃ C : ℝ, 0 < C ∧
+      ∀ n : ℕ, 2 ≤ n →
+      ∀ {Ω : Type u} [m0 : MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (ℱ : Filtration ℕ m0) (Z : ℕ → Ω → ℝ), Martingale Z ℱ μ →
+        (∀ᵐ ω ∂μ, ∀ t, |Z (t + 1) ω - Z t ω| ≤ 1) →
+        μ {ω | ¬ |Z n ω - Z 0 ω|
+            ≤ C * (Real.sqrt (CERW.predBracket μ ℱ Z Z n ω * Real.log n) + Real.log n)}
+          ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.freedman\_bound}
+(node \texttt{lem-freedman} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/lem-freedman.tex}; no new argument or premise is needed.

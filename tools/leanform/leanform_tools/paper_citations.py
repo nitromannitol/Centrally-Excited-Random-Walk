@@ -45,7 +45,7 @@ import sys
 
 from .config import ConfigError, RepoConfig, load
 from .gate import Result, run
-from .paper_anchors import span_of_label
+from .paper_anchors import extract_label, span_of_label
 
 # A frozen file opens with a header docstring naming the paper statement it
 # transcribes: its LaTeX label and its line range. Three wordings are in use
@@ -80,11 +80,41 @@ def _is_frozen_header(path, frozen_dir) -> bool:
     return True
 
 
+def check_label_citations(res: Result, cfg: RepoConfig, lines: list[str]) -> None:
+    """Check label-only Lean citations while the manifest retains line ranges."""
+    res.total = len(cfg.nodes)
+    for node in cfg.nodes:
+        res.count()
+        label = extract_label(node.source or "")
+        if not label:
+            res.fail(f"{node.id}: no paper label in source")
+            continue
+        try:
+            span_of_label(lines, label)
+        except LookupError as exc:
+            res.fail(f"{node.id}: unresolved paper label {label}: {exc}")
+            continue
+        if not node.file or not (cfg.root / node.file).exists():
+            res.fail(f"{node.id}: missing Lean source")
+            continue
+        text = (cfg.root / node.file).read_text(encoding="utf-8")
+        if not re.search(rf"(?<![\w:-]){re.escape(label)}(?![\w:-])", text):
+            res.fail(f"{node.id}: {node.file} does not cite {label}")
+    for path in cfg.production_lean_files():
+        text = path.read_text(encoding="utf-8")
+        if cfg.cite_re.search(text):
+            res.fail(f"{path.relative_to(cfg.root)}: line-number citation under label-only policy")
+    res.note("Lean labels resolved against the pinned paper; line ranges remain in the manifest")
+
+
 def check(res: Result, cfg: RepoConfig, fix: bool = False,
           list_unanchored: bool = False) -> None:
     if not cfg.paper_path.exists():
         raise ConfigError(f"paper not found at {cfg.paper_path}")
     lines = cfg.paper_path.read_text(encoding="utf-8").splitlines()
+    if cfg.raw.get("citation_style") == "labels":
+        check_label_citations(res, cfg, lines)
+        return
 
     # The range a frozen file's header should cite is the one the manifest
     # records for its node, not necessarily the whole environment the label

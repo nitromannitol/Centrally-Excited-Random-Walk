@@ -1,0 +1,35 @@
+% oct13-thm-sharp-radii: oct13.tex:164-169 (label thm:sharp, part (i))
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\item \underline{\emph{Radii in the plane}}: let $d=2$. For every $p>0$ there exists $c(\drift,p)>0$ such that, for all sufficiently large~$n$,
+\begin{equation}\label{eq:planar-polynomial-lower}
+\P\bigl(r_n-\Rin(n)\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}
+\qquad\text{and}\qquad
+\P\bigl(\Rout(n)-r_n\geq c\sqrt{r_n\log n}\bigr)\geq n^{-p}\, .
+\end{equation}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.sharp_radii {d : ℕ} (hd : d = 2) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∀ p : ℝ, 0 < p → ∃ c : ℝ, 0 < c ∧ ∃ n₀ : ℕ,
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, n₀ ≤ n →
+        let Ein : Set Ω :=
+          {ω | c * Real.sqrt (r n * Real.log n) ≤ r n - CERW.innerRadius (X · ω) n}
+        let Eout : Set Ω :=
+          {ω | c * Real.sqrt (r n * Real.log n) ≤ CERW.maxRadius (X · ω) n - r n}
+        MeasurableSet Ein ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ Ein ∧
+          MeasurableSet Eout ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ Eout
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.sharp\_radii}
+(node \texttt{thm-sharp-radii} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/thm-sharp-radii.tex}; no new argument or premise is needed.

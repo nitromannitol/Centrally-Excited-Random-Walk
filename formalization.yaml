@@ -1,12 +1,10 @@
 version: v0.4
 project:
   name: Centrally-Excited-Random-Walk
-  description: 'A Lean 4/Mathlib formalization of centrally excited random walk (CERW) on Z^d, d >= 2:
-    the limit shape theorem for the Euclidean walk and for a walk whose drift is a subgradient of a norm,
-    the fluctuation bounds, and the sharpness results (Theorem 1.1, Theorem 1.2, Theorem 1.3 and Theorem
-    2.1 of the paper), together with every lemma and proposition of Sections 2-9. The two cited martingale
-    limit theorems are proved in-repo; no registered statement carries a cited-result hypothesis; the
-    kernel asymptotics quoted from the literature are proved in the shared Lattice-Probability library.'
+  description: A Lean 4 formalization of Limit shapes for centrally excited walks (Bou-Rabee, Nguyen,
+    Peres, Singh), retaining the earlier two-author source pin and proofs. The current surface has 25
+    compiled declarations on 22 paper labels. Two deterministic common-event implications await the probability
+    producer for the redefined Section 5.1 event.
   authors:
   - Ahmed Bou-Rabee
   - Yuval Peres
@@ -20,20 +18,33 @@ classification:
   - 60G42
   - 31C20
 sources:
-- title: "Kozma's centrally excited walk converges to a Euclidean ball"
+- title: Limit shapes for centrally excited walks
+  authors:
+  - Ahmed Bou-Rabee
+  - Tuan-Minh Nguyen
+  - Yuval Peres
+  - Arvind Singh
+  type: manuscript
+  location: paper/oct13.tex
+  sha256: e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617
+  relationship: formalizes (current source)
+  note: 23 declarations have direct source coverage; contact and separated brackets are deterministic
+    implications on the literal new event, with its probability producer open.
+- title: Kozma's centrally excited walk converges to a Euclidean ball
   authors:
   - Ahmed Bou-Rabee
   - Yuval Peres
   type: manuscript
   location: paper/limit-shapes.tex
-  relationship: formalizes
-  note: 'Theorems 1.1, 1.2, 1.3 and 2.1 and every lemma and proposition of Sections 2-9 are formalized.'
+  relationship: formalizes (preserved source pin)
+  note: Theorems 1.1, 1.2, 1.3 and 2.1 and every lemma and proposition of Sections 2-9 are formalized.
+  sha256: 0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396
 status:
-  scope: 'The frozen statement surface is registered in ledger/manifest.yaml with SHA-256 hashes: the
-    paper''s Theorems 1.1, 1.2, 1.3 and 2.1 (Theorem 1.3 split into four parts) and every lemma
-    and proposition of Sections 2-9. The two cited martingale limit theorems (Hall-Heyde and Stout) are
-    proved in the library from Mathlib. A Mathlib-only comparator challenge for
-    the limit shape theorem CERW.Frozen.limit_shape is provided under CERWAudit/LimitShape/.'
+  scope: The preserved ledger/manifest.yaml certifies 27 earlier statements. The separate ledger/oct13.yaml
+    registers 25 checked current-paper declarations on 22 labels, including two deterministic implications
+    for fixed common-event constants. Their source closure awaits the common-event probability producer.
+    All seven introduction headline parts have Mathlib-only comparator challenges and built solutions
+    in CERWAudit/.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
@@ -49,6 +60,15 @@ status:
     - Classical.choice
     - Quot.sound
     comparator_config: CERWAudit/LimitShape/comparator.json
+  open_mathematics:
+  - Produce the literal Section 5.1 event with polynomial exceptional probability and constants uniform
+    in the subgradient choice.
+  - Specialize those constants in the contact and separated-bracket source statements.
+  comparator_configs:
+  - CERWAudit/LimitShape/comparator.json
+  - CERWAudit/FluctuationRates/comparator.json
+  - CERWAudit/Sharpness/comparator.json
+  - CERWAudit/NormShape/comparator.json
 fidelity:
   divergences: CORRESPONDENCE.md records how each registered statement reads the paper; PROOF.md lists
     the points at which the formalized statements differ from the published text.

@@ -1,0 +1,26 @@
+% oct13-lem-ballpotential: oct13.tex:382-387 (label lem:ballpotential)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}[The potential of a norm ball]\label{lem:ballpotential}
+Let $\gauge$ be a norm, let $\rho>0$, and let $y\in\R^d$. Then
+\begin{equation}\label{eq:ballpotential}
+U_{\{\gauge<\rho\}}(y)=2d\drift(\rho-\gauge(y))_+\, .
+\end{equation}
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.norm_ball_potential {d : ℕ} (hd : 2 ≤ d)
+    {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} (hΨ : CERW.IsNorm Ψ) (ε : ℝ) {ρ : ℝ} (hρ : 0 < ρ)
+    (y : EuclideanSpace ℝ (Fin d)) :
+    CERW.normPotential d ε Ψ {v | Ψ v < ρ} y = 2 * d * ε * max (ρ - Ψ y) 0
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.norm\_ball\_potential}
+(node \texttt{lem-ballpotential} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/lem-ballpotential.tex}; no new argument or premise is needed.

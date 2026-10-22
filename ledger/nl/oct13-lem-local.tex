@@ -1,0 +1,36 @@
+% oct13-lem-local: oct13.tex:397-402 (label lem:local)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}\label{lem:local}
+Let $p>0$. There exists $C(d,\drift,\gauge,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$, every $y\in\R^d$ with $|y|\leq2n$ satisfies
+\begin{equation}\label{eq:approx}
+|\widetilde\ell_n(y)-U_{D_n}(y)|\leq C\log n+C\begin{cases}\bigl(\max_x\ell_n(x)\bigr)^{\nf12}\log n,&d=2,\\\bigl(\max_x\ell_n(x)\log n\bigr)^{\nf12},&d\geq3\end{cases}\, .
+\end{equation}
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.norm_local_time_potential {d : ℕ} (hd : 2 ≤ d) :
+    ∀ Ψ : EuclideanSpace ℝ (Fin d) → ℝ, CERW.IsNorm Ψ →
+    ∀ ε : ℝ, 0 < ε → (∀ i : Fin d, ε * Ψ (CERW.coordVec i) < 1 / (d : ℝ)) →
+    ∀ p : ℝ, 0 < p → ∃ C : ℝ, 0 < C ∧
+      ∀ ξ : Site d → EuclideanSpace ℝ (Fin d),
+        (∀ x : Site d, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)) → ξ 0 = 0 →
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsDriftCERW μ ε ξ X → ∀ n : ℕ, 2 ≤ n →
+        μ {ω | ¬ ∀ y : EuclideanSpace ℝ (Fin d), ‖y‖ ≤ 2 * n →
+            |CERW.cellLocalTime (X · ω) n y
+                - CERW.normPotential d ε Ψ (CERW.cellSet (X · ω) n) y| ≤
+              C * Real.log n + C *
+                (if d = 2 then Real.sqrt (CERW.maxLocalTime (X · ω) n) * Real.log n
+                  else Real.sqrt (CERW.maxLocalTime (X · ω) n * Real.log n))}
+          ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+Fix the dimension, norm, elliptic positive drift and exponent $p$.
+Apply the proved earlier local-time theorem (node \texttt{lem-local}) with these
+parameters and retain its third clause. Choose its positive constant $C$.
+For every admissible subgradient field, realization and $n\geq2$, failure of
+the retained approximation implies failure of the three-clause conjunction.
+Monotonicity of the measure therefore gives the same bound $Cn^{-p}$.
+All choices precede the field, realization and time, as in the source.

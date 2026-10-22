@@ -1,0 +1,48 @@
+% oct13-thm-norm-shape: oct13.tex:351-364 (label thm:norm-shape)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{theorem}[Limit shape for a norm]\label{thm:norm-shape}
+Let $d\geq2$, let $\gauge$ be a norm on~$\R^d$, let $\xi(x)\in\partial \gauge(x)$ be chosen at the sites $x\in\Z^d\setminus\{0\}$, let $\drift>0$ satisfy~\eqref{eq:ellipticity}, and let $r_n$ be as in~\eqref{eq:radius-norm}. Then, almost surely, the centrally excited random walk with norm~$\gauge$ has the following properties.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \underline{\emph{Shape}}: for every $0<\eta<1$ and all sufficiently large~$n$,
+\begin{equation*}
+\{x\in\Z^d:\gauge(x)<(1-\eta)r_n\}\subset A_n\subset\{x\in\Z^d:\gauge(x)<(1+\eta)r_n\}\, .
+\end{equation*}
+\item \underline{\emph{Local times}}: as $n\to\infty$,
+\begin{equation*}
+\frac1{r_n}\max_{x\in\Z^d}\bigl|\ell_n(x)-2d\drift(r_n-\gauge(x))_+\bigr|\longrightarrow0\, .
+\end{equation*}
+\item \underline{\emph{Recurrence}}: the walk visits every site of~$\Z^d$ infinitely often.
+\end{enumerate}
+\end{theorem}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.norm_shape {d : ℕ} (hd : 2 ≤ d)
+    {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} (hΨ : CERW.IsNorm Ψ)
+    {ξ : Site d → EuclideanSpace ℝ (Fin d)}
+    (hξ : ∀ x : Site d, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)) (hξ0 : ξ 0 = 0)
+    {ε : ℝ} (hε : 0 < ε) (hεΨ : ∀ i : Fin d, ε * Ψ (CERW.coordVec i) < 1 / (d : ℝ))
+    {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (X : ℕ → Ω → Site d) (hX : CERW.IsDriftCERW μ ε ξ X) :
+    let r : ℕ → ℝ := fun n =>
+      ((d + 1) * n / (2 * d * ε * CERW.normBallVolume Ψ)) ^ ((1 : ℝ) / (d + 1))
+    ∀ᵐ ω ∂μ,
+      (∀ η : ℝ, 0 < η → η < 1 → ∀ᶠ n : ℕ in atTop,
+        {x : Site d | Ψ (CERW.toSpace x) < (1 - η) * r n} ⊆ ↑(CERW.departureRange (X · ω) n) ∧
+        (↑(CERW.departureRange (X · ω) n) : Set (Site d)) ⊆
+          {x | Ψ (CERW.toSpace x) < (1 + η) * r n}) ∧
+      (∀ η : ℝ, 0 < η → ∀ᶠ n : ℕ in atTop, ∀ x : Site d,
+        |(CERW.localTime (X · ω) n x : ℝ) - 2 * d * ε * max (r n - Ψ (CERW.toSpace x)) 0|
+          ≤ η * r n) ∧
+      (∀ x : Site d, ∃ᶠ j in atTop, X j ω = x)
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.norm\_shape}
+(node \texttt{thm-norm-shape} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/thm-norm-shape.tex}; no new argument or premise is needed.

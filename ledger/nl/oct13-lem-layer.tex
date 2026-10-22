@@ -1,0 +1,28 @@
+% oct13-lem-layer: oct13.tex:493-498 (label lem:layer)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}\label{lem:layer}
+Let $b\geq0$ and $a>0$, and let $D$ be a measurable subset of $\{v\in\R^d:b\leq \gauge(v)\leq b+a\}$. Then
+\begin{equation*}
+\sup_{y\in\R^d}|U_D(y)|\leq2d\drift a\, .
+\end{equation*}
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.layer_potential {d : ℕ} (hd : 2 ≤ d)
+    {Ψ : EuclideanSpace ℝ (Fin d) → ℝ} (hΨ : CERW.IsNorm Ψ) {ε : ℝ} (hε : 0 < ε)
+    {a b : ℝ} (hb : 0 ≤ b) (ha : 0 < a) {D : Set (EuclideanSpace ℝ (Fin d))}
+    (hDm : MeasurableSet D) (hD : D ⊆ {v | b ≤ Ψ v ∧ Ψ v ≤ b + a})
+    (y : EuclideanSpace ℝ (Fin d)) :
+    |CERW.normPotential d ε Ψ D y| ≤ 2 * d * ε * a
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.layer\_potential}
+(node \texttt{lem-layer} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/lem-layer.tex}; no new argument or premise is needed.

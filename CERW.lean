@@ -37,3 +37,6 @@ import CERW.Support.Norm.RadialNewtonSourceContact
 import CERW.Support.Outer.PlanarRealProfileFiltration
 import CERW.Support.Norm.GaugeRadialNewtonConvolution
 import CERW.Support.Norm.GaugeSourceContactConsequences
+import CERW.LimitShapes
+import CERW.MainTheorems
+import CERW.Meta

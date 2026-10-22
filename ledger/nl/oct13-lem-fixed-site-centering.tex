@@ -1,0 +1,35 @@
+% oct13-lem-fixed-site-centering: oct13.tex:909-915 (label lem:fixed-site-centering)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{lemma}\label{lem:fixed-site-centering}
+Let $\gauge$ be the Euclidean norm, let $0<\drift<\nf1d$, and let $y\in\Z^d$. There exists $C(d,\drift,y)<\infty$ such that, almost surely, for all sufficiently large~$n$,
+\begin{equation}\label{eq:fixed-site-centering}
+\left|U_{D_n}(y)-2d\drift(r_n-|y|)-\frac{\mathcal Q_n}{\omega_dr_n^d}\right|\leq C\begin{cases}(\log n)^3,&d=2,\\1,&d\geq3\end{cases}\, ,
+\end{equation}
+where $\mathcal Q$ is the martingale of~\eqref{eq:quadratic}.
+\end{lemma}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.fixed_site_centering {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∀ y : Site d, ∃ C : ℝ, 0 < C ∧
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+        ∀ᵐ ω ∂μ, ∀ᶠ n : ℕ in atTop,
+          |CERW.potential d ε (CERW.cellSet (X · ω) n) (CERW.toSpace y)
+              - 2 * d * ε * (r n - euclidNorm y)
+              - CERW.quadraticMart ε (X · ω) n / (ωd * r n ^ d)|
+            ≤ C * if d = 2 then Real.log n ^ 3 else 1
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.fixed\_site\_centering}
+(node \texttt{lem-fixed-site-centering} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/lem-fixed-site-centering.tex}; no new argument or premise is needed.

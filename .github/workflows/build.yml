@@ -71,6 +71,13 @@ jobs:
         run: |
           bash CERWAudit/check_standalone.sh --vocabulary
 
+      - name: Check both source manifests and axiom certificates
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python -m pip install ./tools/leanform
+          .venv/bin/python -m leanform_tools.verify .
+          .venv/bin/python tools/verify_oct13.py
+
       - name: Save project build artifacts
         if: always() && steps.cache-restore.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4

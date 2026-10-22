@@ -1,34 +1,47 @@
 cff-version: 1.2.0
-message: "If you use this formalization, please cite it as below."
-title: "Centrally-Excited-Random-Walk: a Lean 4 formalization of limit shapes of centrally excited random walks"
-abstract: >-
-  A machine-checked Lean 4 / mathlib formalization of the limit shape, fluctuation bounds and
-  sharpness results for centrally excited random walk on Z^d, d >= 2, together with every lemma
-  and proposition of the paper's Sections 2 to 9 and the limit shape for a walk whose drift is a
-  subgradient of a norm. The production library contains no sorry and no custom axiom; the
-  Mathlib-only comparator challenge contains one intentional statement-level sorry whose
-  completed solution is checked separately.
+message: If you use this formalization, please cite it as below.
+title: 'Centrally-Excited-Random-Walk: a Lean 4 formalization of limit shapes of centrally excited random
+  walks'
+abstract: A Lean 4 / mathlib formalization of Limit shapes for centrally excited walks by Bou-Rabee, Nguyen,
+  Peres and Singh, with the earlier two-author source pin preserved. The current surface covers 22 labels
+  with 25 checked declarations. The contact and separated-bracket implications are proved on the redefined
+  common event; its probability producer remains open. The production library has no sorry or custom axiom.
+  Separate Mathlib-only comparator challenges contain seven intentional statement-level proof holes and
+  have completed solutions.
 type: software
 authors:
+- family-names: Bou-Rabee
+  given-names: Ahmed
+- family-names: Peres
+  given-names: Yuval
+keywords:
+- Lean
+- mathlib
+- formal verification
+- excited random walk
+- limit shape
+- local time
+license: Apache-2.0
+repository-code: https://github.com/nitromannitol/Centrally-Excited-Random-Walk
+references:
+- type: article
+  title: Limit shapes for centrally excited walks
+  authors:
+  - family-names: Bou-Rabee
+    given-names: Ahmed
+  - family-names: Nguyen
+    given-names: Tuan-Minh
+  - family-names: Peres
+    given-names: Yuval
+  - family-names: Singh
+    given-names: Arvind
+  notes: The current source, pinned at paper/oct13.tex; see CORRESPONDENCE.md for source closure and open
+    items.
+- type: article
+  title: Kozma's centrally excited walk converges to a Euclidean ball
+  authors:
   - family-names: Bou-Rabee
     given-names: Ahmed
   - family-names: Peres
     given-names: Yuval
-keywords:
-  - Lean
-  - mathlib
-  - formal verification
-  - excited random walk
-  - limit shape
-  - local time
-license: Apache-2.0
-repository-code: "https://github.com/nitromannitol/Centrally-Excited-Random-Walk"
-references:
-  - type: article
-    title: "Kozma's centrally excited walk converges to a Euclidean ball"
-    authors:
-      - family-names: Bou-Rabee
-        given-names: Ahmed
-      - family-names: Peres
-        given-names: Yuval
-    notes: "The paper formalized by this repository; pinned at paper/limit-shapes.tex."
+  notes: The earlier source pin, retained at paper/limit-shapes.tex.

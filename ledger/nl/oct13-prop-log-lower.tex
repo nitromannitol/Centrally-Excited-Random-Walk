@@ -1,0 +1,48 @@
+% oct13-prop-log-lower: oct13.tex:1125-1139 (label prop:log-lower)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{proposition}[Lower bounds for the radii]\label{prop:log-lower}
+Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. There exist $c(d,\drift)>0$, $C(d,\drift)<\infty$ and $h_0(d,\drift)>0$ such that the following hold.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \underline{\emph{Tail bounds}}: for all sufficiently large~$n$ and every real~$h$ with $h_0\leq h\leq\nf{r_n}{8}$,
+\begin{align}
+\P\bigl(\Rin(n)\geq r_n-h\text{ and }\Rout(n)\leq r_n+h\bigr)&\leq\exp\bigl\{-cr_n^{d-1}e^{-Ch}\bigr\}\, ,\label{eq:log-lower-tail}\\
+\P\bigl(\Rout(n)\leq r_n+h\bigr)&\leq\exp\bigl\{-cr_n^{d-1}e^{-Ch}\bigr\}+\exp\bigl\{-cr_n^{d-3}h^2\bigr\}\, .\label{eq:outer-lower-tail}
+\end{align}
+\item \underline{\emph{Almost-sure bounds}}: almost surely, for all sufficiently large~$n$,
+\begin{equation}\label{eq:log-lower-as}
+\max\{r_n-\Rin(n),\Rout(n)-r_n\}>c\log n\, ,
+\end{equation}
+and, if $d\geq3$, also $\Rout(n)-r_n>c\log n$.
+\end{enumerate}
+\end{proposition}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.log_lower_bounds {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∃ c C h₀ : ℝ, 0 < c ∧ 0 < C ∧ 0 < h₀ ∧ ∃ n₀ : ℕ,
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+        (∀ n : ℕ, n₀ ≤ n → ∀ h : ℝ, h₀ ≤ h → h ≤ r n / 8 →
+          μ {ω | r n - h ≤ CERW.innerRadius (X · ω) n ∧ CERW.maxRadius (X · ω) n ≤ r n + h}
+            ≤ ENNReal.ofReal (Real.exp (-(c * r n ^ (d - 1) * Real.exp (-(C * h))))) ∧
+          μ {ω | CERW.maxRadius (X · ω) n ≤ r n + h}
+            ≤ ENNReal.ofReal (Real.exp (-(c * r n ^ (d - 1) * Real.exp (-(C * h))))
+              + Real.exp (-(c * r n ^ ((d : ℝ) - 3) * h ^ 2)))) ∧
+        ∀ᵐ ω ∂μ, ∀ᶠ n : ℕ in atTop,
+          c * Real.log n < max (r n - CERW.innerRadius (X · ω) n)
+            (CERW.maxRadius (X · ω) n - r n) ∧
+          (3 ≤ d → c * Real.log n < CERW.maxRadius (X · ω) n - r n)
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.log\_lower\_bounds}
+(node \texttt{prop-log-lower} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/prop-log-lower.tex}; no new argument or premise is needed.

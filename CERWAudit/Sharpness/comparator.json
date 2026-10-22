@@ -1,0 +1,17 @@
+{
+  "challenge_module": "CERWAudit.Sharpness.Challenge",
+  "solution_module": "CERWAudit.Sharpness.Solution",
+  "theorem_names": [
+    "CERW.StatementAudit.Sharpness.sharp_radii",
+    "CERW.StatementAudit.Sharpness.sharp_radii_lil",
+    "CERW.StatementAudit.Sharpness.sharp_bulk",
+    "CERW.StatementAudit.Sharpness.sharp_width"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

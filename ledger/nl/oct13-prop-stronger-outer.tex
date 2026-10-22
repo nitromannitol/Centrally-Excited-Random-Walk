@@ -1,0 +1,33 @@
+% oct13-prop-stronger-outer: oct13.tex:758-763 (label prop:stronger-outer)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{proposition}[Outer radius]\label{prop:stronger-outer}
+Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf{1}{d}$. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$,
+\begin{equation*}
+\Rout(n)\leq r_n+C\begin{cases}\sqrt{r_n}(\log n)^{\nf52},&d=2,\\(\log n)^{d+1},&d\geq3\end{cases}\, .
+\end{equation*}
+\end{proposition}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.outer_radius {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∀ p : ℝ, 0 < p → ∃ C : ℝ, 0 < C ∧
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, 2 ≤ n →
+        μ {ω | ¬ CERW.maxRadius (X · ω) n ≤ r n + C *
+            (if d = 2 then Real.sqrt (r n) * Real.log n ^ ((5 : ℝ) / 2)
+              else Real.log n ^ ((d : ℝ) + 1))}
+          ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.outer\_radius}
+(node \texttt{prop-stronger-outer} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/prop-stronger-outer.tex}; no new argument or premise is needed.

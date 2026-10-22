@@ -1,0 +1,35 @@
+% oct13-thm-sharp-radii-lil: oct13.tex:170-175 (label thm:sharp, part (ii))
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\item \underline{\emph{Iterated logarithm for the radii in the plane}}: let $d=2$. Almost surely,
+\begin{equation}\label{eq:planar-lil-lower}
+\limsup_{n\to\infty}\frac{r_n-\Rin(n)}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}
+\qquad\text{and}\qquad
+\limsup_{n\to\infty}\frac{\Rout(n)-r_n}{\sqrt{r_n\log\log n}}\geq\frac1{\sqrt{10\pi\drift}}\, .
+\end{equation}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.sharp_radii_lil {d : ℕ} (hd : d = 2) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+      (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X →
+      ∀ᵐ ω ∂μ, ∀ δ : ℝ, 0 < δ →
+        (∃ᶠ n : ℕ in atTop,
+          (1 / Real.sqrt (10 * Real.pi * ε) - δ) * Real.sqrt (r n * Real.log (Real.log n))
+            ≤ r n - CERW.innerRadius (X · ω) n) ∧
+        (∃ᶠ n : ℕ in atTop,
+          (1 / Real.sqrt (10 * Real.pi * ε) - δ) * Real.sqrt (r n * Real.log (Real.log n))
+            ≤ CERW.maxRadius (X · ω) n - r n)
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.sharp\_radii\_lil}
+(node \texttt{thm-sharp-radii-lil} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/thm-sharp-radii-lil.tex}; no new argument or premise is needed.

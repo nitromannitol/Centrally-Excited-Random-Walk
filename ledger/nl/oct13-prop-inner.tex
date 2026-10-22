@@ -1,0 +1,50 @@
+% oct13-prop-inner: oct13.tex:696-712 (label prop:inner)
+\paragraph{Paper excerpt.}
+\begin{verbatim}
+\begin{proposition}[Inner radius]\label{prop:inner}
+Let $\gauge$ be the Euclidean norm, and let $0<\drift<\nf1d$. For every $p>0$ there exists $C(d,\drift,p)<\infty$ such that, for every integer~$n\geq2$, with probability at least $1-Cn^{-p}$, the following hold simultaneously, where $q_n$ is defined in~\eqref{eq:qn}.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \underline{\emph{Inner radius}}:
+\begin{equation}\label{eq:inradius}
+|\Rin(n)-r_n|\leq Cr_nq_n\, .
+\end{equation}
+\item \underline{\emph{Volume}}:
+\begin{equation*}
+\bigl|r_n^{-1}D_n\mathbin{\triangle}B(0,1)\bigr|\leq Cq_n\, .
+\end{equation*}
+\item \underline{\emph{Local times}}:
+\begin{equation*}
+\sup_{y\in\R^d}\bigl|\widetilde\ell_n(y)-2d\drift(r_n-|y|)_+\bigr|\leq Cr_nq_n^{\nf1d}\, .
+\end{equation*}
+\end{enumerate}
+\end{proposition}
+\end{verbatim}
+\paragraph{Lean statement.}
+\begin{verbatim}
+theorem CERW.LimitShapes.inner_radius {d : ℕ} (hd : 2 ≤ d) :
+    let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
+    ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
+    let r : ℕ → ℝ := fun n => ((d + 1) * n / (2 * d * ε * ωd)) ^ ((1 : ℝ) / (d + 1))
+    let q : ℕ → ℝ := fun n =>
+      if d = 2 then Real.sqrt (Real.log n / r n) else Real.log n / r n
+    ∀ p : ℝ, 0 < p → ∃ C : ℝ, 0 < C ∧
+      ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ n : ℕ, 2 ≤ n →
+        μ {ω | ¬ (|CERW.innerRadius (X · ω) n - r n| ≤ C * r n * q n ∧
+                  volume (((r n)⁻¹ • CERW.cellSet (X · ω) n) ∆
+                      Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)
+                    ≤ ENNReal.ofReal (C * q n) ∧
+                  ∀ y : EuclideanSpace ℝ (Fin d),
+                    |CERW.cellLocalTime (X · ω) n y - 2 * d * ε * max (r n - ‖y‖) 0|
+                      ≤ C * r n * q n ^ ((1 : ℝ) / d))}
+          ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
+\end{verbatim}
+\paragraph{Proof of the registered statement.}
+The paper statement is textually unchanged from the earlier pinned source.
+Apply the proved declaration \texttt{CERW.Frozen.inner\_radius}
+(node \texttt{prop-inner} of \texttt{ledger/manifest.yaml}) with the displayed
+standing assumptions and parameters. Its entire conclusion and binder order
+are identical to the registered statement, after changing only the exported
+name. This supplies every asserted clause and preserves the scope of every
+constant. The retained natural-language proof is
+\texttt{ledger/nl/prop-inner.tex}; no new argument or premise is needed.
