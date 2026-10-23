@@ -6,6 +6,12 @@ is `ledger/oct13.yaml`; its source ranges are checked against the pinned SHA-256
 `e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617`.
 Lean citations use paper labels; source line numbers occur in the ledger and this table.
 
+The planar radius bounds in `thm:sharp` use the coarse-event quadratic bracket
+and two-sign exponential deviations for polynomial tails, and current moment
+fluctuations for the radius LIL. The bounded predictable transform agrees with
+the quadratic martingale on the coarse event; cell comparisons transfer both
+estimates to the inner and outer radii.
+
 The `prop:bulk-profile` anchor applies `bulk_profile_from_common_event`, whose
 excess-set potential and inner-ball split follow the printed bulk proof. The
 existing symmetric-difference potential route remains available.

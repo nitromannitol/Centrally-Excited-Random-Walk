@@ -1,3 +1,4 @@
+import CERW.LimitShapes.PlanarLower.Radii
 import CERW.Frozen.SharpRadiiLil
 
 /-!
@@ -30,4 +31,4 @@ theorem CERW.LimitShapes.sharp_radii_lil {d : ℕ} (hd : d = 2) :
             ≤ CERW.maxRadius (X · ω) n - r n)
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.sharp_radii_lil hd
+  exact CERW.LimitShapes.PlanarLower.sharp_radii_lil_from_moment hd

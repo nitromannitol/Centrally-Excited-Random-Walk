@@ -30,7 +30,7 @@ nodes:
   export: CERW.LimitShapes.sharp_radii
   state: SEALED
   frozen_sha256: 4fce8be547f9b2c95f77980431bd55545668232d08e3c5abb519012630a89c0e
-  provider: CERW.Frozen.sharp_radii
+  provider: CERW.LimitShapes.sharp_radii_from_common_event
 - id: oct13-thm-sharp-radii-lil
   version: 1
   kind: theorem
@@ -39,7 +39,7 @@ nodes:
   export: CERW.LimitShapes.sharp_radii_lil
   state: SEALED
   frozen_sha256: c0f09cc59a675f7c7e072331c36dff81a4c7ab7f23ad67fbf9cff4eedf8dd228
-  provider: CERW.Frozen.sharp_radii_lil
+  provider: CERW.LimitShapes.PlanarLower.sharp_radii_lil_from_moment
 - id: oct13-thm-sharp-bulk
   version: 1
   kind: theorem

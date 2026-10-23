@@ -27,6 +27,11 @@ Borel–Cantelli gives the norm shapes, and Euclidean shape is their specializat
 The moment, fixed-site centering and site fluctuation proofs now consume these
 current shape and curvature bounds through their existing CLT and LIL arguments.
 The bulk profile now uses the separated excess-set potential on the common event.
+The planar radius bounds in `thm:sharp` use the coarse-event quadratic bracket
+and two-sign exponential deviations for polynomial tails, and current moment
+fluctuations for the radius LIL. The bounded predictable transform agrees with
+the quadratic martingale on the coarse event; cell comparisons transfer both
+estimates to the inner and outer radii.
 Every introduction theorem
 is restated in `CERW/MainTheorems.lean`.
 

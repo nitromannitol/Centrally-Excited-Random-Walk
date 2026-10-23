@@ -105,3 +105,7 @@ and each main theorem restatement. The statement gates check the allowed closure
 #print axioms CERW.LimitShapes.LimitLaws.site_fluctuations
 
 #print axioms CERW.LimitShapes.bulk_profile_from_common_event
+
+#print axioms CERW.LimitShapes.sharp_radii_from_common_event
+
+#print axioms CERW.LimitShapes.PlanarLower.sharp_radii_lil_from_moment

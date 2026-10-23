@@ -4,6 +4,12 @@ The current source is *Limit shapes for centrally excited walks* by Ahmed Bou-Ra
 Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/oct13.tex` by
 `ledger/oct13.yaml`. The paper writes the drift as `κ`; Lean writes it as `ε`.
 
+The planar radius bounds in `thm:sharp` use the coarse-event quadratic bracket
+and two-sign exponential deviations for polynomial tails, and current moment
+fluctuations for the radius LIL. The bounded predictable transform agrees with
+the quadratic martingale on the coarse event; cell comparisons transfer both
+estimates to the inner and outer radii.
+
 The `prop:bulk-profile` anchor uses `bulk_profile_from_common_event`. The proof
 bounds the potential of the actual excess set outside the inner ball, splits off
 that ball, and controls the cone shift by the current radius estimates. The common

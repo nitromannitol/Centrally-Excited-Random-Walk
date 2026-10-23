@@ -1,3 +1,4 @@
+import CERW.LimitShapes.SharpRadii
 import CERW.Frozen.SharpRadii
 
 /-!
@@ -30,4 +31,4 @@ theorem CERW.LimitShapes.sharp_radii {d : ℕ} (hd : d = 2) :
           MeasurableSet Eout ∧ ENNReal.ofReal ((n : ℝ) ^ (-p)) ≤ μ Eout
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.sharp_radii hd
+  exact CERW.LimitShapes.sharp_radii_from_common_event hd
