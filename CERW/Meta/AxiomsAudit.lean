@@ -91,3 +91,6 @@ and each main theorem restatement. The statement gates check the allowed closure
 
 #print axioms CERW.LimitShapes.local_time_potential_from_dynkin
 #print axioms CERW.LimitShapes.LocalApproximationProof.exists_path_approximation
+
+#print axioms CERW.LimitShapes.Crossing.ExponentialProbability.distance_crossing_from_exponential
+#print axioms CERW.LimitShapes.Crossing.ExponentialTail.measure_distance_crossing_le_exp

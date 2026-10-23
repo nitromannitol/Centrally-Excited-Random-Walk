@@ -237,7 +237,7 @@ nodes:
   export: CERW.LimitShapes.distance_crossing_bound
   state: SEALED
   frozen_sha256: 58936ce042c9d5fa8ad53774b3187f1601f2b7a64ac54c5025168b37521950a6
-  provider: CERW.LimitShapes.Crossing.Probability.distance_crossing_bound
+  provider: CERW.LimitShapes.Crossing.ExponentialProbability.distance_crossing_from_exponential
 - id: sec-common-event
   version: 1
   kind: theorem

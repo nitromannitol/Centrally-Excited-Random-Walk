@@ -20,6 +20,8 @@ anchor now uses that curvature profile with the existing Gamma-sum estimates.
 Lemma `lem:ballpotential` now applies the general Lipschitz gradient identity to the
 compactly supported truncated norm cone. Proposition `prop:log-lower` uses the elliptic
 exit trials and stopped-quadratic Azuma tail.
+The distance crossing estimate now uses the exponential-distance stopping and
+site-grouping proof, followed by Markov, finite unions and real-level rounding.
 Every introduction theorem
 is restated in `CERW/MainTheorems.lean`.
 

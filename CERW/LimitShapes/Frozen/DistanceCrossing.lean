@@ -1,4 +1,5 @@
 import CERW.LimitShapes.Crossing.Probability
+import CERW.LimitShapes.Crossing.ExponentialProbability
 
 /-!
 # The simultaneous distance crossing estimate
@@ -26,4 +27,5 @@ theorem CERW.LimitShapes.distance_crossing_bound {d : ℕ} (hd : 2 ≤ d)
           ENNReal.ofReal (C * (N : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.LimitShapes.Crossing.Probability.distance_crossing_bound hd hΨ hε hell p hp
+  exact CERW.LimitShapes.Crossing.ExponentialProbability.distance_crossing_from_exponential
+    hd hΨ hε hell p hp

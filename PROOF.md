@@ -48,11 +48,13 @@ exports and private source interfaces.
 and `KernelEvents.lean` proves both simultaneous kernel and square-kernel Freedman
 constituents by a union bound over the lattice ball of radius `3n`.
 
-`Crossing/` proves the new simultaneous distance estimate. Its deterministic projection
-argument uses horizon `N` at every prefix, a finite family of directions and integer
-norm levels, and a radial contraction to handle every real level. The probability proof
-unions Freedman bounds over directions, levels and prefixes, together with the vector
-martingale bound. All constants precede the subgradient field and realization.
+`Crossing/ExponentialProbability.lean` proves the simultaneous distance estimate by
+applying the printed exponential-distance argument. Projection geometry and the
+subgradient inequality give the inward first-departure drift. Grouping by site makes
+the far-site compensator nonpositive before the distance/local-time stopping time;
+near sites cost at most `e` per step. Bounded optional stopping gives the expectation
+bound, Markov gives a fixed-level tail, and finite unions and radial rounding give
+all prefixes and real levels. The older vector/ramp declarations remain available.
 `StoppedQuadraticMartingale.lean` proves that the actual full-prefix stopped sum is
 adapted and a martingale. `QuadraticStopping.lean` bounds its increments by
 `2 R (1 + ε normMax Ψ)`. `QuadraticProbability.lean` normalizes this process, constructs

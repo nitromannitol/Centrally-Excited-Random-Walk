@@ -77,6 +77,11 @@ The current `lem:local` anchor applies `local_time_potential_from_dynkin`, using
 printed final-time Dynkin, cell source comparison, Freedman and cell-modulus proof.
 `CommonEvent.lean` consumes this anchor directly.
 
+The current `eq:distance-crossing` anchor applies
+`Crossing.ExponentialProbability.distance_crossing_from_exponential`: exponential
+distance drift, site-grouped bounded stopping, Markov, finite unions and radial rounding.
+The literal common event consumes this switched crossing anchor.
+
 The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
 a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256
 `0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396` and the separate
