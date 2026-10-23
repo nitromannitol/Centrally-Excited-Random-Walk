@@ -1,3 +1,4 @@
+import CERW.LimitShapes.Crossing.ExponentialProbability
 import CERW.LimitShapes.Exit.ProbabilityBoundsAux
 import CERW.LimitShapes.Exit.UpperProbability
 
@@ -36,7 +37,8 @@ theorem exit_bounds :
   intro d hd Ψ hΨ ε hε hell p hp
   obtain ⟨B, hB, ru, hru, hu⟩ := exists_exit_upper_probability.{u} hd hΨ hε p hp
   obtain ⟨D, hD, hc⟩ :=
-    CERW.LimitShapes.Crossing.Probability.distance_crossing_bound.{u} hd hΨ hε hell p hp
+    CERW.LimitShapes.Crossing.ExponentialProbability.distance_crossing_from_exponential.{u}
+      hd hΨ hε hell p hp
   obtain ⟨A, hA, ha⟩ := exists_exit_approximation hd hΨ hε B hB
   have hD' : 0 < D * (d + 3 : ℝ) := by positivity
   obtain ⟨c, hcp, rl, hrl, hl⟩ :=

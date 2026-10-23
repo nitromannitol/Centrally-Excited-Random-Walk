@@ -30,6 +30,7 @@ theorem exp_deviation_upTo_of_frozen : exp_deviation_upTo.{u} := @CERW.Frozen.ex
 lower bound, from the frozen exponential deviation lemma. -/
 theorem sharp_width_of_frozen : sharp_width.{u} :=
   CERW.Support.Lower.sharp_width_of (@CERW.Support.Main.limit_shape.{u}) exp_deviation_upTo_of_frozen.{u}
+    CERW.Support.Lower.coarse_radius_bound.{u}
 
 /-- Part (i) of `thm:sharp`: the polynomial lower bounds for the radii in the plane, from the frozen
 exponential deviation lemma. -/

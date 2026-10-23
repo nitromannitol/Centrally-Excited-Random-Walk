@@ -1007,14 +1007,19 @@ lemma planar_radius_eq {ε : ℝ} (hε : 0 < ε) (n : ℕ) :
 
 /-! ### The outer radius and asymptotics in `n` -/
 
-/-- The proved coarse bounds give `max_{j ≤ n} |X_j| ≤ C n^(1/3)` with probability at least
-`1 - C n^(-p)`, for every `n ≥ 2`; here `n^(1/3)` is written `(n^(1/6))²`. -/
-private lemma coarse_radius_bound {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ)) {p : ℝ}
-    (hp : 0 < p) :
+/-- The planar outer radius bound of Proposition `prop:coarse`: `max_{j ≤ n} |X_j| ≤ C n^(1/3)`
+with probability at least `1 - C n^(-p)`, for every `n ≥ 2`; here `n^(1/3)` is written
+`(n^(1/6))²`. -/
+def planar_coarse_radius : Prop :=
+  ∀ {ε : ℝ}, 0 < ε → ε < 1 / ((2 : ℕ) : ℝ) → ∀ {p : ℝ}, 0 < p →
     ∃ C : ℝ, 0 < C ∧ ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω)
       [IsProbabilityMeasure μ] (X : ℕ → Ω → Site 2), IsCERW μ ε X → ∀ n : ℕ, 2 ≤ n →
         μ {ω | C * ((n : ℝ) ^ ((1 : ℝ) / 6)) ^ 2 < maxRadius (fun j => X j ω) n} ≤
-          ENNReal.ofReal (C * (n : ℝ) ^ (-p)) := by
+          ENNReal.ofReal (C * (n : ℝ) ^ (-p))
+
+/-- The earlier coarse bounds `CERW.Frozen.coarse_bounds` give the planar outer radius bound. -/
+theorem coarse_radius_bound : planar_coarse_radius.{u} := by
+  intro ε hε0 hεd p hp
   obtain ⟨c, C, -, hC, h⟩ := CERW.Frozen.coarse_bounds.{u} (d := 2) le_rfl ε hε0 hεd p hp
   refine ⟨C, hC, ?_⟩
   intro Ω _ μ _ X hX n hn
@@ -1109,7 +1114,7 @@ private lemma rpow_arith {x p C : ℝ} (hx : 0 < x) (h : 4 * (C + 1) ≤ x ^ (p 
 /-! ### The polynomial lower bound -/
 
 /-- Theorem 1.3 (iv) (a): the polynomial lower bound for the difference of the radii. -/
-theorem sharp_width_poly_of (hexp : exp_deviation_upTo.{u}) :
+theorem sharp_width_poly_of (hexp : exp_deviation_upTo.{u}) (hrad : planar_coarse_radius.{u}) :
     ∀ {d : ℕ} (_ : d = 2),
       let ωd : ℝ := (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin d)) 1)).toReal
       ∀ ε : ℝ, 0 < ε → ε < 1 / (d : ℝ) →
@@ -1124,7 +1129,7 @@ theorem sharp_width_poly_of (hexp : exp_deviation_upTo.{u}) :
   subst hd
   intro ωd ε hε0 hε1 r p hp
   obtain ⟨c₁, C₁, hc₁, hC₁, hdev⟩ := coord_deviation hexp hε0 hε1
-  obtain ⟨C_b, hCb, hcoarse⟩ := coarse_radius_bound.{u} hε0 hε1 hp
+  obtain ⟨C_b, hCb, hcoarse⟩ := hrad hε0 hε1 hp
   set a : ℝ := Real.sqrt (p / (2 * C₁)) with ha_def
   have ha : 0 < a := Real.sqrt_pos.mpr (by positivity)
   have haC : C₁ * a ^ 2 = p / 2 := by
@@ -1613,8 +1618,8 @@ private theorem width_lil (hshape : limit_shape.{u}) :
 /-- The width of the range in the plane is at least `c √(r_n log n)` with polynomial probability,
 and at least `√(π/(3ε)) √(r_n log log n)` infinitely often. -/
 theorem sharp_width_of (hshape : limit_shape.{u})
-    (hexp : exp_deviation_upTo.{u}) : sharp_width.{u} := by
+    (hexp : exp_deviation_upTo.{u}) (hrad : planar_coarse_radius.{u}) : sharp_width.{u} := by
   intro d hd hS ωd ε hε0 hε1 r
-  exact ⟨sharp_width_poly_of hexp hd ε hε0 hε1, width_lil hshape hd hS ε hε0 hε1⟩
+  exact ⟨sharp_width_poly_of hexp hrad hd ε hε0 hε1, width_lil hshape hd hS ε hε0 hε1⟩
 
 end CERW.Support.Lower
