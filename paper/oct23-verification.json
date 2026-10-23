@@ -6,7 +6,7 @@
     "Yuval Peres",
     "Arvind Singh"
   ],
-  "status": "The Lean formalization subsection now describes the formalization of this version. Statement blocks and every other line unchanged from oct13.tex.",
+  "status": "The Lean formalization subsection now describes the formalization of this version, and the bibliography file is renamed oct23-references.bib. Every other line, the 22 statement blocks included, is that of oct13.tex.",
   "scope": "Original Bou-Rabee–Peres theorem statements and order. No additional generalized model or additional theorem.",
   "original_statement_blocks": [
     {
@@ -1307,7 +1307,7 @@
     "Figures/shapes_ranges.pdf": "c2e143d3735eb3cf3afc8a34f55ef8d9fcc14afb1c43919300a40c52a281093a",
     "Figures/shapes_localtimes.pdf": "32db8f903af46db18e88059a5c13ba50235ff7dd02772c8ffb57e006401e1001"
   },
-  "updated_utc": "2026-10-23T13:12:42.869977+00:00",
+  "updated_utc": "2026-10-23T13:36:01.006547+00:00",
   "current_statement_blocks": [
     {
       "environment": "theorem",
@@ -1471,7 +1471,7 @@
     }
   ],
   "last_prose_only_revision": {
-    "created_utc": "2026-10-23T13:12:42.869977+00:00",
+    "created_utc": "2026-10-23T13:36:01.006547+00:00",
     "source_base_sha256": "e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617",
     "statement_blocks_unchanged": true,
     "scope": "Lean formalization subsection rewritten to state that this version is formalized; bibliography file renamed to oct23-references.bib.",

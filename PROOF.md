@@ -14,8 +14,9 @@ position, annular direction sum and martingale limit arguments with the current
 shape and fluctuation estimates. The bound `max_{j ≤ n} |X_j| ≤ C n^(1/3)` in the
 polynomial width bound is the Euclidean case of `prop:coarse`
 (`PlanarLower.coarse_radius_from_norm_coarse_bounds`), a hypothesis of
-`Support.Lower.sharp_width_poly_of`. Existing CLT and Gaussian disk-mass proofs are
-parameterized by their fluctuation input; their original exports remain available.
+`Support.Lower.sharp_width_poly_of`. The existing CLT proof is parameterized by its
+fluctuation input, and the Gaussian disk-mass identity is proved separately; their original
+exports remain available.
 
 The planar radius bounds in `thm:sharp` use the coarse-event quadratic bracket
 and two-sign exponential deviations for polynomial tails, and current moment
