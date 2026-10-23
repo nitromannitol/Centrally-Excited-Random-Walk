@@ -16,7 +16,8 @@ approximation. Proposition 4.1 uses the exit-time proof, and Lemma 5.2 uses the
 shifted-square energy proof. The outer-radius and fluctuation anchors use the
 curvature, maximum-principle and global-profile arguments. The separated-bracket
 anchor now uses that curvature profile with the existing Gamma-sum estimates.
-Every introduction theorem
+Lemma `lem:ballpotential` now applies the general Lipschitz gradient identity to the
+compactly supported truncated norm cone. Every introduction theorem
 is restated in `CERW/MainTheorems.lean`.
 
 The redefined event of Section 5.1 is stated literally in

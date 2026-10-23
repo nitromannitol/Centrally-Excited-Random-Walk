@@ -67,6 +67,9 @@ Borel--Cantelli. The current `lem:separated-brackets` anchor applies
 with the actual curvature profile on the literal common event. All earlier proof
 declarations are retained.
 
+The current `lem:ballpotential` anchor applies `norm_ball_potential_from_gradient`,
+using the general Lipschitz gradient identity on the truncated norm cone as printed.
+
 The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
 a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256
 `0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396` and the separate

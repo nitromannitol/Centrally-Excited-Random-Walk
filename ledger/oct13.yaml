@@ -75,7 +75,7 @@ nodes:
   export: CERW.LimitShapes.norm_ball_potential
   state: SEALED
   frozen_sha256: b511e9c2e44e6acddb3563e4a03d60c1c4308c2e451992b41f038fecc7ba0b1d
-  provider: CERW.Frozen.norm_ball_potential
+  provider: CERW.LimitShapes.norm_ball_potential_from_gradient
 - id: oct13-lem-freedman
   version: 1
   kind: theorem

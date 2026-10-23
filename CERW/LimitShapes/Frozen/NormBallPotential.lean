@@ -1,4 +1,5 @@
 import CERW.Frozen.NormBallPotential
+import CERW.LimitShapes.NormBallPotential
 
 /-!
 # lem:ballpotential
@@ -21,4 +22,4 @@ theorem CERW.LimitShapes.norm_ball_potential {d : ℕ} (hd : 2 ≤ d)
     CERW.normPotential d ε Ψ {v | Ψ v < ρ} y = 2 * d * ε * max (ρ - Ψ y) 0
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.norm_ball_potential hd hΨ ε hρ y
+  exact CERW.LimitShapes.norm_ball_potential_from_gradient hd hΨ ε hρ y
