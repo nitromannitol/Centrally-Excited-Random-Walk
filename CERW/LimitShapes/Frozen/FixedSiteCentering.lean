@@ -1,3 +1,4 @@
+import CERW.LimitShapes.LimitLaws.FixedSiteCentering
 import CERW.Frozen.FixedSiteCentering
 
 /-!
@@ -29,4 +30,4 @@ theorem CERW.LimitShapes.fixed_site_centering {d : ℕ} (hd : 2 ≤ d) :
             ≤ C * if d = 2 then Real.log n ^ 3 else 1
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.fixed_site_centering hd
+  exact CERW.LimitShapes.LimitLaws.fixed_site_centering hd

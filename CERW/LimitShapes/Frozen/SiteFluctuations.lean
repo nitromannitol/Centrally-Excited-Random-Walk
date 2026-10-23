@@ -1,3 +1,4 @@
+import CERW.LimitShapes.LimitLaws.SiteFluctuations
 import CERW.Frozen.SiteFluctuations
 
 /-!
@@ -45,4 +46,4 @@ theorem CERW.LimitShapes.site_fluctuations {d : ℕ} (hd : 2 ≤ d) :
           (multivariateGaussian 0 (Matrix.of fun i j => cov (y i) (y j))))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.site_fluctuations hd
+  exact CERW.LimitShapes.LimitLaws.site_fluctuations hd

@@ -99,3 +99,7 @@ and each main theorem restatement. The statement gates check the allowed closure
 #print axioms CERW.LimitShapes.norm_shape_from_rates
 #print axioms CERW.LimitShapes.limit_shape_from_norm_shape
 #print axioms CERW.LimitShapes.NormRates.radius_volume_of_event
+
+#print axioms CERW.LimitShapes.LimitLaws.moment_fluctuations
+#print axioms CERW.LimitShapes.LimitLaws.fixed_site_centering
+#print axioms CERW.LimitShapes.LimitLaws.site_fluctuations

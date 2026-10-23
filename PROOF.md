@@ -23,6 +23,12 @@ radius gives the outer bound. `Shape.lean` applies the existing Borel–Cantelli
 recurrence assembly to these current rates, then specializes the norm to obtain
 `thm:shape`. The retained Moreau and local-time-mass routes remain available.
 
+The Section 8 anchors use `LimitLaws/`: the existing quadratic bracket, CLT/LIL,
+annular centering and site-covariance arguments receive the current shape and
+curvature theorems. The site theorem consumes the new moment and centering
+providers. The martingale CLT and full Stout law are proved inputs supplied
+inside the closed proofs.
+
 The current statements live in `CERW/LimitShapes/Frozen/`. Unchanged declarations
 retain their certified types; several now use the printed proofs described below.
 `lem:local` uses `local_time_potential_from_dynkin`: final-time Dynkin and the

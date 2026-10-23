@@ -87,6 +87,11 @@ quadratic radius-volume identity, contact excess, layer potential and crossing.
 `thm:norm-shape` uses `norm_shape_from_rates`, and `thm:shape` specializes it through
 `limit_shape_from_norm_shape`.
 
+The current `thm:moment-fluctuations`, `lem:fixed-site-centering` and
+`thm:site-fluctuations` anchors use the `LimitLaws/` providers. They apply the
+existing printed bracket, centering and martingale-limit kernels to the current
+shape and curvature inputs, with new moment/centering providers supplied to sites.
+
 The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
 a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256
 `0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396` and the separate

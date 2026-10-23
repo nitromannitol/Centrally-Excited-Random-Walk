@@ -24,6 +24,8 @@ The distance crossing estimate now uses the exponential-distance stopping and
 site-grouping proof, followed by Markov, finite unions and real-level rounding.
 The norm rates use the quadratic radius-volume identity on the common event.
 Borel–Cantelli gives the norm shapes, and Euclidean shape is their specialization.
+The moment, fixed-site centering and site fluctuation proofs now consume these
+current shape and curvature bounds through their existing CLT and LIL arguments.
 Every introduction theorem
 is restated in `CERW/MainTheorems.lean`.
 

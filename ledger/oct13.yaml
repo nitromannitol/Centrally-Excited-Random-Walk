@@ -156,7 +156,7 @@ nodes:
   export: CERW.LimitShapes.moment_fluctuations
   state: SEALED
   frozen_sha256: 1b4ded74da2939b34e96fe0c867e09389cf412bd65baaef21e0eac03c292b15c
-  provider: CERW.Frozen.moment_fluctuations
+  provider: CERW.LimitShapes.LimitLaws.moment_fluctuations
 - id: oct13-lem-fixed-site-centering
   version: 1
   kind: theorem
@@ -165,7 +165,7 @@ nodes:
   export: CERW.LimitShapes.fixed_site_centering
   state: SEALED
   frozen_sha256: 432091c18739b1282656ae3d5c61916b675f41c04a8aa904f9a946906574f8d7
-  provider: CERW.Frozen.fixed_site_centering
+  provider: CERW.LimitShapes.LimitLaws.fixed_site_centering
 - id: oct13-thm-site-fluctuations
   version: 1
   kind: theorem
@@ -174,7 +174,7 @@ nodes:
   export: CERW.LimitShapes.site_fluctuations
   state: SEALED
   frozen_sha256: 303ca331248be23583900c9819ec224d23036e1bc08750bdba850fb1d41e7f39
-  provider: CERW.Frozen.site_fluctuations
+  provider: CERW.LimitShapes.LimitLaws.site_fluctuations
 - id: oct13-lem-exp-deviation
   version: 1
   kind: theorem

@@ -1,3 +1,4 @@
+import CERW.LimitShapes.LimitLaws.MomentFluctuations
 import CERW.Frozen.MomentFluctuations
 
 /-!
@@ -40,4 +41,4 @@ theorem CERW.LimitShapes.moment_fluctuations {d : ℕ} (hd : 2 ≤ d) :
         (∃ᶠ n : ℕ in atTop, (Real.sqrt v₂ - δ) * Real.sqrt (2 * Real.log (Real.log n)) ≤ σ * R n ω)
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.moment_fluctuations hd
+  exact CERW.LimitShapes.LimitLaws.moment_fluctuations hd
