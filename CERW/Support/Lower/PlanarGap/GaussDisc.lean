@@ -1,7 +1,7 @@
 /-
 # The exact 2D centred Gaussian closed-disk mass — law identification
 
-The planar gap constant of `oct4.tex:1488` is reduced to the law
+The planar gap constant of `limit-shapes.tex:1484-1490` is reduced to the law
 of `Z_n / √n`, which is asymptotically the centred Gaussian on `EuclideanSpace ℝ (Fin 2)` with
 covariance `(1/2) I₂`; because `‖N‖² ~ Exp(1)`, the closed-disk mass is
 `P(‖N‖ ≤ t) = 1 − e^{−t²}`.
@@ -292,7 +292,7 @@ theorem multivariateGaussian_halfI_normSq_le (u : ℝ) (hu : 0 ≤ u) :
 
 /-- **The explicit positive-`a` closed-disk mass.**  The specialisation of
 `multivariateGaussian_halfI_closedBall` to the parameter name `a` used by the
-planar-width small-ball (`oct5.tex:188`): for `a ≥ 0`, `P(|N| ≤ a) = 1 - e^{-a²}`. -/
+planar-width small-ball (`limit-shapes.tex:188`): for `a ≥ 0`, `P(|N| ≤ a) = 1 - e^{-a²}`. -/
 theorem multivariateGaussian_halfI_closedBall_pos (a : ℝ) (ha : 0 ≤ a) :
     multivariateGaussian (0 : EuclideanSpace ℝ (Fin 2))
         ((1 / 2 : ℝ) • (1 : Matrix (Fin 2) (Fin 2) ℝ)) (closedBall 0 a)
@@ -307,7 +307,7 @@ theorem multivariateGaussian_halfI_closedBall_scale (c a : ℝ) (hc : 0 ≤ c) (
       = ENNReal.ofReal (1 - Real.exp (-((c * a) ^ 2))) :=
   multivariateGaussian_halfI_closedBall (c * a) (mul_nonneg hc ha)
 
-/-- **The exact `3δ/π` small-ball** of `oct5.tex:188`.  For `δ > 0` and `a ≥ 0`,
+/-- **The exact `3δ/π` small-ball** of `limit-shapes.tex:188`.  For `δ > 0` and `a ≥ 0`,
 `P(Rout - Rin ≤ a √r_n) ≤ 1 - e^{-(3δ/π) a²}`, i.e. the closed-disk mass at the
 radius
 `√(3δ/π) · a` equals `ofReal (1 - e^{-(3δ/π) a²})`. -/

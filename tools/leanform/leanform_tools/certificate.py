@@ -43,7 +43,6 @@ import subprocess
 import sys
 import tempfile
 from collections import Counter
-from datetime import date
 from pathlib import Path
 
 from . import lean_source as ls
@@ -53,9 +52,6 @@ from .gate import Result, run
 
 OUT_NAME = "CERTIFICATE.md"
 
-# The date row is allowed to differ between the file on disk and a freshly
-# generated one; `--check` strips it from both sides before comparing.
-_GENERATED_RE = re.compile(r"\| Generated \| .* \|")
 
 
 class CertificateError(Exception):
@@ -300,9 +296,8 @@ def _verdict(closures: list[set[str]], state: str) -> str:
     return "classical only"
 
 
-def render(cfg: RepoConfig, data: dict, today: str | None = None) -> str:
+def render(cfg: RepoConfig, data: dict) -> str:
     """Pure: builds the certificate text from an already-gathered `data`."""
-    today = today or date.today().isoformat()
     nodes = cfg.nodes
     lines: list[str] = []
     A = lines.append
@@ -330,7 +325,6 @@ def render(cfg: RepoConfig, data: dict, today: str | None = None) -> str:
     jobs = f", {data['build_jobs']} jobs" if data.get("build_jobs") else ""
     A(f"| Build | succeeded{jobs} |")
     A(f"| Build warnings | {data['warning_count']} |")
-    A(f"| Generated | {today} |")
     A("")
     A("## Reproducing it")
     A("")
@@ -405,8 +399,8 @@ def render(cfg: RepoConfig, data: dict, today: str | None = None) -> str:
     return "\n".join(lines) + "\n"
 
 
-def generate(cfg: RepoConfig, today: str | None = None) -> str:
-    return render(cfg, gather(cfg), today=today)
+def generate(cfg: RepoConfig) -> str:
+    return render(cfg, gather(cfg))
 
 
 # ---- CLI --------------------------------------------------------------
@@ -434,7 +428,7 @@ def check(res: Result, cfg: RepoConfig, write: bool = True) -> None:
         res.fail(f"{OUT_NAME} is missing")
         return
     cur = out.read_text(encoding="utf-8")
-    if _GENERATED_RE.sub("", cur) != _GENERATED_RE.sub("", text):
+    if cur != text:
         res.fail(f"{OUT_NAME} is out of date; regenerate it")
         return
     res.count(len(cfg.nodes))

@@ -10,9 +10,9 @@ import Mathlib.Analysis.Calculus.FDeriv.Measurable
 # The potential convolution at every point, and the contact convolution
 
 `RadialNewtonAE.ae_integral_weight_smul_newtonField_eq_univ` is `eq:radial-convolution`
-(`oct5.tex:759-762`, Newton's theorem for a nonnegative integrable radial function `χ`), valid for
+(`limit-shapes.tex:759-762`, Newton's theorem for a nonnegative integrable radial function `χ`), valid for
 Lebesgue almost every point. This module proves the three displays that follow it
-(`oct5.tex:763-771`), which pass from the almost everywhere identity to the potential `U_D` of a
+(`limit-shapes.tex:763-771`), which pass from the almost everywhere identity to the potential `U_D` of a
 bounded measurable set `D`.
 
 * `eq:newton-convolution`, for **every** `y ∈ ℝ^d`:

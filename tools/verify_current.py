@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Apply the shared statement gates to the separate oct13 source surface.
+"""Apply the shared statement gates to the current source surface.
 
 The incumbent manifest and its frozen declarations retain their original source
-pin. This entry point loads ledger/oct13.yaml and uses the same gate functions
+pin. This entry point loads ledger/current.yaml and uses the same gate functions
 for the new declarations, without changing that earlier source surface.
 """
 
@@ -41,10 +41,10 @@ class PaperConfig(RepoConfig):
         return [self.lib_dir / "Frozen"]
 
 
-EVENT_NODES = {"oct13-lem-contact", "oct13-lem-separated-brackets"}
+EVENT_NODES = {"current-lem-contact", "current-lem-separated-brackets"}
 SOURCE_CLOSURES = {
-    "lem-contact-common-event": "oct13-lem-contact",
-    "lem-separated-brackets-common-event": "oct13-lem-separated-brackets",
+    "lem-contact-common-event": "current-lem-contact",
+    "lem-separated-brackets-common-event": "current-lem-separated-brackets",
 }
 PROVED_STATES = {"SEALED", "PROVED"}
 PROBABILITY_PRODUCERS = {
@@ -156,19 +156,19 @@ def check_docs(res, cfg: PaperConfig, write: bool = False) -> None:
         if write:
             path.write_text(generated)
         elif generated != text:
-            res.fail(f"{rel}: stale current-source block; run tools/verify_oct13.py --write-docs")
+            res.fail(f"{rel}: stale current-source block; run tools/verify_current.py --write-docs")
 
 
 def certificate_text(cfg: PaperConfig) -> str:
     """Use the shared build/hash/axiom probes, retaining the source-closure distinction."""
     text = certificate.render(cfg, certificate.gather(cfg))
-    text = text.replace("ledger/manifest.yaml", "ledger/oct13.yaml")
-    text = text.replace("`python3 -m leanform_tools.certificate`", "`python3 tools/verify_oct13.py`")
+    text = text.replace("ledger/manifest.yaml", "ledger/current.yaml")
+    text = text.replace("`python3 -m leanform_tools.certificate`", "`python3 tools/verify_current.py`")
     text = re.sub(
         r"python3 -m leanform_tools\.(?:check_manifest|check_axioms|check_warnings|certificate) "
         r"\..*\n", "", text,
     )
-    text = text.replace("lake build CERW\n", "lake build CERW\npython3 tools/verify_oct13.py\n")
+    text = text.replace("lake build CERW\n", "lake build CERW\npython3 tools/verify_current.py\n")
     text = text.replace(
         "## What is claimed\n\n",
         "## What is claimed\n\n" + status_text(cfg) + "\n\n"
@@ -185,9 +185,8 @@ def check_certificate(res, cfg: PaperConfig, write: bool = False) -> None:
     res.total = len(cfg.nodes)
     if write:
         path.write_text(text)
-    elif not path.exists() or certificate._GENERATED_RE.sub("", path.read_text()) != \
-            certificate._GENERATED_RE.sub("", text):
-        res.fail("stale certificate; run tools/verify_oct13.py --write-certificate")
+    elif not path.exists() or path.read_text() != text:
+        res.fail("stale certificate; run tools/verify_current.py --write-certificate")
     res.count(len(cfg.nodes))
 
 
@@ -251,7 +250,7 @@ def main() -> int:
     rc = run_unit_tests(ROOT / "tools" / "leanform")
     if rc:
         return rc
-    manifest = ROOT / "ledger" / "oct13.yaml"
+    manifest = ROOT / "ledger" / "current.yaml"
     raw = yaml.safe_load(manifest.read_text())
     cfg = PaperConfig(ROOT, manifest, raw, [Node(n) for n in raw["nodes"]])
     modules = [
@@ -264,7 +263,7 @@ def main() -> int:
     results = []
     for name in modules:
         module = importlib.import_module(f"leanform_tools.{name}")
-        print(f"=== oct13 {name}", flush=True)
+        print(f"=== current {name}", flush=True)
         results.append(run(name, module.check, cfg))
     results.append(run("sync_docs", check_docs, cfg, write=args.write_docs))
     results.append(run("nl_twins", check_nl_twins, cfg))

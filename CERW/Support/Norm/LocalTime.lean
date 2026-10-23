@@ -19,7 +19,7 @@ import CERW.Support.Norm.DriftSite
 /-!
 # The local times and the norm potential
 
-`lem:local` of the paper (`CERW-Sep26.tex:384-400`) for the centrally excited random walk with
+`lem:local` of the paper for the centrally excited random walk with
 drift field `ξ`, a choice of subgradients of a norm `Ψ`, given the estimate of `lem:cell`
 (`cell_gradient`). The proof is the one of the Euclidean case (`CERW.Support.LocalTime`):
 

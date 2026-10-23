@@ -27,8 +27,8 @@ sources:
   - Yuval Peres
   - Arvind Singh
   type: manuscript
-  location: paper/oct23.tex
-  sha256: 723911323a60e7af6b0f5adef6b56fb0fd542afd72fbf425c30ca8a211929745
+  location: paper/centrally-excited-walks.tex
+  sha256: 128646310ef17f4f897b5dfa9305187a85280eef391b70d8c7be009a5da5c87d
   relationship: formalizes (current source)
   note: Every labeled theorem, lemma and proposition is proved by the argument printed in the paper. Results
     whose statement and printed proof are unchanged from the earlier source reuse its formal proofs.
@@ -42,7 +42,7 @@ sources:
   note: Theorems 1.1, 1.2, 1.3 and 2.1 and every lemma and proposition of Sections 2-9 are formalized.
   sha256: 0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396
 status:
-  scope: The preserved ledger/manifest.yaml certifies the earlier source statements. The separate ledger/oct13.yaml
+  scope: The preserved ledger/manifest.yaml certifies the earlier source statements. The separate ledger/current.yaml
     certifies every labeled current-paper result, the simultaneous crossing and common-event probability
     producers, and full contact and separated-bracket source closures. All introduction headline parts
     have Mathlib-only comparator challenges and built solutions in CERWAudit/.

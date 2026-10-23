@@ -1,8 +1,7 @@
 """Tests for the probability-lint gate.
 
-The first two classes pin false positives this gate actually produced on
-2026-09-23 against real repos, and that two independent model lanes also
-produced. A junk-value gate that cries wolf on `(2 : ℂ)⁻¹` gets switched off.
+The first two classes pin false positives this gate actually produced
+against real repositories. A junk-value gate that cries wolf on `(2 : ℂ)⁻¹` gets switched off.
 """
 
 import unittest

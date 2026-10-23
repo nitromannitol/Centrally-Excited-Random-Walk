@@ -4,10 +4,10 @@
 `CERW/Frozen/SharpWidth.lean` (`thm:sharp`, part (iv)(b), frozen) exhibits the radius
 `Real.sqrt (Real.pi / (3 * ε))`: it is the reciprocal of the small-ball scale
 `Real.sqrt (3 * δ / π)`
-of `oct5.tex:188`, namely `P (Rout - Rin ≤ a √r_n) ≤ 1 - e^{-(3 δ / π) a²}`, at `a = 1`.
+of `limit-shapes.tex:188`, namely `P (Rout - Rin ≤ a √r_n) ≤ 1 - e^{-(3 δ / π) a²}`, at `a = 1`.
 
 This module records that reciprocal identification and the resulting closed-disk mass, so the
-Step-4 Gaussian mass `P (|N| ≤ t) = 1 - e^{-t²}` (`oct5.tex:1492`) is available at the radius the
+Step-4 Gaussian mass `P (|N| ≤ t) = 1 - e^{-t²}` (`limit-shapes.tex:1492`) is available at the radius the
 frozen statement uses.  The frozen statement is **not** edited; this is a separate support module.
 -/
 import CERW.Support.Lower.PlanarGap.GaussDisc

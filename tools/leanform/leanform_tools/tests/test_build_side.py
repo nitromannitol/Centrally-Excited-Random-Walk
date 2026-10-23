@@ -18,7 +18,6 @@ import subprocess
 import tempfile
 import unittest
 from contextlib import redirect_stdout
-from datetime import date
 from pathlib import Path
 from unittest import mock
 
@@ -321,7 +320,7 @@ class TestRender(unittest.TestCase):
             "warning_count": 0,
             "axiom_reports": {"Demo.Frozen.a": {"propext"}},
         }
-        text = certificate.render(cfg, data, today="2026-01-01")
+        text = certificate.render(cfg, data)
         a_row = next(l for l in text.splitlines() if l.startswith("| `thm-a` |"))
         b_row = next(l for l in text.splitlines() if l.startswith("| `ext-b` |"))
         self.assertIn("MISMATCH", a_row)
@@ -403,15 +402,6 @@ class TestCertificateCheckFlow(unittest.TestCase):
             certificate.check(res2, self.cfg, write=False)
             self.assertEqual(res2.failures, [])
 
-    def test_check_tolerates_a_different_generated_date(self):
-        with mock.patch.object(certificate, "_run_build", side_effect=self._fake_build), \
-             mock.patch.object(certificate, "_probe_axioms", side_effect=self._fake_probe):
-            stale_text = certificate.generate(self.cfg, today="2000-01-01")
-            (self.root / certificate.OUT_NAME).write_text(stale_text, encoding="utf-8")
-
-            res = Result(name="certificate")
-            certificate.check(res, self.cfg, write=False)
-            self.assertEqual(res.failures, [])
 
     def test_check_reports_a_genuinely_stale_certificate(self):
         with mock.patch.object(certificate, "_run_build", side_effect=self._fake_build), \
@@ -444,7 +434,7 @@ class TestFreeze(unittest.TestCase):
             "    state: SEALED\n"
             "    frozen_sha256: 0000000000000000000000000000000000000000000000000000000000000000\n"
             "    provider: Demo.Frozen.demo_x\n"
-            '    approved: "2020-01-01"\n\n'
+            "\n"
         )
         (self.root / "ledger" / "manifest.yaml").write_text(
             manifest_text, encoding="utf-8"
@@ -482,13 +472,13 @@ class TestFreeze(unittest.TestCase):
         self.assertEqual(text.count("id: thm-x"), 1)
         self.assertIn("version: 2", text)
 
-    def test_stamps_approved_with_today(self):
+    def test_records_no_date(self):
         freeze.freeze(
             self.cfg, "thm-x", "Demo/Frozen/X.lean", "Demo.Frozen.demo_x",
             "theorem", "SEALED", "demo.tex:1-2 (label demo)",
         )
         text = self.cfg.manifest_path.read_text(encoding="utf-8")
-        self.assertIn(f'approved: "{date.today().isoformat()}"', text)
+        self.assertNotIn("approved", text)
 
     def test_a_fresh_id_is_recorded_at_version_one(self):
         write_frozen_file(self.root, "Demo/Frozen/Y.lean", "demo_y")

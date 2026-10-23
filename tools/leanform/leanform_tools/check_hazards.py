@@ -21,7 +21,7 @@ wrong", but "nobody has said why this is right".
 
 Matching is whole-identifier. A naive substring scan for `sInf` also matches
 `IsInfPath`, `HasInfLivePath` and `HasInfiniteComponent`; measured over the
-574 frozen blocks in this fleet that was 12 false positives out of 54 for the
+574 frozen blocks of several repositories that was 12 false positives out of 54 for the
 affected classes — a 22% noise rate that would have buried the real hits.
 """
 
@@ -115,9 +115,8 @@ def _load_readings(cfg: RepoConfig) -> dict:
 
 
 # `(2 : ℂ)⁻¹`, `(3:ℝ)⁻¹`, `2⁻¹` — the inverse of a numeric literal is never
-# the junk value, because the literal is never zero. Manhattan-Transience has
-# five hits of exactly this shape and two independent model lanes called all
-# five unguarded; all five are harmless. Excluded here rather than waived
+# the junk value, because the literal is never zero. Five hits of exactly this
+# shape in one repository were read as unguarded; all five are harmless. Excluded here rather than waived
 # one-by-one in readings.yaml, because it is a property of the syntax.
 _LITERAL_INV = re.compile(r"(?:\(\s*[0-9]+(?:\.[0-9]+)?\s*(?::[^)]*)?\)|(?<![A-Za-z0-9_])[0-9]+)$")
 

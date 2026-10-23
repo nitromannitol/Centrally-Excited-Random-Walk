@@ -3,7 +3,7 @@
 
 Run `lake env lean tools/FrozenTypes.lean` first. The pinned digests are in
 tools/frozen-types.sha256; the declarations must be exactly the exports of
-ledger/oct13.yaml and the theorems of CERW/MainTheorems.lean. After an approved
+ledger/current.yaml and the theorems of CERW/MainTheorems.lean. After an approved
 change of statement or of a definition it uses, rerun with --write.
 """
 
@@ -22,7 +22,7 @@ OUT = ROOT / ".lake" / "frozen-types"
 
 
 def expected_names() -> set[str]:
-    raw = yaml.safe_load((ROOT / "ledger" / "oct13.yaml").read_text())
+    raw = yaml.safe_load((ROOT / "ledger" / "current.yaml").read_text())
     main = (ROOT / "CERW" / "MainTheorems.lean").read_text()
     mains = {"CERW.MainTheorems." + t for t in re.findall(r"(?m)^theorem\s+(\S+)", main)}
     return {node["export"] for node in raw["nodes"]} | mains

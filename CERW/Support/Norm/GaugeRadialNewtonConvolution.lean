@@ -8,10 +8,10 @@ import CERW.Support.Occupation.CellSetVolume
 # The Newton convolution and the contact convolution for the gauge of a convex body
 
 The proofs of `sec:norm-setup`--`sec:norms` use the symmetry `Ψ(-x) = Ψ(x)` only to bound the
-coordinates of the subgradients (`oct5.tex:896`): for a compact convex set `K ⊆ ℝ^d` with the origin
+coordinates of the subgradients (`limit-shapes.tex:896`): for a compact convex set `K ⊆ ℝ^d` with the origin
 in its interior, the Minkowski functional `ψ_K = gauge K` is convex and positively homogeneous, but
 need not be even and need not be differentiable, and the proofs apply to it without change. This
-module carries the passage `oct5.tex:759-771` and the contact geometry of `oct5.tex:633-655` to
+module carries the passage `limit-shapes.tex:759-771` and the contact geometry of `limit-shapes.tex:633-655` to
 `ψ_K`, without `IsNorm`, evenness, smoothness or strict convexity. The potential is literally
 `CERW.normPotential d ε (gauge K) D y`, with Mathlib's `gradient` (the gradient where `ψ_K` is
 differentiable, `0` elsewhere; the exceptional set is null by Rademacher's theorem).
@@ -33,7 +33,7 @@ for a measurable field of bounded norm.
   infimum, `{ψ_K < b} ⊆ D_n`, and there is a contact point, a point of the closure of the complement
   with `ψ_K(y₀) = b`, by coercivity `c_ψ |y| ≤ ψ_K(y)` and compactness
   (`exists_contact_point_gauge`, `exists_unvisited_cell_of_contact_point_gauge`);
-  `source_contact_convolution_gauge` states the whole passage `oct5.tex:633-655, 759-771` for the
+  `source_contact_convolution_gauge` states the whole passage `limit-shapes.tex:633-655, 759-771` for the
   actual cell set.
 
 No statement assumes that the path takes unit steps, and no statement asserts that `H = U_{D_n}(y₀)`
@@ -480,7 +480,7 @@ theorem gauge_contact_convolution_le_cellSet (hd : 2 ≤ d) (hK : IsCompact K) (
     (isBounded_cellSet (by omega) x n) (gauge_sublevel_subset_cellSet x n) hy₀
 
 /-- **The passage of the source for the visited-cell set and the gauge of a convex body**
-(`oct5.tex:633-655, 759-771, 896`). For every path `x` and time `n`, with `D_n = cellSet x n` and
+(`limit-shapes.tex:633-655, 759-771, 896`). For every path `x` and time `n`, with `D_n = cellSet x n` and
 `b = normInnerRadius (gauge K) x n`: `b` is the infimum of `ψ_K` over the complement of `D_n`,
 `{ψ_K < b} ⊆ D_n`, and there is a contact point `y₀`, a point of the closure of the complement with
 `ψ_K(y₀) = b`, in the closure of the cell of an unvisited site, at which for every nonnegative

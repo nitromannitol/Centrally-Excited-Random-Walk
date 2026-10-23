@@ -2,7 +2,7 @@
 
 This directory contains Mathlib-only comparator challenges for the introduction of
 *Limit shapes for centrally excited walks* (Ahmed Bou-Rabee, Tuan-Minh Nguyen,
-Yuval Peres and Arvind Singh), pinned at `paper/oct23.tex`.
+Yuval Peres and Arvind Singh), pinned at `paper/centrally-excited-walks.tex`.
 
 | Directory | Paper label | Challenge targets |
 | --- | --- | --- |
@@ -21,9 +21,8 @@ field by field and applies the certified theorem. Each `comparator.json` permits
 The four challenges contain seven intentional statement-level `sorry` declarations,
 one per target. They are outside the default production import closure. All four
 challenges elaborate standalone; all four vocabulary comparisons pass. All seven
-solutions build. The official comparator replay passed for all four pairs in
-[run 39848181597](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/runs/39848181597)
-on commit `f849d25eb7edbb8b570c01aae0bc77be4f103dee`, including nanoda replay.
+solutions build. The comparator workflow runs all four pairs, with nanoda replay, on
+every change to the Lean sources.
 
 `LimitShape/Challenge.lean` imports only `Mathlib`, rebuilds from scratch every definition
 needed to read the theorem — the lattice `Site d = Fin d → ℤ` and the Euclidean norm

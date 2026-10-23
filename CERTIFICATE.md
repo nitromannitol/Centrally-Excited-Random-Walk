@@ -15,7 +15,6 @@ Every node's state in `ledger/manifest.yaml` is `SEALED` or `PROVED` (0 SEALED, 
 | Paper (`paper/limit-shapes.tex`) SHA-256 | `0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396` |
 | Build | succeeded, 9404 jobs |
 | Build warnings | 0 |
-| Generated | 2026-10-23 |
 
 ## Reproducing it
 

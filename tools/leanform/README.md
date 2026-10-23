@@ -8,7 +8,7 @@ by every paper repository instead of vendored per repo.
 Each repository used to carry its own copy of roughly a dozen checkers. The
 copies drifted, and the drift was invisible, because a checker whose regex no
 longer matches its repo does not fail — it passes, having inspected nothing.
-Measured on 2026-09-23 across the fleet:
+Measured across four repositories:
 
 - **nine checkers in four repositories exited 0 having inspected zero items**,
   two of those repositories being released work. `Parking-Sharpness`'s
@@ -90,7 +90,7 @@ migration from importing another paper's readings wholesale.
 python3 -m unittest discover -s leanform_tools/tests -t .
 ```
 
-159 tests. Most encode a specific false success observed in the fleet: a
+159 tests. Most encode a specific false success observed in practice: a
 checker that inspected nothing, an axiom probe that crashed and read as clean,
 `Set.ncard` on an infinite set, a manifest name that is an ASCII truncation of
 a non-ASCII identifier, a certificate that overwrote a good file on failure.

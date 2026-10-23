@@ -1,9 +1,9 @@
 # Correspondence between the paper and the formalization
 
-The current pinned source is `paper/oct23.tex`: *Limit shapes for centrally excited walks*
+The current pinned source is `paper/centrally-excited-walks.tex`: *Limit shapes for centrally excited walks*
 by Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh. The current manifest
-is `ledger/oct13.yaml`; its source ranges are checked against the pinned SHA-256
-`723911323a60e7af6b0f5adef6b56fb0fd542afd72fbf425c30ca8a211929745`.
+is `ledger/current.yaml`; its source ranges are checked against the pinned SHA-256
+`128646310ef17f4f897b5dfa9305187a85280eef391b70d8c7be009a5da5c87d`.
 Lean citations use paper labels; source line numbers occur in the ledger and this table.
 
 The bulk deviation conclusion in `thm:sharp` uses the separated exponential
@@ -30,35 +30,35 @@ existing symmetric-difference potential route remains available.
 
 | id | Lean | paper | checked type | source coverage |
 |---|---|---|---|---|
-| `oct13-thm-shape` | `CERW.LimitShapes.limit_shape` | `oct23.tex:111-124`, `thm:shape` | SEALED | direct |
-| `oct13-thm-fluctuations` | `CERW.LimitShapes.fluctuation_rates` | `oct23.tex:135-157`, `thm:fluctuations` | SEALED | direct |
-| `oct13-thm-sharp-radii` | `CERW.LimitShapes.sharp_radii` | `oct23.tex:164-169`, `thm:sharp` | SEALED | direct |
-| `oct13-thm-sharp-radii-lil` | `CERW.LimitShapes.sharp_radii_lil` | `oct23.tex:170-175`, `thm:sharp` | SEALED | direct |
-| `oct13-thm-sharp-bulk` | `CERW.LimitShapes.sharp_bulk` | `oct23.tex:176-180`, `thm:sharp` | SEALED | direct |
-| `oct13-thm-sharp-width` | `CERW.LimitShapes.sharp_width` | `oct23.tex:181-195`, `thm:sharp` | SEALED | direct |
-| `oct13-thm-norm-shape` | `CERW.LimitShapes.norm_shape` | `oct23.tex:351-364`, `thm:norm-shape` | SEALED | direct |
-| `oct13-lem-ballpotential` | `CERW.LimitShapes.norm_ball_potential` | `oct23.tex:382-387`, `lem:ballpotential` | SEALED | direct |
-| `oct13-lem-freedman` | `CERW.LimitShapes.freedman_bound` | `oct23.tex:435-440`, `lem:freedman` | SEALED | direct |
-| `oct13-lem-cell` | `CERW.LimitShapes.cell_gradient` | `oct23.tex:456-461`, `lem:cell` | SEALED | direct |
-| `oct13-prop-coarse` | `CERW.LimitShapes.norm_coarse_bounds` | `oct23.tex:508-515`, `prop:coarse` | SEALED | direct |
-| `oct13-prop-norm-shape` | `CERW.LimitShapes.norm_shape_rates` | `oct23.tex:592-608`, `prop:norm-shape` | SEALED | direct |
-| `oct13-lem-layer` | `CERW.LimitShapes.layer_potential` | `oct23.tex:493-498`, `lem:layer` | SEALED | direct |
-| `oct13-prop-inner` | `CERW.LimitShapes.inner_radius` | `oct23.tex:696-712`, `prop:inner` | SEALED | direct |
-| `oct13-prop-stronger-outer` | `CERW.LimitShapes.outer_radius` | `oct23.tex:758-763`, `prop:stronger-outer` | SEALED | direct |
-| `oct13-lem-near-far` | `CERW.LimitShapes.near_far` | `oct23.tex:807-812`, `lem:near-far` | SEALED | direct |
-| `oct13-thm-moment-fluctuations` | `CERW.LimitShapes.moment_fluctuations` | `oct23.tex:865-886`, `thm:moment-fluctuations` | SEALED | direct |
-| `oct13-lem-fixed-site-centering` | `CERW.LimitShapes.fixed_site_centering` | `oct23.tex:909-915`, `lem:fixed-site-centering` | SEALED | direct |
-| `oct13-thm-site-fluctuations` | `CERW.LimitShapes.site_fluctuations` | `oct23.tex:936-961`, `thm:site-fluctuations` | SEALED | direct |
-| `oct13-lem-exp-deviation` | `CERW.LimitShapes.exp_deviation` | `oct23.tex:988-1002`, `lem:exp-deviation` | SEALED | direct |
-| `oct13-prop-bulk-profile` | `CERW.LimitShapes.bulk_profile` | `oct23.tex:1054-1061`, `prop:bulk-profile` | SEALED | direct |
-| `oct13-prop-log-lower` | `CERW.LimitShapes.log_lower_bounds` | `oct23.tex:1125-1139`, `prop:log-lower` | SEALED | direct |
-| `oct13-lem-local` | `CERW.LimitShapes.norm_local_time_potential` | `oct23.tex:397-402`, `lem:local` | SEALED | direct |
-| `oct13-lem-contact` | `CERW.LimitShapes.contact_potential` | `oct23.tex:644-649`, `lem:contact` | SEALED | deterministic event implication |
-| `oct13-lem-separated-brackets` | `CERW.LimitShapes.separated_brackets` | `oct23.tex:1084-1091`, `lem:separated-brackets` | SEALED | deterministic event implication |
-| `eq-distance-crossing` | `CERW.LimitShapes.distance_crossing_bound` | `oct23.tex:522-525`, `eq:distance-crossing` | SEALED | section probability estimate |
-| `sec-common-event` | `CERW.LimitShapes.exists_common_event` | `oct23.tex:616-636`, `sec:norm-event` | SEALED | section probability estimate |
-| `lem-contact-common-event` | `CERW.LimitShapes.contact_potential_on_common_event` | `oct23.tex:644-649`, `lem:contact` | SEALED | full common-event source closure |
-| `lem-separated-brackets-common-event` | `CERW.LimitShapes.separated_brackets_on_euclidean_event` | `oct23.tex:1084-1091`, `lem:separated-brackets` | SEALED | full common-event source closure |
+| `current-thm-shape` | `CERW.LimitShapes.limit_shape` | `centrally-excited-walks.tex:111-124`, `thm:shape` | SEALED | direct |
+| `current-thm-fluctuations` | `CERW.LimitShapes.fluctuation_rates` | `centrally-excited-walks.tex:135-157`, `thm:fluctuations` | SEALED | direct |
+| `current-thm-sharp-radii` | `CERW.LimitShapes.sharp_radii` | `centrally-excited-walks.tex:164-169`, `thm:sharp` | SEALED | direct |
+| `current-thm-sharp-radii-lil` | `CERW.LimitShapes.sharp_radii_lil` | `centrally-excited-walks.tex:170-175`, `thm:sharp` | SEALED | direct |
+| `current-thm-sharp-bulk` | `CERW.LimitShapes.sharp_bulk` | `centrally-excited-walks.tex:176-180`, `thm:sharp` | SEALED | direct |
+| `current-thm-sharp-width` | `CERW.LimitShapes.sharp_width` | `centrally-excited-walks.tex:181-195`, `thm:sharp` | SEALED | direct |
+| `current-thm-norm-shape` | `CERW.LimitShapes.norm_shape` | `centrally-excited-walks.tex:351-364`, `thm:norm-shape` | SEALED | direct |
+| `current-lem-ballpotential` | `CERW.LimitShapes.norm_ball_potential` | `centrally-excited-walks.tex:382-387`, `lem:ballpotential` | SEALED | direct |
+| `current-lem-freedman` | `CERW.LimitShapes.freedman_bound` | `centrally-excited-walks.tex:435-440`, `lem:freedman` | SEALED | direct |
+| `current-lem-cell` | `CERW.LimitShapes.cell_gradient` | `centrally-excited-walks.tex:456-461`, `lem:cell` | SEALED | direct |
+| `current-prop-coarse` | `CERW.LimitShapes.norm_coarse_bounds` | `centrally-excited-walks.tex:508-515`, `prop:coarse` | SEALED | direct |
+| `current-prop-norm-shape` | `CERW.LimitShapes.norm_shape_rates` | `centrally-excited-walks.tex:592-608`, `prop:norm-shape` | SEALED | direct |
+| `current-lem-layer` | `CERW.LimitShapes.layer_potential` | `centrally-excited-walks.tex:493-498`, `lem:layer` | SEALED | direct |
+| `current-prop-inner` | `CERW.LimitShapes.inner_radius` | `centrally-excited-walks.tex:696-712`, `prop:inner` | SEALED | direct |
+| `current-prop-stronger-outer` | `CERW.LimitShapes.outer_radius` | `centrally-excited-walks.tex:758-763`, `prop:stronger-outer` | SEALED | direct |
+| `current-lem-near-far` | `CERW.LimitShapes.near_far` | `centrally-excited-walks.tex:807-812`, `lem:near-far` | SEALED | direct |
+| `current-thm-moment-fluctuations` | `CERW.LimitShapes.moment_fluctuations` | `centrally-excited-walks.tex:865-886`, `thm:moment-fluctuations` | SEALED | direct |
+| `current-lem-fixed-site-centering` | `CERW.LimitShapes.fixed_site_centering` | `centrally-excited-walks.tex:909-915`, `lem:fixed-site-centering` | SEALED | direct |
+| `current-thm-site-fluctuations` | `CERW.LimitShapes.site_fluctuations` | `centrally-excited-walks.tex:936-961`, `thm:site-fluctuations` | SEALED | direct |
+| `current-lem-exp-deviation` | `CERW.LimitShapes.exp_deviation` | `centrally-excited-walks.tex:988-1002`, `lem:exp-deviation` | SEALED | direct |
+| `current-prop-bulk-profile` | `CERW.LimitShapes.bulk_profile` | `centrally-excited-walks.tex:1054-1061`, `prop:bulk-profile` | SEALED | direct |
+| `current-prop-log-lower` | `CERW.LimitShapes.log_lower_bounds` | `centrally-excited-walks.tex:1125-1139`, `prop:log-lower` | SEALED | direct |
+| `current-lem-local` | `CERW.LimitShapes.norm_local_time_potential` | `centrally-excited-walks.tex:397-402`, `lem:local` | SEALED | direct |
+| `current-lem-contact` | `CERW.LimitShapes.contact_potential` | `centrally-excited-walks.tex:644-649`, `lem:contact` | SEALED | deterministic event implication |
+| `current-lem-separated-brackets` | `CERW.LimitShapes.separated_brackets` | `centrally-excited-walks.tex:1084-1091`, `lem:separated-brackets` | SEALED | deterministic event implication |
+| `eq-distance-crossing` | `CERW.LimitShapes.distance_crossing_bound` | `centrally-excited-walks.tex:522-525`, `eq:distance-crossing` | SEALED | section probability estimate |
+| `sec-common-event` | `CERW.LimitShapes.exists_common_event` | `centrally-excited-walks.tex:616-636`, `sec:norm-event` | SEALED | section probability estimate |
+| `lem-contact-common-event` | `CERW.LimitShapes.contact_potential_on_common_event` | `centrally-excited-walks.tex:644-649`, `lem:contact` | SEALED | full common-event source closure |
+| `lem-separated-brackets-common-event` | `CERW.LimitShapes.separated_brackets_on_euclidean_event` | `centrally-excited-walks.tex:1084-1091`, `lem:separated-brackets` | SEALED | full common-event source closure |
 
 <!-- LIMIT-SHAPES-SURFACE-END -->
 

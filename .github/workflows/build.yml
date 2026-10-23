@@ -73,7 +73,7 @@ jobs:
           python3 -m venv .venv
           .venv/bin/python -m pip install ./tools/leanform
           .venv/bin/python -m leanform_tools.verify .
-          .venv/bin/python tools/verify_oct13.py
+          .venv/bin/python tools/verify_current.py
 
       - name: Check the challenge vocabulary is Mathlib-only and self-consistent
         env:

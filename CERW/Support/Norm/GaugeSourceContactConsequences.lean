@@ -5,13 +5,13 @@ import CERW.Support.Norm.GaugeSection5Event
 # The contact passage for the gauge of a convex body, on the event of Section 5.1
 
 Let `K ⊆ ℝ^d`, `d ≥ 2`, be a compact convex set with the origin in its interior and `ψ = gauge K`
-its Minkowski functional, which need not be even (the corollary for convex bodies, `oct5.tex:896`).
+its Minkowski functional, which need not be even (the corollary for convex bodies, `limit-shapes.tex:896`).
 For a path `x` and a time `n`, `b = normInnerRadius (gauge K) x n` is the infimum of `ψ` over the
 complement of the cell set `D_n`, `E = D_n ∖ {ψ < b}`, a contact point `y₀` is a point of the
-closure of the complement with `ψ(y₀) = b`, and `H = U_{D_n}(y₀)` (`oct5.tex:633-655`). This module
+closure of the complement with `ψ(y₀) = b`, and `H = U_{D_n}(y₀)` (`limit-shapes.tex:633-655`). This module
 derives, from the event `E7` of Section 5.1 and from the legality of the walk, the passage of
-`lem:contact` (`oct5.tex:773-777`) together with the convolution inequality
-`(χ * U_E)(y₀) ≤ ‖χ‖₁ H` (`oct5.tex:759-771`):
+`lem:contact` (`limit-shapes.tex:773-777`) together with the convolution inequality
+`(χ * U_E)(y₀) ≤ ‖χ‖₁ H` (`limit-shapes.tex:759-771`):
 
 * `normPotential_cellSet_contact_nonneg`: `H ≥ 0` at every contact point (the integrand of `U_E`
   is nonnegative by `eq:contact-convexity`, and `U_{D_n}(y₀) = U_E(y₀)`).

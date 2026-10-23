@@ -7,8 +7,8 @@ import CERW.Support.Occupation.CellSetVolume
 /-!
 # The contact convolution for the visited-cell set of the walk
 
-`eq:contact-convolution` (`oct5.tex:768-771`) is applied in the source to the actual objects of
-`sec:largest-ball` (`oct5.tex:633-655`): the cell set `D_n = ⋃_{x ∈ A_n} C_x` of the sites
+`eq:contact-convolution` (`limit-shapes.tex:768-771`) is applied in the source to the actual objects of
+`sec:largest-ball` (`limit-shapes.tex:633-655`): the cell set `D_n = ⋃_{x ∈ A_n} C_x` of the sites
 visited before time `n`, the inner threshold `b = inf {Ψ(y) : y ∉ D_n}`, the set
 `E = D_n ∖ {Ψ < b}`, a contact point `y₀` with `Ψ(y₀) = b` that is a limit of points outside `D_n`,
 and `H = U_{D_n}(y₀)`. `RadialNewtonConvolution.contact_convolution_le_radial` proves the inequality
@@ -204,7 +204,7 @@ theorem contact_convolution_le_cellSet (hd : 2 ≤ d) {Ψ : EuclideanSpace ℝ (
   contact_convolution_le_radial hd hΨ hε hrad hf0 hfi (measurableSet_cellSet x n)
     (isBounded_cellSet (by omega) x n) (sublevel_subset_cellSet hΨ x n) hy₀
 
-/-- **The passage of the source for the visited-cell set** (`oct5.tex:633-655, 759-771`). For every
+/-- **The passage of the source for the visited-cell set** (`limit-shapes.tex:633-655, 759-771`). For every
 path `x` and time `n`, with `D_n = cellSet x n` and `b = normInnerRadius Ψ x n`: `b` is the
 infimum of `Ψ` over the complement of `D_n`, `{Ψ < b} ⊆ D_n`, and there is a contact point `y₀`,
 that is a point of the closure of the complement with `Ψ(y₀) = b`, which lies in the closure of the

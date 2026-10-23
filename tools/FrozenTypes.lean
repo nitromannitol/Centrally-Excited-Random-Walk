@@ -3,7 +3,7 @@ import CERW
 /-!
 # Elaborated types of the frozen statements
 
-The statement hashes in `ledger/oct13.yaml` pin the text of each frozen block. This check pins
+The statement hashes in `ledger/current.yaml` pin the text of each frozen block. This check pins
 what each export registered there, and each theorem of `CERW/MainTheorems.lean`, means after
 elaboration. For each such declaration it writes an unambiguous serialization of its type, with
 escaped names, binder kinds, de Bruijn indices and universe levels, followed by the type and
@@ -74,7 +74,7 @@ end CERW.FrozenTypes
 open Lean CERW.FrozenTypes in
 run_cmd do
   let env ← getEnv
-  let ledger ← IO.FS.lines "ledger/oct13.yaml"
+  let ledger ← IO.FS.lines "ledger/current.yaml"
   let exports := ledger.filterMap fun l =>
     (l.trimAsciiStart.toString.dropPrefix? "export: ").map (·.toString.trimAscii.toString.toName)
   let main := (← IO.FS.lines "CERW/MainTheorems.lean").filterMap fun l =>

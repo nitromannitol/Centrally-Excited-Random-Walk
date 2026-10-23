@@ -1,8 +1,7 @@
 """Regression tests for the meta-check.
 
-Each test encodes a real silent vacuous pass observed on 2026-09-23 (see
-audit/EVIDENCE-2026-09-23.md, rows V1-V9). Before this package, every one of
-these exited 0.
+Each test encodes a real silent vacuous pass observed in practice.
+Before this package, every one of these exited 0.
 """
 
 import io

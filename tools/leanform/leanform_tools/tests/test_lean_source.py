@@ -1,7 +1,7 @@
 """Tests for the source reader.
 
-Two of these guard relaxations made on 2026-09-23 after a first run produced
-226 spurious failures in Manhattan-Transience and 208 in GMC. A relaxed check
+Two of these guard relaxations made after a first run produced
+hundreds of spurious failures. A relaxed check
 has to be proven still to catch the thing it bans.
 """
 

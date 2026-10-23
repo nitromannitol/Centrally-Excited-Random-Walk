@@ -1,8 +1,8 @@
 # The proof, as formalized
 
 The current source is *Limit shapes for centrally excited walks* by Ahmed Bou-Rabee,
-Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/oct23.tex` by
-`ledger/oct13.yaml`. The paper writes the drift as `κ`; Lean writes it as `ε`.
+Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/centrally-excited-walks.tex` by
+`ledger/current.yaml`. The paper writes the drift as `κ`; Lean writes it as `ε`.
 
 The bulk deviation conclusion in `thm:sharp` uses the separated exponential
 martingales from the current common event and the sharper potential bound proved
@@ -524,7 +524,7 @@ carries an open cited hypothesis, and `ASSUMPTIONS.md` remains "Nothing". Their 
 
 ### 2.9 The Euclidean statements (`Support/Law/`, `Geometry/`, `LocalTime/`, `Coarse/`, `Contact/`, `Main/`)
 
-The Euclidean development of the the paper. Its labels are those of `paper/limit-shapes.tex`.
+The Euclidean development of the paper. Its labels are those of `paper/limit-shapes.tex`.
 
 **`lem:geometry`** (`Support/Geometry/`).
 * The sup bound follows from the bathtub principle for `|v - y|^{1-d}`.
@@ -1071,12 +1071,7 @@ in the formalization. Mathematical readings are recorded in `ledger/readings.yam
     is met by the Dynkin martingales, which start at `0`, and by `𝒬 - 𝒬_0` for the quadratic martingale,
     since `𝒬_0 = |X_0|²` vanishes only almost surely. The two signs come from applying the proposition
     to `S` and to `-S`.
-30. The source check of the two propositions is `ledger/audits/external-sources.md`. It reads them against
-    restatements of the theorems in the literature, not against the original texts, and records both as
-    implied, with a remark: for `MartingaleCLT`, that `ℱ_0` need not be trivial, which a zero term prepended
-    to the martingale resolves; for `StoutLIL`, that the predictable form of the increment bound is confirmed
-    through restatements of Stout's theorem.
-31. Nothing is assumed (`ASSUMPTIONS.md`). The kernel asymptotics that the paper cites from
+30. Nothing is assumed (`ASSUMPTIONS.md`). The kernel asymptotics that the paper cites from
     Lawler–Limic, Theorem 4.3.1 for `d ≥ 3` and Theorem 4.4.4 for `d = 2`, are the proposition
     `LatticeProb.External.PotentialKernelAsymptotics d`, which Lattice-Probability proves as
     `potentialKernelAsymptotics_holds`. 
@@ -1086,51 +1081,51 @@ in the formalization. Mathematical readings are recorded in `ledger/readings.yam
     * The paper also cites Lawler–Limic's Corollaries 4.3.3 and 4.4.5 for the gradient estimate
       `eq:gradient`. The formalization does not assume it; `KernelBridge.lean` derives it from the
       two asymptotics.
-32. Freedman's inequality, the Paley–Zygmund inequality and the Cramér–Wold device, which the paper
+31. Freedman's inequality, the Paley–Zygmund inequality and the Cramér–Wold device, which the paper
     uses, are not assumed. Freedman's inequality is proved in Lattice-Probability, and the dyadic forms
     that the proofs need are derived from it in `Generic/Martingale/`; the other two are in
     Lattice-Probability.
 
 **Proof routes.**
-33. The mean-value identity behind `eq:newton` is proved from Gauss's flux theorem and a swap
+32. The mean-value identity behind `eq:newton` is proved from Gauss's flux theorem and a swap
     identity (section 2.9), without rotation invariance. Separately, the shell bound
     `eq:shell` needs a lower bound of order `η^{d-1}` on the measure of a spherical cap of radius `η`.
     That is sharper than the bound available in Mathlib, and it is proved with a reflection and a radial
     box (`Generic/Newton/Cap.lean`).
-34. The paper stops the quadratic martingale at the first exit from a ball before applying Azuma's or
+33. The paper stops the quadratic martingale at the first exit from a ball before applying Azuma's or
     Freedman's inequality (`eq:quadratic-coarse` in the revised paper, `eq:quadraticerror` in the first
     version). The formalization of the Euclidean bound (`Contact/QuadraticError.lean`) instead truncates
     its increments predictably by the indicator `|X_j| ≤ K N`, where `r_n = a N`; on the event that the
     walk stays in `B̄(0, K N)` up to time `n`, the two agree.
-35. Where the paper says that increasing the constants covers bounded `n`, the formalization takes
+34. Where the paper says that increasing the constants covers bounded `n`, the formalization takes
     `C ≥ n₀^p`, so that `C n^{-p} ≥ 1` below the threshold `n₀`.
-36. `lem:cell` (Lemma 3.3): the paper mollifies the excess `h` and averages over directions. The
+35. `lem:cell` (Lemma 3.3): the paper mollifies the excess `h` and averages over directions. The
     formalization applies the defining identity of `m` to a radial cut-off function, which gives the same
     estimate with the constant `16 d²` (`CellGradient.lean`). In `lem:contact` the estimate of the sum
     of `|∇Ψ - ξ(x)|` over the cells is obtained from pairings of `∇Ψ` with test functions, without the
     measure (`ContactPotential.lean`).
-37. `lem:freedman` (Lemma 3.2): the paper applies Freedman's inequality at dyadic values of the bracket.
+36. `lem:freedman` (Lemma 3.2): the paper applies Freedman's inequality at dyadic values of the bracket.
     The formalization first replaces the martingale by an almost surely equal one with surely bounded
     increments and the bracket by a nondecreasing adapted version bounded by `n`.
-38. The resolvent bound `eq:resolvent` is proved from the supremum of `ℓ - A s` rather than by summing
+37. The resolvent bound `eq:resolvent` is proved from the supremum of `ℓ - A s` rather than by summing
     the Neumann series (`Generic/Lattice/Resolvent.lean`).
-39. `thm:shape` (Theorem 1.1) is proved directly from the kernel facts
+38. `thm:shape` (Theorem 1.1) is proved directly from the kernel facts
     (`Support/Main/LimitShape.lean`), and not reproved from any other statement.
 
 **The Euclidean statements.**
-40. `thm:fluctuations` of the the paper is one declaration with two conjuncts: the probability
+39. `thm:fluctuations` of the paper is one declaration with two conjuncts: the probability
     bound, and the sentence "all these bounds hold eventually almost surely, with deterministic constants", as
     `∃ C, ∀ᵐ ω, ∀ᶠ n, Good C`. One constant serves the event and the probability, as in the paper.
-41. `eq:hausdorff`, which the paper states "on the event" of `thm:fluctuations`, is formalized as a
+40. `eq:hausdorff`, which the paper states "on the event" of `thm:fluctuations`, is formalized as a
     probability bound with its own constant.
-42. The planar remark "the inner-radius error in the plane is at most `C n^{1/6} √(log(n+2))` in
+41. The planar remark "the inner-radius error in the plane is at most `C n^{1/6} √(log(n+2))` in
     lattice units" is stated in its two-sided reading:
     * the ball of radius `aN - C n^{1/6} √L` lies in `A_n`;
     * some site outside `A_n` lies within `aN + C n^{1/6} √L`.
 
     This is strictly stronger than the one-sided reading, which is also proved in Support
     (`hausdorff_bound_one_sided_of_kernelFacts`).
-43. In the the paper's `lem:geometry` the normalization `σ_d` of the spherical average is the total
+42. In the paper's `lem:geometry` the normalization `σ_d` of the spherical average is the total
     mass `d ω_d` of `volume.toSphere`, and `‖U_D‖_∞` is written `∀ y`. `D` is required to be measurable
     and bounded, as in the paper. The constants `C_d` of `lem:local` and `lem:geometry` are bound before `ε`,
     as the paper's phrase "depending only on `d`" says.

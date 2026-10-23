@@ -1,7 +1,7 @@
-"""Regressions for defects found running the ported checkers against the fleet.
+"""Regressions for defects found running the ported checkers against several repositories.
 
-Each test here corresponds to a false failure the shared package produced on
-2026-09-23 against a repo whose incumbent checker passed. A port that is
+Each test here corresponds to a false failure the shared package produced
+against a repository whose incumbent checker passed. A port that is
 stricter than the tool it replaces is only useful if the extra strictness is
 real; these pin the cases where it was not.
 """

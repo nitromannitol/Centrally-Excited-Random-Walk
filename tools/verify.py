@@ -12,7 +12,7 @@ in a dozen drifting copies.
 That sharing is the point. When each repository carried its own copy, the
 copies rotted invisibly: a checker whose paper-name regex no longer matched
 its repository did not fail, it passed while inspecting nothing. Nine of them
-were doing exactly that across four repositories as of 2026-09-23. Everything
+were doing exactly that across four repositories. Everything
 paper-specific now comes from `ledger/manifest.yaml` and
 `ledger/readings.yaml` instead of from a literal in the checker.
 

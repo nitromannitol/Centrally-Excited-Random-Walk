@@ -8,9 +8,9 @@ A Lean 4 formalization of
 > Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh,
 > *Limit shapes for centrally excited walks*.
 
-[LaTeX source](paper/oct23.tex) · [Bibliography](paper/oct23-references.bib)
+[LaTeX source](paper/centrally-excited-walks.tex) · [Bibliography](paper/centrally-excited-walks.bib)
 
-The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml), which records
+The current source is pinned in [ledger/current.yaml](ledger/current.yaml), which records
 the source lines, the Lean declaration and the statement hash of each result. Every
 theorem, lemma and proposition of the paper is stated as printed in
 [CERW/LimitShapes/Frozen/](CERW/LimitShapes/Frozen/) and proved by the argument printed
@@ -82,14 +82,14 @@ python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install ./tools/leanform
 python -m leanform_tools.verify .
-python tools/verify_oct13.py
+python tools/verify_current.py
 lake env lean tools/AllAxioms.lean
 bash tools/replay_kernel.sh
 lake env lean tools/FrozenTypes.lean
 python tools/check_frozen_types.py
 ```
 
-To build the current paper, run `latexmk -pdf oct23.tex` from `paper/`.
+To build the current paper, run `latexmk -pdf centrally-excited-walks.tex` from `paper/`.
 
 ## Layout
 

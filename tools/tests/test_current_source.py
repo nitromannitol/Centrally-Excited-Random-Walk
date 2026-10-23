@@ -19,15 +19,15 @@ sys.path.insert(0, str(ROOT / "tools" / "leanform"))
 from leanform_tools.config import Node  # noqa: E402
 from leanform_tools.gate import Result  # noqa: E402
 
-SPEC = importlib.util.spec_from_file_location("verify_oct13_current_source",
-                                             ROOT / "tools" / "verify_oct13.py")
+SPEC = importlib.util.spec_from_file_location("verify_current_source",
+                                             ROOT / "tools" / "verify_current.py")
 VERIFY = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(VERIFY)
 
 
 def final_config():
     """Load the actual pinned source and manifest without filling missing entries."""
-    path = ROOT / "ledger" / "oct13.yaml"
+    path = ROOT / "ledger" / "current.yaml"
     raw = yaml.safe_load(path.read_text())
     nodes = [Node(dict(node)) for node in raw["nodes"]]
     return VERIFY.PaperConfig(ROOT, path, raw, nodes)
@@ -35,7 +35,7 @@ def final_config():
 
 class FrozenTypeInventoryTests(unittest.TestCase):
     def test_pinned_types_are_exactly_the_exports_and_main_theorems(self):
-        raw = yaml.safe_load((ROOT / "ledger" / "oct13.yaml").read_text())
+        raw = yaml.safe_load((ROOT / "ledger" / "current.yaml").read_text())
         exports = {node["export"] for node in raw["nodes"]}
         main = (ROOT / "CERW" / "MainTheorems.lean").read_text()
         self.assertIn("namespace CERW.MainTheorems", main)
@@ -97,15 +97,15 @@ class CurrentSourceStatusTests(unittest.TestCase):
 
     def test_draft_part_of_split_sharpness_block_prevents_complete_claim(self):
         nodes = [Node({**node.raw, "state": "DRAFT_SORRY"})
-                 if node.id == "oct13-thm-sharp-bulk" else node for node in self.cfg.nodes]
+                 if node.id == "current-thm-sharp-bulk" else node for node in self.cfg.nodes]
         text = self.partial(replace(self.cfg, nodes=nodes))
         # Other sharpness parts still claim this label, but do not prove part (iii).
         self.assertIn("22/22 source result blocks", text)
         self.assertIn("28 sealed/proved, 1 draft", text)
 
     def test_deleted_sharpness_part_leaves_unowned_frozen_file(self):
-        for ident in ["oct13-thm-sharp-radii", "oct13-thm-sharp-radii-lil",
-                      "oct13-thm-sharp-bulk", "oct13-thm-sharp-width"]:
+        for ident in ["current-thm-sharp-radii", "current-thm-sharp-radii-lil",
+                      "current-thm-sharp-bulk", "current-thm-sharp-width"]:
             with self.subTest(part=ident):
                 deleted = next(node for node in self.cfg.nodes if node.id == ident)
                 self.assertTrue((self.cfg.root / deleted.file).is_file())
@@ -120,7 +120,7 @@ class CurrentSourceStatusTests(unittest.TestCase):
         self.assertIn("Source consumers: 1/2", self.partial(replace(self.cfg, nodes=nodes)))
 
     def test_complete_ids_with_wrong_source_claims_do_not_cover_labels(self):
-        nodes = [Node({**node.raw, "source": "oct23.tex:1-1 (label unrelated)"})
+        nodes = [Node({**node.raw, "source": "centrally-excited-walks.tex:1-1 (label unrelated)"})
                  for node in self.cfg.nodes]
         self.assertIn("0/22 source result blocks", self.partial(replace(self.cfg, nodes=nodes)))
 

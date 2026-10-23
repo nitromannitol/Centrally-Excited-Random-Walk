@@ -233,7 +233,7 @@ clauses:
     N\ \forall(\Omega,\mu,X)$ with \verb!IsCERW μ ε X!: (i) and (ii). The constants and $n_0$ depend on
     $(d,\varepsilon)$ only and precede the probability space. The same $c$ serves (i) and (ii), as in
     the'
-  oct13-thm-shape: 'The walk is any process \texttt{X} on any probability space $(\Omega,\mu)$ with \texttt{CERW.IsCERW
+  current-thm-shape: 'The walk is any process \texttt{X} on any probability space $(\Omega,\mu)$ with \texttt{CERW.IsCERW
     μ ε X} ($\varepsilon=\kappa$); $d\ge2$ is \texttt{hd : 2 ≤ d} and $0<\kappa<1/d$ is \texttt{hε, hεd}.
     $\omega_d$ is \texttt{(volume (ball 0 1)).toReal} and $r_n$ is the \texttt{let} \texttt{r}, with the
     natural-number casts taken in $\mathbb R$. $\ell_n$ is \texttt{CERW.localTime} and $A_n$ is \texttt{CERW.departureRange}
@@ -242,7 +242,7 @@ clauses:
     it. (i) is ``for every $0<\eta<1$, eventually'''' with the two inclusions. (ii) ``$\frac1{r_n}\max_x|\cdot|\to0$''''
     is read as $\forall\eta>0$, eventually in $n$, $\forall x$, $|\ell_n(x)-2d\kappa\max(r_n-|x|,0)|\le\eta
     r_n$ (for $|x|\ge r_n$ outside the range both $\ell_n(x)$'
-  oct13-thm-fluctuations: 'Parameters $d,\kappa,p$ precede the constant, which precedes the probability
+  current-thm-fluctuations: 'Parameters $d,\kappa,p$ precede the constant, which precedes the probability
     space: the Lean order is \texttt{hd, ε, p, ∃ C > 0, ∀ Ω μ X}, matching $C(d,\kappa,p)$. \texttt{Good
     C Y n} is the conjunction of the three parts (i)--(iii) for the path $Y$ at time $n$, with the $d=2$
     / $d\ge3$ split written as \texttt{if d = 2 then … else …} (so the \texttt{else} branch is $d\ge3$ under
@@ -250,7 +250,7 @@ clauses:
     j\le n}|X_j|$, \texttt{CERW.cellSet} is $D_n=\bigcup_{x\in A_n}C_x$, and the maximum over $x\in\mathbb
     Z^d$ in (iii) is a universally quantified bound. The volume $|r_n^{-1}D_n\mathbin\triangle B(0,1)|$
     is \texttt{volume (((r n)⁻¹ • cellSet Y n) ∆ ball 0 1)}: the scaling applies to $D_n$ only .'
-  oct13-thm-sharp-radii: '$d=2$ is \texttt{hd : d = 2}; $\kappa\in(0,1/d)$ is \texttt{ε}; $r_n$, $\omega_d$
+  current-thm-sharp-radii: '$d=2$ is \texttt{hd : d = 2}; $\kappa\in(0,1/d)$ is \texttt{ε}; $r_n$, $\omega_d$
     as in thm-shape. The order is $\forall p>0,\ \exists c>0,\ \exists n_0,\ \forall(\Omega,\mu,X)$ with
     \texttt{IsCERW}, $\forall n\ge n_0$, which reads ``for every $p$ there is $c(\kappa,p)>0$ such that
     for all sufficiently large $n$'''': $c$ and $n_0$ are fixed before the probability space (they may be
@@ -259,12 +259,12 @@ clauses:
     and $R_{\rm out}(n)-r_n\ge\dots$ is the analogous set with \texttt{maxRadius}. A lower bound on a probability
     is written with \texttt{MeasurableSet E} and $\mathrm{ofReal}(n^{-p})\le\mu E$ (repository convention).
     Both displays of \eqref{eq:planar-polynomial-lower} are conjuncts of the same node. No'
-  oct13-thm-sharp-radii-lil: The statement assumes d = 2 and 0 < ε < 1/d. Both lower bounds are under one
+  current-thm-sharp-radii-lil: The statement assumes d = 2 and 0 < ε < 1/d. Both lower bounds are under one
     almost-sure quantifier. For each δ > 0, each radius deviation is at least (1/√(10πε) − δ)√(r_n log log
     n) infinitely often. This is equivalent to the two displayed limsup bounds because the normalizer is
     positive for n ≥ 3. Stout's law is proved by CERW.Generic.Martingale.LilAssembly.stout_lower and supplied
     in the proof; it is not a hypothesis of the registered theorem.
-  oct13-thm-sharp-bulk: '$d\ge2$ is \texttt{hd : 2 ≤ d}, $\kappa$ is \texttt{ε} with $0<\kappa<1/d$. The
+  current-thm-sharp-bulk: '$d\ge2$ is \texttt{hd : 2 ≤ d}, $\kappa$ is \texttt{ε} with $0<\kappa<1/d$. The
     constant $c(d,\kappa)>0$ and the threshold $n_0$ are bound after $d,\kappa$ and before the probability
     space; the same $c$ appears as the multiplier in the deviation threshold and in the exponent of the
     probability, exactly as in the paper. The maximum over $\{x\in\mathbb Z^d:|x|\le r_n^{1/2}\}$ (a finite
@@ -273,12 +273,12 @@ clauses:
     (\texttt{if d = 2 then … else …}). ``With probability at least $1-n^{-c}$'''' is an upper bound $n^{-c}$
     on the outer measure of the complement (repository convention). No positive part appears in the paper,
     none in Lean (for $|x|\le r_n^{1/2}<r_n$ it would not'
-  oct13-thm-sharp-width: 'The statement covers all (iv)(a), (iv)(b) and (iv)(c). The dimension is d=2; 0<eps<1/d
+  current-thm-sharp-width: 'The statement covers all (iv)(a), (iv)(b) and (iv)(c). The dimension is d=2; 0<eps<1/d
     is explicit. The polynomial lower bound chooses c>0 and n0 after p>0 and before all probability spaces
     and walks. The iterated-logarithm lower bound is the junk-free almost- sure frequent-time assertion
     with every positive slack. The third conjunct is the ENNReal limsup of the actual width-event probability
     for every a>=0, bounded by ofReal(1-exp(-(3*eps*a^2/pi))). No CLT, LIL or output premise is assumed. '
-  oct13-thm-norm-shape: 'Paper macros: \verb!\drift! is $\kappa$ (Lean \verb!ε!), \verb!\gauge! is $\Psi$
+  current-thm-norm-shape: 'Paper macros: \verb!\drift! is $\kappa$ (Lean \verb!ε!), \verb!\gauge! is $\Psi$
     (Lean \verb!Ψ!), \verb!\nf{a}{b}! is $a/b$. \emph{Object mapping.} \begin{itemize} \item $\R^d$ is \verb!EuclideanSpace
     ℝ (Fin d)!; $\Z^d$ is \verb!LatticeProb.Site d! ($=$ \verb!Fin d → ℤ!), embedded by \verb!CERW.toSpace!,
     so $\gauge(x)$ for a site $x$ is \verb!Ψ (CERW.toSpace x)!; $e_i$ is \verb!CERW.coordVec i!. The standing
@@ -287,7 +287,7 @@ clauses:
     follow (Lipschitz is machine-checked), so $|B_\gauge|$ is finite and positive. \item Chosen subgradients:
     \verb!ξ : Site d → EuclideanSpace ℝ (Fin d)! with \verb!hξ : ∀ x, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace
     x) (ξ x)!. \verb!IsSubgradient Ψ x ξ! is $\forall y,\'
-  oct13-lem-ballpotential: 'Paper macros: \verb!\drift! is $\kappa$ (Lean \verb!ε!), \verb!\gauge! is $\Psi$.
+  current-lem-ballpotential: 'Paper macros: \verb!\drift! is $\kappa$ (Lean \verb!ε!), \verb!\gauge! is $\Psi$.
     \emph{Object mapping.} \begin{itemize} \item $\gauge$: \verb!Ψ! with \verb!hΨ : CERW.IsNorm Ψ!; $\rho>0$:
     \verb!{ρ : ℝ} (hρ : 0 < ρ)!; $y\in\R^d$: \verb!y : EuclideanSpace ℝ (Fin d)!; $d\ge2$ (standing): \verb!hd
     : 2 ≤ d!. \item $U_D$ of eq:potential-norm is \verb!CERW.normPotential d ε Ψ D y := 2 * ε / unitBallVolume
@@ -296,7 +296,7 @@ clauses:
     $\nabla\gauge(v)\cdot(v-y)/|v-y|^d$. \item $\nabla\gauge$ is Mathlib''s \verb!gradient Ψ v!, the gradient
     where $\gauge$ is differentiable and $0$ elsewhere. A norm is Lipschitz, so the non-differentiability
     set is Lebesgue-null (Rademacher; machine-checked \verb!ae_differentiable!),'
-  oct13-lem-freedman: '\emph{Object mapping.} \begin{itemize} \item ``A real martingale $Z$'''' is \verb!Z
+  current-lem-freedman: '\emph{Object mapping.} \begin{itemize} \item ``A real martingale $Z$'''' is \verb!Z
     : ℕ → Ω → ℝ! with \verb!Martingale Z ℱ μ! for a filtration \verb!ℱ : Filtration ℕ m0! on an arbitrary
     probability space \verb!(Ω, m0, μ)! (\verb![IsProbabilityMeasure μ]!). Mathlib''s \verb!Martingale!
     is adaptedness plus $\mathbb E(Z_j\mid\mathcal F_i)=Z_i$ for $i\le j$; it implies integrability of every
@@ -305,7 +305,7 @@ clauses:
     at most $1$'''' is \verb!∀ᵐ ω ∂μ, ∀ t, |Z (t + 1) ω - Z t ω| ≤ 1! (almost surely, for all times; martingales
     are defined up to null sets). \item $\langle Z\rangle_n$ is \verb!CERW.predBracket μ ℱ Z Z n ω! $=\sum_{t<n}\mathbb
     E\bigl((Z_{t+1}-Z_t)^2\mid\mathcal F_t\bigr)(\omega)$, the predictable'
-  oct13-lem-cell: 'Paper macros: \verb!\gauge! is $\Psi$. \emph{Object mapping.} \begin{itemize} \item $\gauge$,
+  current-lem-cell: 'Paper macros: \verb!\gauge! is $\Psi$. \emph{Object mapping.} \begin{itemize} \item $\gauge$,
     $\xi$: \verb!Ψ! with \verb!CERW.IsNorm Ψ!, and \verb!ξ : Site d → EuclideanSpace ℝ (Fin d)! with \verb!∀
     x, x ≠ 0 → CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)! and \verb!ξ 0 = 0! (line 303). The hypothesis
     \verb!ξ 0 = 0! is essential here: the lemma is asserted for every $x\in\Z^d$ including $x=0$, where
@@ -314,7 +314,7 @@ clauses:
     (half-open cube; the half-open or closed choice is immaterial for the Lebesgue integral). $B(x,6\sqrt
     d)$ is the open ball \verb!Metric.ball (CERW.toSpace x) (6 * Real.sqrt d)!. \item $\nabla\gauge(v)$
     is \verb!gradient Ψ v!, the Mathlib gradient (value $0$ where $\gauge$ is not'
-  oct13-prop-coarse: '\begin{itemize} \item \emph{Setting.} $d\ge2$ is \texttt{hd}. $\gauge$ is \texttt{Psi}
+  current-prop-coarse: '\begin{itemize} \item \emph{Setting.} $d\ge2$ is \texttt{hd}. $\gauge$ is \texttt{Psi}
     with \texttt{CERW.IsNorm Psi}. $\drift$ is \texttt{eps} with $0<\drift$, and eq:ellipticity is written
     \texttt{forall i, eps * Psi (coordVec i) < 1/d} (the maximum over $i$ is the universal quantifier).
     $r_n$ is the \texttt{let}-bound $r\,n=\bigl((d+1)n/(2d\,\drift\,|B_\gauge|)\bigr)^{1/(d+1)}$ of eq:radius-norm,
@@ -323,7 +323,7 @@ clauses:
     \item \emph{Subgradients.} $\xi(x)\in\partial\gauge(x)$ for $x\ne0$ is \texttt{IsSubgradient Psi (toSpace
     x) (xi x)}, that is $\gauge(y)\ge\gauge(x)+\xi(x)\cdot(y-x)$ for all $y$. $\xi(0)=0$ is line 303. \item
     \emph{Walk.} \texttt{IsDriftCERW mu eps xi X}: $X_0=0$ almost surely'
-  oct13-prop-norm-shape: '\begin{itemize} \item \emph{Setting and constants.} As in the coarse-bounds twin.
+  current-prop-norm-shape: '\begin{itemize} \item \emph{Setting and constants.} As in the coarse-bounds twin.
     One constant $C(d,\drift,\gauge,p)$, bound after $p$ and before $\xi$ and the walk (``not depending
     on the choice of the subgradients''''), serves in the three bounds and in the failure probability. \item
     \emph{Case split.} $d=2$ versus $d\ge3$ is \texttt{if d = 2 then \dots else \dots} ($d\ge2$ is \texttt{hd}).
@@ -332,7 +332,7 @@ clauses:
     n)^{1/(d+1)}$. They match eq:norm-shape, eq:norm-outer, eq:norm-local. \item \emph{(i) Inner radius.}
     $\inf_{y\notin D_n}\gauge(y)=$ \texttt{normInnerRadius Psi (X . w) n} $=\texttt{sInf}\,(\gauge''''(D_n)^{\complement})$
     with $D_n=$ \texttt{cellSet} the union of the half-open unit cells of'
-  oct13-lem-layer: '\begin{itemize} \item \emph{Setting.} $d\ge2$ is \texttt{hd}; $\gauge$ is \texttt{Psi}
+  current-lem-layer: '\begin{itemize} \item \emph{Setting.} $d\ge2$ is \texttt{hd}; $\gauge$ is \texttt{Psi}
     with \texttt{IsNorm Psi}; $\drift$ is \texttt{eps} with $0<\drift$. The declaration does not assume
     eq:ellipticity: the proof (polar coordinates about $y$, convexity of $t\mapsto\gauge(y+tu)$, change
     of variables $s=h_u(t)$) never uses it, so this is the paper''s lemma for a wider class of $\drift$.
@@ -341,7 +341,7 @@ clauses:
     $D$ is a set of \texttt{EuclideanSpace R (Fin d)} with \texttt{MeasurableSet D} (Borel, the repository''s
     reading of ``measurable'''', as in \texttt{potential\_geometry}) and \texttt{D $\subseteq$ \{v | b <=
     Psi v /\ Psi v <= b + a\}}. The shell is bounded (because $\gauge$ is a norm), so no'
-  oct13-prop-inner: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0
+  current-prop-inner: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd : 2 ≤ d!, \verb!0
     < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume
     (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε
     * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The
@@ -350,7 +350,7 @@ clauses:
     measure of the exceptional set. \emph{Quantifiers.} $\forall p>0\ \exists C>0\ \forall(\Omega,\mu,X)$
     with \verb!IsCERW μ ε X!, $\forall n\ge2$. So $C=C(d,\varepsilon,p)$ precedes the probability space;
     the paper uses one $C$ for the three bounds and for the probability, and so does the Lean'
-  oct13-prop-stronger-outer: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd : 2
+  current-prop-stronger-outer: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd : 2
     ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$
     is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1)
     * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!).
@@ -359,7 +359,7 @@ clauses:
     the outer measure of the exceptional set. \emph{Quantifiers.} $\forall p>0\ \exists C>0\ \forall(\Omega,\mu,X)$
     with \verb!IsCERW μ ε X!, $\forall n\ge2$; $C=C(d,\varepsilon,p)$ precedes the probability space. \emph{Statement.}
     $\Rout(n)$ is \verb!CERW.maxRadius! ($\max_{0\le j\le n}|X_j|$, \verb!Finset.sup''!'
-  oct13-lem-near-far: 'Standing assumptions: \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! ($\drift=\varepsilon$).
+  current-lem-near-far: 'Standing assumptions: \verb!hd : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! ($\drift=\varepsilon$).
     $U_D^+$ (line 966) is \verb!CERW.positivePotential d ε D y! $=\frac{2\varepsilon}{\omega_d}\int_D\max\{u_v\cdot(v-y)|v-y|^{-d},0\}\,dv$,
     with $u_v=\|v\|^{-1}v$ (\verb!CERW.unitDir!, $u_0=0$) and the integrand read as $0$ at $v=y$. All integrals
     in the statement are Bochner integrals of functions that are integrable for bounded measurable $D$ (here
@@ -368,7 +368,7 @@ clauses:
     with \verb!D ⊆ {v | b ≤ ‖v‖ ∧ ‖v‖ ≤ b + w}!, then the two hypotheses, then $\forall y$ with $b\le\|y\|\le
     b+w$. So $C=C(d,\varepsilon)$ precedes $w,b,\lambda,D$. \emph{Hypotheses.} (1) for every $u$ with $\|u\|=1$
     and every $t\ge w$:'
-  oct13-thm-moment-fluctuations: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd
+  current-thm-moment-fluctuations: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd
     : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$
     is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1)
     * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!).
@@ -379,7 +379,7 @@ clauses:
     normalization) and \verb!hLIL : StoutLIL.{u}! (Stout 1970); these are internal proof parameters and
     the **final registered root supplies both proved** ($\verb!martingaleCLT_proved!$, $\verb!stoutLIL_full!$),
     so no cited hypothesis remains open.'
-  oct13-lem-fixed-site-centering: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd
+  current-lem-fixed-site-centering: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd
     : 2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$
     is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1)
     * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!).
@@ -388,7 +388,7 @@ clauses:
     the outer measure of the exceptional set. \emph{Quantifiers.} $\forall y\in\Z^d\ \exists C>0\ \forall(\Omega,\mu,X)$
     with \verb!IsCERW μ ε X!: almost surely, eventually in $n$. So $C=C(d,\varepsilon,y)$ is deterministic
     and precedes the probability space, while the threshold $n_0(\omega)$ is random (``almost'
-  oct13-thm-site-fluctuations: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd :
+  current-thm-site-fluctuations: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd :
     2 ≤ d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$
     is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1)
     * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!).
@@ -399,7 +399,7 @@ clauses:
     supplies them proved**, so neither is an open hypothesis. \emph{Definitions.} \verb!G = LatticeProb.srwGreenInf
     d!, $G(x)=\sum_{j\ge0}P^j(0,x)$ (the $j=0$ term is included, so $G(0)\ge1$), the expected number of
     visits; it is'
-  oct13-lem-exp-deviation: 'For 0<c0<=C0 choose c,C>0 before the probability space, common filtration, m,n>0,
+  current-lem-exp-deviation: 'For 0<c0<=C0 choose c,C>0 before the probability space, common filtration, m,n>0,
     b>0, delta>=0, 0<=alpha<=1 and family S. Each S_i is strongly measurable and integrable through n and
     satisfies the conditional martingale identity before n. Its start and increment bounds are almost sure.
     PredBracket is the actual predictable covariation; diagonal bounds and off-diagonal bounds on the measurable
@@ -407,7 +407,7 @@ clauses:
     control and beta^2*delta+beta^3*b<=1 the original many-site bound holds. No law, tail, summability or
     ultimate conclusion is assumed. The nonempty-window fair-coin model supplies a real many-site consumer.
     Finite-filtration extension and restriction remain proved support. Complete contract: ledger/nl/lem-exp-deviation.tex.'
-  oct13-prop-bulk-profile: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd : 2 ≤
+  current-prop-bulk-profile: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd : 2 ≤
     d!, \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$
     is \verb!(volume (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1)
     * n / (2 * d * ε * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!).
@@ -417,7 +417,7 @@ clauses:
     $\exists C>0$ ($C=C(d,\varepsilon,\theta,p)$), and then two statements about all $(\Omega,\mu,X)$ with
     \verb!IsCERW μ ε X!: (a) for every $n\ge2$, \verb!μ {ω | ¬ Good (X · ω) n} ≤ ofReal (C * n ^ (-p))!;
     (b)'
-  oct13-prop-log-lower: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd : 2 ≤ d!,
+  current-prop-log-lower: '\emph{Conventions.} \verb!ε! is the paper''s $\drift=\kappa$; \verb!hd : 2 ≤ d!,
     \verb!0 < ε!, \verb!ε < 1 / d! are the standing assumptions $d\ge2$, $0<\drift<1/d$. $\omega_d$ is \verb!(volume
     (Metric.ball 0 1)).toReal! (as \verb!CERW.unitBallVolume d!). $r_n$ is \verb!((d+1) * n / (2 * d * ε
     * ωd)) ^ (1/(d+1))! (eq:radius), every cast at a leaf (checked with \verb!pp.coercions.types!). The
@@ -426,20 +426,20 @@ clauses:
     measure of the exceptional set. \emph{Quantifiers.} $\exists c,C,h_0>0\ \exists n_0\in\mathbb N\ \forall(\Omega,\mu,X)$
     with \verb!IsCERW μ ε X!: (i) and (ii). The constants and $n_0$ depend on $(d,\varepsilon)$ only and
     precede the probability space. The same $c$ serves (i) and (ii), as in the'
-  oct13-lem-local: The only conclusion is the uniform potential approximation, oct13 lines 397–402. The
+  current-lem-local: The only conclusion is the uniform potential approximation, source lines 397–402. The
     exact same constant C controls the additive log n term, the dimensional error term, and the exceptional
     probability. Constants follow d, the norm, drift and p and precede the subgradient field, probability
     space and n. No interval estimate or bound in terms of range size is part of the statement.
-  oct13-lem-contact: The event is the literal six-estimate intersection EventEstimates from oct13 lines
+  current-lem-contact: The event is the literal six-estimate intersection EventEstimates from source lines
     616–636. The theorem holds deterministically on every legal path of that event, for every fixed choice
     of nonnegative coarse, approximation and local-martingale constants, which is stronger than the asserted
     instance at the event constants selected for p. The conclusion is uniform over every contact point y0
     in the closure of the cell-set complement with norm equal to the inner radius. Constant C and threshold
     n0 precede the subgradient field, path, time and contact point. Legality is a model property, separate
     from the event. The unused square and crossing constituents are retained in the event.
-  oct13-lem-separated-brackets: The conclusion is deterministic on the literal six-estimate EventEstimates
+  current-lem-separated-brackets: The conclusion is deterministic on the literal six-estimate EventEstimates
     for every legal path, uniformly in its fixed positive event constants. It therefore holds on Ω_n, the
-    event at p=10 from oct13 line 983. Unlike the earlier probability-only frozen statement, it explicitly
+    event at p=10 from source line 983. Unlike the earlier probability-only frozen statement, it explicitly
     proves the event implication. Constants c0, C0, C and n0 precede the subgradient field, path, n and
     pair indices. Both diagonal bounds and the off-diagonal quarter-power decay are present with the actual
     normalized Dynkin bracket. The two equal floor(r^(1/8)) parameters preserve the source family and the
@@ -544,59 +544,59 @@ exponents:
   - detail: '1: notation: in S^1, …, S^m the superscript indexes the martingales (Lean''s S i), it is
       not a power; the paper''s m^{-1} is Lean''s (m : ℝ)⁻¹'
     kind: notation
-  oct13-thm-fluctuations:
+  current-thm-fluctuations:
   - detail: '\nf32, \nf52: notation: the paper writes fractional exponents with its macro \nf (\nf{a}{b}
       and \nf ab are a/b); Lean writes each as a real quotient, for example ((1 : ℝ) / 2), so the spellings
       differ only by the macro'
     kind: notation
-  oct13-thm-sharp-bulk:
+  current-thm-sharp-bulk:
   - detail: '\nf12: notation: the paper writes fractional exponents with its macro \nf (\nf{a}{b} and \nf
       ab are a/b); Lean writes each as a real quotient, for example ((1 : ℝ) / 2), so the spellings differ
       only by the macro'
     kind: notation
-  oct13-prop-norm-shape:
+  current-prop-norm-shape:
   - detail: '\nf12, \nf14, \nf16, \nf34, \nf56, \nf76, \nf{1}{d+1}, \nf{d+2}{d+1}, \nf{d}{d+1}: notation:
       the paper writes fractional exponents with its macro \nf (\nf{a}{b} and \nf ab are a/b); Lean writes
       each as a real quotient, for example ((1 : ℝ) / 2), so the spellings differ only by the macro'
     kind: notation
-  oct13-prop-inner:
+  current-prop-inner:
   - detail: '\nf1d: notation: the paper writes fractional exponents with its macro \nf (\nf{a}{b} and \nf
       ab are a/b); Lean writes each as a real quotient, for example ((1 : ℝ) / 2), so the spellings differ
       only by the macro'
     kind: notation
-  oct13-prop-stronger-outer:
+  current-prop-stronger-outer:
   - detail: '\nf52: notation: the paper writes fractional exponents with its macro \nf (\nf{a}{b} and \nf
       ab are a/b); Lean writes each as a real quotient, for example ((1 : ℝ) / 2), so the spellings differ
       only by the macro'
     kind: notation
-  oct13-lem-near-far:
+  current-lem-near-far:
   - detail: '\nf1d: notation: the paper writes fractional exponents with its macro \nf (\nf{a}{b} and \nf
       ab are a/b); Lean writes each as a real quotient, for example ((1 : ℝ) / 2), so the spellings differ
       only by the macro'
     kind: notation
-  oct13-thm-moment-fluctuations:
+  current-thm-moment-fluctuations:
   - detail: '\nf12, \nf{3-d}{2}, \nf{d+3}{2}: notation: the paper writes fractional exponents with its macro
       \nf (\nf{a}{b} and \nf ab are a/b); Lean writes each as a real quotient, for example ((1 : ℝ) / 2),
       so the spellings differ only by the macro'
     kind: notation
-  oct13-thm-site-fluctuations:
+  current-thm-site-fluctuations:
   - detail: '\nf12: notation: the paper writes fractional exponents with its macro \nf (\nf{a}{b} and \nf
       ab are a/b); Lean writes each as a real quotient, for example ((1 : ℝ) / 2), so the spellings differ
       only by the macro'
     kind: notation
-  oct13-lem-exp-deviation:
+  current-lem-exp-deviation:
   - detail: '1: notation: in S^1, …, S^m the superscript indexes the martingales (Lean''s S i), it is not
       a power; the paper''s m^{-1} is Lean''s (m : ℝ)⁻¹'
     kind: notation
-  oct13-lem-contact:
+  current-lem-contact:
   - kind: definition
-    detail: The named scale and contactRate are the literal r_n and q_n formulas of oct13 eq:radius-norm
+    detail: The named scale and contactRate are the literal r_n and q_n formulas of eq:radius-norm
       and eq:qn, including the planar square root; their product gives the two dimension-dependent rates
       in lem:contact.
-  oct13-lem-local:
+  current-lem-local:
   - kind: notation
     detail: The two powers one half in eq:approx are Real.sqrt in both Lean branches.
-  oct13-lem-separated-brackets:
+  current-lem-separated-brackets:
   - kind: notation
     detail: The exponent -nf14 in the source is Lean's real exponent -(1:ℝ)/4.
   lem-separated-brackets-common-event:

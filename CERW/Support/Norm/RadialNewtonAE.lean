@@ -3,7 +3,7 @@
 
 `CERW.Support.Norm.integral_weight_inner_newtonField` (`ContactPotential.lean`) proves the scalar
 radial Newton convolution identity for a radial weight `χ` that carries a global bound
-`hM : ∀ s, χ s ≤ M`.  The source (`oct5.tex:755-768`, `eq:radial-convolution`) instead takes only a
+`hM : ∀ s, χ s ≤ M`.  The source (`limit-shapes.tex:755-768`, `eq:radial-convolution`) instead takes only a
 nonnegative integrable radial weight, and asserts the vector identity for almost every spatial
 point.  This module supplies the analytic first stage of that statement: on every measurable set
 of finite volume, and so in particular on every bounded ball, the joint function

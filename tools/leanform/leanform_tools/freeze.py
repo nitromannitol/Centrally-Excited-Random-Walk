@@ -32,7 +32,6 @@ from __future__ import annotations
 import hashlib
 import re
 import sys
-from datetime import date
 from pathlib import Path
 
 from . import lean_source as ls
@@ -87,13 +86,12 @@ def next_version(manifest_text: str, nid: str) -> tuple[int, str]:
 
 def render_entry(
     nid: str, version: int, kind: str, source: str, file: str, export: str,
-    state: str, sha: str, approved: str,
+    state: str, sha: str,
 ) -> str:
     return (
         f"{nid}\n    version: {version}\n    kind: {kind}\n    source: {source}\n"
         f"    file: {file}\n    export: {export}\n    state: {state}\n"
-        f"    frozen_sha256: {sha}\n    provider: {export}\n"
-        f'    approved: "{approved}"\n\n'
+        f"    frozen_sha256: {sha}\n    provider: {export}\n\n"
     )
 
 
@@ -107,7 +105,6 @@ def freeze(
     version, trimmed = next_version(cfg.manifest_path.read_text(encoding="utf-8"), nid)
     entry = render_entry(
         nid, version, kind, source, file, export, state, sha,
-        date.today().isoformat(),
     )
     cfg.manifest_path.write_text(trimmed + "  - id: " + entry, encoding="utf-8")
     return f"{nid}: version {version}, sha {sha[:12]}…, state {state}"
