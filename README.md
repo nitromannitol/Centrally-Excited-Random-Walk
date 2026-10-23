@@ -26,6 +26,7 @@ The norm rates use the quadratic radius-volume identity on the common event.
 Borel–Cantelli gives the norm shapes, and Euclidean shape is their specialization.
 The moment, fixed-site centering and site fluctuation proofs now consume these
 current shape and curvature bounds through their existing CLT and LIL arguments.
+The bulk profile now uses the separated excess-set potential on the common event.
 Every introduction theorem
 is restated in `CERW/MainTheorems.lean`.
 

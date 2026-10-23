@@ -4,6 +4,12 @@ The current source is *Limit shapes for centrally excited walks* by Ahmed Bou-Ra
 Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/oct13.tex` by
 `ledger/oct13.yaml`. The paper writes the drift as `κ`; Lean writes it as `ε`.
 
+The `prop:bulk-profile` anchor uses `bulk_profile_from_common_event`. The proof
+bounds the potential of the actual excess set outside the inner ball, splits off
+that ball, and controls the cone shift by the current radius estimates. The common
+event supplies the local approximation and local-time bound; probability and
+Borel–Cantelli give both conclusions with a single constant.
+
 Lemma `lem:ballpotential` uses `norm_ball_potential_from_gradient`: it applies the
 general compactly supported Lipschitz gradient identity to `max (ρ - Ψ) 0`, using the
 existing almost-everywhere gradient formula and closed norm-sublevel compactness.

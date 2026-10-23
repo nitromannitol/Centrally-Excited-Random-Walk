@@ -1,3 +1,4 @@
+import CERW.LimitShapes.BulkProfileProbability
 import CERW.Frozen.BulkProfile
 
 /-!
@@ -31,4 +32,4 @@ theorem CERW.LimitShapes.bulk_profile {d : ℕ} (hd : 2 ≤ d) :
         (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ᵐ ω ∂μ, ∀ᶠ n : ℕ in atTop, Good (X · ω) n)
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.bulk_profile hd
+  exact CERW.LimitShapes.bulk_profile_from_common_event hd
