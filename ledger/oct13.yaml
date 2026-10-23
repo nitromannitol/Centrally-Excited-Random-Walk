@@ -228,7 +228,7 @@ nodes:
   export: CERW.LimitShapes.separated_brackets
   state: SEALED
   frozen_sha256: 63490bd50b4f2b5f50c7874c24f0c0e46f23e89c2c9c5e4d3a465532ba31932b
-  provider: CERW.LimitShapes.separated_bracket_bounds
+  provider: CERW.LimitShapes.Curvature.separated_brackets_from_curvature
 - id: eq-distance-crossing
   version: 1
   kind: theorem

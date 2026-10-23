@@ -19,8 +19,11 @@ six estimates literally. `Energy/` proves the new square-energy contact estimate
 `ContactPotential.lean` retains the earlier convolution route.
 `EventConsequences.lean` removes the quadratic stopping on the coarse event and obtains
 the inner estimate using only the reduced approximation. `Profile.lean` retains the
-earlier event-level outer and local-time proofs; `SeparatedBrackets.lean` applies the existing bracket
-core to that profile. The current outer and fluctuation anchors use `Curvature/`,
+earlier event-level outer and local-time proofs. The current separated-bracket anchor
+uses `Curvature.separated_brackets_from_curvature`: it supplies the printed curvature
+profile to the existing Gamma-sum bracket core. Both conditional curvature inputs
+are discharged by their proved event bounds, with the exact original normalization.
+The current outer and fluctuation anchors use `Curvature/`,
 as described below.
 No vector estimate is an assumption of these new deterministic implications.
 The retained deterministic outer-radius core is organized into mathematical modules

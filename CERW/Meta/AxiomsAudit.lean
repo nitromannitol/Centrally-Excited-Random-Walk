@@ -82,3 +82,5 @@ and each main theorem restatement. The statement gates check the allowed closure
 #print axioms CERW.LimitShapes.Curvature.outer_on_event
 #print axioms CERW.LimitShapes.Curvature.outer_radius_via_curvature
 #print axioms CERW.LimitShapes.Curvature.fluctuation_rates_via_curvature
+
+#print axioms CERW.LimitShapes.Curvature.separated_brackets_from_curvature

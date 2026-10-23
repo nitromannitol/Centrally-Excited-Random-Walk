@@ -62,7 +62,10 @@ Freedman brackets, Young absorption and continuity at contact. The current
 `Curvature.fluctuation_rates_via_curvature`, respectively: the actual radial/cap
 curvature argument, crossing and Young absorption, signed-potential maximum
 principles, ball splitting and the uniform profile, followed by probability and
-Borel--Cantelli. All earlier proof declarations are retained.
+Borel--Cantelli. The current `lem:separated-brackets` anchor applies
+`Curvature.separated_brackets_from_curvature`, reusing the existing Gamma-sum core
+with the actual curvature profile on the literal common event. All earlier proof
+declarations are retained.
 
 The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
 a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256

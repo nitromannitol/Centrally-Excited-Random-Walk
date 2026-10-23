@@ -1,4 +1,4 @@
-import CERW.LimitShapes.SeparatedBrackets
+import CERW.LimitShapes.Curvature.SeparatedBrackets
 
 /-!
 # lem:separated-brackets
@@ -43,4 +43,4 @@ theorem CERW.LimitShapes.separated_brackets {d : ℕ} (hd : 2 ≤ d) :
             (i = j → c₀ ≤ B ∧ B ≤ C₀) ∧ (i ≠ j → |B| ≤ C * r n ^ (-(1 : ℝ) / 4))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.LimitShapes.separated_bracket_bounds hd
+  exact CERW.LimitShapes.Curvature.separated_brackets_from_curvature hd
