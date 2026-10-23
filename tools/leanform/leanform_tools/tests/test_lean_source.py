@@ -81,6 +81,11 @@ class TestAxiomBan(unittest.TestCase):
 
 
 class TestTokenBoundaries(unittest.TestCase):
+    def test_disabling_the_kernel_check_is_caught(self):
+        from leanform_tools.config import BANNED_TOKENS
+        src = "set_option debug.skipKernelTC true in\ntheorem a : True := trivial\n"
+        self.assertEqual([t for t, _ in ls.token_hits(src, BANNED_TOKENS)], ["skipKernelTC"])
+
     def test_native_decide_is_caught(self):
         src = "theorem a : True := by native_decide\n"
         self.assertEqual([t for t, _ in ls.token_hits(src, ("native_decide",))],

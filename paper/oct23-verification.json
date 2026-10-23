@@ -806,7 +806,7 @@
         }
       }
     ],
-    "checks": "All 22 labeled results of this version, the display eq:distance-crossing and the event of Section 5.1 are formal statements in CERW/LimitShapes/Frozen, 29 declarations in all, each proved (state SEALED). tools/verify_oct13.py checks the pin, the frozen hashes, the source ranges, the natural-language twins and the axioms of the registered exports; tools/AllAxioms.lean checks the axioms of every declaration of every CERW module and that every module is imported; tools/FrozenTypes.lean pins the elaborated types of the 29 exports and the 7 main theorems. CI runs all three on every change.",
+    "checks": "All 22 labeled results of this version, the display eq:distance-crossing and the event of Section 5.1 are formal statements in CERW/LimitShapes/Frozen, 29 declarations in all, each proved (state SEALED). tools/verify_oct13.py checks the pin, the frozen hashes, the source ranges, the natural-language twins and the axioms of the registered exports; tools/AllAxioms.lean checks the axioms of every declaration of every CERW module and that every module is imported; tools/replay_kernel.sh replays in the Lean kernel every declaration of every CERW module and of the LatticeProb modules they import, and checks that it rejects a declaration added with kernel checking disabled; tools/FrozenTypes.lean and tools/check_frozen_types.py pin, by SHA-256, the elaborated types of the 29 exports and the 7 main theorems with every project definition they use. CI runs all of these on every change.",
     "audits": [
       {
         "round": 1,
@@ -889,6 +889,40 @@
             "scope": "Every change since 61255b0, including the re-pin and the documentation",
             "verdict": "FAIL",
             "finding": "CORRESPONDENCE.md gave the oct13 hash, and one PROOF.md sentence misattributed the radius input; both corrected."
+          }
+        ]
+      },
+      {
+        "round": 3,
+        "checkout": "0b795e9",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "audits": [
+          {
+            "id": 12,
+            "scope": "Integrity and CI after the second repairs",
+            "verdict": "FAIL",
+            "finding": "The type fingerprints printed names ambiguously and did not cover the definitions a statement uses; repaired in 34eb767 by SHA-256 digests of structural serializations that include every CERW and LatticeProb declaration the statement reaches."
+          },
+          {
+            "id": 13,
+            "scope": "Every change since 61255b0",
+            "verdict": "PASS",
+            "finding": "Three minor items (a PROOF.md phrase, the status sentence of this file, raw strings in the source scanner); repaired in 34eb767 and d66f7de."
+          }
+        ]
+      },
+      {
+        "round": 4,
+        "checkout": "548d232",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "audits": [
+          {
+            "id": 14,
+            "scope": "Integrity and CI after the third repairs",
+            "verdict": "FAIL",
+            "finding": "Earlier fixtures all rejected; a declaration added with kernel checking disabled passed the axiom scan. Repaired by replaying every declaration of CERW and of its LatticeProb imports in the kernel, with that declaration kept as a fixture the replay must reject (tools/replay_kernel.sh), and by banning skipKernelTC; a fail-open vocabulary count was also closed."
           }
         ]
       }
@@ -1307,7 +1341,7 @@
     "Figures/shapes_ranges.pdf": "c2e143d3735eb3cf3afc8a34f55ef8d9fcc14afb1c43919300a40c52a281093a",
     "Figures/shapes_localtimes.pdf": "32db8f903af46db18e88059a5c13ba50235ff7dd02772c8ffb57e006401e1001"
   },
-  "updated_utc": "2026-10-23T13:36:01.006547+00:00",
+  "updated_utc": "2026-10-23T17:09:12.899832+00:00",
   "current_statement_blocks": [
     {
       "environment": "theorem",
@@ -1471,7 +1505,7 @@
     }
   ],
   "last_prose_only_revision": {
-    "created_utc": "2026-10-23T13:36:01.006547+00:00",
+    "created_utc": "2026-10-23T17:09:12.899832+00:00",
     "source_base_sha256": "e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617",
     "statement_blocks_unchanged": true,
     "scope": "Lean formalization subsection rewritten to state that this version is formalized; bibliography file renamed to oct23-references.bib.",

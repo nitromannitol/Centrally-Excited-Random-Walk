@@ -84,6 +84,7 @@ python -m pip install ./tools/leanform
 python -m leanform_tools.verify .
 python tools/verify_oct13.py
 lake env lean tools/AllAxioms.lean
+bash tools/replay_kernel.sh
 lake env lean tools/FrozenTypes.lean
 python tools/check_frozen_types.py
 ```

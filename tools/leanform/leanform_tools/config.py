@@ -31,7 +31,7 @@ STATES = frozenset({"FROZEN", "SEALED", "DRAFT_SORRY", "CONDITIONAL", "PROVED"})
 DRAFT_STATES = frozenset({"DRAFT_SORRY", "CONDITIONAL"})
 
 # Tokens that may never appear in the production tree.
-BANNED_TOKENS = ("admit", "sorryAx", "native_decide")
+BANNED_TOKENS = ("admit", "sorryAx", "native_decide", "skipKernelTC")
 
 
 class ConfigError(Exception):

@@ -84,6 +84,9 @@ jobs:
       - name: Check the axiom closure of every production declaration
         run: lake env lean tools/AllAxioms.lean
 
+      - name: Replay every declaration of CERW and its LatticeProb imports in the kernel
+        run: bash tools/replay_kernel.sh
+
       - name: Check the elaborated types of the frozen statements
         run: |
           lake env lean tools/FrozenTypes.lean

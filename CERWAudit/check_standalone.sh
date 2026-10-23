@@ -24,6 +24,7 @@ if [ "${1:-}" = "--vocabulary" ]; then
       nl=$(block "$f" | PYTHONPATH=tools/leanform "${PYTHON:-python3}" -c 'import re, sys
 from leanform_tools.lean_source import mask_comments
 print(len(re.findall(r"(?m)^(?:noncomputable |private |protected )*(?:def|abbrev|structure|inductive|class|instance|theorem|lemma) ", mask_comments(sys.stdin.read()))))')
+      case "$nl" in ""|*[!0-9]*) echo "COUNT FAILED  $f"; RC=1; nl=0;; esac
       if [ "$nb" != 1 ] || [ "$ne" != 1 ] || [ "$nl" -lt 1 ]; then
         echo "MALFORMED  $f  (begin=$nb end=$ne declarations=$nl)"; RC=1
       fi
