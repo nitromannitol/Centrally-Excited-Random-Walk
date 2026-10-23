@@ -68,3 +68,17 @@ and each main theorem restatement. The statement gates check the allowed closure
 
 #print axioms CERW.LimitShapes.QuadraticProbability.exists_stopped_quadratic_tail
 #print axioms CERW.LimitShapes.separated_brackets_on_euclidean_event
+
+#print axioms CERW.LimitShapes.Exit.exit_bounds
+#print axioms CERW.LimitShapes.Exit.norm_coarse_bounds_via_exit
+#print axioms CERW.LimitShapes.Energy.exists_square_one_sided
+#print axioms CERW.LimitShapes.Energy.contact_potential_from_energy
+#print axioms CERW.LimitShapes.inner_radius_from_common_event
+#print axioms CERW.LimitShapes.Curvature.curvatureIntegral_le_global
+#print axioms CERW.LimitShapes.Curvature.exists_annulus_positive_bound
+#print axioms CERW.LimitShapes.Curvature.abs_potential_le_of_annulus
+#print axioms CERW.LimitShapes.Curvature.exists_positive_on_event
+#print axioms CERW.LimitShapes.Curvature.exists_outer_width_on_event
+#print axioms CERW.LimitShapes.Curvature.outer_on_event
+#print axioms CERW.LimitShapes.Curvature.outer_radius_via_curvature
+#print axioms CERW.LimitShapes.Curvature.fluctuation_rates_via_curvature

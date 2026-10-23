@@ -21,7 +21,7 @@ nodes:
   export: CERW.LimitShapes.fluctuation_rates
   state: SEALED
   frozen_sha256: da804bc14629b4ecdabff563a3c6c80c7b2a572fb472dce89b9ac210a33a2c52
-  provider: CERW.Frozen.fluctuation_rates
+  provider: CERW.LimitShapes.Curvature.fluctuation_rates_via_curvature
 - id: oct13-thm-sharp-radii
   version: 1
   kind: theorem
@@ -102,7 +102,7 @@ nodes:
   export: CERW.LimitShapes.norm_coarse_bounds
   state: SEALED
   frozen_sha256: 6cf2a21556fa1c7333bac430410804c05d19ed0a1390a217f1cfe5a5904c1af4
-  provider: CERW.Frozen.norm_coarse_bounds
+  provider: CERW.LimitShapes.Exit.norm_coarse_bounds_via_exit
 - id: oct13-prop-norm-shape
   version: 1
   kind: theorem
@@ -129,7 +129,7 @@ nodes:
   export: CERW.LimitShapes.inner_radius
   state: SEALED
   frozen_sha256: ff88ab4e0f19ac78969ee07636dddc30eae1d8b5769fa947c921c2b38642e0f2
-  provider: CERW.Frozen.inner_radius
+  provider: CERW.LimitShapes.inner_radius_from_common_event
 - id: oct13-prop-stronger-outer
   version: 1
   kind: theorem
@@ -138,7 +138,7 @@ nodes:
   export: CERW.LimitShapes.outer_radius
   state: SEALED
   frozen_sha256: a7fe1b74837f650dafdbf5bc9abe91668ef266af8fb4f7b5c079a01be6145c6e
-  provider: CERW.Frozen.outer_radius
+  provider: CERW.LimitShapes.Curvature.outer_radius_via_curvature
 - id: oct13-lem-near-far
   version: 1
   kind: theorem
@@ -219,7 +219,7 @@ nodes:
   export: CERW.LimitShapes.contact_potential
   state: SEALED
   frozen_sha256: e348bf112a79b3bab515476f510160c3632ef2ef5e445154d94858f93d9a3981
-  provider: CERW.LimitShapes.contact_potential_bound
+  provider: CERW.LimitShapes.Energy.contact_potential_from_energy
 - id: oct13-lem-separated-brackets
   version: 1
   kind: theorem

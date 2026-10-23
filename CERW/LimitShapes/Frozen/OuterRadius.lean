@@ -1,4 +1,5 @@
 import CERW.Frozen.OuterRadius
+import CERW.LimitShapes.Curvature.OuterEvent
 
 /-!
 # prop:stronger-outer
@@ -28,4 +29,4 @@ theorem CERW.LimitShapes.outer_radius {d : ℕ} (hd : 2 ≤ d) :
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.outer_radius hd
+  exact CERW.LimitShapes.Curvature.outer_radius_via_curvature.{u} hd

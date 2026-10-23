@@ -17,9 +17,9 @@ Every node's state in `ledger/oct13.yaml` is `SEALED`: all 29 are proved with no
 | Lean toolchain | `leanprover/lean4:v4.32.0` |
 | Mathlib revision | `81a5d257c8e410db227a6665ed08f64fea08e997` |
 | Paper (`paper/oct13.tex`) SHA-256 | `e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617` |
-| Build | succeeded, 9265 jobs |
+| Build | succeeded, 9351 jobs |
 | Build warnings | 0 |
-| Generated | 2026-10-22 |
+| Generated | 2026-10-23 |
 
 ## Reproducing it
 

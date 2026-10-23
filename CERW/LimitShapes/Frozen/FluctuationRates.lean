@@ -1,4 +1,5 @@
 import CERW.Frozen.FluctuationRates
+import CERW.LimitShapes.Curvature.FluctuationTheorem
 
 /-!
 # thm:fluctuations
@@ -41,4 +42,4 @@ theorem CERW.LimitShapes.fluctuation_rates {d : ℕ} (hd : 2 ≤ d) :
         (X : ℕ → Ω → Site d), CERW.IsCERW μ ε X → ∀ᵐ ω ∂μ, ∀ᶠ n : ℕ in atTop, Good C (X · ω) n)
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.fluctuation_rates hd
+  exact CERW.LimitShapes.Curvature.fluctuation_rates_via_curvature.{u} hd

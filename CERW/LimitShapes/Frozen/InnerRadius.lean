@@ -1,3 +1,4 @@
+import CERW.LimitShapes.InnerProbability
 import CERW.Frozen.InnerRadius
 
 /-!
@@ -34,4 +35,4 @@ theorem CERW.LimitShapes.inner_radius {d : ℕ} (hd : 2 ≤ d) :
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.inner_radius hd
+  exact CERW.LimitShapes.inner_radius_from_common_event.{u} hd

@@ -50,10 +50,19 @@ deterministic implications, deriving almost-sure legal paths from the cylinder l
 The latter uses the Euclidean lattice field `x ↦ unitDir(toSpace x)` and exponent ten;
 its diagonal constants, off-diagonal exponent and normalization are unchanged.
 
-The new stopped-quadratic tail is proved directly for the entire-prefix stopped
-process and consumed by `CommonEvent.lean`. The shifted-square Dynkin and exit-time
-identities are additional proved helpers. They are recorded as partial proof-route
-extensions; the complete new contact and coarse-bound arguments are not claimed.
+The stopped-quadratic tail is proved directly for the entire-prefix stopped
+process and consumed by `CommonEvent.lean`. The current `prop:coarse` anchor uses
+`Exit.norm_coarse_bounds_via_exit`: the two-sided first-exit argument and scale
+inversion. The current `lem:contact` anchor uses
+`Energy.contact_potential_from_energy`: shifted-square Dynkin, the actual
+Freedman brackets, Young absorption and continuity at contact. The current
+`prop:inner` anchor uses the literal common event through
+`inner_radius_from_common_event`. The current `prop:stronger-outer` and
+`thm:fluctuations` anchors use `Curvature.outer_radius_via_curvature` and
+`Curvature.fluctuation_rates_via_curvature`, respectively: the actual radial/cap
+curvature argument, crossing and Young absorption, signed-potential maximum
+principles, ball splitting and the uniform profile, followed by probability and
+Borel--Cantelli. All earlier proof declarations are retained.
 
 The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
 a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256

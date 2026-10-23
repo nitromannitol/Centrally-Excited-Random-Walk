@@ -11,8 +11,11 @@ A Lean 4 formalization of
 [LaTeX source](paper/oct13.tex) · [Bibliography](paper/oct13-references.bib)
 
 The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml). Its unchanged
-statements reuse the existing proofs; `lem:local` retains only the local-time
-approximation. Every introduction theorem is restated in `CERW/MainTheorems.lean`.
+statements retain the existing certified types; `lem:local` keeps only the local-time
+approximation. Proposition 4.1 uses the exit-time proof, and Lemma 5.2 uses the
+shifted-square energy proof. The outer-radius and fluctuation anchors use the
+curvature, maximum-principle and global-profile arguments. Every introduction theorem
+is restated in `CERW/MainTheorems.lean`.
 
 The redefined event of Section 5.1 is stated literally in
 [CERW/LimitShapes/Event.lean](CERW/LimitShapes/Event.lean), and its polynomial

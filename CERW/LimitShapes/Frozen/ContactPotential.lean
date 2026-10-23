@@ -1,3 +1,4 @@
+import CERW.LimitShapes.Energy.Contact
 import CERW.LimitShapes.ContactPotential
 
 /-!
@@ -30,4 +31,4 @@ theorem CERW.LimitShapes.contact_potential {d : ℕ} (hd : 2 ≤ d) :
               CERW.Support.Norm.ContactEvent.contactRate d Ψ ε n
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.LimitShapes.contact_potential_bound hd
+  exact CERW.LimitShapes.Energy.contact_potential_from_energy hd

@@ -1,3 +1,4 @@
+import CERW.LimitShapes.Exit.Assembly
 import CERW.Frozen.NormCoarseBounds
 
 /-!
@@ -33,4 +34,4 @@ theorem CERW.LimitShapes.norm_coarse_bounds {d : ℕ} (hd : 2 ≤ d) :
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.norm_coarse_bounds hd
+  exact CERW.LimitShapes.Exit.norm_coarse_bounds_via_exit.{u} hd

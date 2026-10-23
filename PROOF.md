@@ -5,8 +5,9 @@ Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/oct13.tex` by
 `ledger/oct13.yaml`. The paper writes the drift as `κ`; Lean writes it as `ε`.
 
 The current statements live in `CERW/LimitShapes/Frozen/`. Unchanged declarations
-reuse their certified earlier counterparts; `lem:local` is proved by projecting the uniform
-approximation clause from the earlier local-time lemma. Full introduction statements
+retain their certified types; several now use the printed proofs described below.
+`lem:local` is proved by projecting the uniform approximation clause from the earlier
+local-time lemma. Full introduction statements
 are restated in `CERW/MainTheorems.lean`, and their axiom closures are printed in
 `CERW/Meta/AxiomsAudit.lean`.
 
@@ -14,12 +15,13 @@ For `lem:contact` and `lem:separated-brackets`, the new event is the intersectio
 coarse bounds, the reduced local approximation, the stopped quadratic estimate,
 Freedman estimates for the shifted-square and kernel martingales using their actual
 brackets, and the simultaneous distance crossing estimate. `Event.lean` states these
-six estimates literally. `ContactPotential.lean` converts the actual kernel bracket
-into the weighted bound consumed by the existing convolution proof.
+six estimates literally. `Energy/` proves the new square-energy contact estimate;
+`ContactPotential.lean` retains the earlier convolution route.
 `EventConsequences.lean` removes the quadratic stopping on the coarse event and obtains
-the inner estimate using only the reduced approximation. `Profile.lean` obtains the
-outer estimate from the distance crossing bound and then the global local-time
-profile; `SeparatedBrackets.lean` applies the existing bracket core to that profile.
+the inner estimate using only the reduced approximation. `Profile.lean` retains the
+earlier event-level outer and local-time proofs; `SeparatedBrackets.lean` applies the existing bracket
+core to that profile. The current outer and fluctuation anchors use `Curvature/`,
+as described below.
 No vector estimate is an assumption of these new deterministic implications.
 The retained deterministic outer-radius core is organized into mathematical modules
 under `CERW/Support/Outer/Radius/`; `OuterRadius.lean` preserves its existing public
@@ -49,14 +51,56 @@ constants. `EuclideanEvent.lean` specializes the same event to the Euclidean wal
 the deterministic separated-bracket bounds. The law supplies legal paths almost
 surely in both closures. Event membership carries exactly the six stated estimates.
 
-The contact estimate retains the existing convolution proof. `SquareDynkin.lean`
-proves the shifted-square one-step and time-summed algebraic identities, and
-`ExitStopping.lean` proves the exit overshoot and the exact stopped-sum identity.
-These helpers do not complete the paper's new square-Dynkin contact or exit-time
-coarse-bound arguments. The retained coarse-bound and fluctuation proofs remain
-valid routes to the unchanged statements. `RadiusEvents.lean` additionally derives
-joint inner and outer estimates on the literal event from the contact, quadratic,
-local approximation and distance-crossing consequences.
+The current coarse-bound anchor uses `Exit.norm_coarse_bounds_via_exit`.
+`Exit/` proves the pre-exit local-time and bracket bounds, a first-threshold
+bootstrap, the upper exit-time estimate, and the contact/excess/layer argument
+that gives a macroscopic occupied ball and the lower exit-time estimate. The
+two-sided exit estimate is inverted to obtain all six coarse conclusions. The
+probability argument uses the deterministic horizon `ceil(R^(d+2))` and uniform
+prefix estimates; its polynomial union bounds retain the printed logarithmic
+scales. No finiteness of the exit time is assumed in the bootstrap.
+
+The current contact anchor uses `Energy.contact_potential_from_energy`.
+`Energy/` groups the shifted-square Dynkin identity by occupied site, proves
+sharp value and gradient estimates, and retains the planar centering
+`(2/pi) log r`. Planar near-pole packing and remote-tail bounds control the drift;
+in higher dimensions the drift has order `log n`. The actual Freedman brackets
+and Young's inequality give the energy bound, then the site and cell estimates
+and the far-field bound give `eq:square-one-sided` globally. Continuity extends
+the estimate to every contact point in the closure of the complement. This works
+for every real square-event constant by increasing it to a positive bound.
+
+The current inner-radius anchor uses `inner_radius_from_common_event` and the
+printed contact-sign mass, radius-volume and profile argument. The earlier
+convolution, coarse and radius declarations remain available with their original
+types.
+
+The curvature estimates in `Curvature/` allow any fixed radius ratio `R ≤ A b`,
+rather than the printed ratio two. The actual coarse event supplies `A` uniformly;
+the cap, radial and near-far calculations change only their constants. The module
+also proves continuity and harmonicity of the actual signed potential and curvature
+integral, with weak maximum principles on the ball and its exterior. The signed
+potential decays at infinity for every `d ≥ 2`; the curvature integral decays for
+`d ≥ 3` and is constant when `d = 2`.
+
+The current outer-radius anchor uses `Curvature.outer_radius_via_curvature`.
+The weighted radial derivative and FTC/Fubini identity bound the curvature integral
+on an annulus; its harmonicity and the maximum principle give the global bound.
+Negative kernel bounds on a cap, the remaining positive contribution and the
+near-far estimate give `eq:positive-bound`. The actual exterior local-time supremum
+is then bounded by the one-sided square estimate, and the common event's distance
+crossing estimate and the existing Young lemma give `eq:outer-reduction`.
+
+The current fluctuation anchor uses `Curvature.fluctuation_rates_via_curvature`.
+It supplies the proved positive-potential and width bounds to the global-profile
+argument. The maximum principle for both signs extends the annular potential bound
+to all space. Splitting off the ball potential, comparing its radius with `r_n`
+and applying the local approximation gives the exact uniform profile rate,
+including all real points outside the approximation ball. The literal common-event
+probability and Borel--Cantelli give the probability and almost-sure conclusions
+with one deterministic constant. Neither final theorem assumes a positive-potential,
+width or profile estimate: those intermediate inputs are discharged by the proved
+common-event lemmas. The earlier proof declarations remain intact.
 
 <!-- LIMIT-SHAPES-STATUS-BEGIN -->
 
