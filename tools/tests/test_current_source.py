@@ -41,7 +41,8 @@ class FrozenTypeInventoryTests(unittest.TestCase):
         self.assertIn("namespace CERW.MainTheorems", main)
         mains = {"CERW.MainTheorems." + t
                  for t in re.findall(r"(?m)^theorem\s+(\S+)", main)}
-        pinned = re.findall(r"\(``(\S+?),", (ROOT / "tools" / "FrozenTypes.lean").read_text())
+        pinned = [line.split("  ", 1)[1]
+                  for line in (ROOT / "tools" / "frozen-types.sha256").read_text().splitlines()]
         self.assertEqual(len(pinned), len(set(pinned)))
         self.assertEqual(set(pinned), exports | mains)
         self.assertEqual(len(mains), 7)

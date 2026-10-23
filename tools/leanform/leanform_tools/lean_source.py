@@ -31,24 +31,43 @@ _DECL = re.compile(
 _IDENT_OK = re.compile(r"^[A-Za-z_À-￿][A-Za-z0-9_.'!?À-￿]*$")
 
 
+_RAW_OPEN = re.compile(r'r#*"')
+
+
 def mask_comments(src: str) -> str:
     """Replace comment bodies with spaces, preserving newlines and offsets.
 
-    Handles nested `/- -/` and line comments, and skips string literals, so
-    that a `/-` or `--` inside a string opens no comment. Keeps the string the
-    same length so that byte offsets and line numbers computed on the result
-    still point at the original file.
+    Handles nested `/- -/` and line comments, and blanks the contents of
+    string literals, raw strings `r#"..."#` included, so that a `/-` or `--`
+    inside a string opens no comment and text inside a string declares
+    nothing. Keeps the string the same length so that byte offsets and line
+    numbers computed on the result still point at the original file.
     """
     out = list(src)
     i, n, depth = 0, len(src), 0
+
+    def blank(a: int, b: int) -> None:
+        for k in range(a, min(b, n)):
+            if src[k] != "\n":
+                out[k] = " "
+
     while i < n:
         if depth == 0 and src.startswith("'\"'", i):
             i += 3
             continue
+        raw = _RAW_OPEN.match(src, i) if depth == 0 and src[i] == "r" else None
+        if raw and (i == 0 or not (src[i - 1].isalnum() or src[i - 1] in "_'.!?")):
+            close = '"' + "#" * (raw.end() - i - 2)
+            j = src.find(close, raw.end())
+            j = n if j < 0 else j
+            blank(raw.end(), j)
+            i = j + len(close)
+            continue
         if depth == 0 and src[i] == '"':
-            i += 1
+            start = i = i + 1
             while i < n and src[i] != '"':
                 i += 2 if src[i] == "\\" else 1
+            blank(start, i)
             i += 1
             continue
         if depth == 0 and src.startswith("--", i):

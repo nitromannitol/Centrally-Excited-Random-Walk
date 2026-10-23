@@ -85,6 +85,7 @@ python -m leanform_tools.verify .
 python tools/verify_oct13.py
 lake env lean tools/AllAxioms.lean
 lake env lean tools/FrozenTypes.lean
+python tools/check_frozen_types.py
 ```
 
 To build the current paper, run `latexmk -pdf oct23.tex` from `paper/`.

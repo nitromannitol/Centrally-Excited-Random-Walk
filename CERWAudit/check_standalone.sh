@@ -21,7 +21,9 @@ if [ "${1:-}" = "--vocabulary" ]; then
     for f in "$c" "$d"; do
       nb=$(grep -c '^-- VOCABULARY-BEGIN$' "$f")
       ne=$(grep -c '^-- VOCABULARY-END$' "$f")
-      nl=$(block "$f" | grep -cE '^(noncomputable |private |protected )*(def|abbrev|structure|inductive|class|instance|theorem|lemma) ')
+      nl=$(block "$f" | PYTHONPATH=tools/leanform python3 -c 'import re, sys
+from leanform_tools.lean_source import mask_comments
+print(len(re.findall(r"(?m)^(?:noncomputable |private |protected )*(?:def|abbrev|structure|inductive|class|instance|theorem|lemma) ", mask_comments(sys.stdin.read()))))')
       if [ "$nb" != 1 ] || [ "$ne" != 1 ] || [ "$nl" -lt 1 ]; then
         echo "MALFORMED  $f  (begin=$nb end=$ne declarations=$nl)"; RC=1
       fi

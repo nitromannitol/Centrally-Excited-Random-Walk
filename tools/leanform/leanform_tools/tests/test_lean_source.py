@@ -61,6 +61,12 @@ class TestAxiomBan(unittest.TestCase):
         src = 'def quote : Char := \'"\'\naxiom hidden : False\n'
         self.assertEqual(ls.axiom_declarations(src), [2])
 
+    def test_a_raw_string_hides_nothing_and_declares_nothing(self):
+        src = 'def rawBanner : String := r#"a"/-"#\nprivate axiom rawHidden : False\n'
+        self.assertEqual(ls.axiom_declarations(src), [2])
+        src = 'def prose : String := "axiom imaginary : False"\n'
+        self.assertEqual(ls.axiom_declarations(src), [])
+
     def test_an_axiom_after_another_command_is_caught(self):
         src = "namespace Test axiom hidden : False end Test\n"
         self.assertEqual(ls.axiom_declarations(src), [1])

@@ -83,7 +83,9 @@ jobs:
         run: lake env lean tools/AllAxioms.lean
 
       - name: Check the elaborated types of the frozen statements
-        run: lake env lean tools/FrozenTypes.lean
+        run: |
+          lake env lean tools/FrozenTypes.lean
+          .venv/bin/python tools/check_frozen_types.py
 
       - name: Save project build artifacts
         if: always() && steps.cache-restore.outputs.cache-hit != 'true'
