@@ -60,13 +60,23 @@ jobs:
         run: |
           set -o pipefail
           lake build 2>&1 | tee production-build.log
-          if grep -iE '^warning:|declaration uses .sorry' production-build.log; then
-            echo "Production build emitted a warning."
+          if grep -iE '^warning:|declaration uses .sorry|Try this' production-build.log; then
+            echo "Production build emitted a warning or a linter suggestion."
             exit 1
           fi
 
       - name: Build the Mathlib-only comparator surface
-        run: lake build CERWAudit
+        shell: bash
+        run: |
+          set -o pipefail
+          lake build CERWAudit 2>&1 | tee comparator-build.log
+          # The only warnings allowed are the intentional statement-level holes of the challenges.
+          if grep -E '^warning:' comparator-build.log \
+               | grep -vE '^warning: CERWAudit/[A-Za-z]+/Challenge[.]lean:[0-9]+:[0-9]+: declaration uses .sorry.$' \
+             || grep -E 'Try this' comparator-build.log; then
+            echo "The comparator surface emitted a warning other than the challenge holes."
+            exit 1
+          fi
 
       - name: Check both source manifests and axiom certificates
         run: |
