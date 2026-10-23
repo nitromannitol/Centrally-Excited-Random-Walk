@@ -13,3 +13,10 @@ import CERW.LimitShapes.Crossing.ExponentialExit
 import CERW.LimitShapes.Crossing.ExponentialStopping
 import CERW.LimitShapes.Crossing.ExponentialTail
 import CERW.LimitShapes.Crossing.ExponentialProbability
+
+/-!
+# Distance crossing estimates
+
+The exponential-distance estimates combine stopping and site grouping.
+Finite unions give the uniform distance crossing bound.
+-/
