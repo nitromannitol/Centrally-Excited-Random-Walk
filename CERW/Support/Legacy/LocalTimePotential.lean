@@ -6,7 +6,7 @@ import CERW.Support.LocalTime.LocalAssembly
 
 `lem:local` of the paper (`limit-shapes.tex:396-412`, Euclidean case). This module is preserved
 support, no longer a registered node: its statement and proof are those of
-`Frozen/LocalTimePotential.lean` of commit f7696856, with only the freeze markers removed. It is the
+`Frozen/LocalTimePotential.lean` of commit 16c9a09f, with only the freeze markers removed. It is the
 Euclidean case that the proofs of `BulkProfile` consume; the pinned paper states the corresponding
 result for a norm (`lem:local`, `limit-shapes.tex:396-412`).
 -/

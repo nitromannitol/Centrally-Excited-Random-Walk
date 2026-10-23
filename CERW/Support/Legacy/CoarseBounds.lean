@@ -5,7 +5,7 @@ import CERW.Support.Norm.EuclideanCoarse
 
 `prop:coarse` of the paper (`limit-shapes.tex:541-548`, Euclidean case). This module is preserved
 support, no longer a registered node: its statement and proof are those of
-`Frozen/CoarseBounds.lean` of commit f7696856, with only the freeze markers removed. It is the
+`Frozen/CoarseBounds.lean` of commit 16c9a09f, with only the freeze markers removed. It is the
 Euclidean case that the proofs of `BulkProfile and SharpWidth` consume; the pinned paper states the
 corresponding result for a norm (`prop:coarse`, `limit-shapes.tex:541-548`).
 -/

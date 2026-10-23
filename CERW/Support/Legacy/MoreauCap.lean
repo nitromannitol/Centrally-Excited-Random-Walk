@@ -6,7 +6,7 @@ import CERW.Support.Norm.MoreauCap
 
 `lem:cap` of the previous pin of the paper (`limit-shapes.tex@04d3cbfa:810-815`). This module is
 preserved support, no longer a registered node: its statement and proof are those of
-`Frozen/MoreauCap.lean` of commit f7696856, with only the freeze markers removed.
+`Frozen/MoreauCap.lean` of commit 16c9a09f, with only the freeze markers removed.
 `limit-shapes.tex@04d3cbfa` is the paper of the previous pin (sha256
 04d3cbfad3cce1b373752f3cc2db3c7e2c34c155cea0727a3ddeb0b0e21c7f59); the pinned paper does not state
 `lem:cap`, and the proofs of `NormRates` consume it.

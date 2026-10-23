@@ -810,7 +810,7 @@
     "audits": [
       {
         "round": 1,
-        "checkout": "be40ef1",
+        "checkout": "61255b0",
         "model": "gpt-6.1-sol",
         "effort": "xhigh",
         "mode": "read-only copies, one per audit",
@@ -839,13 +839,13 @@
             "id": 5,
             "scope": "Proof routes of Sections 2 to 5",
             "verdict": "FAIL",
-            "finding": "The exit-time proof of prop:coarse took its crossing estimate from the earlier ramp/projection argument; repaired in commit afde99b."
+            "finding": "The exit-time proof of prop:coarse took its crossing estimate from the earlier ramp/projection argument; repaired in commit 6ed04de."
           },
           {
             "id": 6,
             "scope": "Proof routes of Sections 6 to 9",
             "verdict": "PASS",
-            "note": "A later dependency traversal found that the polynomial width bound of thm:sharp (iv) took its outer radius bound from the earlier coarse bounds; repaired in commit afde99b."
+            "note": "A later dependency traversal found that the polynomial width bound of thm:sharp (iv) took its outer radius bound from the earlier coarse bounds; repaired in commit 6ed04de."
           },
           {
             "id": 7,
@@ -857,7 +857,7 @@
       },
       {
         "round": 1,
-        "checkout": "be40ef1",
+        "checkout": "61255b0",
         "model": "claude-opus-5-5",
         "scope": "Independent cross-check of Theorems 1.1 to 1.3 and the Section 1 model",
         "verdict": "PASS"
@@ -886,7 +886,7 @@
           },
           {
             "id": 11,
-            "scope": "Every change since be40ef1, including the re-pin and the documentation",
+            "scope": "Every change since 61255b0, including the re-pin and the documentation",
             "verdict": "FAIL",
             "finding": "CORRESPONDENCE.md gave the oct13 hash, and one PROOF.md sentence misattributed the radius input; both corrected."
           }
