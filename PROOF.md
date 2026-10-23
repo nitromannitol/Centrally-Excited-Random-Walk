@@ -17,8 +17,10 @@ assertions use the printed Azuma estimate.
 
 The current statements live in `CERW/LimitShapes/Frozen/`. Unchanged declarations
 retain their certified types; several now use the printed proofs described below.
-`lem:local` is proved by projecting the uniform approximation clause from the earlier
-local-time lemma. Full introduction statements
+`lem:local` uses `local_time_potential_from_dynkin`: final-time Dynkin and the
+cell/Laplacian source comparison, actual-bracket Freedman with maximum-local-time
+weights, and the cell modulus. The literal common event consumes this current anchor.
+Full introduction statements
 are restated in `CERW/MainTheorems.lean`, and their axiom closures are printed in
 `CERW/Meta/AxiomsAudit.lean`.
 

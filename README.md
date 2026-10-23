@@ -12,12 +12,14 @@ A Lean 4 formalization of
 
 The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml). Its unchanged
 statements retain the existing certified types; `lem:local` keeps only the local-time
-approximation. Proposition 4.1 uses the exit-time proof, and Lemma 5.2 uses the
+approximation, proved directly by final-time Dynkin, Freedman and the cell modulus.
+Proposition 4.1 uses the exit-time proof, and Lemma 5.2 uses the
 shifted-square energy proof. The outer-radius and fluctuation anchors use the
 curvature, maximum-principle and global-profile arguments. The separated-bracket
 anchor now uses that curvature profile with the existing Gamma-sum estimates.
 Lemma `lem:ballpotential` now applies the general Lipschitz gradient identity to the
-compactly supported truncated norm cone. Proposition `prop:log-lower` uses the elliptic exit trials and stopped-quadratic Azuma tail.
+compactly supported truncated norm cone. Proposition `prop:log-lower` uses the elliptic
+exit trials and stopped-quadratic Azuma tail.
 Every introduction theorem
 is restated in `CERW/MainTheorems.lean`.
 

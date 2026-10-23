@@ -1,4 +1,5 @@
 import CERW.LimitShapes.LocalTime
+import CERW.LimitShapes.LocalApproximation
 
 /-!
 # lem:local
@@ -31,4 +32,4 @@ theorem CERW.LimitShapes.norm_local_time_potential {d : ℕ} (hd : 2 ≤ d) :
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.LimitShapes.local_time_potential_bound hd
+  exact CERW.LimitShapes.local_time_potential_from_dynkin hd

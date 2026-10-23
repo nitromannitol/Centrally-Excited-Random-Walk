@@ -210,7 +210,7 @@ nodes:
   export: CERW.LimitShapes.norm_local_time_potential
   state: SEALED
   frozen_sha256: 395e09b8f59b3aca6911b0bb7f26ed3464d4664f689eb2ad7ca4dae71e1ec4d9
-  provider: CERW.LimitShapes.local_time_potential_bound
+  provider: CERW.LimitShapes.local_time_potential_from_dynkin
 - id: oct13-lem-contact
   version: 1
   kind: theorem
