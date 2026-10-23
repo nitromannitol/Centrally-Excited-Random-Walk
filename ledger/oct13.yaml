@@ -201,7 +201,7 @@ nodes:
   export: CERW.LimitShapes.log_lower_bounds
   state: SEALED
   frozen_sha256: b03e00faa686654ae3f7cf6c8e2bdbac60636ca925f4541e114219dde9b5158c
-  provider: CERW.Frozen.log_lower_bounds
+  provider: CERW.LimitShapes.log_lower_bounds_from_azuma
 - id: oct13-lem-local
   version: 1
   kind: theorem

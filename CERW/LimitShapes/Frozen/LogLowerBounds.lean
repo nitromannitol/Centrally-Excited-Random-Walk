@@ -1,4 +1,5 @@
 import CERW.Frozen.LogLowerBounds
+import CERW.LimitShapes.LogLower
 
 /-!
 # prop:log-lower
@@ -34,4 +35,4 @@ theorem CERW.LimitShapes.log_lower_bounds {d : ℕ} (hd : 2 ≤ d) :
           (3 ≤ d → c * Real.log n < CERW.maxRadius (X · ω) n - r n)
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.log_lower_bounds hd
+  exact CERW.LimitShapes.log_lower_bounds_from_azuma hd

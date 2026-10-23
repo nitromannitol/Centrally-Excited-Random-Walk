@@ -8,6 +8,13 @@ Lemma `lem:ballpotential` uses `norm_ball_potential_from_gradient`: it applies t
 general compactly supported Lipschitz gradient identity to `max (ρ - Ψ) 0`, using the
 existing almost-everywhere gradient formula and closed norm-sublevel compactness.
 
+Proposition `prop:log-lower` uses `log_lower_bounds_from_azuma`. Existing elliptic exit
+trials and shell counting are combined with a conditional Hoeffding estimate for the
+stopped quadratic increments. The proof transports the walk to canonical path space
+for the conditional kernel estimate, then transfers the bound back to an arbitrary
+probability space and applies Borel–Cantelli. Both finite-time tails and both eventual
+assertions use the printed Azuma estimate.
+
 The current statements live in `CERW/LimitShapes/Frozen/`. Unchanged declarations
 retain their certified types; several now use the printed proofs described below.
 `lem:local` is proved by projecting the uniform approximation clause from the earlier

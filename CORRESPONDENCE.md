@@ -70,6 +70,9 @@ declarations are retained.
 The current `lem:ballpotential` anchor applies `norm_ball_potential_from_gradient`,
 using the general Lipschitz gradient identity on the truncated norm cone as printed.
 
+The current `prop:log-lower` anchor applies `log_lower_bounds_from_azuma`: elliptic
+exit trials, shell counting, the stopped-quadratic Azuma tail, and Borel–Cantelli.
+
 The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
 a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256
 `0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396` and the separate

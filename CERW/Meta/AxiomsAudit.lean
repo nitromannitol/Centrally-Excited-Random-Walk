@@ -86,3 +86,5 @@ and each main theorem restatement. The statement gates check the allowed closure
 #print axioms CERW.LimitShapes.Curvature.separated_brackets_from_curvature
 
 #print axioms CERW.LimitShapes.norm_ball_potential_from_gradient
+
+#print axioms CERW.LimitShapes.log_lower_bounds_from_azuma
