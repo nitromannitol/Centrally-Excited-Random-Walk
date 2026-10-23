@@ -1,3 +1,4 @@
+import CERW.LimitShapes.Shape
 import CERW.Frozen.NormShape
 
 /-!
@@ -35,4 +36,4 @@ theorem CERW.LimitShapes.norm_shape {d : ℕ} (hd : 2 ≤ d)
       (∀ x : Site d, ∃ᶠ j in atTop, X j ω = x)
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.norm_shape hd hΨ hξ hξ0 hε hεΨ μ X hX
+  exact CERW.LimitShapes.norm_shape_from_rates hd hΨ hξ hξ0 hε hεΨ μ X hX

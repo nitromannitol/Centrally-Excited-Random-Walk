@@ -82,6 +82,11 @@ The current `eq:distance-crossing` anchor applies
 distance drift, site-grouped bounded stopping, Markov, finite unions and radial rounding.
 The literal common event consumes this switched crossing anchor.
 
+The current `prop:norm-shape` anchor uses `norm_shape_rates_from_common_event`: the
+quadratic radius-volume identity, contact excess, layer potential and crossing.
+`thm:norm-shape` uses `norm_shape_from_rates`, and `thm:shape` specializes it through
+`limit_shape_from_norm_shape`.
+
 The earlier source `paper/limit-shapes.tex`, *Kozma's centrally excited walk converges to
 a Euclidean ball* by Bou-Rabee and Peres, retains the SHA-256
 `0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396` and the separate

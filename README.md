@@ -22,6 +22,8 @@ compactly supported truncated norm cone. Proposition `prop:log-lower` uses the e
 exit trials and stopped-quadratic Azuma tail.
 The distance crossing estimate now uses the exponential-distance stopping and
 site-grouping proof, followed by Markov, finite unions and real-level rounding.
+The norm rates use the quadratic radius-volume identity on the common event.
+Borel–Cantelli gives the norm shapes, and Euclidean shape is their specialization.
 Every introduction theorem
 is restated in `CERW/MainTheorems.lean`.
 

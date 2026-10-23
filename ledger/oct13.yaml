@@ -12,7 +12,7 @@ nodes:
   export: CERW.LimitShapes.limit_shape
   state: SEALED
   frozen_sha256: 5d7c9936f49f4496849cd2a56b898839107318021fb8da5c4b8632953af4a526
-  provider: CERW.Frozen.limit_shape
+  provider: CERW.LimitShapes.limit_shape_from_norm_shape
 - id: oct13-thm-fluctuations
   version: 1
   kind: theorem
@@ -66,7 +66,7 @@ nodes:
   export: CERW.LimitShapes.norm_shape
   state: SEALED
   frozen_sha256: bd054812cc42e1814bf9a107950040eeebcefa074231fe957f15d5be45c14193
-  provider: CERW.Frozen.norm_shape
+  provider: CERW.LimitShapes.norm_shape_from_rates
 - id: oct13-lem-ballpotential
   version: 1
   kind: theorem
@@ -111,7 +111,7 @@ nodes:
   export: CERW.LimitShapes.norm_shape_rates
   state: SEALED
   frozen_sha256: 5d74488dee35ed7e831159ee3c2d8e89195cd8950c537942d13b44a6a5f8f442
-  provider: CERW.Frozen.norm_shape_rates
+  provider: CERW.LimitShapes.norm_shape_rates_from_common_event
 - id: oct13-lem-layer
   version: 1
   kind: theorem

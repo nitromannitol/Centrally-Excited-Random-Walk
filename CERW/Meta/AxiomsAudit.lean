@@ -94,3 +94,8 @@ and each main theorem restatement. The statement gates check the allowed closure
 
 #print axioms CERW.LimitShapes.Crossing.ExponentialProbability.distance_crossing_from_exponential
 #print axioms CERW.LimitShapes.Crossing.ExponentialTail.measure_distance_crossing_le_exp
+
+#print axioms CERW.LimitShapes.norm_shape_rates_from_common_event
+#print axioms CERW.LimitShapes.norm_shape_from_rates
+#print axioms CERW.LimitShapes.limit_shape_from_norm_shape
+#print axioms CERW.LimitShapes.NormRates.radius_volume_of_event

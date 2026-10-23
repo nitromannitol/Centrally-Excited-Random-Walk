@@ -1,3 +1,4 @@
+import CERW.LimitShapes.NormRates
 import CERW.Frozen.NormShapeRates
 
 /-!
@@ -39,4 +40,4 @@ theorem CERW.LimitShapes.norm_shape_rates {d : ℕ} (hd : 2 ≤ d) :
           ≤ ENNReal.ofReal (C * (n : ℝ) ^ (-p))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.norm_shape_rates hd
+  exact CERW.LimitShapes.norm_shape_rates_from_common_event hd

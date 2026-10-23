@@ -15,6 +15,14 @@ for the conditional kernel estimate, then transfers the bound back to an arbitra
 probability space and applies Borel–Cantelli. Both finite-time tails and both eventual
 assertions use the printed Azuma estimate.
 
+Proposition `prop:norm-shape` uses `NormRates/`: contact excess and shell splitting
+bound the excess volume; the actual stopped quadratic estimate and cell integral
+comparison give `eq:radius-volume`, which determines the inner radius and cone
+shift. The layer potential gives the profile, and distance crossing at the predicted
+radius gives the outer bound. `Shape.lean` applies the existing Borel–Cantelli and
+recurrence assembly to these current rates, then specializes the norm to obtain
+`thm:shape`. The retained Moreau and local-time-mass routes remain available.
+
 The current statements live in `CERW/LimitShapes/Frozen/`. Unchanged declarations
 retain their certified types; several now use the printed proofs described below.
 `lem:local` uses `local_time_potential_from_dynkin`: final-time Dynkin and the
