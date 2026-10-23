@@ -86,8 +86,10 @@ potential decays at infinity for every `d ≥ 2`; the curvature integral decays 
 The current outer-radius anchor uses `Curvature.outer_radius_via_curvature`.
 The weighted radial derivative and FTC/Fubini identity bound the curvature integral
 on an annulus; its harmonicity and the maximum principle give the global bound.
-Negative kernel bounds on a cap, the remaining positive contribution and the
-near-far estimate give `eq:positive-bound`. The actual exterior local-time supremum
+The existing `cap_mass_of_probe` in `Support/Outer/Radius/ProbeGeometry.lean`
+provides the cap-measure estimate: the curvature bound supplies its positive-potential
+input. This reuses the negative cap kernel and integration argument. The near-far
+estimate then gives `eq:positive-bound`. The actual exterior local-time supremum
 is then bounded by the one-sided square estimate, and the common event's distance
 crossing estimate and the existing Young lemma give `eq:outer-reduction`.
 
