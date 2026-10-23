@@ -1,3 +1,4 @@
+import CERW.LimitShapes.PlanarLower.SmallBall
 import CERW.Frozen.SharpWidth
 
 /-!
@@ -38,4 +39,4 @@ theorem CERW.LimitShapes.sharp_width {d : ℕ} (hd : d = 2) :
           ENNReal.ofReal (1 - Real.exp (-(3 * ε * a ^ 2 / Real.pi))))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.sharp_width hd
+  exact CERW.LimitShapes.PlanarLower.sharp_width_from_norm_shape hd

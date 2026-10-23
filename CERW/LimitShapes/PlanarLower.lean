@@ -1,8 +1,9 @@
 import CERW.LimitShapes.PlanarLower.Radii
+import CERW.LimitShapes.PlanarLower.Width
+import CERW.LimitShapes.PlanarLower.SmallBall
 
 /-!
-# Planar radius lower fluctuations
+# Planar lower fluctuations
 
-The radius law of the iterated logarithm follows from the current moment law.
-Cell comparisons transfer the quadratic fluctuations to both radii.
+Radius and width lower bounds from the current shape and moment inputs.
 -/

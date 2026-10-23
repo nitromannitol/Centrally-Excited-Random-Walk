@@ -6,6 +6,11 @@ is `ledger/oct13.yaml`; its source ranges are checked against the pinned SHA-256
 `e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617`.
 Lean citations use paper labels; source line numbers occur in the ledger and this table.
 
+All three planar width conclusions in `thm:sharp` now use the compensated
+position, annular direction sum and martingale limit arguments with the current
+shape and fluctuation estimates. Existing CLT and Gaussian disk-mass proofs are
+parameterized by their fluctuation input; their original exports remain available.
+
 The planar radius bounds in `thm:sharp` use the coarse-event quadratic bracket
 and two-sign exponential deviations for polynomial tails, and current moment
 fluctuations for the radius LIL. The bounded predictable transform agrees with

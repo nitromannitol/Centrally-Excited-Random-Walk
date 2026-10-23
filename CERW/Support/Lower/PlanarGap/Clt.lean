@@ -31,7 +31,9 @@ open CERW CERW.Support.Law CERW.Support.Lower
 /-- The proved fluctuation rates in the plane, radii only: with probability at least
 `1 - C n^{-p}` the inner radius is within `C √(r_n log n)` of `r_n` and the outer radius is at most
 `r_n + C √r_n (log n)^{5/2}`; almost surely the same bounds hold for all large `n`. -/
-theorem planar_radii_rates {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ)) {p : ℝ}
+theorem planar_radii_rates_of_fluctuation_rates
+    (hfluct : CERW.Support.Statements.fluctuation_rates.{u})
+    {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ)) {p : ℝ}
     (hp : 0 < p) :
     let r : ℕ → ℝ := fun n =>
       ((((2 : ℕ) : ℝ) + 1) * n / (2 * ((2 : ℕ) : ℝ) * ε *
@@ -52,7 +54,7 @@ theorem planar_radii_rates {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ
                 C * Real.sqrt (r n) * Real.log n ^ ((5 : ℝ) / 2)) := by
   intro r
   obtain ⟨C, hC, hprob, hae⟩ :=
-    CERW.Frozen.fluctuation_rates.{u} (d := 2) le_rfl ε hε0 hεd p hp
+    hfluct (d := 2) le_rfl ε hε0 hεd p hp
   refine ⟨C, hC, ?_, ?_⟩
   · intro Ω _ μ _ X hX n hn
     refine le_trans (measure_mono ?_) (hprob μ X hX n hn)
@@ -66,6 +68,28 @@ theorem planar_radii_rates {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ
     have h1 := hgood.1
     rw [if_pos rfl] at h1
     exact h1
+
+/-- The corresponding bound using the established fluctuation rates. -/
+theorem planar_radii_rates {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ)) {p : ℝ}
+    (hp : 0 < p) :
+    let r : ℕ → ℝ := fun n =>
+      ((((2 : ℕ) : ℝ) + 1) * n / (2 * ((2 : ℕ) : ℝ) * ε *
+        (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin 2)) 1)).toReal)) ^
+        ((1 : ℝ) / (((2 : ℕ) : ℝ) + 1))
+    ∃ C : ℝ, 0 < C ∧
+      (∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site 2), IsCERW μ ε X → ∀ n : ℕ, 2 ≤ n →
+          μ {ω | ¬ (|innerRadius (fun j => X j ω) n - r n| ≤ C * Real.sqrt (r n * Real.log n) ∧
+              maxRadius (fun j => X j ω) n - r n ≤
+                C * Real.sqrt (r n) * Real.log n ^ ((5 : ℝ) / 2))} ≤
+            ENNReal.ofReal (C * (n : ℝ) ^ (-p))) ∧
+      (∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+        (X : ℕ → Ω → Site 2), IsCERW μ ε X →
+          ∀ᵐ ω ∂μ, ∀ᶠ n : ℕ in atTop,
+            |innerRadius (fun j => X j ω) n - r n| ≤ C * Real.sqrt (r n * Real.log n) ∧
+              maxRadius (fun j => X j ω) n - r n ≤
+                C * Real.sqrt (r n) * Real.log n ^ ((5 : ℝ) / 2)) := by
+  exact planar_radii_rates_of_fluctuation_rates @CERW.Frozen.fluctuation_rates hε0 hεd hp
 
 /-! ### Real-analysis lemmas on the scale `r_n` -/
 

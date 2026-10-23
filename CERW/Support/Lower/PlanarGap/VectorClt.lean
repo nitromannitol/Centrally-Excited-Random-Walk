@@ -341,12 +341,14 @@ private theorem exists_lf_martingale {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 /
 /-- **The range is a vanishing fraction of the time.** Almost surely
 `|A_n| / n → 0`: the proved fluctuation rates keep the walk in the disk of radius `2 r_n`, which
 has `O(r_n²) = O(n^{2/3})` lattice points. -/
-theorem card_departureRange_div_tendsto_zero {ε : ℝ} (hε0 : 0 < ε)
+theorem card_departureRange_div_tendsto_zero_of_fluctuation_rates
+    (hfluct : CERW.Support.Statements.fluctuation_rates.{u})
+    {ε : ℝ} (hε0 : 0 < ε)
     (hεd : ε < 1 / ((2 : ℕ) : ℝ)) {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsProbabilityMeasure μ] {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) :
     ∀ᵐ ω ∂μ, Tendsto (fun n : ℕ => ((departureRange (fun j => X j ω) n).card : ℝ) / n)
       atTop (𝓝 0) := by
-  obtain ⟨C, hC, -, hae⟩ := planar_radii_rates hε0 hεd (p := 1) one_pos
+  obtain ⟨C, hC, -, hae⟩ := planar_radii_rates_of_fluctuation_rates hfluct hε0 hεd (p := 1) one_pos
   have hK : 0 < (3 / (4 * ε * Real.pi)) ^ ((1 : ℝ) / 3) := by positivity
   have hev := eventually_sqrt_mul_log_le hK C one_pos
   have hg := tendsto_card_ratio_bound ((3 / (4 * ε * Real.pi)) ^ ((1 : ℝ) / 3)) 1
@@ -371,6 +373,15 @@ theorem card_departureRange_div_tendsto_zero {ε : ℝ} (hε0 : 0 < ε)
   calc ((departureRange (fun j => X j ω) n).card : ℝ) / n ≤ (4 * r + 1) ^ 2 / n :=
         div_le_div_of_nonneg_right hcard hn0.le
     _ = 1 ^ 2 * (4 * r + 1) ^ 2 / n := by ring
+
+/-- The corresponding bound using the established fluctuation rates. -/
+theorem card_departureRange_div_tendsto_zero {ε : ℝ} (hε0 : 0 < ε)
+    (hεd : ε < 1 / ((2 : ℕ) : ℝ)) {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω)
+    [IsProbabilityMeasure μ] {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) :
+    ∀ᵐ ω ∂μ, Tendsto (fun n : ℕ => ((departureRange (fun j => X j ω) n).card : ℝ) / n)
+      atTop (𝓝 0) := by
+  exact card_departureRange_div_tendsto_zero_of_fluctuation_rates
+    @CERW.Frozen.fluctuation_rates hε0 hεd μ hX
 
 /-! ### The central limit theorem for every linear form -/
 
@@ -492,7 +503,9 @@ private theorem clt_of_bounded {Ω : Type u} [m0 : MeasurableSpace Ω] (μ : Mea
 for `0 < ε < 1/2` and every `q ∈ ℝ²` (the case `q = 0` included),
 `⟨q, X_n + ε Σ_{x ∈ A_n} u_x⟩ / √n ⇒ N(0, |q|²/2)`. Bounded increments, the predictable bracket,
 the Lindeberg condition and `|A_n| / n → 0` are all derived from `IsCERW`. -/
-theorem linearForm_clt {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
+theorem linearForm_clt_of_fluctuation_rates
+    (hfluct : CERW.Support.Statements.fluctuation_rates.{u})
+    {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
     {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) (q : EuclideanSpace ℝ (Fin 2)) :
     TendstoInDistribution
@@ -501,7 +514,7 @@ theorem linearForm_clt {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : 
       atTop id (fun _ => μ) (gaussianReal 0 (‖q‖ ^ 2 / 2).toNNReal) := by
   obtain ⟨Y, hY, hY0, hYinc, hYL2, hYform, hYbr⟩ := exists_lf_martingale hε0 hεd hX q
   have hq2 : ‖q‖ ^ 2 = q 0 ^ 2 + q 1 ^ 2 := norm_sq_plane q
-  have hrange := card_departureRange_div_tendsto_zero hε0 hεd μ hX
+  have hrange := card_departureRange_div_tendsto_zero_of_fluctuation_rates hfluct hε0 hεd μ hX
   have hbr : TendstoInMeasure μ
       (fun n ω => predBracket μ (pathFiltration hX.measurable) Y Y n ω / scaleN n ^ 2) atTop
       (fun _ => (((‖q‖ ^ 2 / 2).toNNReal : ℝ≥0) : ℝ)) := by
@@ -529,6 +542,17 @@ theorem linearForm_clt {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : 
   · simp [scaleN, hY0 ω]
   · show Y n ω / scaleN n = _
     rw [hω n, scaleN_eq_sqrt hn, inner_compensated]
+
+/-- The corresponding bound using the established fluctuation rates. -/
+theorem linearForm_clt {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
+    {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) (q : EuclideanSpace ℝ (Fin 2)) :
+    TendstoInDistribution
+      (fun n ω => inner ℝ q (toSpace (X n ω) +
+        ε • ∑ x ∈ departureRange (fun j => X j ω) n, unitDir (toSpace x)) / Real.sqrt n)
+      atTop id (fun _ => μ) (gaussianReal 0 (‖q‖ ^ 2 / 2).toNNReal) := by
+  exact linearForm_clt_of_fluctuation_rates
+    @CERW.Frozen.fluctuation_rates hε0 hεd μ hX q
 
 /-! ### The vector law -/
 
@@ -606,7 +630,9 @@ probability space of the walk, to the Mathlib multivariate Gaussian with mean `0
 `(1/2) I`. The device is the Cramér–Wold theorem of the library, whose proof is Lévy's convergence
 theorem; its hypotheses are the linear-form central limit theorems `linearForm_clt` and the
 identification `map_inner_multivariateGaussian_half` of the one-dimensional marginals. -/
-theorem vector_clt {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
+theorem vector_clt_of_fluctuation_rates
+    (hfluct : CERW.Support.Statements.fluctuation_rates.{u})
+    {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
     {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) :
     TendstoInDistribution
@@ -618,7 +644,8 @@ theorem vector_clt {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ)
     (fun n => ((measurable_compensated hX.measurable ε n).const_smul
       ((Real.sqrt (n : ℝ))⁻¹)).aemeasurable)
     aemeasurable_id fun t => ?_
-  have hscalar := (linearForm_clt hε0 hεd μ hX t).congr (Y := fun (n : ℕ) (ω : Ω) => inner ℝ
+  have hscalar := (linearForm_clt_of_fluctuation_rates hfluct hε0 hεd μ hX t).congr
+    (Y := fun (n : ℕ) (ω : Ω) => inner ℝ
     ((Real.sqrt n)⁻¹ • (toSpace (X n ω) +
       ε • ∑ x ∈ departureRange (fun j => X j ω) n, unitDir (toSpace x))) t)
     (fun n => Filter.Eventually.of_forall fun ω => by
@@ -627,5 +654,17 @@ theorem vector_clt {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ)
   exact LatticeProb.CramerWold.tendstoInDistribution_of_map_eq hscalar
     (fun z : EuclideanSpace ℝ (Fin 2) => inner ℝ (id z) t)
     (by fun_prop) (map_inner_multivariateGaussian_half t)
+
+/-- The corresponding bound using the established fluctuation rates. -/
+theorem vector_clt {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
+    {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) :
+    TendstoInDistribution
+      (fun (n : ℕ) (ω : Ω) => (Real.sqrt n)⁻¹ • (toSpace (X n ω) +
+        ε • ∑ x ∈ departureRange (fun j => X j ω) n, unitDir (toSpace x)))
+      atTop id (fun _ => μ)
+      (multivariateGaussian 0 (((1 : ℝ) / 2) • (1 : Matrix (Fin 2) (Fin 2) ℝ))) := by
+  exact vector_clt_of_fluctuation_rates
+    @CERW.Frozen.fluctuation_rates hε0 hεd μ hX
 
 end CERW.Support.Lower.PlanarGap

@@ -32,6 +32,10 @@ and two-sign exponential deviations for polynomial tails, and current moment
 fluctuations for the radius LIL. The bounded predictable transform agrees with
 the quadratic martingale on the coarse event; cell comparisons transfer both
 estimates to the inner and outer radii.
+All three planar width conclusions in `thm:sharp` now use the compensated
+position, annular direction sum and martingale limit arguments with the current
+shape and fluctuation estimates. Existing CLT and Gaussian disk-mass proofs are
+parameterized by their fluctuation input; their original exports remain available.
 Every introduction theorem
 is restated in `CERW/MainTheorems.lean`.
 

@@ -293,7 +293,9 @@ theorem compensated_le_gap {ε : ℝ} (hε0 : 0 < ε) {C : ℝ} (hC : 0 ≤ C) :
 is a deterministic `e_n → 0` such that the probability that
 `‖Z_n‖ / √n > √(3 ε / π) · G_n / √r_n + e_n` tends to zero: off the event on which the proved radius
 rates fail, `compensated_le_gap` applies. -/
-theorem compensated_le_gap_in_probability {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
+theorem compensated_le_gap_in_probability_of_fluctuation_rates
+    (hfluct : CERW.Support.Statements.fluctuation_rates.{u})
+    {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
     {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) :
     let r : ℕ → ℝ := fun n =>
@@ -308,7 +310,7 @@ theorem compensated_le_gap_in_probability {ε : ℝ} (hε0 : 0 < ε) (hεd : ε 
           ε • ∑ x ∈ departureRange (fun j => X j ω) n, unitDir (toSpace x))‖})
         atTop (𝓝 0) := by
   intro r
-  obtain ⟨C, hC, hbadT⟩ := planar_radii_bad_tendsto hε0 hεd
+  obtain ⟨C, hC, hbadT⟩ := planar_radii_bad_tendsto_of_fluctuation_rates hfluct hε0 hεd
   obtain ⟨e, he, hgeoE⟩ := compensated_le_gap hε0 hC.le
   refine ⟨e, he, ?_⟩
   refine tendsto_of_tendsto_of_tendsto_of_le_of_le' tendsto_const_nhds (hbadT μ X hX)
@@ -318,6 +320,24 @@ theorem compensated_le_gap_in_probability {ε : ℝ} (hε0 : 0 < ε) (hεd : ε 
   by_contra hg
   simp only [Set.mem_setOf_eq, not_not] at hg
   exact absurd hω (not_lt.mpr (hn (fun j => X j ω) hg.1 hg.2))
+
+/-- The corresponding bound using the established fluctuation rates. -/
+theorem compensated_le_gap_in_probability {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
+    {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) :
+    let r : ℕ → ℝ := fun n =>
+      ((((2 : ℕ) : ℝ) + 1) * n / (2 * ((2 : ℕ) : ℝ) * ε *
+        (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin 2)) 1)).toReal)) ^
+        ((1 : ℝ) / (((2 : ℕ) : ℝ) + 1))
+    ∃ e : ℕ → ℝ, Tendsto e atTop (𝓝 0) ∧
+      Tendsto (fun n : ℕ => μ {ω | Real.sqrt (3 * ε / Real.pi) *
+          ((maxRadius (fun j => X j ω) n - innerRadius (fun j => X j ω) n) /
+            Real.sqrt (r n)) + e n <
+        ‖(Real.sqrt n)⁻¹ • (toSpace (X n ω) +
+          ε • ∑ x ∈ departureRange (fun j => X j ω) n, unitDir (toSpace x))‖})
+        atTop (𝓝 0) := by
+  exact compensated_le_gap_in_probability_of_fluctuation_rates
+    @CERW.Frozen.fluctuation_rates hε0 hεd μ hX
 
 /-! ### Closed balls under a limit law -/
 
@@ -400,7 +420,9 @@ plane and `B̄` the closed ball.
 The proof composes the vector central limit theorem `vector_clt`, the pathwise geometric
 inequality `compensated_le_gap` (built on the direction-free annulus bound), the proved radius
 rates `planar_radii_bad_tendsto` and the closed-ball Portmanteau bound. -/
-theorem gap_limsup_le_gaussian_ball {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
+theorem gap_limsup_le_gaussian_ball_of_fluctuation_rates
+    (hfluct : CERW.Support.Statements.fluctuation_rates.{u})
+    {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
     {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) (a : ℝ) :
     let r : ℕ → ℝ := fun n =>
@@ -417,8 +439,8 @@ theorem gap_limsup_le_gaussian_ball {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / 
   have hr : ∀ n : ℕ, r n = K * ((n : ℝ) ^ ((1 : ℝ) / 6)) ^ 2 := fun n => planar_radius_eq hε0 n
   set c : ℝ := Real.sqrt (3 * ε / Real.pi) with hcdef
   have hc0 : 0 ≤ c := Real.sqrt_nonneg _
-  have hvec := vector_clt hε0 hεd μ hX
-  obtain ⟨C, hC, hbadT⟩ := planar_radii_bad_tendsto hε0 hεd
+  have hvec := vector_clt_of_fluctuation_rates hfluct hε0 hεd μ hX
+  obtain ⟨C, hC, hbadT⟩ := planar_radii_bad_tendsto_of_fluctuation_rates hfluct hε0 hεd
   obtain ⟨e, he, hgeoE⟩ := compensated_le_gap hε0 hC.le
   have hk : ∀ k : ℕ, limsup (fun n => μ {ω | maxRadius (fun j => X j ω) n -
         innerRadius (fun j => X j ω) n ≤ a * Real.sqrt (r n)}) atTop ≤
@@ -464,6 +486,21 @@ theorem gap_limsup_le_gaussian_ball {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / 
   exact ge_of_tendsto'
     (tendsto_measure_closedBall_add_inv
       (multivariateGaussian 0 (((1 : ℝ) / 2) • (1 : Matrix (Fin 2) (Fin 2) ℝ))) (a * c)) hk
+
+/-- The corresponding bound using the established fluctuation rates. -/
+theorem gap_limsup_le_gaussian_ball {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ))
+    {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+    {X : ℕ → Ω → Site 2} (hX : IsCERW μ ε X) (a : ℝ) :
+    let r : ℕ → ℝ := fun n =>
+      ((((2 : ℕ) : ℝ) + 1) * n / (2 * ((2 : ℕ) : ℝ) * ε *
+        (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin 2)) 1)).toReal)) ^
+        ((1 : ℝ) / (((2 : ℕ) : ℝ) + 1))
+    limsup (fun n => μ {ω | maxRadius (fun j => X j ω) n - innerRadius (fun j => X j ω) n ≤
+        a * Real.sqrt (r n)}) atTop ≤
+      multivariateGaussian 0 (((1 : ℝ) / 2) • (1 : Matrix (Fin 2) (Fin 2) ℝ))
+        (Metric.closedBall 0 (a * Real.sqrt (3 * ε / Real.pi))) := by
+  exact gap_limsup_le_gaussian_ball_of_fluctuation_rates
+    @CERW.Frozen.fluctuation_rates hε0 hεd μ hX a
 
 /-- **The case `a = 0`.** `limsup_n P(R_out(n) − R_in(n) ≤ 0) = 0`: the closed ball of radius zero
 is the origin, which the Gaussian does not charge. -/

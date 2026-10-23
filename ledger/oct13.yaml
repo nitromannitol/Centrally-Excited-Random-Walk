@@ -57,7 +57,7 @@ nodes:
   export: CERW.LimitShapes.sharp_width
   state: SEALED
   frozen_sha256: 56a18a291adc908fe3820998f20bd46bf507590b04344e836a82225ff1ee9884
-  provider: CERW.Frozen.sharp_width
+  provider: CERW.LimitShapes.PlanarLower.sharp_width_from_norm_shape
 - id: oct13-thm-norm-shape
   version: 1
   kind: theorem

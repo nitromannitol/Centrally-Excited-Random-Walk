@@ -109,3 +109,5 @@ and each main theorem restatement. The statement gates check the allowed closure
 #print axioms CERW.LimitShapes.sharp_radii_from_common_event
 
 #print axioms CERW.LimitShapes.PlanarLower.sharp_radii_lil_from_moment
+
+#print axioms CERW.LimitShapes.PlanarLower.sharp_width_from_norm_shape

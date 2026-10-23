@@ -258,7 +258,9 @@ theorem two_mul_eps_mul_radius_const {ε : ℝ} (hε : 0 < ε) :
 
 /-- The event on which the proved radius bounds of `planar_radii_rates` fail has probability
 tending to zero (here with `p = 1`). -/
-theorem planar_radii_bad_tendsto {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ)) :
+theorem planar_radii_bad_tendsto_of_fluctuation_rates
+    (hfluct : CERW.Support.Statements.fluctuation_rates.{u})
+    {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ)) :
     let r : ℕ → ℝ := fun n =>
       ((((2 : ℕ) : ℝ) + 1) * n / (2 * ((2 : ℕ) : ℝ) * ε *
         (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin 2)) 1)).toReal)) ^
@@ -269,7 +271,8 @@ theorem planar_radii_bad_tendsto {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2
           C * Real.sqrt (r n * Real.log n) ∧ maxRadius (fun j => X j ω) n - r n ≤
             C * Real.sqrt (r n) * Real.log n ^ ((5 : ℝ) / 2))}) atTop (𝓝 0) := by
   intro r
-  obtain ⟨C, hC, hprob, -⟩ := planar_radii_rates hε0 hεd (p := 1) one_pos
+  obtain ⟨C, hC, hprob, -⟩ :=
+    planar_radii_rates_of_fluctuation_rates hfluct hε0 hεd (p := 1) one_pos
   refine ⟨C, hC, ?_⟩
   intro Ω _ μ _ X hX
   have hz : Tendsto (fun n : ℕ => C * (n : ℝ) ^ (-(1 : ℝ))) atTop (𝓝 0) := by
@@ -282,6 +285,19 @@ theorem planar_radii_bad_tendsto {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2
     (Eventually.of_forall fun n => bot_le) ?_
   filter_upwards [eventually_ge_atTop 2] with n hn
   exact hprob μ X hX n hn
+
+/-- The corresponding bound using the established fluctuation rates. -/
+theorem planar_radii_bad_tendsto {ε : ℝ} (hε0 : 0 < ε) (hεd : ε < 1 / ((2 : ℕ) : ℝ)) :
+    let r : ℕ → ℝ := fun n =>
+      ((((2 : ℕ) : ℝ) + 1) * n / (2 * ((2 : ℕ) : ℝ) * ε *
+        (volume (Metric.ball (0 : EuclideanSpace ℝ (Fin 2)) 1)).toReal)) ^
+        ((1 : ℝ) / (((2 : ℕ) : ℝ) + 1))
+    ∃ C : ℝ, 0 < C ∧ ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
+      (X : ℕ → Ω → Site 2), IsCERW μ ε X →
+        Tendsto (fun n : ℕ => μ {ω | ¬ (|innerRadius (fun j => X j ω) n - r n| ≤
+          C * Real.sqrt (r n * Real.log n) ∧ maxRadius (fun j => X j ω) n - r n ≤
+            C * Real.sqrt (r n) * Real.log n ^ ((5 : ℝ) / 2))}) atTop (𝓝 0) := by
+  exact planar_radii_bad_tendsto_of_fluctuation_rates @CERW.Frozen.fluctuation_rates hε0 hεd
 
 /-- **Scalar small-ball bound for the width of the planar range.** For `0 < ε < 1/2` and `a ≥ 0`,
 `limsup_n P(R_out(n) − R_in(n) ≤ a √r_n) ≤ N(0, 1/2)[−a c, a c]`, `c = √(3 ε / π)`.

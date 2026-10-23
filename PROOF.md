@@ -4,6 +4,11 @@ The current source is *Limit shapes for centrally excited walks* by Ahmed Bou-Ra
 Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/oct13.tex` by
 `ledger/oct13.yaml`. The paper writes the drift as `κ`; Lean writes it as `ε`.
 
+All three planar width conclusions in `thm:sharp` now use the compensated
+position, annular direction sum and martingale limit arguments with the current
+shape and fluctuation estimates. Existing CLT and Gaussian disk-mass proofs are
+parameterized by their fluctuation input; their original exports remain available.
+
 The planar radius bounds in `thm:sharp` use the coarse-event quadratic bracket
 and two-sign exponential deviations for polynomial tails, and current moment
 fluctuations for the radius LIL. The bounded predictable transform agrees with
