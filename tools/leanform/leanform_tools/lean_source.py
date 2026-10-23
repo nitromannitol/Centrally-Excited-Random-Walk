@@ -34,13 +34,23 @@ _IDENT_OK = re.compile(r"^[A-Za-z_À-￿][A-Za-z0-9_.'!?À-￿]*$")
 def mask_comments(src: str) -> str:
     """Replace comment bodies with spaces, preserving newlines and offsets.
 
-    Handles nested `/- -/` and line comments. Keeps the string the same length
-    so that byte offsets and line numbers computed on the result still point
-    at the original file.
+    Handles nested `/- -/` and line comments, and skips string literals, so
+    that a `/-` or `--` inside a string opens no comment. Keeps the string the
+    same length so that byte offsets and line numbers computed on the result
+    still point at the original file.
     """
     out = list(src)
     i, n, depth = 0, len(src), 0
     while i < n:
+        if depth == 0 and src.startswith("'\"'", i):
+            i += 3
+            continue
+        if depth == 0 and src[i] == '"':
+            i += 1
+            while i < n and src[i] != '"':
+                i += 2 if src[i] == "\\" else 1
+            i += 1
+            continue
         if depth == 0 and src.startswith("--", i):
             j = src.find("\n", i)
             j = n if j < 0 else j
@@ -133,5 +143,7 @@ def axiom_declarations(src: str) -> list[int]:
     masked = mask_comments(src)
     return [
         line_of(masked, m.start())
-        for m in re.finditer(r"(?m)^\s*axiom\s+", masked)
+        for m in re.finditer(
+            r"(?<![\w.'#])axiom\s+[^\s]",
+            masked)
     ]

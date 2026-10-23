@@ -18,6 +18,14 @@ if [ "${1:-}" = "--vocabulary" ]; then
   RC=0
   for c in CERWAudit/*/Challenge.lean; do
     d="$(dirname "$c")/SolutionBasic.lean"
+    for f in "$c" "$d"; do
+      nb=$(grep -c '^-- VOCABULARY-BEGIN$' "$f")
+      ne=$(grep -c '^-- VOCABULARY-END$' "$f")
+      nl=$(block "$f" | grep -cE '^(noncomputable |private |protected )*(def|abbrev|structure|inductive|class|instance|theorem|lemma) ')
+      if [ "$nb" != 1 ] || [ "$ne" != 1 ] || [ "$nl" -lt 1 ]; then
+        echo "MALFORMED  $f  (begin=$nb end=$ne declarations=$nl)"; RC=1
+      fi
+    done
     H1=$(block "$c" | sha256sum | cut -d' ' -f1)
     H2=$(block "$d" | sha256sum | cut -d' ' -f1)
     if [ "$H1" = "$H2" ]; then echo "identical  $c  $d"; else echo "DIFFERENT  $c  $d"; RC=1; fi

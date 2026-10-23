@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import re
 import importlib.util
 import sys
 import tempfile
@@ -30,6 +31,20 @@ def final_config():
     raw = yaml.safe_load(path.read_text())
     nodes = [Node(dict(node)) for node in raw["nodes"]]
     return VERIFY.PaperConfig(ROOT, path, raw, nodes)
+
+
+class FrozenTypeInventoryTests(unittest.TestCase):
+    def test_pinned_types_are_exactly_the_exports_and_main_theorems(self):
+        raw = yaml.safe_load((ROOT / "ledger" / "oct13.yaml").read_text())
+        exports = {node["export"] for node in raw["nodes"]}
+        main = (ROOT / "CERW" / "MainTheorems.lean").read_text()
+        self.assertIn("namespace CERW.MainTheorems", main)
+        mains = {"CERW.MainTheorems." + t
+                 for t in re.findall(r"(?m)^theorem\s+(\S+)", main)}
+        pinned = re.findall(r"\(``(\S+?),", (ROOT / "tools" / "FrozenTypes.lean").read_text())
+        self.assertEqual(len(pinned), len(set(pinned)))
+        self.assertEqual(set(pinned), exports | mains)
+        self.assertEqual(len(mains), 7)
 
 
 class CurrentSourceStatusTests(unittest.TestCase):
@@ -104,7 +119,7 @@ class CurrentSourceStatusTests(unittest.TestCase):
         self.assertIn("Source consumers: 1/2", self.partial(replace(self.cfg, nodes=nodes)))
 
     def test_complete_ids_with_wrong_source_claims_do_not_cover_labels(self):
-        nodes = [Node({**node.raw, "source": "oct13.tex:1-1 (label unrelated)"})
+        nodes = [Node({**node.raw, "source": "oct23.tex:1-1 (label unrelated)"})
                  for node in self.cfg.nodes]
         self.assertIn("0/22 source result blocks", self.partial(replace(self.cfg, nodes=nodes)))
 

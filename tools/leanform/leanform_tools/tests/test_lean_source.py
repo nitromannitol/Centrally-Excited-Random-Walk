@@ -51,6 +51,20 @@ class TestAxiomBan(unittest.TestCase):
         src = "section\n  axiom sneaky : False\nend\n"
         self.assertEqual(ls.axiom_declarations(src), [2])
 
+    def test_a_modified_axiom_declaration_is_caught(self):
+        src = "private axiom hidden : False\n@[simp] protected axiom tagged : False\n"
+        self.assertEqual(ls.axiom_declarations(src), [1, 2])
+
+    def test_a_comment_opener_inside_a_string_hides_nothing(self):
+        src = 'def banner : String := "/-"\nprivate axiom hidden : False\n'
+        self.assertEqual(ls.axiom_declarations(src), [2])
+        src = 'def quote : Char := \'"\'\naxiom hidden : False\n'
+        self.assertEqual(ls.axiom_declarations(src), [2])
+
+    def test_an_axiom_after_another_command_is_caught(self):
+        src = "namespace Test axiom hidden : False end Test\n"
+        self.assertEqual(ls.axiom_declarations(src), [1])
+
     def test_an_axiom_inside_a_comment_is_not_caught(self):
         src = "/- axiom foo : False -/\ndef a : Nat := 0\n"
         self.assertEqual(ls.axiom_declarations(src), [])

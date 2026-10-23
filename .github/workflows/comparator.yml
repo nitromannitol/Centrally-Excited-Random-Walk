@@ -139,9 +139,11 @@ jobs:
           export COMPARATOR_LEAN4EXPORT="$HOME/tools/lean4export/.lake/build/bin/lean4export"
           export COMPARATOR_NANODA="$HOME/tools/nanoda_lib/target/release/nanoda_bin"
           fail=0
+          pairs=0
           for cfg in CERWAudit/*/comparator.json; do
             X="$(basename "$(dirname "$cfg")")"
-            [ -f "$(dirname "$cfg")/Solution.lean" ] || { echo "$X: no Solution.lean, skipped"; continue; }
+            [ -f "$(dirname "$cfg")/Solution.lean" ] || { echo "$X: no Solution.lean"; fail=1; continue; }
+            pairs=$((pairs + 1))
             echo "::group::$X"
             if lake env ~/tools/comparator/.lake/build/bin/comparator "$cfg" \
                  | tee "/tmp/comparator-$X.log" \
@@ -152,6 +154,14 @@ jobs:
             fi
             echo "::endgroup::"
           done
+          found="$(ls CERWAudit/*/comparator.json | xargs -n1 dirname | xargs -n1 basename | tr '\n' ' ')"
+          [ "$found" = "FluctuationRates LimitShape NormShape Sharpness " ] \
+            || { echo "unexpected comparator pairs: $found"; fail=1; }
+          targets="$(python3 -c 'import glob, json; print(" ".join(sorted(t for f in glob.glob("CERWAudit/*/comparator.json") for t in json.load(open(f))["theorem_names"])))')"
+          A=CERW.StatementAudit
+          expected="$A.FluctuationRates.fluctuation_rates $A.LimitShape.limit_shape $A.NormShape.norm_shape $A.Sharpness.sharp_bulk $A.Sharpness.sharp_radii $A.Sharpness.sharp_radii_lil $A.Sharpness.sharp_width"
+          [ "$targets" = "$expected" ] \
+            || { echo "unexpected comparator targets: $targets"; fail=1; }
           exit "$fail"
 
       - name: Upload comparator logs
