@@ -8,30 +8,23 @@ A Lean 4 formalization of
 > Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh,
 > *Limit shapes for centrally excited walks*.
 
-[LaTeX source](paper/oct13.tex) · [Bibliography](paper/oct13-references.bib)
+[LaTeX source](paper/oct23.tex) · [Bibliography](paper/oct23-references.bib)
 
-The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml). Its
-statements retain their certified types, including the local-time approximation
-in `lem:local`. The proofs use the exit-time, shifted-square energy, curvature
-and maximum-principle arguments of the current source.
+The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml), which records
+the source lines, the Lean declaration and the statement hash of each result. Every
+theorem, lemma and proposition of the paper is stated as printed in
+[CERW/LimitShapes/Frozen/](CERW/LimitShapes/Frozen/) and proved by the argument printed
+in the paper; [PROOF.md](PROOF.md) describes each proof. Every introduction theorem is
+restated in `CERW/MainTheorems.lean`.
 
-The norm rates follow from the quadratic radius-volume identity and contact
-estimates. Final-time Dynkin and Freedman give the local approximation;
-exponential-distance stopping and site grouping give the crossing estimate.
-
-The lower bounds use stopped-quadratic Azuma estimates, coarse-event brackets,
-the moment LIL and vector limit laws. The bulk profile uses the excess-set
-potential, and sharp bulk deviations combine its sharper potential bound with
-the separated exponential martingales. The Section 8 limit laws consume the
-current shape and curvature bounds. Every introduction theorem is restated in
-`CERW/MainTheorems.lean`.
-
-The redefined event of Section 5.1 is stated literally in
-[CERW/LimitShapes/Event.lean](CERW/LimitShapes/Event.lean), and its polynomial
-exceptional probability is proved in `CommonEvent.lean`. Both the contact and
-separated-bracket source theorems use these produced uniform constants, with
-legality derived almost surely from the walk law. The common-event proof uses a
-direct tail bound for the actual first-exit stopped quadratic martingale.
+The proofs of Sections 2 to 5 use the exit time for the coarse bounds, the exponential
+distance test for the crossing estimate, Dynkin's formula and Freedman's inequality for
+the local approximation, and the shifted-square energy for the contact lemma. The event
+of Section 5.1 is defined in [CERW/LimitShapes/Event.lean](CERW/LimitShapes/Event.lean),
+and `CommonEvent.lean` bounds the probability of its complement by `C n^(-p)`. The outer
+radius and curvature bounds use the radial derivative and the maximum principle. The
+lower bounds use Azuma's inequality, the moment law of the iterated logarithm and the
+vector limit laws.
 
 <!-- LIMIT-SHAPES-STATUS-BEGIN -->
 
@@ -90,9 +83,11 @@ python3 -m venv .venv
 python -m pip install ./tools/leanform
 python -m leanform_tools.verify .
 python tools/verify_oct13.py
+lake env lean tools/AllAxioms.lean
+lake env lean tools/FrozenTypes.lean
 ```
 
-To build the current paper, run `latexmk -pdf oct13.tex` from `paper/`.
+To build the current paper, run `latexmk -pdf oct23.tex` from `paper/`.
 
 ## Layout
 

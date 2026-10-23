@@ -35,7 +35,7 @@ references:
     given-names: Yuval
   - family-names: Singh
     given-names: Arvind
-  notes: The current source, pinned at paper/oct13.tex; see CORRESPONDENCE.md for source closure and open
+  notes: The current source, pinned at paper/oct23.tex; see CORRESPONDENCE.md for source closure and open
     items.
 - type: article
   title: Kozma's centrally excited walk converges to a Euclidean ball

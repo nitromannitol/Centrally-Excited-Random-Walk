@@ -5,7 +5,7 @@ import Mathlib
 
 Mathlib-only comparator challenge for Theorem `thm:shape` of *Limit shapes for centrally
 excited walks* (Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh), in
-`paper/oct13.tex`. Its statement is textually identical to Theorem `thm:shape` in the earlier
+`paper/oct23.tex`. Its statement is textually identical to Theorem `thm:shape` in the earlier
 two-author source `paper/limit-shapes.tex`, so this comparator reuses that statement.
 The library's frozen statement is `CERW.Frozen.limit_shape` in `CERW/Frozen/LimitShape.lean`.
 

@@ -2,7 +2,7 @@
 
 This directory contains Mathlib-only comparator challenges for the introduction of
 *Limit shapes for centrally excited walks* (Ahmed Bou-Rabee, Tuan-Minh Nguyen,
-Yuval Peres and Arvind Singh), pinned at `paper/oct13.tex`.
+Yuval Peres and Arvind Singh), pinned at `paper/oct23.tex`.
 
 | Directory | Paper label | Challenge targets |
 | --- | --- | --- |

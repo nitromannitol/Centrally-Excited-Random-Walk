@@ -1,13 +1,13 @@
 version: 1
 library: CERW
 source_pin:
-  file: paper/oct13.tex
-  sha256: e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617
+  file: paper/oct23.tex
+  sha256: 723911323a60e7af6b0f5adef6b56fb0fd542afd72fbf425c30ca8a211929745
 nodes:
 - id: oct13-thm-shape
   version: 1
   kind: theorem
-  source: oct13.tex:111-124 (label thm:shape)
+  source: oct23.tex:111-124 (label thm:shape)
   file: CERW/LimitShapes/Frozen/LimitShape.lean
   export: CERW.LimitShapes.limit_shape
   state: SEALED
@@ -16,7 +16,7 @@ nodes:
 - id: oct13-thm-fluctuations
   version: 1
   kind: theorem
-  source: oct13.tex:135-157 (label thm:fluctuations)
+  source: oct23.tex:135-157 (label thm:fluctuations)
   file: CERW/LimitShapes/Frozen/FluctuationRates.lean
   export: CERW.LimitShapes.fluctuation_rates
   state: SEALED
@@ -25,7 +25,7 @@ nodes:
 - id: oct13-thm-sharp-radii
   version: 1
   kind: theorem
-  source: oct13.tex:164-169 (label thm:sharp, part (i))
+  source: oct23.tex:164-169 (label thm:sharp, part (i))
   file: CERW/LimitShapes/Frozen/SharpRadii.lean
   export: CERW.LimitShapes.sharp_radii
   state: SEALED
@@ -34,7 +34,7 @@ nodes:
 - id: oct13-thm-sharp-radii-lil
   version: 1
   kind: theorem
-  source: oct13.tex:170-175 (label thm:sharp, part (ii))
+  source: oct23.tex:170-175 (label thm:sharp, part (ii))
   file: CERW/LimitShapes/Frozen/SharpRadiiLil.lean
   export: CERW.LimitShapes.sharp_radii_lil
   state: SEALED
@@ -43,7 +43,7 @@ nodes:
 - id: oct13-thm-sharp-bulk
   version: 1
   kind: theorem
-  source: oct13.tex:176-180 (label thm:sharp, part (iii))
+  source: oct23.tex:176-180 (label thm:sharp, part (iii))
   file: CERW/LimitShapes/Frozen/SharpBulk.lean
   export: CERW.LimitShapes.sharp_bulk
   state: SEALED
@@ -52,7 +52,7 @@ nodes:
 - id: oct13-thm-sharp-width
   version: 1
   kind: theorem
-  source: oct13.tex:181-195 (label thm:sharp, part (iv))
+  source: oct23.tex:181-195 (label thm:sharp, part (iv))
   file: CERW/LimitShapes/Frozen/SharpWidth.lean
   export: CERW.LimitShapes.sharp_width
   state: SEALED
@@ -61,7 +61,7 @@ nodes:
 - id: oct13-thm-norm-shape
   version: 1
   kind: theorem
-  source: oct13.tex:351-364 (label thm:norm-shape)
+  source: oct23.tex:351-364 (label thm:norm-shape)
   file: CERW/LimitShapes/Frozen/NormShape.lean
   export: CERW.LimitShapes.norm_shape
   state: SEALED
@@ -70,7 +70,7 @@ nodes:
 - id: oct13-lem-ballpotential
   version: 1
   kind: theorem
-  source: oct13.tex:382-387 (label lem:ballpotential)
+  source: oct23.tex:382-387 (label lem:ballpotential)
   file: CERW/LimitShapes/Frozen/NormBallPotential.lean
   export: CERW.LimitShapes.norm_ball_potential
   state: SEALED
@@ -79,7 +79,7 @@ nodes:
 - id: oct13-lem-freedman
   version: 1
   kind: theorem
-  source: oct13.tex:435-440 (label lem:freedman)
+  source: oct23.tex:435-440 (label lem:freedman)
   file: CERW/LimitShapes/Frozen/FreedmanBound.lean
   export: CERW.LimitShapes.freedman_bound
   state: SEALED
@@ -88,7 +88,7 @@ nodes:
 - id: oct13-lem-cell
   version: 1
   kind: theorem
-  source: oct13.tex:456-461 (label lem:cell)
+  source: oct23.tex:456-461 (label lem:cell)
   file: CERW/LimitShapes/Frozen/CellGradient.lean
   export: CERW.LimitShapes.cell_gradient
   state: SEALED
@@ -97,7 +97,7 @@ nodes:
 - id: oct13-prop-coarse
   version: 1
   kind: theorem
-  source: oct13.tex:508-515 (label prop:coarse)
+  source: oct23.tex:508-515 (label prop:coarse)
   file: CERW/LimitShapes/Frozen/NormCoarseBounds.lean
   export: CERW.LimitShapes.norm_coarse_bounds
   state: SEALED
@@ -106,7 +106,7 @@ nodes:
 - id: oct13-prop-norm-shape
   version: 1
   kind: theorem
-  source: oct13.tex:592-608 (label prop:norm-shape)
+  source: oct23.tex:592-608 (label prop:norm-shape)
   file: CERW/LimitShapes/Frozen/NormShapeRates.lean
   export: CERW.LimitShapes.norm_shape_rates
   state: SEALED
@@ -115,7 +115,7 @@ nodes:
 - id: oct13-lem-layer
   version: 1
   kind: theorem
-  source: oct13.tex:493-498 (label lem:layer)
+  source: oct23.tex:493-498 (label lem:layer)
   file: CERW/LimitShapes/Frozen/LayerPotential.lean
   export: CERW.LimitShapes.layer_potential
   state: SEALED
@@ -124,7 +124,7 @@ nodes:
 - id: oct13-prop-inner
   version: 1
   kind: theorem
-  source: oct13.tex:696-712 (label prop:inner)
+  source: oct23.tex:696-712 (label prop:inner)
   file: CERW/LimitShapes/Frozen/InnerRadius.lean
   export: CERW.LimitShapes.inner_radius
   state: SEALED
@@ -133,7 +133,7 @@ nodes:
 - id: oct13-prop-stronger-outer
   version: 1
   kind: theorem
-  source: oct13.tex:758-763 (label prop:stronger-outer)
+  source: oct23.tex:758-763 (label prop:stronger-outer)
   file: CERW/LimitShapes/Frozen/OuterRadius.lean
   export: CERW.LimitShapes.outer_radius
   state: SEALED
@@ -142,7 +142,7 @@ nodes:
 - id: oct13-lem-near-far
   version: 1
   kind: theorem
-  source: oct13.tex:807-812 (label lem:near-far)
+  source: oct23.tex:807-812 (label lem:near-far)
   file: CERW/LimitShapes/Frozen/NearFar.lean
   export: CERW.LimitShapes.near_far
   state: SEALED
@@ -151,7 +151,7 @@ nodes:
 - id: oct13-thm-moment-fluctuations
   version: 1
   kind: theorem
-  source: oct13.tex:865-886 (label thm:moment-fluctuations)
+  source: oct23.tex:865-886 (label thm:moment-fluctuations)
   file: CERW/LimitShapes/Frozen/MomentFluctuations.lean
   export: CERW.LimitShapes.moment_fluctuations
   state: SEALED
@@ -160,7 +160,7 @@ nodes:
 - id: oct13-lem-fixed-site-centering
   version: 1
   kind: theorem
-  source: oct13.tex:909-915 (label lem:fixed-site-centering)
+  source: oct23.tex:909-915 (label lem:fixed-site-centering)
   file: CERW/LimitShapes/Frozen/FixedSiteCentering.lean
   export: CERW.LimitShapes.fixed_site_centering
   state: SEALED
@@ -169,7 +169,7 @@ nodes:
 - id: oct13-thm-site-fluctuations
   version: 1
   kind: theorem
-  source: oct13.tex:936-961 (label thm:site-fluctuations)
+  source: oct23.tex:936-961 (label thm:site-fluctuations)
   file: CERW/LimitShapes/Frozen/SiteFluctuations.lean
   export: CERW.LimitShapes.site_fluctuations
   state: SEALED
@@ -178,7 +178,7 @@ nodes:
 - id: oct13-lem-exp-deviation
   version: 1
   kind: theorem
-  source: oct13.tex:988-1002 (label lem:exp-deviation)
+  source: oct23.tex:988-1002 (label lem:exp-deviation)
   file: CERW/LimitShapes/Frozen/ExpDeviation.lean
   export: CERW.LimitShapes.exp_deviation
   state: SEALED
@@ -187,7 +187,7 @@ nodes:
 - id: oct13-prop-bulk-profile
   version: 1
   kind: theorem
-  source: oct13.tex:1054-1061 (label prop:bulk-profile)
+  source: oct23.tex:1054-1061 (label prop:bulk-profile)
   file: CERW/LimitShapes/Frozen/BulkProfile.lean
   export: CERW.LimitShapes.bulk_profile
   state: SEALED
@@ -196,7 +196,7 @@ nodes:
 - id: oct13-prop-log-lower
   version: 1
   kind: theorem
-  source: oct13.tex:1125-1139 (label prop:log-lower)
+  source: oct23.tex:1125-1139 (label prop:log-lower)
   file: CERW/LimitShapes/Frozen/LogLowerBounds.lean
   export: CERW.LimitShapes.log_lower_bounds
   state: SEALED
@@ -205,7 +205,7 @@ nodes:
 - id: oct13-lem-local
   version: 1
   kind: theorem
-  source: oct13.tex:397-402 (label lem:local)
+  source: oct23.tex:397-402 (label lem:local)
   file: CERW/LimitShapes/Frozen/NormLocalTime.lean
   export: CERW.LimitShapes.norm_local_time_potential
   state: SEALED
@@ -214,7 +214,7 @@ nodes:
 - id: oct13-lem-contact
   version: 1
   kind: theorem
-  source: oct13.tex:644-649 (label lem:contact)
+  source: oct23.tex:644-649 (label lem:contact)
   file: CERW/LimitShapes/Frozen/ContactPotential.lean
   export: CERW.LimitShapes.contact_potential
   state: SEALED
@@ -223,7 +223,7 @@ nodes:
 - id: oct13-lem-separated-brackets
   version: 1
   kind: theorem
-  source: oct13.tex:1084-1091 (label lem:separated-brackets)
+  source: oct23.tex:1084-1091 (label lem:separated-brackets)
   file: CERW/LimitShapes/Frozen/SeparatedBrackets.lean
   export: CERW.LimitShapes.separated_brackets
   state: SEALED
@@ -232,7 +232,7 @@ nodes:
 - id: eq-distance-crossing
   version: 1
   kind: theorem
-  source: oct13.tex:522-525 (label eq:distance-crossing)
+  source: oct23.tex:522-525 (label eq:distance-crossing)
   file: CERW/LimitShapes/Frozen/DistanceCrossing.lean
   export: CERW.LimitShapes.distance_crossing_bound
   state: SEALED
@@ -241,7 +241,7 @@ nodes:
 - id: sec-common-event
   version: 1
   kind: theorem
-  source: oct13.tex:616-636 (label sec:norm-event)
+  source: oct23.tex:616-636 (label sec:norm-event)
   file: CERW/LimitShapes/Frozen/CommonEvent.lean
   export: CERW.LimitShapes.exists_common_event
   state: SEALED
@@ -250,7 +250,7 @@ nodes:
 - id: lem-contact-common-event
   version: 1
   kind: theorem
-  source: oct13.tex:644-649 (label lem:contact)
+  source: oct23.tex:644-649 (label lem:contact)
   file: CERW/LimitShapes/Frozen/ContactEvent.lean
   export: CERW.LimitShapes.contact_potential_on_common_event
   state: SEALED
@@ -259,7 +259,7 @@ nodes:
 - id: lem-separated-brackets-common-event
   version: 2
   kind: theorem
-  source: oct13.tex:1084-1091 (label lem:separated-brackets)
+  source: oct23.tex:1084-1091 (label lem:separated-brackets)
   file: CERW/LimitShapes/Frozen/EuclideanSeparatedBrackets.lean
   export: CERW.LimitShapes.separated_brackets_on_euclidean_event
   state: SEALED

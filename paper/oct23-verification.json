@@ -1,0 +1,1482 @@
+{
+  "title": "Limit shapes for centrally excited walks",
+  "authors": [
+    "Ahmed Bou-Rabee",
+    "Tuan-Minh Nguyen",
+    "Yuval Peres",
+    "Arvind Singh"
+  ],
+  "status": "The Lean formalization subsection now describes the formalization of this version. Statement blocks and every other line unchanged from oct13.tex.",
+  "scope": "Original Bou-Rabee–Peres theorem statements and order. No additional generalized model or additional theorem.",
+  "original_statement_blocks": [
+    {
+      "environment": "theorem",
+      "label": "thm:shape",
+      "sha256": "cdd1ed428d6eeb2be5f5f82025d477b6c28c4db5375b56a4fda9dd9dfb31f63e"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:fluctuations",
+      "sha256": "5b517547c02cd7eaf14d48368efc13444e245b396951708a09f6603ea8519522"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:sharp",
+      "sha256": "67aa4b3d2886bbaa509b8aff4abb0450bff476a81023e77ff04988feae6e159e"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:norm-shape",
+      "sha256": "32b2bc21e152e8eb2e6d5bbd014e3b327ee557f8b33ff7efe8dc972cc6c74701"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:ballpotential",
+      "sha256": "91c7dc32c806b2cbd2d854b3120f44be02d8a3d2705f62d9d9854ee9dbf13697"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:local",
+      "sha256": "9a064c5c60767ac8ed6993d2dc15ecc9a5271675268dafce6dae182e9ebe3dba"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:freedman",
+      "sha256": "5189e56417f162fa21f93ef82169f4a4dcdfc07e8d153726d83eecedb7a2e90a"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:cell",
+      "sha256": "0385f0e70a2e11684073dd4b4d64d01f57c0f392c320ea750b55da134f34e400"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:layer",
+      "sha256": "9be5d6667303506c59e06668f1e36b819ac0a202857d83f3174815d14be5ac57"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:coarse",
+      "sha256": "cb346148efa9df08b3c620f99b9dfa1ccf027180d6ae0abeb11e85e92dd75e3d"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:crossing",
+      "sha256": "20581bc7ac8d6cfbf0d0b4a812bed7e841d89fdc8ccf541d89a80bc8e35f22fc"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:outer-crossing",
+      "sha256": "aa56505154f1f59ee05433abdc2b8a1d49833d86be028329c5cec1bbb08f34e2"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:norm-shape",
+      "sha256": "fb273d2d27dc2fd87a3f23bec066d77614770f3ee75ebcddae0f435a3caee7dc"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:contact",
+      "sha256": "e234ae1aaae2b18ee67105861c81304f0f0bb88f7b19852f1eb1a40f424b13e3"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:inner",
+      "sha256": "23c6a744ab72b3b51d84484d0b178ac13de5ddbd3832a2cc72635691c0419c83"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:stronger-outer",
+      "sha256": "ac9565c92243c3dc24e58a9264522d1c6d32b1f77771c7bb4dd593532028b750"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:near-far",
+      "sha256": "a30bc9b912aac7de26875703e1b675b4ac3b9697abc09a5b8adfe5150f69eae7"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:moment-fluctuations",
+      "sha256": "243594a2a506e4e06edeb5fa6deab00a2cb3157dd4637d7a6d8602d1cd79d2ba"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:fixed-site-centering",
+      "sha256": "e13e3c0825c31d63b9e625ccef1b03518c6ae050146f1e1cdfcf49e7c4c55cfc"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:site-fluctuations",
+      "sha256": "b1cd9f329fc97b65b7b209450e129fc405e44c83e2b2233b1c04eda706ba7bdf"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:exp-deviation",
+      "sha256": "cbc623047ef6705d8e64af844dd282237b5008a2beaa451d041c96415b3c9709"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:bulk-profile",
+      "sha256": "e2a9d8c4513eb7562c68dda4309ad47e340dcce67272ac7f613b7579a541f21e"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:separated-brackets",
+      "sha256": "4d341ad5b6b0c3e6b36479e13f5057e07c93a7a92004fa712d92af8777d0dd76"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:log-lower",
+      "sha256": "663339efa77737bfe186dec474733ae21fb4e0653841aa6e5b1f4fd9bd3cc8a4"
+    }
+  ],
+  "source_locations": {
+    "thm:shape": {
+      "file": "oct23.tex",
+      "line": 111,
+      "end_line": 124
+    },
+    "thm:fluctuations": {
+      "file": "oct23.tex",
+      "line": 135,
+      "end_line": 157
+    },
+    "thm:sharp": {
+      "file": "oct23.tex",
+      "line": 161,
+      "end_line": 197
+    },
+    "thm:norm-shape": {
+      "file": "oct23.tex",
+      "line": 351,
+      "end_line": 364
+    },
+    "lem:ballpotential": {
+      "file": "oct23.tex",
+      "line": 382,
+      "end_line": 387
+    },
+    "lem:local": {
+      "file": "oct23.tex",
+      "line": 397,
+      "end_line": 402
+    },
+    "lem:freedman": {
+      "file": "oct23.tex",
+      "line": 435,
+      "end_line": 440
+    },
+    "lem:cell": {
+      "file": "oct23.tex",
+      "line": 456,
+      "end_line": 461
+    },
+    "lem:layer": {
+      "file": "oct23.tex",
+      "line": 493,
+      "end_line": 498
+    },
+    "prop:coarse": {
+      "file": "oct23.tex",
+      "line": 508,
+      "end_line": 515
+    },
+    "prop:norm-shape": {
+      "file": "oct23.tex",
+      "line": 592,
+      "end_line": 608
+    },
+    "lem:contact": {
+      "file": "oct23.tex",
+      "line": 644,
+      "end_line": 649
+    },
+    "prop:inner": {
+      "file": "oct23.tex",
+      "line": 696,
+      "end_line": 712
+    },
+    "prop:stronger-outer": {
+      "file": "oct23.tex",
+      "line": 758,
+      "end_line": 763
+    },
+    "lem:near-far": {
+      "file": "oct23.tex",
+      "line": 807,
+      "end_line": 812
+    },
+    "thm:moment-fluctuations": {
+      "file": "oct23.tex",
+      "line": 865,
+      "end_line": 886
+    },
+    "lem:fixed-site-centering": {
+      "file": "oct23.tex",
+      "line": 909,
+      "end_line": 915
+    },
+    "thm:site-fluctuations": {
+      "file": "oct23.tex",
+      "line": 936,
+      "end_line": 961
+    },
+    "lem:exp-deviation": {
+      "file": "oct23.tex",
+      "line": 988,
+      "end_line": 1002
+    },
+    "prop:bulk-profile": {
+      "file": "oct23.tex",
+      "line": 1054,
+      "end_line": 1061
+    },
+    "lem:separated-brackets": {
+      "file": "oct23.tex",
+      "line": 1084,
+      "end_line": 1091
+    },
+    "prop:log-lower": {
+      "file": "oct23.tex",
+      "line": 1125,
+      "end_line": 1139
+    }
+  },
+  "build": {
+    "command": "latexmk -pdf -interaction=nonstopmode -halt-on-error oct23.tex (outside Dropbox)",
+    "pdf_pages": 29,
+    "undefined_references_or_citations": 0,
+    "overfull_boxes": 0,
+    "underfull_vboxes": 1,
+    "figure_count": 5,
+    "figure_assets": [
+      "Figures/first_departure_norms.pdf",
+      "Figures/shapes_ranges.pdf",
+      "Figures/shapes_localtimes.pdf"
+    ],
+    "rendered_pages_inspected": true
+  },
+  "simplifications": [
+    "Singh exit-time stopping proves coarse bounds before the deterministic-time argument.",
+    "Directional crossing proof shortened under its original deterministic hypotheses.",
+    "Dynkin formula for a squared Green function replaces convolution and resolvent estimates.",
+    "Backward radial integration bounds the curvature term directly and removes its iteration.",
+    "Shared covariance calculations and a single geometric comparison shorten the limit-law and lower-bound proofs.",
+    "Exponential-deviation proof rewritten by external Opus with the original statement retained.",
+    "The deterministic pointwise comparison and cell estimate precede probability bounds.",
+    "One all-dimensional exterior local-time estimate and one shared cap/near-far/crossing proof replace the separate outer-radius arguments.",
+    "Authorized removal of unused interval conclusions in Lemma 3.1; the former potential approximation is retained verbatim.",
+    "Convexity and one quadratic test function replace mollification and the radial comparison in the cell estimate.",
+    "The coarse lower bound integrates over an inner ball rather than deriving and integrating a uniform exit profile.",
+    "One projection estimate at integer radii replaces two separate supporting-plane crossing arguments.",
+    "The outer-radius proof bounds the Newtonian integral first, then uses one cap bound and one width estimate in all dimensions.",
+    "One maximum-principle argument gives the uniform potential bound in both the plane and higher dimensions.",
+    "Coarse occupation alone supplies the variance bounds needed for polynomial radius tails.",
+    "One spatial split replaces dimension-specific weighted-moment estimates for separated-site covariances.",
+    "One annulus supplies both logarithmic radius lower bounds.",
+    "One Taylor expansion at the fixed site replaces the origin calculation followed by translation.",
+    "One precise martingale CLT/LIL statement replaces repeated verifications in the three applications.",
+    "Replace the two author-approved auxiliary crossing lemmas by one exponential-distance expectation argument grouped by departed site.",
+    "Use the distance estimate simultaneously in time at a deterministic horizon, removing projection-direction geometry and level counting.",
+    "Compress standard kernel, cell, and dyadic-annulus calculations while keeping the potential mechanism.",
+    "Use the squared-Green Dynkin identity directly, retaining the planar shift and energy absorption.",
+    "Shorten norm-radius algebra, ray integration, cap estimates, and the Young substitutions in the Euclidean outer bound.",
+    "Compress covariance sums, martingale limit-law applications, conditional exponential moments, and fluctuation tail substitutions.",
+    "Retain the explanations, title, four authors, principal statements/order and five figures; repair references to removed intermediate labels and proof steps."
+  ],
+  "length": {
+    "oct5_pages": 39,
+    "older_oct13_pages": 29,
+    "previous_oct13_pages": 35,
+    "revised_pages": 29,
+    "older_source_sha256": "442bc830e5827fb32c179c525980bf523fa34ff7aad180ac261f798a88fc08a8",
+    "layout_unchanged": true
+  },
+  "mathematical_review": {
+    "status": "pass",
+    "reviewed_utc": "2026-10-13T23:33:30.819039+00:00",
+    "source_sha256": "f2ab963ce12dbc662cfea4c6ece5531e4cf314f066077530480a3490f7477027",
+    "pdf_sha256": "57e5783e8501fda2839d561b1db567304b06f46181e078af4fa9e6d05682bbb7",
+    "pdf_pages": 29,
+    "rendered_pages_inspected": true,
+    "rendered_inspection": "All 29 pages inspected in five contact sheets. Figures present and legible; no clipping, overlap or formula overflow. Original font and margins preserved.",
+    "editorial_review": {
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "host": "work-comp",
+      "sessions": [
+        {
+          "id": "49f49202-ffa9-4dc0-8659-fac4d8473a10",
+          "scope": "Whole-paper compression of standard calculations with the master writing guide and joint Peres papers as style authorities.",
+          "completed": {
+            "exit_code": 0,
+            "finished_utc": "2026-10-13T23:17:54.015161+00:00"
+          },
+          "launch_sha256": "016c09549abfbfba8e94d74d9491479a236b652c2ace08ac4fa1ac922a32db4d",
+          "report_sha256": "81ba5eea1ac82acdf3cb35002a499ccb6c695d6920ace0ce74c923366b906591",
+          "proposal_sha256": "3ae2cd19c5527b57cff7ec03c976cb27a2c712366d3aa88e8ac0408bc9858fa4"
+        },
+        {
+          "id": "61ea4c7c-f6e2-4c44-a397-d6543dbb7747",
+          "scope": "Whole-paper writing and dependency review of the integrated simplifications, including the exponential-distance proof.",
+          "completed": {
+            "exit_code": 0,
+            "finished_utc": "2026-10-13T23:27:31.214719+00:00"
+          },
+          "launch_sha256": "07b1e8fd8be98aedc8f014e4e1d11d93ff9a9245044c4a808a000d644a1155ed",
+          "report_sha256": "9daf088e6cd33e396a44b469dd2cca40ede65e8b6091fd1933b6c9eb39d2e682",
+          "proposal_sha256": "ad80ee0d7b02600034bd5f03bab2aed82118163252bf9267ba06b9793425b482"
+        }
+      ],
+      "report_sha256": "9daf088e6cd33e396a44b469dd2cca40ede65e8b6091fd1933b6c9eb39d2e682",
+      "proposal_sha256": "ad80ee0d7b02600034bd5f03bab2aed82118163252bf9267ba06b9793425b482",
+      "adopted": "Full final Opus proposal with five small parent edits: departure convention, hitting-time overshoot, outside-ball wording, routine exponential-moment substitution, and unused notation removal.",
+      "parent_edits_sha256": "dc997f585226988697fe8693ff574b96c2a0050dda9ebece8c659227106f83c1"
+    },
+    "independent_reviews": [
+      {
+        "scope": "Sections 2–5 and crossing dependencies",
+        "status": "pass",
+        "source_sha256": "f2ab963ce12dbc662cfea4c6ece5531e4cf314f066077530480a3490f7477027",
+        "integrated_review": {
+          "file": "core/integrated-core-audit.json",
+          "sha256": "dd13340a556e497ae497de63dab4ff460df0367fb77eb4281156fd0a82551f19"
+        },
+        "final_delta_review": {
+          "file": "core/final-core-audit.json",
+          "sha256": "c23e65115229bb91572bdb35c936c8c526af01194c979b5c1dbdbec23d3d59c3"
+        }
+      },
+      {
+        "scope": "Sections 5–7",
+        "status": "pass",
+        "source_sha256": "f2ab963ce12dbc662cfea4c6ece5531e4cf314f066077530480a3490f7477027",
+        "integrated_review": {
+          "file": "quant/integrated-sections5-7-audit.json",
+          "sha256": "8800b164fd394295b5cd29f937375e016fb0195f61369f5d630a40e6f033c110"
+        },
+        "final_delta_review": {
+          "file": "quant/final-sections5-7-audit.json",
+          "sha256": "970a0c4df9af7564ffeaa759d7d6a0442fa104c55eb4d55cf75ff27318dc4ea6"
+        }
+      },
+      {
+        "scope": "Sections 8–9",
+        "status": "pass",
+        "source_sha256": "f2ab963ce12dbc662cfea4c6ece5531e4cf314f066077530480a3490f7477027",
+        "integrated_review": {
+          "file": "late/integrated-final-audit/assessment.txt",
+          "sha256": "4820b8bf3b0d2dce8b2e5b807b623b99366f470c2b5d51b14dd05dffc11012f0"
+        },
+        "final_delta_review": {
+          "file": "late/integrated-final-audit/final-build-addendum.txt",
+          "sha256": "a8043e7815a1456eb84c9fa90f8f1ce373bac753c8a1f74099612d4d1c315b0a"
+        }
+      }
+    ],
+    "checks": {
+      "surviving_statement_blocks_byte_identical": 22,
+      "approved_removed_auxiliary_lemmas": [
+        "lem:crossing",
+        "lem:outer-crossing"
+      ],
+      "figure_environments_unchanged": 5,
+      "preamble_title_authors_unchanged": true,
+      "principal_theorem_order_unchanged": true,
+      "combined_manuscript_citations_only_in_final_intro_subsection": true,
+      "unresolved_references_or_citations": 0,
+      "overfull_boxes": 0,
+      "underfull_vboxes": 1
+    },
+    "lean_scope": "Independent mathematical and editorial review of the revised manuscript. Legacy oct5 pin and frozen Lean declarations remain separately verified. No new Lean build or formalization of the revised proof mechanisms is claimed."
+  },
+  "editorial_review": {
+    "model": "claude-opus-5-5",
+    "effort": "xhigh",
+    "host": "work-comp",
+    "sessions": [
+      {
+        "id": "49f49202-ffa9-4dc0-8659-fac4d8473a10",
+        "scope": "Whole-paper compression of standard calculations with the master writing guide and joint Peres papers as style authorities.",
+        "completed": {
+          "exit_code": 0,
+          "finished_utc": "2026-10-13T23:17:54.015161+00:00"
+        },
+        "launch_sha256": "016c09549abfbfba8e94d74d9491479a236b652c2ace08ac4fa1ac922a32db4d",
+        "report_sha256": "81ba5eea1ac82acdf3cb35002a499ccb6c695d6920ace0ce74c923366b906591",
+        "proposal_sha256": "3ae2cd19c5527b57cff7ec03c976cb27a2c712366d3aa88e8ac0408bc9858fa4"
+      },
+      {
+        "id": "61ea4c7c-f6e2-4c44-a397-d6543dbb7747",
+        "scope": "Whole-paper writing and dependency review of the integrated simplifications, including the exponential-distance proof.",
+        "completed": {
+          "exit_code": 0,
+          "finished_utc": "2026-10-13T23:27:31.214719+00:00"
+        },
+        "launch_sha256": "07b1e8fd8be98aedc8f014e4e1d11d93ff9a9245044c4a808a000d644a1155ed",
+        "report_sha256": "9daf088e6cd33e396a44b469dd2cca40ede65e8b6091fd1933b6c9eb39d2e682",
+        "proposal_sha256": "ad80ee0d7b02600034bd5f03bab2aed82118163252bf9267ba06b9793425b482"
+      }
+    ],
+    "report_sha256": "9daf088e6cd33e396a44b469dd2cca40ede65e8b6091fd1933b6c9eb39d2e682",
+    "proposal_sha256": "ad80ee0d7b02600034bd5f03bab2aed82118163252bf9267ba06b9793425b482",
+    "adopted": "Full final Opus proposal with five small parent edits: departure convention, hitting-time overshoot, outside-ball wording, routine exponential-moment substitution, and unused notation removal.",
+    "parent_edits_sha256": "dc997f585226988697fe8693ff574b96c2a0050dda9ebece8c659227106f83c1"
+  },
+  "lean_scope": {
+    "pinned_source": "paper/oct23.tex",
+    "manifest": "ledger/oct13.yaml",
+    "paper_sha256": "723911323a60e7af6b0f5adef6b56fb0fd542afd72fbf425c30ca8a211929745",
+    "frozen_checks": [
+      {
+        "id": "oct13-thm-shape",
+        "export": "CERW.LimitShapes.limit_shape",
+        "file": "CERW/LimitShapes/Frozen/LimitShape.lean",
+        "state": "SEALED",
+        "frozen_sha256": "5d7c9936f49f4496849cd2a56b898839107318021fb8da5c4b8632953af4a526",
+        "source_label": "thm:shape",
+        "source": {
+          "file": "oct23.tex",
+          "line": 111,
+          "end_line": 124
+        }
+      },
+      {
+        "id": "oct13-thm-fluctuations",
+        "export": "CERW.LimitShapes.fluctuation_rates",
+        "file": "CERW/LimitShapes/Frozen/FluctuationRates.lean",
+        "state": "SEALED",
+        "frozen_sha256": "da804bc14629b4ecdabff563a3c6c80c7b2a572fb472dce89b9ac210a33a2c52",
+        "source_label": "thm:fluctuations",
+        "source": {
+          "file": "oct23.tex",
+          "line": 135,
+          "end_line": 157
+        }
+      },
+      {
+        "id": "oct13-thm-sharp-radii",
+        "export": "CERW.LimitShapes.sharp_radii",
+        "file": "CERW/LimitShapes/Frozen/SharpRadii.lean",
+        "state": "SEALED",
+        "frozen_sha256": "4fce8be547f9b2c95f77980431bd55545668232d08e3c5abb519012630a89c0e",
+        "source_label": "thm:sharp",
+        "source": {
+          "file": "oct23.tex",
+          "line": 164,
+          "end_line": 169
+        }
+      },
+      {
+        "id": "oct13-thm-sharp-radii-lil",
+        "export": "CERW.LimitShapes.sharp_radii_lil",
+        "file": "CERW/LimitShapes/Frozen/SharpRadiiLil.lean",
+        "state": "SEALED",
+        "frozen_sha256": "c0f09cc59a675f7c7e072331c36dff81a4c7ab7f23ad67fbf9cff4eedf8dd228",
+        "source_label": "thm:sharp",
+        "source": {
+          "file": "oct23.tex",
+          "line": 170,
+          "end_line": 175
+        }
+      },
+      {
+        "id": "oct13-thm-sharp-bulk",
+        "export": "CERW.LimitShapes.sharp_bulk",
+        "file": "CERW/LimitShapes/Frozen/SharpBulk.lean",
+        "state": "SEALED",
+        "frozen_sha256": "a32f7568307a9eb27a0abe5013300c1c619aaaeff5512a17cef930cf85e1074c",
+        "source_label": "thm:sharp",
+        "source": {
+          "file": "oct23.tex",
+          "line": 176,
+          "end_line": 180
+        }
+      },
+      {
+        "id": "oct13-thm-sharp-width",
+        "export": "CERW.LimitShapes.sharp_width",
+        "file": "CERW/LimitShapes/Frozen/SharpWidth.lean",
+        "state": "SEALED",
+        "frozen_sha256": "56a18a291adc908fe3820998f20bd46bf507590b04344e836a82225ff1ee9884",
+        "source_label": "thm:sharp",
+        "source": {
+          "file": "oct23.tex",
+          "line": 181,
+          "end_line": 195
+        }
+      },
+      {
+        "id": "oct13-thm-norm-shape",
+        "export": "CERW.LimitShapes.norm_shape",
+        "file": "CERW/LimitShapes/Frozen/NormShape.lean",
+        "state": "SEALED",
+        "frozen_sha256": "bd054812cc42e1814bf9a107950040eeebcefa074231fe957f15d5be45c14193",
+        "source_label": "thm:norm-shape",
+        "source": {
+          "file": "oct23.tex",
+          "line": 351,
+          "end_line": 364
+        }
+      },
+      {
+        "id": "oct13-lem-ballpotential",
+        "export": "CERW.LimitShapes.norm_ball_potential",
+        "file": "CERW/LimitShapes/Frozen/NormBallPotential.lean",
+        "state": "SEALED",
+        "frozen_sha256": "b511e9c2e44e6acddb3563e4a03d60c1c4308c2e451992b41f038fecc7ba0b1d",
+        "source_label": "lem:ballpotential",
+        "source": {
+          "file": "oct23.tex",
+          "line": 382,
+          "end_line": 387
+        }
+      },
+      {
+        "id": "oct13-lem-freedman",
+        "export": "CERW.LimitShapes.freedman_bound",
+        "file": "CERW/LimitShapes/Frozen/FreedmanBound.lean",
+        "state": "SEALED",
+        "frozen_sha256": "5d5bc3c9c296d7f47f369bea175a51757a0cbbf2c3c3eaddb7b40b79b0200c5d",
+        "source_label": "lem:freedman",
+        "source": {
+          "file": "oct23.tex",
+          "line": 435,
+          "end_line": 440
+        }
+      },
+      {
+        "id": "oct13-lem-cell",
+        "export": "CERW.LimitShapes.cell_gradient",
+        "file": "CERW/LimitShapes/Frozen/CellGradient.lean",
+        "state": "SEALED",
+        "frozen_sha256": "894dc89b37567ecdf0c937e7ab306062f8e0d6c5961701fd9900544b94c87e89",
+        "source_label": "lem:cell",
+        "source": {
+          "file": "oct23.tex",
+          "line": 456,
+          "end_line": 461
+        }
+      },
+      {
+        "id": "oct13-prop-coarse",
+        "export": "CERW.LimitShapes.norm_coarse_bounds",
+        "file": "CERW/LimitShapes/Frozen/NormCoarseBounds.lean",
+        "state": "SEALED",
+        "frozen_sha256": "6cf2a21556fa1c7333bac430410804c05d19ed0a1390a217f1cfe5a5904c1af4",
+        "source_label": "prop:coarse",
+        "source": {
+          "file": "oct23.tex",
+          "line": 508,
+          "end_line": 515
+        }
+      },
+      {
+        "id": "oct13-prop-norm-shape",
+        "export": "CERW.LimitShapes.norm_shape_rates",
+        "file": "CERW/LimitShapes/Frozen/NormShapeRates.lean",
+        "state": "SEALED",
+        "frozen_sha256": "5d74488dee35ed7e831159ee3c2d8e89195cd8950c537942d13b44a6a5f8f442",
+        "source_label": "prop:norm-shape",
+        "source": {
+          "file": "oct23.tex",
+          "line": 592,
+          "end_line": 608
+        }
+      },
+      {
+        "id": "oct13-lem-layer",
+        "export": "CERW.LimitShapes.layer_potential",
+        "file": "CERW/LimitShapes/Frozen/LayerPotential.lean",
+        "state": "SEALED",
+        "frozen_sha256": "46b153e64f7b80832dc766878daaca55d2917890c689f8a51180111c7e4d133c",
+        "source_label": "lem:layer",
+        "source": {
+          "file": "oct23.tex",
+          "line": 493,
+          "end_line": 498
+        }
+      },
+      {
+        "id": "oct13-prop-inner",
+        "export": "CERW.LimitShapes.inner_radius",
+        "file": "CERW/LimitShapes/Frozen/InnerRadius.lean",
+        "state": "SEALED",
+        "frozen_sha256": "ff88ab4e0f19ac78969ee07636dddc30eae1d8b5769fa947c921c2b38642e0f2",
+        "source_label": "prop:inner",
+        "source": {
+          "file": "oct23.tex",
+          "line": 696,
+          "end_line": 712
+        }
+      },
+      {
+        "id": "oct13-prop-stronger-outer",
+        "export": "CERW.LimitShapes.outer_radius",
+        "file": "CERW/LimitShapes/Frozen/OuterRadius.lean",
+        "state": "SEALED",
+        "frozen_sha256": "a7fe1b74837f650dafdbf5bc9abe91668ef266af8fb4f7b5c079a01be6145c6e",
+        "source_label": "prop:stronger-outer",
+        "source": {
+          "file": "oct23.tex",
+          "line": 758,
+          "end_line": 763
+        }
+      },
+      {
+        "id": "oct13-lem-near-far",
+        "export": "CERW.LimitShapes.near_far",
+        "file": "CERW/LimitShapes/Frozen/NearFar.lean",
+        "state": "SEALED",
+        "frozen_sha256": "f3f7ebfe98f2990ce97c948c315391832fa7c18c339428030e789a611eec0c55",
+        "source_label": "lem:near-far",
+        "source": {
+          "file": "oct23.tex",
+          "line": 807,
+          "end_line": 812
+        }
+      },
+      {
+        "id": "oct13-thm-moment-fluctuations",
+        "export": "CERW.LimitShapes.moment_fluctuations",
+        "file": "CERW/LimitShapes/Frozen/MomentFluctuations.lean",
+        "state": "SEALED",
+        "frozen_sha256": "1b4ded74da2939b34e96fe0c867e09389cf412bd65baaef21e0eac03c292b15c",
+        "source_label": "thm:moment-fluctuations",
+        "source": {
+          "file": "oct23.tex",
+          "line": 865,
+          "end_line": 886
+        }
+      },
+      {
+        "id": "oct13-lem-fixed-site-centering",
+        "export": "CERW.LimitShapes.fixed_site_centering",
+        "file": "CERW/LimitShapes/Frozen/FixedSiteCentering.lean",
+        "state": "SEALED",
+        "frozen_sha256": "432091c18739b1282656ae3d5c61916b675f41c04a8aa904f9a946906574f8d7",
+        "source_label": "lem:fixed-site-centering",
+        "source": {
+          "file": "oct23.tex",
+          "line": 909,
+          "end_line": 915
+        }
+      },
+      {
+        "id": "oct13-thm-site-fluctuations",
+        "export": "CERW.LimitShapes.site_fluctuations",
+        "file": "CERW/LimitShapes/Frozen/SiteFluctuations.lean",
+        "state": "SEALED",
+        "frozen_sha256": "303ca331248be23583900c9819ec224d23036e1bc08750bdba850fb1d41e7f39",
+        "source_label": "thm:site-fluctuations",
+        "source": {
+          "file": "oct23.tex",
+          "line": 936,
+          "end_line": 961
+        }
+      },
+      {
+        "id": "oct13-lem-exp-deviation",
+        "export": "CERW.LimitShapes.exp_deviation",
+        "file": "CERW/LimitShapes/Frozen/ExpDeviation.lean",
+        "state": "SEALED",
+        "frozen_sha256": "9df79990302e28f61c209e37005d8d17a38e37e67861fcabdabd1ca7912e076a",
+        "source_label": "lem:exp-deviation",
+        "source": {
+          "file": "oct23.tex",
+          "line": 988,
+          "end_line": 1002
+        }
+      },
+      {
+        "id": "oct13-prop-bulk-profile",
+        "export": "CERW.LimitShapes.bulk_profile",
+        "file": "CERW/LimitShapes/Frozen/BulkProfile.lean",
+        "state": "SEALED",
+        "frozen_sha256": "7472d83245b82f14d8ff743a25ed4330d5ab35b594b6956777abc9ebf8bee566",
+        "source_label": "prop:bulk-profile",
+        "source": {
+          "file": "oct23.tex",
+          "line": 1054,
+          "end_line": 1061
+        }
+      },
+      {
+        "id": "oct13-prop-log-lower",
+        "export": "CERW.LimitShapes.log_lower_bounds",
+        "file": "CERW/LimitShapes/Frozen/LogLowerBounds.lean",
+        "state": "SEALED",
+        "frozen_sha256": "b03e00faa686654ae3f7cf6c8e2bdbac60636ca925f4541e114219dde9b5158c",
+        "source_label": "prop:log-lower",
+        "source": {
+          "file": "oct23.tex",
+          "line": 1125,
+          "end_line": 1139
+        }
+      },
+      {
+        "id": "oct13-lem-local",
+        "export": "CERW.LimitShapes.norm_local_time_potential",
+        "file": "CERW/LimitShapes/Frozen/NormLocalTime.lean",
+        "state": "SEALED",
+        "frozen_sha256": "395e09b8f59b3aca6911b0bb7f26ed3464d4664f689eb2ad7ca4dae71e1ec4d9",
+        "source_label": "lem:local",
+        "source": {
+          "file": "oct23.tex",
+          "line": 397,
+          "end_line": 402
+        }
+      },
+      {
+        "id": "oct13-lem-contact",
+        "export": "CERW.LimitShapes.contact_potential",
+        "file": "CERW/LimitShapes/Frozen/ContactPotential.lean",
+        "state": "SEALED",
+        "frozen_sha256": "e348bf112a79b3bab515476f510160c3632ef2ef5e445154d94858f93d9a3981",
+        "source_label": "lem:contact",
+        "source": {
+          "file": "oct23.tex",
+          "line": 644,
+          "end_line": 649
+        }
+      },
+      {
+        "id": "oct13-lem-separated-brackets",
+        "export": "CERW.LimitShapes.separated_brackets",
+        "file": "CERW/LimitShapes/Frozen/SeparatedBrackets.lean",
+        "state": "SEALED",
+        "frozen_sha256": "63490bd50b4f2b5f50c7874c24f0c0e46f23e89c2c9c5e4d3a465532ba31932b",
+        "source_label": "lem:separated-brackets",
+        "source": {
+          "file": "oct23.tex",
+          "line": 1084,
+          "end_line": 1091
+        }
+      },
+      {
+        "id": "eq-distance-crossing",
+        "export": "CERW.LimitShapes.distance_crossing_bound",
+        "file": "CERW/LimitShapes/Frozen/DistanceCrossing.lean",
+        "state": "SEALED",
+        "frozen_sha256": "58936ce042c9d5fa8ad53774b3187f1601f2b7a64ac54c5025168b37521950a6",
+        "source_label": "eq:distance-crossing",
+        "source": {
+          "file": "oct23.tex",
+          "line": 522,
+          "end_line": 525
+        }
+      },
+      {
+        "id": "sec-common-event",
+        "export": "CERW.LimitShapes.exists_common_event",
+        "file": "CERW/LimitShapes/Frozen/CommonEvent.lean",
+        "state": "SEALED",
+        "frozen_sha256": "086cfc9e3fcf27d782119438ee511e10a715731e036093a01c5fd79596e7cc53",
+        "source_label": "sec:norm-event",
+        "source": {
+          "file": "oct23.tex",
+          "line": 616,
+          "end_line": 636
+        }
+      },
+      {
+        "id": "lem-contact-common-event",
+        "export": "CERW.LimitShapes.contact_potential_on_common_event",
+        "file": "CERW/LimitShapes/Frozen/ContactEvent.lean",
+        "state": "SEALED",
+        "frozen_sha256": "44a594bed2bdca46525c08c39c718a8aef06461cdfc702ea0c67e01a92c5a30a",
+        "source_label": "lem:contact",
+        "source": {
+          "file": "oct23.tex",
+          "line": 644,
+          "end_line": 649
+        }
+      },
+      {
+        "id": "lem-separated-brackets-common-event",
+        "export": "CERW.LimitShapes.separated_brackets_on_euclidean_event",
+        "file": "CERW/LimitShapes/Frozen/EuclideanSeparatedBrackets.lean",
+        "state": "SEALED",
+        "frozen_sha256": "ce4c11bf0ce9110fec3e92966ac4d19281afec54a0b6f5eabea42c4040bab2fb",
+        "source_label": "lem:separated-brackets",
+        "source": {
+          "file": "oct23.tex",
+          "line": 1084,
+          "end_line": 1091
+        }
+      }
+    ],
+    "checks": "All 22 labeled results of this version, the display eq:distance-crossing and the event of Section 5.1 are formal statements in CERW/LimitShapes/Frozen, 29 declarations in all, each proved (state SEALED). tools/verify_oct13.py checks the pin, the frozen hashes, the source ranges, the natural-language twins and the axioms of the registered exports; tools/AllAxioms.lean checks the axioms of every declaration of every CERW module and that every module is imported; tools/FrozenTypes.lean pins the elaborated types of the 29 exports and the 7 main theorems. CI runs all three on every change.",
+    "audits": [
+      {
+        "round": 1,
+        "checkout": "be40ef1",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "mode": "read-only copies, one per audit",
+        "audits": [
+          {
+            "id": 1,
+            "scope": "Model and definitions behind the frozen statements; satisfiability of the hypotheses",
+            "verdict": "PASS"
+          },
+          {
+            "id": 2,
+            "scope": "Statements of Theorems 1.1 to 1.3; MainTheorems restatements; comparator pairs",
+            "verdict": "PASS"
+          },
+          {
+            "id": 3,
+            "scope": "Statements of Sections 2 to 5, the display eq:distance-crossing and the event of Section 5.1",
+            "verdict": "PASS"
+          },
+          {
+            "id": 4,
+            "scope": "Statements of Sections 6 to 9",
+            "verdict": "PASS"
+          },
+          {
+            "id": 5,
+            "scope": "Proof routes of Sections 2 to 5",
+            "verdict": "FAIL",
+            "finding": "The exit-time proof of prop:coarse took its crossing estimate from the earlier ramp/projection argument; repaired in commit afde99b."
+          },
+          {
+            "id": 6,
+            "scope": "Proof routes of Sections 6 to 9",
+            "verdict": "PASS",
+            "note": "A later dependency traversal found that the polynomial width bound of thm:sharp (iv) took its outer radius bound from the earlier coarse bounds; repaired in commit afde99b."
+          },
+          {
+            "id": 7,
+            "scope": "Integrity of the library and of the CI checks",
+            "verdict": "PASS",
+            "finding": "Four minor CI weaknesses (paper-only changes untriggered, private axioms outside registered closures, comparator pairs and vocabulary blocks could pass when missing); repaired."
+          }
+        ]
+      },
+      {
+        "round": 1,
+        "checkout": "be40ef1",
+        "model": "claude-opus-5-5",
+        "scope": "Independent cross-check of Theorems 1.1 to 1.3 and the Section 1 model",
+        "verdict": "PASS"
+      },
+      {
+        "round": 2,
+        "checkout": "b88c3e7 with the oct23 pin",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "audits": [
+          {
+            "id": 8,
+            "scope": "Proof routes of Sections 2 to 5, with full proof-dependency closures",
+            "verdict": "PASS"
+          },
+          {
+            "id": 9,
+            "scope": "Proof routes of Sections 6 to 9, with full proof-dependency closures",
+            "verdict": "PASS"
+          },
+          {
+            "id": 10,
+            "scope": "Integrity and CI after repairs",
+            "verdict": "FAIL",
+            "finding": "CI could miss a module dropped from the import tree and a section variable added outside a frozen block; repaired by the module inventory in tools/AllAxioms.lean and the elaborated-type pins in tools/FrozenTypes.lean."
+          },
+          {
+            "id": 11,
+            "scope": "Every change since be40ef1, including the re-pin and the documentation",
+            "verdict": "FAIL",
+            "finding": "CORRESPONDENCE.md gave the oct13 hash, and one PROOF.md sentence misattributed the radius input; both corrected."
+          }
+        ]
+      }
+    ],
+    "earlier_pin": {
+      "pinned_source": "paper/limit-shapes.tex (oct5)",
+      "pinned_source_unchanged": true,
+      "paper_sha256": "0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396",
+      "frozen_checks": [
+        {
+          "id": "thm-shape",
+          "frozen_sha256": "afe23ec124a7797b5a935f8d6c7c9d284e866118f2c4af2c98d04da9da6894e3",
+          "source_lines": [
+            106,
+            119
+          ],
+          "source_label": "thm:shape",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 111,
+            "end_line": 124
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "thm-fluctuations",
+          "frozen_sha256": "ec18ac337d2fb2ca751b815ad92dd51d844ed4a40d5189a740a641e0e09812a4",
+          "source_lines": [
+            130,
+            152
+          ],
+          "source_label": "thm:fluctuations",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 135,
+            "end_line": 157
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "thm-sharp-radii",
+          "frozen_sha256": "72fbd89c684fe5947057fbbf5cfb00e6a2689b59aede6a5dfe1c5a74c4ce4c9c",
+          "source_lines": [
+            159,
+            164
+          ],
+          "source_label": "thm:sharp",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 161,
+            "end_line": 197
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "thm-sharp-radii-lil",
+          "frozen_sha256": "02bf74c87e998ed87b8992806d085f7b87649b45355fb1c033f486b3a551d74e",
+          "source_lines": [
+            165,
+            170
+          ],
+          "source_label": "thm:sharp",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 161,
+            "end_line": 197
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "thm-sharp-bulk",
+          "frozen_sha256": "9bab71e5d1b9792c8f8c11bfc783ad04d6eb135525693acdcd98b660959668e8",
+          "source_lines": [
+            171,
+            175
+          ],
+          "source_label": "thm:sharp",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 161,
+            "end_line": 197
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "thm-sharp-width",
+          "frozen_sha256": "61203b6c376231a12440a7cb8937c6099d52f77cd65166b7115c65ea32a3cdc0",
+          "source_lines": [
+            176,
+            189
+          ],
+          "source_label": "thm:sharp",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 161,
+            "end_line": 197
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "thm-norm-shape",
+          "frozen_sha256": "2d3df99b7e7b2255c43fc0572eaaab84dd2b700427303abb9633798d13d3d3db",
+          "source_lines": [
+            341,
+            354
+          ],
+          "source_label": "thm:norm-shape",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 351,
+            "end_line": 364
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-ballpotential",
+          "frozen_sha256": "a1b46e20b7aa5a120584785042d8dac1ceb272e0d1513492f51dad5ea7cbe4c8",
+          "source_lines": [
+            372,
+            377
+          ],
+          "source_label": "lem:ballpotential",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 382,
+            "end_line": 387
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-local",
+          "frozen_sha256": "9c472ab635b0014c78ca5373c2288ed7181ee112a164c30ac614ec8c8752a3a7",
+          "source_lines": [
+            396,
+            412
+          ],
+          "source_label": "lem:local",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 397,
+            "end_line": 402
+          },
+          "oct13_relation": "Only former part (iii), approximation by the potential. Its bad event is a subset of the old three-part bad event; the old formal bound implies this reduced conclusion by measure monotonicity. Former parts (i) and (ii) are no longer manuscript claims."
+        },
+        {
+          "id": "lem-freedman",
+          "frozen_sha256": "cf4024fbf5336db798bcdf60c0710b003595a90f491d5a6bbbfaf4eac9774dfc",
+          "source_lines": [
+            448,
+            453
+          ],
+          "source_label": "lem:freedman",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 435,
+            "end_line": 440
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-cell",
+          "frozen_sha256": "714ade301bc1979807177f7ec5bd32758cdcf61b2e11398901589a5fd015e638",
+          "source_lines": [
+            466,
+            471
+          ],
+          "source_label": "lem:cell",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 456,
+            "end_line": 461
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "prop-coarse",
+          "frozen_sha256": "89c6dc199bee5ccc0681ec40288efb12f6e90289785f4bcdbf8cc5f46a0b9c98",
+          "source_lines": [
+            541,
+            548
+          ],
+          "source_label": "prop:coarse",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 508,
+            "end_line": 515
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-crossing",
+          "frozen_sha256": "02ed2c8631e1ebacca4a11df2589a0fc5b379f0ffd8eb2f6801cc580ae6dfffe",
+          "source_lines": [
+            562,
+            567
+          ],
+          "source_label": "lem:crossing",
+          "oct13_source": null,
+          "oct13_relation": "Removed from oct13 with explicit author approval; preserved in the frozen oct5 source and formalization. Replaced in oct13 by the exponential-distance estimate, whose proof has not been newly formalized."
+        },
+        {
+          "id": "prop-norm-shape",
+          "frozen_sha256": "957071d857eb59f201c69baced31da2dc3a17fc662e15b59f8f59ffb8eba3865",
+          "source_lines": [
+            701,
+            717
+          ],
+          "source_label": "prop:norm-shape",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 592,
+            "end_line": 608
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-layer",
+          "frozen_sha256": "168161bee795c953f19970049ce2b040961fbf0ed09f48ed27e9589e62d6d672",
+          "source_lines": [
+            522,
+            527
+          ],
+          "source_label": "lem:layer",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 493,
+            "end_line": 498
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-contact",
+          "frozen_sha256": "176d73b22647866bb6cbdd4b64d07062c56dac0e3312acbf2e6f5486ee876594",
+          "source_lines": [
+            774,
+            779
+          ],
+          "source_label": "lem:contact",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 644,
+            "end_line": 649
+          },
+          "oct13_relation": "Displayed statement block unchanged, but its referenced common event has been redefined. The legacy Lean theorem uses the original oct5 event, including the old local-time, vector, and linear-martingale bounds; it does not directly formalize the conclusion on the revised oct13 event, which includes squared-potential and distance-crossing bounds."
+        },
+        {
+          "id": "lem-outer-crossing",
+          "frozen_sha256": "d9a4cb2430a43675b7b7ba691fbd7338a186ff65c1da430c9005e425b9340555",
+          "source_lines": [
+            578,
+            583
+          ],
+          "source_label": "lem:outer-crossing",
+          "oct13_source": null,
+          "oct13_relation": "Removed from oct13 with explicit author approval; preserved in the frozen oct5 source and formalization. Replaced in oct13 by the exponential-distance estimate, whose proof has not been newly formalized."
+        },
+        {
+          "id": "prop-inner",
+          "frozen_sha256": "2d9401fb69c6e5346005b003eeff3a0e41b744489a8ffb0baef89864cb60a244",
+          "source_lines": [
+            903,
+            919
+          ],
+          "source_label": "prop:inner",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 696,
+            "end_line": 712
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "prop-stronger-outer",
+          "frozen_sha256": "6590555088155da416f44b0c49d47773a5ee72de758fc397ca5ef2755dc403de",
+          "source_lines": [
+            1015,
+            1020
+          ],
+          "source_label": "prop:stronger-outer",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 758,
+            "end_line": 763
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-near-far",
+          "frozen_sha256": "1bd6626860ec14cd2e1cb1cbc4905ac3d8d5cb64c05f20a4479af337a5d7cabf",
+          "source_lines": [
+            1046,
+            1051
+          ],
+          "source_label": "lem:near-far",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 807,
+            "end_line": 812
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "thm-moment-fluctuations",
+          "frozen_sha256": "06ccccaa3cbc9ff36d4593ff974c1072aaec54ed01617a3fcf5087e54e13fe5f",
+          "source_lines": [
+            1196,
+            1217
+          ],
+          "source_label": "thm:moment-fluctuations",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 865,
+            "end_line": 886
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-fixed-site-centering",
+          "frozen_sha256": "0c4ecaed7602a58c804a769396308b5a346ff427b933958b983b38b6f99b033f",
+          "source_lines": [
+            1261,
+            1267
+          ],
+          "source_label": "lem:fixed-site-centering",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 909,
+            "end_line": 915
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "thm-site-fluctuations",
+          "frozen_sha256": "5dd4c40c63104a13a9388667d3a2574e8e90abfe53486acd60c7e7eb87292552",
+          "source_lines": [
+            1291,
+            1316
+          ],
+          "source_label": "thm:site-fluctuations",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 936,
+            "end_line": 961
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-exp-deviation",
+          "frozen_sha256": "998e8a6a9a39ee8b7b0789e8673b2a40c0a627730f156bf376b0706a2d6651c1",
+          "source_lines": [
+            1366,
+            1380
+          ],
+          "source_label": "lem:exp-deviation",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 988,
+            "end_line": 1002
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "prop-bulk-profile",
+          "frozen_sha256": "34aa5668e98eaba6d8c37552c243e758e12c645e90f222ff30b20621630d0e34",
+          "source_lines": [
+            1498,
+            1505
+          ],
+          "source_label": "prop:bulk-profile",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 1054,
+            "end_line": 1061
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "lem-separated-brackets",
+          "frozen_sha256": "342581ac105e4d601df6d9e1d5fbf1238a798aa55c2213d3fbf733f1735a4b78",
+          "source_lines": [
+            1532,
+            1539
+          ],
+          "source_label": "lem:separated-brackets",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 1084,
+            "end_line": 1091
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        },
+        {
+          "id": "prop-log-lower",
+          "frozen_sha256": "201878321aa214c30fca342516f5666f47deed86c574046207f9383f9234b8b4",
+          "source_lines": [
+            1602,
+            1616
+          ],
+          "source_label": "prop:log-lower",
+          "oct13_source": {
+            "file": "oct13.tex",
+            "line": 1125,
+            "end_line": 1139
+          },
+          "oct13_relation": "Displayed statement block unchanged from the preceding oct13 version; revised proof mechanisms have not been newly formalized."
+        }
+      ],
+      "checks": "Legacy oct5 pin, all 27 frozen hashes, and registered source ranges verified unchanged. All surviving oct13 statement blocks match the preceding published version, including the previously authorized reduction of lem:local, covered by the original formal theorem via event inclusion. Two auxiliary crossing statements were removed with explicit author approval; their legacy declarations remain intact. Current source locations and statement correspondence are recorded here. The contact lemma retains its displayed statement but uses a revised common event; its legacy Lean declaration remains tied to the original oct5 event. No new Lean build verifies the revised proof mechanisms; this is a synchronization and statement-correspondence record, not a new formal proof certificate."
+    }
+  },
+  "sha256": {
+    "oct23.tex": "723911323a60e7af6b0f5adef6b56fb0fd542afd72fbf425c30ca8a211929745",
+    "oct23.pdf": "00ca1193bd4748391d9ac1eeee763ecb70f56c11f9f027ca8d0fd290aa887056",
+    "oct23-references.bib": "4bfb500c019abbfdb96c26fdc91ee19f065d1c805eba15d16d4f09be611e4f03",
+    "Figures/first_departure_norms.pdf": "216795864cf1730face7ce0da3aa2d42d38b949186f45be96e4779a678d517aa",
+    "Figures/shapes_ranges.pdf": "c2e143d3735eb3cf3afc8a34f55ef8d9fcc14afb1c43919300a40c52a281093a",
+    "Figures/shapes_localtimes.pdf": "32db8f903af46db18e88059a5c13ba50235ff7dd02772c8ffb57e006401e1001"
+  },
+  "updated_utc": "2026-10-23T13:12:42.869977+00:00",
+  "current_statement_blocks": [
+    {
+      "environment": "theorem",
+      "label": "thm:shape",
+      "sha256": "cdd1ed428d6eeb2be5f5f82025d477b6c28c4db5375b56a4fda9dd9dfb31f63e"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:fluctuations",
+      "sha256": "5b517547c02cd7eaf14d48368efc13444e245b396951708a09f6603ea8519522"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:sharp",
+      "sha256": "67aa4b3d2886bbaa509b8aff4abb0450bff476a81023e77ff04988feae6e159e"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:norm-shape",
+      "sha256": "32b2bc21e152e8eb2e6d5bbd014e3b327ee557f8b33ff7efe8dc972cc6c74701"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:ballpotential",
+      "sha256": "91c7dc32c806b2cbd2d854b3120f44be02d8a3d2705f62d9d9854ee9dbf13697"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:local",
+      "sha256": "2cd5bfaddabe4fb8a48661c5a8be8d49fdf4842e14627fa210fc8cd5e6b76b31"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:freedman",
+      "sha256": "5189e56417f162fa21f93ef82169f4a4dcdfc07e8d153726d83eecedb7a2e90a"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:cell",
+      "sha256": "0385f0e70a2e11684073dd4b4d64d01f57c0f392c320ea750b55da134f34e400"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:layer",
+      "sha256": "9be5d6667303506c59e06668f1e36b819ac0a202857d83f3174815d14be5ac57"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:coarse",
+      "sha256": "cb346148efa9df08b3c620f99b9dfa1ccf027180d6ae0abeb11e85e92dd75e3d"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:norm-shape",
+      "sha256": "fb273d2d27dc2fd87a3f23bec066d77614770f3ee75ebcddae0f435a3caee7dc"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:contact",
+      "sha256": "e234ae1aaae2b18ee67105861c81304f0f0bb88f7b19852f1eb1a40f424b13e3"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:inner",
+      "sha256": "23c6a744ab72b3b51d84484d0b178ac13de5ddbd3832a2cc72635691c0419c83"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:stronger-outer",
+      "sha256": "ac9565c92243c3dc24e58a9264522d1c6d32b1f77771c7bb4dd593532028b750"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:near-far",
+      "sha256": "a30bc9b912aac7de26875703e1b675b4ac3b9697abc09a5b8adfe5150f69eae7"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:moment-fluctuations",
+      "sha256": "243594a2a506e4e06edeb5fa6deab00a2cb3157dd4637d7a6d8602d1cd79d2ba"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:fixed-site-centering",
+      "sha256": "e13e3c0825c31d63b9e625ccef1b03518c6ae050146f1e1cdfcf49e7c4c55cfc"
+    },
+    {
+      "environment": "theorem",
+      "label": "thm:site-fluctuations",
+      "sha256": "b1cd9f329fc97b65b7b209450e129fc405e44c83e2b2233b1c04eda706ba7bdf"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:exp-deviation",
+      "sha256": "cbc623047ef6705d8e64af844dd282237b5008a2beaa451d041c96415b3c9709"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:bulk-profile",
+      "sha256": "e2a9d8c4513eb7562c68dda4309ad47e340dcce67272ac7f613b7579a541f21e"
+    },
+    {
+      "environment": "lemma",
+      "label": "lem:separated-brackets",
+      "sha256": "4d341ad5b6b0c3e6b36479e13f5057e07c93a7a92004fa712d92af8777d0dd76"
+    },
+    {
+      "environment": "proposition",
+      "label": "prop:log-lower",
+      "sha256": "663339efa77737bfe186dec474733ae21fb4e0653841aa6e5b1f4fd9bd3cc8a4"
+    }
+  ],
+  "statement_changes": [
+    {
+      "label": "lem:local",
+      "change": "Retain former part (iii) only; remove unused former (i) and (ii) and their proof.",
+      "authorization": {
+        "recorded_utc": "2026-10-13T18:23:55.473109+00:00",
+        "question": "May I remove Lemma3.1(i)-(ii) and proof, retaining iii and all principal theorems/order? AGENTS freezes statements.",
+        "answer": "yes!",
+        "latest_instruction": "Keep iterating until the arguments in the paper are as direct as possible"
+      },
+      "original_sha256": "9a064c5c60767ac8ed6993d2dc15ecc9a5271675268dafce6dae182e9ebe3dba",
+      "current_sha256": "2cd5bfaddabe4fb8a48661c5a8be8d49fdf4842e14627fa210fc8cd5e6b76b31"
+    },
+    {
+      "label": "lem:crossing",
+      "change": "Remove auxiliary crossing lemma and use the direct exponential-distance proof. Principal statements unchanged.",
+      "authorization": {
+        "approved": true,
+        "recorded_utc": "2026-10-13T23:08:31.514095+00:00",
+        "question": "May I replace the two auxiliary crossing lemmas with the checked exponential-distance argument? This simplifies the proof while preserving every principal theorem; your AGENTS.md requires explicit approval to remove frozen statement blocks.",
+        "answer": "Replace the two auxiliary lemmas (Recommended)",
+        "followup": "If the proof substantially simplifies what's there, please do it!",
+        "labels": [
+          "lem:crossing",
+          "lem:outer-crossing"
+        ],
+        "principal_statements": "Preserve unchanged."
+      },
+      "original_sha256": "20581bc7ac8d6cfbf0d0b4a812bed7e841d89fdc8ccf541d89a80bc8e35f22fc",
+      "current_sha256": null
+    },
+    {
+      "label": "lem:outer-crossing",
+      "change": "Remove auxiliary crossing lemma and use the direct exponential-distance proof. Principal statements unchanged.",
+      "authorization": {
+        "approved": true,
+        "recorded_utc": "2026-10-13T23:08:31.514095+00:00",
+        "question": "May I replace the two auxiliary crossing lemmas with the checked exponential-distance argument? This simplifies the proof while preserving every principal theorem; your AGENTS.md requires explicit approval to remove frozen statement blocks.",
+        "answer": "Replace the two auxiliary lemmas (Recommended)",
+        "followup": "If the proof substantially simplifies what's there, please do it!",
+        "labels": [
+          "lem:crossing",
+          "lem:outer-crossing"
+        ],
+        "principal_statements": "Preserve unchanged."
+      },
+      "original_sha256": "aa56505154f1f59ee05433abdc2b8a1d49833d86be028329c5cec1bbb08f34e2",
+      "current_sha256": null
+    }
+  ],
+  "last_prose_only_revision": {
+    "created_utc": "2026-10-23T13:12:42.869977+00:00",
+    "source_base_sha256": "e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617",
+    "statement_blocks_unchanged": true,
+    "scope": "Lean formalization subsection rewritten to state that this version is formalized; bibliography file renamed to oct23-references.bib.",
+    "old": "The theorems, lemmas and propositions of the version of this work by \\citet{BouRabeePeres2026CERW} were formalized in Lean~4, building on Mathlib. Their statements are those of this paper, except that the counterpart of Lemma~\\ref{lem:local} there has two further parts and the event of Section~\\ref{sec:norm-event}, on which Lemma~\\ref{lem:contact} holds, is defined differently; several proofs differ. No formal proof uses \\texttt{sorry} or an axiom beyond the three standard axioms \\texttt{propext}, \\texttt{Classical.choice} and \\texttt{Quot.sound}. The development is at \\url{https://github.com/nitromannitol/Centrally-Excited-Random-Walk}.",
+    "new": "The theorems, lemmas and propositions of this paper were formalized in Lean~4, building on Mathlib. The formal statements are those of this paper, and the formal proofs follow its arguments. No formal proof uses \\texttt{sorry} or an axiom beyond the three standard axioms \\texttt{propext}, \\texttt{Classical.choice} and \\texttt{Quot.sound}. The development is at \\url{https://github.com/nitromannitol/Centrally-Excited-Random-Walk}."
+  },
+  "historical_records_note": "The fields original_statement_blocks, simplifications, length, mathematical_review, editorial_review and statement_changes record the reviews and revisions of the oct13 version (13 to 22 October 2026), and their hashes identify the sources reviewed then. This version changes only the Lean formalization paragraph and the bibliography file name, so those records describe its mathematical text unchanged."
+}

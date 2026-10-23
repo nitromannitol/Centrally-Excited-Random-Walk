@@ -1,7 +1,7 @@
 # The proof, as formalized
 
 The current source is *Limit shapes for centrally excited walks* by Ahmed Bou-Rabee,
-Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/oct13.tex` by
+Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/oct23.tex` by
 `ledger/oct13.yaml`. The paper writes the drift as `κ`; Lean writes it as `ε`.
 
 The bulk deviation conclusion in `thm:sharp` uses the separated exponential
@@ -11,7 +11,10 @@ inputs; its original export and proof route remain available.
 
 All three planar width conclusions in `thm:sharp` now use the compensated
 position, annular direction sum and martingale limit arguments with the current
-shape and fluctuation estimates. Existing CLT and Gaussian disk-mass proofs are
+shape and fluctuation estimates. The bound `max_{j ≤ n} |X_j| ≤ C n^(1/3)` in the
+polynomial width bound is the Euclidean case of `prop:coarse`
+(`PlanarLower.coarse_radius_from_norm_coarse_bounds`), a hypothesis of
+`Support.Lower.sharp_width_poly_of`. Existing CLT and Gaussian disk-mass proofs are
 parameterized by their fluctuation input; their original exports remain available.
 
 The planar radius bounds in `thm:sharp` use the coarse-event quadratic bracket
@@ -90,7 +93,9 @@ subgradient inequality give the inward first-departure drift. Grouping by site m
 the far-site compensator nonpositive before the distance/local-time stopping time;
 near sites cost at most `e` per step. Bounded optional stopping gives the expectation
 bound, Markov gives a fixed-level tail, and finite unions and radial rounding give
-all prefixes and real levels. The older vector/ramp declarations remain available.
+all prefixes and real levels. The exit-time proof of `prop:coarse`
+(`Exit/ProbabilityBounds.lean`) takes its crossing estimate from this theorem. The older
+vector/ramp declarations remain available for the earlier source pin.
 `StoppedQuadraticMartingale.lean` proves that the actual full-prefix stopped sum is
 adapted and a martingale. `QuadraticStopping.lean` bounds its increments by
 `2 R (1 + ε normMax Ψ)`. `QuadraticProbability.lean` normalizes this process, constructs

@@ -27,12 +27,11 @@ sources:
   - Yuval Peres
   - Arvind Singh
   type: manuscript
-  location: paper/oct13.tex
-  sha256: e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617
+  location: paper/oct23.tex
+  sha256: 723911323a60e7af6b0f5adef6b56fb0fd542afd72fbf425c30ca8a211929745
   relationship: formalizes (current source)
-  note: Every labeled theorem, lemma and proposition is proved. The literal common event has polynomial
-    exceptional probability, and both contact and separated brackets use its produced constants. Unchanged
-    statements reuse certified earlier proofs; selective revised proof steps are formalized separately.
+  note: Every labeled theorem, lemma and proposition is proved by the argument printed in the paper. Results
+    whose statement and printed proof are unchanged from the earlier source reuse its formal proofs.
 - title: Kozma's centrally excited walk converges to a Euclidean ball
   authors:
   - Ahmed Bou-Rabee
