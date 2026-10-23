@@ -10,34 +10,21 @@ A Lean 4 formalization of
 
 [LaTeX source](paper/oct13.tex) · [Bibliography](paper/oct13-references.bib)
 
-The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml). Its unchanged
-statements retain the existing certified types; `lem:local` keeps only the local-time
-approximation, proved directly by final-time Dynkin, Freedman and the cell modulus.
-Proposition 4.1 uses the exit-time proof, and Lemma 5.2 uses the
-shifted-square energy proof. The outer-radius and fluctuation anchors use the
-curvature, maximum-principle and global-profile arguments. The separated-bracket
-anchor now uses that curvature profile with the existing Gamma-sum estimates.
-Lemma `lem:ballpotential` now applies the general Lipschitz gradient identity to the
-compactly supported truncated norm cone. Proposition `prop:log-lower` uses the elliptic
-exit trials and stopped-quadratic Azuma tail.
-The distance crossing estimate now uses the exponential-distance stopping and
-site-grouping proof, followed by Markov, finite unions and real-level rounding.
-The norm rates use the quadratic radius-volume identity on the common event.
-Borel–Cantelli gives the norm shapes, and Euclidean shape is their specialization.
-The moment, fixed-site centering and site fluctuation proofs now consume these
-current shape and curvature bounds through their existing CLT and LIL arguments.
-The bulk profile now uses the separated excess-set potential on the common event.
-The planar radius bounds in `thm:sharp` use the coarse-event quadratic bracket
-and two-sign exponential deviations for polynomial tails, and current moment
-fluctuations for the radius LIL. The bounded predictable transform agrees with
-the quadratic martingale on the coarse event; cell comparisons transfer both
-estimates to the inner and outer radii.
-All three planar width conclusions in `thm:sharp` now use the compensated
-position, annular direction sum and martingale limit arguments with the current
-shape and fluctuation estimates. Existing CLT and Gaussian disk-mass proofs are
-parameterized by their fluctuation input; their original exports remain available.
-Every introduction theorem
-is restated in `CERW/MainTheorems.lean`.
+The current source is pinned in [ledger/oct13.yaml](ledger/oct13.yaml). Its
+statements retain their certified types, including the local-time approximation
+in `lem:local`. The proofs use the exit-time, shifted-square energy, curvature
+and maximum-principle arguments of the current source.
+
+The norm rates follow from the quadratic radius-volume identity and contact
+estimates. Final-time Dynkin and Freedman give the local approximation;
+exponential-distance stopping and site grouping give the crossing estimate.
+
+The lower bounds use stopped-quadratic Azuma estimates, coarse-event brackets,
+the moment LIL and vector limit laws. The bulk profile uses the excess-set
+potential, and sharp bulk deviations combine its sharper potential bound with
+the separated exponential martingales. The Section 8 limit laws consume the
+current shape and curvature bounds. Every introduction theorem is restated in
+`CERW/MainTheorems.lean`.
 
 The redefined event of Section 5.1 is stated literally in
 [CERW/LimitShapes/Event.lean](CERW/LimitShapes/Event.lean), and its polynomial

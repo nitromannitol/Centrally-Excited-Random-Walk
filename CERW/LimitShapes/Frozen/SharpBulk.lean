@@ -1,3 +1,4 @@
+import CERW.LimitShapes.SharpBulk
 import CERW.Frozen.SharpBulk
 
 /-!
@@ -28,4 +29,4 @@ theorem CERW.LimitShapes.sharp_bulk {d : ℕ} (hd : 2 ≤ d) :
           ≤ ENNReal.ofReal ((n : ℝ) ^ (-c))
 -- FROZEN-STATEMENT-END
 := by
-  exact CERW.Frozen.sharp_bulk hd
+  exact CERW.LimitShapes.sharp_bulk_from_common_event hd

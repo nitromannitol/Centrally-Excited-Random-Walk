@@ -1382,10 +1382,19 @@ private theorem le_one_of_lt_one_div {d : ℕ} {ε : ℝ} (hd1 : 1 ≤ d) (hε0 
     _ ≤ ε * d := mul_le_mul_of_nonneg_left h2 hε0.le
     _ ≤ 1 := h1.le
 
-/-- **Theorem 1.3 (iii)** for fixed `d` and `ε`, in terms of the scale `r_n`. -/
-private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_deviation_upTo.{u})
-    (hfluct : fluctuation_rates.{u}) (hd : 2 ≤ d) {ε : ℝ} (hε0 : 0 < ε)
-    (hε1 : ε < 1 / (d : ℝ)) :
+/-- The fixed-parameter sharp bulk argument conditional on its bulk potential bound. -/
+private theorem sharp_bulk_core_of_potential (hsep : separated_brackets.{u})
+    (hexp : exp_deviation_upTo.{u})
+    (hd : 2 ≤ d) {ε : ℝ} (hε0 : 0 < ε)
+    (hε1 : ε < 1 / (d : ℝ))
+    (hpotential :
+      ∃ C : ℝ, 0 < C ∧ ∃ n₁ : ℕ, ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω)
+        [IsProbabilityMeasure μ] (X : ℕ → Ω → Site d), IsCERW μ ε X → ∀ n : ℕ, n₁ ≤ n →
+        μ {ω | ¬ ∀ y : Site d, euclidNorm y ≤ scaleR d ε n / 2 →
+            |potential d ε (cellSet (fun j => X j ω) n) (toSpace y) -
+                2 * d * ε * (scaleR d ε n - euclidNorm y)| ≤
+              C * (if d = 2 then Real.sqrt (scaleR d ε n * Real.log n) else Real.log n)} ≤
+          ENNReal.ofReal (C * (n : ℝ) ^ (-(10 : ℝ)))) :
     ∃ c : ℝ, 0 < c ∧ ∃ n₀ : ℕ, ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω)
       [IsProbabilityMeasure μ] (X : ℕ → Ω → Site d), IsCERW μ ε X → ∀ n : ℕ, n₀ ≤ n →
       μ {ω | ¬ ∃ x : Site d, euclidNorm x ≤ Real.sqrt (scaleR d ε n) ∧
@@ -1411,7 +1420,7 @@ private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_devi
   obtain ⟨h, hK⟩ := exists_kernelFacts_latticeKernel hd
   obtain ⟨Cg, hCg⟩ := hK.gradBound
   obtain ⟨Cpt, hCpt0, hPt⟩ := exists_abs_localTime_sub_potential_add_dynkin_le.{u} hd hK
-  obtain ⟨Cu, hCu0, n₁, hpot⟩ := bulk_potential_only hfluct hd hε0 hε1
+  obtain ⟨Cu, hCu0, n₁, hpot⟩ := hpotential
   have hgb : ∀ u e', e' ∈ unitSteps d →
       |latticeKernel d (u + e') - latticeKernel d u| ≤ max Cg 1 := by
     intro u e' he
@@ -1548,6 +1557,38 @@ private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_devi
         rw [hsf] at hT
         exact exists_site_single X ω hP hU _ hpn hT0 hT
     exact hS ⟨x, hx, le_trans hP7 hxdev⟩
+
+/-- The sharp bulk argument supplied with the fluctuation-based potential bound. -/
+private theorem sharp_bulk_core (hsep : separated_brackets.{u}) (hexp : exp_deviation_upTo.{u})
+    (hfluct : fluctuation_rates.{u}) (hd : 2 ≤ d) {ε : ℝ} (hε0 : 0 < ε)
+    (hε1 : ε < 1 / (d : ℝ)) :
+    ∃ c : ℝ, 0 < c ∧ ∃ n₀ : ℕ, ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω)
+      [IsProbabilityMeasure μ] (X : ℕ → Ω → Site d), IsCERW μ ε X → ∀ n : ℕ, n₀ ≤ n →
+      μ {ω | ¬ ∃ x : Site d, euclidNorm x ≤ Real.sqrt (scaleR d ε n) ∧
+          c * (if d = 2 then Real.sqrt (scaleR d ε n) * Real.log n
+            else Real.sqrt (scaleR d ε n * Real.log n)) ≤
+            |(localTime (fun j => X j ω) n x : ℝ) -
+              2 * d * ε * (scaleR d ε n - euclidNorm x)|} ≤
+        ENNReal.ofReal ((n : ℝ) ^ (-c)) := by
+  exact sharp_bulk_core_of_potential hsep hexp hd hε0 hε1
+    (bulk_potential_only hfluct hd hε0 hε1)
+
+/-- Conditional sharp bulk assembly from separated brackets, exponential deviation, and a
+uniform bulk potential estimate. This leaves the potential producer as an explicit premise. -/
+theorem sharp_bulk_of_potential (hsep : separated_brackets.{u})
+    (hexp : exp_deviation_upTo.{u})
+    (hpotential : ∀ {d : ℕ}, 2 ≤ d → ∀ {ε : ℝ}, 0 < ε → ε < 1 / (d : ℝ) →
+      let r : ℕ → ℝ := fun n =>
+        (((d : ℝ) + 1) * n / (2 * d * ε * unitBallVolume d)) ^ ((1 : ℝ) / (d + 1))
+      ∃ C : ℝ, 0 < C ∧ ∃ n₁ : ℕ, ∀ {Ω : Type u} [MeasurableSpace Ω] (μ : Measure Ω)
+        [IsProbabilityMeasure μ] (X : ℕ → Ω → Site d), IsCERW μ ε X → ∀ n : ℕ, n₁ ≤ n →
+        μ {ω | ¬ ∀ y : Site d, euclidNorm y ≤ r n / 2 →
+            |potential d ε (cellSet (fun j => X j ω) n) (toSpace y) -
+                2 * d * ε * (r n - euclidNorm y)| ≤
+              C * (if d = 2 then Real.sqrt (r n * Real.log n) else Real.log n)} ≤
+          ENNReal.ofReal (C * (n : ℝ) ^ (-(10 : ℝ)))) : sharp_bulk.{u} := by
+  intro d hd ωd ε hε0 hε1 r
+  exact sharp_bulk_core_of_potential hsep hexp hd hε0 hε1 (hpotential hd hε0 hε1)
 
 /-- **Theorem 1.3 (iii)** (`thm:sharp`): with probability at least `1 - n^{-c}`, some site
 `|x| ≤ r_n^{1/2}` has a deviation `|ℓ_n(x) - 2dε (r_n - |x|)|` of at least `c √r_n log n`

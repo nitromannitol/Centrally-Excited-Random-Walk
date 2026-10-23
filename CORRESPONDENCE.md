@@ -6,6 +6,11 @@ is `ledger/oct13.yaml`; its source ranges are checked against the pinned SHA-256
 `e01520011221769f0ddf83633939de3fb05a0341cca29437f6661362b8e4f617`.
 Lean citations use paper labels; source line numbers occur in the ledger and this table.
 
+The bulk deviation conclusion in `thm:sharp` uses the separated exponential
+martingales from the current common event and the sharper potential bound proved
+from the excess set. The existing large-deviation proof consumes both closed
+inputs; its original export and proof route remain available.
+
 All three planar width conclusions in `thm:sharp` now use the compensated
 position, annular direction sum and martingale limit arguments with the current
 shape and fluctuation estimates. Existing CLT and Gaussian disk-mass proofs are

@@ -48,7 +48,7 @@ nodes:
   export: CERW.LimitShapes.sharp_bulk
   state: SEALED
   frozen_sha256: a32f7568307a9eb27a0abe5013300c1c619aaaeff5512a17cef930cf85e1074c
-  provider: CERW.Frozen.sharp_bulk
+  provider: CERW.LimitShapes.sharp_bulk_from_common_event
 - id: oct13-thm-sharp-width
   version: 1
   kind: theorem

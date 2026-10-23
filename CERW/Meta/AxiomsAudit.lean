@@ -111,3 +111,13 @@ and each main theorem restatement. The statement gates check the allowed closure
 #print axioms CERW.LimitShapes.PlanarLower.sharp_radii_lil_from_moment
 
 #print axioms CERW.LimitShapes.PlanarLower.sharp_width_from_norm_shape
+
+#print axioms CERW.LimitShapes.bulk_potential_on_inner_volume
+
+#print axioms CERW.LimitShapes.bulk_potential_only_from_excess
+
+#print axioms CERW.LimitShapes.SharpBulk.separated_brackets_from_common_event
+
+#print axioms CERW.Support.Lower.sharp_bulk_of_potential
+
+#print axioms CERW.LimitShapes.sharp_bulk_from_common_event

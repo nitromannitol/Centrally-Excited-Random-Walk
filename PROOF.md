@@ -4,6 +4,11 @@ The current source is *Limit shapes for centrally excited walks* by Ahmed Bou-Ra
 Tuan-Minh Nguyen, Yuval Peres and Arvind Singh, pinned at `paper/oct13.tex` by
 `ledger/oct13.yaml`. The paper writes the drift as `κ`; Lean writes it as `ε`.
 
+The bulk deviation conclusion in `thm:sharp` uses the separated exponential
+martingales from the current common event and the sharper potential bound proved
+from the excess set. The existing large-deviation proof consumes both closed
+inputs; its original export and proof route remain available.
+
 All three planar width conclusions in `thm:sharp` now use the compensated
 position, annular direction sum and martingale limit arguments with the current
 shape and fluctuation estimates. Existing CLT and Gaussian disk-mass proofs are
@@ -47,7 +52,7 @@ providers. The martingale CLT and full Stout law are proved inputs supplied
 inside the closed proofs.
 
 The current statements live in `CERW/LimitShapes/Frozen/`. Unchanged declarations
-retain their certified types; several now use the printed proofs described below.
+retain their certified types and use the source arguments described below.
 `lem:local` uses `local_time_potential_from_dynkin`: final-time Dynkin and the
 cell/Laplacian source comparison, actual-bracket Freedman with maximum-local-time
 weights, and the cell modulus. The literal common event consumes this current anchor.
