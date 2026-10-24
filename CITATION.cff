@@ -3,10 +3,10 @@ message: If you use this formalization, please cite it as below.
 title: 'Centrally-Excited-Random-Walk: a Lean 4 formalization of limit shapes of centrally excited random
   walks'
 abstract: A Lean 4 / mathlib formalization of Limit shapes for centrally excited walks by Bou-Rabee, Nguyen,
-  Peres and Singh, with the earlier two-author source pin preserved. Every theorem, lemma and proposition
-  of the paper is proved, in 29 checked declarations. The production library has no sorry or custom axiom.
-  Separate Mathlib-only comparator challenges contain seven intentional statement-level proof holes and
-  have completed solutions.
+  Peres and Singh (arXiv:2610.10162), and of the two-author manuscript Kozma's centrally excited walk converges
+  to a Euclidean ball by Bou-Rabee and Peres. Every theorem, lemma and proposition of the paper is proved, in
+  29 checked declarations. The library has no sorry and no custom axiom, and the theorems of the introduction
+  are checked independently with Mathlib-only comparator challenges.
 type: software
 authors:
 - family-names: Bou-Rabee
@@ -34,7 +34,12 @@ references:
     given-names: Yuval
   - family-names: Singh
     given-names: Arvind
-  notes: The current source, pinned at paper/centrally-excited-walks.tex; see CORRESPONDENCE.md.
+  year: 2026
+  url: https://arxiv.org/abs/2610.10162
+  identifiers:
+  - type: other
+    value: arXiv:2610.10162
+  notes: The paper formalized by this repository, pinned at paper/centrally-excited-walks.tex; see CORRESPONDENCE.md.
 - type: article
   title: Kozma's centrally excited walk converges to a Euclidean ball
   authors:
@@ -42,4 +47,4 @@ references:
     given-names: Ahmed
   - family-names: Peres
     given-names: Yuval
-  notes: The earlier source pin, retained at paper/limit-shapes.tex.
+  notes: The two-author manuscript, also formalized here, at paper/limit-shapes.tex.

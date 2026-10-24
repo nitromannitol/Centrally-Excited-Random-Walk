@@ -2,9 +2,9 @@ version: v0.4
 project:
   name: Centrally-Excited-Random-Walk
   description: A Lean 4 formalization of Limit shapes for centrally excited walks (Bou-Rabee, Nguyen,
-    Peres, Singh), retaining the earlier two-author source pin and proofs. Every labeled result is proved,
-    including the simultaneous crossing estimate, the literal Section 5.1 event probability, and both
-    full event source closures.
+    Peres, Singh; arXiv:2610.10162) and of the two-author manuscript Kozma's centrally excited walk converges
+    to a Euclidean ball (Bou-Rabee, Peres). Every labeled result of the paper is proved, including the
+    crossing estimate and the common event of Section 5.1 with its probability bound.
   authors:
   - Ahmed Bou-Rabee
   - Tuan-Minh Nguyen
@@ -26,10 +26,12 @@ sources:
   - Tuan-Minh Nguyen
   - Yuval Peres
   - Arvind Singh
-  type: manuscript
+  type: preprint
+  id: arXiv:2610.10162
+  url: https://arxiv.org/abs/2610.10162
   location: paper/centrally-excited-walks.tex
   sha256: 128646310ef17f4f897b5dfa9305187a85280eef391b70d8c7be009a5da5c87d
-  relationship: formalizes (current source)
+  relationship: formalizes
   note: Every labeled theorem, lemma and proposition is proved by the argument printed in the paper. Results
     whose statement and printed proof are unchanged from the earlier source reuse its formal proofs.
 - title: Kozma's centrally excited walk converges to a Euclidean ball
@@ -38,14 +40,31 @@ sources:
   - Yuval Peres
   type: manuscript
   location: paper/limit-shapes.tex
-  relationship: formalizes (preserved source pin)
+  relationship: formalizes
   note: Theorems 1.1, 1.2, 1.3 and 2.1 and every lemma and proposition of Sections 2-9 are formalized.
   sha256: 0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396
+automation:
+  methods:
+  - method: agent
+    models:
+    - Claude Opus 5.5
+    - Claude Sonnet 5.5
+    - DeepSeek (auxiliary proof work)
+    framework: Claude Code (Anthropic), directing the models above; the authors supervised the work and are
+      responsible for the formalization.
+    tool_setup: Lake builds under the pinned Lean toolchain and Mathlib revision. Every change is gated by
+      the manifest, axiom, kernel-replay and warning-free-build checks, and the public CI runs the
+      Mathlib-only comparator pairs against leanprover/comparator with nanoda replay.
+    cost:
+      spend_usd: not separately tracked (subscription and API accounts)
+      hardware: one Ubuntu workstation
+    prompting_notes: Human-directed agent work, closely supervised by the authors.
 status:
-  scope: The preserved ledger/manifest.yaml certifies the earlier source statements. The separate ledger/current.yaml
-    certifies every labeled current-paper result, the simultaneous crossing and common-event probability
-    producers, and full contact and separated-bracket source closures. All introduction headline parts
-    have Mathlib-only comparator challenges and built solutions in CERWAudit/.
+  scope: ledger/current.yaml registers every labeled result of the paper, together with the crossing
+    estimate, the common event of Section 5.1 and its probability bound, and the contact and
+    separated-bracket estimates on that event; ledger/manifest.yaml registers the statements of the
+    two-author manuscript. The theorems of the introduction have Mathlib-only comparator challenges and
+    solutions in CERWAudit/.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
