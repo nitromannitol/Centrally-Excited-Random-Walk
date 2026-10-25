@@ -10,6 +10,8 @@ project:
   - Tuan-Minh Nguyen
   - Yuval Peres
   - Arvind Singh
+  responsible_maintainers:
+    - "Ahmed Bou-Rabee"
   license: Apache-2.0
 classification:
   arxiv:
@@ -90,3 +92,6 @@ fidelity:
   divergences: CORRESPONDENCE.md records how each registered statement reads the paper; PROOF.md lists
     the points at which the formalized statements differ from the published text.
 acknowledgements: Built on Lean 4, Mathlib, Lake and the shared Lattice-Probability library.
+
+review:
+  status: "unchecked"

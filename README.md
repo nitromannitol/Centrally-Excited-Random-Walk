@@ -222,3 +222,13 @@ Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh. To cite the formaliza
 
 The Lean code is licensed under the Apache License 2.0; see [`LICENSE`](LICENSE). The paper sources
 in [`paper/`](paper/) are included for reference and are not covered by this licence.
+
+## Palomar preflight
+
+The manually dispatched [Palomar full preflight](.github/workflows/palomar-preflight.yml)
+calls Palomar's complete verifier at a pinned revision. Select the repository-relative
+Comparator configuration to check. It records the dispatched commit and runs with
+`mode: full` and `execution_profile: palomar-standard-v1`. Resolve the current Lean
+minimum, source-module, Challenge-closure, licensing and metadata requirements before
+dispatch. A passing preflight is advisory; it is separate from submission, editorial
+review and a public registry record.
