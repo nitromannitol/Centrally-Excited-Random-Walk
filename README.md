@@ -136,7 +136,7 @@ Status: **27 registered statements — 27 proved.**  The 27 proved statements ar
   prove them with only the three standard axioms, through the Lean kernel and the independent
   nanoda kernel. See [`CERWAudit/README.md`](CERWAudit/README.md).
 - **Pinned toolchain.** Lean `v4.35.0-rc2`, mathlib `065356127b1dc0016f66b7283ce0ce2c4055aa55` and
-  Lattice-Probability `6d06eddaede1eb285cbe4327d14f7c310e695f9d`, recorded in
+  Lattice-Probability `7dab37ada5ec7fa96912e46dad90d369ea06055d`, recorded in
   [`lake-manifest.json`](lake-manifest.json).
 
 ## Size
