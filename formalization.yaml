@@ -48,6 +48,13 @@ sources:
 automation:
   methods:
   - method: agent
+    models: ["GPT-6.1 Sol"]
+    tool_setup: >-
+      Submission compatibility maintenance: public module interfaces, pinned build
+      dependencies, existing proof API adaptations, comparator wiring and metadata.
+      The existing mathematical proofs were reused. Selected full Palomar preflight
+      receipts distinguish mechanical verification from review and registration.
+  - method: agent
     models:
     - Claude Opus 5.5
     - Claude Sonnet 5.5
@@ -94,4 +101,7 @@ fidelity:
 acknowledgements: Built on Lean 4, Mathlib, Lake and the shared Lattice-Probability library.
 
 review:
-  status: "unchecked"
+  status: unchecked
+  notes: 'This submission compatibility revision has no independent statement audit or author
+    review. Original review reported before the maintenance revision: status unchecked; reviewers
+    . Prior review notes follow: '
