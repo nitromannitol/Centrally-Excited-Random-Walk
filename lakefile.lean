@@ -5,7 +5,7 @@ open Lake DSL
 package «centrally-excited-random-walk» where
 
 require «lattice-probability» from git
-  "https://github.com/nitromannitol/Lattice-Probability.git" @ "7e229549ff3b35ff8e7bb30bb96d4a193a292864"
+  "https://github.com/nitromannitol/Lattice-Probability.git" @ "6d06eddaede1eb285cbe4327d14f7c310e695f9d"
 
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4" @ "065356127b1dc0016f66b7283ce0ce2c4055aa55"

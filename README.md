@@ -136,7 +136,7 @@ Status: **27 registered statements — 27 proved.**  The 27 proved statements ar
   prove them with only the three standard axioms, through the Lean kernel and the independent
   nanoda kernel. See [`CERWAudit/README.md`](CERWAudit/README.md).
 - **Pinned toolchain.** Lean `v4.35.0-rc2`, mathlib `065356127b1dc0016f66b7283ce0ce2c4055aa55` and
-  Lattice-Probability `7e229549ff3b35ff8e7bb30bb96d4a193a292864`, recorded in
+  Lattice-Probability `6d06eddaede1eb285cbe4327d14f7c310e695f9d`, recorded in
   [`lake-manifest.json`](lake-manifest.json).
 
 ## Size
@@ -238,3 +238,7 @@ uses the exact original Lattice-Probability snapshot with module interfaces and
 existing proof API compatibility fixes. Frozen source statements and mathematical
 definitions are retained. The full official preflight is scoped to the selected
 Challenge/Solution pair at its exact dispatched commit.
+
+Existing product-measurability and ergodicity proof calls use the corresponding
+current Mathlib lemmas, retaining their original maps and hypotheses. The selected
+preflight scope is its unchanged Challenge; other configurations are separate.

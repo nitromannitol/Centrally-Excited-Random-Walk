@@ -30,7 +30,7 @@ def pastPath (X : ℕ → Ω → Site d) (n : ℕ) (ω : Ω) : (i : Iic n) → S
 /-- The past path is measurable when each position is. -/
 theorem measurable_pastPath {X : ℕ → Ω → Site d} (hX : ∀ n, Measurable (X n)) (n : ℕ) :
     Measurable (pastPath X n) :=
-  measurable_pi_lambda _ fun i => hX i
+  measurable_pi_iff.mpr fun i => hX i
 
 /-- The natural filtration `ℱ_n = σ(X_0, …, X_n)` of the walk. -/
 def pathFiltration {X : ℕ → Ω → Site d} (hX : ∀ n, Measurable (X n)) :

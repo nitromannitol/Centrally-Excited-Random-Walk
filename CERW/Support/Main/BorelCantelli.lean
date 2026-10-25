@@ -1,5 +1,6 @@
 module
 
+public import Mathlib
 public import Mathlib.MeasureTheory.OuterMeasure.BorelCantelli
 public import Mathlib.MeasureTheory.Measure.MeasureSpace
 public import Mathlib.Analysis.PSeries
