@@ -1,4 +1,8 @@
-import CERW.Support.RevisedPaper
+module
+
+public import CERW.Support.RevisedPaper
+
+@[expose] public section
 
 /-!
 # The carrier of the objects of Sections 4 and 5

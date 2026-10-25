@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Crossing.RampBound
+module
+
+public import CERW.LimitShapes.Crossing.RampBound
+
+@[expose] public section
 
 /-!
 # Simultaneous ramp estimates at all prefixes and grid levels

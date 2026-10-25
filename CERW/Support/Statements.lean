@@ -1,7 +1,11 @@
-import CERW.Model
-import Mathlib.Probability.Distributions.Gaussian.Real
-import Mathlib.Probability.Distributions.Gaussian.Multivariate
-import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
+module
+
+public import CERW.Model
+public import Mathlib.Probability.Distributions.Gaussian.Real
+public import Mathlib.Probability.Distributions.Gaussian.Multivariate
+public import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
+
+@[expose] public section
 
 /-!
 # The statements of the revised paper, as propositions

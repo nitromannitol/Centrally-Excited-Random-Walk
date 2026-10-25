@@ -1,8 +1,12 @@
-import CERW.Model.Space
-import CERW.Model.Potential
-import LatticeProb.Walk.Ball
-import CERW.Generic.Kernel.RadialPacking
-import CERW.Support.Occupation.CellWeight
+module
+
+public import CERW.Model.Space
+public import CERW.Model.Potential
+public import LatticeProb.Walk.Ball
+public import CERW.Generic.Kernel.RadialPacking
+public import CERW.Support.Occupation.CellWeight
+
+@[expose] public section
 
 /-!
 # The lattice sum of `|x|` over a ball

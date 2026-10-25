@@ -1,6 +1,10 @@
-import CERW.Model.Occupation
-import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import CERW.Model.Occupation
+public import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+
+@[expose] public section
 
 /-!
 # Volume of cells

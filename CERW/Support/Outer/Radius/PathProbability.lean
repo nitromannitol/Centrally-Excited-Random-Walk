@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.RampProbability
+module
+
+public import CERW.Support.Outer.Radius.RampProbability
+
+@[expose] public section
 
 /-!
 # Path Probability

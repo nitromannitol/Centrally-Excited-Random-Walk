@@ -1,5 +1,9 @@
-import CERW.Support.LocalTime.DynkinLocal
-import CERW.Support.Occupation.Facts
+module
+
+public import CERW.Support.LocalTime.DynkinLocal
+public import CERW.Support.Occupation.Facts
+
+@[expose] public section
 
 /-!
 # The Dynkin decomposition over an interval

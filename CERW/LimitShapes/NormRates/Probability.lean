@@ -1,7 +1,11 @@
-import CERW.LimitShapes.NormRates.Outer
-import CERW.LimitShapes.NormRates.Inner
-import CERW.LimitShapes.CommonEvent
-import CERW.LimitShapes.Energy.Contact
+module
+
+public import CERW.LimitShapes.NormRates.Outer
+public import CERW.LimitShapes.NormRates.Inner
+public import CERW.LimitShapes.CommonEvent
+public import CERW.LimitShapes.Energy.Contact
+
+@[expose] public section
 
 /-!
 # Norm limit-shape rates on the common event

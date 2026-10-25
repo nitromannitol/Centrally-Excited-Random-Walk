@@ -1,7 +1,11 @@
-import CERW.Generic.Kernel.NewtonField
-import CERW.Generic.Kernel.DirectionError
-import CERW.Support.Occupation.CellDirection
-import CERW.Support.Occupation.CellVolume
+module
+
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Generic.Kernel.DirectionError
+public import CERW.Support.Occupation.CellDirection
+public import CERW.Support.Occupation.CellVolume
+
+@[expose] public section
 
 /-!
 # Replacing the lattice direction by the continuous direction

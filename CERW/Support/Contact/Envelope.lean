@@ -1,8 +1,12 @@
-import CERW.Support.Geometry.Newton
-import CERW.Support.Geometry.Bound
-import CERW.Support.Occupation.Cells
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellSetVolume
+module
+
+public import CERW.Support.Geometry.Newton
+public import CERW.Support.Geometry.Bound
+public import CERW.Support.Occupation.Cells
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellSetVolume
+
+@[expose] public section
 
 /-!
 # The local-time envelope and the inner inclusion

@@ -1,7 +1,11 @@
-import CERW.Support.Coarse.TailEnd
-import CERW.Support.Coarse.OuterBound
-import CERW.Support.Contact.EnvelopeShell
-import CERW.Support.Geometry.TailBounds
+module
+
+public import CERW.Support.Coarse.TailEnd
+public import CERW.Support.Coarse.OuterBound
+public import CERW.Support.Contact.EnvelopeShell
+public import CERW.Support.Geometry.TailBounds
+
+@[expose] public section
 
 /-!
 # The outer bound from the envelope

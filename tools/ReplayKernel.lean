@@ -1,4 +1,8 @@
-import Lean.Replay
+module
+
+public import Lean.Replay
+
+@[expose] public section
 
 /-!
 # Kernel replay of the library

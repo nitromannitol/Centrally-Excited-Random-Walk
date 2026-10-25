@@ -1,6 +1,10 @@
-import Mathlib.MeasureTheory.Function.ConditionalExpectation.Basic
-import Mathlib.MeasureTheory.Measure.Prod
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import Mathlib.MeasureTheory.Function.ConditionalExpectation.Basic
+public import Mathlib.MeasureTheory.Measure.Prod
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # The assembly of the lower half of the law of the iterated logarithm: the statements

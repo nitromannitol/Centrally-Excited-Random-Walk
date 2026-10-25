@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Energy.FarPotential
+module
+
+public import CERW.LimitShapes.Energy.FarPotential
+
+@[expose] public section
 
 /-!
 # Global one-sided potentials

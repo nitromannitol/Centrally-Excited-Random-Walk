@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.Lil.Statements
+module
+
+public import CERW.Generic.Martingale.Lil.Statements
+
+@[expose] public section
 
 /-!
 # Freedman's inequality for the truncated martingale

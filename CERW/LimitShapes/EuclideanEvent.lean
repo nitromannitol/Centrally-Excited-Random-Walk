@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Frozen.CommonEvent
-import CERW.Support.Norm.EuclideanCoarse
+module
+
+public import CERW.LimitShapes.Frozen.CommonEvent
+public import CERW.Support.Norm.EuclideanCoarse
+
+@[expose] public section
 
 /-!
 # The common event for the Euclidean walk

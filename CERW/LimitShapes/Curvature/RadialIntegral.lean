@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Curvature.RadialIntegralAux
+module
+
+public import CERW.LimitShapes.Curvature.RadialIntegralAux
+
+@[expose] public section
 
 /-!
 # The integrated radial curvature identity

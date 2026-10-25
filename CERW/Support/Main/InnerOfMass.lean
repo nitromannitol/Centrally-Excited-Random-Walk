@@ -1,9 +1,13 @@
-import CERW.Support.Main.Event
-import CERW.Support.Main.InnerClauses
-import CERW.Support.Contact.ContactSetup
-import CERW.Support.Contact.Inradius
-import CERW.Support.Contact.EnvelopeShell
-import CERW.Support.Occupation.CellNorm
+module
+
+public import CERW.Support.Main.Event
+public import CERW.Support.Main.InnerClauses
+public import CERW.Support.Contact.ContactSetup
+public import CERW.Support.Contact.Inradius
+public import CERW.Support.Contact.EnvelopeShell
+public import CERW.Support.Occupation.CellNorm
+
+@[expose] public section
 
 /-!
 # The inner clauses on the event, given the mass bound

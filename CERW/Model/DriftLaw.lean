@@ -1,5 +1,9 @@
-import CERW.Model.DriftKernel
-import Mathlib.MeasureTheory.Measure.MeasureSpace
+module
+
+public import CERW.Model.DriftKernel
+public import Mathlib.MeasureTheory.Measure.MeasureSpace
+
+@[expose] public section
 
 /-!
 # The centrally excited random walk with a drift field

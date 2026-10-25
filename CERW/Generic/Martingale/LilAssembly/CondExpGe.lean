@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.LilAssembly.Statements
+module
+
+public import CERW.Generic.Martingale.LilAssembly.Statements
+
+@[expose] public section
 
 /-!
 # A conditional probability bounded below on average

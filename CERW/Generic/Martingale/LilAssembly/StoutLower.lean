@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.LilAssembly.ReductionProof
-import CERW.Generic.Martingale.LilAssembly.BlockLowerProof
-import CERW.Generic.Martingale.LilAssembly.NiceLower
+module
+
+public import CERW.Generic.Martingale.LilAssembly.ReductionProof
+public import CERW.Generic.Martingale.LilAssembly.BlockLowerProof
+public import CERW.Generic.Martingale.LilAssembly.NiceLower
+
+@[expose] public section
 
 /-!
 # The lower half of Stout's law of the iterated logarithm

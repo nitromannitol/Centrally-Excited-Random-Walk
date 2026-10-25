@@ -1,28 +1,32 @@
-import CERW.Support.Norm.GaugePotential
-import CERW.Support.Contact.ContactCell
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.Cells
-import CERW.Generic.Kernel.NewtonField
-import CERW.Generic.Kernel.Modulus
-import CERW.Generic.Kernel.Integrable
-import CERW.Generic.Newton.Polar
-import CERW.Support.Geometry.Newton
-import CERW.Support.Occupation.SiteArith
-import CERW.Support.LocalTime.Bracket
-import CERW.Generic.Lattice.Centered
-import CERW.Generic.Kernel.LogRadial
-import CERW.Generic.Kernel.RadialPower
-import CERW.Support.Law.ScaleArith
-import CERW.Support.Occupation.CellIntegral
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Geometry.BallCompare
-import CERW.Support.Drift
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.Crossing.LastEntrance
-import CERW.Support.Law.Moments
-import CERW.Support.Geometry.Bound
-import CERW.Model.NormPotential
-import CERW.Support.Occupation.Facts
+module
+
+public import CERW.Support.Norm.GaugePotential
+public import CERW.Support.Contact.ContactCell
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.Cells
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Generic.Kernel.Modulus
+public import CERW.Generic.Kernel.Integrable
+public import CERW.Generic.Newton.Polar
+public import CERW.Support.Geometry.Newton
+public import CERW.Support.Occupation.SiteArith
+public import CERW.Support.LocalTime.Bracket
+public import CERW.Generic.Lattice.Centered
+public import CERW.Generic.Kernel.LogRadial
+public import CERW.Generic.Kernel.RadialPower
+public import CERW.Support.Law.ScaleArith
+public import CERW.Support.Occupation.CellIntegral
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Geometry.BallCompare
+public import CERW.Support.Drift
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.Crossing.LastEntrance
+public import CERW.Support.Law.Moments
+public import CERW.Support.Geometry.Bound
+public import CERW.Model.NormPotential
+public import CERW.Support.Occupation.Facts
+
+@[expose] public section
 
 /-!
 # The contact potential, the profile and the shape rates for the gauge of a convex body

@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Energy.Gradient
-import CERW.LimitShapes.Energy.PlanarEnvelope
-import CERW.Generic.Lattice.Centered
-import CERW.Model.Occupation
+module
+
+public import CERW.LimitShapes.Energy.Gradient
+public import CERW.LimitShapes.Energy.PlanarEnvelope
+public import CERW.Generic.Lattice.Centered
+public import CERW.Model.Occupation
+
+@[expose] public section
 
 /-!
 # Summing the shifted-square drift along a path

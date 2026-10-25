@@ -1,8 +1,12 @@
-import CERW.Frozen.CellGradient
-import CERW.Support.Legacy.NormPotentialGeometry
-import CERW.Frozen.NormCoarseBounds
-import CERW.Support.Legacy.NormRadialTest
-import CERW.Frozen.DriftCrossing
+module
+
+public import CERW.Frozen.CellGradient
+public import CERW.Support.Legacy.NormPotentialGeometry
+public import CERW.Frozen.NormCoarseBounds
+public import CERW.Support.Legacy.NormRadialTest
+public import CERW.Frozen.DriftCrossing
+
+@[expose] public section
 
 /-!
 # Guards for the norm potential, the coarse bounds, the radial test and the crossing lemma

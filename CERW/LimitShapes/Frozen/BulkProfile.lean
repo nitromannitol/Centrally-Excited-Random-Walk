@@ -1,5 +1,9 @@
-import CERW.LimitShapes.BulkProfileProbability
-import CERW.Frozen.BulkProfile
+module
+
+public import CERW.LimitShapes.BulkProfileProbability
+public import CERW.Frozen.BulkProfile
+
+@[expose] public section
 
 /-!
 # prop:bulk-profile

@@ -1,6 +1,10 @@
-import CERW.Support.Norm.GaugeCellGradient
-import CERW.Support.Norm.DriftSite
-import CERW.Support.Norm.Freedman
+module
+
+public import CERW.Support.Norm.GaugeCellGradient
+public import CERW.Support.Norm.DriftSite
+public import CERW.Support.Norm.Freedman
+
+@[expose] public section
 
 /-!
 # The local times and the potential of the walk driven by an asymmetric gauge

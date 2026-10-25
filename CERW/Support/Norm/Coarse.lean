@@ -1,28 +1,32 @@
-import CERW.Support.Statements
-import CERW.Support.Drift.Dynkin
-import CERW.Generic.Martingale.Dyadic
-import CERW.Generic.Martingale.Clamp
-import CERW.Support.Norm.Geometry
-import CERW.Support.Geometry.TailBasic
-import CERW.Support.Geometry.Holder
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Occupation.CellNorm
-import CERW.Generic.Newton.CapAverage
-import CERW.Generic.Newton.Polar
-import CERW.Generic.Kernel.RadialPacking
-import CERW.Support.Occupation.CellIntegral
-import CERW.Support.Occupation.Facts
-import CERW.Support.Coarse.Sstar
-import CERW.Support.Coarse.Tail
-import CERW.Support.Coarse.RadiusArith
-import CERW.Support.Main.ScaleLimits
-import CERW.Support.Law.ScaleArith
-import CERW.Support.Occupation.SiteArith
-import CERW.Support.Coarse.CardTail
-import CERW.Support.Coarse.CrossingArith
-import CERW.Support.Crossing.Kinematics
-import CERW.Support.Crossing.Contradiction
-import CERW.Support.Norm.VectorBound
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Drift.Dynkin
+public import CERW.Generic.Martingale.Dyadic
+public import CERW.Generic.Martingale.Clamp
+public import CERW.Support.Norm.Geometry
+public import CERW.Support.Geometry.TailBasic
+public import CERW.Support.Geometry.Holder
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Generic.Newton.CapAverage
+public import CERW.Generic.Newton.Polar
+public import CERW.Generic.Kernel.RadialPacking
+public import CERW.Support.Occupation.CellIntegral
+public import CERW.Support.Occupation.Facts
+public import CERW.Support.Coarse.Sstar
+public import CERW.Support.Coarse.Tail
+public import CERW.Support.Coarse.RadiusArith
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Support.Law.ScaleArith
+public import CERW.Support.Occupation.SiteArith
+public import CERW.Support.Coarse.CardTail
+public import CERW.Support.Coarse.CrossingArith
+public import CERW.Support.Crossing.Kinematics
+public import CERW.Support.Crossing.Contradiction
+public import CERW.Support.Norm.VectorBound
+
+@[expose] public section
 
 /-!
 # The occupation and radius bounds for the norm walk

@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Frozen.SeparatedBrackets
-import CERW.LimitShapes.EuclideanEvent
+module
+
+public import CERW.LimitShapes.Frozen.SeparatedBrackets
+public import CERW.LimitShapes.EuclideanEvent
+
+@[expose] public section
 
 /-!
 # Separated brackets on the common event

@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Curvature.RadialDerivative
-import CERW.Generic.Kernel.Integrable
-import Mathlib.MeasureTheory.Integral.Prod
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+module
+
+public import CERW.LimitShapes.Curvature.RadialDerivative
+public import CERW.Generic.Kernel.Integrable
+public import Mathlib.MeasureTheory.Integral.Prod
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+
+@[expose] public section
 
 /-!
 # Integrability for the integrated radial curvature identity

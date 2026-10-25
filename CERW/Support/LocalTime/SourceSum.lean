@@ -1,10 +1,14 @@
-import CERW.Support.LocalTime.ReplaceGradient
-import CERW.Support.LocalTime.ReplaceCell
-import CERW.Support.LocalTime.ReplaceDirection
-import CERW.Support.Geometry.Bound
-import CERW.Support.Occupation.CellIntegral
-import CERW.Generic.Kernel.Modulus
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.LocalTime.ReplaceGradient
+public import CERW.Support.LocalTime.ReplaceCell
+public import CERW.Support.LocalTime.ReplaceDirection
+public import CERW.Support.Geometry.Bound
+public import CERW.Support.Occupation.CellIntegral
+public import CERW.Generic.Kernel.Modulus
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # The source sum is the potential up to a logarithm

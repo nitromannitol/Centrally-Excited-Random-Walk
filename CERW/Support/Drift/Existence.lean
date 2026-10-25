@@ -1,8 +1,12 @@
-import CERW.Model.DriftLaw
-import CERW.Support.Law.Existence
-import CERW.Support.Drift.StepProb
-import CERW.Support.Drift.Bridge
-import Mathlib.Probability.Kernel.IonescuTulcea.Traj
+module
+
+public import CERW.Model.DriftLaw
+public import CERW.Support.Law.Existence
+public import CERW.Support.Drift.StepProb
+public import CERW.Support.Drift.Bridge
+public import Mathlib.Probability.Kernel.IonescuTulcea.Traj
+
+@[expose] public section
 
 /-!
 # The centrally excited random walk with a drift field exists

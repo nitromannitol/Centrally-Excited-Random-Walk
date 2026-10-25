@@ -1,14 +1,18 @@
-import CERW.Support.Norm
-import CERW.Support.Norm.ContactEvent
-import CERW.Support.Norm.CoarseVolume
-import CERW.Support.Contact.ContactSetup
-import CERW.Support.Contact.InradiusArith
-import CERW.Support.Contact.Volume
-import CERW.Support.Contact.BallExcess
-import CERW.Support.Contact.NormReplace
-import CERW.Support.Contact.Quadratic
-import CERW.Support.Contact.EnvelopeShell
-import CERW.Generic.Kernel.RadialInner
+module
+
+public import CERW.Support.Norm
+public import CERW.Support.Norm.ContactEvent
+public import CERW.Support.Norm.CoarseVolume
+public import CERW.Support.Contact.ContactSetup
+public import CERW.Support.Contact.InradiusArith
+public import CERW.Support.Contact.Volume
+public import CERW.Support.Contact.BallExcess
+public import CERW.Support.Contact.NormReplace
+public import CERW.Support.Contact.Quadratic
+public import CERW.Support.Contact.EnvelopeShell
+public import CERW.Generic.Kernel.RadialInner
+
+@[expose] public section
 
 /-!
 # The literal event of Section 5.1 and the closed localization of the contact estimate

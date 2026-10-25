@@ -1,7 +1,11 @@
-import CERW.Support.Occupation.CellWeight
-import CERW.Support.Occupation.Cells
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Geometry.TailBasic
+module
+
+public import CERW.Support.Occupation.CellWeight
+public import CERW.Support.Occupation.Cells
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Geometry.TailBasic
+
+@[expose] public section
 
 /-!
 # The tail beyond a radius is controlled by the source sum

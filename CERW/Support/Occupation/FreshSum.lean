@@ -1,4 +1,8 @@
-import CERW.Model.Occupation
+module
+
+public import CERW.Model.Occupation
+
+@[expose] public section
 
 /-!
 # Sums over first visits

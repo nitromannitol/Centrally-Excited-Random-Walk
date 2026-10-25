@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Curvature.PotentialContinuity
-import CERW.LimitShapes.Curvature.PotentialHarmonic
-import CERW.LimitShapes.Curvature.Decay
-import CERW.Generic.Harmonic.Exterior
+module
+
+public import CERW.LimitShapes.Curvature.PotentialContinuity
+public import CERW.LimitShapes.Curvature.PotentialHarmonic
+public import CERW.LimitShapes.Curvature.Decay
+public import CERW.Generic.Harmonic.Exterior
+
+@[expose] public section
 
 /-! # Maximum principle for the signed potential
 

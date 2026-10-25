@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.Tilt.Statements
+module
+
+public import CERW.Generic.Martingale.Tilt.Statements
+
+@[expose] public section
 
 /-!
 # The upper tail weighted by the exponential martingale

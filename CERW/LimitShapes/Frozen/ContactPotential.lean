@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.Contact
-import CERW.LimitShapes.ContactPotential
+module
+
+public import CERW.LimitShapes.Energy.Contact
+public import CERW.LimitShapes.ContactPotential
+
+@[expose] public section
 
 /-!
 # lem:contact

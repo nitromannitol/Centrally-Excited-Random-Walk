@@ -1,7 +1,11 @@
-import CERW.Support.Norm.MinkowskiGauge
-import CERW.Support.Drift.Existence
-import Mathlib.Analysis.Calculus.Gradient.Basic
-import Mathlib.Analysis.Calculus.Rademacher
+module
+
+public import CERW.Support.Norm.MinkowskiGauge
+public import CERW.Support.Drift.Existence
+public import Mathlib.Analysis.Calculus.Gradient.Basic
+public import Mathlib.Analysis.Calculus.Rademacher
+
+@[expose] public section
 
 /-!
 # The walk with a drift opposite to subgradients of an asymmetric gauge

@@ -1,5 +1,9 @@
-import CERW.Support.Main.ShapeInclusion
-import CERW.Support.Main.ShapeCount
+module
+
+public import CERW.Support.Main.ShapeInclusion
+public import CERW.Support.Main.ShapeCount
+
+@[expose] public section
 
 /-!
 # The shape theorem from the almost-sure fluctuation event

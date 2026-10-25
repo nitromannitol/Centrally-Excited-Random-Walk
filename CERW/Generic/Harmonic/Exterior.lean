@@ -1,5 +1,9 @@
-import CERW.Generic.Harmonic.Maximum
-import Mathlib.Analysis.Normed.Group.Bounded
+module
+
+public import CERW.Generic.Harmonic.Maximum
+public import Mathlib.Analysis.Normed.Group.Bounded
+
+@[expose] public section
 
 /-! # Maximum principle on an exterior domain
 

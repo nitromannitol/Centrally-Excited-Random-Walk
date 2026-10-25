@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.FreedmanEvent
-import CERW.Model.Bracket
-import CERW.Generic.Martingale.CLT.Interfaces
+module
+
+public import CERW.Generic.Martingale.FreedmanEvent
+public import CERW.Model.Bracket
+public import CERW.Generic.Martingale.CLT.Interfaces
+
+@[expose] public section
 
 /-!
 # The path bracket and the predictable truncation of a martingale

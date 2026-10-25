@@ -1,9 +1,13 @@
-import CERW.Frozen.FixedSiteCentering
-import CERW.Frozen.MomentFluctuations
-import CERW.Frozen.SharpRadiiLil
-import CERW.Frozen.SharpWidth
-import CERW.Frozen.SiteFluctuations
-import CERW.Support.Law.Existence
+module
+
+public import CERW.Frozen.FixedSiteCentering
+public import CERW.Frozen.MomentFluctuations
+public import CERW.Frozen.SharpRadiiLil
+public import CERW.Frozen.SharpWidth
+public import CERW.Frozen.SiteFluctuations
+public import CERW.Support.Law.Existence
+
+@[expose] public section
 
 /-!
 # Non-vacuity guards for the limit laws

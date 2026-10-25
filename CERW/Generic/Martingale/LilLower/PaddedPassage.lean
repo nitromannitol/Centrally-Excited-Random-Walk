@@ -1,5 +1,9 @@
-import CERW.Generic.Martingale.LilLower.BracketTimes
-import CERW.Generic.Martingale.LilLower.PaddedBracket
+module
+
+public import CERW.Generic.Martingale.LilLower.BracketTimes
+public import CERW.Generic.Martingale.LilLower.PaddedBracket
+
+@[expose] public section
 
 /-!
 # The passage times of the padded bracket are stopping times

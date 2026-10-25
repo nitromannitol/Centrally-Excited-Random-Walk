@@ -1,13 +1,17 @@
-import CERW.Support.Statements
-import CERW.Support.LocalTime
-import CERW.Support.LocalTime.LatticeKernelFacts
-import CERW.Support.Main.ScaleLimits
-import CERW.Generic.Lattice
-import CERW.Generic.Kernel.LogRadial
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import LatticeProb.Prob.CramerWold
-import LatticeProb.External.PotentialKernelAsymptoticsProved
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.LocalTime
+public import CERW.Support.LocalTime.LatticeKernelFacts
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Generic.Lattice
+public import CERW.Generic.Kernel.LogRadial
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import LatticeProb.Prob.CramerWold
+public import LatticeProb.External.PotentialKernelAsymptoticsProved
+
+@[expose] public section
 
 /-!
 # Local times at fixed sites

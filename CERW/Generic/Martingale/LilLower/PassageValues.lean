@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.LilLower.BracketTimes
+module
+
+public import CERW.Generic.Martingale.LilLower.BracketTimes
+
+@[expose] public section
 
 /-!
 # The bracket at a passage time

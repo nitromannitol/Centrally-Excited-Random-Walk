@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.Identity
-import CERW.LimitShapes.Energy.Bracket
+module
+
+public import CERW.LimitShapes.Energy.Identity
+public import CERW.LimitShapes.Energy.Bracket
+
+@[expose] public section
 
 /-!
 # Absorption of the shifted-square martingale

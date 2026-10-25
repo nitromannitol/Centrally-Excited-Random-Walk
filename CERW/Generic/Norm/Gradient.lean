@@ -1,6 +1,10 @@
-import CERW.Generic.Norm.Basic
-import Mathlib.Analysis.Calculus.Rademacher
-import Mathlib.Analysis.Calculus.Gradient.Basic
+module
+
+public import CERW.Generic.Norm.Basic
+public import Mathlib.Analysis.Calculus.Rademacher
+public import Mathlib.Analysis.Calculus.Gradient.Basic
+
+@[expose] public section
 
 /-!
 # The gradient of a norm

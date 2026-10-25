@@ -1,6 +1,10 @@
-import CERW.LimitShapes.LimitLaws.MomentFluctuations
-import CERW.LimitShapes.LimitLaws.FixedSiteCentering
-import CERW.Support.Limit.SiteFluctuations
+module
+
+public import CERW.LimitShapes.LimitLaws.MomentFluctuations
+public import CERW.LimitShapes.LimitLaws.FixedSiteCentering
+public import CERW.Support.Limit.SiteFluctuations
+
+@[expose] public section
 
 /-!
 # Theorem 8.3 (`thm:site-fluctuations`) using the printed bounds and their limit laws.

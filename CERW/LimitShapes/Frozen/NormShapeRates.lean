@@ -1,5 +1,9 @@
-import CERW.LimitShapes.NormRates
-import CERW.Frozen.NormShapeRates
+module
+
+public import CERW.LimitShapes.NormRates
+public import CERW.Frozen.NormShapeRates
+
+@[expose] public section
 
 /-!
 # prop:norm-shape

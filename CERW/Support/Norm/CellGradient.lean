@@ -1,7 +1,11 @@
-import CERW.Support.Statements
-import CERW.Generic.Norm
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
+module
+
+public import CERW.Support.Statements
+public import CERW.Generic.Norm
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+
+@[expose] public section
 
 /-!
 # The gradient of a norm on a cell

@@ -1,16 +1,20 @@
-import CERW.Support.Statements
-import CERW.Support.Main.LimitShape
-import CERW.Support.Main.EventProb
-import CERW.Support.Contact.ContactCell
-import CERW.Support.Contact.ContactSetup
-import CERW.Support.Contact.InradiusArith
-import CERW.Support.Contact.Volume
-import CERW.Support.Contact.BallExcess
-import CERW.Support.Contact.NormReplace
-import CERW.Support.Contact.Quadratic
-import CERW.Support.Contact.EnvelopeShell
-import CERW.Support.Geometry.Bound
-import CERW.Generic.Kernel.RadialInner
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Main.LimitShape
+public import CERW.Support.Main.EventProb
+public import CERW.Support.Contact.ContactCell
+public import CERW.Support.Contact.ContactSetup
+public import CERW.Support.Contact.InradiusArith
+public import CERW.Support.Contact.Volume
+public import CERW.Support.Contact.BallExcess
+public import CERW.Support.Contact.NormReplace
+public import CERW.Support.Contact.Quadratic
+public import CERW.Support.Contact.EnvelopeShell
+public import CERW.Support.Geometry.Bound
+public import CERW.Generic.Kernel.RadialInner
+
+@[expose] public section
 
 /-!
 # The inner radius of the Euclidean walk (`prop:inner`)

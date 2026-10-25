@@ -1,4 +1,8 @@
-import CERW.Frozen.CellGradient
+module
+
+public import CERW.Frozen.CellGradient
+
+@[expose] public section
 
 /-!
 # lem:cell

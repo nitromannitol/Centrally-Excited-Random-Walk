@@ -1,5 +1,9 @@
-import CERW.Frozen.FluctuationRates
-import CERW.LimitShapes.Curvature.FluctuationTheorem
+module
+
+public import CERW.Frozen.FluctuationRates
+public import CERW.LimitShapes.Curvature.FluctuationTheorem
+
+@[expose] public section
 
 /-!
 # thm:fluctuations

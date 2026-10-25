@@ -1,10 +1,14 @@
-import CERW.Support.Norm.RadialNewtonAE
-import CERW.Frozen.NormBallPotential
-import CERW.Model.NormPotential
-import CERW.Generic.Norm.Gradient
-import CERW.Generic.Norm.Sphere
-import CERW.Generic.Norm.Subgradient
-import Mathlib.Analysis.Calculus.FDeriv.Measurable
+module
+
+public import CERW.Support.Norm.RadialNewtonAE
+public import CERW.Frozen.NormBallPotential
+public import CERW.Model.NormPotential
+public import CERW.Generic.Norm.Gradient
+public import CERW.Generic.Norm.Sphere
+public import CERW.Generic.Norm.Subgradient
+public import Mathlib.Analysis.Calculus.FDeriv.Measurable
+
+@[expose] public section
 
 /-!
 # The potential convolution at every point, and the contact convolution

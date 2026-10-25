@@ -1,11 +1,15 @@
-import CERW.Generic.Martingale.Lil.LowerStatement
-import CERW.Generic.Martingale.LilAssembly.StoutLower
-import CERW.Support.Stout
-import CERW.Model
-import CERW.Support.Lower.ExpDeviationAE
-import CERW.Support.Lower.SharpWidth
-import CERW.Support.Main.LimitShape
-import CERW.Support.Lower.PlanarGap.SmallBallCompose
+module
+
+public import CERW.Generic.Martingale.Lil.LowerStatement
+public import CERW.Generic.Martingale.LilAssembly.StoutLower
+public import CERW.Support.Stout
+public import CERW.Model
+public import CERW.Support.Lower.ExpDeviationAE
+public import CERW.Support.Lower.SharpWidth
+public import CERW.Support.Main.LimitShape
+public import CERW.Support.Lower.PlanarGap.SmallBallCompose
+
+@[expose] public section
 
 /-!
 # The difference of the radii in the plane

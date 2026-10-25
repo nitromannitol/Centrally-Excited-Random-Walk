@@ -1,5 +1,9 @@
-import CERW.Support.Statements
-import CERW.Support.Geometry.Bound
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Geometry.Bound
+
+@[expose] public section
 
 /-!
 # The near and far parts of the positive potential

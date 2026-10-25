@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.OuterLocalTime
-import CERW.LimitShapes.Curvature.Width
-import CERW.LimitShapes.Profile
+module
+
+public import CERW.LimitShapes.Curvature.OuterLocalTime
+public import CERW.LimitShapes.Curvature.Width
+public import CERW.LimitShapes.Profile
+
+@[expose] public section
 
 /-! # Outer width on the common event
 

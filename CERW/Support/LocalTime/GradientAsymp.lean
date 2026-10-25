@@ -1,7 +1,11 @@
-import CERW.Support.Law.StepMean
-import CERW.Generic.Kernel.ScalarTaylor
-import CERW.Model.Potential
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.Law.StepMean
+public import CERW.Generic.Kernel.ScalarTaylor
+public import CERW.Model.Potential
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # The central difference of the potential kernel

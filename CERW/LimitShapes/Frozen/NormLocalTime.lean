@@ -1,5 +1,9 @@
-import CERW.LimitShapes.LocalTime
-import CERW.LimitShapes.LocalApproximation
+module
+
+public import CERW.LimitShapes.LocalTime
+public import CERW.LimitShapes.LocalApproximation
+
+@[expose] public section
 
 /-!
 # lem:local

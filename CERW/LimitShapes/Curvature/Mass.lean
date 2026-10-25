@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.CapKernel
-import CERW.Generic.Kernel.RadialPower
-import CERW.Support.Geometry.Bound
+module
+
+public import CERW.LimitShapes.Curvature.CapKernel
+public import CERW.Generic.Kernel.RadialPower
+public import CERW.Support.Geometry.Bound
+
+@[expose] public section
 
 /-!
 # Integrated contact and curvature bounds

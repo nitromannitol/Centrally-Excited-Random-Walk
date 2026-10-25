@@ -1,7 +1,11 @@
-import CERW.Support.Law.Dynkin
-import CERW.Support.Law.StepMean
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.Law.Dynkin
+public import CERW.Support.Law.StepMean
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # The Dynkin decomposition of the local time

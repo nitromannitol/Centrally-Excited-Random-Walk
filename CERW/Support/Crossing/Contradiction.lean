@@ -1,4 +1,8 @@
-import CERW.Support.Main.ScaleLimits
+module
+
+public import CERW.Support.Main.ScaleLimits
+
+@[expose] public section
 
 /-!
 # The crossing bound is eventually contradictory

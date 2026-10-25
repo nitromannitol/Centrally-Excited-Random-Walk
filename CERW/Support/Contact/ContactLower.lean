@@ -1,6 +1,10 @@
-import CERW.Support.Contact.Kernel
-import CERW.Support.Geometry.Newton
-import CERW.Support.Geometry.Bound
+module
+
+public import CERW.Support.Contact.Kernel
+public import CERW.Support.Geometry.Newton
+public import CERW.Support.Geometry.Bound
+
+@[expose] public section
 
 /-!
 # The excess volume pushes the potential up at the contact point

@@ -1,8 +1,12 @@
-import CERW.Support.LocalTime.Bracket
-import CERW.Generic.Martingale.Dyadic
-import CERW.Generic.Martingale.Clamp
-import CERW.Support.Law.ScaleArith
-import CERW.Support.LocalTime.LocalBracket
+module
+
+public import CERW.Support.LocalTime.Bracket
+public import CERW.Generic.Martingale.Dyadic
+public import CERW.Generic.Martingale.Clamp
+public import CERW.Support.Law.ScaleArith
+public import CERW.Support.LocalTime.LocalBracket
+
+@[expose] public section
 
 /-!
 # The local martingales at individual targets

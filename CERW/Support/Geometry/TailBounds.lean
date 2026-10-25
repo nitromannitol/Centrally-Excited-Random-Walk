@@ -1,4 +1,8 @@
-import CERW.Support.Geometry.TailBasic
+module
+
+public import CERW.Support.Geometry.TailBasic
+
+@[expose] public section
 
 /-!
 # The weighted exterior volume: bounds and increments

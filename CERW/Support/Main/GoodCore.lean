@@ -1,9 +1,13 @@
-import CERW.Support.Main.Event
-import CERW.Support.Main.MassEventHigh
-import CERW.Support.Main.MassEventPlanar
-import CERW.Support.Main.InnerOfMass
-import CERW.Support.Main.OuterOfMass
-import CERW.Support.Main.GoodMono
+module
+
+public import CERW.Support.Main.Event
+public import CERW.Support.Main.MassEventHigh
+public import CERW.Support.Main.MassEventPlanar
+public import CERW.Support.Main.InnerOfMass
+public import CERW.Support.Main.OuterOfMass
+public import CERW.Support.Main.GoodMono
+
+@[expose] public section
 
 /-!
 # The fluctuation event from the good events

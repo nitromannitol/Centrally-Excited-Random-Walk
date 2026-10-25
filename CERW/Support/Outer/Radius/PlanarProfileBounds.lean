@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.HigherDimensionProfile
+module
+
+public import CERW.Support.Outer.Radius.HigherDimensionProfile
+
+@[expose] public section
 
 /-!
 # Planar Profile Bounds

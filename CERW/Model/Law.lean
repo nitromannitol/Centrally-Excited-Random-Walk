@@ -1,5 +1,9 @@
-import CERW.Model.Kernel
-import Mathlib.MeasureTheory.Measure.MeasureSpace
+module
+
+public import CERW.Model.Kernel
+public import Mathlib.MeasureTheory.Measure.MeasureSpace
+
+@[expose] public section
 
 /-!
 # Centrally excited random walk

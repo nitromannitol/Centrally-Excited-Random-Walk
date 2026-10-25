@@ -1,7 +1,11 @@
-import CERW.Support.Law.StepMean
-import CERW.Model.Potential
-import CERW.Support.Occupation.Facts
-import LatticeProb.Walk.ExteriorDirichlet
+module
+
+public import CERW.Support.Law.StepMean
+public import CERW.Model.Potential
+public import CERW.Support.Occupation.Facts
+public import LatticeProb.Walk.ExteriorDirichlet
+
+@[expose] public section
 
 /-!
 # The drift of the radial test

@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.PathBounds
+module
+
+public import CERW.Support.Outer.Radius.PathBounds
+
+@[expose] public section
 
 /-!
 # Inner Geometry

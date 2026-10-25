@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.SitePointwise
-import CERW.LimitShapes.Energy.FarPotential
+module
+
+public import CERW.LimitShapes.Energy.SitePointwise
+public import CERW.LimitShapes.Energy.FarPotential
+
+@[expose] public section
 
 /-!
 # Continuum approximation at the first exit

@@ -1,4 +1,8 @@
-import CERW.LimitShapes.EuclideanSeparatedBrackets
+module
+
+public import CERW.LimitShapes.EuclideanSeparatedBrackets
+
+@[expose] public section
 
 /-!
 # Separated brackets on the common event

@@ -1,5 +1,9 @@
-import CERW.LimitShapes.LimitLaws.MomentFluctuations
-import CERW.Frozen.MomentFluctuations
+module
+
+public import CERW.LimitShapes.LimitLaws.MomentFluctuations
+public import CERW.Frozen.MomentFluctuations
+
+@[expose] public section
 
 /-!
 # thm:moment-fluctuations

@@ -1,3 +1,5 @@
+module
+
 /-
 # The radial Newton convolution with an unrestricted nonnegative radial weight
 
@@ -16,15 +18,17 @@ with a constant that does not depend on `y`.  Joint integrability is then Fubini
 product of `volume.restrict D` with `volume`; the almost-everywhere slice integrability is the
 right-hand marginal of that product integral.
 -/
-import CERW.Support.Norm.RadialNewtonLocalEstimate
-import CERW.Generic.Kernel.Integrable
-import CERW.Generic.Kernel.Modulus
-import CERW.Generic.Newton.Polar
-import CERW.Model.Space
-import CERW.Support.Geometry.Newton
-import CERW.Support.Geometry.Bound
-import Mathlib.MeasureTheory.Integral.Prod
-import Mathlib.MeasureTheory.Function.L2Space
+public import CERW.Support.Norm.RadialNewtonLocalEstimate
+public import CERW.Generic.Kernel.Integrable
+public import CERW.Generic.Kernel.Modulus
+public import CERW.Generic.Newton.Polar
+public import CERW.Model.Space
+public import CERW.Support.Geometry.Newton
+public import CERW.Support.Geometry.Bound
+public import Mathlib.MeasureTheory.Integral.Prod
+public import Mathlib.MeasureTheory.Function.L2Space
+
+@[expose] public section
 
 open MeasureTheory
 open scoped Pointwise Topology

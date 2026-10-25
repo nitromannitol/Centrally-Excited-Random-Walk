@@ -1,6 +1,10 @@
-import CERW.LimitShapes.LimitLaws.MomentFluctuations
-import CERW.LimitShapes.LimitLaws.FixedSiteCentering
-import CERW.LimitShapes.LimitLaws.SiteFluctuations
+module
+
+public import CERW.LimitShapes.LimitLaws.MomentFluctuations
+public import CERW.LimitShapes.LimitLaws.FixedSiteCentering
+public import CERW.LimitShapes.LimitLaws.SiteFluctuations
+
+@[expose] public section
 
 /-!
 # Moment and site limit laws

@@ -1,4 +1,8 @@
-import CERW.Model.Norm
+module
+
+public import CERW.Model.Norm
+
+@[expose] public section
 
 /-!
 # Elementary facts about a norm on `ℝ^d`

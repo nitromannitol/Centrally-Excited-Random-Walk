@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Norm.BallLayer
+module
+
+public import CERW.Model
+public import CERW.Support.Norm.BallLayer
+
+@[expose] public section
 
 /-!
 # lem:ballpotential

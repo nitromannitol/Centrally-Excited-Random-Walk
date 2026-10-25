@@ -1,5 +1,9 @@
-import CERW.Support.Lower.ExpDeviationAE
-import CERW.Support.Statements
+module
+
+public import CERW.Support.Lower.ExpDeviationAE
+public import CERW.Support.Statements
+
+@[expose] public section
 
 /-!
 # The draft statement of the exponential deviation lemma for martingales up to time `n`

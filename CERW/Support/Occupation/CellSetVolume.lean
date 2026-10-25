@@ -1,4 +1,8 @@
-import CERW.Support.Occupation.CellVolume
+module
+
+public import CERW.Support.Occupation.CellVolume
+
+@[expose] public section
 
 /-!
 # Volume of the cell set

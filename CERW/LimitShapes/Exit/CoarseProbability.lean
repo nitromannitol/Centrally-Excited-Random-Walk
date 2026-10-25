@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Exit.CoarseScales
+module
+
+public import CERW.LimitShapes.Exit.CoarseScales
+
+@[expose] public section
 
 /-!
 # Uniform constants for the coarse bounds

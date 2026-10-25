@@ -1,5 +1,9 @@
-import CERW.Support.Norm.GaugeCoarseVolume
-import CERW.Support.Norm.GaugeLocalTime
+module
+
+public import CERW.Support.Norm.GaugeCoarseVolume
+public import CERW.Support.Norm.GaugeLocalTime
+
+@[expose] public section
 
 /-!
 # The coarse bounds for the walk driven by the gauge of a convex body

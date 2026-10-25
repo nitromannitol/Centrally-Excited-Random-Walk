@@ -1,6 +1,10 @@
-import CERW.Support.Norm.GaugeCellGradient
-import CERW.Support.Norm.GaugePointwise
-import CERW.Support.Norm.GaugePotential
+module
+
+public import CERW.Support.Norm.GaugeCellGradient
+public import CERW.Support.Norm.GaugePointwise
+public import CERW.Support.Norm.GaugePotential
+
+@[expose] public section
 
 /-!
 # The exact growth of the distributional Laplacian of the gauge

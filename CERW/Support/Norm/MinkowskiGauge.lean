@@ -1,8 +1,12 @@
-import CERW.Model.Norm
-import CERW.Support.Drift.KernelValues
-import Mathlib.Analysis.Convex.Cone.Extension
-import Mathlib.Analysis.Convex.Gauge
-import Mathlib.Analysis.Convex.Measure
+module
+
+public import CERW.Model.Norm
+public import CERW.Support.Drift.KernelValues
+public import Mathlib.Analysis.Convex.Cone.Extension
+public import Mathlib.Analysis.Convex.Gauge
+public import Mathlib.Analysis.Convex.Measure
+
+@[expose] public section
 
 /-!
 # The Minkowski functional of an asymmetric convex body

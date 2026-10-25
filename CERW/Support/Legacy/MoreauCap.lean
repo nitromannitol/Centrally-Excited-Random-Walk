@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Norm.MoreauCap
+module
+
+public import CERW.Model
+public import CERW.Support.Norm.MoreauCap
+
+@[expose] public section
 
 /-!
 # lem:cap

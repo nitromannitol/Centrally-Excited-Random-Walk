@@ -1,5 +1,9 @@
-import CERW.Model.DriftKernel
-import CERW.Support.Law.Moments
+module
+
+public import CERW.Model.DriftKernel
+public import CERW.Support.Law.Moments
+
+@[expose] public section
 
 /-!
 # The values of the drift first-departure kernel

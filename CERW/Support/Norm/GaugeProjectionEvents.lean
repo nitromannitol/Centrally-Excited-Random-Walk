@@ -1,5 +1,9 @@
-import CERW.Support.Norm.GaugeCoarseVolume
-import CERW.Support.Norm.GaugeContactShape
+module
+
+public import CERW.Support.Norm.GaugeCoarseVolume
+public import CERW.Support.Norm.GaugeContactShape
+
+@[expose] public section
 
 /-!
 # The compensated-path and projection-direction events for the gauge of a convex body

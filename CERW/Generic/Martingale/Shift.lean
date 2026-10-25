@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.FreedmanEvent
+module
+
+public import CERW.Generic.Martingale.FreedmanEvent
+
+@[expose] public section
 
 /-!
 # Martingales seen from a later time

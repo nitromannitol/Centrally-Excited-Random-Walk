@@ -1,8 +1,12 @@
-import CERW.Generic.Lattice.Resolvent
-import CERW.Generic.Lattice.SummableSums
-import CERW.Generic.Lattice.WeightSums
-import CERW.Model.Occupation
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Generic.Lattice.Resolvent
+public import CERW.Generic.Lattice.SummableSums
+public import CERW.Generic.Lattice.WeightSums
+public import CERW.Model.Occupation
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # The local-time envelope in dimensions three and higher

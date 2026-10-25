@@ -1,5 +1,9 @@
-import CERW.LimitShapes.EuclideanEvent
-import CERW.Support.Lower.SharpRadii
+module
+
+public import CERW.LimitShapes.EuclideanEvent
+public import CERW.Support.Lower.SharpRadii
+
+@[expose] public section
 
 /-!
 # Quadratic bracket bounds from the coarse event

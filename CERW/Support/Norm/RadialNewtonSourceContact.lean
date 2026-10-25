@@ -1,8 +1,12 @@
-import CERW.Support.Norm.RadialNewtonConvolution
-import CERW.Support.Guards.SourceEvents
-import CERW.Support.Contact.ContactCell
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellSetVolume
+module
+
+public import CERW.Support.Norm.RadialNewtonConvolution
+public import CERW.Support.Guards.SourceEvents
+public import CERW.Support.Contact.ContactCell
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellSetVolume
+
+@[expose] public section
 
 /-!
 # The contact convolution for the visited-cell set of the walk

@@ -1,5 +1,9 @@
-import CERW.LimitShapes.LocalBracket
-import CERW.Generic.Lattice.Centered
+module
+
+public import CERW.LimitShapes.LocalBracket
+public import CERW.Generic.Lattice.Centered
+
+@[expose] public section
 
 /-!
 # Kernel brackets before the first exit

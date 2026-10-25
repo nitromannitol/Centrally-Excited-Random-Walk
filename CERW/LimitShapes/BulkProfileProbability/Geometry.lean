@@ -1,5 +1,9 @@
-import CERW.LimitShapes.BulkProfile
-import CERW.Support.Contact.Volume
+module
+
+public import CERW.LimitShapes.BulkProfile
+public import CERW.Support.Contact.Volume
+
+@[expose] public section
 
 /-!
 # Excess volume for the bulk profile

@@ -1,5 +1,9 @@
-import CERW.Model.Martingales
-import CERW.Support.LocalTime.KernelAsymptotics
+module
+
+public import CERW.Model.Martingales
+public import CERW.Support.LocalTime.KernelAsymptotics
+
+@[expose] public section
 
 /-!
 # The kernel facts for the lattice kernel

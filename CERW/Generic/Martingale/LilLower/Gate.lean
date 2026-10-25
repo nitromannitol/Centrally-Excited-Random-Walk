@@ -1,5 +1,9 @@
-import Mathlib.Probability.Process.Filtration
-import Mathlib.MeasureTheory.Constructions.BorelSpace.Order
+module
+
+public import Mathlib.Probability.Process.Filtration
+public import Mathlib.MeasureTheory.Constructions.BorelSpace.Order
+
+@[expose] public section
 
 /-!
 # A cumulative predictable level gate

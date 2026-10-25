@@ -1,4 +1,8 @@
-import CERW.Support.Norm.CoarseVolume
+module
+
+public import CERW.Support.Norm.CoarseVolume
+
+@[expose] public section
 
 /-!
 # Deterministic consequences of a two-sided exit estimate

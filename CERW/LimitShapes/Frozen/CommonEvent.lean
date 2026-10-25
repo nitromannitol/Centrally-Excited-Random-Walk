@@ -1,4 +1,8 @@
-import CERW.LimitShapes.CommonEvent
+module
+
+public import CERW.LimitShapes.CommonEvent
+
+@[expose] public section
 
 /-!
 # The probability of the common event

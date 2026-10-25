@@ -1,4 +1,8 @@
-import CERW.Model.Potential
+module
+
+public import CERW.Model.Potential
+
+@[expose] public section
 
 /-!
 # The weighted exterior volume: sign, integrability, monotonicity

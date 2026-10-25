@@ -1,6 +1,10 @@
-import CERW.LimitShapes.EventConsequences
-import CERW.LimitShapes.Energy.SiteScales
-import CERW.Support.Outer.Radius.PathBounds
+module
+
+public import CERW.LimitShapes.EventConsequences
+public import CERW.LimitShapes.Energy.SiteScales
+public import CERW.Support.Outer.Radius.PathBounds
+
+@[expose] public section
 
 /-!
 # Combining the deterministic fluctuation estimates

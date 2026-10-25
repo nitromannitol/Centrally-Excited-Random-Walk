@@ -1,19 +1,23 @@
-import CERW.Support.Statements
-import CERW.Support.Drift
-import CERW.Support.Norm.Freedman
-import CERW.Support.Norm.VectorBound
-import CERW.Support.Norm.GaugeModel
-import CERW.Support.Norm.GaugePotential
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.Occupation.SiteArith
-import CERW.Support.Occupation.Facts
-import CERW.Support.Occupation.Cells
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Occupation.CellIntegral
-import CERW.Support.Crossing.LastEntrance
-import CERW.Support.Law.Moments
-import CERW.Support.LocalTime.Bracket
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Drift
+public import CERW.Support.Norm.Freedman
+public import CERW.Support.Norm.VectorBound
+public import CERW.Support.Norm.GaugeModel
+public import CERW.Support.Norm.GaugePotential
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.Occupation.SiteArith
+public import CERW.Support.Occupation.Facts
+public import CERW.Support.Occupation.Cells
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Occupation.CellIntegral
+public import CERW.Support.Crossing.LastEntrance
+public import CERW.Support.Law.Moments
+public import CERW.Support.LocalTime.Bracket
+
+@[expose] public section
 
 /-!
 # The coarse bounds for the Minkowski functional of a compact convex body

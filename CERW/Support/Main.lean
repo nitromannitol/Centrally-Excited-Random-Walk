@@ -1,24 +1,28 @@
-import CERW.Support.Main.HausdorffArith
-import CERW.Support.Main.ScaleLimits
-import CERW.Support.Main.GoodEvent
-import CERW.Support.Main.BorelCantelli
-import CERW.Support.Main.ShapeInclusion
-import CERW.Support.Main.ShapeCount
-import CERW.Support.Main.ShapeAssembly
-import CERW.Support.Main.Event
-import CERW.Support.Main.GoodMono
-import CERW.Support.Main.HausdorffGood
-import CERW.Support.Main.EventProb
-import CERW.Support.Main.InnerClauses
-import CERW.Support.Main.MassEventHigh
-import CERW.Support.Main.OuterInclusion
-import CERW.Support.Main.FluctAssembly
-import CERW.Support.Main.HausdorffAssembly
-import CERW.Support.Main.OuterOfMass
-import CERW.Support.Main.MassEventPlanar
-import CERW.Support.Main.HausdorffOneSided
-import CERW.Support.Main.InnerOfMass
-import CERW.Support.Main.GoodCore
-import CERW.Support.Main.KernelAnchors
-import CERW.Support.Main.LimitShape
-import CERW.Support.Main.NormGuards
+module
+
+public import CERW.Support.Main.HausdorffArith
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Support.Main.GoodEvent
+public import CERW.Support.Main.BorelCantelli
+public import CERW.Support.Main.ShapeInclusion
+public import CERW.Support.Main.ShapeCount
+public import CERW.Support.Main.ShapeAssembly
+public import CERW.Support.Main.Event
+public import CERW.Support.Main.GoodMono
+public import CERW.Support.Main.HausdorffGood
+public import CERW.Support.Main.EventProb
+public import CERW.Support.Main.InnerClauses
+public import CERW.Support.Main.MassEventHigh
+public import CERW.Support.Main.OuterInclusion
+public import CERW.Support.Main.FluctAssembly
+public import CERW.Support.Main.HausdorffAssembly
+public import CERW.Support.Main.OuterOfMass
+public import CERW.Support.Main.MassEventPlanar
+public import CERW.Support.Main.HausdorffOneSided
+public import CERW.Support.Main.InnerOfMass
+public import CERW.Support.Main.GoodCore
+public import CERW.Support.Main.KernelAnchors
+public import CERW.Support.Main.LimitShape
+public import CERW.Support.Main.NormGuards
+
+@[expose] public section

@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Crossing.Deterministic
-import CERW.LimitShapes.Crossing.RampFamilies
-import CERW.Support.Norm.VectorBound
+module
+
+public import CERW.LimitShapes.Crossing.Deterministic
+public import CERW.LimitShapes.Crossing.RampFamilies
+public import CERW.Support.Norm.VectorBound
+
+@[expose] public section
 
 /-!
 # The simultaneous distance crossing probability bound

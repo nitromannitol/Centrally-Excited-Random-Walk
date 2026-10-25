@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Crossing.DistanceGeometry
-import CERW.Support.Drift.Dynkin
+module
+
+public import CERW.LimitShapes.Crossing.DistanceGeometry
+public import CERW.Support.Drift.Dynkin
+
+@[expose] public section
 
 /-!
 # Exponential distance drift

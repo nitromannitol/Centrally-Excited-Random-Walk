@@ -1,6 +1,10 @@
-import CERW.Support.Main.Event
-import CERW.Support.Main.OuterInclusion
-import CERW.Support.Coarse.OuterEnvelope
+module
+
+public import CERW.Support.Main.Event
+public import CERW.Support.Main.OuterInclusion
+public import CERW.Support.Coarse.OuterEnvelope
+
+@[expose] public section
 
 /-!
 # The outer inclusion on the event, given the mass bound

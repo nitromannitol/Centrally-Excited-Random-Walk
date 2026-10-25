@@ -1,5 +1,9 @@
-import CERW.Support.Norm.LocalTime
-import CERW.Support.Norm.ContactPotential
+module
+
+public import CERW.Support.Norm.LocalTime
+public import CERW.Support.Norm.ContactPotential
+
+@[expose] public section
 
 /-!
 # Direct pointwise local-time approximation

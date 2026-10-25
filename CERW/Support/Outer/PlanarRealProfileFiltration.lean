@@ -1,4 +1,8 @@
-import CERW.Support.Outer.PlanarRealProfileAE
+module
+
+public import CERW.Support.Outer.PlanarRealProfileAE
+
+@[expose] public section
 
 /-!
 # The finite-prefix event and the legal carrier of the full real-point bundle

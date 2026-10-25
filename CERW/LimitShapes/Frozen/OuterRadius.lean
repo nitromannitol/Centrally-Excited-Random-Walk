@@ -1,5 +1,9 @@
-import CERW.Frozen.OuterRadius
-import CERW.LimitShapes.Curvature.OuterEvent
+module
+
+public import CERW.Frozen.OuterRadius
+public import CERW.LimitShapes.Curvature.OuterEvent
+
+@[expose] public section
 
 /-!
 # prop:stronger-outer

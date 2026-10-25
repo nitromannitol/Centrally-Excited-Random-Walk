@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.RadialIntegral
-import CERW.LimitShapes.Curvature.FarPoint
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import CERW.LimitShapes.Curvature.RadialIntegral
+public import CERW.LimitShapes.Curvature.FarPoint
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # Curvature bounds on radial bands

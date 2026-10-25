@@ -1,4 +1,8 @@
-import CERW.Support.Occupation.Facts
+module
+
+public import CERW.Support.Occupation.Facts
+
+@[expose] public section
 
 /-!
 # Duration and drift on a crossing interval

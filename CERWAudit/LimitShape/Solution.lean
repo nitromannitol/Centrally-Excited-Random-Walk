@@ -1,7 +1,11 @@
-import Mathlib
-import CERW.Frozen.LimitShape
-import CERWAudit.LimitShape.SolutionBasic
-import CERWAudit.Support.LimitShapeBridge
+module
+
+public import Mathlib
+public import CERW.Frozen.LimitShape
+public import CERWAudit.LimitShape.SolutionBasic
+public import CERWAudit.Support.LimitShapeBridge
+
+@[expose] public section
 
 /-!
 # Solution: `LimitShape` (limit shape)

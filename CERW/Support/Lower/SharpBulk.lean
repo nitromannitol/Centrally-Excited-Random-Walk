@@ -1,17 +1,21 @@
-import CERW.Support.Statements
-import CERW.Support.Lower.ExpDeviationStatement
-import CERW.Support.LocalTime
-import CERW.Support.LocalTime.LatticeKernelFacts
-import CERW.Support.Law.Dynkin
-import CERW.Support.Drift.Dynkin
-import CERW.Generic.Martingale.Clamp
-import CERW.Support.Geometry.BallCompare
-import CERW.Support.Geometry.Bound
-import CERW.Support.Geometry.Newton
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Main.ScaleLimits
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Lower.ExpDeviationStatement
+public import CERW.Support.LocalTime
+public import CERW.Support.LocalTime.LatticeKernelFacts
+public import CERW.Support.Law.Dynkin
+public import CERW.Support.Drift.Dynkin
+public import CERW.Generic.Martingale.Clamp
+public import CERW.Support.Geometry.BallCompare
+public import CERW.Support.Geometry.Bound
+public import CERW.Support.Geometry.Newton
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Main.ScaleLimits
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+
+@[expose] public section
 
 /-!
 # Lower bounds on the local times near the origin

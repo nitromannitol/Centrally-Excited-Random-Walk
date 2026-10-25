@@ -1,6 +1,10 @@
-import CERW.Support.Contact.PlanarSum
-import CERW.Generic.Lattice.Centered
-import CERW.Model.Occupation
+module
+
+public import CERW.Support.Contact.PlanarSum
+public import CERW.Generic.Lattice.Centered
+public import CERW.Model.Occupation
+
+@[expose] public section
 
 /-!
 # The planar bracket at the unvisited site

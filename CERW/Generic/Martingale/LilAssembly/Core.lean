@@ -1,7 +1,11 @@
-import CERW.Generic.Martingale.Lil.LowerStatement
-import CERW.Generic.Martingale.LilLower
-import CERW.Generic.Martingale.Tilt.LimitStatements
-import CERW.Generic.Martingale.LilAssembly.Statements
+module
+
+public import CERW.Generic.Martingale.Lil.LowerStatement
+public import CERW.Generic.Martingale.LilLower
+public import CERW.Generic.Martingale.Tilt.LimitStatements
+public import CERW.Generic.Martingale.LilAssembly.Statements
+
+@[expose] public section
 
 /-!
 # The assembly of the lower half of Stout's law: the interface

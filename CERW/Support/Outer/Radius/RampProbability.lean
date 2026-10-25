@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.RampMartingale
+module
+
+public import CERW.Support.Outer.Radius.RampMartingale
+
+@[expose] public section
 
 /-!
 # Ramp Probability

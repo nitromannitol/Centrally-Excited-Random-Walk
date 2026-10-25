@@ -1,5 +1,9 @@
-import CERW.Support.Law.Existence
-import Mathlib.Probability.Kernel.CondDistrib
+module
+
+public import CERW.Support.Law.Existence
+public import Mathlib.Probability.Kernel.CondDistrib
+
+@[expose] public section
 
 /-!
 # The one-step conditional law of centrally excited random walk

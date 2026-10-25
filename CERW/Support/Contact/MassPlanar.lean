@@ -1,6 +1,10 @@
-import CERW.Support.Contact.ContactMass
-import CERW.Support.Contact.Envelope
-import CERW.Support.Contact.PlanarBracket
+module
+
+public import CERW.Support.Contact.ContactMass
+public import CERW.Support.Contact.Envelope
+public import CERW.Support.Contact.PlanarBracket
+
+@[expose] public section
 
 /-!
 # The planar contact variance

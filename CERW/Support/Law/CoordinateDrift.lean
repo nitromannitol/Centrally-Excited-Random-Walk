@@ -1,5 +1,9 @@
-import CERW.Support.Law.Dynkin
-import CERW.Support.Law.StepMean
+module
+
+public import CERW.Support.Law.Dynkin
+public import CERW.Support.Law.StepMean
+
+@[expose] public section
 
 /-!
 # The drift of a coordinate

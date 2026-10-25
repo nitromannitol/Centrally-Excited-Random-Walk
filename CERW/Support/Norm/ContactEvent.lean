@@ -1,6 +1,10 @@
-import CERW.Support.Norm.ContactPotential
-import CERW.Support.Norm.VectorBound
-import CERW.Support.LocalTime.LatticeKernelFacts
+module
+
+public import CERW.Support.Norm.ContactPotential
+public import CERW.Support.Norm.VectorBound
+public import CERW.Support.LocalTime.LatticeKernelFacts
+
+@[expose] public section
 
 /-!
 # The contact estimate on the event of Section 5

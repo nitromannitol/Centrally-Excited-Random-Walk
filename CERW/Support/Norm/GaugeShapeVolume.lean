@@ -1,4 +1,8 @@
-import CERW.Support.Norm.GaugeShapeEvents
+module
+
+public import CERW.Support.Norm.GaugeShapeEvents
+
+@[expose] public section
 
 /-!
 # The volume of the range for the walk driven by the gauge of a convex body

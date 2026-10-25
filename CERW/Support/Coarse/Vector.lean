@@ -1,6 +1,10 @@
-import CERW.Support.Law.CoordinateDrift
-import CERW.Generic.Martingale.Dyadic
-import CERW.Generic.Martingale.Clamp
+module
+
+public import CERW.Support.Law.CoordinateDrift
+public import CERW.Generic.Martingale.Dyadic
+public import CERW.Generic.Martingale.Clamp
+
+@[expose] public section
 
 /-!
 # The compensated position

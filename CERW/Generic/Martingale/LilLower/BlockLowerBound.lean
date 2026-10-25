@@ -1,5 +1,9 @@
-import CERW.Generic.Martingale.Tilt.SharpLowerTailLimit
-import CERW.Generic.Martingale.LilLower.ConditionedBlock
+module
+
+public import CERW.Generic.Martingale.Tilt.SharpLowerTailLimit
+public import CERW.Generic.Martingale.LilLower.ConditionedBlock
+
+@[expose] public section
 
 /-!
 # The lower bound for one block, conditioned on an earlier event

@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Exit.Approximation
-import CERW.LimitShapes.Exit.Crossing
-import CERW.LimitShapes.Exit.Lower
+module
+
+public import CERW.LimitShapes.Exit.Approximation
+public import CERW.LimitShapes.Exit.Crossing
+public import CERW.LimitShapes.Exit.Lower
+
+@[expose] public section
 
 /-!
 # Time comparisons for the two-sided exit estimate

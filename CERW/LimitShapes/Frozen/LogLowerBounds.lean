@@ -1,5 +1,9 @@
-import CERW.Frozen.LogLowerBounds
-import CERW.LimitShapes.LogLower
+module
+
+public import CERW.Frozen.LogLowerBounds
+public import CERW.LimitShapes.LogLower
+
+@[expose] public section
 
 /-!
 # prop:log-lower

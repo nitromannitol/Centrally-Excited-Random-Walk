@@ -1,5 +1,9 @@
-import CERW.LimitShapes.PlanarLower.Radii
-import CERW.Frozen.SharpRadiiLil
+module
+
+public import CERW.LimitShapes.PlanarLower.Radii
+public import CERW.Frozen.SharpRadiiLil
+
+@[expose] public section
 
 /-!
 # thm:sharp

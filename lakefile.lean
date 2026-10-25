@@ -5,10 +5,10 @@ open Lake DSL
 package «centrally-excited-random-walk» where
 
 require «lattice-probability» from git
-  "https://github.com/nitromannitol/Lattice-Probability.git" @ "424de9b04279b9aa58364ab227b44c8007e0b5ba"
+  "https://github.com/nitromannitol/Lattice-Probability.git" @ "7e229549ff3b35ff8e7bb30bb96d4a193a292864"
 
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4" @ "81a5d257c8e410db227a6665ed08f64fea08e997"
+  "https://github.com/leanprover-community/mathlib4" @ "065356127b1dc0016f66b7283ce0ce2c4055aa55"
 
 /-- The comparator audit surface (`Audit/*/Challenge.lean`, `Audit/*/Solution.lean`).
 Deliberately **not** a default target: it builds only on demand (`lake build Audit`), so the

@@ -1,6 +1,10 @@
-import CERW.Support.Contact.ContactLower
-import CERW.Model.Occupation
-import CERW.Support.Occupation.CellSetVolume
+module
+
+public import CERW.Support.Contact.ContactLower
+public import CERW.Model.Occupation
+public import CERW.Support.Occupation.CellSetVolume
+
+@[expose] public section
 
 /-!
 # The contact inequality

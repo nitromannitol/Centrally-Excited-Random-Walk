@@ -1,6 +1,10 @@
-import CERW.Support.Drift.Dynkin
-import CERW.Generic.Martingale.Dyadic
-import CERW.Generic.Martingale.Clamp
+module
+
+public import CERW.Support.Drift.Dynkin
+public import CERW.Generic.Martingale.Dyadic
+public import CERW.Generic.Martingale.Clamp
+
+@[expose] public section
 
 /-!
 # The vector bound for the drift walk

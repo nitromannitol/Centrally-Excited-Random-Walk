@@ -1,16 +1,20 @@
-import CERW.Model
-import CERW.Support.Inner.InnerRadius
-import CERW.Support.Lower.ExpDeviation
-import CERW.Support.Main.LimitShape
-import CERW.Support.Norm.BallLayer
-import CERW.Support.Norm.CellGradient
-import CERW.Support.Norm.CoarseVolume
-import CERW.Support.Norm.ContactPotential
-import CERW.Support.Norm.Geometry
-import CERW.Support.Norm.LocalTime
-import CERW.Support.Norm.OuterCrossing
-import CERW.Support.Outer.NearFar
-import CERW.Support.Outer.OuterRadius
+module
+
+public import CERW.Model
+public import CERW.Support.Inner.InnerRadius
+public import CERW.Support.Lower.ExpDeviation
+public import CERW.Support.Main.LimitShape
+public import CERW.Support.Norm.BallLayer
+public import CERW.Support.Norm.CellGradient
+public import CERW.Support.Norm.CoarseVolume
+public import CERW.Support.Norm.ContactPotential
+public import CERW.Support.Norm.Geometry
+public import CERW.Support.Norm.LocalTime
+public import CERW.Support.Norm.OuterCrossing
+public import CERW.Support.Outer.NearFar
+public import CERW.Support.Outer.OuterRadius
+
+@[expose] public section
 
 /-!
 # thm:fluctuations

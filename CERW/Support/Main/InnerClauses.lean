@@ -1,9 +1,13 @@
-import CERW.Support.Main.GoodEvent
-import CERW.Support.Contact.Volume
-import CERW.Support.Contact.Profile
-import CERW.Support.Contact.Envelope
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Main.ScaleLimits
+module
+
+public import CERW.Support.Main.GoodEvent
+public import CERW.Support.Contact.Volume
+public import CERW.Support.Contact.Profile
+public import CERW.Support.Contact.Envelope
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Main.ScaleLimits
+
+@[expose] public section
 
 /-!
 # The inner clauses of the fluctuation event

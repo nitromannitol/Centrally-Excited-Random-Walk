@@ -1,5 +1,9 @@
-import Mathlib.Analysis.PSeries
-import CERW.Generic.Martingale.LilAssembly.Statements
+module
+
+public import Mathlib.Analysis.PSeries
+public import CERW.Generic.Martingale.LilAssembly.Statements
+
+@[expose] public section
 
 /-!
 # The parameters of the blocks

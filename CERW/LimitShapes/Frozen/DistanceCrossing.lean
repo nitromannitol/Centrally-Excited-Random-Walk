@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Crossing.Probability
-import CERW.LimitShapes.Crossing.ExponentialProbability
+module
+
+public import CERW.LimitShapes.Crossing.Probability
+public import CERW.LimitShapes.Crossing.ExponentialProbability
+
+@[expose] public section
 
 /-!
 # The simultaneous distance crossing estimate

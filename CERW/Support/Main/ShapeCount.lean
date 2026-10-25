@@ -1,6 +1,10 @@
-import CERW.Support.Main.GoodEvent
-import CERW.Support.Main.ScaleLimits
-import CERW.Support.Occupation.Facts
+module
+
+public import CERW.Support.Main.GoodEvent
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Support.Occupation.Facts
+
+@[expose] public section
 
 /-!
 # The shape theorem from the fluctuation event: counts and fixed sites

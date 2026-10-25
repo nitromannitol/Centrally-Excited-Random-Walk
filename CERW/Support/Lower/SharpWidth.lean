@@ -1,13 +1,17 @@
-import CERW.Support.Statements
-import CERW.Support.Lower.ExpDeviationStatement
-import CERW.Support.Legacy.CoarseBounds
-import CERW.Support.Law.CoordinateDrift
-import CERW.Support.Occupation.Facts
-import CERW.Support.Occupation.Cells
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Generic.Martingale.Clamp
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Lower.ExpDeviationStatement
+public import CERW.Support.Legacy.CoarseBounds
+public import CERW.Support.Law.CoordinateDrift
+public import CERW.Support.Occupation.Facts
+public import CERW.Support.Occupation.Cells
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Generic.Martingale.Clamp
+
+@[expose] public section
 
 /-!
 # Sharpness of the width of the range in the plane

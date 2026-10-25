@@ -1,6 +1,10 @@
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import CERW.Support.Occupation.CellSetVolume
+module
+
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Support.Occupation.CellSetVolume
+
+@[expose] public section
 
 /-!
 # The first moment of the range and of its cell set

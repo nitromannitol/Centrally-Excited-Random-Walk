@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.LatticeKernel
+module
+
+public import CERW.Support.Outer.Radius.LatticeKernel
+
+@[expose] public section
 
 /-!
 # Cell Weights

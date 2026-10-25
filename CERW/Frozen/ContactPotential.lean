@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.RevisedPaperContact
+module
+
+public import CERW.Model
+public import CERW.Support.RevisedPaperContact
+
+@[expose] public section
 
 /-!
 # lem-contact

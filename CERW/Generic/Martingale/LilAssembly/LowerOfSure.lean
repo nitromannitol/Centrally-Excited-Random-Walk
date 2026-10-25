@@ -1,8 +1,12 @@
-import CERW.Generic.Martingale.LilAssembly.PaddedDataOf
-import CERW.Generic.Martingale.LilAssembly.GateOpenAe
-import CERW.Generic.Martingale.LilAssembly.AeFst
-import CERW.Generic.Martingale.LilAssembly.Core
-import CERW.Generic.Martingale.LilLower
+module
+
+public import CERW.Generic.Martingale.LilAssembly.PaddedDataOf
+public import CERW.Generic.Martingale.LilAssembly.GateOpenAe
+public import CERW.Generic.Martingale.LilAssembly.AeFst
+public import CERW.Generic.Martingale.LilAssembly.Core
+public import CERW.Generic.Martingale.LilLower
+
+@[expose] public section
 
 /-!
 # The lower half of the law for a martingale with sure data

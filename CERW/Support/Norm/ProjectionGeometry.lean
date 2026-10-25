@@ -1,6 +1,10 @@
-import CERW.Model
-import CERW.Generic.Norm
-import Mathlib.Analysis.InnerProductSpace.Projection.Minimal
+module
+
+public import CERW.Model
+public import CERW.Generic.Norm
+public import Mathlib.Analysis.InnerProductSpace.Projection.Minimal
+
+@[expose] public section
 
 /-!
 # Euclidean projection onto a sublevel set of a norm

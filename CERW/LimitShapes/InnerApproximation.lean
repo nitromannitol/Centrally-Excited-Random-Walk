@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Event
-import CERW.Support.Norm.Section5Localization
+module
+
+public import CERW.LimitShapes.Event
+public import CERW.Support.Norm.Section5Localization
+
+@[expose] public section
 
 /-!
 # The inner radius from the approximation and quadratic estimates

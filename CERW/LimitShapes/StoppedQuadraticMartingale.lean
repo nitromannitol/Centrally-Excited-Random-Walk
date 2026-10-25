@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Event
+module
+
+public import CERW.LimitShapes.Event
+
+@[expose] public section
 
 /-!
 # The quadratic process stopped at the first exit is a martingale

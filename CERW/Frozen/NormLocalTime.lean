@@ -1,6 +1,10 @@
-import CERW.Model
-import CERW.Support.Norm.CellGradient
-import CERW.Support.Norm.LocalTime
+module
+
+public import CERW.Model
+public import CERW.Support.Norm.CellGradient
+public import CERW.Support.Norm.LocalTime
+
+@[expose] public section
 
 /-!
 # lem:local

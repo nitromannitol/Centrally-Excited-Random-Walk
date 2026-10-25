@@ -1,5 +1,9 @@
-import CERW.LimitShapes.LimitLaws.SiteFluctuations
-import CERW.Frozen.SiteFluctuations
+module
+
+public import CERW.LimitShapes.LimitLaws.SiteFluctuations
+public import CERW.Frozen.SiteFluctuations
+
+@[expose] public section
 
 /-!
 # thm:site-fluctuations

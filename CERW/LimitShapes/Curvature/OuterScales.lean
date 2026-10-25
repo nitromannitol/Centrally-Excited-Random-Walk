@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Curvature.FluctuationProbabilityAux
-import CERW.LimitShapes.Energy.SiteScales
+module
+
+public import CERW.LimitShapes.Curvature.FluctuationProbabilityAux
+public import CERW.LimitShapes.Energy.SiteScales
+
+@[expose] public section
 
 /-! # Outer error scales
 

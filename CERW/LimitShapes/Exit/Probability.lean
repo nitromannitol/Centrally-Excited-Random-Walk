@@ -1,4 +1,8 @@
-import CERW.LimitShapes.KernelEvents
+module
+
+public import CERW.LimitShapes.KernelEvents
+
+@[expose] public section
 
 /-!
 # Uniform prefix Freedman bounds

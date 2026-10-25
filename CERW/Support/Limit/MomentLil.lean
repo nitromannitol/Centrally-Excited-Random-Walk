@@ -1,13 +1,17 @@
-import CERW.Support.Statements
-import CERW.Support.Contact.Quadratic
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.Occupation.Facts
-import CERW.Generic.Kernel.RadialPacking
-import CERW.Support.Main.ScaleLimits
-import CERW.Support.Lower.SharpRadii
-import CERW.Support.Limit.MomentCommon
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Contact.Quadratic
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.Occupation.Facts
+public import CERW.Generic.Kernel.RadialPacking
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Support.Lower.SharpRadii
+public import CERW.Support.Limit.MomentCommon
+
+@[expose] public section
 
 /-!
 # The iterated logarithm law for the moment radius in the plane

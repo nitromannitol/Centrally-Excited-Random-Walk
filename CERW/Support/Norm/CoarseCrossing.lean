@@ -1,7 +1,11 @@
-import CERW.Support.Statements
-import CERW.Support.Norm.VectorBound
-import CERW.Generic.Norm
-import CERW.Support.Occupation.Facts
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Norm.VectorBound
+public import CERW.Generic.Norm
+public import CERW.Support.Occupation.Facts
+
+@[expose] public section
 
 /-!
 # The outer radius from the crossing lemma in the Euclidean farthest direction

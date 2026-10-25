@@ -1,7 +1,11 @@
-import CERW.Model.Kernel
-import CERW.Model.Occupation
-import LatticeProb.Walk.SRW
-import LatticeProb.Walk.SimpleTransfer
+module
+
+public import CERW.Model.Kernel
+public import CERW.Model.Occupation
+public import LatticeProb.Walk.SRW
+public import LatticeProb.Walk.SimpleTransfer
+
+@[expose] public section
 
 /-!
 # The martingales of the limit laws, pathwise

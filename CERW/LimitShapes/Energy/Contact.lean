@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.SiteEstimate
-import CERW.LimitShapes.Energy.GlobalPotential
+module
+
+public import CERW.LimitShapes.Energy.SiteEstimate
+public import CERW.LimitShapes.Energy.GlobalPotential
+
+@[expose] public section
 
 /-!
 # Square-energy and contact bounds

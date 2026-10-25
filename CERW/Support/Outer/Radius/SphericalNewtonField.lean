@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.InnerGeometry
+module
+
+public import CERW.Support.Outer.Radius.InnerGeometry
+
+@[expose] public section
 
 /-!
 # Spherical Newton Field

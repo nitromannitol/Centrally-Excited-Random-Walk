@@ -1,12 +1,16 @@
-import CERW.Model
-import CERW.Support.Norm.BallLayer
-import CERW.Support.Norm.CellGradient
-import CERW.Support.Norm.CoarseVolume
-import CERW.Support.Norm.ContactPotential
-import CERW.Support.Norm.Geometry
-import CERW.Support.Norm.LocalTime
-import CERW.Support.Norm.OuterCrossing
-import CERW.Support.Norm.ShapeRates
+module
+
+public import CERW.Model
+public import CERW.Support.Norm.BallLayer
+public import CERW.Support.Norm.CellGradient
+public import CERW.Support.Norm.CoarseVolume
+public import CERW.Support.Norm.ContactPotential
+public import CERW.Support.Norm.Geometry
+public import CERW.Support.Norm.LocalTime
+public import CERW.Support.Norm.OuterCrossing
+public import CERW.Support.Norm.ShapeRates
+
+@[expose] public section
 
 /-!
 # prop:norm-shape

@@ -1,9 +1,13 @@
-import CERW.Generic.Martingale.FreedmanEvent
-import CERW.Model.Bracket
-import Mathlib.MeasureTheory.Integral.Bochner.Set
-import Mathlib.Analysis.Complex.Trigonometric
-import Mathlib.MeasureTheory.Measure.Real
-import CERW.Generic.Martingale.CLT.Interfaces
+module
+
+public import CERW.Generic.Martingale.FreedmanEvent
+public import CERW.Model.Bracket
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+public import Mathlib.Analysis.Complex.Trigonometric
+public import Mathlib.MeasureTheory.Measure.Real
+public import CERW.Generic.Martingale.CLT.Interfaces
+
+@[expose] public section
 
 /-!
 # The characteristic-function bound for one martingale

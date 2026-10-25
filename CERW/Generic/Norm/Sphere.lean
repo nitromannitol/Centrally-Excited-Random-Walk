@@ -1,4 +1,8 @@
-import CERW.Generic.Norm.Basic
+module
+
+public import CERW.Generic.Norm.Basic
+
+@[expose] public section
 
 /-!
 # A norm on the Euclidean unit sphere

@@ -1,4 +1,8 @@
-import CERW.Support.Geometry.Bound
+module
+
+public import CERW.Support.Geometry.Bound
+
+@[expose] public section
 
 /-!
 # Comparing a set with a ball

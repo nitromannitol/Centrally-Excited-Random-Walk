@@ -1,11 +1,15 @@
-import CERW.Support.Drift
-import CERW.Generic.Norm
-import CERW.Generic.Kernel.LogRadial
-import CERW.Model.NormPotential
-import CERW.Support.Geometry.Bound
-import CERW.Support.LocalTime.DynkinLocal
-import CERW.Support.LocalTime.LocalMart
-import CERW.Support.LocalTime.ReplaceCell
+module
+
+public import CERW.Support.Drift
+public import CERW.Generic.Norm
+public import CERW.Generic.Kernel.LogRadial
+public import CERW.Model.NormPotential
+public import CERW.Support.Geometry.Bound
+public import CERW.Support.LocalTime.DynkinLocal
+public import CERW.Support.LocalTime.LocalMart
+public import CERW.Support.LocalTime.ReplaceCell
+
+@[expose] public section
 
 /-!
 # The Dynkin decomposition at a site and the cell modulus for the norm walk

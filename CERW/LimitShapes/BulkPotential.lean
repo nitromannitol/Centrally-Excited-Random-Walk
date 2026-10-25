@@ -1,5 +1,9 @@
-import CERW.LimitShapes.BulkProfileProbability.Event
-import CERW.LimitShapes.Curvature.FluctuationTheorem
+module
+
+public import CERW.LimitShapes.BulkProfileProbability.Event
+public import CERW.LimitShapes.Curvature.FluctuationTheorem
+
+@[expose] public section
 
 /-!
 # The bulk potential from the excess set

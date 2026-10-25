@@ -1,4 +1,8 @@
-import CERW.Support.RevisedPaperCarrier
+module
+
+public import CERW.Support.RevisedPaperCarrier
+
+@[expose] public section
 
 /-!
 # The contact estimate on the event of Section 5.1 with positive constants

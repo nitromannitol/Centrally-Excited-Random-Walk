@@ -1,4 +1,8 @@
-import CERW.Support.Occupation.CellNorm
+module
+
+public import CERW.Support.Occupation.CellNorm
+
+@[expose] public section
 
 /-!
 # Directions across a cell

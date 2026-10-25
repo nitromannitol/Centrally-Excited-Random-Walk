@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Event
+module
+
+public import CERW.LimitShapes.Event
+
+@[expose] public section
 
 /-!
 # Exact predictable brackets of the Dynkin martingales

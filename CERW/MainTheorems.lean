@@ -1,4 +1,8 @@
-import CERW.LimitShapes
+module
+
+public import CERW.LimitShapes
+
+@[expose] public section
 
 /-!
 # Main theorems

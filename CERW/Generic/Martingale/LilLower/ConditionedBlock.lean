@@ -1,7 +1,11 @@
-import Mathlib.Probability.ConditionalProbability
-import Mathlib.Probability.Martingale.Basic
-import Mathlib.Probability.Process.Stopping
-import CERW.Generic.Martingale.ExpMart
+module
+
+public import Mathlib.Probability.ConditionalProbability
+public import Mathlib.Probability.Martingale.Basic
+public import Mathlib.Probability.Process.Stopping
+public import CERW.Generic.Martingale.ExpMart
+
+@[expose] public section
 
 /-!
 # A martingale between two stopping times, conditioned on an earlier event

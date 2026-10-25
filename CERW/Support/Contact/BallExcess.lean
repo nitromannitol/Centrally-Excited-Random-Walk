@@ -1,4 +1,8 @@
-import CERW.Generic.Kernel.RadialPacking
+module
+
+public import CERW.Generic.Kernel.RadialPacking
+
+@[expose] public section
 
 /-!
 # The first moment of a set containing a centred ball

@@ -1,8 +1,12 @@
-import CERW.Support.LocalTime.KernelFacts
-import CERW.Support.LocalTime.DynkinLocal
-import CERW.Support.LocalTime.SourceSum
-import CERW.Support.Occupation.Facts
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.LocalTime.KernelFacts
+public import CERW.Support.LocalTime.DynkinLocal
+public import CERW.Support.LocalTime.SourceSum
+public import CERW.Support.Occupation.Facts
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # The pointwise decomposition of the local time

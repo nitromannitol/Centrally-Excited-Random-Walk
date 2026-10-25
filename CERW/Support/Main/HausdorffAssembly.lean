@@ -1,6 +1,10 @@
-import CERW.Support.Main.EventProb
-import CERW.Support.Main.HausdorffGood
-import CERW.Support.Main.HausdorffArith
+module
+
+public import CERW.Support.Main.EventProb
+public import CERW.Support.Main.HausdorffGood
+public import CERW.Support.Main.HausdorffArith
+
+@[expose] public section
 
 /-!
 # The Hausdorff bound from the kernel facts

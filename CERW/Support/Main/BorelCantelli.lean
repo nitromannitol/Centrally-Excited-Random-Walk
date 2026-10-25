@@ -1,6 +1,10 @@
-import Mathlib.MeasureTheory.OuterMeasure.BorelCantelli
-import Mathlib.MeasureTheory.Measure.MeasureSpace
-import Mathlib.Analysis.PSeries
+module
+
+public import Mathlib.MeasureTheory.OuterMeasure.BorelCantelli
+public import Mathlib.MeasureTheory.Measure.MeasureSpace
+public import Mathlib.Analysis.PSeries
+
+@[expose] public section
 
 /-!
 # From polynomially small failure probabilities to almost sure eventual validity

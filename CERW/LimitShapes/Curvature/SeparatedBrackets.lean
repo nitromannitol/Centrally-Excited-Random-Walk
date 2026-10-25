@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Curvature.ProfileEvent
-import CERW.LimitShapes.Curvature.PositiveEvent
-import CERW.LimitShapes.Curvature.OuterEvent
-import CERW.Support.Lower.SeparatedBrackets
+module
+
+public import CERW.LimitShapes.Curvature.ProfileEvent
+public import CERW.LimitShapes.Curvature.PositiveEvent
+public import CERW.LimitShapes.Curvature.OuterEvent
+public import CERW.Support.Lower.SeparatedBrackets
+
+@[expose] public section
 
 /-!
 # Separated brackets from curvature

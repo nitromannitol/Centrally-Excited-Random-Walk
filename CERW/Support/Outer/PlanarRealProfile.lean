@@ -1,7 +1,11 @@
-import CERW.Support.Outer.SourceDisplays
-import CERW.Support.Outer.NearFar
-import CERW.Support.Lower.SeparatedBracketsEvent
-import CERW.Frozen.InnerRadius
+module
+
+public import CERW.Support.Outer.SourceDisplays
+public import CERW.Support.Outer.NearFar
+public import CERW.Support.Lower.SeparatedBracketsEvent
+public import CERW.Frozen.InnerRadius
+
+@[expose] public section
 
 /-!
 # The real-point profile of the plane and the displays on the seven-estimate event

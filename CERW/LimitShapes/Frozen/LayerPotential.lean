@@ -1,4 +1,8 @@
-import CERW.Frozen.LayerPotential
+module
+
+public import CERW.Frozen.LayerPotential
+
+@[expose] public section
 
 /-!
 # lem:layer

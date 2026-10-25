@@ -1,5 +1,9 @@
-import CERW.Support.Norm.GaugeShapeVolume
-import CERW.Support.Norm.ConvexBodyShape
+module
+
+public import CERW.Support.Norm.GaugeShapeVolume
+public import CERW.Support.Norm.ConvexBodyShape
+
+@[expose] public section
 
 /-!
 # The limit shape results for the Minkowski functional of a convex body, with their hypotheses

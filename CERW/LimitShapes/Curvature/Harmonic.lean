@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.Mass
-import CERW.LimitShapes.Curvature.HarmonicKernel
-import CERW.LimitShapes.Curvature.HarmonicIntegral
+module
+
+public import CERW.LimitShapes.Curvature.Mass
+public import CERW.LimitShapes.Curvature.HarmonicKernel
+public import CERW.LimitShapes.Curvature.HarmonicIntegral
+
+@[expose] public section
 
 /-!
 # Harmonicity of the curvature integral

@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.NewtonConvolution
+module
+
+public import CERW.Support.Outer.Radius.NewtonConvolution
+
+@[expose] public section
 
 /-!
 # Lattice Kernel

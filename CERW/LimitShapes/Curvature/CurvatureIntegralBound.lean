@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Curvature.Mass
+module
+
+public import CERW.LimitShapes.Curvature.Mass
+
+@[expose] public section
 
 /-! # Comparing the Newtonian integral with curvature (`eq:positive-bound`) -/
 

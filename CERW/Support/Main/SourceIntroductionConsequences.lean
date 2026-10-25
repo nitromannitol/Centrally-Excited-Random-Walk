@@ -1,9 +1,13 @@
-import CERW.Support.Norm.NormGaugeConsequences
-import CERW.Support.Norm.EuclideanCoarse
-import CERW.Support.Main.KernelAnchors
-import CERW.Support.LocalTime.KernelAsymptotics
-import CERW.Support.Drift.Bridge
-import CERW.Frozen.FluctuationRates
+module
+
+public import CERW.Support.Norm.NormGaugeConsequences
+public import CERW.Support.Norm.EuclideanCoarse
+public import CERW.Support.Main.KernelAnchors
+public import CERW.Support.LocalTime.KernelAsymptotics
+public import CERW.Support.Drift.Bridge
+public import CERW.Frozen.FluctuationRates
+
+@[expose] public section
 
 /-!
 # Two consequences stated in the introduction: the volume rate and the fixed-site limits

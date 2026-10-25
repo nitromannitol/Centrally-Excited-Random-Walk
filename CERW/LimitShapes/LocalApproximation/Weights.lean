@@ -1,6 +1,10 @@
-import CERW.LimitShapes.LocalBracket
-import CERW.Generic.Lattice.Centered
-import CERW.Support.Norm.LocalTime
+module
+
+public import CERW.LimitShapes.LocalBracket
+public import CERW.Generic.Lattice.Centered
+public import CERW.Support.Norm.LocalTime
+
+@[expose] public section
 
 /-!
 # Final-time occupation weights

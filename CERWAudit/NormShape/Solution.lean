@@ -1,5 +1,9 @@
-import CERWAudit.NormShape.SolutionBasic
-import CERW.LimitShapes.Frozen.NormShape
+module
+
+public import CERWAudit.NormShape.SolutionBasic
+public import CERW.LimitShapes.Frozen.NormShape
+
+@[expose] public section
 
 /-!
 # NormShape: comparator solution

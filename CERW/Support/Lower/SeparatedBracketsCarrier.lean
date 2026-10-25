@@ -1,6 +1,10 @@
-import CERW.Support.Lower.SeparatedBracketsEvent
-import CERW.Support.Norm.GaugeSection5Event
-import CERW.Support.Norm.GaugeFiniteEvents
+module
+
+public import CERW.Support.Lower.SeparatedBracketsEvent
+public import CERW.Support.Norm.GaugeSection5Event
+public import CERW.Support.Norm.GaugeFiniteEvents
+
+@[expose] public section
 
 /-!
 # The separated bracket bounds on the event of Section 5.1 at the nearest-point projection

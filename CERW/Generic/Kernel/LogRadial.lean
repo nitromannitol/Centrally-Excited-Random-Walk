@@ -1,6 +1,10 @@
-import CERW.Model.Potential
-import Mathlib.MeasureTheory.Constructions.HaarToSphere
-import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+module
+
+public import CERW.Model.Potential
+public import Mathlib.MeasureTheory.Constructions.HaarToSphere
+public import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
+
+@[expose] public section
 
 /-!
 # Logarithmic radial integrals

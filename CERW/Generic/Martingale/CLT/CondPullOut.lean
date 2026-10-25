@@ -1,6 +1,10 @@
-import Mathlib.MeasureTheory.Function.ConditionalExpectation.PullOut
-import Mathlib.MeasureTheory.Function.ConvergenceInMeasure
-import Mathlib.MeasureTheory.Integral.Bochner.Set
+module
+
+public import Mathlib.MeasureTheory.Function.ConditionalExpectation.PullOut
+public import Mathlib.MeasureTheory.Function.ConvergenceInMeasure
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+
+@[expose] public section
 
 /-!
 # Pull-out of a complex weight and bounded convergence in measure

@@ -1,9 +1,13 @@
-import CERW.Frozen.SharpWidth
-import CERW.Frozen.DriftCrossing
-import CERW.Frozen.OuterCrossing
-import CERW.Frozen.ContactPotential
-import CERW.Support.Main.NormGuards
-import CERW.Support.Law.Existence
+module
+
+public import CERW.Frozen.SharpWidth
+public import CERW.Frozen.DriftCrossing
+public import CERW.Frozen.OuterCrossing
+public import CERW.Frozen.ContactPotential
+public import CERW.Support.Main.NormGuards
+public import CERW.Support.Law.Existence
+
+@[expose] public section
 
 /-!
 # Guards for the source events of the crossing, outer crossing, contact and width statements

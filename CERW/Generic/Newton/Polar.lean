@@ -1,5 +1,9 @@
-import Mathlib.MeasureTheory.Constructions.HaarToSphere
-import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+module
+
+public import Mathlib.MeasureTheory.Constructions.HaarToSphere
+public import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+
+@[expose] public section
 
 /-!
 # Polar coordinates in `ℝ^d`

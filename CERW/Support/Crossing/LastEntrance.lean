@@ -1,6 +1,10 @@
-import Mathlib.Order.Nat
-import Mathlib.Analysis.InnerProductSpace.PiL2
-import CERW.Support.Law.Moments
+module
+
+public import Mathlib.Order.Nat
+public import Mathlib.Analysis.InnerProductSpace.PiL2
+public import CERW.Support.Law.Moments
+
+@[expose] public section
 
 /-!
 # The last entrance into a half-space

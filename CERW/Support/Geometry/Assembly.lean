@@ -1,5 +1,9 @@
-import CERW.Support.Geometry.Holder
-import CERW.Support.Geometry.Newton
+module
+
+public import CERW.Support.Geometry.Holder
+public import CERW.Support.Geometry.Newton
+
+@[expose] public section
 
 /-!
 # The geometry of the inward-drift potential

@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Exit.LowerAux
-import CERW.LimitShapes.Exit.LowerScales
+module
+
+public import CERW.LimitShapes.Exit.LowerAux
+public import CERW.LimitShapes.Exit.LowerScales
+
+@[expose] public section
 
 /-!
 # The deterministic lower exit-time bound

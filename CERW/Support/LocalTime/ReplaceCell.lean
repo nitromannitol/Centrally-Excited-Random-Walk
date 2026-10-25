@@ -1,10 +1,14 @@
-import CERW.Generic.Kernel.NewtonField
-import CERW.Generic.Kernel.Integrable
-import CERW.Generic.Lattice.Centered
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import CERW.Generic.Kernel.Modulus
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Generic.Kernel.Integrable
+public import CERW.Generic.Lattice.Centered
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Generic.Kernel.Modulus
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # Replacing kernel values by cell integrals

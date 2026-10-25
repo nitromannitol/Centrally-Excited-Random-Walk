@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Exit.CoarseAux
+module
+
+public import CERW.LimitShapes.Exit.CoarseAux
+
+@[expose] public section
 
 /-!
 # Scale changes for the coarse exit argument

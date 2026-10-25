@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.KernelEnvelope
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.LimitShapes.Energy.KernelEnvelope
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # Pointwise drift envelope of the shifted-square kernel

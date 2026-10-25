@@ -1,10 +1,14 @@
-import CERW.Support.Statements
-import CERW.Support.Drift
-import CERW.Generic.Norm
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.Occupation.SiteArith
-import CERW.Support.Crossing.LastEntrance
-import CERW.Support.Law.Moments
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Drift
+public import CERW.Generic.Norm
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.Occupation.SiteArith
+public import CERW.Support.Crossing.LastEntrance
+public import CERW.Support.Law.Moments
+
+@[expose] public section
 
 /-!
 # The outer crossing lemma

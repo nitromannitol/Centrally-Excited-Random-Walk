@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Generic.Norm
+module
+
+public import CERW.Model
+public import CERW.Generic.Norm
+
+@[expose] public section
 
 /-!
 # The Moreau envelope of a norm and the cap lemma

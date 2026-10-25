@@ -1,5 +1,9 @@
-import CERW.Support.Statements
-import CERW.Support.Norm.ProjectionGeometry
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Norm.ProjectionGeometry
+
+@[expose] public section
 
 /-!
 # The outer radius from the Euclidean projection

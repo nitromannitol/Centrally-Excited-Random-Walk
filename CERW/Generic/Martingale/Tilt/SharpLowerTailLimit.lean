@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.Tilt.LowerOn
-import CERW.Generic.Martingale.Tilt.TailOn
-import CERW.Generic.Martingale.Tilt.Limit
+module
+
+public import CERW.Generic.Martingale.Tilt.LowerOn
+public import CERW.Generic.Martingale.Tilt.TailOn
+public import CERW.Generic.Martingale.Tilt.Limit
+
+@[expose] public section
 
 /-!
 # The sharp lower tail at an unbounded horizon

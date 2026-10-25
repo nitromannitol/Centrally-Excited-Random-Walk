@@ -1,6 +1,10 @@
-import CERW.Model.Potential
-import CERW.Model.Norm
-import Mathlib.Analysis.Calculus.Gradient.Basic
+module
+
+public import CERW.Model.Potential
+public import CERW.Model.Norm
+public import Mathlib.Analysis.Calculus.Gradient.Basic
+
+@[expose] public section
 
 /-!
 # The potential of a norm, and the positive part of the Euclidean potential

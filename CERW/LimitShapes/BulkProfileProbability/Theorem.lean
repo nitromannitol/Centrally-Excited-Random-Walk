@@ -1,6 +1,10 @@
-import CERW.LimitShapes.BulkProfileProbability.Event
-import CERW.LimitShapes.EuclideanEvent
-import CERW.LimitShapes.Curvature.FluctuationTheorem
+module
+
+public import CERW.LimitShapes.BulkProfileProbability.Event
+public import CERW.LimitShapes.EuclideanEvent
+public import CERW.LimitShapes.Curvature.FluctuationTheorem
+
+@[expose] public section
 
 /-!
 # Probability and almost sure bulk profiles

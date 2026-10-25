@@ -1,4 +1,8 @@
-import CERW.Support.Main.HausdorffAssembly
+module
+
+public import CERW.Support.Main.HausdorffAssembly
+
+@[expose] public section
 
 /-!
 # The one-sided Hausdorff bound

@@ -1,7 +1,11 @@
-import CERW.Support.Occupation.CellIntegral
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Geometry.Holder
-import CERW.Support.Geometry.Bound
+module
+
+public import CERW.Support.Occupation.CellIntegral
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Geometry.Holder
+public import CERW.Support.Geometry.Bound
+
+@[expose] public section
 
 /-!
 # The mass error

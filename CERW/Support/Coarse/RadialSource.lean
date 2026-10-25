@@ -1,6 +1,10 @@
-import CERW.Support.Coarse.RadialDrift
-import CERW.Support.Law.Dynkin
-import CERW.Support.Occupation.FreshSum
+module
+
+public import CERW.Support.Coarse.RadialDrift
+public import CERW.Support.Law.Dynkin
+public import CERW.Support.Occupation.FreshSum
+
+@[expose] public section
 
 /-!
 # The source inequality of the radial test

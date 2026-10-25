@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.FreedmanEvent
-import CERW.Generic.Martingale.Clamp
-import CERW.Model.Bracket
+module
+
+public import CERW.Generic.Martingale.FreedmanEvent
+public import CERW.Generic.Martingale.Clamp
+public import CERW.Model.Bracket
+
+@[expose] public section
 
 /-!
 # The upper half of the martingale law of the iterated logarithm: the statements

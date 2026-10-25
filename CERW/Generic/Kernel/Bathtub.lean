@@ -1,7 +1,11 @@
-import Mathlib.MeasureTheory.Integral.Bochner.Set
-import Mathlib.Analysis.InnerProductSpace.PiL2
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
-import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+module
+
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+public import Mathlib.Analysis.InnerProductSpace.PiL2
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+public import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+
+@[expose] public section
 
 /-!
 # The bathtub principle for radial kernels

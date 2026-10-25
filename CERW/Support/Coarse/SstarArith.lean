@@ -1,4 +1,8 @@
-import CERW.Support.Main.ScaleLimits
+module
+
+public import CERW.Support.Main.ScaleLimits
+
+@[expose] public section
 
 /-!
 # The first mass scale is at least of order `N`

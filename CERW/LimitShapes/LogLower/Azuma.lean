@@ -1,5 +1,9 @@
-import Mathlib.Probability.Moments.SubGaussian
-import Mathlib.Probability.Martingale.Basic
+module
+
+public import Mathlib.Probability.Moments.SubGaussian
+public import Mathlib.Probability.Martingale.Basic
+
+@[expose] public section
 
 /-!
 # Conditional Hoeffding bounds for bounded martingale differences

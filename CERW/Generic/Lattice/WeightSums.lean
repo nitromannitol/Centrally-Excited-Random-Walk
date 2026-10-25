@@ -1,5 +1,9 @@
-import LatticeProb.Walk.Ball
-import LatticeProb.Walk.Shells
+module
+
+public import LatticeProb.Walk.Ball
+public import LatticeProb.Walk.Shells
+
+@[expose] public section
 
 /-!
 # Logarithmic lattice sums

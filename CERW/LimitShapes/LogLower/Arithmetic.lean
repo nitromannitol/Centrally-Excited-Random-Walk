@@ -1,4 +1,8 @@
-import CERW.LimitShapes.LogLower.Tail
+module
+
+public import CERW.LimitShapes.LogLower.Tail
+
+@[expose] public section
 
 /-!
 # The Gaussian exponent at the limit-shape radius

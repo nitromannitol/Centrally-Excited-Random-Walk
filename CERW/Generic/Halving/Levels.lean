@@ -1,5 +1,9 @@
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Algebra.Order.Floor.Semiring
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Algebra.Order.Floor.Semiring
+
+@[expose] public section
 
 /-!
 # Dyadic halving of a nonincreasing tail on a grid

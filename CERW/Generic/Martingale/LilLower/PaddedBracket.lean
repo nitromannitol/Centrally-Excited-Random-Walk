@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.LilLower.ProdCondExp
+module
+
+public import CERW.Generic.Martingale.LilLower.ProdCondExp
+
+@[expose] public section
 
 /-!
 # The bracket of the padded process

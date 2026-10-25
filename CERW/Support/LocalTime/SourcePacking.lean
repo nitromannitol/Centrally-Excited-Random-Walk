@@ -1,5 +1,9 @@
-import CERW.Support.Law.StepMean
-import CERW.Generic.Lattice.Packing
+module
+
+public import CERW.Support.Law.StepMean
+public import CERW.Generic.Lattice.Packing
+
+@[expose] public section
 
 /-!
 # The source sum over a set of `k` sites is `O(k^{1/d})`

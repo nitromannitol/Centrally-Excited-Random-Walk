@@ -1,4 +1,8 @@
-import CERW
+module
+
+public import CERW
+
+@[expose] public section
 
 /-!
 # Elaborated types of the frozen statements

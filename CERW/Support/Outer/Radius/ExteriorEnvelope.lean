@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.PotentialConvolution
+module
+
+public import CERW.Support.Outer.Radius.PotentialConvolution
+
+@[expose] public section
 
 /-!
 # Exterior Envelope

@@ -1,4 +1,8 @@
-import CERW.Support.Law.Moments
+module
+
+public import CERW.Support.Law.Moments
+
+@[expose] public section
 
 /-!
 # Conditional means of a function after one step

@@ -1,12 +1,16 @@
-import CERW.Frozen.NormShapeRates
-import CERW.Frozen.LayerPotential
-import CERW.Support.Legacy.MoreauCap
-import CERW.Support.Guards.SourceEvents
-import CERW.Support.Norm.OuterCrossing
-import CERW.Support.Drift.Existence
-import CERW.Support.Drift.StepProb
-import CERW.Support.Drift.Bridge
-import CERW.Generic.Norm.Subgradient
+module
+
+public import CERW.Frozen.NormShapeRates
+public import CERW.Frozen.LayerPotential
+public import CERW.Support.Legacy.MoreauCap
+public import CERW.Support.Guards.SourceEvents
+public import CERW.Support.Norm.OuterCrossing
+public import CERW.Support.Drift.Existence
+public import CERW.Support.Drift.StepProb
+public import CERW.Support.Drift.Bridge
+public import CERW.Generic.Norm.Subgradient
+
+@[expose] public section
 
 /-!
 # Non-vacuity of the norm-shape rates, the layer potential, the Moreau cap, the contact

@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.FarPoint
-import Mathlib.Analysis.Normed.Group.Bounded
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+module
+
+public import CERW.LimitShapes.Curvature.FarPoint
+public import Mathlib.Analysis.Normed.Group.Bounded
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+
+@[expose] public section
 
 /-! # Decay of the actual potentials
 

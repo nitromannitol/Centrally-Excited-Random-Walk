@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.LilAssembly.PaddedConstruction
+module
+
+public import CERW.Generic.Martingale.LilAssembly.PaddedConstruction
+
+@[expose] public section
 
 /-!
 # The ratio field of the padded data

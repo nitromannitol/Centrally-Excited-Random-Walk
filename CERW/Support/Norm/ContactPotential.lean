@@ -1,44 +1,48 @@
-import CERW.Support.Statements
-import CERW.Support.Drift
-import CERW.Support.LocalTime.KernelAsymptotics
-import CERW.Support.LocalTime.KernelFacts
-import CERW.Generic.Kernel.NewtonField
-import CERW.Support.Contact.ContactCell
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Generic.Norm.Sphere
-import CERW.Generic.Norm.Gradient
-import Mathlib.Analysis.Calculus.ContDiff.RCLike
-import Mathlib.Analysis.Calculus.FDeriv.Measurable
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
-import Mathlib.MeasureTheory.Group.Integral
-import CERW.Generic.Norm
-import CERW.Support.Occupation.CellVolume
-import CERW.Model
-import CERW.Generic.Kernel.Integrable
-import CERW.Generic.Kernel.LogRadial
-import CERW.Support.Geometry.Newton
-import CERW.Generic.Kernel.Modulus
-import CERW.Generic.Newton.Polar
-import CERW.Model.NormPotential
-import CERW.Model.Norm
-import CERW.Support.Geometry.Bound
-import CERW.Support.LocalTime.DynkinLocal
-import CERW.Support.LocalTime.LocalMart
-import CERW.Support.LocalTime.ReplaceGradient
-import CERW.Support.LocalTime.ReplaceCell
-import CERW.Support.Occupation.CellIntegral
-import CERW.Support.Occupation.SiteArith
-import CERW.Support.Occupation.Facts
-import CERW.Generic.Lattice.Centered
-import CERW.Generic.Kernel.RadialPower
-import CERW.Support.LocalTime.Bracket
-import CERW.Support.Law.ScaleArith
-import CERW.Support.Occupation.Cells
-import CERW.Generic.Norm.Subgradient
-import Mathlib.Analysis.SpecialFunctions.JapaneseBracket
-import CERW.Support.Main.ScaleLimits
-import CERW.Support.Norm.DriftSite
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Drift
+public import CERW.Support.LocalTime.KernelAsymptotics
+public import CERW.Support.LocalTime.KernelFacts
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Support.Contact.ContactCell
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Generic.Norm.Sphere
+public import CERW.Generic.Norm.Gradient
+public import Mathlib.Analysis.Calculus.ContDiff.RCLike
+public import Mathlib.Analysis.Calculus.FDeriv.Measurable
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+public import Mathlib.MeasureTheory.Group.Integral
+public import CERW.Generic.Norm
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Model
+public import CERW.Generic.Kernel.Integrable
+public import CERW.Generic.Kernel.LogRadial
+public import CERW.Support.Geometry.Newton
+public import CERW.Generic.Kernel.Modulus
+public import CERW.Generic.Newton.Polar
+public import CERW.Model.NormPotential
+public import CERW.Model.Norm
+public import CERW.Support.Geometry.Bound
+public import CERW.Support.LocalTime.DynkinLocal
+public import CERW.Support.LocalTime.LocalMart
+public import CERW.Support.LocalTime.ReplaceGradient
+public import CERW.Support.LocalTime.ReplaceCell
+public import CERW.Support.Occupation.CellIntegral
+public import CERW.Support.Occupation.SiteArith
+public import CERW.Support.Occupation.Facts
+public import CERW.Generic.Lattice.Centered
+public import CERW.Generic.Kernel.RadialPower
+public import CERW.Support.LocalTime.Bracket
+public import CERW.Support.Law.ScaleArith
+public import CERW.Support.Occupation.Cells
+public import CERW.Generic.Norm.Subgradient
+public import Mathlib.Analysis.SpecialFunctions.JapaneseBracket
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Support.Norm.DriftSite
+
+@[expose] public section
 
 /-!
 # The contact bound for the centrally excited random walk with a norm

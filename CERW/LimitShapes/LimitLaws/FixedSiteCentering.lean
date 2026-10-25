@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Frozen.FluctuationRates
-import CERW.Support.Limit.FixedSiteCentering
+module
+
+public import CERW.LimitShapes.Frozen.FluctuationRates
+public import CERW.Support.Limit.FixedSiteCentering
+
+@[expose] public section
 
 /-!
 # Lemma 8.2 (`lem:fixed-site-centering`) from the printed fluctuation bounds.

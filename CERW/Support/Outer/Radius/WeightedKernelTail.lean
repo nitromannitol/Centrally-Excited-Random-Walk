@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.CellWeights
+module
+
+public import CERW.Support.Outer.Radius.CellWeights
+
+@[expose] public section
 
 /-!
 # Weighted Kernel Tail

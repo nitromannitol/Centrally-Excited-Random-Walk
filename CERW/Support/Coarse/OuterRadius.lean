@@ -1,10 +1,14 @@
-import CERW.Support.Coarse.Crossing
-import CERW.Support.Coarse.CardTail
-import CERW.Support.Crossing.LastEntrance
-import CERW.Support.Crossing.Contradiction
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Coarse.CrossingArith
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.Coarse.Crossing
+public import CERW.Support.Coarse.CardTail
+public import CERW.Support.Crossing.LastEntrance
+public import CERW.Support.Crossing.Contradiction
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Coarse.CrossingArith
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # The outer radius is of order the mass scale

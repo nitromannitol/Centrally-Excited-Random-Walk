@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.Tilt.Statements
+module
+
+public import CERW.Generic.Martingale.Tilt.Statements
+
+@[expose] public section
 
 /-!
 # The sharp lower tail at an unbounded horizon: the statements

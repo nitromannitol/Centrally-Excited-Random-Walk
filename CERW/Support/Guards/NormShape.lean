@@ -1,9 +1,13 @@
-import CERW.Frozen.LimitShape
-import CERW.Frozen.NormShape
-import CERW.Frozen.NormBallPotential
-import CERW.Frozen.NormLocalTime
-import CERW.Frozen.FreedmanBound
-import CERW.Support.Main.NormGuards
+module
+
+public import CERW.Frozen.LimitShape
+public import CERW.Frozen.NormShape
+public import CERW.Frozen.NormBallPotential
+public import CERW.Frozen.NormLocalTime
+public import CERW.Frozen.FreedmanBound
+public import CERW.Support.Main.NormGuards
+
+@[expose] public section
 
 /-!
 # Guards for the limit shape of a norm

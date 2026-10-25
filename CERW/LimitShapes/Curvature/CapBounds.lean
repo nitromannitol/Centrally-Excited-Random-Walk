@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Curvature.CapMass
+module
+
+public import CERW.LimitShapes.Curvature.CapMass
+
+@[expose] public section
 
 /-! # Uniform cap bounds from the outer potential (`eq:outer-cap-mass`) -/
 

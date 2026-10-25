@@ -1,4 +1,8 @@
-import CERW.Frozen.NormLocalTime
+module
+
+public import CERW.Frozen.NormLocalTime
+
+@[expose] public section
 
 /-!
 # Approximation of local times by the potential

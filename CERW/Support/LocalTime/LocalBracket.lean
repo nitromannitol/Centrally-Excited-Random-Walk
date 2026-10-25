@@ -1,7 +1,11 @@
-import CERW.Support.LocalTime.Bracket
-import CERW.Generic.Martingale.Dyadic
-import CERW.Generic.Martingale.Clamp
-import CERW.Support.Law.ScaleArith
+module
+
+public import CERW.Support.LocalTime.Bracket
+public import CERW.Generic.Martingale.Dyadic
+public import CERW.Generic.Martingale.Clamp
+public import CERW.Support.Law.ScaleArith
+
+@[expose] public section
 
 /-!
 # The predictable bracket of the local martingales

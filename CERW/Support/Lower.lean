@@ -1,10 +1,14 @@
-import CERW.Support.Lower.ExpDeviation
-import CERW.Support.Lower.ExpDeviationAE
-import CERW.Support.Lower.ExpDeviationStatement
-import CERW.Support.Lower.FiniteHorizonExpDeviation
-import CERW.Support.Lower.SharpWidth
-import CERW.Support.Lower.LogLower
-import CERW.Support.Lower.SharpRadii
-import CERW.Support.Lower.BulkProfile
-import CERW.Support.Lower.SeparatedBrackets
-import CERW.Support.Lower.SharpBulk
+module
+
+public import CERW.Support.Lower.ExpDeviation
+public import CERW.Support.Lower.ExpDeviationAE
+public import CERW.Support.Lower.ExpDeviationStatement
+public import CERW.Support.Lower.FiniteHorizonExpDeviation
+public import CERW.Support.Lower.SharpWidth
+public import CERW.Support.Lower.LogLower
+public import CERW.Support.Lower.SharpRadii
+public import CERW.Support.Lower.BulkProfile
+public import CERW.Support.Lower.SeparatedBrackets
+public import CERW.Support.Lower.SharpBulk
+
+@[expose] public section

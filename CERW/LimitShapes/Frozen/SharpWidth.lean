@@ -1,5 +1,9 @@
-import CERW.LimitShapes.PlanarLower.SmallBall
-import CERW.Frozen.SharpWidth
+module
+
+public import CERW.LimitShapes.PlanarLower.SmallBall
+public import CERW.Frozen.SharpWidth
+
+@[expose] public section
 
 /-!
 # thm:sharp

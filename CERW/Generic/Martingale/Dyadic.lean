@@ -1,5 +1,9 @@
-import CERW.Generic.Martingale.Arith
-import CERW.Generic.Martingale.Shift
+module
+
+public import CERW.Generic.Martingale.Arith
+public import CERW.Generic.Martingale.Shift
+
+@[expose] public section
 
 /-!
 # Freedman's inequality at a logarithmic threshold, uniformly in the bracket

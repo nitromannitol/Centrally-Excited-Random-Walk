@@ -1,9 +1,13 @@
-import CERW.Frozen.FluctuationRates
-import CERW.Frozen.LogLowerBounds
-import CERW.Frozen.SharpRadii
-import CERW.Frozen.SharpWidth
-import CERW.Frozen.SharpBulk
-import CERW.Frozen.BulkProfile
+module
+
+public import CERW.Frozen.FluctuationRates
+public import CERW.Frozen.LogLowerBounds
+public import CERW.Frozen.SharpRadii
+public import CERW.Frozen.SharpWidth
+public import CERW.Frozen.SharpBulk
+public import CERW.Frozen.BulkProfile
+
+@[expose] public section
 
 /-!
 # The probabilistic consequences stated after the theorems on fluctuations and sharpness

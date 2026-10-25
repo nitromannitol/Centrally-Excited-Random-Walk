@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Event
-import CERW.Support.LocalTime.LatticeKernelFacts
+module
+
+public import CERW.LimitShapes.Event
+public import CERW.Support.LocalTime.LatticeKernelFacts
+
+@[expose] public section
 
 /-!
 # Bounded increments of the shifted-square kernel

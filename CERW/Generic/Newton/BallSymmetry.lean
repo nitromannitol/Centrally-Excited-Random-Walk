@@ -1,6 +1,10 @@
-import CERW.Model.Potential
-import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
-import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+module
+
+public import CERW.Model.Potential
+public import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
+public import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+
+@[expose] public section
 
 /-!
 # Rotational symmetry of the potential of a centred ball

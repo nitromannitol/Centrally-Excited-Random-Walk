@@ -1,5 +1,9 @@
-import CERW.LimitShapes.LocalApproximation.Pointwise
-import CERW.LimitShapes.LocalApproximation.Weights
+module
+
+public import CERW.LimitShapes.LocalApproximation.Pointwise
+public import CERW.LimitShapes.LocalApproximation.Weights
+
+@[expose] public section
 
 /-!
 # Final-time assembly of the local approximation

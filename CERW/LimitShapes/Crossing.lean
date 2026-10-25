@@ -1,18 +1,22 @@
-import CERW.LimitShapes.Crossing.Directional
-import CERW.LimitShapes.Crossing.Projection
-import CERW.LimitShapes.Crossing.RampBound
-import CERW.LimitShapes.Crossing.RampFamilies
-import CERW.LimitShapes.Crossing.Directions
-import CERW.LimitShapes.Crossing.Levels
-import CERW.LimitShapes.Crossing.Deterministic
-import CERW.LimitShapes.Crossing.Probability
-import CERW.LimitShapes.Crossing.DistanceGeometry
-import CERW.LimitShapes.Crossing.ExponentialDrift
-import CERW.LimitShapes.Crossing.ExponentialOccupation
-import CERW.LimitShapes.Crossing.ExponentialExit
-import CERW.LimitShapes.Crossing.ExponentialStopping
-import CERW.LimitShapes.Crossing.ExponentialTail
-import CERW.LimitShapes.Crossing.ExponentialProbability
+module
+
+public import CERW.LimitShapes.Crossing.Directional
+public import CERW.LimitShapes.Crossing.Projection
+public import CERW.LimitShapes.Crossing.RampBound
+public import CERW.LimitShapes.Crossing.RampFamilies
+public import CERW.LimitShapes.Crossing.Directions
+public import CERW.LimitShapes.Crossing.Levels
+public import CERW.LimitShapes.Crossing.Deterministic
+public import CERW.LimitShapes.Crossing.Probability
+public import CERW.LimitShapes.Crossing.DistanceGeometry
+public import CERW.LimitShapes.Crossing.ExponentialDrift
+public import CERW.LimitShapes.Crossing.ExponentialOccupation
+public import CERW.LimitShapes.Crossing.ExponentialExit
+public import CERW.LimitShapes.Crossing.ExponentialStopping
+public import CERW.LimitShapes.Crossing.ExponentialTail
+public import CERW.LimitShapes.Crossing.ExponentialProbability
+
+@[expose] public section
 
 /-!
 # Distance crossing estimates

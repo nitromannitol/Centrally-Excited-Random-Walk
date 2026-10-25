@@ -1,5 +1,9 @@
-import Mathlib.Probability.Martingale.BorelCantelli
-import Mathlib.Probability.Process.Stopping
+module
+
+public import Mathlib.Probability.Martingale.BorelCantelli
+public import Mathlib.Probability.Process.Stopping
+
+@[expose] public section
 
 /-!
 # Lévy's Borel–Cantelli lemma along stopping times

@@ -1,6 +1,10 @@
-import CERW.Support.Outer.PlanarRealProfile
-import CERW.Frozen.FluctuationRates
-import CERW.Support.Main.BorelCantelli
+module
+
+public import CERW.Support.Outer.PlanarRealProfile
+public import CERW.Frozen.FluctuationRates
+public import CERW.Support.Main.BorelCantelli
+
+@[expose] public section
 
 /-!
 # The almost-sure real-point displays of the plane

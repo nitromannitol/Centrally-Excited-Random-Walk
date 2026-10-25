@@ -1,6 +1,10 @@
-import LatticeProb.Walk.SimpleTransfer
-import LatticeProb.Walk.ExteriorDirichlet
-import LatticeProb.Walk.SRWSup
+module
+
+public import LatticeProb.Walk.SimpleTransfer
+public import LatticeProb.Walk.ExteriorDirichlet
+public import LatticeProb.Walk.SRWSup
+
+@[expose] public section
 
 /-!
 # The Poisson equation for the lattice potential kernel

@@ -1,5 +1,9 @@
-import CERW.Support.Norm.NormGaugeConsequences
-import CERW.Support.Main.LimitShape
+module
+
+public import CERW.Support.Norm.NormGaugeConsequences
+public import CERW.Support.Main.LimitShape
+
+@[expose] public section
 
 /-!
 # The explicit quadratic process of `eq:quadratic` is a martingale

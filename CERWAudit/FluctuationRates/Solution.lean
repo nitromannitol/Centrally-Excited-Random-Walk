@@ -1,5 +1,9 @@
-import CERWAudit.FluctuationRates.SolutionBasic
-import CERW.LimitShapes.Frozen.FluctuationRates
+module
+
+public import CERWAudit.FluctuationRates.SolutionBasic
+public import CERW.LimitShapes.Frozen.FluctuationRates
+
+@[expose] public section
 
 /-!
 # FluctuationRates: comparator solution

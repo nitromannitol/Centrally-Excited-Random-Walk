@@ -1,6 +1,10 @@
-import CERW.LimitShapes.StoppedQuadraticMartingale
-import CERW.LimitShapes.QuadraticStopping
-import CERW.Generic.Martingale.Clamp
+module
+
+public import CERW.LimitShapes.StoppedQuadraticMartingale
+public import CERW.LimitShapes.QuadraticStopping
+public import CERW.Generic.Martingale.Clamp
+
+@[expose] public section
 
 /-!
 # Fixed-radius tails for the stopped quadratic process

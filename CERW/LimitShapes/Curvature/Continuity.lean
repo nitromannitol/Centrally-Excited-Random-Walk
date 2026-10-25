@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Curvature.SegmentDerivative
-import CERW.LimitShapes.Curvature.Mass
+module
+
+public import CERW.LimitShapes.Curvature.SegmentDerivative
+public import CERW.LimitShapes.Curvature.Mass
+
+@[expose] public section
 
 /-!
 # Global continuity of the curvature integral

@@ -1,6 +1,10 @@
-import CERW.Support.Geometry.Newton
-import CERW.Support.Geometry.Holder
-import CERW.Generic.Newton.Polar
+module
+
+public import CERW.Support.Geometry.Newton
+public import CERW.Support.Geometry.Holder
+public import CERW.Generic.Newton.Polar
+
+@[expose] public section
 
 /-!
 # The mass identity

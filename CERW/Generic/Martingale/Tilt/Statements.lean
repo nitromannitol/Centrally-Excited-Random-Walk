@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.ExpMart
+module
+
+public import CERW.Generic.Martingale.ExpMart
+
+@[expose] public section
 
 /-!
 # A sharp lower tail for martingales with a pinned bracket: the statements

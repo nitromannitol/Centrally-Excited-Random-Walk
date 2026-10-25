@@ -1,8 +1,12 @@
-import CERW.Support.Main.GoodEvent
-import CERW.Support.Main.HausdorffArith
-import CERW.Support.Main.ScaleLimits
-import CERW.Support.Occupation.CellNorm
-import Mathlib.Topology.MetricSpace.HausdorffDistance
+module
+
+public import CERW.Support.Main.GoodEvent
+public import CERW.Support.Main.HausdorffArith
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Support.Occupation.CellNorm
+public import Mathlib.Topology.MetricSpace.HausdorffDistance
+
+@[expose] public section
 
 /-!
 # The Hausdorff bound from the fluctuation event

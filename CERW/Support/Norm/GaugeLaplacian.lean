@@ -1,8 +1,12 @@
-import CERW.Support.Norm.GaugeModel
-import CERW.Model.Laplacian
-import CERW.Model.Potential
-import Mathlib.MeasureTheory.Integral.RieszMarkovKakutani.Real
-import Mathlib.Analysis.Convex.Cone.Extension
+module
+
+public import CERW.Support.Norm.GaugeModel
+public import CERW.Model.Laplacian
+public import CERW.Model.Potential
+public import Mathlib.MeasureTheory.Integral.RieszMarkovKakutani.Real
+public import Mathlib.Analysis.Convex.Cone.Extension
+
+@[expose] public section
 
 /-!
 # The positive distributional Laplacian of the gauge of a convex body

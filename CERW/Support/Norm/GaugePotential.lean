@@ -1,8 +1,12 @@
-import CERW.Support.Norm.GaugeModel
-import CERW.Support.Norm.BallLayer
-import CERW.Support.Geometry.Holder
-import CERW.Generic.Kernel.Modulus
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun
+module
+
+public import CERW.Support.Norm.GaugeModel
+public import CERW.Support.Norm.BallLayer
+public import CERW.Support.Geometry.Holder
+public import CERW.Generic.Kernel.Modulus
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun
+
+@[expose] public section
 
 /-!
 # The potential of a ball and of a shell of an asymmetric gauge

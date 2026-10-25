@@ -1,3 +1,7 @@
-import CERW.Generic.Young.Absorb
-import CERW.Generic.Young.Contact
-import CERW.Generic.Young.Radius
+module
+
+public import CERW.Generic.Young.Absorb
+public import CERW.Generic.Young.Contact
+public import CERW.Generic.Young.Radius
+
+@[expose] public section

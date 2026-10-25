@@ -1,11 +1,15 @@
-import CERW.Model
-import CERW.Support.Inner.InnerRadius
-import CERW.Support.Norm.BallLayer
-import CERW.Support.Norm.CellGradient
-import CERW.Support.Norm.CoarseVolume
-import CERW.Support.Norm.ContactPotential
-import CERW.Support.Norm.Geometry
-import CERW.Support.Norm.LocalTime
+module
+
+public import CERW.Model
+public import CERW.Support.Inner.InnerRadius
+public import CERW.Support.Norm.BallLayer
+public import CERW.Support.Norm.CellGradient
+public import CERW.Support.Norm.CoarseVolume
+public import CERW.Support.Norm.ContactPotential
+public import CERW.Support.Norm.Geometry
+public import CERW.Support.Norm.LocalTime
+
+@[expose] public section
 
 /-!
 # prop:inner

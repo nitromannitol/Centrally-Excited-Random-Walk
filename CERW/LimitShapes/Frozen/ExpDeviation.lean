@@ -1,4 +1,8 @@
-import CERW.Frozen.ExpDeviation
+module
+
+public import CERW.Frozen.ExpDeviation
+
+@[expose] public section
 
 /-!
 # lem:exp-deviation

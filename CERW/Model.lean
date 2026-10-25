@@ -1,14 +1,18 @@
-import CERW.Model.Space
-import CERW.Model.Kernel
-import CERW.Model.Law
-import CERW.Model.Occupation
-import CERW.Model.Potential
-import CERW.Model.Norm
-import CERW.Model.DriftKernel
-import CERW.Model.DriftLaw
-import CERW.Model.NormPotential
-import CERW.Model.Laplacian
-import CERW.Model.Moreau
-import CERW.Model.Radii
-import CERW.Model.Martingales
-import CERW.Model.Bracket
+module
+
+public import CERW.Model.Space
+public import CERW.Model.Kernel
+public import CERW.Model.Law
+public import CERW.Model.Occupation
+public import CERW.Model.Potential
+public import CERW.Model.Norm
+public import CERW.Model.DriftKernel
+public import CERW.Model.DriftLaw
+public import CERW.Model.NormPotential
+public import CERW.Model.Laplacian
+public import CERW.Model.Moreau
+public import CERW.Model.Radii
+public import CERW.Model.Martingales
+public import CERW.Model.Bracket
+
+@[expose] public section

@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Profile
+module
+
+public import CERW.LimitShapes.Profile
+
+@[expose] public section
 
 /-!
 # SeparatedBrackets

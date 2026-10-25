@@ -1,5 +1,9 @@
-import CERW.Support.Main.GoodEvent
-import CERW.Support.Main.ScaleLimits
+module
+
+public import CERW.Support.Main.GoodEvent
+public import CERW.Support.Main.ScaleLimits
+
+@[expose] public section
 
 /-!
 # The shape theorem from the fluctuation event: inclusions and profile

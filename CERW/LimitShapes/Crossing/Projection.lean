@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Crossing.Directional
-import CERW.Support.Norm.Section5Localization
+module
+
+public import CERW.LimitShapes.Crossing.Directional
+public import CERW.Support.Norm.Section5Localization
+
+@[expose] public section
 
 /-!
 # Distances to norm balls from projection estimates

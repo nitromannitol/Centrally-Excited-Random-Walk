@@ -1,8 +1,12 @@
-import CERW.Generic.Martingale.LilAssembly.Core
-import CERW.Generic.Martingale.LilAssembly.LevyBlocks
-import CERW.Generic.Martingale.LilAssembly.PassageWindow
-import CERW.Generic.Martingale.LilAssembly.PathCombine
-import CERW.Generic.Martingale.Lil
+module
+
+public import CERW.Generic.Martingale.LilAssembly.Core
+public import CERW.Generic.Martingale.LilAssembly.LevyBlocks
+public import CERW.Generic.Martingale.LilAssembly.PassageWindow
+public import CERW.Generic.Martingale.LilAssembly.PathCombine
+public import CERW.Generic.Martingale.Lil
+
+@[expose] public section
 
 /-!
 # The lower bound for padded data

@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.HigherDimensionExterior
+module
+
+public import CERW.Support.Outer.Radius.HigherDimensionExterior
+
+@[expose] public section
 
 /-!
 # Higher Dimension Width

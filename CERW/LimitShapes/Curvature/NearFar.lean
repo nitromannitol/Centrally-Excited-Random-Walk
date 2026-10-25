@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Curvature.NearFarKernel
-import CERW.Support.Outer.NearFar
+module
+
+public import CERW.LimitShapes.Curvature.NearFarKernel
+public import CERW.Support.Outer.NearFar
+
+@[expose] public section
 
 /-! # The near–far estimate with a bounded radius ratio (`lem:near-far`) -/
 

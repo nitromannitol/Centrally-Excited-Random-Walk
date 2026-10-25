@@ -1,5 +1,9 @@
-import CERW.Support.Norm.GaugeLocalTime
-import CERW.Support.Norm.ContactPotential
+module
+
+public import CERW.Support.Norm.GaugeLocalTime
+public import CERW.Support.Norm.ContactPotential
+
+@[expose] public section
 
 /-!
 # The fine pointwise local-time bound for the walk driven by a gauge

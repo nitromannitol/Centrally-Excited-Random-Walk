@@ -1,10 +1,14 @@
-import CERW.Support.Statements
-import CERW.Support.LocalTime
-import CERW.Support.Main.ScaleLimits
-import CERW.Generic.Lattice
-import LatticeProb.External.PotentialKernelAsymptoticsProved
-import LatticeProb.Walk.HitProb
-import CERW.Support.LocalTime.LatticeKernelFacts
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.LocalTime
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Generic.Lattice
+public import LatticeProb.External.PotentialKernelAsymptoticsProved
+public import LatticeProb.Walk.HitProb
+public import CERW.Support.LocalTime.LatticeKernelFacts
+
+@[expose] public section
 
 /-!
 # Separated brackets

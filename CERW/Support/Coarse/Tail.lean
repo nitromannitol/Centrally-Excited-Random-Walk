@@ -1,10 +1,14 @@
-import CERW.Generic.Halving.Levels
-import CERW.Generic.Halving.Cost
-import CERW.Support.Geometry.TailBounds
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Main.ScaleLimits
-import CERW.Support.Coarse.CrossingArith
+module
+
+public import CERW.Generic.Halving.Levels
+public import CERW.Generic.Halving.Cost
+public import CERW.Support.Geometry.TailBounds
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Support.Coarse.CrossingArith
+
+@[expose] public section
 
 /-!
 # The coarse tail

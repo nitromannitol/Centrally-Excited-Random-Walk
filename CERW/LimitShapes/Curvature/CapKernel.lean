@@ -1,5 +1,9 @@
-import CERW.Generic.Kernel.RadialInner
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import CERW.Generic.Kernel.RadialInner
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # Kernel estimates for an outer cap

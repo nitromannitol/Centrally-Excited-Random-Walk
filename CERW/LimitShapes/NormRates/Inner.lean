@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Frozen.NormBallPotential
-import CERW.LimitShapes.NormRates.Arithmetic
+module
+
+public import CERW.LimitShapes.Frozen.NormBallPotential
+public import CERW.LimitShapes.NormRates.Arithmetic
+
+@[expose] public section
 
 /-!
 # Inner radius and cone profile from the quadratic event

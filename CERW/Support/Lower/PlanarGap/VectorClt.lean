@@ -1,5 +1,9 @@
-import CERW.Support.Lower.PlanarGap.Clt
-import LatticeProb.Prob.CramerWold
+module
+
+public import CERW.Support.Lower.PlanarGap.Clt
+public import LatticeProb.Prob.CramerWold
+
+@[expose] public section
 
 /-!
 # The compensated planar position: every linear form and the vector law

@@ -1,5 +1,9 @@
-import CERW.Model.Potential
-import Mathlib.Analysis.InnerProductSpace.Calculus
+module
+
+public import CERW.Model.Potential
+public import Mathlib.Analysis.InnerProductSpace.Calculus
+
+@[expose] public section
 
 /-!
 # Regularity and bounds for the potential kernel

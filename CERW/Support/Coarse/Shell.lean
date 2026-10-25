@@ -1,8 +1,12 @@
-import CERW.Support.Geometry.Assembly
-import CERW.Generic.Newton.CapAverage
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Geometry.TailBasic
-import CERW.Support.Occupation.CellNorm
+module
+
+public import CERW.Support.Geometry.Assembly
+public import CERW.Generic.Newton.CapAverage
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Geometry.TailBasic
+public import CERW.Support.Occupation.CellNorm
+
+@[expose] public section
 
 /-!
 # Shell local times and the exterior volume

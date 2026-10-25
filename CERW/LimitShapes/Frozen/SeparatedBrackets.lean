@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Curvature.SeparatedBrackets
+module
+
+public import CERW.LimitShapes.Curvature.SeparatedBrackets
+
+@[expose] public section
 
 /-!
 # lem:separated-brackets

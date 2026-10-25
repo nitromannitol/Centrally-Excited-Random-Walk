@@ -1,3 +1,5 @@
+module
+
 /-
 # The disk mass at the `SharpWidth` radius
 
@@ -10,7 +12,9 @@ This module records that reciprocal identification and the resulting closed-disk
 Step-4 Gaussian mass `P (|N| ≤ t) = 1 - e^{-t²}` (`limit-shapes.tex:1492`) is available at the radius the
 frozen statement uses.  The frozen statement is **not** edited; this is a separate support module.
 -/
-import CERW.Support.Lower.PlanarGap.GaussDisc
+public import CERW.Support.Lower.PlanarGap.GaussDisc
+
+@[expose] public section
 
 open MeasureTheory ProbabilityTheory Matrix Metric Set
 open scoped ENNReal NNReal

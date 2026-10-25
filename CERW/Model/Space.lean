@@ -1,5 +1,9 @@
-import Mathlib.Analysis.InnerProductSpace.PiL2
-import LatticeProb.Walk.Ball
+module
+
+public import Mathlib.Analysis.InnerProductSpace.PiL2
+public import LatticeProb.Walk.Ball
+
+@[expose] public section
 
 /-!
 # The lattice inside Euclidean space

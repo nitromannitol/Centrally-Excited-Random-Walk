@@ -1,5 +1,9 @@
-import CERW.LimitShapes.SharpRadii
-import CERW.Frozen.SharpRadii
+module
+
+public import CERW.LimitShapes.SharpRadii
+public import CERW.Frozen.SharpRadii
+
+@[expose] public section
 
 /-!
 # thm:sharp

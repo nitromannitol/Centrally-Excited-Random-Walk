@@ -1,6 +1,10 @@
-import CERW.LimitShapes.PlanarLower.Radii
-import CERW.LimitShapes.PlanarLower.Width
-import CERW.LimitShapes.PlanarLower.SmallBall
+module
+
+public import CERW.LimitShapes.PlanarLower.Radii
+public import CERW.LimitShapes.PlanarLower.Width
+public import CERW.LimitShapes.PlanarLower.SmallBall
+
+@[expose] public section
 
 /-!
 # Planar lower fluctuations

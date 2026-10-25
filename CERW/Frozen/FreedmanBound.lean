@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Norm.Freedman
+module
+
+public import CERW.Model
+public import CERW.Support.Norm.Freedman
+
+@[expose] public section
 
 /-!
 # lem:freedman

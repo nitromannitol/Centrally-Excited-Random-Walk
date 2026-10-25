@@ -1,5 +1,9 @@
-import CERW.Frozen.ExpDeviation
-import CERW.Support.Guards.ExpDeviationModel
+module
+
+public import CERW.Frozen.ExpDeviation
+public import CERW.Support.Guards.ExpDeviationModel
+
+@[expose] public section
 
 /-!
 # Guard for the exponential-deviation lemma

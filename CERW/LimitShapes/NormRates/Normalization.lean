@@ -1,4 +1,8 @@
-import CERW.LimitShapes.NormRates.Quadratic
+module
+
+public import CERW.LimitShapes.NormRates.Quadratic
+
+@[expose] public section
 
 /-!
 # Normalization of the quadratic radius comparison

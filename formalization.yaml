@@ -28,7 +28,7 @@ sources:
   - Tuan-Minh Nguyen
   - Yuval Peres
   - Arvind Singh
-  type: preprint
+  type: paper
   id: arXiv:2610.10162
   url: https://arxiv.org/abs/2610.10162
   location: paper/centrally-excited-walks.tex

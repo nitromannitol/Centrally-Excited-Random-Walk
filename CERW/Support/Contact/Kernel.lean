@@ -1,4 +1,8 @@
-import CERW.Model.Space
+module
+
+public import CERW.Model.Space
+
+@[expose] public section
 
 /-!
 # Positivity of the potential kernel beyond the contact radius

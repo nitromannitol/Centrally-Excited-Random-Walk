@@ -1,7 +1,11 @@
-import CERW.Generic.Kernel.RadialInner
-import Mathlib.Analysis.InnerProductSpace.Calculus
-import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import CERW.Generic.Kernel.RadialInner
+public import Mathlib.Analysis.InnerProductSpace.Calculus
+public import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+@[expose] public section
 
 /-!
 # Radial differentiation of the curvature kernel

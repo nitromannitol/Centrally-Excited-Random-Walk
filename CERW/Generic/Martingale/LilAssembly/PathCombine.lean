@@ -1,5 +1,9 @@
-import CERW.Generic.Martingale.LilAssembly.Statements
-import CERW.Generic.Martingale.Lil.Arith
+module
+
+public import CERW.Generic.Martingale.LilAssembly.Statements
+public import CERW.Generic.Martingale.Lil.Arith
+
+@[expose] public section
 
 /-!
 # The pathwise combination of the blocks

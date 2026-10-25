@@ -1,5 +1,9 @@
-import CERW.Generic.Harmonic.LocalMaximum
-import Mathlib.Topology.Order.Compact
+module
+
+public import CERW.Generic.Harmonic.LocalMaximum
+public import Mathlib.Topology.Order.Compact
+
+@[expose] public section
 
 /-! # The weak maximum principle
 

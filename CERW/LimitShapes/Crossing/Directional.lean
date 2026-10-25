@@ -1,4 +1,8 @@
-import CERW.Support.Norm.OuterCrossing
+module
+
+public import CERW.Support.Norm.OuterCrossing
+
+@[expose] public section
 
 /-!
 # Directional crossings before a fixed horizon

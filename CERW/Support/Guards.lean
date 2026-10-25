@@ -1,16 +1,20 @@
-import CERW.Model
-import CERW.Support.Law
-import CERW.Support.Guards.DriftCrossing
-import CERW.Support.Guards.ExpDeviation
-import CERW.Support.Guards.ExpDeviationConsumers
-import CERW.Support.Guards.ExpDeviationModel
-import CERW.Support.Guards.LimitLaws
-import CERW.Support.Guards.LowerBounds
-import CERW.Support.Guards.NormPotential
-import CERW.Support.Guards.NormRates
-import CERW.Support.Guards.NormShape
-import CERW.Support.Guards.Radii
-import CERW.Support.Guards.SourceEvents
+module
+
+public import CERW.Model
+public import CERW.Support.Law
+public import CERW.Support.Guards.DriftCrossing
+public import CERW.Support.Guards.ExpDeviation
+public import CERW.Support.Guards.ExpDeviationConsumers
+public import CERW.Support.Guards.ExpDeviationModel
+public import CERW.Support.Guards.LimitLaws
+public import CERW.Support.Guards.LowerBounds
+public import CERW.Support.Guards.NormPotential
+public import CERW.Support.Guards.NormRates
+public import CERW.Support.Guards.NormShape
+public import CERW.Support.Guards.Radii
+public import CERW.Support.Guards.SourceEvents
+
+@[expose] public section
 
 /-!
 # Guards: the vocabulary says what the paper says

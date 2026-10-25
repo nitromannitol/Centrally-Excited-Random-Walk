@@ -1,5 +1,9 @@
-import LatticeProb.External.PotentialKernelAsymptoticsProved
-import CERW.Support.LocalTime.KernelBridge
+module
+
+public import LatticeProb.External.PotentialKernelAsymptoticsProved
+public import CERW.Support.LocalTime.KernelBridge
+
+@[expose] public section
 
 /-!
 # The kernel facts from the lattice kernel asymptotics

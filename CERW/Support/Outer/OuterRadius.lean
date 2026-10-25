@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius
+module
+
+public import CERW.Support.Outer.Radius
+
+@[expose] public section
 
 /-!
 # The outer radius and the fluctuation rates of the Euclidean walk

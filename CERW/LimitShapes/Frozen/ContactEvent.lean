@@ -1,4 +1,8 @@
-import CERW.LimitShapes.ContactEvent
+module
+
+public import CERW.LimitShapes.ContactEvent
+
+@[expose] public section
 
 /-!
 # Contact potential on the common event

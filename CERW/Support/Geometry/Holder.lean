@@ -1,5 +1,9 @@
-import CERW.Generic.Kernel.Modulus
-import CERW.Support.Geometry.Bound
+module
+
+public import CERW.Generic.Kernel.Modulus
+public import CERW.Support.Geometry.Bound
+
+@[expose] public section
 
 /-!
 # Hölder continuity of the potential

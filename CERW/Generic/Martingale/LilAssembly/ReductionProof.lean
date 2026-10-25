@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.LilAssembly.LowerOfSure
-import CERW.Generic.Martingale.LilAssembly.ClampPred
-import CERW.Generic.Martingale.LilAssembly.Core
+module
+
+public import CERW.Generic.Martingale.LilAssembly.LowerOfSure
+public import CERW.Generic.Martingale.LilAssembly.ClampPred
+public import CERW.Generic.Martingale.LilAssembly.Core
+
+@[expose] public section
 
 /-!
 # The reduction of the lower half of the law to the lower bound for padded data

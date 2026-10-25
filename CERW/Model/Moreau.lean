@@ -1,4 +1,8 @@
-import CERW.Model.Norm
+module
+
+public import CERW.Model.Norm
+
+@[expose] public section
 
 /-!
 # The Moreau envelope of a norm

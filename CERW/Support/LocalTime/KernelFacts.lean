@@ -1,5 +1,9 @@
-import CERW.Support.Law.StepMean
-import CERW.Model.Potential
+module
+
+public import CERW.Support.Law.StepMean
+public import CERW.Model.Potential
+
+@[expose] public section
 
 /-!
 # The facts about the potential kernel used downstream

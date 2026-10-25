@@ -1,4 +1,8 @@
-import CERW
+module
+
+public import CERW
+
+@[expose] public section
 
 /-!
 # Axiom closures of all production declarations

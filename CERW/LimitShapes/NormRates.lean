@@ -1,9 +1,13 @@
-import CERW.LimitShapes.NormRates.Arithmetic
-import CERW.LimitShapes.NormRates.Inner
-import CERW.LimitShapes.NormRates.Normalization
-import CERW.LimitShapes.NormRates.Outer
-import CERW.LimitShapes.NormRates.Probability
-import CERW.LimitShapes.NormRates.Quadratic
+module
+
+public import CERW.LimitShapes.NormRates.Arithmetic
+public import CERW.LimitShapes.NormRates.Inner
+public import CERW.LimitShapes.NormRates.Normalization
+public import CERW.LimitShapes.NormRates.Outer
+public import CERW.LimitShapes.NormRates.Probability
+public import CERW.LimitShapes.NormRates.Quadratic
+
+@[expose] public section
 
 /-!
 # Rates for norm limit shapes

@@ -1,14 +1,18 @@
-import CERW.Support.Statements
-import CERW.Support.Lower.ExpDeviationStatement
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.Cells
-import CERW.Support.Occupation.CellVolume
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.Law.Dynkin
-import CERW.Support.Contact.Quadratic
-import CERW.Generic.Martingale.Clamp
-import CERW.Generic.Kernel.RadialPacking
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Lower.ExpDeviationStatement
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.Cells
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.Law.Dynkin
+public import CERW.Support.Contact.Quadratic
+public import CERW.Generic.Martingale.Clamp
+public import CERW.Generic.Kernel.RadialPacking
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+
+@[expose] public section
 
 /-!
 # Lower bounds on the radii of the range in the plane

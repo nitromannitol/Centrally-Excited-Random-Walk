@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.LilAssembly.PaddedStructure
-import CERW.Generic.Martingale.LilAssembly.PaddedRatio
-import CERW.Generic.Martingale.LilAssembly.PaddedBlocks
+module
+
+public import CERW.Generic.Martingale.LilAssembly.PaddedStructure
+public import CERW.Generic.Martingale.LilAssembly.PaddedRatio
+public import CERW.Generic.Martingale.LilAssembly.PaddedBlocks
+
+@[expose] public section
 
 /-!
 # The padded data of a martingale with sure data

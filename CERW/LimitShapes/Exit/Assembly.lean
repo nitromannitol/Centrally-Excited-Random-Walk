@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Exit.Coarse
-import CERW.LimitShapes.Exit.ProbabilityBounds
+module
+
+public import CERW.LimitShapes.Exit.Coarse
+public import CERW.LimitShapes.Exit.ProbabilityBounds
+
+@[expose] public section
 
 /-!
 # Coarse bounds from the exit-time argument

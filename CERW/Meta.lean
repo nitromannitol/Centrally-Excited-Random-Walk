@@ -1,1 +1,5 @@
-import CERW.Meta.AxiomsAudit
+module
+
+public import CERW.Meta.AxiomsAudit
+
+@[expose] public section

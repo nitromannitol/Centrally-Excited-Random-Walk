@@ -1,3 +1,5 @@
+module
+
 /-
 # The local radial-singularity estimate for the unrestricted Newton convolution: the tail half
 
@@ -21,7 +23,9 @@ The estimate has two halves, and they have very different status:
   diverge (`Σ_k k / k² = ∞`).  So the local half needs an extra hypothesis — `χ` bounded near `‖w‖`
   (the library's `hM`), or `χ` nonincreasing in the radius near `‖w‖`.
 -/
-import Mathlib
+public import Mathlib
+
+@[expose] public section
 
 open MeasureTheory
 

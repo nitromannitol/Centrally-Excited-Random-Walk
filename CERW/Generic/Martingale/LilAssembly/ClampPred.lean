@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.Clamp
+module
+
+public import CERW.Generic.Martingale.Clamp
+
+@[expose] public section
 
 /-!
 # Martingales with increments bounded by a predictable level

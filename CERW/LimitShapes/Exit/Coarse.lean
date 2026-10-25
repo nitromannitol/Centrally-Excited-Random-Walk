@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Exit.CoarseProbability
+module
+
+public import CERW.LimitShapes.Exit.CoarseProbability
+
+@[expose] public section
 
 /-!
 # Coarse bounds from two-sided exit estimates

@@ -1,5 +1,9 @@
-import CERW.LimitShapes.EuclideanEvent
-import CERW.LimitShapes.EventConsequences
+module
+
+public import CERW.LimitShapes.EuclideanEvent
+public import CERW.LimitShapes.EventConsequences
+
+@[expose] public section
 
 /-!
 # Inner-radius probability on the common event

@@ -1,6 +1,10 @@
-import CERW.Model
-import CERW.Generic.Martingale.Clamp
-import CERW.Generic.Martingale.Dyadic
+module
+
+public import CERW.Model
+public import CERW.Generic.Martingale.Clamp
+public import CERW.Generic.Martingale.Dyadic
+
+@[expose] public section
 
 /-!
 # Freedman's inequality at a logarithmic threshold for the predictable bracket

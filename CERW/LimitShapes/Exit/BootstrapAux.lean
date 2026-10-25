@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Exit.LocalTime
-import CERW.LimitShapes.Exit.Bracket
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+module
+
+public import CERW.LimitShapes.Exit.LocalTime
+public import CERW.LimitShapes.Exit.Bracket
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+
+@[expose] public section
 
 /-!
 # Finite stopping and occupation estimates

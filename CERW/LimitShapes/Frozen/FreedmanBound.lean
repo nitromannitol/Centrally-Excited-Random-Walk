@@ -1,4 +1,8 @@
-import CERW.Frozen.FreedmanBound
+module
+
+public import CERW.Frozen.FreedmanBound
+
+@[expose] public section
 
 /-!
 # lem:freedman

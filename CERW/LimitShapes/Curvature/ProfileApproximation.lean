@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Curvature.ProfilePotential
+module
+
+public import CERW.LimitShapes.Curvature.ProfilePotential
+
+@[expose] public section
 
 /-!
 # From the annular potential to the local-time profile

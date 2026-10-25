@@ -1,5 +1,9 @@
-import CERW.Generic.Martingale.Tilt.LimitStatements
-import CERW.Generic.Martingale.Tilt.SharpLowerTail
+module
+
+public import CERW.Generic.Martingale.Tilt.LimitStatements
+public import CERW.Generic.Martingale.Tilt.SharpLowerTail
+
+@[expose] public section
 
 /-!
 # The weighted lower tail on a set

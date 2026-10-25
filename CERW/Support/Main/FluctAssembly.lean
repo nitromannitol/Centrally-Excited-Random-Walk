@@ -1,7 +1,11 @@
-import CERW.Support.Main.EventProb
-import CERW.Support.Main.GoodMono
-import CERW.Support.Main.BorelCantelli
-import CERW.Support.Main.ShapeAssembly
+module
+
+public import CERW.Support.Main.EventProb
+public import CERW.Support.Main.GoodMono
+public import CERW.Support.Main.BorelCantelli
+public import CERW.Support.Main.ShapeAssembly
+
+@[expose] public section
 
 /-!
 # The fluctuation and shape theorems from the kernel facts

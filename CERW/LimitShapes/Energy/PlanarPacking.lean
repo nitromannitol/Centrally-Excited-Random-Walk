@@ -1,4 +1,8 @@
-import CERW.Generic.Lattice.Packing
+module
+
+public import CERW.Generic.Lattice.Packing
+
+@[expose] public section
 
 /-!
 # Fractional planar packing

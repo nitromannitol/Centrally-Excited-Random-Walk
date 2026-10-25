@@ -1,6 +1,10 @@
-import CERW.Generic.Kernel.NewtonField
-import CERW.Generic.Kernel.LogRadial
-import CERW.Support.Geometry.Bound
+module
+
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Generic.Kernel.LogRadial
+public import CERW.Support.Geometry.Bound
+
+@[expose] public section
 
 /-!
 # The potential varies by `O(L)` across a cell

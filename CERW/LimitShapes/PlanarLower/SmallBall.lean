@@ -1,6 +1,10 @@
-import CERW.LimitShapes.PlanarLower.Width
-import CERW.LimitShapes.Frozen.FluctuationRates
-import CERW.Support.Lower.PlanarGap.SmallBallCompose
+module
+
+public import CERW.LimitShapes.PlanarLower.Width
+public import CERW.LimitShapes.Frozen.FluctuationRates
+public import CERW.Support.Lower.PlanarGap.SmallBallCompose
+
+@[expose] public section
 
 /-!
 # Planar width small-ball bound

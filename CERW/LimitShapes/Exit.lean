@@ -1,22 +1,26 @@
-import CERW.LimitShapes.Exit.Approximation
-import CERW.LimitShapes.Exit.Assembly
-import CERW.LimitShapes.Exit.Bootstrap
-import CERW.LimitShapes.Exit.BootstrapAux
-import CERW.LimitShapes.Exit.Bracket
-import CERW.LimitShapes.Exit.Coarse
-import CERW.LimitShapes.Exit.CoarseAux
-import CERW.LimitShapes.Exit.CoarseProbability
-import CERW.LimitShapes.Exit.CoarseScales
-import CERW.LimitShapes.Exit.Crossing
-import CERW.LimitShapes.Exit.LocalTime
-import CERW.LimitShapes.Exit.Lower
-import CERW.LimitShapes.Exit.LowerAux
-import CERW.LimitShapes.Exit.LowerScales
-import CERW.LimitShapes.Exit.Probability
-import CERW.LimitShapes.Exit.ProbabilityBounds
-import CERW.LimitShapes.Exit.ProbabilityBoundsAux
-import CERW.LimitShapes.Exit.UpperProbability
-import CERW.LimitShapes.Exit.UpperProbabilityAux
+module
+
+public import CERW.LimitShapes.Exit.Approximation
+public import CERW.LimitShapes.Exit.Assembly
+public import CERW.LimitShapes.Exit.Bootstrap
+public import CERW.LimitShapes.Exit.BootstrapAux
+public import CERW.LimitShapes.Exit.Bracket
+public import CERW.LimitShapes.Exit.Coarse
+public import CERW.LimitShapes.Exit.CoarseAux
+public import CERW.LimitShapes.Exit.CoarseProbability
+public import CERW.LimitShapes.Exit.CoarseScales
+public import CERW.LimitShapes.Exit.Crossing
+public import CERW.LimitShapes.Exit.LocalTime
+public import CERW.LimitShapes.Exit.Lower
+public import CERW.LimitShapes.Exit.LowerAux
+public import CERW.LimitShapes.Exit.LowerScales
+public import CERW.LimitShapes.Exit.Probability
+public import CERW.LimitShapes.Exit.ProbabilityBounds
+public import CERW.LimitShapes.Exit.ProbabilityBoundsAux
+public import CERW.LimitShapes.Exit.UpperProbability
+public import CERW.LimitShapes.Exit.UpperProbabilityAux
+
+@[expose] public section
 
 /-!
 # Exit-time estimates

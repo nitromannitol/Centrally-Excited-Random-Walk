@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.PlanarBracket
+module
+
+public import CERW.Support.Outer.Radius.PlanarBracket
+
+@[expose] public section
 
 /-!
 # Planar Scales

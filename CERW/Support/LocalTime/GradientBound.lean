@@ -1,7 +1,11 @@
-import CERW.Model.Kernel
-import LatticeProb.Walk.GRGrad
-import LatticeProb.Walk.SRWGreenGrad
-import LatticeProb.Walk.GreenPointwise
+module
+
+public import CERW.Model.Kernel
+public import LatticeProb.Walk.GRGrad
+public import LatticeProb.Walk.SRWGreenGrad
+public import LatticeProb.Walk.GreenPointwise
+
+@[expose] public section
 
 /-!
 # The one-step bound for the potential kernel

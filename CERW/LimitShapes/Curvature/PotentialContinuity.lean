@@ -1,4 +1,8 @@
-import CERW.Support.Geometry.Holder
+module
+
+public import CERW.Support.Geometry.Holder
+
+@[expose] public section
 
 /-! # Continuity of the signed potential
 

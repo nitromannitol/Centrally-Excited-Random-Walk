@@ -1,42 +1,46 @@
-import CERW.Model
-import CERW.Generic
-import CERW.Support
-import CERW.Frozen
-import CERW.Support.Norm.CoarseCapEvents
-import CERW.Support.Norm.CoarseVolume
-import CERW.Support.Norm.GradientIdentity
-import CERW.Support.Norm.MinkowskiGauge
-import CERW.Support.Norm.GaugeShapeEvents
-import CERW.Support.Norm.GaugeLaplacianSharp
-import CERW.Support.Norm.GaugeSection5Event
-import CERW.Support.Norm.GaugeResults
-import CERW.Support.Norm.Section5Localization
-import CERW.Support.RevisedPaperContact
-import CERW.Support.RevisedPaperWidth
-import CERW.Support.Lower.SeparatedBracketsCarrier
-import CERW.Support.Lower.PlanarGap.Annulus
-import CERW.Support.Lower.PlanarGap.Width
-import CERW.Support.Lower.PlanarGap.VectorClt
-import CERW.Support.Lower.PlanarGap.SharpWidthDiskMass
-import CERW.Support.Lower.PlanarGap.SmallBall
-import CERW.Support.Lower.PlanarGap.SmallBallCompose
-import CERW.Support.Lower.ExpDeviationAE
-import CERW.Support.Lower.SourceProbabilityConsequences
-import CERW.Support.Norm.NormGaugeConsequences
-import CERW.Support.Norm.RadialNewtonLocalEstimate
-import CERW.Support.Outer.SourceDisplays
-import CERW.Support.Lower.FiniteHorizonExpDeviation
-import CERW.Support.Main.SourceIntroductionConsequences
-import CERW.Support.Main.SourceProbabilityFiniteTime
-import CERW.Support.Norm.QuadraticProcessMartingale
-import CERW.Support.Norm.RadialNewtonAE
-import CERW.Support.Outer.PlanarRealProfile
-import CERW.Support.Norm.RadialNewtonConvolution
-import CERW.Support.Outer.PlanarRealProfileAE
-import CERW.Support.Norm.RadialNewtonSourceContact
-import CERW.Support.Outer.PlanarRealProfileFiltration
-import CERW.Support.Norm.GaugeRadialNewtonConvolution
-import CERW.Support.Norm.GaugeSourceContactConsequences
-import CERW.LimitShapes
-import CERW.MainTheorems
-import CERW.Meta
+module
+
+public import CERW.Model
+public import CERW.Generic
+public import CERW.Support
+public import CERW.Frozen
+public import CERW.Support.Norm.CoarseCapEvents
+public import CERW.Support.Norm.CoarseVolume
+public import CERW.Support.Norm.GradientIdentity
+public import CERW.Support.Norm.MinkowskiGauge
+public import CERW.Support.Norm.GaugeShapeEvents
+public import CERW.Support.Norm.GaugeLaplacianSharp
+public import CERW.Support.Norm.GaugeSection5Event
+public import CERW.Support.Norm.GaugeResults
+public import CERW.Support.Norm.Section5Localization
+public import CERW.Support.RevisedPaperContact
+public import CERW.Support.RevisedPaperWidth
+public import CERW.Support.Lower.SeparatedBracketsCarrier
+public import CERW.Support.Lower.PlanarGap.Annulus
+public import CERW.Support.Lower.PlanarGap.Width
+public import CERW.Support.Lower.PlanarGap.VectorClt
+public import CERW.Support.Lower.PlanarGap.SharpWidthDiskMass
+public import CERW.Support.Lower.PlanarGap.SmallBall
+public import CERW.Support.Lower.PlanarGap.SmallBallCompose
+public import CERW.Support.Lower.ExpDeviationAE
+public import CERW.Support.Lower.SourceProbabilityConsequences
+public import CERW.Support.Norm.NormGaugeConsequences
+public import CERW.Support.Norm.RadialNewtonLocalEstimate
+public import CERW.Support.Outer.SourceDisplays
+public import CERW.Support.Lower.FiniteHorizonExpDeviation
+public import CERW.Support.Main.SourceIntroductionConsequences
+public import CERW.Support.Main.SourceProbabilityFiniteTime
+public import CERW.Support.Norm.QuadraticProcessMartingale
+public import CERW.Support.Norm.RadialNewtonAE
+public import CERW.Support.Outer.PlanarRealProfile
+public import CERW.Support.Norm.RadialNewtonConvolution
+public import CERW.Support.Outer.PlanarRealProfileAE
+public import CERW.Support.Norm.RadialNewtonSourceContact
+public import CERW.Support.Outer.PlanarRealProfileFiltration
+public import CERW.Support.Norm.GaugeRadialNewtonConvolution
+public import CERW.Support.Norm.GaugeSourceContactConsequences
+public import CERW.LimitShapes
+public import CERW.MainTheorems
+public import CERW.Meta
+
+@[expose] public section

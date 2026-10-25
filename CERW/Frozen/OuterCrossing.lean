@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.RevisedPaperCarrier
+module
+
+public import CERW.Model
+public import CERW.Support.RevisedPaperCarrier
+
+@[expose] public section
 
 /-!
 # lem-outer-crossing

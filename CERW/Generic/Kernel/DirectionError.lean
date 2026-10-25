@@ -1,5 +1,9 @@
-import CERW.Generic.Kernel.Integrable
-import CERW.Generic.Kernel.LogRadial
+module
+
+public import CERW.Generic.Kernel.Integrable
+public import CERW.Generic.Kernel.LogRadial
+
+@[expose] public section
 
 /-!
 # The direction error

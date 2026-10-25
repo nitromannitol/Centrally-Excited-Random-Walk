@@ -1,5 +1,9 @@
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.Cells
+module
+
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.Cells
+
+@[expose] public section
 
 /-!
 # The contact cell

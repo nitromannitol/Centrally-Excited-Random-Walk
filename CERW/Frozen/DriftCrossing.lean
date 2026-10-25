@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.RevisedPaper
+module
+
+public import CERW.Model
+public import CERW.Support.RevisedPaper
+
+@[expose] public section
 
 /-!
 # lem-crossing

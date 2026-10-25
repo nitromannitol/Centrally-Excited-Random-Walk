@@ -1,5 +1,9 @@
-import Mathlib.Algebra.Ring.GeomSum
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import Mathlib.Algebra.Ring.GeomSum
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section
 
 /-!
 # Inverting the radius equation

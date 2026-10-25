@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Event
-import CERW.Support.Norm.ShapeRates
+module
+
+public import CERW.LimitShapes.Event
+public import CERW.Support.Norm.ShapeRates
+
+@[expose] public section
 
 /-!
 # Outer radius from distance crossing

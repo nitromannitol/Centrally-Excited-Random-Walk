@@ -1,4 +1,8 @@
-import LatticeProb.Prob.Freedman
+module
+
+public import LatticeProb.Prob.Freedman
+
+@[expose] public section
 
 /-!
 # Freedman's inequality on the event of a small bracket

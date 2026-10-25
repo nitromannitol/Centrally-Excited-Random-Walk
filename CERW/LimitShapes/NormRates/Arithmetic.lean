@@ -1,4 +1,8 @@
-import CERW.LimitShapes.NormRates.Normalization
+module
+
+public import CERW.LimitShapes.NormRates.Normalization
+
+@[expose] public section
 
 /-!
 # Radius rates from the quadratic radius-volume estimate

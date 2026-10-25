@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Crossing.Projection
-import CERW.LimitShapes.Event
+module
+
+public import CERW.LimitShapes.Crossing.Projection
+public import CERW.LimitShapes.Event
+
+@[expose] public section
 
 /-!
 # Extending distance crossings from integer to real norm levels

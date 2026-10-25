@@ -1,9 +1,13 @@
-import CERW.LimitShapes.Frozen.LimitShape
-import CERW.LimitShapes.Frozen.FluctuationRates
-import CERW.Support.Limit.MomentFluctuations
-import CERW.Generic.Martingale.CLT.Proved
-import CERW.Generic.Martingale.LilAssembly.StoutLower
-import CERW.Support.Stout
+module
+
+public import CERW.LimitShapes.Frozen.LimitShape
+public import CERW.LimitShapes.Frozen.FluctuationRates
+public import CERW.Support.Limit.MomentFluctuations
+public import CERW.Generic.Martingale.CLT.Proved
+public import CERW.Generic.Martingale.LilAssembly.StoutLower
+public import CERW.Support.Stout
+
+@[expose] public section
 
 /-!
 # Theorem 8.1 (`thm:moment-fluctuations`) from the printed shape and fluctuation bounds.

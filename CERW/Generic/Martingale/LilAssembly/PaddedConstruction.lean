@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.LilAssembly.Core
-import CERW.Generic.Martingale.LilLower
-import CERW.Generic.Martingale.CLT.Interfaces
+module
+
+public import CERW.Generic.Martingale.LilAssembly.Core
+public import CERW.Generic.Martingale.LilLower
+public import CERW.Generic.Martingale.CLT.Interfaces
+
+@[expose] public section
 
 /-!
 # The padded process of a martingale with a sure bound on its increments

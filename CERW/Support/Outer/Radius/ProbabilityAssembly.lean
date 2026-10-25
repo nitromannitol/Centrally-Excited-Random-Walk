@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.PlanarProfile
+module
+
+public import CERW.Support.Outer.Radius.PlanarProfile
+
+@[expose] public section
 
 /-!
 # Probability Assembly

@@ -1,6 +1,10 @@
-import CERW.Support.Lower.SharpWidth
-import CERW.Generic.Martingale.CLT.Proved
-import CERW.Frozen.FluctuationRates
+module
+
+public import CERW.Support.Lower.SharpWidth
+public import CERW.Generic.Martingale.CLT.Proved
+public import CERW.Frozen.FluctuationRates
+
+@[expose] public section
 
 /-!
 # The first coordinate of the compensated planar position is asymptotically Gaussian

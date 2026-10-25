@@ -1,2 +1,6 @@
-import CERW.Support.Outer.NearFar
-import CERW.Support.Outer.OuterRadius
+module
+
+public import CERW.Support.Outer.NearFar
+public import CERW.Support.Outer.OuterRadius
+
+@[expose] public section

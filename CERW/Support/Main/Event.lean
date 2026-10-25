@@ -1,6 +1,10 @@
-import CERW.Support.Main.GoodEvent
-import CERW.Support.Coarse.Vector
-import CERW.Support.Law.Dynkin
+module
+
+public import CERW.Support.Main.GoodEvent
+public import CERW.Support.Coarse.Vector
+public import CERW.Support.Law.Dynkin
+
+@[expose] public section
 
 /-!
 # The event of the fluctuation theorem's proof

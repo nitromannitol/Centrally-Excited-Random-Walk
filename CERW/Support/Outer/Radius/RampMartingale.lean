@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.EuclideanCrossing
+module
+
+public import CERW.Support.Outer.Radius.EuclideanCrossing
+
+@[expose] public section
 
 /-!
 # Ramp Martingale

@@ -1,5 +1,9 @@
-import CERW.Generic.Young.Radius
-import CERW.Model.Potential
+module
+
+public import CERW.Generic.Young.Radius
+public import CERW.Model.Potential
+
+@[expose] public section
 
 /-!
 # The inradius from the elapsed time

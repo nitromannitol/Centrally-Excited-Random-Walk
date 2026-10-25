@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Curvature.PotentialKernel
-import CERW.LimitShapes.Curvature.HarmonicKernel
+module
+
+public import CERW.LimitShapes.Curvature.PotentialKernel
+public import CERW.LimitShapes.Curvature.HarmonicKernel
+
+@[expose] public section
 
 /-!
 # Laplacian of the signed potential kernel

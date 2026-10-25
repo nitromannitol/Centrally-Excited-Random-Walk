@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.LilAssembly.Core
+module
+
+public import CERW.Generic.Martingale.LilAssembly.Core
+
+@[expose] public section
 
 /-!
 # The block events are measurable at their passage times

@@ -1,8 +1,12 @@
-import CERW.Generic.Kernel.NewtonField
-import CERW.Generic.Kernel.Modulus
-import CERW.Model.Potential
-import Mathlib.MeasureTheory.Constructions.HaarToSphere
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
+module
+
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Generic.Kernel.Modulus
+public import CERW.Model.Potential
+public import Mathlib.MeasureTheory.Constructions.HaarToSphere
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+
+@[expose] public section
 
 /-!
 # The flux of the Newtonian field through a sphere

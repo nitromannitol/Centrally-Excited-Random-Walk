@@ -1,5 +1,9 @@
-import CERW.Support.Drift.KernelValues
-import CERW.Support.Drift.KernelSums
+module
+
+public import CERW.Support.Drift.KernelValues
+public import CERW.Support.Drift.KernelSums
+
+@[expose] public section
 
 /-!
 # The one-step law of the walk with a drift field

@@ -1,8 +1,12 @@
-import CERW.Model
-import CERW.Support.Lower.ExpDeviationAE
-import Mathlib.Probability.BorelCantelli
-import Mathlib.Probability.ProductMeasure
-import Mathlib.Probability.Independence.InfinitePi
+module
+
+public import CERW.Model
+public import CERW.Support.Lower.ExpDeviationAE
+public import Mathlib.Probability.BorelCantelli
+public import Mathlib.Probability.ProductMeasure
+public import Mathlib.Probability.Independence.InfinitePi
+
+@[expose] public section
 
 /-!
 # Fair-coin martingales on interleaved sites

@@ -1,6 +1,10 @@
-import CERW.Support.Contact.Quadratic
-import CERW.Generic.Martingale.Dyadic
-import CERW.Generic.Martingale.Clamp
+module
+
+public import CERW.Support.Contact.Quadratic
+public import CERW.Generic.Martingale.Dyadic
+public import CERW.Generic.Martingale.Clamp
+
+@[expose] public section
 
 /-!
 # Concentration of the quadratic martingale

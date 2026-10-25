@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.WeightedKernelTail
+module
+
+public import CERW.Support.Outer.Radius.WeightedKernelTail
+
+@[expose] public section
 
 /-!
 # Occupation Kernel

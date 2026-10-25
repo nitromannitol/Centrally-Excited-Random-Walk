@@ -1,8 +1,12 @@
-import CERW.Support.Norm.LocalTime
-import CERW.Support.LocalTime.LatticeKernelFacts
-import CERW.Support.Occupation
-import CERW.Generic.Norm
-import CERW.Support.Drift.Dynkin
+module
+
+public import CERW.Support.Norm.LocalTime
+public import CERW.Support.LocalTime.LatticeKernelFacts
+public import CERW.Support.Occupation
+public import CERW.Generic.Norm
+public import CERW.Support.Drift.Dynkin
+
+@[expose] public section
 
 /-!
 # Local times before the first exit

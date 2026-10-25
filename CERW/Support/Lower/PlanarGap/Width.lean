@@ -1,4 +1,8 @@
-import CERW.Support.Lower.PlanarGap.Clt
+module
+
+public import CERW.Support.Lower.PlanarGap.Clt
+
+@[expose] public section
 
 /-!
 # The width of the planar range is not small

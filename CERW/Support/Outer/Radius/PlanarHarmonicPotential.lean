@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.PlanarExterior
+module
+
+public import CERW.Support.Outer.Radius.PlanarExterior
+
+@[expose] public section
 
 /-!
 # Planar Harmonic Potential

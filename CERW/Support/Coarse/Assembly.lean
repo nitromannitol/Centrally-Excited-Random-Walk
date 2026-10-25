@@ -1,21 +1,25 @@
-import CERW.Support.LocalTime.LocalAssembly
-import CERW.Support.Coarse.RadialAssembly
-import CERW.Support.Coarse.Vector
-import CERW.Support.Coarse.Sstar
-import CERW.Support.Coarse.Shell
-import CERW.Support.Coarse.Tail
-import CERW.Support.Coarse.OuterRadius
-import CERW.Support.Coarse.MassError
-import CERW.Support.Coarse.RadiusArith
-import CERW.Support.Geometry.MassIdentity
-import CERW.Generic.Kernel.RadialPacking
-import CERW.Support.Law.Dynkin
-import CERW.Support.Occupation.Facts
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Geometry.TailBasic
-import CERW.Support.Main.ScaleLimits
-import CERW.Support.Law.ScaleArith
+module
+
+public import CERW.Support.LocalTime.LocalAssembly
+public import CERW.Support.Coarse.RadialAssembly
+public import CERW.Support.Coarse.Vector
+public import CERW.Support.Coarse.Sstar
+public import CERW.Support.Coarse.Shell
+public import CERW.Support.Coarse.Tail
+public import CERW.Support.Coarse.OuterRadius
+public import CERW.Support.Coarse.MassError
+public import CERW.Support.Coarse.RadiusArith
+public import CERW.Support.Geometry.MassIdentity
+public import CERW.Generic.Kernel.RadialPacking
+public import CERW.Support.Law.Dynkin
+public import CERW.Support.Occupation.Facts
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Geometry.TailBasic
+public import CERW.Support.Main.ScaleLimits
+public import CERW.Support.Law.ScaleArith
+
+@[expose] public section
 
 /-!
 # The occupation and radius bounds

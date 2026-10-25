@@ -1,9 +1,13 @@
-import CERW.Generic.Martingale.CLT.Assembly
-import CERW.Generic.Martingale.CLT.Truncation
-import CERW.Generic.Martingale.CLT.IncrementStep
-import CERW.Generic.Martingale.CLT.Compensated
-import CERW.Generic.Martingale.CLT.CharFunBound
-import CERW.Generic.Martingale.CLT.ArrayTendsto
+module
+
+public import CERW.Generic.Martingale.CLT.Assembly
+public import CERW.Generic.Martingale.CLT.Truncation
+public import CERW.Generic.Martingale.CLT.IncrementStep
+public import CERW.Generic.Martingale.CLT.Compensated
+public import CERW.Generic.Martingale.CLT.CharFunBound
+public import CERW.Generic.Martingale.CLT.ArrayTendsto
+
+@[expose] public section
 
 /-!
 # The martingale central limit theorem, proved

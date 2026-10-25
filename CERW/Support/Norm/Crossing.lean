@@ -1,4 +1,8 @@
-import CERW.Model
+module
+
+public import CERW.Model
+
+@[expose] public section
 
 /-!
 # Drift crossing

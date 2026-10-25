@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Crossing.ExponentialOccupation
-import Mathlib.Probability.Martingale.OptionalSampling
+module
+
+public import CERW.LimitShapes.Crossing.ExponentialOccupation
+public import Mathlib.Probability.Martingale.OptionalSampling
+
+@[expose] public section
 
 /-!
 # Expectation of the stopped exponential distance

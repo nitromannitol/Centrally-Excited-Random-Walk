@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.SiteScales
-import CERW.Support.Norm.EuclideanCoarse
+module
+
+public import CERW.LimitShapes.Energy.SiteScales
+public import CERW.Support.Norm.EuclideanCoarse
+
+@[expose] public section
 
 /-!
 # Event scale thresholds

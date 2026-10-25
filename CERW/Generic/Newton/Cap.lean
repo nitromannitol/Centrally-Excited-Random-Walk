@@ -1,6 +1,10 @@
-import Mathlib.MeasureTheory.Constructions.HaarToSphere
-import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
-import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
+module
+
+public import Mathlib.MeasureTheory.Constructions.HaarToSphere
+public import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+public import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
+
+@[expose] public section
 
 /-!
 # The measure of a spherical cap

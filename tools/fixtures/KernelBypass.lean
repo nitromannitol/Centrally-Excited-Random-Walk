@@ -1,4 +1,8 @@
-import Lean
+module
+
+public import Lean
+
+@[expose] public section
 
 /-!
 # A declaration that skipped the kernel

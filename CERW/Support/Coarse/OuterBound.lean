@@ -1,7 +1,11 @@
-import CERW.Support.Coarse.OuterRadius
-import CERW.Support.Crossing.OuterContradiction
-import CERW.Support.Coarse.CrossingArith
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.Coarse.OuterRadius
+public import CERW.Support.Crossing.OuterContradiction
+public import CERW.Support.Coarse.CrossingArith
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # The outer fluctuation bound

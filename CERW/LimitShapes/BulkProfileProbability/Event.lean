@@ -1,5 +1,9 @@
-import CERW.LimitShapes.BulkProfileProbability.Scales
-import CERW.LimitShapes.Curvature.FluctuationProbabilityAux
+module
+
+public import CERW.LimitShapes.BulkProfileProbability.Scales
+public import CERW.LimitShapes.Curvature.FluctuationProbabilityAux
+
+@[expose] public section
 
 /-!
 # The bulk profile on the intersection event

@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Event
-import CERW.Support.Law.Dynkin
-import Mathlib.Probability.Process.Stopping
+module
+
+public import CERW.LimitShapes.Event
+public import CERW.Support.Law.Dynkin
+public import Mathlib.Probability.Process.Stopping
+
+@[expose] public section
 
 /-!
 # Bounded stopping for distance crossings

@@ -1,8 +1,12 @@
-import CERW.LimitShapes.LogLower.Arithmetic
-import CERW.LimitShapes.LogLower.Azuma
-import CERW.LimitShapes.LogLower.Probability
-import CERW.LimitShapes.LogLower.Tail
-import CERW.LimitShapes.LogLower.TailBounds
+module
+
+public import CERW.LimitShapes.LogLower.Arithmetic
+public import CERW.LimitShapes.LogLower.Azuma
+public import CERW.LimitShapes.LogLower.Probability
+public import CERW.LimitShapes.LogLower.Tail
+public import CERW.LimitShapes.LogLower.TailBounds
+
+@[expose] public section
 
 /-!
 # Logarithmic lower fluctuations

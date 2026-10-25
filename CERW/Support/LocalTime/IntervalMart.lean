@@ -1,10 +1,14 @@
-import CERW.Support.LocalTime.Bracket
-import CERW.Generic.Martingale.Dyadic
-import CERW.Generic.Martingale.Clamp
-import CERW.Generic.Lattice.Centered
-import CERW.Support.Law.ScaleArith
-import CERW.Support.Occupation.SiteArith
-import CERW.Support.LocalTime.LocalBracket
+module
+
+public import CERW.Support.LocalTime.Bracket
+public import CERW.Generic.Martingale.Dyadic
+public import CERW.Generic.Martingale.Clamp
+public import CERW.Generic.Lattice.Centered
+public import CERW.Support.Law.ScaleArith
+public import CERW.Support.Occupation.SiteArith
+public import CERW.Support.LocalTime.LocalBracket
+
+@[expose] public section
 
 /-!
 # The interval martingales of the local times

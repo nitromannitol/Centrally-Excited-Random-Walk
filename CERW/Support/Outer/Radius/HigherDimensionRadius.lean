@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.RadiusAsymptotics
+module
+
+public import CERW.Support.Outer.Radius.RadiusAsymptotics
+
+@[expose] public section
 
 /-!
 # Higher Dimension Radius

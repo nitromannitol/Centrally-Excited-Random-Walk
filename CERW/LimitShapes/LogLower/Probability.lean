@@ -1,4 +1,8 @@
-import CERW.LimitShapes.LogLower.TailBounds
+module
+
+public import CERW.LimitShapes.LogLower.TailBounds
+
+@[expose] public section
 
 /-!
 # Logarithmic lower bounds by stopped quadratic Azuma

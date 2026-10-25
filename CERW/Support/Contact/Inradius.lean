@@ -1,9 +1,13 @@
-import CERW.Support.Contact.InradiusArith
-import CERW.Support.Contact.BallExcess
-import CERW.Support.Contact.NormReplace
-import CERW.Support.Contact.Quadratic
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Main.ScaleLimits
+module
+
+public import CERW.Support.Contact.InradiusArith
+public import CERW.Support.Contact.BallExcess
+public import CERW.Support.Contact.NormReplace
+public import CERW.Support.Contact.Quadratic
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Main.ScaleLimits
+
+@[expose] public section
 
 /-!
 # The inradius

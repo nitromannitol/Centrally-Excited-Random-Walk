@@ -1,4 +1,8 @@
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+
+@[expose] public section
 
 /-!
 # The paper's scales tend to zero

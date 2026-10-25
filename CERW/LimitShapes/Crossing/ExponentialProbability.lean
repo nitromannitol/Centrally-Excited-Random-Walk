@@ -1,8 +1,12 @@
-import CERW.LimitShapes.Crossing.ExponentialTail
-import CERW.LimitShapes.Crossing.Levels
-import CERW.LimitShapes.Crossing.DistanceGeometry
-import CERW.Generic.Martingale.Arith
-import CERW.Support.Occupation.Facts
+module
+
+public import CERW.LimitShapes.Crossing.ExponentialTail
+public import CERW.LimitShapes.Crossing.Levels
+public import CERW.LimitShapes.Crossing.DistanceGeometry
+public import CERW.Generic.Martingale.Arith
+public import CERW.Support.Occupation.Facts
+
+@[expose] public section
 
 /-!
 # Simultaneous distance crossings from exponential tails

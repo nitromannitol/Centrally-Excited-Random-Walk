@@ -1,10 +1,14 @@
-import CERW.Generic.Newton.Polar
-import CERW.Support.Occupation.CellDirection
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
-import Mathlib.MeasureTheory.Constructions.HaarToSphere
-import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+module
+
+public import CERW.Generic.Newton.Polar
+public import CERW.Support.Occupation.CellDirection
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import Mathlib.Analysis.InnerProductSpace.Projection.Reflection
+public import Mathlib.MeasureTheory.Constructions.HaarToSphere
+public import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+
+@[expose] public section
 
 /-!
 # The direction-free planar annulus bound

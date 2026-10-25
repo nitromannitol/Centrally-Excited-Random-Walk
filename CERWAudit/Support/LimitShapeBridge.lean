@@ -1,6 +1,10 @@
-import Mathlib
-import CERW.Frozen.LimitShape
-import CERWAudit.LimitShape.SolutionBasic
+module
+
+public import Mathlib
+public import CERW.Frozen.LimitShape
+public import CERWAudit.LimitShape.SolutionBasic
+
+@[expose] public section
 
 /-!
 # Comparator bridge: `CERWAudit.LimitShape` vocabulary → repository

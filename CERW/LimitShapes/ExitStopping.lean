@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Event
+module
+
+public import CERW.LimitShapes.Event
+
+@[expose] public section
 
 /-!
 # Bounds and quadratic sums at the first exit

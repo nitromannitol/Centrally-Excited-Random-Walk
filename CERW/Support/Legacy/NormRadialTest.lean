@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Norm.Radial
+module
+
+public import CERW.Model
+public import CERW.Support.Norm.Radial
+
+@[expose] public section
 
 /-!
 # lem:radial

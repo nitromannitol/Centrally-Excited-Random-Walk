@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Lower.LogLower
+module
+
+public import CERW.Model
+public import CERW.Support.Lower.LogLower
+
+@[expose] public section
 
 /-!
 # prop:log-lower

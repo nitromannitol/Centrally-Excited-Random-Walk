@@ -1,8 +1,12 @@
-import CERW.Support.Law.StepMean
-import CERW.Generic.Kernel.NewtonField
-import CERW.Generic.Lattice.Centered
-import CERW.Model.Potential
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.Law.StepMean
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Generic.Lattice.Centered
+public import CERW.Model.Potential
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # Replacing the lattice gradient by the Newtonian field

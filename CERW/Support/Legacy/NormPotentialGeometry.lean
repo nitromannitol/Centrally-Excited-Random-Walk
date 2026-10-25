@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Norm.Geometry
+module
+
+public import CERW.Model
+public import CERW.Support.Norm.Geometry
+
+@[expose] public section
 
 /-!
 # lem:geometry

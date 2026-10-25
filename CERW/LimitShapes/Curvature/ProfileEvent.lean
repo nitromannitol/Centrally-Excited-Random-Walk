@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Curvature.ProfileApproximation
-import CERW.LimitShapes.Curvature.ProfileScales
+module
+
+public import CERW.LimitShapes.Curvature.ProfileApproximation
+public import CERW.LimitShapes.Curvature.ProfileScales
+
+@[expose] public section
 
 /-!
 # The global profile on the common event

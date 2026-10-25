@@ -1,5 +1,9 @@
-import CERW.Support.Norm.CoarseVolume
-import CERW.Support.Drift.Bridge
+module
+
+public import CERW.Support.Norm.CoarseVolume
+public import CERW.Support.Drift.Bridge
+
+@[expose] public section
 
 /-!
 # The Euclidean coarse bounds from the coarse bounds of the walk with a norm

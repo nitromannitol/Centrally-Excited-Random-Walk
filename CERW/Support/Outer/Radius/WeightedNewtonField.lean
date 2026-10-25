@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.SphericalNewtonField
+module
+
+public import CERW.Support.Outer.Radius.SphericalNewtonField
+
+@[expose] public section
 
 /-!
 # Weighted Newton Field

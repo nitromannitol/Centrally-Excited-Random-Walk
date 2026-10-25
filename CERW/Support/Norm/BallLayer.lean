@@ -1,11 +1,15 @@
-import CERW.Model
-import CERW.Generic.Norm.Gradient
-import CERW.Generic.Norm.Subgradient
-import CERW.Generic.Norm.Sphere
-import CERW.Generic.Kernel.Integrable
-import CERW.Generic.Newton.Polar
-import Mathlib.MeasureTheory.Constructions.HaarToSphere
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun
+module
+
+public import CERW.Model
+public import CERW.Generic.Norm.Gradient
+public import CERW.Generic.Norm.Subgradient
+public import CERW.Generic.Norm.Sphere
+public import CERW.Generic.Kernel.Integrable
+public import CERW.Generic.Newton.Polar
+public import Mathlib.MeasureTheory.Constructions.HaarToSphere
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun
+
+@[expose] public section
 
 /-!
 # The potential of a norm ball and of a layer between two norm balls

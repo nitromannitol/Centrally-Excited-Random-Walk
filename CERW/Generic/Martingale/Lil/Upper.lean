@@ -1,12 +1,16 @@
-import CERW.Generic.Martingale.Lil.RegBracket
-import CERW.Generic.Martingale.Lil.GatedVariance
-import CERW.Generic.Martingale.Lil.FirstPassage
-import CERW.Generic.Martingale.Lil.MaximalFreedman
-import CERW.Generic.Martingale.Lil.TruncatedBlock
-import CERW.Generic.Martingale.Lil.Arith
-import CERW.Generic.Martingale.Lil.BlockSummable
-import CERW.Generic.Martingale.Lil.Pathwise
-import CERW.Generic.Martingale.Lil.Assembly
+module
+
+public import CERW.Generic.Martingale.Lil.RegBracket
+public import CERW.Generic.Martingale.Lil.GatedVariance
+public import CERW.Generic.Martingale.Lil.FirstPassage
+public import CERW.Generic.Martingale.Lil.MaximalFreedman
+public import CERW.Generic.Martingale.Lil.TruncatedBlock
+public import CERW.Generic.Martingale.Lil.Arith
+public import CERW.Generic.Martingale.Lil.BlockSummable
+public import CERW.Generic.Martingale.Lil.Pathwise
+public import CERW.Generic.Martingale.Lil.Assembly
+
+@[expose] public section
 
 /-!
 # The upper half of the martingale law of the iterated logarithm

@@ -1,8 +1,12 @@
-import CERW.Generic.Newton.GaussFlux
-import CERW.Generic.Newton.BallSymmetry
-import CERW.Generic.Newton.Polar
-import CERW.Support.Geometry.Bound
-import CERW.Support.Geometry.TailBounds
+module
+
+public import CERW.Generic.Newton.GaussFlux
+public import CERW.Generic.Newton.BallSymmetry
+public import CERW.Generic.Newton.Polar
+public import CERW.Support.Geometry.Bound
+public import CERW.Support.Geometry.TailBounds
+
+@[expose] public section
 
 /-!
 # Newton's theorem for the inward-drift potential

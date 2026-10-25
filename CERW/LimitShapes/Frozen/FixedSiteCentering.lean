@@ -1,5 +1,9 @@
-import CERW.LimitShapes.LimitLaws.FixedSiteCentering
-import CERW.Frozen.FixedSiteCentering
+module
+
+public import CERW.LimitShapes.LimitLaws.FixedSiteCentering
+public import CERW.Frozen.FixedSiteCentering
+
+@[expose] public section
 
 /-!
 # lem:fixed-site-centering

@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.PlanarRadius
+module
+
+public import CERW.Support.Outer.Radius.PlanarRadius
+
+@[expose] public section
 
 /-!
 # Higher Dimension Profile

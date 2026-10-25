@@ -1,4 +1,8 @@
-import CERW.Model
+module
+
+public import CERW.Model
+
+@[expose] public section
 
 /-!
 # The statement of the lower half of the martingale law of the iterated logarithm

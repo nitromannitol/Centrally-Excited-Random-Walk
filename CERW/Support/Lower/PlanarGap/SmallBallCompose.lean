@@ -1,5 +1,9 @@
-import CERW.Support.Lower.PlanarGap.SmallBall
-import CERW.Support.Lower.PlanarGap.SharpWidthDiskMass
+module
+
+public import CERW.Support.Lower.PlanarGap.SmallBall
+public import CERW.Support.Lower.PlanarGap.SharpWidthDiskMass
+
+@[expose] public section
 
 /-!
 # The small-ball composition for Theorem `thm:sharp` (iv)

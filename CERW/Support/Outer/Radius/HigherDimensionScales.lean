@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.LocalMassIntegral
+module
+
+public import CERW.Support.Outer.Radius.LocalMassIntegral
+
+@[expose] public section
 
 /-!
 # Higher Dimension Scales

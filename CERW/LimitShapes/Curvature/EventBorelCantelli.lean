@@ -1,6 +1,10 @@
-import Mathlib.MeasureTheory.Measure.Typeclasses.Probability
-import Mathlib.Analysis.PSeries
-import Mathlib.MeasureTheory.OuterMeasure.BorelCantelli
+module
+
+public import Mathlib.MeasureTheory.Measure.Typeclasses.Probability
+public import Mathlib.Analysis.PSeries
+public import Mathlib.MeasureTheory.OuterMeasure.BorelCantelli
+
+@[expose] public section
 
 /-!
 # Polynomial exceptional probabilities and eventual conclusions

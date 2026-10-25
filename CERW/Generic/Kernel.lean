@@ -1,10 +1,14 @@
-import CERW.Generic.Kernel.Bathtub
-import CERW.Generic.Kernel.Integrable
-import CERW.Generic.Kernel.RadialPacking
-import CERW.Generic.Kernel.RadialPower
-import CERW.Generic.Kernel.NewtonField
-import CERW.Generic.Kernel.LogRadial
-import CERW.Generic.Kernel.Modulus
-import CERW.Generic.Kernel.ScalarTaylor
-import CERW.Generic.Kernel.DirectionError
-import CERW.Generic.Kernel.RadialInner
+module
+
+public import CERW.Generic.Kernel.Bathtub
+public import CERW.Generic.Kernel.Integrable
+public import CERW.Generic.Kernel.RadialPacking
+public import CERW.Generic.Kernel.RadialPower
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Generic.Kernel.LogRadial
+public import CERW.Generic.Kernel.Modulus
+public import CERW.Generic.Kernel.ScalarTaylor
+public import CERW.Generic.Kernel.DirectionError
+public import CERW.Generic.Kernel.RadialInner
+
+@[expose] public section

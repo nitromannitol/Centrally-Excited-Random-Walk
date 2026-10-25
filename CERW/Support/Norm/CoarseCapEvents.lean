@@ -1,6 +1,10 @@
-import CERW.Support.Norm.CoarseCrossing
-import CERW.Support.Norm.ShapeRates
-import CERW.Support.Norm.OuterCrossing
+module
+
+public import CERW.Support.Norm.CoarseCrossing
+public import CERW.Support.Norm.ShapeRates
+public import CERW.Support.Norm.OuterCrossing
+
+@[expose] public section
 
 /-!
 # The path event of the Euclidean cap argument and its failure probability

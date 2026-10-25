@@ -1,8 +1,12 @@
-import CERW.Model
-import CERW.Generic.Kernel.ScalarTaylor
-import CERW.Generic.Martingale.FreedmanEvent
-import LatticeProb.Prob.PaleyZygmund
-import CERW.Generic.Martingale.ExpMart
+module
+
+public import CERW.Model
+public import CERW.Generic.Kernel.ScalarTaylor
+public import CERW.Generic.Martingale.FreedmanEvent
+public import LatticeProb.Prob.PaleyZygmund
+public import CERW.Generic.Martingale.ExpMart
+
+@[expose] public section
 
 /-!
 # Exponential deviations of martingales

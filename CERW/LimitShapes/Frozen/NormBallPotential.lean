@@ -1,5 +1,9 @@
-import CERW.Frozen.NormBallPotential
-import CERW.LimitShapes.NormBallPotential
+module
+
+public import CERW.Frozen.NormBallPotential
+public import CERW.LimitShapes.NormBallPotential
+
+@[expose] public section
 
 /-!
 # lem:ballpotential

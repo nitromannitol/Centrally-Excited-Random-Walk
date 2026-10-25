@@ -1,8 +1,12 @@
-import Mathlib.Analysis.Complex.Trigonometric
-import Mathlib.Analysis.Complex.Basic
-import Mathlib.MeasureTheory.Function.ConditionalExpectation.PullOut
-import Mathlib.MeasureTheory.Integral.Bochner.Set
-import CERW.Generic.Martingale.CLT.Interfaces
+module
+
+public import Mathlib.Analysis.Complex.Trigonometric
+public import Mathlib.Analysis.Complex.Basic
+public import Mathlib.MeasureTheory.Function.ConditionalExpectation.PullOut
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+public import CERW.Generic.Martingale.CLT.Interfaces
+
+@[expose] public section
 
 /-!
 # The increment step bound for the martingale central limit theorem

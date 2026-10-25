@@ -1,4 +1,8 @@
-import CERW.Support.Occupation.Facts
+module
+
+public import CERW.Support.Occupation.Facts
+
+@[expose] public section
 
 /-!
 # The cell set lies in a ball

@@ -1,4 +1,8 @@
-import LatticeProb.Walk.Ball
+module
+
+public import LatticeProb.Walk.Ball
+
+@[expose] public section
 
 /-!
 # Summable lattice weights

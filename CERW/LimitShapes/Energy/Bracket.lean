@@ -1,6 +1,10 @@
-import CERW.Model.Martingales
-import CERW.Support.Drift.StepProb
-import CERW.Support.Drift.Bridge
+module
+
+public import CERW.Model.Martingales
+public import CERW.Support.Drift.StepProb
+public import CERW.Support.Drift.Bridge
+
+@[expose] public section
 
 /-!
 # Brackets controlled by step energy

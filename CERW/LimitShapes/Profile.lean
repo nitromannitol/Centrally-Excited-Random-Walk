@@ -1,5 +1,9 @@
-import CERW.LimitShapes.EventConsequences
-import CERW.Support.Lower.SeparatedBracketsEvent
+module
+
+public import CERW.LimitShapes.EventConsequences
+public import CERW.Support.Lower.SeparatedBracketsEvent
+
+@[expose] public section
 
 /-!
 # Outer radius and local-time profiles on the common event

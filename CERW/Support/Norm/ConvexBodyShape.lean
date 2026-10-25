@@ -1,4 +1,8 @@
-import CERW.Support.Norm.GaugeShapeEvents
+module
+
+public import CERW.Support.Norm.GaugeShapeEvents
+
+@[expose] public section
 
 /-!
 # Every compact convex body with the origin in its interior is a limit shape

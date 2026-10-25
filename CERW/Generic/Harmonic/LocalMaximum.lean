@@ -1,9 +1,13 @@
-import Mathlib.Analysis.InnerProductSpace.Harmonic.Basic
-import Mathlib.Analysis.Calculus.DerivativeTest
-import Mathlib.Analysis.Calculus.LocalExtr.Basic
-import Mathlib.Analysis.Calculus.Deriv.Mul
-import Mathlib.Analysis.InnerProductSpace.Calculus
-import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
+module
+
+public import Mathlib.Analysis.InnerProductSpace.Harmonic.Basic
+public import Mathlib.Analysis.Calculus.DerivativeTest
+public import Mathlib.Analysis.Calculus.LocalExtr.Basic
+public import Mathlib.Analysis.Calculus.Deriv.Mul
+public import Mathlib.Analysis.InnerProductSpace.Calculus
+public import Mathlib.MeasureTheory.Measure.MeasureSpaceDef
+
+@[expose] public section
 
 /-! # Calculus at local maxima
 

@@ -1,6 +1,10 @@
-import CERW.Model.Bracket
-import Mathlib.Probability.Process.Filtration
-import Mathlib.MeasureTheory.Constructions.BorelSpace.Order
+module
+
+public import CERW.Model.Bracket
+public import Mathlib.Probability.Process.Filtration
+public import Mathlib.MeasureTheory.Constructions.BorelSpace.Order
+
+@[expose] public section
 
 /-!
 # The ratio that controls the gate

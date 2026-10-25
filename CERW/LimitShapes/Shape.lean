@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Frozen.NormShapeRates
-import CERW.Support.Norm.ShapeRates
-import CERW.Support.Main.LimitShape
-import CERW.Support.Norm.Section5Localization
+module
+
+public import CERW.LimitShapes.Frozen.NormShapeRates
+public import CERW.Support.Norm.ShapeRates
+public import CERW.Support.Main.LimitShape
+public import CERW.Support.Norm.Section5Localization
+
+@[expose] public section
 
 /-!
 # Norm limit shapes and the Euclidean specialization

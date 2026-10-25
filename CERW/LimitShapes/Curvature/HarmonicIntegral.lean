@@ -1,7 +1,11 @@
-import Mathlib.Analysis.Calculus.ParametricIntegral
-import Mathlib.Analysis.Calculus.ContDiff.Comp
-import Mathlib.MeasureTheory.Function.LocallyIntegrable
-import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
+module
+
+public import Mathlib.Analysis.Calculus.ParametricIntegral
+public import Mathlib.Analysis.Calculus.ContDiff.Comp
+public import Mathlib.MeasureTheory.Function.LocallyIntegrable
+public import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
+
+@[expose] public section
 
 /-!
 # Differentiation of integrals over bounded sets

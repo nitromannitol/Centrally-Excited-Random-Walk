@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Energy.Absorption
-import CERW.LimitShapes.Energy.DriftBound
-import CERW.LimitShapes.Energy.ValueBound
-import CERW.LimitShapes.Energy.SitePointwise
+module
+
+public import CERW.LimitShapes.Energy.Absorption
+public import CERW.LimitShapes.Energy.DriftBound
+public import CERW.LimitShapes.Energy.ValueBound
+public import CERW.LimitShapes.Energy.SitePointwise
+
+@[expose] public section
 
 /-!
 # Kernel energy on the common event

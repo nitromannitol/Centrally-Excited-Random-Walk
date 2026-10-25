@@ -1,5 +1,9 @@
-import CERW.Model.Space
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+module
+
+public import CERW.Model.Space
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+
+@[expose] public section
 
 /-!
 # A norm on `ℝ^d` and its subgradients

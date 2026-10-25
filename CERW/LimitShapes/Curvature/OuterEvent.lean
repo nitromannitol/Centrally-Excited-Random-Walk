@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.OuterWidth
-import CERW.LimitShapes.Curvature.OuterScales
-import CERW.LimitShapes.Curvature.OuterProbability
+module
+
+public import CERW.LimitShapes.Curvature.OuterWidth
+public import CERW.LimitShapes.Curvature.OuterScales
+public import CERW.LimitShapes.Curvature.OuterProbability
+
+@[expose] public section
 
 /-! # Outer radius by curvature on the common event
 

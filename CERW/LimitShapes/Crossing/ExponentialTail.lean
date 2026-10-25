@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Crossing.ExponentialStopping
-import CERW.LimitShapes.Crossing.ExponentialExit
-import CERW.LimitShapes.Crossing.ExponentialDrift
-import CERW.Support.Norm.ContactPotential
+module
+
+public import CERW.LimitShapes.Crossing.ExponentialStopping
+public import CERW.LimitShapes.Crossing.ExponentialExit
+public import CERW.LimitShapes.Crossing.ExponentialDrift
+public import CERW.Support.Norm.ContactPotential
+
+@[expose] public section
 
 /-!
 # Fixed-level exponential distance tails

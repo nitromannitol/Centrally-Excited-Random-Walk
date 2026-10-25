@@ -1,7 +1,11 @@
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Analysis.SpecialFunctions.Log.Base
-import Mathlib.Analysis.SpecificLimits.Basic
-import Mathlib.Analysis.MeanInequalitiesPow
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Analysis.SpecialFunctions.Log.Base
+public import Mathlib.Analysis.SpecificLimits.Basic
+public import Mathlib.Analysis.MeanInequalitiesPow
+
+@[expose] public section
 
 /-!
 # The cost of dyadic halving

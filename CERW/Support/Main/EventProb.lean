@@ -1,10 +1,14 @@
-import CERW.Support.Main.Event
-import CERW.Support.Norm.EuclideanCoarse
-import CERW.Support.Coarse.RadialAssembly
-import CERW.Support.LocalTime.LocalAssembly
-import CERW.Support.LocalTime.Pointwise
-import CERW.Support.LocalTime.LocalMart
-import CERW.Support.Contact.QuadraticError
+module
+
+public import CERW.Support.Main.Event
+public import CERW.Support.Norm.EuclideanCoarse
+public import CERW.Support.Coarse.RadialAssembly
+public import CERW.Support.LocalTime.LocalAssembly
+public import CERW.Support.LocalTime.Pointwise
+public import CERW.Support.LocalTime.LocalMart
+public import CERW.Support.Contact.QuadraticError
+
+@[expose] public section
 
 /-!
 # The probability of the event

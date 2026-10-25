@@ -1,5 +1,9 @@
-import CERW.Generic.Martingale.LilLower.StoppedLevy
-import CERW.Generic.Martingale.LilAssembly.CondExpGe
+module
+
+public import CERW.Generic.Martingale.LilLower.StoppedLevy
+public import CERW.Generic.Martingale.LilAssembly.CondExpGe
+
+@[expose] public section
 
 /-!
 # Lévy's Borel–Cantelli lemma along the blocks

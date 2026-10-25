@@ -1,5 +1,9 @@
-import CERW.Support.Coarse.SstarArith
-import CERW.Support.Main.ScaleLimits
+module
+
+public import CERW.Support.Coarse.SstarArith
+public import CERW.Support.Main.ScaleLimits
+
+@[expose] public section
 
 /-!
 # The first mass scale and the preconditions

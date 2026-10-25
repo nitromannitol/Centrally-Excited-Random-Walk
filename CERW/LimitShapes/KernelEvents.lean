@@ -1,5 +1,9 @@
-import CERW.LimitShapes.DynkinBounds
-import CERW.LimitShapes.ShiftedSquare
+module
+
+public import CERW.LimitShapes.DynkinBounds
+public import CERW.LimitShapes.ShiftedSquare
+
+@[expose] public section
 
 /-!
 # The kernel and shifted-square Freedman events

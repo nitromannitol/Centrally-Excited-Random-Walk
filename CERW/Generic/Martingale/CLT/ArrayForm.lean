@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.CLT.Statement
-import Mathlib.MeasureTheory.Measure.LevyConvergence
-import CERW.Generic.Martingale.CLT.Interfaces
+module
+
+public import CERW.Generic.Martingale.CLT.Statement
+public import Mathlib.MeasureTheory.Measure.LevyConvergence
+public import CERW.Generic.Martingale.CLT.Interfaces
+
+@[expose] public section
 
 /-!
 # The array form of the martingale central limit theorem

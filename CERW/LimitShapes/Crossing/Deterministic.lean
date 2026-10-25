@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Crossing.Directions
-import CERW.LimitShapes.Crossing.Levels
+module
+
+public import CERW.LimitShapes.Crossing.Directions
+public import CERW.LimitShapes.Crossing.Levels
+
+@[expose] public section
 
 /-!
 # Distance crossings on the vector and ramp events

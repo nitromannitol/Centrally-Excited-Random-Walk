@@ -1,5 +1,9 @@
-import CERW.LimitShapes.EuclideanEvent
-import CERW.Support.Outer.Radius.PathBounds
+module
+
+public import CERW.LimitShapes.EuclideanEvent
+public import CERW.Support.Outer.Radius.PathBounds
+
+@[expose] public section
 
 /-!
 # Outer-radius probability from the common event

@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.PlanarScales
+module
+
+public import CERW.Support.Outer.Radius.PlanarScales
+
+@[expose] public section
 
 /-!
 # Planar Probes

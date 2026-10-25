@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.CapMass
+module
+
+public import CERW.Support.Outer.Radius.CapMass
+
+@[expose] public section
 
 /-!
 # Local Mass Integral

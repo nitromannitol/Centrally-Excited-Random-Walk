@@ -1,4 +1,8 @@
-import CERW.Frozen.NearFar
+module
+
+public import CERW.Frozen.NearFar
+
+@[expose] public section
 
 /-!
 # lem:near-far

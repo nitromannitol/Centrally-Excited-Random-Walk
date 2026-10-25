@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Curvature.Mass
+module
+
+public import CERW.LimitShapes.Curvature.Mass
+
+@[expose] public section
 
 /-!
 # Curvature at a distant point

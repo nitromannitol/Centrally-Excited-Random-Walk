@@ -1,8 +1,12 @@
-import CERW.Support.Drift.CondStep
-import CERW.Support.Law.CoordinateDrift
-import CERW.Support.Law.Dynkin
-import CERW.Support.Law.StepMean
-import CERW.Model.Martingales
+module
+
+public import CERW.Support.Drift.CondStep
+public import CERW.Support.Law.CoordinateDrift
+public import CERW.Support.Law.Dynkin
+public import CERW.Support.Law.StepMean
+public import CERW.Model.Martingales
+
+@[expose] public section
 
 /-!
 # The Dynkin martingale of the walk with a drift field

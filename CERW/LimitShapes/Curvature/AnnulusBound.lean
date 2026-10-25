@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Curvature.Annulus
+module
+
+public import CERW.LimitShapes.Curvature.Annulus
+
+@[expose] public section
 
 /-! # Annular curvature bound for a general radius ratio
 

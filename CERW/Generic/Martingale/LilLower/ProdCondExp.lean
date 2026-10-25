@@ -1,6 +1,10 @@
-import Mathlib.Probability.Martingale.Basic
-import Mathlib.MeasureTheory.Integral.Prod
-import Mathlib.MeasureTheory.Function.ConditionalExpectation.Basic
+module
+
+public import Mathlib.Probability.Martingale.Basic
+public import Mathlib.MeasureTheory.Integral.Prod
+public import Mathlib.MeasureTheory.Function.ConditionalExpectation.Basic
+
+@[expose] public section
 
 /-!
 # Conditional expectation on a product with an independent factor

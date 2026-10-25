@@ -1,9 +1,13 @@
-import CERW.Support.Coarse.RadialMart
-import CERW.Support.Coarse.RadialSource
-import CERW.Support.Coarse.TailLower
-import CERW.Support.Coarse.ShellCount
-import CERW.Support.LocalTime.KernelFacts
-import CERW.Support.Law.ScaleArith
+module
+
+public import CERW.Support.Coarse.RadialMart
+public import CERW.Support.Coarse.RadialSource
+public import CERW.Support.Coarse.TailLower
+public import CERW.Support.Coarse.ShellCount
+public import CERW.Support.LocalTime.KernelFacts
+public import CERW.Support.Law.ScaleArith
+
+@[expose] public section
 
 /-!
 # The radial test lemma

@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.Lil.Statements
+module
+
+public import CERW.Generic.Martingale.Lil.Statements
+
+@[expose] public section
 
 /-!
 # The assembly of the upper half

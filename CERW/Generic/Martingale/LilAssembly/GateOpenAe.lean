@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.LilAssembly.PaddedConstruction
+module
+
+public import CERW.Generic.Martingale.LilAssembly.PaddedConstruction
+
+@[expose] public section
 
 /-!
 # The gate is open from some start time on

@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Frozen.CommonEvent
-import CERW.LimitShapes.Frozen.ContactPotential
+module
+
+public import CERW.LimitShapes.Frozen.CommonEvent
+public import CERW.LimitShapes.Frozen.ContactPotential
+
+@[expose] public section
 
 /-!
 # Contact potential on the common event

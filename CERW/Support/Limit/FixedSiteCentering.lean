@@ -1,11 +1,15 @@
-import CERW.Support.Statements
-import CERW.Support.Geometry.Assembly
-import CERW.Support.Geometry.BallCompare
-import CERW.Support.Contact.NormReplace
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Generic.Kernel.RadialPower
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Geometry.Assembly
+public import CERW.Support.Geometry.BallCompare
+public import CERW.Support.Contact.NormReplace
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Generic.Kernel.RadialPower
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+
+@[expose] public section
 
 /-!
 # The potential at a fixed site

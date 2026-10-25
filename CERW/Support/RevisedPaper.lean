@@ -1,5 +1,9 @@
-import CERW.Support.Norm.CoarseCapEvents
-import CERW.Support.Norm.Section5Localization
+module
+
+public import CERW.Support.Norm.CoarseCapEvents
+public import CERW.Support.Norm.Section5Localization
+
+@[expose] public section
 
 /-!
 # The event forms of the crossing and contact lemmas

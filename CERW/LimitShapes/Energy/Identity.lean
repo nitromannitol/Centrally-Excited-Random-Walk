@@ -1,7 +1,11 @@
-import CERW.Support.Drift.Dynkin
-import CERW.Support.Occupation
-import CERW.Support.LocalTime.DynkinLocal
-import CERW.Support.LocalTime.Bracket
+module
+
+public import CERW.Support.Drift.Dynkin
+public import CERW.Support.Occupation
+public import CERW.Support.LocalTime.DynkinLocal
+public import CERW.Support.LocalTime.Bracket
+
+@[expose] public section
 
 /-!
 # Site-grouped shifted-square energy

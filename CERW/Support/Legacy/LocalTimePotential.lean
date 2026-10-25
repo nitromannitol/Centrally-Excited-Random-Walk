@@ -1,5 +1,9 @@
-import CERW.Support.LocalTime.KernelAsymptotics
-import CERW.Support.LocalTime.LocalAssembly
+module
+
+public import CERW.Support.LocalTime.KernelAsymptotics
+public import CERW.Support.LocalTime.LocalAssembly
+
+@[expose] public section
 
 /-!
 # The local-time potential

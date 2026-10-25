@@ -1,3 +1,5 @@
+module
+
 /-
 # The exact 2D centred Gaussian closed-disk mass — law identification
 
@@ -44,10 +46,12 @@ With (1)–(3) the disk mass follows from the polar formula
 `volume_closedBall_fin_two` (`MeasureTheory/Measure/Lebesgue/VolumeOfBalls.lean:403`) and the
 one-dimensional identity below.
 -/
-import Mathlib.Probability.Distributions.Gaussian.Multivariate
-import CERW.Support.Lower.PlanarGap.PiWithDensity
-import Mathlib.MeasureTheory.Constructions.HaarToSphere
-import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
+public import Mathlib.Probability.Distributions.Gaussian.Multivariate
+public import CERW.Support.Lower.PlanarGap.PiWithDensity
+public import Mathlib.MeasureTheory.Constructions.HaarToSphere
+public import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
+
+@[expose] public section
 
 open MeasureTheory ProbabilityTheory Matrix Metric Set
 open scoped ENNReal NNReal

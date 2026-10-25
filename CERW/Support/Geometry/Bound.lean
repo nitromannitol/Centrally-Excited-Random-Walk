@@ -1,4 +1,8 @@
-import CERW.Generic.Kernel.Integrable
+module
+
+public import CERW.Generic.Kernel.Integrable
+
+@[expose] public section
 
 /-!
 # The sup bound of the potential

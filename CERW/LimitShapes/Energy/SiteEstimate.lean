@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.SiteEnergy
-import CERW.LimitShapes.Energy.LocalError
+module
+
+public import CERW.LimitShapes.Energy.SiteEnergy
+public import CERW.LimitShapes.Energy.LocalError
+
+@[expose] public section
 
 /-!
 # The site estimate on the common event

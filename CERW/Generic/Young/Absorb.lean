@@ -1,5 +1,9 @@
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Analysis.MeanInequalities
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Analysis.MeanInequalities
+
+@[expose] public section
 
 /-!
 # Absorbing a square root and a fractional power

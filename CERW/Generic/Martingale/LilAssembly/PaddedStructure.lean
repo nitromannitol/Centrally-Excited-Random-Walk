@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.LilAssembly.PaddedConstruction
+module
+
+public import CERW.Generic.Martingale.LilAssembly.PaddedConstruction
+
+@[expose] public section
 
 /-!
 # The structural fields of the padded data

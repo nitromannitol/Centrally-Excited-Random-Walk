@@ -1,9 +1,13 @@
-import CERW.Support.Geometry.TailBasic
-import CERW.Support.Geometry.TailBounds
-import CERW.Support.Geometry.Bound
-import CERW.Support.Geometry.Holder
-import CERW.Support.Geometry.CellModulus
-import CERW.Support.Geometry.Newton
-import CERW.Support.Geometry.Assembly
-import CERW.Support.Geometry.MassIdentity
-import CERW.Support.Geometry.BallCompare
+module
+
+public import CERW.Support.Geometry.TailBasic
+public import CERW.Support.Geometry.TailBounds
+public import CERW.Support.Geometry.Bound
+public import CERW.Support.Geometry.Holder
+public import CERW.Support.Geometry.CellModulus
+public import CERW.Support.Geometry.Newton
+public import CERW.Support.Geometry.Assembly
+public import CERW.Support.Geometry.MassIdentity
+public import CERW.Support.Geometry.BallCompare
+
+@[expose] public section

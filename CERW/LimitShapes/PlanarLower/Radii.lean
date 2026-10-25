@@ -1,8 +1,12 @@
-import CERW.LimitShapes.Frozen.MomentFluctuations
-import CERW.Support.Lower.SharpRadii
-import CERW.Generic.Martingale.CLT.Proved
-import CERW.Generic.Martingale.LilAssembly.StoutLower
-import CERW.Support.Stout
+module
+
+public import CERW.LimitShapes.Frozen.MomentFluctuations
+public import CERW.Support.Lower.SharpRadii
+public import CERW.Generic.Martingale.CLT.Proved
+public import CERW.Generic.Martingale.LilAssembly.StoutLower
+public import CERW.Support.Stout
+
+@[expose] public section
 
 /-!
 # Planar radius fluctuations

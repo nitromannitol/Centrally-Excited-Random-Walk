@@ -1,5 +1,9 @@
-import CERW.LimitShapes.LocalApproximation.Assembly
-import CERW.LimitShapes.KernelEvents
+module
+
+public import CERW.LimitShapes.LocalApproximation.Assembly
+public import CERW.LimitShapes.KernelEvents
+
+@[expose] public section
 
 /-!
 # Direct local-time approximation

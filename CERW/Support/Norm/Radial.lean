@@ -1,19 +1,23 @@
-import CERW.Support.Statements
-import CERW.Support.LocalTime.KernelAsymptotics
-import CERW.Support.LocalTime.Bracket
-import CERW.Support.Coarse.RadialDrift
-import CERW.Support.Coarse.TailLower
-import CERW.Support.Coarse.ShellCount
-import CERW.Support.Drift.Dynkin
-import CERW.Support.Drift.Bridge
-import CERW.Support.Norm.Freedman
-import CERW.Generic.Norm.Sphere
-import CERW.Generic.Norm.Subgradient
-import CERW.Support.Law.ScaleArith
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.Occupation.CellWeight
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Geometry.TailBasic
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.LocalTime.KernelAsymptotics
+public import CERW.Support.LocalTime.Bracket
+public import CERW.Support.Coarse.RadialDrift
+public import CERW.Support.Coarse.TailLower
+public import CERW.Support.Coarse.ShellCount
+public import CERW.Support.Drift.Dynkin
+public import CERW.Support.Drift.Bridge
+public import CERW.Support.Norm.Freedman
+public import CERW.Generic.Norm.Sphere
+public import CERW.Generic.Norm.Subgradient
+public import CERW.Support.Law.ScaleArith
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.Occupation.CellWeight
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Geometry.TailBasic
+
+@[expose] public section
 
 /-!
 # The radial test for the walk with a drift field

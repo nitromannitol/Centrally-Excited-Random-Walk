@@ -1,20 +1,24 @@
-import CERW.Support.Statements
-import CERW.Support.Drift
-import CERW.Support.LocalTime
-import CERW.Support.Geometry
-import CERW.Support.Norm.Freedman
-import CERW.Support.Norm.MoreauCap
-import CERW.Support.Norm.Geometry
-import CERW.Support.Norm.Crossing
-import CERW.Support.Norm.BallLayer
-import CERW.Support.Norm.Radial
-import CERW.Support.Norm.OuterCrossing
-import CERW.Support.Norm.CellGradient
-import CERW.Support.Norm.Coarse
-import CERW.Generic.Lattice.Packing
-import Mathlib.MeasureTheory.Integral.RieszMarkovKakutani.Real
-import Mathlib.Analysis.Convex.Cone.Extension
-import CERW.Support.Norm.DriftSite
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Drift
+public import CERW.Support.LocalTime
+public import CERW.Support.Geometry
+public import CERW.Support.Norm.Freedman
+public import CERW.Support.Norm.MoreauCap
+public import CERW.Support.Norm.Geometry
+public import CERW.Support.Norm.Crossing
+public import CERW.Support.Norm.BallLayer
+public import CERW.Support.Norm.Radial
+public import CERW.Support.Norm.OuterCrossing
+public import CERW.Support.Norm.CellGradient
+public import CERW.Support.Norm.Coarse
+public import CERW.Generic.Lattice.Packing
+public import Mathlib.MeasureTheory.Integral.RieszMarkovKakutani.Real
+public import Mathlib.Analysis.Convex.Cone.Extension
+public import CERW.Support.Norm.DriftSite
+
+@[expose] public section
 
 /-!
 # The local times and the norm potential

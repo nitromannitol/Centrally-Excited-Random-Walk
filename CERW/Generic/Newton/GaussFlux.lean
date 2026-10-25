@@ -1,6 +1,10 @@
-import CERW.Generic.Newton.Gauss
-import CERW.Generic.Newton.Flux
-import CERW.Generic.Kernel.Integrable
+module
+
+public import CERW.Generic.Newton.Gauss
+public import CERW.Generic.Newton.Flux
+public import CERW.Generic.Kernel.Integrable
+
+@[expose] public section
 
 /-!
 # Gauss's flux theorem

@@ -1,7 +1,11 @@
-import CERW.Generic.Newton.Polar
-import CERW.Generic.Kernel.NewtonField
-import CERW.Generic.Kernel.Integrable
-import CERW.Model.Potential
+module
+
+public import CERW.Generic.Newton.Polar
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Generic.Kernel.Integrable
+public import CERW.Model.Potential
+
+@[expose] public section
 
 /-!
 # Gauss's law for a point source

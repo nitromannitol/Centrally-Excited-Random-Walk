@@ -1,4 +1,8 @@
-import CERW.LimitShapes.SharpRadii.Deviation
+module
+
+public import CERW.LimitShapes.SharpRadii.Deviation
+
+@[expose] public section
 
 /-!
 # Deterministic thresholds for the coarse radius argument

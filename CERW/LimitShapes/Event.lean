@@ -1,5 +1,9 @@
-import CERW.LimitShapes.LocalTime
-import CERW.Support.Norm.ContactEvent
+module
+
+public import CERW.LimitShapes.LocalTime
+public import CERW.Support.Norm.ContactEvent
+
+@[expose] public section
 
 /-!
 # The common martingale event

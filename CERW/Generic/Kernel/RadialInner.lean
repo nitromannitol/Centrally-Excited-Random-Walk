@@ -1,4 +1,8 @@
-import CERW.Model.Space
+module
+
+public import CERW.Model.Space
+
+@[expose] public section
 
 /-!
 # The radial component of the Newtonian kernel

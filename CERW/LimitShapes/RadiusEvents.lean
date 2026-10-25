@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Profile
-import CERW.LimitShapes.ContactEvent
+module
+
+public import CERW.LimitShapes.Profile
+public import CERW.LimitShapes.ContactEvent
+
+@[expose] public section
 
 /-!
 # Outer radius on the common event

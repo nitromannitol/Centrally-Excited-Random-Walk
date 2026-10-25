@@ -1,6 +1,10 @@
-import CERW.Model
-import Mathlib.Probability.Distributions.Gaussian.Real
-import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
+module
+
+public import CERW.Model
+public import Mathlib.Probability.Distributions.Gaussian.Real
+public import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
+
+@[expose] public section
 
 /-!
 # The statement of the martingale central limit theorem

@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.LilLower.Padding
-import CERW.Generic.Martingale.LilLower.PaddedBracket
-import CERW.Model.Bracket
+module
+
+public import CERW.Generic.Martingale.LilLower.Padding
+public import CERW.Generic.Martingale.LilLower.PaddedBracket
+public import CERW.Model.Bracket
+
+@[expose] public section
 
 /-!
 # The predictable bracket of the padded process

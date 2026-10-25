@@ -1,4 +1,8 @@
-import CERW.LimitShapes.SharpRadii.CoarseBracket
+module
+
+public import CERW.LimitShapes.SharpRadii.CoarseBracket
+
+@[expose] public section
 
 /-!
 # Radius transfer on a coarse ball

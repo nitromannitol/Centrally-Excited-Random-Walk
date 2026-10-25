@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Curvature.RadialIntegralAux
-import Mathlib.Analysis.Calculus.MeanValue
+module
+
+public import CERW.LimitShapes.Curvature.RadialIntegralAux
+public import Mathlib.Analysis.Calculus.MeanValue
+
+@[expose] public section
 
 /-!
 # Endpoint bounds for differences of Newtonian kernels

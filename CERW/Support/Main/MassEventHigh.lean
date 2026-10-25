@@ -1,9 +1,13 @@
-import CERW.Support.Main.Event
-import CERW.Support.Contact.ContactSetup
-import CERW.Support.Contact.MassHigh
-import CERW.Support.LocalTime.Bracket
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Main.ScaleLimits
+module
+
+public import CERW.Support.Main.Event
+public import CERW.Support.Contact.ContactSetup
+public import CERW.Support.Contact.MassHigh
+public import CERW.Support.LocalTime.Bracket
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Main.ScaleLimits
+
+@[expose] public section
 
 /-!
 # The mass step on the event, in dimensions three and higher

@@ -1,8 +1,12 @@
-import CERW.Model.Kernel
-import Mathlib.MeasureTheory.Measure.MeasureSpace
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.Data.Nat.Log
+module
+
+public import CERW.Model.Kernel
+public import Mathlib.MeasureTheory.Measure.MeasureSpace
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Analysis.SpecialFunctions.Log.Basic
+public import Mathlib.Data.Nat.Log
+
+@[expose] public section
 
 /-!
 # Scale arithmetic for the probability bounds

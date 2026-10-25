@@ -1,5 +1,9 @@
-import CERW.Support.Outer.Radius.InnerGeometry
-import CERW.LimitShapes.Curvature.Mass
+module
+
+public import CERW.Support.Outer.Radius.InnerGeometry
+public import CERW.LimitShapes.Curvature.Mass
+
+@[expose] public section
 
 /-!
 # Geometry of the actual annular remainder

@@ -1,5 +1,9 @@
-import CERW.Support.Norm.GaugeRadialNewtonConvolution
-import CERW.Support.Norm.GaugeSection5Event
+module
+
+public import CERW.Support.Norm.GaugeRadialNewtonConvolution
+public import CERW.Support.Norm.GaugeSection5Event
+
+@[expose] public section
 
 /-!
 # The contact passage for the gauge of a convex body, on the event of Section 5.1

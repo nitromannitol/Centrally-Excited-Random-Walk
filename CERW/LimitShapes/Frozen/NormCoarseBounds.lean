@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Exit.Assembly
-import CERW.Frozen.NormCoarseBounds
+module
+
+public import CERW.LimitShapes.Exit.Assembly
+public import CERW.Frozen.NormCoarseBounds
+
+@[expose] public section
 
 /-!
 # prop:coarse

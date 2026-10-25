@@ -1,6 +1,10 @@
-import CERW.Support.Norm.GaugeCoarseVolume
-import CERW.Support.Norm.GaugeProjectionEvents
-import CERW.Support.Norm.Section5Localization
+module
+
+public import CERW.Support.Norm.GaugeCoarseVolume
+public import CERW.Support.Norm.GaugeProjectionEvents
+public import CERW.Support.Norm.Section5Localization
+
+@[expose] public section
 
 /-!
 # The finite-prefix events of the half-space martingale estimates for the gauge of a convex body

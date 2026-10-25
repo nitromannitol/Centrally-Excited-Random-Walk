@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Curvature.Mass
-import CERW.Support.Outer.Radius.ProbeGeometry
+module
+
+public import CERW.LimitShapes.Curvature.Mass
+public import CERW.Support.Outer.Radius.ProbeGeometry
+
+@[expose] public section
 
 /-!
 # Integrated outer cap mass

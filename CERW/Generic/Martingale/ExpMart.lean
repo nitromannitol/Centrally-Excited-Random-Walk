@@ -1,7 +1,11 @@
-import CERW.Model
-import CERW.Generic.Kernel.ScalarTaylor
-import CERW.Generic.Martingale.FreedmanEvent
-import LatticeProb.Prob.PaleyZygmund
+module
+
+public import CERW.Model
+public import CERW.Generic.Kernel.ScalarTaylor
+public import CERW.Generic.Martingale.FreedmanEvent
+public import LatticeProb.Prob.PaleyZygmund
+
+@[expose] public section
 
 /-!
 # The exponential martingale of a martingale with bounded increments

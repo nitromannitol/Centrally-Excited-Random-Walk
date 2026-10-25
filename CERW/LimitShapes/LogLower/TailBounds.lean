@@ -1,4 +1,8 @@
-import CERW.LimitShapes.LogLower.Arithmetic
+module
+
+public import CERW.LimitShapes.LogLower.Arithmetic
+
+@[expose] public section
 
 /-!
 # Trial and quadratic tails for the logarithmic lower bounds

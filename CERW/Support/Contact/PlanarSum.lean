@@ -1,6 +1,10 @@
-import CERW.Generic.Lattice.Packing
-import CERW.Generic.Lattice.SummableSums
-import CERW.Support.Occupation.Facts
+module
+
+public import CERW.Generic.Lattice.Packing
+public import CERW.Generic.Lattice.SummableSums
+public import CERW.Support.Occupation.Facts
+
+@[expose] public section
 
 /-!
 # The planar contact sum

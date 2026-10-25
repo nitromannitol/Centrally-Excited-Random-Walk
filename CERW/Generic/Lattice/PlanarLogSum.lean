@@ -1,9 +1,13 @@
-import CERW.Model.Space
-import LatticeProb.Walk.Ball
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import CERW.Generic.Kernel.LogRadial
-import Mathlib.MeasureTheory.Integral.Bochner.Set
+module
+
+public import CERW.Model.Space
+public import LatticeProb.Walk.Ball
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Generic.Kernel.LogRadial
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+
+@[expose] public section
 
 /-!
 # The planar logarithmic lattice sum

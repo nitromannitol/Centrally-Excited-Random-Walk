@@ -1,6 +1,10 @@
-import CERW.Generic.Lattice.Packing
-import CERW.Generic.Lattice.Centered
-import CERW.Support.LocalTime.LatticeKernelFacts
+module
+
+public import CERW.Generic.Lattice.Packing
+public import CERW.Generic.Lattice.Centered
+public import CERW.Support.LocalTime.LatticeKernelFacts
+
+@[expose] public section
 
 /-!
 # Remote tail of the shifted-square drift envelope

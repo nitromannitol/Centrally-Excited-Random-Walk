@@ -1,8 +1,12 @@
-import CERW.Model
-import CERW.Generic.Norm
-import CERW.Generic.Kernel.Modulus
-import CERW.Support.Geometry.Newton
-import CERW.Support.Geometry.Holder
+module
+
+public import CERW.Model
+public import CERW.Generic.Norm
+public import CERW.Generic.Kernel.Modulus
+public import CERW.Support.Geometry.Newton
+public import CERW.Support.Geometry.Holder
+
+@[expose] public section
 
 /-!
 # The geometry of the norm potential

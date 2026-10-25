@@ -1,11 +1,15 @@
-import CERW.Support.Norm.GaugeLaplacian
-import CERW.Support.Norm.GaugePotential
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import CERW.Support.Drift
-import CERW.Support.LocalTime
-import CERW.Support.Geometry
-import CERW.Generic.Lattice.Packing
+module
+
+public import CERW.Support.Norm.GaugeLaplacian
+public import CERW.Support.Norm.GaugePotential
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Support.Drift
+public import CERW.Support.LocalTime
+public import CERW.Support.Geometry
+public import CERW.Generic.Lattice.Packing
+
+@[expose] public section
 
 /-!
 # The gradient of the gauge of a convex body on a cell

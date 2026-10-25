@@ -1,8 +1,12 @@
-import CERWAudit.Sharpness.SolutionBasic
-import CERW.LimitShapes.Frozen.SharpRadii
-import CERW.LimitShapes.Frozen.SharpRadiiLil
-import CERW.LimitShapes.Frozen.SharpBulk
-import CERW.LimitShapes.Frozen.SharpWidth
+module
+
+public import CERWAudit.Sharpness.SolutionBasic
+public import CERW.LimitShapes.Frozen.SharpRadii
+public import CERW.LimitShapes.Frozen.SharpRadiiLil
+public import CERW.LimitShapes.Frozen.SharpBulk
+public import CERW.LimitShapes.Frozen.SharpWidth
+
+@[expose] public section
 
 /-!
 # Sharpness: comparator solution

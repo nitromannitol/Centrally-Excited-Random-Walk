@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.PlanarHarmonicPotential
+module
+
+public import CERW.Support.Outer.Radius.PlanarHarmonicPotential
+
+@[expose] public section
 
 /-!
 # Euclidean Crossing

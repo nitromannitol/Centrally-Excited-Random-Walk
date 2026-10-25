@@ -1,5 +1,9 @@
-import CERW.Model.Potential
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+module
+
+public import CERW.Model.Potential
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+
+@[expose] public section
 
 /-!
 # The volume of the range

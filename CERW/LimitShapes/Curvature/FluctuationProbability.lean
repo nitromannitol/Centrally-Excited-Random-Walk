@@ -1,6 +1,10 @@
-import CERW.LimitShapes.EuclideanEvent
-import CERW.LimitShapes.Curvature.FluctuationProbabilityAux
-import CERW.LimitShapes.Curvature.EventBorelCantelli
+module
+
+public import CERW.LimitShapes.EuclideanEvent
+public import CERW.LimitShapes.Curvature.FluctuationProbabilityAux
+public import CERW.LimitShapes.Curvature.EventBorelCantelli
+
+@[expose] public section
 
 /-!
 # Fluctuation probabilities from the literal common event

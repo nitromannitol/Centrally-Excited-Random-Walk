@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Curvature.EventScales
+module
+
+public import CERW.LimitShapes.Curvature.EventScales
+
+@[expose] public section
 
 /-!
 # Logarithmic scales for the global profile

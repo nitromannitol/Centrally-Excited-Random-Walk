@@ -1,5 +1,9 @@
-import CERW.LimitShapes.DynkinBounds
-import CERW.Support.Norm.ShapeRates
+module
+
+public import CERW.LimitShapes.DynkinBounds
+public import CERW.Support.Norm.ShapeRates
+
+@[expose] public section
 
 /-!
 # Ramp martingales before a fixed horizon

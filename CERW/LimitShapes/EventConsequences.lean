@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Frozen.ContactPotential
-import CERW.LimitShapes.InnerApproximation
+module
+
+public import CERW.LimitShapes.Frozen.ContactPotential
+public import CERW.LimitShapes.InnerApproximation
+
+@[expose] public section
 
 /-!
 # Deterministic consequences of the common event

@@ -1,6 +1,10 @@
-import CERW.Support.Norm.CoarseVolume
-import CERW.Support.Occupation
-import CERW.LimitShapes.Event
+module
+
+public import CERW.Support.Norm.CoarseVolume
+public import CERW.Support.Occupation
+public import CERW.LimitShapes.Event
+
+@[expose] public section
 
 /-!
 # Geometry at the first exit

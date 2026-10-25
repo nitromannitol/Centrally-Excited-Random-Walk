@@ -1,4 +1,8 @@
-import CERW.Support.Lower.ExpDeviationAE
+module
+
+public import CERW.Support.Lower.ExpDeviationAE
+
+@[expose] public section
 
 /-!
 # The exponential deviation lemma for a finite filtration

@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.OccupationKernel
+module
+
+public import CERW.Support.Outer.Radius.OccupationKernel
+
+@[expose] public section
 
 /-!
 # Potential Convolution

@@ -1,9 +1,13 @@
-import CERW.Support.LocalTime.KernelFacts
-import CERW.Support.LocalTime.KernelPoisson
-import CERW.Support.LocalTime.GradientBound
-import CERW.Support.LocalTime.GradientAsymp
-import CERW.Support.Coarse.LevelSets
-import LatticeProb.Walk.SRWPos
+module
+
+public import CERW.Support.LocalTime.KernelFacts
+public import CERW.Support.LocalTime.KernelPoisson
+public import CERW.Support.LocalTime.GradientBound
+public import CERW.Support.LocalTime.GradientAsymp
+public import CERW.Support.Coarse.LevelSets
+public import LatticeProb.Walk.SRWPos
+
+@[expose] public section
 
 /-!
 # From the kernel asymptotics to the kernel facts

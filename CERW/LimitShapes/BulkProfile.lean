@@ -1,6 +1,10 @@
-import CERW.Support.Geometry.Bound
-import CERW.Support.Lower.BulkProfile
-import CERW.Support.Outer.Radius.InnerGeometry
+module
+
+public import CERW.Support.Geometry.Bound
+public import CERW.Support.Lower.BulkProfile
+public import CERW.Support.Outer.Radius.InnerGeometry
+
+@[expose] public section
 
 /-!
 # Bulk potential bounds from the excess set

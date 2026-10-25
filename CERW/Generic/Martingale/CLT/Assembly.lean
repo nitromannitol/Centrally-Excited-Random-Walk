@@ -1,7 +1,11 @@
-import CERW.Generic.Martingale.CLT.Statement
-import Mathlib.MeasureTheory.Measure.LevyConvergence
-import CERW.Generic.Martingale.CLT.Interfaces
-import CERW.Generic.Martingale.CLT.ArrayForm
+module
+
+public import CERW.Generic.Martingale.CLT.Statement
+public import Mathlib.MeasureTheory.Measure.LevyConvergence
+public import CERW.Generic.Martingale.CLT.Interfaces
+public import CERW.Generic.Martingale.CLT.ArrayForm
+
+@[expose] public section
 
 /-!
 # Assembly of the martingale central limit theorem

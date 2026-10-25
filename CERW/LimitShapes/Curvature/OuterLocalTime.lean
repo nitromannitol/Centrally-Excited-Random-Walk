@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.PositiveEvent
-import CERW.Support.Outer.Radius.PotentialConvolution
-import CERW.Support.Outer.Radius.PathBounds
+module
+
+public import CERW.LimitShapes.Curvature.PositiveEvent
+public import CERW.Support.Outer.Radius.PotentialConvolution
+public import CERW.Support.Outer.Radius.PathBounds
+
+@[expose] public section
 
 /-! # Exterior occupation on the common event
 

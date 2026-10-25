@@ -1,6 +1,10 @@
-import CERW.Support.Drift.Dynkin
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.LocalTime.Bracket
+module
+
+public import CERW.Support.Drift.Dynkin
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.LocalTime.Bracket
+
+@[expose] public section
 
 /-!
 # Site-grouped exponential drift

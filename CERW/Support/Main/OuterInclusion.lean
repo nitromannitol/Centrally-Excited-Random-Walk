@@ -1,5 +1,9 @@
-import CERW.Model.Occupation
-import CERW.Support.Main.ScaleLimits
+module
+
+public import CERW.Model.Occupation
+public import CERW.Support.Main.ScaleLimits
+
+@[expose] public section
 
 /-!
 # The outer inclusion from the radius bound

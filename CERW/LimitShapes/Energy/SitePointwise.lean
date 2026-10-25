@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.SiteScales
-import CERW.LimitShapes.Energy.Bracket
+module
+
+public import CERW.LimitShapes.Energy.SiteScales
+public import CERW.LimitShapes.Energy.Bracket
+
+@[expose] public section
 
 /-!
 # Pointwise inputs for the site estimate

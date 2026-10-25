@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Exit.Bootstrap
-import CERW.LimitShapes.Exit.Probability
+module
+
+public import CERW.LimitShapes.Exit.Bootstrap
+public import CERW.LimitShapes.Exit.Probability
+
+@[expose] public section
 
 /-!
 # Polynomial horizons for the exit estimate

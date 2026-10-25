@@ -1,5 +1,9 @@
-import CERW.Generic.Martingale.LilLower.ProdCondExp
-import CERW.Generic.Martingale.LilLower.SignSequence
+module
+
+public import CERW.Generic.Martingale.LilLower.ProdCondExp
+public import CERW.Generic.Martingale.LilLower.SignSequence
+
+@[expose] public section
 
 /-!
 # Padding a martingale with independent signs where its increments are cut off

@@ -1,4 +1,8 @@
-import CERW.Support.Lower.SourceProbabilityConsequences
+module
+
+public import CERW.Support.Lower.SourceProbabilityConsequences
+
+@[expose] public section
 
 /-!
 # The planar width bound for every `n ≥ 2`

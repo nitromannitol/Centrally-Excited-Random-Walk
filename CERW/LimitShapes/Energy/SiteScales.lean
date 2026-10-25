@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Event
-import CERW.Support.Norm.CoarseVolume
+module
+
+public import CERW.LimitShapes.Event
+public import CERW.Support.Norm.CoarseVolume
+
+@[expose] public section
 
 /-!
 # Scale comparisons for the site estimate

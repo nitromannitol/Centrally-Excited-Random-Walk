@@ -1,6 +1,10 @@
-import CERW.Support.Drift.KernelSums
-import CERW.Model.Law
-import CERW.Model.DriftLaw
+module
+
+public import CERW.Support.Drift.KernelSums
+public import CERW.Model.Law
+public import CERW.Model.DriftLaw
+
+@[expose] public section
 
 /-!
 # The Euclidean walk as the walk with drift field `x/|x|`

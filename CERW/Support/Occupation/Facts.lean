@@ -1,5 +1,9 @@
-import CERW.Model.Occupation
-import CERW.Support.Law.Moments
+module
+
+public import CERW.Model.Occupation
+public import CERW.Support.Law.Moments
+
+@[expose] public section
 
 /-!
 # Pathwise facts about local times and ranges

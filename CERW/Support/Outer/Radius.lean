@@ -1,34 +1,38 @@
-import CERW.Support.Outer.Radius.PathBounds
-import CERW.Support.Outer.Radius.InnerGeometry
-import CERW.Support.Outer.Radius.SphericalNewtonField
-import CERW.Support.Outer.Radius.WeightedNewtonField
-import CERW.Support.Outer.Radius.NewtonConvolution
-import CERW.Support.Outer.Radius.LatticeKernel
-import CERW.Support.Outer.Radius.CellWeights
-import CERW.Support.Outer.Radius.WeightedKernelTail
-import CERW.Support.Outer.Radius.OccupationKernel
-import CERW.Support.Outer.Radius.PotentialConvolution
-import CERW.Support.Outer.Radius.ExteriorEnvelope
-import CERW.Support.Outer.Radius.ProbeGeometry
-import CERW.Support.Outer.Radius.CapMass
-import CERW.Support.Outer.Radius.LocalMassIntegral
-import CERW.Support.Outer.Radius.HigherDimensionScales
-import CERW.Support.Outer.Radius.HigherDimensionProbes
-import CERW.Support.Outer.Radius.HigherDimensionExterior
-import CERW.Support.Outer.Radius.HigherDimensionWidth
-import CERW.Support.Outer.Radius.PlanarBracket
-import CERW.Support.Outer.Radius.PlanarScales
-import CERW.Support.Outer.Radius.PlanarProbes
-import CERW.Support.Outer.Radius.PlanarExterior
-import CERW.Support.Outer.Radius.PlanarHarmonicPotential
-import CERW.Support.Outer.Radius.EuclideanCrossing
-import CERW.Support.Outer.Radius.RampMartingale
-import CERW.Support.Outer.Radius.RampProbability
-import CERW.Support.Outer.Radius.PathProbability
-import CERW.Support.Outer.Radius.RadiusAsymptotics
-import CERW.Support.Outer.Radius.HigherDimensionRadius
-import CERW.Support.Outer.Radius.PlanarRadius
-import CERW.Support.Outer.Radius.HigherDimensionProfile
-import CERW.Support.Outer.Radius.PlanarProfileBounds
-import CERW.Support.Outer.Radius.PlanarProfile
-import CERW.Support.Outer.Radius.ProbabilityAssembly
+module
+
+public import CERW.Support.Outer.Radius.PathBounds
+public import CERW.Support.Outer.Radius.InnerGeometry
+public import CERW.Support.Outer.Radius.SphericalNewtonField
+public import CERW.Support.Outer.Radius.WeightedNewtonField
+public import CERW.Support.Outer.Radius.NewtonConvolution
+public import CERW.Support.Outer.Radius.LatticeKernel
+public import CERW.Support.Outer.Radius.CellWeights
+public import CERW.Support.Outer.Radius.WeightedKernelTail
+public import CERW.Support.Outer.Radius.OccupationKernel
+public import CERW.Support.Outer.Radius.PotentialConvolution
+public import CERW.Support.Outer.Radius.ExteriorEnvelope
+public import CERW.Support.Outer.Radius.ProbeGeometry
+public import CERW.Support.Outer.Radius.CapMass
+public import CERW.Support.Outer.Radius.LocalMassIntegral
+public import CERW.Support.Outer.Radius.HigherDimensionScales
+public import CERW.Support.Outer.Radius.HigherDimensionProbes
+public import CERW.Support.Outer.Radius.HigherDimensionExterior
+public import CERW.Support.Outer.Radius.HigherDimensionWidth
+public import CERW.Support.Outer.Radius.PlanarBracket
+public import CERW.Support.Outer.Radius.PlanarScales
+public import CERW.Support.Outer.Radius.PlanarProbes
+public import CERW.Support.Outer.Radius.PlanarExterior
+public import CERW.Support.Outer.Radius.PlanarHarmonicPotential
+public import CERW.Support.Outer.Radius.EuclideanCrossing
+public import CERW.Support.Outer.Radius.RampMartingale
+public import CERW.Support.Outer.Radius.RampProbability
+public import CERW.Support.Outer.Radius.PathProbability
+public import CERW.Support.Outer.Radius.RadiusAsymptotics
+public import CERW.Support.Outer.Radius.HigherDimensionRadius
+public import CERW.Support.Outer.Radius.PlanarRadius
+public import CERW.Support.Outer.Radius.HigherDimensionProfile
+public import CERW.Support.Outer.Radius.PlanarProfileBounds
+public import CERW.Support.Outer.Radius.PlanarProfile
+public import CERW.Support.Outer.Radius.ProbabilityAssembly
+
+@[expose] public section

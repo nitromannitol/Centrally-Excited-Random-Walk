@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Frozen.NormBallPotential
-import CERW.LimitShapes.EventConsequences
-import CERW.Support.Norm.NormGaugeConsequences
-import CERW.Support.Norm.ShapeRates
+module
+
+public import CERW.LimitShapes.Frozen.NormBallPotential
+public import CERW.LimitShapes.EventConsequences
+public import CERW.Support.Norm.NormGaugeConsequences
+public import CERW.Support.Norm.ShapeRates
+
+@[expose] public section
 
 /-!
 # Quadratic comparison of radius and volume

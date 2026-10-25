@@ -1,5 +1,9 @@
-import CERW.Model.Occupation
-import CERW.Model.Potential
+module
+
+public import CERW.Model.Occupation
+public import CERW.Model.Potential
+
+@[expose] public section
 
 /-!
 # The event of the fluctuation theorem

@@ -1,7 +1,11 @@
-import CERW.Support.Main.GoodCore
-import CERW.Support.Main.FluctAssembly
-import CERW.Support.Main.HausdorffAssembly
-import CERW.Support.Main.HausdorffOneSided
+module
+
+public import CERW.Support.Main.GoodCore
+public import CERW.Support.Main.FluctAssembly
+public import CERW.Support.Main.HausdorffAssembly
+public import CERW.Support.Main.HausdorffOneSided
+
+@[expose] public section
 
 /-!
 # The fluctuation, shape and Hausdorff theorems from the kernel facts

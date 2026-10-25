@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Norm.CellGradient
+module
+
+public import CERW.Model
+public import CERW.Support.Norm.CellGradient
+
+@[expose] public section
 
 /-!
 # lem:cell

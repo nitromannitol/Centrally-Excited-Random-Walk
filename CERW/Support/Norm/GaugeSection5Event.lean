@@ -1,7 +1,11 @@
-import CERW.Support.Norm.GaugeFiniteEvents
-import CERW.Support.Norm.GaugeCoarseClosed
-import CERW.Support.Norm.GaugePointwise
-import CERW.Support.Norm.Section5Localization
+module
+
+public import CERW.Support.Norm.GaugeFiniteEvents
+public import CERW.Support.Norm.GaugeCoarseClosed
+public import CERW.Support.Norm.GaugePointwise
+public import CERW.Support.Norm.Section5Localization
+
+@[expose] public section
 
 /-!
 # The event of Section 5.1 for the gauge of a convex body

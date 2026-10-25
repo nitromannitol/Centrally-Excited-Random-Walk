@@ -1,7 +1,11 @@
-import CERW.Support.Contact.ContactMass
-import CERW.Support.Contact.Envelope
-import CERW.Support.Contact.EnvelopeHigh
-import CERW.Generic.Young.Contact
+module
+
+public import CERW.Support.Contact.ContactMass
+public import CERW.Support.Contact.Envelope
+public import CERW.Support.Contact.EnvelopeHigh
+public import CERW.Generic.Young.Contact
+
+@[expose] public section
 
 /-!
 # The contact variance in dimensions three and higher

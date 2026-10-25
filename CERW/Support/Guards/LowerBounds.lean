@@ -1,8 +1,12 @@
-import CERW.Frozen.BulkProfile
-import CERW.Frozen.LogLowerBounds
-import CERW.Frozen.SeparatedBrackets
-import CERW.Frozen.SharpBulk
-import CERW.Support.Law.Existence
+module
+
+public import CERW.Frozen.BulkProfile
+public import CERW.Frozen.LogLowerBounds
+public import CERW.Frozen.SeparatedBrackets
+public import CERW.Frozen.SharpBulk
+public import CERW.Support.Law.Existence
+
+@[expose] public section
 
 /-!
 # Non-vacuity guards for the lower-bound statements

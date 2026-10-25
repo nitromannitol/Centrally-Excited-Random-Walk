@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.HigherDimensionProbes
+module
+
+public import CERW.Support.Outer.Radius.HigherDimensionProbes
+
+@[expose] public section
 
 /-!
 # Higher Dimension Exterior

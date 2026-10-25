@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.OuterEvent
-import CERW.LimitShapes.Curvature.ProfileEvent
-import CERW.LimitShapes.Curvature.FluctuationProbability
+module
+
+public import CERW.LimitShapes.Curvature.OuterEvent
+public import CERW.LimitShapes.Curvature.ProfileEvent
+public import CERW.LimitShapes.Curvature.FluctuationProbability
+
+@[expose] public section
 
 /-! # Fluctuation rates from the curvature argument
 

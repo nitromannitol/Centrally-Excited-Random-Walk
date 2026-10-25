@@ -1,7 +1,11 @@
-import CERW.Generic.Martingale.LilLower.SignSequence
-import Mathlib.Probability.ConditionalExpectation
-import Mathlib.Probability.Distributions.Uniform
-import Mathlib.Probability.Independence.InfinitePi
+module
+
+public import CERW.Generic.Martingale.LilLower.SignSequence
+public import Mathlib.Probability.ConditionalExpectation
+public import Mathlib.Probability.Distributions.Uniform
+public import Mathlib.Probability.Independence.InfinitePi
+
+@[expose] public section
 
 /-!
 # A coin space carrying an adapted sign sequence

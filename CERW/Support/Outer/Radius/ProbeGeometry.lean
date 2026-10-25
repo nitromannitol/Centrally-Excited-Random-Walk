@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.ExteriorEnvelope
+module
+
+public import CERW.Support.Outer.Radius.ExteriorEnvelope
+
+@[expose] public section
 
 /-!
 # Probe Geometry

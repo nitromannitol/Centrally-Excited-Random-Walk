@@ -1,5 +1,9 @@
-import CERW.LimitShapes.InnerProbability
-import CERW.Frozen.InnerRadius
+module
+
+public import CERW.LimitShapes.InnerProbability
+public import CERW.Frozen.InnerRadius
+
+@[expose] public section
 
 /-!
 # prop:inner

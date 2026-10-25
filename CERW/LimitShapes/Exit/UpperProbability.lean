@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Exit.UpperProbabilityAux
+module
+
+public import CERW.LimitShapes.Exit.UpperProbabilityAux
+
+@[expose] public section
 
 /-!
 # Exit-time upper bounds with polynomial probability

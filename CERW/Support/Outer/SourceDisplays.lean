@@ -1,6 +1,10 @@
-import CERW.Support.Outer.OuterRadius
-import CERW.Frozen.InnerRadius
-import CERW.Support.Law.Existence
+module
+
+public import CERW.Support.Outer.OuterRadius
+public import CERW.Frozen.InnerRadius
+public import CERW.Support.Law.Existence
+
+@[expose] public section
 
 /-!
 # The full displayed assertions of the inner- and outer-radius sections

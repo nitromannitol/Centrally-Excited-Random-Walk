@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.RevisedPaperWidth
+module
+
+public import CERW.Model
+public import CERW.Support.RevisedPaperWidth
+
+@[expose] public section
 
 /-!
 # thm-sharp-width

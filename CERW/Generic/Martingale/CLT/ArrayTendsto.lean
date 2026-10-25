@@ -1,8 +1,12 @@
-import CERW.Generic.Martingale.FreedmanEvent
-import CERW.Model.Bracket
-import Mathlib.MeasureTheory.Function.ConvergenceInMeasure
-import Mathlib.MeasureTheory.Integral.Bochner.Set
-import CERW.Generic.Martingale.CLT.Interfaces
+module
+
+public import CERW.Generic.Martingale.FreedmanEvent
+public import CERW.Model.Bracket
+public import Mathlib.MeasureTheory.Function.ConvergenceInMeasure
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+public import CERW.Generic.Martingale.CLT.Interfaces
+
+@[expose] public section
 
 /-!
 # The characteristic function of the array rows

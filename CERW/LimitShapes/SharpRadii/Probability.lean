@@ -1,5 +1,9 @@
-import CERW.LimitShapes.SharpRadii.Arithmetic
-import CERW.LimitShapes.Frozen.ExpDeviation
+module
+
+public import CERW.LimitShapes.SharpRadii.Arithmetic
+public import CERW.LimitShapes.Frozen.ExpDeviation
+
+@[expose] public section
 
 /-!
 # Polynomial radius deviations

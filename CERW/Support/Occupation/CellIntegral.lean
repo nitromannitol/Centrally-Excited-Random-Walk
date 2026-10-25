@@ -1,5 +1,9 @@
-import CERW.Support.Occupation.Cells
-import CERW.Support.Occupation.CellSetVolume
+module
+
+public import CERW.Support.Occupation.Cells
+public import CERW.Support.Occupation.CellSetVolume
+
+@[expose] public section
 
 /-!
 # The integral of the cell local time

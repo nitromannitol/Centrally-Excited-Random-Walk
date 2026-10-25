@@ -1,7 +1,11 @@
-import CERW.Support.Geometry.TailBounds
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.Geometry.TailBounds
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # Counting shell sites by the tail

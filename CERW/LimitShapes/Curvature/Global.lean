@@ -1,8 +1,12 @@
-import CERW.LimitShapes.Curvature.AnnulusBound
-import CERW.LimitShapes.Curvature.Continuity
-import CERW.LimitShapes.Curvature.Harmonic
-import CERW.LimitShapes.Curvature.Decay
-import CERW.Generic.Harmonic.Exterior
+module
+
+public import CERW.LimitShapes.Curvature.AnnulusBound
+public import CERW.LimitShapes.Curvature.Continuity
+public import CERW.LimitShapes.Curvature.Harmonic
+public import CERW.LimitShapes.Curvature.Decay
+public import CERW.Generic.Harmonic.Exterior
+
+@[expose] public section
 
 /-! # Global curvature bound
 

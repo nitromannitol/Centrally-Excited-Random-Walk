@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Curvature.PotentialDifferentiation
-import CERW.LimitShapes.Curvature.PotentialLaplacian
-import CERW.LimitShapes.Curvature.HarmonicIntegral
-import CERW.LimitShapes.Curvature.Mass
+module
+
+public import CERW.LimitShapes.Curvature.PotentialDifferentiation
+public import CERW.LimitShapes.Curvature.PotentialLaplacian
+public import CERW.LimitShapes.Curvature.HarmonicIntegral
+public import CERW.LimitShapes.Curvature.Mass
+
+@[expose] public section
 
 /-!
 # Harmonicity of the actual Euclidean potential off its closed domain

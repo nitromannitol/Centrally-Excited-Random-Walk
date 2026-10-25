@@ -1,6 +1,10 @@
-import CERW.Support.Occupation.SiteArith
-import CERW.Support.Crossing.LastEntrance
-import CERW.Model.Kernel
+module
+
+public import CERW.Support.Occupation.SiteArith
+public import CERW.Support.Crossing.LastEntrance
+public import CERW.Model.Kernel
+
+@[expose] public section
 
 /-!
 # Crossing and halving arithmetic

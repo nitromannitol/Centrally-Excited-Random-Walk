@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.LilAssembly.Statements
+module
+
+public import CERW.Generic.Martingale.LilAssembly.Statements
+
+@[expose] public section
 
 /-!
 # Almost everywhere along the first coordinate

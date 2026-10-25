@@ -1,10 +1,14 @@
-import CERW.Support.Norm.Section5Localization
-import CERW.Support.Norm.CoarseCrossing
-import CERW.Support.Norm.OuterCrossing
-import CERW.Support.Guards.NormRates
-import CERW.Support.Outer.NearFar
-import CERW.Support.Outer.OuterRadius
-import CERW.Support.Lower.SeparatedBrackets
+module
+
+public import CERW.Support.Norm.Section5Localization
+public import CERW.Support.Norm.CoarseCrossing
+public import CERW.Support.Norm.OuterCrossing
+public import CERW.Support.Guards.NormRates
+public import CERW.Support.Outer.NearFar
+public import CERW.Support.Outer.OuterRadius
+public import CERW.Support.Lower.SeparatedBrackets
+
+@[expose] public section
 
 /-!
 # The separated bracket bounds on the event of Section 5.1

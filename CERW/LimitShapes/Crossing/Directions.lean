@@ -1,4 +1,8 @@
-import CERW.Support.Norm.Section5Localization
+module
+
+public import CERW.Support.Norm.Section5Localization
+
+@[expose] public section
 
 /-!
 # Projection directions for the distance crossing estimate

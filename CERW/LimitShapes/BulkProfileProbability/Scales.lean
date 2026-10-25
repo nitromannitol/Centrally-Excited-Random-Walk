@@ -1,5 +1,9 @@
-import CERW.LimitShapes.BulkProfileProbability.Geometry
-import CERW.LimitShapes.Energy.SiteScales
+module
+
+public import CERW.LimitShapes.BulkProfileProbability.Geometry
+public import CERW.LimitShapes.Energy.SiteScales
+
+@[expose] public section
 
 /-!
 # Thresholds for the bulk profile

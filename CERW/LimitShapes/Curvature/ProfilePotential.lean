@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Curvature.EventData
-import CERW.LimitShapes.Curvature.PotentialMaximum
-import CERW.LimitShapes.Curvature.Width
-import CERW.Support.Outer.Radius.PotentialConvolution
+module
+
+public import CERW.LimitShapes.Curvature.EventData
+public import CERW.LimitShapes.Curvature.PotentialMaximum
+public import CERW.LimitShapes.Curvature.Width
+public import CERW.Support.Outer.Radius.PotentialConvolution
+
+@[expose] public section
 
 /-!
 # Global bounds for the annular potential

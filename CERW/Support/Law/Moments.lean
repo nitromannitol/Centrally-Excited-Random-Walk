@@ -1,4 +1,8 @@
-import CERW.Model.Kernel
+module
+
+public import CERW.Model.Kernel
+
+@[expose] public section
 
 /-!
 # The algebra of the first-departure kernel

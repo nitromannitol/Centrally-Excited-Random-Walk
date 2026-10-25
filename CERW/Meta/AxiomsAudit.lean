@@ -1,4 +1,8 @@
-import CERW.MainTheorems
+module
+
+public import CERW.MainTheorems
+
+@[expose] public section
 
 /-!
 # Axiom closure of the paper's statements

@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Main.LimitShape
+module
+
+public import CERW.Model
+public import CERW.Support.Main.LimitShape
+
+@[expose] public section
 
 /-!
 # thm:shape

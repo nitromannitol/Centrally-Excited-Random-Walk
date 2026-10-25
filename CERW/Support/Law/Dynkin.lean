@@ -1,6 +1,10 @@
-import CERW.Support.Law.CondStep
-import CERW.Support.Occupation.Facts
-import Mathlib.Probability.Martingale.Basic
+module
+
+public import CERW.Support.Law.CondStep
+public import CERW.Support.Occupation.Facts
+public import Mathlib.Probability.Martingale.Basic
+
+@[expose] public section
 
 /-!
 # The Dynkin martingale of the walk

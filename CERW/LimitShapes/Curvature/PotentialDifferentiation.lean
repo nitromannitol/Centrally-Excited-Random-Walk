@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Curvature.PotentialKernel
-import Mathlib.Analysis.Calculus.ParametricIntegral
+module
+
+public import CERW.LimitShapes.Curvature.PotentialKernel
+public import Mathlib.Analysis.Calculus.ParametricIntegral
+
+@[expose] public section
 
 /-!
 # Integration away from the poles of the potential

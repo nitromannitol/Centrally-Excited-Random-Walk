@@ -1,6 +1,10 @@
-import CERW.Generic.Kernel.Bathtub
-import CERW.Model.Potential
-import Mathlib.MeasureTheory.Constructions.HaarToSphere
+module
+
+public import CERW.Generic.Kernel.Bathtub
+public import CERW.Model.Potential
+public import Mathlib.MeasureTheory.Constructions.HaarToSphere
+
+@[expose] public section
 
 /-!
 # The first moment of a set is least for the centred ball

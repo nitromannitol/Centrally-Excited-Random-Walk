@@ -1,6 +1,10 @@
-import CERW.Support.Occupation.CellWeight
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Geometry.TailBasic
+module
+
+public import CERW.Support.Occupation.CellWeight
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Geometry.TailBasic
+
+@[expose] public section
 
 /-!
 # The radial bracket in terms of the tail

@@ -1,5 +1,9 @@
-import CERW.Generic.Kernel.NewtonField
-import CERW.Generic.Kernel.RadialPower
+module
+
+public import CERW.Generic.Kernel.NewtonField
+public import CERW.Generic.Kernel.RadialPower
+
+@[expose] public section
 
 /-!
 # The `L^q` modulus of the Newtonian field

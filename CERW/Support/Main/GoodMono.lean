@@ -1,4 +1,8 @@
-import CERW.Support.Main.GoodEvent
+module
+
+public import CERW.Support.Main.GoodEvent
+
+@[expose] public section
 
 /-!
 # Monotonicity of the fluctuation event

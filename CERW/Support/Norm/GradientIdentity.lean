@@ -1,6 +1,10 @@
-import CERW.Support.Norm.BallLayer
-import CERW.Generic.Kernel.Integrable
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun
+module
+
+public import CERW.Support.Norm.BallLayer
+public import CERW.Generic.Kernel.Integrable
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun
+
+@[expose] public section
 
 /-!
 # The gradient identity for Lipschitz functions of compact support

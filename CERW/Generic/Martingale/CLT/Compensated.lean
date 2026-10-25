@@ -1,9 +1,13 @@
-import CERW.Generic.Martingale.FreedmanEvent
-import CERW.Model.Bracket
-import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
-import Mathlib.MeasureTheory.Function.ConvergenceInMeasure
-import Mathlib.Probability.Distributions.Gaussian.Real
-import CERW.Generic.Martingale.CLT.Interfaces
+module
+
+public import CERW.Generic.Martingale.FreedmanEvent
+public import CERW.Model.Bracket
+public import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
+public import Mathlib.MeasureTheory.Function.ConvergenceInMeasure
+public import Mathlib.Probability.Distributions.Gaussian.Real
+public import CERW.Generic.Martingale.CLT.Interfaces
+
+@[expose] public section
 
 /-!
 # The compensated exponential and the characteristic-function bound

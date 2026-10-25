@@ -1,6 +1,10 @@
-import CERW.Support.Drift.Existence
-import CERW.Support.Law.CondStep
-import Mathlib.Probability.Kernel.CondDistrib
+module
+
+public import CERW.Support.Drift.Existence
+public import CERW.Support.Law.CondStep
+public import Mathlib.Probability.Kernel.CondDistrib
+
+@[expose] public section
 
 /-!
 # The one-step conditional law of the walk with a drift field

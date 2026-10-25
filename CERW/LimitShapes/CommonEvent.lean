@@ -1,9 +1,13 @@
-import CERW.LimitShapes.Frozen.DistanceCrossing
-import CERW.LimitShapes.Frozen.NormCoarseBounds
-import CERW.LimitShapes.Frozen.NormLocalTime
-import CERW.LimitShapes.KernelEvents
-import CERW.LimitShapes.EventConsequences
-import CERW.LimitShapes.QuadraticProbability
+module
+
+public import CERW.LimitShapes.Frozen.DistanceCrossing
+public import CERW.LimitShapes.Frozen.NormCoarseBounds
+public import CERW.LimitShapes.Frozen.NormLocalTime
+public import CERW.LimitShapes.KernelEvents
+public import CERW.LimitShapes.EventConsequences
+public import CERW.LimitShapes.QuadraticProbability
+
+@[expose] public section
 
 /-!
 # Probability of the common martingale event

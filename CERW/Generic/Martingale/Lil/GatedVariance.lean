@@ -1,4 +1,8 @@
-import CERW.Generic.Martingale.Lil.Statements
+module
+
+public import CERW.Generic.Martingale.Lil.Statements
+
+@[expose] public section
 
 /-!
 # A predictable gate does not increase the conditional variances

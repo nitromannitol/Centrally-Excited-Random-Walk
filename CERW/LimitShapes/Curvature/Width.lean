@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.HigherDimensionWidth
+module
+
+public import CERW.Support.Outer.Radius.HigherDimensionWidth
+
+@[expose] public section
 
 /-!
 # Width absorption and profile error

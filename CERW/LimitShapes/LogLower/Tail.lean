@@ -1,5 +1,9 @@
-import CERW.LimitShapes.LogLower.Azuma
-import CERW.Support.Lower.LogLower
+module
+
+public import CERW.LimitShapes.LogLower.Azuma
+public import CERW.Support.Lower.LogLower
+
+@[expose] public section
 
 /-!
 # Azuma for the stopped quadratic process

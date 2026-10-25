@@ -135,8 +135,8 @@ Status: **27 registered statements — 27 proved.**  The 27 proved statements ar
   [leanprover/comparator](https://github.com/leanprover/comparator) checks that the solutions
   prove them with only the three standard axioms, through the Lean kernel and the independent
   nanoda kernel. See [`CERWAudit/README.md`](CERWAudit/README.md).
-- **Pinned toolchain.** Lean `v4.32.0`, mathlib `81a5d257c8e410db227a6665ed08f64fea08e997` and
-  Lattice-Probability `424de9b04279b9aa58364ab227b44c8007e0b5ba`, recorded in
+- **Pinned toolchain.** Lean `v4.35.0-rc2`, mathlib `065356127b1dc0016f66b7283ce0ce2c4055aa55` and
+  Lattice-Probability `7e229549ff3b35ff8e7bb30bb96d4a193a292864`, recorded in
   [`lake-manifest.json`](lake-manifest.json).
 
 ## Size
@@ -232,3 +232,9 @@ Comparator configuration to check. It records the dispatched commit and runs wit
 minimum, source-module, Challenge-closure, licensing and metadata requirements before
 dispatch. A passing preflight is advisory; it is separate from submission, editorial
 review and a public registry record.
+
+The selected Palomar compatibility revision updates public module interfaces and
+uses the exact original Lattice-Probability snapshot with module interfaces and
+existing proof API compatibility fixes. Frozen source statements and mathematical
+definitions are retained. The full official preflight is scoped to the selected
+Challenge/Solution pair at its exact dispatched commit.

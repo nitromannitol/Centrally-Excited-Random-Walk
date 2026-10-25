@@ -1,8 +1,12 @@
-import CERW.Support.LocalTime.KernelAsymptotics
-import CERW.Support.Main.KernelAnchors
-import CERW.Support.Drift.Existence
-import CERW.Support.Drift.Bridge
-import CERW.Generic.Norm.Subgradient
+module
+
+public import CERW.Support.LocalTime.KernelAsymptotics
+public import CERW.Support.Main.KernelAnchors
+public import CERW.Support.Drift.Existence
+public import CERW.Support.Drift.Bridge
+public import CERW.Generic.Norm.Subgradient
+
+@[expose] public section
 
 /-!
 # The limit shape theorem in the revised normalization, and the non-vacuity of the norm walk

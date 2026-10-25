@@ -1,4 +1,8 @@
-import CERW.Support.Norm.Crossing
+module
+
+public import CERW.Support.Norm.Crossing
+
+@[expose] public section
 
 /-!
 # Guard for the crossing lemma

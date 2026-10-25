@@ -1,8 +1,12 @@
-import CERW.Generic.Martingale.Tilt.Upper
-import CERW.Generic.Martingale.Tilt.Lower
-import CERW.Generic.Martingale.Tilt.Tail
-import CERW.Generic.Martingale.Tilt.Arith
-import CERW.Generic.Martingale.Tilt.Assembly
+module
+
+public import CERW.Generic.Martingale.Tilt.Upper
+public import CERW.Generic.Martingale.Tilt.Lower
+public import CERW.Generic.Martingale.Tilt.Tail
+public import CERW.Generic.Martingale.Tilt.Arith
+public import CERW.Generic.Martingale.Tilt.Assembly
+
+@[expose] public section
 
 /-!
 # The sharp lower tail of a martingale with a pinned bracket

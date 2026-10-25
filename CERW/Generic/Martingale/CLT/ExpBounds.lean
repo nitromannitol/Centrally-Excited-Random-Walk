@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Complex.Trigonometric
-import Mathlib.Analysis.Complex.Basic
+module
+
+public import Mathlib.Analysis.Complex.Trigonometric
+public import Mathlib.Analysis.Complex.Basic
+
+@[expose] public section
 
 /-!
 # Elementary exponential bounds for the martingale central limit theorem

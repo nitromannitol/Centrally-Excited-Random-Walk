@@ -1,6 +1,10 @@
-import Mathlib.Probability.Martingale.OptionalSampling
-import Mathlib.MeasureTheory.Function.UniformIntegrable
-import Mathlib.MeasureTheory.Function.ConditionalExpectation.Real
+module
+
+public import Mathlib.Probability.Martingale.OptionalSampling
+public import Mathlib.MeasureTheory.Function.UniformIntegrable
+public import Mathlib.MeasureTheory.Function.ConditionalExpectation.Real
+
+@[expose] public section
 
 /-!
 # Optional stopping for a martingale bounded in `L²`

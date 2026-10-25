@@ -1,6 +1,10 @@
-import CERW.Model.Space
-import Mathlib.MeasureTheory.Integral.Bochner.Set
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+module
+
+public import CERW.Model.Space
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+
+@[expose] public section
 
 /-!
 # The inward-drift potential and its radial tail

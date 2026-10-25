@@ -1,5 +1,9 @@
-import CERW.Support.Norm.GradientIdentity
-import CERW.Support.Norm.NormGaugeConsequences
+module
+
+public import CERW.Support.Norm.GradientIdentity
+public import CERW.Support.Norm.NormGaugeConsequences
+
+@[expose] public section
 
 /-!
 # Norm ball potential from the gradient identity

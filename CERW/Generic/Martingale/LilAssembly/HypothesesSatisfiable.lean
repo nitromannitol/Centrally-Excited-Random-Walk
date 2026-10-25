@@ -1,5 +1,9 @@
-import CERW.Generic.Martingale.LilLower.CoinSpace
-import CERW.Model.Bracket
+module
+
+public import CERW.Generic.Martingale.LilLower.CoinSpace
+public import CERW.Model.Bracket
+
+@[expose] public section
 
 /-!
 # The hypotheses of the lower half of Stout's law are satisfiable

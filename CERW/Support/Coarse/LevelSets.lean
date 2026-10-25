@@ -1,5 +1,9 @@
-import CERW.Model.Potential
-import LatticeProb.Walk.Ball
+module
+
+public import CERW.Model.Potential
+public import LatticeProb.Walk.Ball
+
+@[expose] public section
 
 /-!
 # Level sets of the potential kernel

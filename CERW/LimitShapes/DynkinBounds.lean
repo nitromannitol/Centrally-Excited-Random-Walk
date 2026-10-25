@@ -1,5 +1,9 @@
-import CERW.LimitShapes.DynkinFreedman
-import CERW.Support.Lower.SharpBulk
+module
+
+public import CERW.LimitShapes.DynkinFreedman
+public import CERW.Support.Lower.SharpBulk
+
+@[expose] public section
 
 /-!
 # Freedman bounds for the Dynkin martingales through a fixed horizon

@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Frozen.EuclideanSeparatedBrackets
-import CERW.LimitShapes.Frozen.ExpDeviation
-import CERW.LimitShapes.BulkPotential
-import CERW.Support.Lower.SharpBulk
+module
+
+public import CERW.LimitShapes.Frozen.EuclideanSeparatedBrackets
+public import CERW.LimitShapes.Frozen.ExpDeviation
+public import CERW.LimitShapes.BulkPotential
+public import CERW.Support.Lower.SharpBulk
+
+@[expose] public section
 
 /-!
 # Sharp bulk deviations from the excess potential

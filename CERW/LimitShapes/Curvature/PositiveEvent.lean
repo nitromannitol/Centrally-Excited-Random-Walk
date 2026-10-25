@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.EventData
-import CERW.LimitShapes.Curvature.Global
-import CERW.LimitShapes.Curvature.PositiveBound
+module
+
+public import CERW.LimitShapes.Curvature.EventData
+public import CERW.LimitShapes.Curvature.Global
+public import CERW.LimitShapes.Curvature.PositiveBound
+
+@[expose] public section
 
 /-! # Positive potential on the common event
 

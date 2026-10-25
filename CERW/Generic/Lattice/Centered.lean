@@ -1,5 +1,9 @@
-import CERW.Generic.Lattice.WeightSums
-import CERW.Generic.Lattice.SummableSums
+module
+
+public import CERW.Generic.Lattice.WeightSums
+public import CERW.Generic.Lattice.SummableSums
+
+@[expose] public section
 
 /-!
 # Lattice weight sums centred at an arbitrary site

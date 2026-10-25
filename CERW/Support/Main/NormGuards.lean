@@ -1,6 +1,10 @@
-import CERW.Support.Main.LimitShape
-import CERW.Support.Norm.LocalTime
-import CERW.Generic.Norm.Subgradient
+module
+
+public import CERW.Support.Main.LimitShape
+public import CERW.Support.Norm.LocalTime
+public import CERW.Generic.Norm.Subgradient
+
+@[expose] public section
 
 /-!
 # The hypotheses of the norm statements can be met for every norm

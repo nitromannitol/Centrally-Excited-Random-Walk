@@ -1,11 +1,15 @@
-import CERW.Support.LocalTime.KernelFacts
-import CERW.Support.LocalTime.IntervalDynkin
-import CERW.Support.LocalTime.SourcePacking
-import CERW.Support.LocalTime.IntervalMart
-import CERW.Support.LocalTime.SourceSum
-import CERW.Support.Geometry.CellModulus
-import CERW.Generic.Young.Absorb
-import CERW.Support.Law.ScaleArith
+module
+
+public import CERW.Support.LocalTime.KernelFacts
+public import CERW.Support.LocalTime.IntervalDynkin
+public import CERW.Support.LocalTime.SourcePacking
+public import CERW.Support.LocalTime.IntervalMart
+public import CERW.Support.LocalTime.SourceSum
+public import CERW.Support.Geometry.CellModulus
+public import CERW.Generic.Young.Absorb
+public import CERW.Support.Law.ScaleArith
+
+@[expose] public section
 
 /-!
 # The local-time lemma

@@ -1,6 +1,10 @@
-import CERW.Model.Law
-import CERW.Support.Law.Moments
-import Mathlib.Probability.Kernel.IonescuTulcea.Traj
+module
+
+public import CERW.Model.Law
+public import CERW.Support.Law.Moments
+public import Mathlib.Probability.Kernel.IonescuTulcea.Traj
+
+@[expose] public section
 
 /-!
 # Centrally excited random walk exists

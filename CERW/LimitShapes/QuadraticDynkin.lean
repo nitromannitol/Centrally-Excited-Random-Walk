@@ -1,4 +1,8 @@
-import CERW.Support.Norm.ContactEvent
+module
+
+public import CERW.Support.Norm.ContactEvent
+
+@[expose] public section
 
 /-!
 # Martingale property of the quadratic process

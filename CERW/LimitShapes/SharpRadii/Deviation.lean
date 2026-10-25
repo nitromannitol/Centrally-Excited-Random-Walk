@@ -1,5 +1,9 @@
-import CERW.LimitShapes.SharpRadii.Transfer
-import CERW.Support.Lower.SharpWidth
+module
+
+public import CERW.LimitShapes.SharpRadii.Transfer
+public import CERW.Support.Lower.SharpWidth
+
+@[expose] public section
 
 /-!
 # Two signs of the coarse quadratic deviation

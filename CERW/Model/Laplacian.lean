@@ -1,6 +1,10 @@
-import CERW.Model.Norm
-import Mathlib.Analysis.InnerProductSpace.Laplacian
-import Mathlib.MeasureTheory.Integral.Bochner.Basic
+module
+
+public import CERW.Model.Norm
+public import Mathlib.Analysis.InnerProductSpace.Laplacian
+public import Mathlib.MeasureTheory.Integral.Bochner.Basic
+
+@[expose] public section
 
 /-!
 # The distributional Laplacian of a norm

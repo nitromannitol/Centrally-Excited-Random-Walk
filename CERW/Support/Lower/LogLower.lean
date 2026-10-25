@@ -1,15 +1,19 @@
-import CERW.Support.Statements
-import CERW.Support.Contact.Quadratic
-import CERW.Generic.Martingale.Clamp
-import CERW.Generic.Kernel.RadialPacking
-import CERW.Support.Main.BorelCantelli
-import CERW.Support.Occupation.SiteArith
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.Cells
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Occupation.Facts
-import CERW.Support.Law.CondStep
-import LatticeProb.Prob.Freedman
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Contact.Quadratic
+public import CERW.Generic.Martingale.Clamp
+public import CERW.Generic.Kernel.RadialPacking
+public import CERW.Support.Main.BorelCantelli
+public import CERW.Support.Occupation.SiteArith
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.Cells
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Occupation.Facts
+public import CERW.Support.Law.CondStep
+public import LatticeProb.Prob.Freedman
+
+@[expose] public section
 
 /-!
 # Logarithmic lower bounds for the radii

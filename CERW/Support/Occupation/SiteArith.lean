@@ -1,6 +1,10 @@
-import CERW.Support.Occupation.CellVolume
-import CERW.Support.Occupation.Facts
-import CERW.Generic.Lattice.SummableSums
+module
+
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Support.Occupation.Facts
+public import CERW.Generic.Lattice.SummableSums
+
+@[expose] public section
 
 /-!
 # Elementary facts about lattice sites, cells and unit directions

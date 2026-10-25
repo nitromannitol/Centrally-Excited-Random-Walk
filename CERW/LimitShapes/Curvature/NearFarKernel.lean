@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Curvature.Mass
+module
+
+public import CERW.LimitShapes.Curvature.Mass
+
+@[expose] public section
 
 /-! # Radial kernel estimates for `lem:near-far` -/
 

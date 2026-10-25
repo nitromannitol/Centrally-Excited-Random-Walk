@@ -1,6 +1,10 @@
-import CERW.Generic.Martingale.Lil.LowerStatement
-import CERW.Generic.Martingale.Lil
-import CERW.Support.Statements
+module
+
+public import CERW.Generic.Martingale.Lil.LowerStatement
+public import CERW.Generic.Martingale.Lil
+public import CERW.Support.Statements
+
+@[expose] public section
 
 /-!
 # Stout's law of the iterated logarithm from its two halves

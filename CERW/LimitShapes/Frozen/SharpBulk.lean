@@ -1,5 +1,9 @@
-import CERW.LimitShapes.SharpBulk
-import CERW.Frozen.SharpBulk
+module
+
+public import CERW.LimitShapes.SharpBulk
+public import CERW.Frozen.SharpBulk
+
+@[expose] public section
 
 /-!
 # thm:sharp

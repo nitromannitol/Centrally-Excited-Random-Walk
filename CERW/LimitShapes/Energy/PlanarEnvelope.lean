@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.PlanarPacking
-import CERW.LimitShapes.Energy.DriftSum
+module
+
+public import CERW.LimitShapes.Energy.PlanarPacking
+public import CERW.LimitShapes.Energy.DriftSum
+
+@[expose] public section
 
 /-!
 # Planar logarithmic envelopes near the pole

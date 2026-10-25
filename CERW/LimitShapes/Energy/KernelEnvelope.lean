@@ -1,4 +1,8 @@
-import CERW.Support.LocalTime.LatticeKernelFacts
+module
+
+public import CERW.Support.LocalTime.LatticeKernelFacts
+
+@[expose] public section
 
 /-!
 # Kernel value envelopes

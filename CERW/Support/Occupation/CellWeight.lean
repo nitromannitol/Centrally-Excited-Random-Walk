@@ -1,6 +1,10 @@
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import Mathlib.MeasureTheory.Integral.Bochner.Set
+module
+
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+
+@[expose] public section
 
 /-!
 # The weight of a cell far from the origin

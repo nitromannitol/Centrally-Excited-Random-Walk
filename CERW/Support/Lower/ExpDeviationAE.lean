@@ -1,4 +1,8 @@
-import CERW.Support.Lower.ExpDeviation
+module
+
+public import CERW.Support.Lower.ExpDeviation
+
+@[expose] public section
 
 /-!
 # Exponential deviations of martingales: the almost sure form

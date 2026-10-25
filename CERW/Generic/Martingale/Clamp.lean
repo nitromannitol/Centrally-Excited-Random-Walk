@@ -1,4 +1,8 @@
-import Mathlib.Probability.Martingale.Basic
+module
+
+public import Mathlib.Probability.Martingale.Basic
+
+@[expose] public section
 
 /-!
 # Martingales with almost surely bounded increments

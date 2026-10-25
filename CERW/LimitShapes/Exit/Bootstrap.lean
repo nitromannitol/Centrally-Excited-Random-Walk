@@ -1,4 +1,8 @@
-import CERW.LimitShapes.Exit.BootstrapAux
+module
+
+public import CERW.LimitShapes.Exit.BootstrapAux
+
+@[expose] public section
 
 /-!
 # Exit-time bootstrap at a finite horizon

@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Curvature.CapBounds
-import CERW.LimitShapes.Curvature.CurvatureIntegralBound
-import CERW.LimitShapes.Curvature.NearFar
+module
+
+public import CERW.LimitShapes.Curvature.CapBounds
+public import CERW.LimitShapes.Curvature.CurvatureIntegralBound
+public import CERW.LimitShapes.Curvature.NearFar
+
+@[expose] public section
 
 /-! # Positive potential on an annulus (`eq:positive-bound`) -/
 

@@ -1,7 +1,11 @@
-import CERW.Support.Coarse.Vector
-import CERW.Support.Crossing.Kinematics
-import CERW.Generic.Young.Absorb
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.Coarse.Vector
+public import CERW.Support.Crossing.Kinematics
+public import CERW.Generic.Young.Absorb
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # Crossings through a small set

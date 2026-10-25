@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.PathProbability
+module
+
+public import CERW.Support.Outer.Radius.PathProbability
+
+@[expose] public section
 
 /-!
 # Radius Asymptotics

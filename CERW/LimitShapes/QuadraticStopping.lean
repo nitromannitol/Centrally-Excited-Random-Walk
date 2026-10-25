@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Event
-import CERW.Support.Norm.ProjectionGeometry
+module
+
+public import CERW.LimitShapes.Event
+public import CERW.Support.Norm.ProjectionGeometry
+
+@[expose] public section
 
 /-!
 # Increments of the stopped quadratic martingale

@@ -1,6 +1,10 @@
-import Mathlib.Analysis.InnerProductSpace.Harmonic.Basic
-import Mathlib.Analysis.InnerProductSpace.Calculus
-import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
+module
+
+public import Mathlib.Analysis.InnerProductSpace.Harmonic.Basic
+public import Mathlib.Analysis.InnerProductSpace.Calculus
+public import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
+
+@[expose] public section
 
 /-!
 # Harmonicity of the Newton kernel

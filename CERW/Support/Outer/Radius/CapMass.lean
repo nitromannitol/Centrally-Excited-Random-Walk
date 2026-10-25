@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.ProbeGeometry
+module
+
+public import CERW.Support.Outer.Radius.ProbeGeometry
+
+@[expose] public section
 
 /-!
 # Cap Mass

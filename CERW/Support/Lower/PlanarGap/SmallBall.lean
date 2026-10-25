@@ -1,6 +1,10 @@
-import CERW.Support.Lower.PlanarGap.Annulus
-import CERW.Support.Lower.PlanarGap.VectorClt
-import CERW.Support.Lower.PlanarGap.Width
+module
+
+public import CERW.Support.Lower.PlanarGap.Annulus
+public import CERW.Support.Lower.PlanarGap.VectorClt
+public import CERW.Support.Lower.PlanarGap.Width
+
+@[expose] public section
 
 /-!
 # The vector small-ball bound for the width of the planar range

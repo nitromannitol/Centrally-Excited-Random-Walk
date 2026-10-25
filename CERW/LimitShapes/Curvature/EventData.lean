@@ -1,7 +1,11 @@
-import CERW.LimitShapes.Curvature.EventScales
-import CERW.LimitShapes.Curvature.EventGeometry
-import CERW.LimitShapes.Energy.Contact
-import CERW.LimitShapes.EventConsequences
+module
+
+public import CERW.LimitShapes.Curvature.EventScales
+public import CERW.LimitShapes.Curvature.EventGeometry
+public import CERW.LimitShapes.Energy.Contact
+public import CERW.LimitShapes.EventConsequences
+
+@[expose] public section
 
 /-!
 # Annular data on the common event

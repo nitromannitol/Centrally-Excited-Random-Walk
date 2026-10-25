@@ -1,3 +1,5 @@
+module
+
 /-
 # The `Measure.pi`–`withDensity` bridge (two coordinates)
 
@@ -39,8 +41,10 @@ closed-disk mass one still needs
    `volume_closedBall_fin_two` (`volume.real (ball 0 1) = π`) and
    `LatticeProb`-independent `integral_zero_to_mul_exp_neg_sq` (`GaussDisc.lean`).
 -/
-import Mathlib.MeasureTheory.Constructions.Pi
-import Mathlib.MeasureTheory.Measure.WithDensity
+public import Mathlib.MeasureTheory.Constructions.Pi
+public import Mathlib.MeasureTheory.Measure.WithDensity
+
+@[expose] public section
 
 open MeasureTheory Set
 open scoped ENNReal

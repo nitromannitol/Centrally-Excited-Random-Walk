@@ -1,4 +1,8 @@
-import CERW.Support.Outer.Radius.WeightedNewtonField
+module
+
+public import CERW.Support.Outer.Radius.WeightedNewtonField
+
+@[expose] public section
 
 /-!
 # Newton Convolution

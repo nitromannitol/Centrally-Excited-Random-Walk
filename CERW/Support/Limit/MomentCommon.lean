@@ -1,11 +1,15 @@
-import CERW.Support.Statements
-import CERW.Support.Contact.Quadratic
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import CERW.Support.Occupation.FreshSum
-import CERW.Support.Occupation.Facts
-import CERW.Generic.Kernel.RadialPacking
-import CERW.Support.Main.ScaleLimits
+module
+
+public import CERW.Support.Statements
+public import CERW.Support.Contact.Quadratic
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Support.Occupation.FreshSum
+public import CERW.Support.Occupation.Facts
+public import CERW.Generic.Kernel.RadialPacking
+public import CERW.Support.Main.ScaleLimits
+
+@[expose] public section
 
 /-!
 # Shared estimates for the limit laws and the iterated logarithm law of the moment radius

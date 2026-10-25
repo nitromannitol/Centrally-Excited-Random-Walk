@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Lower.ExpDeviationAE
+module
+
+public import CERW.Model
+public import CERW.Support.Lower.ExpDeviationAE
+
+@[expose] public section
 
 /-!
 # lem-exp-deviation

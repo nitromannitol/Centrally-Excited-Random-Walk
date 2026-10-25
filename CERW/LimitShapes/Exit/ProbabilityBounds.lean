@@ -1,6 +1,10 @@
-import CERW.LimitShapes.Crossing.ExponentialProbability
-import CERW.LimitShapes.Exit.ProbabilityBoundsAux
-import CERW.LimitShapes.Exit.UpperProbability
+module
+
+public import CERW.LimitShapes.Crossing.ExponentialProbability
+public import CERW.LimitShapes.Exit.ProbabilityBoundsAux
+public import CERW.LimitShapes.Exit.UpperProbability
+
+@[expose] public section
 
 /-!
 # Two-sided exit probabilities

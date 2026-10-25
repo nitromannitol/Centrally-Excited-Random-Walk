@@ -1,4 +1,8 @@
-import CERW.Support.Norm.EuclideanCoarse
+module
+
+public import CERW.Support.Norm.EuclideanCoarse
+
+@[expose] public section
 
 /-!
 # The occupation and radius bounds

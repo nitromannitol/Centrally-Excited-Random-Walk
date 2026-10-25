@@ -1,9 +1,13 @@
-import CERW.Frozen.FluctuationRates
-import CERW.Frozen.InnerRadius
-import CERW.Frozen.NearFar
-import CERW.Frozen.OuterRadius
-import CERW.Frozen.SharpRadii
-import CERW.Support.Law.Existence
+module
+
+public import CERW.Frozen.FluctuationRates
+public import CERW.Frozen.InnerRadius
+public import CERW.Frozen.NearFar
+public import CERW.Frozen.OuterRadius
+public import CERW.Frozen.SharpRadii
+public import CERW.Support.Law.Existence
+
+@[expose] public section
 
 /-!
 # Guards for the radii results

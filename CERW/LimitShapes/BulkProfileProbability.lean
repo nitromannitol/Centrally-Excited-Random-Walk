@@ -1,7 +1,11 @@
-import CERW.LimitShapes.BulkProfileProbability.Event
-import CERW.LimitShapes.BulkProfileProbability.Geometry
-import CERW.LimitShapes.BulkProfileProbability.Scales
-import CERW.LimitShapes.BulkProfileProbability.Theorem
+module
+
+public import CERW.LimitShapes.BulkProfileProbability.Event
+public import CERW.LimitShapes.BulkProfileProbability.Geometry
+public import CERW.LimitShapes.BulkProfileProbability.Scales
+public import CERW.LimitShapes.BulkProfileProbability.Theorem
+
+@[expose] public section
 
 /-!
 # Bulk profile probability bounds

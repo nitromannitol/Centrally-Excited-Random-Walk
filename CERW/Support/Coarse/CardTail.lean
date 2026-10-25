@@ -1,8 +1,12 @@
-import CERW.Support.Geometry.TailBasic
-import CERW.Support.Occupation.CellNorm
-import CERW.Support.Occupation.CellVolume
-import CERW.Support.Occupation.CellSetVolume
-import CERW.Support.Occupation.SiteArith
+module
+
+public import CERW.Support.Geometry.TailBasic
+public import CERW.Support.Occupation.CellNorm
+public import CERW.Support.Occupation.CellVolume
+public import CERW.Support.Occupation.CellSetVolume
+public import CERW.Support.Occupation.SiteArith
+
+@[expose] public section
 
 /-!
 # Counting departure sites in an annulus by the tail

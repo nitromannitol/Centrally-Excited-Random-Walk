@@ -1,7 +1,11 @@
-import CERW.Generic.Martingale.LilAssembly.Core
-import CERW.Generic.Martingale.LilAssembly.BlockArith
-import CERW.Generic.Martingale.LilAssembly.BlockEventMeas
-import CERW.Generic.Martingale.LilLower
+module
+
+public import CERW.Generic.Martingale.LilAssembly.Core
+public import CERW.Generic.Martingale.LilAssembly.BlockArith
+public import CERW.Generic.Martingale.LilAssembly.BlockEventMeas
+public import CERW.Generic.Martingale.LilLower
+
+@[expose] public section
 
 /-!
 # The conditional lower bound for the blocks

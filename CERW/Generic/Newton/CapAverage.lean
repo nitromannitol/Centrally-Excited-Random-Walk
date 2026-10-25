@@ -1,4 +1,8 @@
-import CERW.Generic.Newton.Cap
+module
+
+public import CERW.Generic.Newton.Cap
+
+@[expose] public section
 
 /-!
 # A Hölder function with a large value has a large spherical mean

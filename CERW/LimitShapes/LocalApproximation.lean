@@ -1,7 +1,11 @@
-import CERW.LimitShapes.LocalApproximation.Assembly
-import CERW.LimitShapes.LocalApproximation.Pointwise
-import CERW.LimitShapes.LocalApproximation.Probability
-import CERW.LimitShapes.LocalApproximation.Weights
+module
+
+public import CERW.LimitShapes.LocalApproximation.Assembly
+public import CERW.LimitShapes.LocalApproximation.Pointwise
+public import CERW.LimitShapes.LocalApproximation.Probability
+public import CERW.LimitShapes.LocalApproximation.Weights
+
+@[expose] public section
 
 /-!
 # Local-time potential approximation

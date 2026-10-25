@@ -1,5 +1,9 @@
-import CERW.Support.Norm.ContactEvent
-import CERW.Support.Occupation.Cells
+module
+
+public import CERW.Support.Norm.ContactEvent
+public import CERW.Support.Occupation.Cells
+
+@[expose] public section
 
 /-!
 # Uniform far-field potential bound

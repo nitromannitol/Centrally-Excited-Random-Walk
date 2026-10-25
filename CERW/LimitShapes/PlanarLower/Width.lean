@@ -1,12 +1,16 @@
-import CERW.LimitShapes.Frozen.LimitShape
-import CERW.LimitShapes.Frozen.NormCoarseBounds
-import CERW.Support.Main.LimitShape
-import CERW.Support.Drift.Bridge
-import CERW.Support.Norm.Section5Localization
-import CERW.Support.Lower.ExpDeviationAE
-import CERW.Support.Lower.SharpWidth
-import CERW.Generic.Martingale.LilAssembly.StoutLower
-import CERW.Support.Stout
+module
+
+public import CERW.LimitShapes.Frozen.LimitShape
+public import CERW.LimitShapes.Frozen.NormCoarseBounds
+public import CERW.Support.Main.LimitShape
+public import CERW.Support.Drift.Bridge
+public import CERW.Support.Norm.Section5Localization
+public import CERW.Support.Lower.ExpDeviationAE
+public import CERW.Support.Lower.SharpWidth
+public import CERW.Generic.Martingale.LilAssembly.StoutLower
+public import CERW.Support.Stout
+
+@[expose] public section
 
 /-!
 # Planar width lower bounds

@@ -1,9 +1,13 @@
-import CERW.Frozen.ExpDeviation
-import CERW.Support.Lower.ExpDeviationStatement
-import CERW.Support.Lower.SharpWidth
-import CERW.Support.Lower.SharpRadii
-import CERW.Support.Lower.SharpBulk
-import CERW.Support.Main.LimitShape
+module
+
+public import CERW.Frozen.ExpDeviation
+public import CERW.Support.Lower.ExpDeviationStatement
+public import CERW.Support.Lower.SharpWidth
+public import CERW.Support.Lower.SharpRadii
+public import CERW.Support.Lower.SharpBulk
+public import CERW.Support.Main.LimitShape
+
+@[expose] public section
 
 /-!
 # Consumers of the exponential deviation lemma

@@ -1,9 +1,13 @@
-import CERW.Support.Norm.GaugeLaplacianSharp
-import CERW.Support.Norm.GaugeResults
-import CERW.Support.Norm.GaugeShapeEvents
-import CERW.Support.Norm.ContactEvent
-import CERW.Support.Norm.Section5Localization
-import CERW.Frozen.NormShapeRates
+module
+
+public import CERW.Support.Norm.GaugeLaplacianSharp
+public import CERW.Support.Norm.GaugeResults
+public import CERW.Support.Norm.GaugeShapeEvents
+public import CERW.Support.Norm.ContactEvent
+public import CERW.Support.Norm.Section5Localization
+public import CERW.Frozen.NormShapeRates
+
+@[expose] public section
 
 /-!
 # A norm is the Minkowski functional of its closed unit ball, and the consequences for a norm

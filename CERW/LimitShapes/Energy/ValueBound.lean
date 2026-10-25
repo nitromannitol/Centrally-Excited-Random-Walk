@@ -1,5 +1,9 @@
-import CERW.LimitShapes.Energy.KernelEnvelope
-import CERW.LimitShapes.ShiftedSquare
+module
+
+public import CERW.LimitShapes.Energy.KernelEnvelope
+public import CERW.LimitShapes.ShiftedSquare
+
+@[expose] public section
 
 /-!
 # Kernel values at the dimensional centering scale

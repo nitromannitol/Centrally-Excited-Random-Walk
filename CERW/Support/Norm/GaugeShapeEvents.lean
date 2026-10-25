@@ -1,11 +1,15 @@
-import CERW.Support.Norm.GaugePointwise
-import CERW.Support.Norm.GaugeProjectionEvents
-import CERW.Support.Norm.GaugeCoarseClosed
-import CERW.Support.Norm.GaugeContactShape
-import CERW.Support.Contact.Quadratic
-import CERW.Support.Norm.GaugeLocalTime
-import CERW.Support.Norm.GaugeCoarseVolume
-import CERW.Support.Main.BorelCantelli
+module
+
+public import CERW.Support.Norm.GaugePointwise
+public import CERW.Support.Norm.GaugeProjectionEvents
+public import CERW.Support.Norm.GaugeCoarseClosed
+public import CERW.Support.Norm.GaugeContactShape
+public import CERW.Support.Contact.Quadratic
+public import CERW.Support.Norm.GaugeLocalTime
+public import CERW.Support.Norm.GaugeCoarseVolume
+public import CERW.Support.Main.BorelCantelli
+
+@[expose] public section
 
 /-!
 # The limit shape of the walk driven by the gauge of a convex body

@@ -1,5 +1,9 @@
-import CERW.LimitShapes.ContactApproximation
-import CERW.LimitShapes.LocalBracket
+module
+
+public import CERW.LimitShapes.ContactApproximation
+public import CERW.LimitShapes.LocalBracket
+
+@[expose] public section
 
 /-!
 # ContactPotential

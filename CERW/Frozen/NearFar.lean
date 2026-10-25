@@ -1,5 +1,9 @@
-import CERW.Model
-import CERW.Support.Outer.NearFar
+module
+
+public import CERW.Model
+public import CERW.Support.Outer.NearFar
+
+@[expose] public section
 
 /-!
 # lem:near-far
