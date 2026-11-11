@@ -2,7 +2,7 @@
 
 The expensive failure mode of an agentic formalization is not a false proof;
 the axiom gate (`check_axioms.py`) catches that. It is UNPRODUCTIVE WRAPPING:
-a worker reduces an open goal to a new lemma that is itself open, repackages
+an author reduces an open goal to a new lemma that is itself open, repackages
 it under a longer name, and reports progress, while the set of open
 assumptions never shrinks.
 

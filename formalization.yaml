@@ -43,6 +43,11 @@ sources:
   relationship: formalizes
   note: Theorems 1.1, 1.2, 1.3 and 2.1 and every lemma and proposition of Sections 2-9 are formalized.
   sha256: 0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396
+related_formalizations:
+- id: https://github.com/nitromannitol/Lattice-Probability
+  relationship: builds-on
+  note: A library of lattice probability and potential theory, a git dependency pinned to commit
+    424de9b04279b9aa58364ab227b44c8007e0b5ba.
 automation:
   methods:
   - method: agent
@@ -66,6 +71,8 @@ status:
     two-author manuscript. The theorems of the introduction have Mathlib-only comparator challenges and
     solutions in CERWAudit/.
   sorry_count: 0
+  sorry_count_scope: the library (CERW.lean and CERW/)
+  comparator_challenge_sorry_count: 7
   sorry_in_definitions: 0
   axioms:
   - propext
@@ -80,6 +87,61 @@ status:
     - Classical.choice
     - Quot.sound
     comparator_config: CERWAudit/LimitShape/comparator.json
+    literature_dependencies: []
+  - declaration: CERW.LimitShapes.fluctuation_rates
+    file: CERW/LimitShapes/Frozen/FluctuationRates.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    comparator_config: CERWAudit/FluctuationRates/comparator.json
+    literature_dependencies: []
+  - declaration: CERW.LimitShapes.sharp_radii
+    file: CERW/LimitShapes/Frozen/SharpRadii.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    comparator_config: CERWAudit/Sharpness/comparator.json
+    literature_dependencies: []
+  - declaration: CERW.LimitShapes.sharp_radii_lil
+    file: CERW/LimitShapes/Frozen/SharpRadiiLil.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    comparator_config: CERWAudit/Sharpness/comparator.json
+    literature_dependencies: []
+  - declaration: CERW.LimitShapes.sharp_bulk
+    file: CERW/LimitShapes/Frozen/SharpBulk.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    comparator_config: CERWAudit/Sharpness/comparator.json
+    literature_dependencies: []
+  - declaration: CERW.LimitShapes.sharp_width
+    file: CERW/LimitShapes/Frozen/SharpWidth.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    comparator_config: CERWAudit/Sharpness/comparator.json
+    literature_dependencies: []
+  - declaration: CERW.LimitShapes.norm_shape
+    file: CERW/LimitShapes/Frozen/NormShape.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    comparator_config: CERWAudit/NormShape/comparator.json
+    literature_dependencies: []
   open_mathematics: []
   comparator_configs:
   - CERWAudit/LimitShape/comparator.json

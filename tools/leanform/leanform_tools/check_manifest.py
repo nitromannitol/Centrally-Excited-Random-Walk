@@ -129,7 +129,7 @@ def check(res: Result, cfg: RepoConfig) -> None:
         if node.is_multi_decl:
             res.note(
                 f"{nid}: {len(recorded)} declarations in one block "
-                "(tolerated pending the semantic fingerprint; see PLAN.md)"
+                "(tolerated pending the semantic fingerprint)"
             )
 
         # 5. `sorry` only as a registered draft body, once, after the marker.

@@ -48,7 +48,7 @@ class Node:
     theorem is sealed together with the definitions carrying its content.
 
     Both are readable here. Which one is *correct* is a protocol question
-    settled in audit/PLAN.md: one declaration per block is the rule, and the
+    settled by convention: one declaration per block is the rule, and the
     multi-declaration block is a stand-in for the semantic fingerprint that
     does not exist yet. Until the fingerprint lands, multi-declaration nodes
     are tolerated and reported, not rejected.

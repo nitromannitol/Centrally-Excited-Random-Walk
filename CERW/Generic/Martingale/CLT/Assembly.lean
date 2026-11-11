@@ -15,7 +15,7 @@ distribution (`H2`). The array form implies the single-martingale form
 The unconditional discharge of `H1` and `H2` — from the increment step bound, the path-bracket
 properties, the truncated increments, the compensated exponential and the characteristic-function
 bound — is `CERW.Generic.Martingale.CLT.martingaleCLT_proved`, in the module `Proved`; the analytic
-packets are in the sibling modules.
+lemmas are in the sibling modules.
 -/
 
 universe u

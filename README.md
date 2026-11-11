@@ -54,7 +54,7 @@ process whose law is that of the walk (`CERW.IsCERW`):
 - **`CERW.MainTheorems.norm_shape`** (Theorem 2.1): when the drift is opposite to a subgradient of
   a norm, the visited set approximates the ball of that norm.
 
-Every labelled result of the paper is a frozen statement in
+Every labelled result of the paper is a registered statement in
 [`CERW/LimitShapes/Frozen/`](CERW/LimitShapes/Frozen/):
 
 | Paper | Label | Lean declaration |
@@ -93,12 +93,14 @@ probability, and the contact and separated-bracket estimates on that event.
 
 ## Standing assumptions and scope
 
-1. **Nothing is assumed.** No theorem carries a cited result as a hypothesis
-   ([`ASSUMPTIONS.md`](ASSUMPTIONS.md)).
-2. **The model.** `CERW.IsCERW μ ε X` says that the process `X` has the law of the centrally
-   excited walk with drift `ε`; the theorems hold for every such process on every probability
-   space. The local time at a site counts the departures from it, and the range is the set of
-   sites departed from by time `n`.
+1. **Every theorem is about every process.** `CERW.IsCERW μ ε X` says that the process `X` has
+   the law of the centrally excited walk with drift `ε`; the theorems hold for every such
+   process on every probability space. The local time at a site counts the departures from it,
+   and the range is the set of sites departed from by time `n`.
+2. **Axioms and incomplete proofs.** The library contains no `sorry`, no `admit`, no
+   `native_decide` and no new `axiom`. The axiom report of every registered declaration consists
+   of exactly `propext`, `Classical.choice` and `Quot.sound`. Nothing is assumed: no theorem
+   carries a cited result as a hypothesis ([`ASSUMPTIONS.md`](ASSUMPTIONS.md)).
 3. **Quantifiers.** Constants depend only on the parameters the paper names (`d`, `ε`, `p`), and
    are chosen before `n`, as printed.
 4. **The two-author manuscript.** The repository also formalizes the manuscript
@@ -123,28 +125,34 @@ Status: **27 registered statements — 27 proved.**  The 27 proved statements ar
 - **Standard axioms only.** The axiom report of every registered declaration is exactly
   `propext`, `Classical.choice` and `Quot.sound` ([`CERTIFICATE-LIMIT-SHAPES.md`](CERTIFICATE-LIMIT-SHAPES.md));
   `tools/AllAxioms.lean` checks every declaration of the library.
-- **Kernel replay.** `tools/replay_kernel.sh` replays every declaration of `CERW` and of the
-  modules of Lattice-Probability it imports in the Lean kernel, and is tested on a fixture that
-  bypasses the kernel.
-- **Pinned statements.** The bytes of every frozen statement are pinned by SHA-256 in
-  [`ledger/current.yaml`](ledger/current.yaml), with the lines of the paper it states, and
-  `tools/check_frozen_types.py` checks the elaborated types of the frozen statements.
-- **Warning-free build.** The continuous-integration build rejects any warning.
 - **Independent check of the statements.** The introduction's theorems are restated in
   [`CERWAudit/`](CERWAudit/) using mathlib alone, and
   [leanprover/comparator](https://github.com/leanprover/comparator) checks that the solutions
   prove them with only the three standard axioms, through the Lean kernel and the independent
   nanoda kernel. See [`CERWAudit/README.md`](CERWAudit/README.md).
-- **Pinned toolchain.** Lean `v4.32.0`, mathlib `81a5d257c8e410db227a6665ed08f64fea08e997` and
-  Lattice-Probability `424de9b04279b9aa58364ab227b44c8007e0b5ba`, recorded in
-  [`lake-manifest.json`](lake-manifest.json).
+- **Pinned toolchain and dependencies.** Lean `v4.32.0`; mathlib at
+  `81a5d257c8e410db227a6665ed08f64fea08e997` and Lattice-Probability at
+  `424de9b04279b9aa58364ab227b44c8007e0b5ba`, both exact commits recorded in
+  [`lake-manifest.json`](lake-manifest.json) (see [Building](#building)).
+- **The paper is part of the repository.** The statement map refers to the versions in
+  [`paper/`](paper/), pinned by SHA-256 to
+  `128646310ef17f4f897b5dfa9305187a85280eef391b70d8c7be009a5da5c87d`
+  (`centrally-excited-walks.tex`) and
+  `0771c8808b3b1f50a0131433c190ce07f908eadd7d2b3145d8f86589be2f9396` (`limit-shapes.tex`).
+- **Kernel replay.** `tools/replay_kernel.sh` replays every declaration of `CERW` and of the
+  modules of Lattice-Probability it imports in the Lean kernel, and is tested on a fixture that
+  bypasses the kernel.
+- **Pinned statements.** The bytes of every registered statement are pinned by SHA-256 in
+  [`ledger/current.yaml`](ledger/current.yaml), with the lines of the paper it states, and
+  `tools/check_frozen_types.py` checks the elaborated types of the registered statements.
+- **Warning-free build.** The continuous-integration build rejects any warning.
 
 ## Size
 
-About 155,000 lines of Lean in 661 modules (`CERW.lean` and `CERW/`), of which about 128,000
-lines are code once comments and blank lines are removed, on top of mathlib and
-Lattice-Probability. Both formalized sources are counted; the comparator surface under
-`CERWAudit/` is not.
+The library contains 661 Lean files with 154,869 physical lines (`CERW.lean` and `CERW/`), of
+which 127,905 lines remain once comments and blank lines are removed, on top of mathlib and
+Lattice-Probability. Both formalized sources are counted. The comparator sources under
+`CERWAudit/` are counted separately: 13 Lean files with 1,647 physical lines.
 
 ## Building
 
@@ -157,8 +165,15 @@ lake build             # the library
 lake build CERWAudit   # the comparator challenges and solutions
 ```
 
-`import CERW` loads the development. The checks run by the continuous integration need Python 3.10
-or later:
+`import CERW` loads the development. The dependencies are fetched at these exact commits from
+[`lake-manifest.json`](lake-manifest.json):
+
+- mathlib: `https://github.com/leanprover-community/mathlib4` at
+  `81a5d257c8e410db227a6665ed08f64fea08e997`.
+- Lattice-Probability: `https://github.com/nitromannitol/Lattice-Probability` at
+  `424de9b04279b9aa58364ab227b44c8007e0b5ba`.
+
+The checks run by the continuous integration need Python 3.10 or later:
 
 ```bash
 python3 -m venv .venv
@@ -176,15 +191,29 @@ To build the paper, run `latexmk -pdf centrally-excited-walks.tex` in `paper/`.
 
 ## Running the comparators
 
+Each comparator pair has a configuration `CERWAudit/<Pair>/comparator.json` that permits exactly
+`propext`, `Classical.choice` and `Quot.sound`. [leanprover/comparator](https://github.com/leanprover/comparator)
+checks that the solution proves the challenge statement, compares their dependency closures, and
+replays the proof with the Lean kernel and the independent nanoda kernel.
+
 `bash CERWAudit/check_standalone.sh --vocabulary` checks that each challenge elaborates on mathlib
-alone and that its vocabulary matches the solution's. The workflow
-[`comparator.yml`](.github/workflows/comparator.yml) runs
-[leanprover/comparator](https://github.com/leanprover/comparator) on the four pairs, with nanoda
-replay; [`CERWAudit/README.md`](CERWAudit/README.md) gives the commands to run it locally.
+alone and that its vocabulary matches the solution's.
+[`CERWAudit/README.md`](CERWAudit/README.md) gives the commands to run the comparator locally.
+
+There are two continuous-integration workflows: **CI**
+([`build.yml`](.github/workflows/build.yml)) builds the library and the comparator surface and
+runs the checks listed under Building, and **Comparator audit**
+([`comparator.yml`](.github/workflows/comparator.yml)) checks all four challenge/solution pairs.
+CI runs on pushes to `main` that change Lean sources, the tools, the ledger, the paper or the
+build configuration, and the comparator audit on pushes that change Lean sources, `CERWAudit/` or
+the build configuration. Both workflows can be started manually from the
+[Actions page](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions). See
+[`CONTRIBUTING.md`](CONTRIBUTING.md) for build conventions.
 
 ## Repository layout
 
 ```text
+CERW.lean             the root module, importing the development
 CERW/
   MainTheorems.lean   the introduction's theorems, stated in full
   LimitShapes/        the paper's statements (Frozen/), the common event of Section 5.1 and the proofs
@@ -194,11 +223,14 @@ CERW/
   Generic/            general results used in the proofs
   Meta/               axiom reports
 CERWAudit/            the mathlib-only comparator challenges and their solutions
+.github/workflows/    build and comparator workflows
 ledger/               current.yaml and manifest.yaml (statement hashes, paper lines, states) and
                       the paper excerpt beside each Lean statement (nl/)
 paper/                centrally-excited-walks.tex, limit-shapes.tex, bibliography and figures
 tools/                the checkers listed under Building
 CORRESPONDENCE.md     paper ↔ Lean, statement by statement
+ASSUMPTIONS.md        what the development assumes (nothing)
+CONTRIBUTING.md       build conventions and contribution notes
 PROOF.md              the proofs and the formalization conventions
 CERTIFICATE-LIMIT-SHAPES.md, CERTIFICATE.md
                       generated records of the toolchain, the build and each statement's axioms

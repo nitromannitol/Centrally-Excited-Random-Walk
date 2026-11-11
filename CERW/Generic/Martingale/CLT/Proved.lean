@@ -8,13 +8,13 @@ import CERW.Generic.Martingale.CLT.ArrayTendsto
 /-!
 # The martingale central limit theorem, proved
 
-The packets of this directory prove, one lemma each, the statements of `Interfaces`. Each packet
+The modules of this directory prove, one lemma each, the statements of `Interfaces`. Each such
 theorem takes the lemmas it uses as explicit hypotheses, stated in the polymorphic form of the
 corresponding `Statement`. This file discharges those hypotheses in dependency order and applies
 the assembly, which gives `CERW.Generic.Martingale.CLT.MartingaleCLT` outright.
 
-Every `Statement` is an `abbrev` over the universe `u` of the sample space, and every packet
-theorem quantifies over `Ω : Type u`. A packet theorem is therefore applied with its universe
+Every `Statement` is an `abbrev` over the universe `u` of the sample space, and every such
+theorem quantifies over `Ω : Type u`. Such a theorem is therefore applied with its universe
 written out, `compensated_cexp_bound.{u}`, so that the hypothesis it receives and the sample
 space it is applied to live in the same universe.
 -/
