@@ -35,8 +35,10 @@ proves this in every dimension `d ≥ 2`, with
 
 and shows that the rescaled local times converge uniformly to the cone `2 d ε (r_n − |x|)₊`.
 The introduction's theorems are restated in full in
-[`CERW/MainTheorems.lean`](CERW/MainTheorems.lean), for every `d ≥ 2` and `0 < ε < 1/d` and every
-process whose law is that of the walk (`CERW.IsCERW`):
+[`CERW/MainTheorems.lean`](CERW/MainTheorems.lean), for every process whose law is that of the walk
+(`CERW.IsCERW`), every `d ≥ 2` and every `0 < ε < 1/d`, except that parts (i), (ii) and (iv) of
+Theorem 1.3 are stated for `d = 2` and Theorem 2.1 for the walk whose drift follows a subgradient
+of a norm (`CERW.IsDriftCERW`):
 
 - **`CERW.MainTheorems.limit_shape`** (Theorem 1.1): almost surely, for every `0 < η < 1` and all
   large `n`, the set of sites the walk has departed from contains the ball of radius `(1 − η) r_n`
@@ -142,9 +144,11 @@ Status: **27 registered statements — 27 proved.**  The 27 proved statements ar
 - **Kernel replay.** `tools/replay_kernel.sh` replays every declaration of `CERW` and of the
   modules of Lattice-Probability it imports in the Lean kernel, and is tested on a fixture that
   bypasses the kernel.
-- **Pinned statements.** The bytes of every registered statement are pinned by SHA-256 in
-  [`ledger/current.yaml`](ledger/current.yaml), with the lines of the paper it states, and
-  `tools/check_frozen_types.py` checks the elaborated types of the registered statements.
+- **Pinned statements.** The bytes of each registered statement of the paper are pinned by SHA-256
+  in [`ledger/current.yaml`](ledger/current.yaml), with the lines of the paper it states (those of
+  the two-author manuscript in [`ledger/manifest.yaml`](ledger/manifest.yaml)), and
+  `tools/check_frozen_types.py` checks the elaborated types of these statements and of the seven
+  theorems of `CERW/MainTheorems.lean`.
 - **Warning-free build.** The continuous-integration build rejects any warning.
 
 ## Size
@@ -204,9 +208,10 @@ There are two continuous-integration workflows: **CI**
 ([`build.yml`](.github/workflows/build.yml)) builds the library and the comparator surface and
 runs the checks listed under Building, and **Comparator audit**
 ([`comparator.yml`](.github/workflows/comparator.yml)) checks all four challenge/solution pairs.
-CI runs on pushes to `main` that change Lean sources, the tools, the ledger, the paper or the
-build configuration, and the comparator audit on pushes that change Lean sources, `CERWAudit/` or
-the build configuration. Both workflows can be started manually from the
+CI runs on pushes to `main` that change Lean sources, `CERWAudit/`, the tools, the ledger, the
+paper, `formalization.yaml`, the build configuration or the CI workflow, and the comparator audit
+on pushes that change Lean sources, `CERWAudit/`, the build configuration or the comparator
+workflow. Both workflows can be started manually from the
 [Actions page](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions). See
 [`CONTRIBUTING.md`](CONTRIBUTING.md) for build conventions.
 
