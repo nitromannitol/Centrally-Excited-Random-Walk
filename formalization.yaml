@@ -7,9 +7,6 @@ project:
     crossing estimate and the common event of Section 5.1 with its probability bound.
   authors:
   - Ahmed Bou-Rabee
-  - Tuan-Minh Nguyen
-  - Yuval Peres
-  - Arvind Singh
   license: Apache-2.0
 classification:
   arxiv:
@@ -55,7 +52,7 @@ automation:
     - Claude Opus 5.5
     - Claude Sonnet 5.5
     - DeepSeek (auxiliary proof work)
-    framework: Claude Code (Anthropic), directing the models above; the authors supervised the work and are
+    framework: Claude Code (Anthropic), directing the models above; the author supervised the work and is
       responsible for the formalization.
     tool_setup: Lake builds under the pinned Lean toolchain and Mathlib revision. Every change is gated by
       the manifest, axiom, kernel-replay and warning-free-build checks, and the public CI runs the
@@ -63,7 +60,7 @@ automation:
     cost:
       spend_usd: not separately tracked (subscription and API accounts)
       hardware: one Ubuntu workstation
-    prompting_notes: Human-directed agent work, closely supervised by the authors.
+    prompting_notes: Human-directed agent work, closely supervised by the author.
 status:
   scope: ledger/current.yaml registers every labeled result of the paper, together with the crossing
     estimate, the common event of Section 5.1 and its probability bound, and the contact and
