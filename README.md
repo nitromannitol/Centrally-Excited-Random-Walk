@@ -15,83 +15,148 @@ The development is built on [mathlib](https://github.com/leanprover-community/ma
 shared library [Lattice-Probability](https://github.com/nitromannitol/Lattice-Probability)
 (`LatticeProb`).
 
+[![CI](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/build.yml)
+[![Comparator audit](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/comparator.yml/badge.svg?branch=main)](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/comparator.yml)
+
+## What is proved
+
+A centrally excited random walk `X_0 = 0, X_1, X_2, …` on `ℤ^d`, `d ≥ 2`, moves like simple
+random walk, except that on its first departure from each site `x ≠ 0` it moves to `x ± e_i`
+with probability `1/(2d) ∓ ε x_i/(2|x|)`, where `0 < ε < 1/d`. This step has a drift of size `ε`
+toward the origin. The local time `ℓ_n(x)` is the number of departures from `x` before time
+`n`, and the range `A_n` is the set of sites departed from before time `n`.
+
+Kozma conjectured that after `n` steps the visited set approximates a ball of radius of order
+`n^(1/(d+1))`. The paper proves this in every dimension `d ≥ 2`, with
+
+> `r_n = ((d+1) n / (2 d ε ω_d))^(1/(d+1))`,  `ω_d` the volume of the unit ball,
+
+so that the cone `2 d ε (r_n − |x|)₊` has integral `n`, and shows that the local times converge
+to this cone uniformly at the scale `r_n`. It bounds the fluctuations of the radii and of the
+local times, shows that the planar bounds are sharp, and extends the limit shape to walks whose
+drift is opposite to a subgradient of a norm. The model is stated precisely in
+[Standing assumptions and scope](#standing-assumptions-and-scope).
+
+The main results, Theorems 1.1, 1.2 and 1.3 of the introduction and Theorem 2.1, formalized as
+stated in the paper, are collected in [`CERW/MainTheorems.lean`](CERW/MainTheorems.lean) as
+seven theorems. Each restates the registered statement of the same name in
+[`CERW/LimitShapes/Frozen/`](CERW/LimitShapes/Frozen/), where every labelled result of the
+paper is registered:
+
+| Paper | Lean declaration | Content |
+| --- | --- | --- |
+| Theorem 1.1 (label `thm:shape`) | `CERW.MainTheorems.limit_shape` | Almost surely, the range is eventually between the balls of radii `(1 − η) r_n` and `(1 + η) r_n`, the local times are within `o(r_n)` of the cone, and every site is visited infinitely often. |
+| Theorem 1.2 (label `thm:fluctuations`) | `CERW.MainTheorems.fluctuation_rates` | Bounds on the deviations of the inner and outer radii, of the rescaled volume and of the local times, with probability at least `1 − C n^(−p)` and eventually almost surely. |
+| Theorem 1.3 (i) (label `thm:sharp`) | `CERW.MainTheorems.sharp_radii` | In the plane, each radius deviates from `r_n` by at least `c √(r_n log n)` with probability at least `n^(−p)`. |
+| Theorem 1.3 (ii) (label `thm:sharp`) | `CERW.MainTheorems.sharp_radii_lil` | In the plane, an iterated-logarithm lower bound for the deviations of both radii. |
+| Theorem 1.3 (iii) (label `thm:sharp`) | `CERW.MainTheorems.sharp_bulk` | With probability at least `1 − n^(−c)`, some site within `√r_n` of the origin has local-time error at least `c √r_n log n` in the plane and `c √(r_n log n)` for `d ≥ 3`. |
+| Theorem 1.3 (iv) (label `thm:sharp`) | `CERW.MainTheorems.sharp_width` | In the plane, polynomial-probability, iterated-logarithm and small-width bounds for the difference of the two radii. |
+| Theorem 2.1 (label `thm:norm-shape`) | `CERW.MainTheorems.norm_shape` | When the drift is opposite to a subgradient of a norm, the range approximates the ball of that norm and the local times approximate its cone. |
+| Lemma 2.2 (label `lem:ballpotential`) | `CERW.LimitShapes.norm_ball_potential` | The potential of the norm ball `{Ψ < ρ}` is the cone `2 d ε (ρ − Ψ(y))₊`. |
+| Lemma 3.1 (label `lem:local`) | `CERW.LimitShapes.norm_local_time_potential` | With probability at least `1 − C n^(−p)`, the smoothed local time differs from the potential of the occupied cells by at most `C log n` plus a term governed by the largest local time. |
+| Lemma 3.2 (label `lem:freedman`) | `CERW.LimitShapes.freedman_bound` | A martingale with increments bounded by `1` satisfies `|Z_n − Z_0| ≤ C (√(⟨Z⟩_n log n) + log n)` with probability at least `1 − C n^(−p)`. |
+| Lemma 3.3 (label `lem:cell`) | `CERW.LimitShapes.cell_gradient` | On each unit cell `C_x`, the `L¹` distance between the gradient of the norm and the subgradient `ξ(x)` is bounded by a measure of a nearby ball. |
+| Lemma 3.4 (label `lem:layer`) | `CERW.LimitShapes.layer_potential` | The potential of a set in the layer `{b ≤ Ψ ≤ b + a}` is bounded by `2 d ε a`. |
+| Proposition 4.1 (label `prop:coarse`) | `CERW.LimitShapes.norm_coarse_bounds` | Coarse bounds, with probability at least `1 − C n^(−p)`, including `c r_n^d ≤ |A_n| ≤ C r_n^d`. |
+| Proposition 5.1 (label `prop:norm-shape`) | `CERW.LimitShapes.norm_shape_rates` | Rates for Theorem 2.1, with a constant that does not depend on the choice of the subgradients. |
+| Lemma 5.2 (label `lem:contact`) | `CERW.LimitShapes.contact_potential` | On the event of Section 5.1, the contact term is at most `√(r_n log n)` in the plane and `log n` for `d ≥ 3`, up to a constant. |
+| Proposition 6.1 (label `prop:inner`) | `CERW.LimitShapes.inner_radius` | For the Euclidean norm, bounds on the inner radius, the volume and the local times, with probability at least `1 − C n^(−p)`. |
+| Proposition 7.1 (label `prop:stronger-outer`) | `CERW.LimitShapes.outer_radius` | For the Euclidean norm, the outer radius exceeds `r_n` by at most `C √r_n (log n)^(5/2)` in the plane and `C (log n)^(d+1)` for `d ≥ 3`, with probability at least `1 − C n^(−p)`. |
+| Lemma 7.2 (label `lem:near-far`) | `CERW.LimitShapes.near_far` | A deterministic bound on the potential of a set in a thin spherical shell, at the points of the shell. |
+| Theorem 8.1 (label `thm:moment-fluctuations`) | `CERW.LimitShapes.moment_fluctuations` | A central limit theorem and a law of the iterated logarithm for the sum of the distances from the origin. |
+| Lemma 8.2 (label `lem:fixed-site-centering`) | `CERW.LimitShapes.fixed_site_centering` | Almost surely, the potential of the occupied cells at a fixed site is the cone plus an explicit correction, up to `C (log n)^3` in the plane and `C` for `d ≥ 3`. |
+| Theorem 8.3 (label `thm:site-fluctuations`) | `CERW.LimitShapes.site_fluctuations` | A central limit theorem, a law of the iterated logarithm and joint limits for the local times at fixed sites. |
+| Lemma 9.1 (label `lem:exp-deviation`) | `CERW.LimitShapes.exp_deviation` | Lower bounds for the deviations of martingales with bounded increments and comparable brackets, and for the maximum of nearly orthogonal ones. |
+| Proposition 9.2 (label `prop:bulk-profile`) | `CERW.LimitShapes.bulk_profile` | For the Euclidean norm, the local times at the sites with `|y| ≤ θ r_n` are within `C √r_n log n` of the cone in the plane and `C √(r_n log n)` for `d ≥ 3`. |
+| Lemma 9.3 (label `lem:separated-brackets`) | `CERW.LimitShapes.separated_brackets` | On the event of Section 5.1, the martingales of Section 9 have comparable brackets and small cross-brackets. |
+| Proposition 9.4 (label `prop:log-lower`) | `CERW.LimitShapes.log_lower_bounds` | Tail bounds and almost-sure lower bounds for the deviations of the radii. |
+
 <!-- LIMIT-SHAPES-STATUS-BEGIN -->
 
 **All 22 labeled results are proved in 29 checked declarations.** The literal Section 5.1 event has polynomial exceptional probability, and both contact and separated brackets use its produced uniform constants.
 
 <!-- LIMIT-SHAPES-STATUS-END -->
 
-[![CI](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/build.yml)
-[![Comparator audit](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/comparator.yml/badge.svg?branch=main)](https://github.com/nitromannitol/Centrally-Excited-Random-Walk/actions/workflows/comparator.yml)
-
-## What is proved
-
-A centrally excited random walk on `ℤ^d` moves like simple random walk, except that its first step
-from each site other than the origin has a drift of size `ε` toward the origin. Kozma conjectured
-that after `n` steps the visited set approximates a ball of radius of order `n^(1/(d+1))`. The paper
-proves this in every dimension `d ≥ 2`, with
-
-> `r_n = ((d+1) n / (2 d ε ω_d))^(1/(d+1))`,  `ω_d` the volume of the unit ball,
-
-and shows that the rescaled local times converge uniformly to the cone `2 d ε (r_n − |x|)₊`.
-The introduction's theorems are restated in full in
-[`CERW/MainTheorems.lean`](CERW/MainTheorems.lean), for every process whose law is that of the walk
-(`CERW.IsCERW`), every `d ≥ 2` and every `0 < ε < 1/d`, except that parts (i), (ii) and (iv) of
-Theorem 1.3 are stated for `d = 2` and Theorem 2.1 for the walk whose drift follows a subgradient
-of a norm (`CERW.IsDriftCERW`):
-
-- **`CERW.MainTheorems.limit_shape`** (Theorem 1.1): almost surely, for every `0 < η < 1` and all
-  large `n`, the set of sites the walk has departed from contains the ball of radius `(1 − η) r_n`
-  and is contained in the ball of radius `(1 + η) r_n`; the local times are within `η r_n` of the
-  cone, uniformly in the site; and every site is visited infinitely often.
-- **`CERW.MainTheorems.fluctuation_rates`** (Theorem 1.2): the inner and outer radii, the volume of
-  the symmetric difference with the ball and the local-time errors satisfy explicit
-  dimension-dependent bounds (in the plane, `√(r_n log n)` for the inner radius and
-  `√r_n (log n)^(5/2)` for the outer radius), with probability at least `1 − C n^(−p)` for every
-  `p`, and eventually almost surely.
-- **`sharp_radii`, `sharp_radii_lil`, `sharp_bulk`, `sharp_width`** (Theorem 1.3): the planar
-  bounds are sharp up to the power of the logarithm, with polynomial-probability and
-  iterated-logarithm lower bounds for the radii and their difference and a lower bound for the
-  local-time error in the bulk.
-- **`CERW.MainTheorems.norm_shape`** (Theorem 2.1): when the drift is opposite to a subgradient of
-  a norm, the visited set approximates the ball of that norm.
-
-Every labelled result of the paper is a registered statement in
-[`CERW/LimitShapes/Frozen/`](CERW/LimitShapes/Frozen/):
-
-| Paper | Label | Lean declaration |
-| --- | --- | --- |
-| Theorem 1.1 (limit shape) | `thm:shape` | `CERW.LimitShapes.limit_shape` |
-| Theorem 1.2 (fluctuation bounds) | `thm:fluctuations` | `CERW.LimitShapes.fluctuation_rates` |
-| Theorem 1.3 (i) (sharpness: the radii) | `thm:sharp` | `CERW.LimitShapes.sharp_radii` |
-| Theorem 1.3 (ii) (sharpness: iterated logarithm) | `thm:sharp` | `CERW.LimitShapes.sharp_radii_lil` |
-| Theorem 1.3 (iii) (sharpness: the bulk) | `thm:sharp` | `CERW.LimitShapes.sharp_bulk` |
-| Theorem 1.3 (iv) (sharpness: the width) | `thm:sharp` | `CERW.LimitShapes.sharp_width` |
-| Theorem 2.1 (limit shape for a norm) | `thm:norm-shape` | `CERW.LimitShapes.norm_shape` |
-| Lemma 2.2 (the potential of a norm ball) | `lem:ballpotential` | `CERW.LimitShapes.norm_ball_potential` |
-| Lemma 3.1 | `lem:local` | `CERW.LimitShapes.norm_local_time_potential` |
-| Lemma 3.2 | `lem:freedman` | `CERW.LimitShapes.freedman_bound` |
-| Lemma 3.3 | `lem:cell` | `CERW.LimitShapes.cell_gradient` |
-| Lemma 3.4 | `lem:layer` | `CERW.LimitShapes.layer_potential` |
-| Proposition 4.1 | `prop:coarse` | `CERW.LimitShapes.norm_coarse_bounds` |
-| Proposition 5.1 | `prop:norm-shape` | `CERW.LimitShapes.norm_shape_rates` |
-| Lemma 5.2 | `lem:contact` | `CERW.LimitShapes.contact_potential` |
-| Proposition 6.1 (inner radius) | `prop:inner` | `CERW.LimitShapes.inner_radius` |
-| Proposition 7.1 (outer radius) | `prop:stronger-outer` | `CERW.LimitShapes.outer_radius` |
-| Lemma 7.2 | `lem:near-far` | `CERW.LimitShapes.near_far` |
-| Theorem 8.1 (sum of the distances from the origin) | `thm:moment-fluctuations` | `CERW.LimitShapes.moment_fluctuations` |
-| Lemma 8.2 | `lem:fixed-site-centering` | `CERW.LimitShapes.fixed_site_centering` |
-| Theorem 8.3 (local times at fixed sites) | `thm:site-fluctuations` | `CERW.LimitShapes.site_fluctuations` |
-| Lemma 9.1 | `lem:exp-deviation` | `CERW.LimitShapes.exp_deviation` |
-| Proposition 9.2 | `prop:bulk-profile` | `CERW.LimitShapes.bulk_profile` |
-| Lemma 9.3 | `lem:separated-brackets` | `CERW.LimitShapes.separated_brackets` |
-| Proposition 9.4 (lower bounds for the radii) | `prop:log-lower` | `CERW.LimitShapes.log_lower_bounds` |
-
 Four further registered declarations prove intermediate steps that the paper states in its text:
 the distance-crossing bound, the common event of Section 5.1 with polynomially small exceptional
 probability, and the contact and separated-bracket estimates on that event.
 [`CORRESPONDENCE.md`](CORRESPONDENCE.md) maps every statement to the paper, and
 [`PROOF.md`](PROOF.md) describes each proof.
+
+**Theorem 1.1 (limit shape, `thm:shape`).** Let `d ≥ 2` and `0 < ε < 1/d`. Almost surely, the
+centrally excited random walk has the following properties.
+
+1. *Shape.* For every `0 < η < 1` and all sufficiently large `n`,
+   `{x ∈ ℤ^d : |x| < (1 − η) r_n} ⊂ A_n ⊂ {x ∈ ℤ^d : |x| < (1 + η) r_n}`.
+2. *Local times.* As `n → ∞`, `r_n⁻¹ max_x |ℓ_n(x) − 2 d ε (r_n − |x|)₊| → 0`.
+3. *Recurrence.* The walk visits every site of `ℤ^d` infinitely often.
+
+In Lean, `CERW.MainTheorems.limit_shape` holds for every process `X : ℕ → Ω → ℤ^d` on every
+probability space whose law is that of the walk (`CERW.IsCERW μ ε X`). The range `A_n` is
+`CERW.departureRange`, the local time `ℓ_n` is `CERW.localTime`, and `ω_d` is the Lebesgue
+measure of the open unit ball of `EuclideanSpace ℝ (Fin d)`. Part 2 is stated as: for every
+`η > 0`, eventually `|ℓ_n(x) − 2 d ε (r_n − |x|)₊| ≤ η r_n` for every `x`.
+
+**Theorem 1.2 (fluctuation bounds, `thm:fluctuations`).** Let `d ≥ 2` and `0 < ε < 1/d`. Let
+`D_n` be the union of the unit cells `x + [−½, ½)^d`, `x ∈ A_n`, let the inner radius `R_in(n)`
+be the distance from the origin to the complement of `D_n`, and let the outer radius be
+`R_out(n) = max_{j ≤ n} |X_j|`. For every `p > 0` there is `C(d, ε, p) < ∞` such that, for
+every integer `n ≥ 2`, the following bounds hold simultaneously with probability at least
+`1 − C n^(−p)`; in particular they hold for all sufficiently large `n` almost surely.
+
+1. *Radii.* `|R_in(n) − r_n| ≤ C √(r_n log n)` and `R_out(n) − r_n ≤ C √r_n (log n)^(5/2)` if
+   `d = 2`; `|R_in(n) − r_n| ≤ C log n` and `R_out(n) − r_n ≤ C (log n)^(d+1)` if `d ≥ 3`.
+2. *Volume.* The volume of `r_n⁻¹ D_n △ B(0, 1)` is at most `C √(log n / r_n)` if `d = 2` and
+   `C log n / r_n` if `d ≥ 3`.
+3. *Local times.* `max_x |ℓ_n(x) − 2 d ε (r_n − |x|)₊|` is at most `C √r_n (log n)^(3/2)` if
+   `d = 2` and `C √(r_n log n)` if `d ≥ 3`.
+
+In Lean, `CERW.MainTheorems.fluctuation_rates` chooses `C` before the probability space and the
+process, so one constant serves every realization of the walk, and states the almost-sure
+conclusion with the same constant. The radii are `CERW.innerRadius` and `CERW.maxRadius`, and
+`D_n` is `CERW.cellSet`.
+
+**Theorem 1.3 (sharpness, `thm:sharp`).** Let `d ≥ 2` and `0 < ε < 1/d`.
+
+1. *Radii in the plane.* Let `d = 2`. For every `p > 0` there is `c(ε, p) > 0` such that, for
+   all sufficiently large `n`, `P(r_n − R_in(n) ≥ c √(r_n log n)) ≥ n^(−p)` and
+   `P(R_out(n) − r_n ≥ c √(r_n log n)) ≥ n^(−p)`.
+2. *Iterated logarithm for the radii in the plane.* Let `d = 2`. Almost surely, both
+   `limsup (r_n − R_in(n)) / √(r_n log log n)` and `limsup (R_out(n) − r_n) / √(r_n log log n)`
+   are at least `1/√(10πε)`.
+3. *Local times near the origin.* There is `c(d, ε) > 0` such that, for all sufficiently large
+   `n`, with probability at least `1 − n^(−c)`,
+   `max_{|x| ≤ √r_n} |ℓ_n(x) − 2 d ε (r_n − |x|)|` is at least `c √r_n log n` if `d = 2` and
+   `c √(r_n log n)` if `d ≥ 3`.
+4. *Difference of the radii in the plane.* Let `d = 2`. (a) For every `p > 0` there is
+   `c(ε, p) > 0` such that `P(R_out(n) − R_in(n) ≥ c √(r_n log n)) ≥ n^(−p)` for all
+   sufficiently large `n`. (b) Almost surely,
+   `limsup (R_out(n) − R_in(n)) / √(r_n log log n) ≥ √(π/(3ε))`. (c) For every `a ≥ 0`,
+   `limsup P(R_out(n) − R_in(n) ≤ a √r_n) ≤ 1 − exp(−3εa²/π)`.
+
+In Lean, the four parts are `CERW.MainTheorems.sharp_radii`, `CERW.MainTheorems.sharp_radii_lil`,
+`CERW.MainTheorems.sharp_bulk` and `CERW.MainTheorems.sharp_width`; parts 1, 2 and 4 take
+`d = 2` as a hypothesis. The constants and the threshold beyond which "sufficiently large `n`"
+holds are chosen before the probability space and the process. Parts 1 and 4(a) also state that
+the events are measurable. Each lower bound on a `limsup` is stated as: for every `δ > 0`, the
+deviation is at least the constant minus `δ`, times `√(r_n log log n)`, for infinitely many `n`.
+
+**Theorem 2.1 (limit shape for a norm, `thm:norm-shape`).** Let `d ≥ 2`, let `Ψ` be a norm on
+`ℝ^d`, let `ξ(x)` be a subgradient of `Ψ` at `x`, chosen at every site `x ≠ 0`, and let `ε > 0`
+satisfy `ε max_i Ψ(e_i) < 1/d`. Consider the walk whose first departure from each site `x ≠ 0`
+has the probabilities above with `x/|x|` replaced by `ξ(x)`, and let `r_n` be given by the
+formula above with the volume of the unit ball of `Ψ` in place of `ω_d`. Almost surely:
+
+1. *Shape.* For every `0 < η < 1` and all sufficiently large `n`,
+   `{x ∈ ℤ^d : Ψ(x) < (1 − η) r_n} ⊂ A_n ⊂ {x ∈ ℤ^d : Ψ(x) < (1 + η) r_n}`.
+2. *Local times.* As `n → ∞`, `r_n⁻¹ max_x |ℓ_n(x) − 2 d ε (r_n − Ψ(x))₊| → 0`.
+3. *Recurrence.* The walk visits every site of `ℤ^d` infinitely often.
+
+In Lean, `CERW.MainTheorems.norm_shape` holds for every process with the law
+`CERW.IsDriftCERW μ ε ξ X`, every `Ψ` with `CERW.IsNorm Ψ` and every field `ξ` with
+`CERW.IsSubgradient Ψ (CERW.toSpace x) (ξ x)` at each `x ≠ 0`. The field is extended by
+`ξ(0) = 0`, so the walk has no drift at the origin, and the condition on `ε` is `ε Ψ(e_i) < 1/d`
+for every `i`. Part 2 is stated as in Theorem 1.1.
 
 ## Standing assumptions and scope
 
@@ -244,18 +309,18 @@ CERTIFICATE-LIMIT-SHAPES.md, CERTIFICATE.md
 ## How this was built
 
 The Lean code was written with AI assistance, using models from Anthropic (Claude) and, for
-auxiliary proof work, DeepSeek, under the direction of the authors. Every proof is checked by the
+auxiliary proof work, DeepSeek, under the direction of the author. Every proof is checked by the
 Lean kernel. The models and tooling are disclosed in [`formalization.yaml`](formalization.yaml),
 following the [mathlib-initiative](https://github.com/mathlib-initiative/formalization.yaml)
 standard.
 
 ## Authors and citation
 
-The Lean development is by **Ahmed Bou-Rabee** and **Yuval Peres**. The paper is by Ahmed
-Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh. To cite the formalization, use
-[`CITATION.cff`](CITATION.cff).
+The Lean development is by **Ahmed Bou-Rabee**. To cite it, use [`CITATION.cff`](CITATION.cff).
+The paper is by Ahmed Bou-Rabee, Tuan-Minh Nguyen, Yuval Peres and Arvind Singh.
 
 ## License
 
-The Lean code is licensed under the Apache License 2.0; see [`LICENSE`](LICENSE). The paper sources
-in [`paper/`](paper/) are included for reference and are not covered by this licence.
+The Lean development is licensed under the Apache License 2.0; see [`LICENSE`](LICENSE).
+The paper sources in [`paper/`](paper/) are included for reference and are not covered by this
+licence.
